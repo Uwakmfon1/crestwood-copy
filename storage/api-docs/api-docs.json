@@ -1,10 +1,10 @@
 {
     "openapi": "3.0.0",
     "info": {
-        "title": "Rare Gems API Docs",
-        "description": "Rare Gems API Docs",
+        "title": "Sandbox API Docs",
+        "description": "Sandbox API Docs",
         "contact": {
-            "email": "rafiumoshoodolakunle@gmail.com"
+            "email": "softwebdigital@gmail.com"
         },
         "license": {
             "name": "Apache 2.0",
@@ -14,7 +14,7 @@
     },
     "servers": [
         {
-            "url": "https://app.raregems.ng",
+            "url": "https://app.sandboxnextin.net",
             "description": "API Server"
         },
         {
@@ -623,8 +623,8 @@
                 "tags": [
                     "Others"
                 ],
-                "summary": "Get Raregems Bank Details",
-                "operationId": "get raregems bank details",
+                "summary": "Get Sandbox Bank Details",
+                "operationId": "get sandbox bank details",
                 "responses": {
                     "200": {
                         "description": "Success",
@@ -1357,8 +1357,5 @@
                 }
             }
         }
-    },
-    "security": [
-        []
-    ]
+    }
 }

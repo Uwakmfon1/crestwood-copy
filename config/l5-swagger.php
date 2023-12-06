@@ -5,7 +5,7 @@ return [
     'documentations' => [
         'default' => [
             'api' => [
-                'title' => 'Rare Gems API',
+                'title' => 'Sandbox API',
             ],
 
             'routes' => [

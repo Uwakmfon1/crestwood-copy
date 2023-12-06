@@ -24,9 +24,9 @@ class CommandController extends Controller
     {
         if (Setting::all()->count() == 0){
             Setting::create([
-                'bank_name' => 'Access Bank',
-                'account_number' => '0123456789',
-                'account_name' => 'Rare Gems'
+                'bank_name' => 'xxxxxxxxxx',
+                'account_number' => 'xxxxxxxxxx',
+                'account_name' => 'xxxxxxxxxx'
             ]);
         }
     }

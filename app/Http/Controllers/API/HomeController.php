@@ -485,8 +485,8 @@ class HomeController extends Controller
      * @OA\Get(
      ** path="/api/bank/details",
      *   tags={"Others"},
-     *   summary="Get Raregems Bank Details",
-     *   operationId="get raregems bank details",
+     *   summary="Get Sandbox Bank Details",
+     *   operationId="get sandbox bank details",
      *
      *   @OA\Response(
      *      response=200,
