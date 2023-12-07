@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     @include('partials.header')
-    <title>Rare Gems @yield('title')</title>
+    <title>Sandbox @yield('title')</title>
 </head>
 <body>
 <div class="main-wrapper">

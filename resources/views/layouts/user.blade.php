@@ -3,7 +3,7 @@
 <head>
     @include('partials.header')
     @yield('styles')
-    <title>Rare Gems @isset($title) | @endisset {{ $title ?? '' }} </title>
+    <title>Sandbox @isset($title) | @endisset {{ $title ?? '' }} </title>
 </head>
 <body>
 <div class="main-wrapper">
