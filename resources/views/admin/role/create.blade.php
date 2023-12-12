@@ -72,11 +72,13 @@
             function toggleAllPermissions(){
                 if (selectAll.prop('checked')){
                     permissionCheckBoxes.each(function (){
-                       $(this).prop('checked', true);
+                        $(this).prop('checked', true);
                     });
                 }else {
                     permissionCheckBoxes.each(function (){
-                        $(this).prop('checked', false);
+                        if (!$(this).prop('disabled')) {
+                            $(this).prop('checked', false);
+                        }
                     });
                 }
             }

@@ -75,7 +75,9 @@
                     });
                 }else {
                     permissionCheckBoxes.each(function (){
-                        $(this).prop('checked', false);
+                        if (!$(this).prop('disabled')) {
+                            $(this).prop('checked', false);
+                        }
                     });
                 }
             }
