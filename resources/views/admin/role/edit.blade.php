@@ -38,11 +38,11 @@
                                     </label>
                                 </div>
                             </div>
-                            @foreach(\Spatie\Permission\Models\Permission::all() as $permission)
+                            @foreach(\Spatie\Permission\Models\Permission::query()->whereNotIn('name', ['View Trading Dashboard', 'View Trades', 'View Market / Statistics'])->get() as $permission)
                                 <div class="col-md-6">
                                     <div class="form-check">
                                         <label style="white-space: normal" class="form-check-label">
-                                            <input name="permissions[]" @if($permission['name'] == 'View Quick Overview') disabled @endif @if($role->hasPermissionTo($permission['name']) || $permission['name'] == 'View Quick Overview') checked @endif value="{{ $permission['name'] }}" type="checkbox" class="form-check-input permission-check-box">
+                                            <input name="" @if($permission['name'] == 'View Quick Overview') disabled @endif @if($role->hasPermissionTo($permission['name']) || $permission['name'] == 'View Quick Overview') checked @endif value="{{ $permission['name'] }}" type="checkbox" class="form-check-input permission-check-box">
                                             {{ $permission['name'] }}
                                         </label>
                                     </div>

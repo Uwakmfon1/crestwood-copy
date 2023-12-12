@@ -147,7 +147,6 @@ class UserController extends Controller
                                         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton3">
                                             <a class="dropdown-item d-flex align-items-center" href="'.route('admin.users.show', $user['id']).'"><i style="font-size: 13px" class="icon-sm text-secondary fa fa-eye mr-2"></i> <span class="">View</span></a>
                                             <a class="dropdown-item d-flex align-items-center" href="/admin/users/'.$user['id'].'/show#investments"><i style="font-size: 13px" class="fa fa-layer-group text-secondary icon-sm mr-2"></i> <span class="">Investments</span></a>
-                                            <a class="dropdown-item d-flex align-items-center" href="/admin/users/'.$user['id'].'/show#trades"><i style="font-size: 13px" class="fa fa-chart-line text-secondary icon-sm mr-2"></i> <span class="">Trades</span></a>
                                             <a class="dropdown-item d-flex align-items-center" href="/admin/users/'.$user['id'].'/show#wallets"><i style="font-size: 13px" class="fa fa-wallet text-secondary icon-sm mr-2"></i> <span class="">Wallet</span></a>'.
                                             $action.'
                                         </div>
@@ -163,5 +162,6 @@ class UserController extends Controller
             "data"            => $data
         );
         echo json_encode($res);
+//        '<a class="dropdown-item d-flex align-items-center" href="/admin/users/'.$user['id'].'/show#trades"><i style="font-size: 13px" class="fa fa-chart-line text-secondary icon-sm mr-2"></i> <span class="">Trades</span></a>'
     }
 }

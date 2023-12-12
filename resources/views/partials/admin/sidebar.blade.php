@@ -19,31 +19,37 @@
         <ul class="nav">
             <li class="nav-item nav-category">Main</li>
             @if(auth()->user()->can('View Quick Overview') || auth()->user()->can('View Investment Dashboard') || auth()->user()->can('View Trading Dashboard'))
-            <li class="nav-item @if(request()->routeIs(['admin.dashboard', 'admin.dashboard.investment', 'admin.dashboard.trading'])) active @endif">
-                <a class="nav-link" data-toggle="collapse" href="#dashboard" role="button" aria-expanded="false" aria-controls="investment">
+{{--            <li class="nav-item @if(request()->routeIs(['admin.dashboard', 'admin.dashboard.investment', 'admin.dashboard.trading'])) active @endif">--}}
+{{--                <a class="nav-link" data-toggle="collapse" href="#dashboard" role="button" aria-expanded="false" aria-controls="investment">--}}
+{{--                    <i class="link-icon" data-feather="grid"></i>--}}
+{{--                    <span class="link-title">Dashboard</span>--}}
+{{--                    <i class="link-arrow" data-feather="chevron-down"></i>--}}
+{{--                </a>--}}
+{{--                <div class="collapse" id="dashboard">--}}
+{{--                    <ul class="nav sub-menu">--}}
+{{--                        @can('View Quick Overview')--}}
+{{--                        <li class="nav-item">--}}
+{{--                            <a href="{{ route('admin.dashboard') }}" class="nav-link @if(request()->routeIs(['admin.dashboard'])) text-primary @endif">Quick Overview</a>--}}
+{{--                        </li>--}}
+{{--                        @endcan--}}
+{{--                        @can('View Investment Dashboard')--}}
+{{--                        <li class="nav-item">--}}
+{{--                            <a href="{{ route('admin.dashboard.investment') }}" class="nav-link @if(request()->routeIs(['admin.dashboard.investment'])) text-primary @endif">Investment</a>--}}
+{{--                        </li>--}}
+{{--                        @endcan--}}
+{{--                        @can('View Trading Dashboard')--}}
+{{--                        <li class="nav-item">--}}
+{{--                            <a href="{{ route('admin.dashboard.trading') }}" class="nav-link @if(request()->routeIs(['admin.dashboard.trading'])) text-primary @endif">Trading</a>--}}
+{{--                        </li>--}}
+{{--                        @endcan--}}
+{{--                    </ul>--}}
+{{--                </div>--}}
+{{--            </li>--}}
+            <li class="nav-item @if(request()->is('admin.dashboard')) active @endif">
+                <a href="{{ route('admin.dashboard') }}" class="nav-link">
                     <i class="link-icon" data-feather="grid"></i>
                     <span class="link-title">Dashboard</span>
-                    <i class="link-arrow" data-feather="chevron-down"></i>
                 </a>
-                <div class="collapse" id="dashboard">
-                    <ul class="nav sub-menu">
-                        @can('View Quick Overview')
-                        <li class="nav-item">
-                            <a href="{{ route('admin.dashboard') }}" class="nav-link @if(request()->routeIs(['admin.dashboard'])) text-primary @endif">Quick Overview</a>
-                        </li>
-                        @endcan
-                        @can('View Investment Dashboard')
-                        <li class="nav-item">
-                            <a href="{{ route('admin.dashboard.investment') }}" class="nav-link @if(request()->routeIs(['admin.dashboard.investment'])) text-primary @endif">Investment</a>
-                        </li>
-                        @endcan
-                        @can('View Trading Dashboard')
-                        <li class="nav-item">
-                            <a href="{{ route('admin.dashboard.trading') }}" class="nav-link @if(request()->routeIs(['admin.dashboard.trading'])) text-primary @endif">Trading</a>
-                        </li>
-                        @endcan
-                    </ul>
-                </div>
             </li>
             @endif
             @can('View Packages')
@@ -140,28 +146,28 @@
                 </div>
             </li>
             @endcan
-            @can('View Trades')
-            <li class="nav-item @if(request()->is('admin/trades')) active @endif">
-                <a class="nav-link" data-toggle="collapse" href="#trade" role="button" aria-expanded="false" aria-controls="trade">
-                    <i class="link-icon" data-feather="trending-up"></i>
-                    <span class="link-title">Trades @if($trds > 0) <span class="badge badge-primary badge-pill px-2">{{ $trds }}</span> @endif</span>
-                    <i class="link-arrow" data-feather="chevron-down"></i>
-                </a>
-                <div class="collapse" id="trade">
-                    <ul class="nav sub-menu">
-                        <li class="nav-item">
-                            <a href="{{ route('admin.trades') }}" class="nav-link @if(request()->is('admin/trades') && !request()->offsetExists('buy') && !request()->offsetExists('sell')) text-primary @endif">All</a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="{{ route('admin.trades', 'buy') }}" class="nav-link @if(request()->offsetExists('buy')) text-primary @endif">Buy</a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="{{ route('admin.trades', 'sell') }}" class="nav-link @if(request()->offsetExists('sell')) text-primary @endif">Sell</a>
-                        </li>
-                    </ul>
-                </div>
-            </li>
-            @endcan
+{{--            @can('View Trades')--}}
+{{--            <li class="nav-item @if(request()->is('admin/trades')) active @endif">--}}
+{{--                <a class="nav-link" data-toggle="collapse" href="#trade" role="button" aria-expanded="false" aria-controls="trade">--}}
+{{--                    <i class="link-icon" data-feather="trending-up"></i>--}}
+{{--                    <span class="link-title">Trades @if($trds > 0) <span class="badge badge-primary badge-pill px-2">{{ $trds }}</span> @endif</span>--}}
+{{--                    <i class="link-arrow" data-feather="chevron-down"></i>--}}
+{{--                </a>--}}
+{{--                <div class="collapse" id="trade">--}}
+{{--                    <ul class="nav sub-menu">--}}
+{{--                        <li class="nav-item">--}}
+{{--                            <a href="{{ route('admin.trades') }}" class="nav-link @if(request()->is('admin/trades') && !request()->offsetExists('buy') && !request()->offsetExists('sell')) text-primary @endif">All</a>--}}
+{{--                        </li>--}}
+{{--                        <li class="nav-item">--}}
+{{--                            <a href="{{ route('admin.trades', 'buy') }}" class="nav-link @if(request()->offsetExists('buy')) text-primary @endif">Buy</a>--}}
+{{--                        </li>--}}
+{{--                        <li class="nav-item">--}}
+{{--                            <a href="{{ route('admin.trades', 'sell') }}" class="nav-link @if(request()->offsetExists('sell')) text-primary @endif">Sell</a>--}}
+{{--                        </li>--}}
+{{--                    </ul>--}}
+{{--                </div>--}}
+{{--            </li>--}}
+{{--            @endcan--}}
             @can('View Payments')
                 <li class="nav-item @if(request()->routeIs(['admin.payments.index'])) active @endif">
                     <a href="{{ route('admin.payments.index') }}" class="nav-link">
@@ -170,14 +176,14 @@
                     </a>
                 </li>
             @endcan
-            @can('View Market / Statistics')
-            <li class="nav-item @if(request()->routeIs(['admin.market'])) active @endif">
-                <a href="{{ route('admin.market') }}" class="nav-link">
-                    <i class="link-icon" data-feather="bar-chart-2"></i>
-                    <span class="link-title">Statistics / Market</span>
-                </a>
-            </li>
-            @endcan
+{{--            @can('View Market / Statistics')--}}
+{{--            <li class="nav-item @if(request()->routeIs(['admin.market'])) active @endif">--}}
+{{--                <a href="{{ route('admin.market') }}" class="nav-link">--}}
+{{--                    <i class="link-icon" data-feather="bar-chart-2"></i>--}}
+{{--                    <span class="link-title">Statistics / Market</span>--}}
+{{--                </a>--}}
+{{--            </li>--}}
+{{--            @endcan--}}
 {{--            @can('View Market / Statistics')--}}
 {{--            <li class="nav-item @if(request()->routeIs(['admin.referrals'])) active @endif">--}}
 {{--                <a href="{{ route('admin.referrals') }}" class="nav-link">--}}

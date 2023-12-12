@@ -111,84 +111,84 @@
 {{--                                </span>--}}
 {{--                            @enderror--}}
 {{--                        </div>--}}
-                        <div class="form-group">
-                            <label for="buy_rate">Trade Buy Rate</label>
-                            <div class="input-group mb-3">
-                                <span class="input-group-text">{{ $setting['usd_to_ngn'] }} ± </span>
-                                <input type="number" id="buy_rate" step="any" value="{{ old('buy_rate_plus') ?? $setting['buy_rate_plus'] }}" name="buy_rate_plus" class="form-control" placeholder="0.00">
-                            </div>
-                            @error('buy_rate_plus')
-                                <span class="text-danger small" role="alert">
-                                    <strong>{{ $message }}</strong>
-                                </span>
-                            @enderror
-                        </div>
-                        <div class="form-group">
-                            <label for="gold_sell_rate">Trade Sell Rate</label>
-                            <div class="input-group mb-3">
-                                <span class="input-group-text">{{ $setting['usd_to_ngn'] }} ± </span>
-                                <input type="number" id="sell_rate" step="any" value="{{ old('sell_rate_plus') ?? $setting['sell_rate_plus'] }}" name="sell_rate_plus" class="form-control" placeholder="0.00">
-                            </div>
-                            @error('sell_rate_plus')
-                                <span class="text-danger small" role="alert">
-                                    <strong>{{ $message }}</strong>
-                                </span>
-                            @enderror
-                        </div>
-                        <div class="row">
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label for="gold_buy_price_diff">Gold Buy Price</label>
-                                    <div class="input-group mb-3">
-                                        <span class="input-group-text">{{ number_format(\App\Http\Controllers\HomeController::fetchGoldBuyPriceInNGN(true), 2) }} ± </span>
-                                        <input type="number" id="gold_buy_price_diff" step="any" value="{{ old('gold_buy_price_diff') ?? $setting['gold_buy_price_diff'] }}" name="gold_buy_price_diff" class="form-control" placeholder="0.00">
-                                    </div>
-                                    @error('gold_buy_price_diff')
-                                    <span class="text-danger small" role="alert">
-                                    <strong>{{ $message }}</strong>
-                                </span>
-                                    @enderror
-                                </div>
-                                <div class="form-group">
-                                    <label for="gold_sell_price_diff">Gold Sell Price</label>
-                                    <div class="input-group mb-3">
-                                        <span class="input-group-text">{{ number_format(\App\Http\Controllers\HomeController::fetchGoldSellPriceInNGN(true), 2) }} ± </span>
-                                        <input type="number" id="gold_sell_price_diff" step="any" value="{{ old('gold_sell_price_diff') ?? $setting['gold_sell_price_diff'] }}" name="gold_sell_price_diff" class="form-control" placeholder="0.00">
-                                    </div>
-                                    @error('gold_sell_price_diff')
-                                    <span class="text-danger small" role="alert">
-                                    <strong>{{ $message }}</strong>
-                                </span>
-                                    @enderror
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label for="silver_buy_price_diff">Silver Buy Price</label>
-                                    <div class="input-group mb-3">
-                                        <span class="input-group-text">{{ number_format(\App\Http\Controllers\HomeController::fetchSilverBuyPriceInNGN(true), 2) }} ± </span>
-                                        <input type="number" id="silver_buy_price_diff" step="any" value="{{ old('silver_buy_price_diff') ?? $setting['silver_buy_price_diff'] }}" name="silver_buy_price_diff" class="form-control" placeholder="0.00">
-                                    </div>
-                                    @error('silver_buy_price_diff')
-                                    <span class="text-danger small" role="alert">
-                                    <strong>{{ $message }}</strong>
-                                </span>
-                                    @enderror
-                                </div>
-                                <div class="form-group">
-                                    <label for="silver_sell_price_diff">Silver Sell Price</label>
-                                    <div class="input-group mb-3">
-                                        <span class="input-group-text">{{ number_format(\App\Http\Controllers\HomeController::fetchSilverSellPriceInNGN(true), 2) }} ± </span>
-                                        <input type="number" id="silver_sell_price_diff" step="any" value="{{ old('silver_sell_price_diff') ?? $setting['silver_sell_price_diff'] }}" name="silver_sell_price_diff" class="form-control" placeholder="0.00">
-                                    </div>
-                                    @error('silver_sell_price_diff')
-                                    <span class="text-danger small" role="alert">
-                                    <strong>{{ $message }}</strong>
-                                </span>
-                                    @enderror
-                                </div>
-                            </div>
-                        </div>
+{{--                        <div class="form-group">--}}
+{{--                            <label for="buy_rate">Trade Buy Rate</label>--}}
+{{--                            <div class="input-group mb-3">--}}
+{{--                                <span class="input-group-text">{{ $setting['usd_to_ngn'] }} ± </span>--}}
+{{--                                <input type="number" id="buy_rate" step="any" value="{{ old('buy_rate_plus') ?? $setting['buy_rate_plus'] }}" name="buy_rate_plus" class="form-control" placeholder="0.00">--}}
+{{--                            </div>--}}
+{{--                            @error('buy_rate_plus')--}}
+{{--                                <span class="text-danger small" role="alert">--}}
+{{--                                    <strong>{{ $message }}</strong>--}}
+{{--                                </span>--}}
+{{--                            @enderror--}}
+{{--                        </div>--}}
+{{--                        <div class="form-group">--}}
+{{--                            <label for="gold_sell_rate">Trade Sell Rate</label>--}}
+{{--                            <div class="input-group mb-3">--}}
+{{--                                <span class="input-group-text">{{ $setting['usd_to_ngn'] }} ± </span>--}}
+{{--                                <input type="number" id="sell_rate" step="any" value="{{ old('sell_rate_plus') ?? $setting['sell_rate_plus'] }}" name="sell_rate_plus" class="form-control" placeholder="0.00">--}}
+{{--                            </div>--}}
+{{--                            @error('sell_rate_plus')--}}
+{{--                                <span class="text-danger small" role="alert">--}}
+{{--                                    <strong>{{ $message }}</strong>--}}
+{{--                                </span>--}}
+{{--                            @enderror--}}
+{{--                        </div>--}}
+{{--                        <div class="row">--}}
+{{--                            <div class="col-md-6">--}}
+{{--                                <div class="form-group">--}}
+{{--                                    <label for="gold_buy_price_diff">Gold Buy Price</label>--}}
+{{--                                    <div class="input-group mb-3">--}}
+{{--                                        <span class="input-group-text">{{ number_format(\App\Http\Controllers\HomeController::fetchGoldBuyPriceInNGN(true), 2) }} ± </span>--}}
+{{--                                        <input type="number" id="gold_buy_price_diff" step="any" value="{{ old('gold_buy_price_diff') ?? $setting['gold_buy_price_diff'] }}" name="gold_buy_price_diff" class="form-control" placeholder="0.00">--}}
+{{--                                    </div>--}}
+{{--                                    @error('gold_buy_price_diff')--}}
+{{--                                    <span class="text-danger small" role="alert">--}}
+{{--                                    <strong>{{ $message }}</strong>--}}
+{{--                                </span>--}}
+{{--                                    @enderror--}}
+{{--                                </div>--}}
+{{--                                <div class="form-group">--}}
+{{--                                    <label for="gold_sell_price_diff">Gold Sell Price</label>--}}
+{{--                                    <div class="input-group mb-3">--}}
+{{--                                        <span class="input-group-text">{{ number_format(\App\Http\Controllers\HomeController::fetchGoldSellPriceInNGN(true), 2) }} ± </span>--}}
+{{--                                        <input type="number" id="gold_sell_price_diff" step="any" value="{{ old('gold_sell_price_diff') ?? $setting['gold_sell_price_diff'] }}" name="gold_sell_price_diff" class="form-control" placeholder="0.00">--}}
+{{--                                    </div>--}}
+{{--                                    @error('gold_sell_price_diff')--}}
+{{--                                    <span class="text-danger small" role="alert">--}}
+{{--                                    <strong>{{ $message }}</strong>--}}
+{{--                                </span>--}}
+{{--                                    @enderror--}}
+{{--                                </div>--}}
+{{--                            </div>--}}
+{{--                            <div class="col-md-6">--}}
+{{--                                <div class="form-group">--}}
+{{--                                    <label for="silver_buy_price_diff">Silver Buy Price</label>--}}
+{{--                                    <div class="input-group mb-3">--}}
+{{--                                        <span class="input-group-text">{{ number_format(\App\Http\Controllers\HomeController::fetchSilverBuyPriceInNGN(true), 2) }} ± </span>--}}
+{{--                                        <input type="number" id="silver_buy_price_diff" step="any" value="{{ old('silver_buy_price_diff') ?? $setting['silver_buy_price_diff'] }}" name="silver_buy_price_diff" class="form-control" placeholder="0.00">--}}
+{{--                                    </div>--}}
+{{--                                    @error('silver_buy_price_diff')--}}
+{{--                                    <span class="text-danger small" role="alert">--}}
+{{--                                    <strong>{{ $message }}</strong>--}}
+{{--                                </span>--}}
+{{--                                    @enderror--}}
+{{--                                </div>--}}
+{{--                                <div class="form-group">--}}
+{{--                                    <label for="silver_sell_price_diff">Silver Sell Price</label>--}}
+{{--                                    <div class="input-group mb-3">--}}
+{{--                                        <span class="input-group-text">{{ number_format(\App\Http\Controllers\HomeController::fetchSilverSellPriceInNGN(true), 2) }} ± </span>--}}
+{{--                                        <input type="number" id="silver_sell_price_diff" step="any" value="{{ old('silver_sell_price_diff') ?? $setting['silver_sell_price_diff'] }}" name="silver_sell_price_diff" class="form-control" placeholder="0.00">--}}
+{{--                                    </div>--}}
+{{--                                    @error('silver_sell_price_diff')--}}
+{{--                                    <span class="text-danger small" role="alert">--}}
+{{--                                    <strong>{{ $message }}</strong>--}}
+{{--                                </span>--}}
+{{--                                    @enderror--}}
+{{--                                </div>--}}
+{{--                            </div>--}}
+{{--                        </div>--}}
                         <div class="form-group">
                             <div class="custom-control custom-switch">
                                 <input type="checkbox" name="show_cash" value="yes" @if($setting['show_cash'] == 1) checked @endif class="custom-control-input" id="showCash">
@@ -207,12 +207,12 @@
                                 <label class="custom-control-label" for="makeInvestmentRollover">Enable investments rollover</label>
                             </div>
                         </div>
-                        <div class="form-group">
-                            <div class="custom-control custom-switch">
-                                <input type="checkbox" name="trade" value="yes" @if($setting['trade'] == 1) checked @endif class="custom-control-input" id="tradeGold">
-                                <label class="custom-control-label" for="tradeGold">Enable users trade</label>
-                            </div>
-                        </div>
+{{--                        <div class="form-group">--}}
+{{--                            <div class="custom-control custom-switch">--}}
+{{--                                <input type="checkbox" name="trade" value="yes" @if($setting['trade'] == 1) checked @endif class="custom-control-input" id="tradeGold">--}}
+{{--                                <label class="custom-control-label" for="tradeGold">Enable users trade</label>--}}
+{{--                            </div>--}}
+{{--                        </div>--}}
                         <div class="form-group">
                             <div class="custom-control custom-switch">
                                 <input type="checkbox" name="withdrawal" value="yes" @if($setting['withdrawal'] == 1) checked @endif class="custom-control-input" id="makeWithdrawal">
