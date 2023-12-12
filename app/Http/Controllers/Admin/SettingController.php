@@ -59,12 +59,12 @@ class SettingController extends Controller
 //        Validate request
         $validator = Validator::make($request->all(), [
 //            'referral_earning' => ['required'],
-            'buy_rate_plus' => ['required', 'numeric'],
-            'sell_rate_plus' => ['required', 'numeric'],
-            'gold_buy_price_diff' => ['required', 'numeric'],
-            'gold_sell_price_diff' => ['required', 'numeric'],
-            'silver_buy_price_diff' => ['required', 'numeric'],
-            'silver_sell_price_diff' => ['required', 'numeric'],
+//            'buy_rate_plus' => ['required', 'numeric'],
+//            'sell_rate_plus' => ['required', 'numeric'],
+//            'gold_buy_price_diff' => ['required', 'numeric'],
+//            'gold_sell_price_diff' => ['required', 'numeric'],
+//            'silver_buy_price_diff' => ['required', 'numeric'],
+//            'silver_sell_price_diff' => ['required', 'numeric'],
             'delete_duration' => ['required_if:auto_delete_users,yes'],
         ]);
         if ($validator->fails()){
@@ -73,16 +73,16 @@ class SettingController extends Controller
 //        Update settings
         if (Setting::all()->first()->update([
 //            'referral_earning' => $request['referral_earning'],
-            'sell_rate_plus' => $request['sell_rate_plus'],
-            'buy_rate_plus' => $request['buy_rate_plus'],
-            'gold_buy_price_diff' => $request['gold_buy_price_diff'],
-            'gold_sell_price_diff' => $request['gold_sell_price_diff'],
-            'silver_buy_price_diff' => $request['silver_buy_price_diff'],
-            'silver_sell_price_diff' => $request['silver_sell_price_diff'],
+//            'sell_rate_plus' => $request['sell_rate_plus'],
+//            'buy_rate_plus' => $request['buy_rate_plus'],
+//            'gold_buy_price_diff' => $request['gold_buy_price_diff'],
+//            'gold_sell_price_diff' => $request['gold_sell_price_diff'],
+//            'silver_buy_price_diff' => $request['silver_buy_price_diff'],
+//            'silver_sell_price_diff' => $request['silver_sell_price_diff'],
             'show_cash' => $request['show_cash'] == 'yes',
             'invest' => $request['invest'] == 'yes',
             'rollover' => $request['rollover'] == 'yes',
-            'trade' => $request['trade'] == 'yes',
+//            'trade' => $request['trade'] == 'yes',
             'withdrawal' => $request['withdrawal'] == 'yes',
             'auto_delete_unverified_users' => $request['auto_delete_users'] == 'yes',
             'auto_delete_unverified_users_after' => $request['delete_duration'],
