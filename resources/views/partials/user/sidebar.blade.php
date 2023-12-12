@@ -12,25 +12,31 @@
     <div class="sidebar-body">
         <ul class="nav">
             <li class="nav-item nav-category">Main</li>
-            <li class="nav-item @if(request()->routeIs(['dashboard', 'dashboard.investment', 'dashboard.trading'])) active @endif">
-                <a class="nav-link" data-toggle="collapse" href="#dashboard" role="button" aria-expanded="false" aria-controls="investment">
+{{--            <li class="nav-item @if(request()->routeIs(['dashboard', 'dashboard.investment', 'dashboard.trading'])) active @endif">--}}
+{{--                <a class="nav-link" data-toggle="collapse" href="#dashboard" role="button" aria-expanded="false" aria-controls="investment">--}}
+{{--                    <i class="link-icon" data-feather="grid"></i>--}}
+{{--                    <span class="link-title">Dashboard</span>--}}
+{{--                    <i class="link-arrow" data-feather="chevron-down"></i>--}}
+{{--                </a>--}}
+{{--                <div class="collapse" id="dashboard">--}}
+{{--                    <ul class="nav sub-menu">--}}
+{{--                        <li class="nav-item">--}}
+{{--                            <a href="{{ route('dashboard') }}" class="nav-link @if(request()->routeIs(['dashboard'])) text-primary @endif">Quick Overview</a>--}}
+{{--                        </li>--}}
+{{--                        <li class="nav-item">--}}
+{{--                            <a href="{{ route('dashboard.investment') }}" class="nav-link @if(request()->routeIs(['dashboard.investment'])) text-primary @endif">Investment</a>--}}
+{{--                        </li>--}}
+{{--                        <li class="nav-item">--}}
+{{--                            <a href="{{ route('dashboard.trading') }}" class="nav-link @if(request()->routeIs(['dashboard.trading'])) text-primary @endif">Trading</a>--}}
+{{--                        </li>--}}
+{{--                    </ul>--}}
+{{--                </div>--}}
+{{--            </li>--}}
+            <li class="nav-item @if(request()->is('dashboard')) active @endif">
+                <a href="{{ route('dashboard') }}" class="nav-link">
                     <i class="link-icon" data-feather="grid"></i>
                     <span class="link-title">Dashboard</span>
-                    <i class="link-arrow" data-feather="chevron-down"></i>
                 </a>
-                <div class="collapse" id="dashboard">
-                    <ul class="nav sub-menu">
-                        <li class="nav-item">
-                            <a href="{{ route('dashboard') }}" class="nav-link @if(request()->routeIs(['dashboard'])) text-primary @endif">Quick Overview</a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="{{ route('dashboard.investment') }}" class="nav-link @if(request()->routeIs(['dashboard.investment'])) text-primary @endif">Investment</a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="{{ route('dashboard.trading') }}" class="nav-link @if(request()->routeIs(['dashboard.trading'])) text-primary @endif">Trading</a>
-                        </li>
-                    </ul>
-                </div>
             </li>
             <li class="nav-item @if(request()->is('packages')) active @endif">
                 <a href="{{ route('packages') }}" class="nav-link">
@@ -93,45 +99,45 @@
                     </ul>
                 </div>
             </li>
-            <li class="nav-item @if(request()->is('trades')) active @endif">
-                <a class="nav-link" data-toggle="collapse" href="#trade" role="button" aria-expanded="false" aria-controls="trade">
-                    <i class="link-icon" data-feather="trending-up"></i>
-                    <span class="link-title">Trades</span>
-                    <i class="link-arrow" data-feather="chevron-down"></i>
-                </a>
-                <div class="collapse" id="trade">
-                    <ul class="nav sub-menu">
-                        <li class="nav-item">
-                            <a href="{{ route('trades') }}" class="nav-link @if(request()->is('trades') && !request()->offsetExists('buy') && !request()->offsetExists('sell')) text-primary @endif">All</a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="{{ route('trades', 'buy') }}" class="nav-link @if(request()->offsetExists('buy')) text-primary @endif">Buy</a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="{{ route('trades', 'sell') }}" class="nav-link @if(request()->offsetExists('sell')) text-primary @endif">Sell</a>
-                        </li>
-                    </ul>
-                </div>
-            </li>
-            <li class="nav-item nav-category">Trade</li>
-            <li class="nav-item @if(request()->is('buy')) active @endif">
-                <a href="{{ route('buy') }}" class="nav-link">
-                    <i class="link-icon @if(request()->is('buy')) text-primary @else text-success @endif" data-feather="trending-up"></i>
-                    <span class="link-title">Buy</span>
-                </a>
-            </li>
-            <li class="nav-item @if(request()->is('sell')) active @endif">
-                <a href="{{ route('sell') }}" class="nav-link">
-                    <i class="link-icon @if(request()->is('sell')) text-primary @else text-danger @endif" data-feather="trending-down"></i>
-                    <span class="link-title">Sell</span>
-                </a>
-            </li>
-            <li class="nav-item @if(request()->is('market')) active @endif">
-                <a href="{{ route('market') }}" class="nav-link">
-                    <i class="link-icon" data-feather="bar-chart-2"></i>
-                    <span class="link-title">Statistics / Market</span>
-                </a>
-            </li>
+{{--            <li class="nav-item @if(request()->is('trades')) active @endif">--}}
+{{--                <a class="nav-link" data-toggle="collapse" href="#trade" role="button" aria-expanded="false" aria-controls="trade">--}}
+{{--                    <i class="link-icon" data-feather="trending-up"></i>--}}
+{{--                    <span class="link-title">Trades</span>--}}
+{{--                    <i class="link-arrow" data-feather="chevron-down"></i>--}}
+{{--                </a>--}}
+{{--                <div class="collapse" id="trade">--}}
+{{--                    <ul class="nav sub-menu">--}}
+{{--                        <li class="nav-item">--}}
+{{--                            <a href="{{ route('trades') }}" class="nav-link @if(request()->is('trades') && !request()->offsetExists('buy') && !request()->offsetExists('sell')) text-primary @endif">All</a>--}}
+{{--                        </li>--}}
+{{--                        <li class="nav-item">--}}
+{{--                            <a href="{{ route('trades', 'buy') }}" class="nav-link @if(request()->offsetExists('buy')) text-primary @endif">Buy</a>--}}
+{{--                        </li>--}}
+{{--                        <li class="nav-item">--}}
+{{--                            <a href="{{ route('trades', 'sell') }}" class="nav-link @if(request()->offsetExists('sell')) text-primary @endif">Sell</a>--}}
+{{--                        </li>--}}
+{{--                    </ul>--}}
+{{--                </div>--}}
+{{--            </li>--}}
+{{--            <li class="nav-item nav-category">Trade</li>--}}
+{{--            <li class="nav-item @if(request()->is('buy')) active @endif">--}}
+{{--                <a href="{{ route('buy') }}" class="nav-link">--}}
+{{--                    <i class="link-icon @if(request()->is('buy')) text-primary @else text-success @endif" data-feather="trending-up"></i>--}}
+{{--                    <span class="link-title">Buy</span>--}}
+{{--                </a>--}}
+{{--            </li>--}}
+{{--            <li class="nav-item @if(request()->is('sell')) active @endif">--}}
+{{--                <a href="{{ route('sell') }}" class="nav-link">--}}
+{{--                    <i class="link-icon @if(request()->is('sell')) text-primary @else text-danger @endif" data-feather="trending-down"></i>--}}
+{{--                    <span class="link-title">Sell</span>--}}
+{{--                </a>--}}
+{{--            </li>--}}
+{{--            <li class="nav-item @if(request()->is('market')) active @endif">--}}
+{{--                <a href="{{ route('market') }}" class="nav-link">--}}
+{{--                    <i class="link-icon" data-feather="bar-chart-2"></i>--}}
+{{--                    <span class="link-title">Statistics / Market</span>--}}
+{{--                </a>--}}
+{{--            </li>--}}
             <li class="nav-item nav-category">Account</li>
             <li class="nav-item @if(request()->is('wallet')) active @endif">
                 <a href="{{ route('wallet') }}" class="nav-link">

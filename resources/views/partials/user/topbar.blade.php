@@ -9,33 +9,33 @@
                     <p style="font-size: 9px">Naira Balance</p>
                     <p>₦ {{ number_format(auth()->user()['nairaWallet']['balance'], 2) }}</p>
                 </a>
-                <a href="{{ route('wallet') }}" class="mx-3">
-                    <p style="font-size: 9px">Gold Balance</p>
-                    <p>{{ round(auth()->user()['goldWallet']['balance'], 6) }} grams</p>
-                </a>
-                <a href="{{ route('wallet') }}" class="mx-3">
-                    <p style="font-size: 9px">Silver Balance</p>
-                    <p>{{ round(auth()->user()['silverWallet']['balance'], 6) }} grams</p>
-                </a>
+{{--                <a href="{{ route('wallet') }}" class="mx-3">--}}
+{{--                    <p style="font-size: 9px">Gold Balance</p>--}}
+{{--                    <p>{{ round(auth()->user()['goldWallet']['balance'], 6) }} grams</p>--}}
+{{--                </a>--}}
+{{--                <a href="{{ route('wallet') }}" class="mx-3">--}}
+{{--                    <p style="font-size: 9px">Silver Balance</p>--}}
+{{--                    <p>{{ round(auth()->user()['silverWallet']['balance'], 6) }} grams</p>--}}
+{{--                </a>--}}
             </li>
-            <li class="nav-item dropdown nav-apps">
-                <a class="nav-link dropdown-toggle" href="#" id="appsDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    <i data-feather="grid"></i>
-                </a>
-                <div class="dropdown-menu" aria-labelledby="appsDropdown">
-                    <div class="dropdown-header d-flex align-items-center justify-content-between">
-                        <p class="mb-0 font-weight-medium">Quick Actions</p>
-                    </div>
-                    <div class="dropdown-body">
-                        <div class="d-flex align-items-center apps">
-                            <a href="{{ route('buy') }}"><i data-feather="trending-up" class="text-success icon-lg"></i><p>Buy</p></a>
-                            <a href="{{ route('sell') }}"><i data-feather="trending-down" class="icon-lg text-danger"></i><p>Sell</p></a>
-                            <a href="{{ route('invest') }}"><i data-feather="tag" class="icon-lg"></i><p>Invest</p></a>
-                            <a href="{{ route('market') }}"><i data-feather="bar-chart-2" class="icon-lg"></i><p>Statistics</p></a>
-                        </div>
-                    </div>
-                </div>
-            </li>
+{{--            <li class="nav-item dropdown nav-apps">--}}
+{{--                <a class="nav-link dropdown-toggle" href="#" id="appsDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">--}}
+{{--                    <i data-feather="grid"></i>--}}
+{{--                </a>--}}
+{{--                <div class="dropdown-menu" aria-labelledby="appsDropdown">--}}
+{{--                    <div class="dropdown-header d-flex align-items-center justify-content-between">--}}
+{{--                        <p class="mb-0 font-weight-medium">Quick Actions</p>--}}
+{{--                    </div>--}}
+{{--                    <div class="dropdown-body">--}}
+{{--                        <div class="d-flex align-items-center apps">--}}
+{{--                            <a href="{{ route('buy') }}"><i data-feather="trending-up" class="text-success icon-lg"></i><p>Buy</p></a>--}}
+{{--                            <a href="{{ route('sell') }}"><i data-feather="trending-down" class="icon-lg text-danger"></i><p>Sell</p></a>--}}
+{{--                            <a href="{{ route('invest') }}"><i data-feather="tag" class="icon-lg"></i><p>Invest</p></a>--}}
+{{--                            <a href="{{ route('market') }}"><i data-feather="bar-chart-2" class="icon-lg"></i><p>Statistics</p></a>--}}
+{{--                        </div>--}}
+{{--                    </div>--}}
+{{--                </div>--}}
+{{--            </li>--}}
             <li class="nav-item dropdown nav-notifications">
                 <a class="nav-link dropdown-toggle" href="#" id="notificationDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     <i data-feather="bell"></i>

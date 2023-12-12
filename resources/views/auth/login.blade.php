@@ -43,14 +43,14 @@
                 </div>
                 <div class="my-3 d-flex justify-content-between">
                     <button type="submit" class="btn btn-primary mr-2 mb-2 mb-md-0 text-white">Login</button>
-                    <div>
-                        <a href="{{ route('auth.social.attempt', 'facebook') }}" class="btn btn-sm btn-facebook">
-                            <i class="fab fa-facebook-f"></i>
-                        </a>
-                        <a href="{{ route('auth.social.attempt', 'google') }}" class="btn btn-sm btn-google">
-                            <i class="fab fa-google-plus-g"></i>
-                        </a>
-                    </div>
+{{--                    <div>--}}
+{{--                        <a href="{{ route('auth.social.attempt', 'facebook') }}" class="btn btn-sm btn-facebook">--}}
+{{--                            <i class="fab fa-facebook-f"></i>--}}
+{{--                        </a>--}}
+{{--                        <a href="{{ route('auth.social.attempt', 'google') }}" class="btn btn-sm btn-google">--}}
+{{--                            <i class="fab fa-google-plus-g"></i>--}}
+{{--                        </a>--}}
+{{--                    </div>--}}
                 </div>
                 @if (Route::has('password.request'))
                     <a class="small" href="{{ route('password.request') }}">

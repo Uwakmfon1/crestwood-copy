@@ -15,6 +15,7 @@ class HomeController extends Controller
 {
     public function index()
     {
+        return $this->investmentDashboard();
         $data = $this->getDashboardData();
         return view('user.dashboard.index', [
             'title' => 'Dashboard', 'transactions' => $data['transactions'],

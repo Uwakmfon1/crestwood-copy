@@ -61,70 +61,70 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-md-6 mb-5">
-                            <div class="card">
-                                <div class="card-body text-center">
-                                    <h5 class="card-title text-center">Gold Wallet</h5>
-                                    <div class="my-2">
-                                        <p class="mt-3 small">Total Balance</p>
-                                        <h3 class="font-weight-light">{{ round(auth()->user()['goldWallet']['balance'], 6) }} grams</h3>
-                                    </div>
-                                    <div class="mt-3 bg-light py-3 mb-2 d-flex justify-content-around" style="border-radius: 5px">
-                                        @if($setting['trade'] == 1)
-                                            <a href="{{ route('buy', 'gold') }}" class="btn my-2 px-4 mx-1 btn-success">
-                                                <i class="fa fa-chart-line"></i>
-                                                <span class="mt-1 d-block small">Buy</span>
-                                            </a>
-                                            <a href="{{ route('sell', 'gold') }}" class="btn my-2 px-4 mx-1 btn-danger">
-                                                <i class="fa fa-chart-line"></i>
-                                                <span class="mt-1 d-block small">Sell</span>
-                                            </a>
-                                        @else
-                                            <button data-toggle="modal" data-target="#" class="btn my-2 px-4 mx-1 btn-secondary" disabled>
-                                                <i class="fa fa-chart-line"></i>
-                                                <span class="mt-1 d-block small">Buy</span>
-                                            </button>
-                                            <button data-toggle="modal" data-target="#" class="btn my-2 px-4 mx-1 btn-secondary" disabled>
-                                                <i class="fa fa-chart-line"></i>
-                                                <span class="mt-1 d-block small">Sell</span>
-                                            </button>
-                                        @endif
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-6 mb-5">
-                            <div class="card">
-                                <div class="card-body text-center">
-                                    <h5 class="card-title text-center">Silver Wallet</h5>
-                                    <div class="my-2">
-                                        <p class="mt-3 small">Total Balance</p>
-                                        <h3 class="font-weight-light">{{ round(auth()->user()['silverWallet']['balance'], 6) }} grams</h3>
-                                    </div>
-                                    <div class="mt-3 bg-light py-3 mb-2 d-flex justify-content-around" style="border-radius: 5px">
-                                        @if($setting['trade'] == 1)
-                                            <a href="{{ route('buy', 'silver') }}" class="btn my-2 px-4 mx-1 btn-success">
-                                                <i class="fa fa-chart-line"></i>
-                                                <span class="mt-1 d-block small">Buy</span>
-                                            </a>
-                                            <a href="{{ route('sell', 'silver') }}" class="btn my-2 px-4 mx-1 btn-danger">
-                                                <i class="fa fa-chart-line"></i>
-                                                <span class="mt-1 d-block small">Sell</span>
-                                            </a>
-                                        @else
-                                            <button data-toggle="modal" data-target="#" class="btn my-2 px-4 mx-1 btn-secondary" disabled>
-                                                <i class="fa fa-chart-line"></i>
-                                                <span class="mt-1 d-block small">Buy</span>
-                                            </button>
-                                            <button data-toggle="modal" data-target="#" class="btn my-2 px-4 mx-1 btn-secondary" disabled>
-                                                <i class="fa fa-chart-line"></i>
-                                                <span class="mt-1 d-block small">Sell</span>
-                                            </button>
-                                        @endif
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+{{--                        <div class="col-md-6 mb-5">--}}
+{{--                            <div class="card">--}}
+{{--                                <div class="card-body text-center">--}}
+{{--                                    <h5 class="card-title text-center">Gold Wallet</h5>--}}
+{{--                                    <div class="my-2">--}}
+{{--                                        <p class="mt-3 small">Total Balance</p>--}}
+{{--                                        <h3 class="font-weight-light">{{ round(auth()->user()['goldWallet']['balance'], 6) }} grams</h3>--}}
+{{--                                    </div>--}}
+{{--                                    <div class="mt-3 bg-light py-3 mb-2 d-flex justify-content-around" style="border-radius: 5px">--}}
+{{--                                        @if($setting['trade'] == 1)--}}
+{{--                                            <a href="{{ route('buy', 'gold') }}" class="btn my-2 px-4 mx-1 btn-success">--}}
+{{--                                                <i class="fa fa-chart-line"></i>--}}
+{{--                                                <span class="mt-1 d-block small">Buy</span>--}}
+{{--                                            </a>--}}
+{{--                                            <a href="{{ route('sell', 'gold') }}" class="btn my-2 px-4 mx-1 btn-danger">--}}
+{{--                                                <i class="fa fa-chart-line"></i>--}}
+{{--                                                <span class="mt-1 d-block small">Sell</span>--}}
+{{--                                            </a>--}}
+{{--                                        @else--}}
+{{--                                            <button data-toggle="modal" data-target="#" class="btn my-2 px-4 mx-1 btn-secondary" disabled>--}}
+{{--                                                <i class="fa fa-chart-line"></i>--}}
+{{--                                                <span class="mt-1 d-block small">Buy</span>--}}
+{{--                                            </button>--}}
+{{--                                            <button data-toggle="modal" data-target="#" class="btn my-2 px-4 mx-1 btn-secondary" disabled>--}}
+{{--                                                <i class="fa fa-chart-line"></i>--}}
+{{--                                                <span class="mt-1 d-block small">Sell</span>--}}
+{{--                                            </button>--}}
+{{--                                        @endif--}}
+{{--                                    </div>--}}
+{{--                                </div>--}}
+{{--                            </div>--}}
+{{--                        </div>--}}
+{{--                        <div class="col-md-6 mb-5">--}}
+{{--                            <div class="card">--}}
+{{--                                <div class="card-body text-center">--}}
+{{--                                    <h5 class="card-title text-center">Silver Wallet</h5>--}}
+{{--                                    <div class="my-2">--}}
+{{--                                        <p class="mt-3 small">Total Balance</p>--}}
+{{--                                        <h3 class="font-weight-light">{{ round(auth()->user()['silverWallet']['balance'], 6) }} grams</h3>--}}
+{{--                                    </div>--}}
+{{--                                    <div class="mt-3 bg-light py-3 mb-2 d-flex justify-content-around" style="border-radius: 5px">--}}
+{{--                                        @if($setting['trade'] == 1)--}}
+{{--                                            <a href="{{ route('buy', 'silver') }}" class="btn my-2 px-4 mx-1 btn-success">--}}
+{{--                                                <i class="fa fa-chart-line"></i>--}}
+{{--                                                <span class="mt-1 d-block small">Buy</span>--}}
+{{--                                            </a>--}}
+{{--                                            <a href="{{ route('sell', 'silver') }}" class="btn my-2 px-4 mx-1 btn-danger">--}}
+{{--                                                <i class="fa fa-chart-line"></i>--}}
+{{--                                                <span class="mt-1 d-block small">Sell</span>--}}
+{{--                                            </a>--}}
+{{--                                        @else--}}
+{{--                                            <button data-toggle="modal" data-target="#" class="btn my-2 px-4 mx-1 btn-secondary" disabled>--}}
+{{--                                                <i class="fa fa-chart-line"></i>--}}
+{{--                                                <span class="mt-1 d-block small">Buy</span>--}}
+{{--                                            </button>--}}
+{{--                                            <button data-toggle="modal" data-target="#" class="btn my-2 px-4 mx-1 btn-secondary" disabled>--}}
+{{--                                                <i class="fa fa-chart-line"></i>--}}
+{{--                                                <span class="mt-1 d-block small">Sell</span>--}}
+{{--                                            </button>--}}
+{{--                                        @endif--}}
+{{--                                    </div>--}}
+{{--                                </div>--}}
+{{--                            </div>--}}
+{{--                        </div>--}}
                     </div>
                 </div>
             </div>
