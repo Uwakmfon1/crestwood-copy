@@ -60,6 +60,36 @@ class PaymentController extends Controller
         return redirect()->route('dashboard')->with('error', 'Something went wrong');
     }
 
+    public function handleMonnifyCallback(Request $request)
+    {
+        // Assuming Monnify sends the callback data as JSON
+        $paymentDetails = json_decode($request->getContent(), true);
+
+        // Extract relevant information from the Monnify callback
+        $reference = $paymentDetails['reference'];
+        $status = $paymentDetails['status'];
+
+        // Retrieve the payment record from the database
+        $payment = Payment::where('reference', $reference)->first();
+
+        if ($payment) {
+            // Update the payment status based on Monnify callback
+            if ($status === 'successful') {
+                $payment->update(['status' => 'success']);
+                $type = json_decode($payment->meta, true)['type'];
+                return view('user.payment.success', compact('type', 'payment'));
+            } else {
+                if ($payment->status === 'pending') {
+                    $payment->update(['status' => 'failed']);
+                }
+                $type = json_decode($payment->meta, true)['type'];
+                return view('user.payment.error', compact('type', 'payment'));
+            }
+        }
+
+        return redirect()->route('dashboard')->with('error', 'Something went wrong');
+    }
+
     public function handlePaymentWebhook(Request $request, $gateway)
     {
         logger('Pinged');

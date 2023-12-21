@@ -9,6 +9,13 @@ use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Validator;
 use Unicodeveloper\Paystack\Facades\Paystack;
 
+use HenryEjemuta\LaravelMonnify\Facades\Monnify;
+use HenryEjemuta\LaravelMonnify\Classes\MonnifyTransaction;
+use HenryEjemuta\LaravelMonnify\Classes\MonnifyPaymentMethod;
+use HenryEjemuta\LaravelMonnify\Classes\MonnifyPaymentMethods;
+use HenryEjemuta\LaravelMonnify\Classes\MonnifyIncomeSplitConfig;
+use HenryEjemuta\LaravelMonnify\Exceptions\MonnifyFailedRequestException;
+
 class TransactionController extends Controller
 {
     public function index()
@@ -33,7 +40,7 @@ class TransactionController extends Controller
 
     public function deposit(Request $request)
     {
-//        Validate request
+        // Validate request
         $validator = Validator::make($request->all(), [
             'amount' => ['required', 'numeric', 'gt:0'],
             'payment' => ['required']
@@ -42,7 +49,7 @@ class TransactionController extends Controller
             return back()->withErrors($validator)->withInput()->with('error', 'Invalid input data');
         }
 
-//        Check for deposit method and process
+        // Check for deposit method and process
         if ($request['payment'] == 'card') {
             $data = ['type' => 'deposit'];
             return PaymentController::initializeOnlineTransaction($request['amount'], $data);
@@ -61,20 +68,20 @@ class TransactionController extends Controller
 
     public function withdraw(Request $request): \Illuminate\Http\RedirectResponse
     {
-//        Validate request
+        //        Validate request
         $validator = Validator::make($request->all(), [
             'amount' => ['required', 'numeric', 'gt:0'],
         ]);
         if ($validator->fails()){
             return back()->withErrors($validator)->withInput()->with('error', 'Invalid input data');
         }
-//        Check if withdrawal is allowed
+        //        Check if withdrawal is allowed
         if (Setting::all()->first()['withdrawal'] == 0){
             return back()->with('error', 'Withdrawal from wallet is currently unavailable, check back later');
         }
-//        Check if user has sufficient balance
+        //        Check if user has sufficient balance
         if (!auth()->user()->hasSufficientBalanceForTransaction($request['amount'])) return back()->withInput()->with('error', 'Insufficient wallet balance');
-//        Process withdrawal
+        //        Process withdrawal
         auth()->user()->nairaWallet()->decrement('balance', $request['amount']);
         $transaction = auth()->user()->transactions()->create([
             'type' => 'withdrawal', 'amount' => $request['amount'],

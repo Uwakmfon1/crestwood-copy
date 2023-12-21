@@ -13,6 +13,10 @@
         "fideloper/proxy": "^4.4",
         "fruitcake/laravel-cors": "^2.0",
         "guzzlehttp/guzzle": "^7.0.1",
+<<<<<<< HEAD
+        "henryejemuta/laravel-monnify": "^1.2",
+=======
+>>>>>>> 526a5b2f0e005f4c1a2102c95467956cc2e3f1fd
         "intervention/image": "^2.6",
         "kingflamez/laravelrave": "^4.2",
         "laravel/framework": "^8.12",
