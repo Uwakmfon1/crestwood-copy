@@ -31,8 +31,6 @@ Route::group(['middleware' => ['auth', 'unverified']], function (){
     Route::post('/email/verification-notification', [EmailverificationController::class, 'resend'])->middleware(['throttle:6,1'])->name('verification.send');
 });
 
-Route::get('/test/monnify', [TransactionController::class, 'testMonnify'])->name('payment.test');
-
 Route::group(['middleware' => ['auth','verified', 'active_user']], function (){
     Route::get('/email/verification/success', [App\Http\Controllers\HomeController::class, 'verificationSuccess']);
     Route::get('/profile', [App\Http\Controllers\HomeController::class, 'profile'])->name('profile');
@@ -61,7 +59,7 @@ Route::group(['middleware' => ['auth','verified', 'active_user']], function (){
         Route::post('/invest', [App\Http\Controllers\InvestmentController::class, 'store'])->name('invest.store');
         Route::post('/buy', [App\Http\Controllers\TradeController::class, 'buy'])->name('buy.store');
         Route::post('/sell', [App\Http\Controllers\TradeController::class, 'sell'])->name('sell.store');
-        Route::post('/deposit', [App\Http\Controllers\TransactionController::class, 'initiateDeposit'])->name('deposit');
+        Route::post('/deposit', [App\Http\Controllers\TransactionController::class, 'deposit'])->name('deposit');
         Route::post('/withdraw', [App\Http\Controllers\TransactionController::class, 'withdraw'])->name('withdraw');
         Route::get('/notifications/read', [App\Http\Controllers\NotificationController::class, 'read'])->name('notifications.read');
         Route::post('/investments/rollover', [App\Http\Controllers\RolloverController::class, 'store'])->name('investments.rollover');

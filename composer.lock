@@ -4,7 +4,11 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
+<<<<<<< HEAD
     "content-hash": "616e8b6a5289b65fa96e70b750eaa0b6",
+=======
+    "content-hash": "e275c4c393952390ac6cf6730dd31ff0",
+>>>>>>> 526a5b2f0e005f4c1a2102c95467956cc2e3f1fd
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -2093,6 +2097,7 @@
             "time": "2023-12-03T20:05:35+00:00"
         },
         {
+<<<<<<< HEAD
             "name": "henryejemuta/laravel-monnify",
             "version": "v1.2.1",
             "source": {
@@ -2159,6 +2164,8 @@
             "time": "2022-01-02T21:13:48+00:00"
         },
         {
+=======
+>>>>>>> 526a5b2f0e005f4c1a2102c95467956cc2e3f1fd
             "name": "intervention/image",
             "version": "2.7.2",
             "source": {
@@ -11483,5 +11490,9 @@
         "ext-json": "*"
     },
     "platform-dev": [],
+<<<<<<< HEAD
     "plugin-api-version": "2.3.0"
+=======
+    "plugin-api-version": "2.6.0"
+>>>>>>> 526a5b2f0e005f4c1a2102c95467956cc2e3f1fd
 }
