@@ -130,6 +130,31 @@ class PaymentController extends Controller
                     http_response_code(200);
                 }
             }
+        } elseif ($gateway == 'monnify') {
+            logger('Monnify webhook');
+            // Verify the webhook signature from Monnify
+            $payload = @file_get_contents("php://input");
+            if (!$this->verifyMonnifyWebhookSignature($request, $payload)) {
+                logger('Monnify signature verification failed');
+                http_response_code(401);
+                exit();
+            }
+
+            logger('Monnify signature verified');
+
+            // Process the Monnify webhook based on the event type
+            if ($request['event'] == 'payment.success' && $res['status'] == 'success') {
+                $payment = Payment::where('reference', $res['paymentReference'])->first();
+
+                if ($payment && $payment['status'] == 'pending') {
+                    $meta = json_decode($payment['meta'], true);
+                    // Adjust the processTransaction method based on your logic
+                    $this->processTransaction($payment, $meta);
+                    logger('Payment processed and settled');
+                    http_response_code(200);
+                    exit();
+                }
+            }
         }
         http_response_code(400);
     }
