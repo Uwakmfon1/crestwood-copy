@@ -141,8 +141,8 @@ class PaymentController extends Controller
             $user->payments()->create([
                 'reference' => $paymentData['reference'],
                 'amount' => $amountPaid,
-                'type' => $data['type'],
-                'gateway' => 'paystack',
+                'type' =>  $event['eventType'],
+                'gateway' => 'monnify',
                 'meta' => json_encode($data)
             ]);
             \request()->merge($paymentData);
