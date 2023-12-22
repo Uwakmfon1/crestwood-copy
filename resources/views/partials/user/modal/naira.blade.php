@@ -132,7 +132,7 @@
             customerEmail: userEmail,
             apiKey: "MK_TEST_FXMH1JTGXD",
             contractCode: "4401579811",
-            paymentDescription: "Savings Test",
+            paymentDescription: "deposit",
         });
     }
 </script>

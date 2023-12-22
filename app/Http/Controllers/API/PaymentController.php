@@ -138,16 +138,19 @@ class PaymentController extends Controller
                 'currency' => 'NGN',
                 'metadata' => json_encode($data),
             ];
-            $user->payments()->create([
-                'reference' => $paymentData['reference'],
-                'amount' => $amountPaid,
-                'type' =>  'deposit',
-                'gateway' => 'monnify',
-                'meta' => json_encode($data)
-            ]);
+            if ($event['eventType'] == 'SUCCESSFUL_TRANSACTION' || $event['paymentStatus'] == 'PAID') {
+                $user->payments()->create([
+                    'reference' => $paymentData['reference'],
+                    'amount' => $amountPaid,
+                    'type' =>  $eventData['paymentDescription'],
+                    'gateway' => 'monnify',
+                    'meta' => json_encode($data)
+                ]);
+            }
             \request()->merge($paymentData);
             try{
-                return redirect($event['data']['payment_url']);
+                // return redirect($event['data']['payment_url']);
+                return redirect()->away('https://app.sandboxnextin.net/transactions');
             }catch(\Exception $e) {
                 return back()->with('error', 'The paystack token has expired. Please refresh the page and try again.');
             }
