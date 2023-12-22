@@ -6,6 +6,7 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
+use App\Http\Controllers\NotificationController;
 
 class PaymentController extends Controller
 {
@@ -138,23 +139,30 @@ class PaymentController extends Controller
                 'currency' => 'NGN',
                 'metadata' => json_encode($data),
             ];
-            if ($event['eventType'] == 'SUCCESSFUL_TRANSACTION' || $event['paymentStatus'] == 'PAID') {
-                $user->payments()->create([
-                    'reference' => $paymentData['reference'],
-                    'amount' => $amountPaid,
-                    'type' =>  $eventData['paymentDescription'],
-                    'gateway' => 'monnify',
-                    'meta' => json_encode($data)
-                ]);
-            }
-            \request()->merge($paymentData);
-            try{
-                // return redirect($event['data']['payment_url']);
-                return redirect()->away('https://app.sandboxnextin.net/transactions');
-            }catch(\Exception $e) {
-                return back()->with('error', 'The paystack token has expired. Please refresh the page and try again.');
-            }
 
+            $payment = $user->payments()->create([
+                'reference' => $paymentData['reference'],
+                'amount' => $amountPaid,
+                'type' =>  $eventData['paymentDescription'],
+                'gateway' => 'monnify',
+                'meta' => json_encode($data)
+            ]);
+
+            $payment->user->nairaWallet()->increment('balance', $payment['amount']);
+            $transaction = $payment->user->transactions()->create([
+                'type' => 'deposit', 'amount' => $payment['amount'],
+                'description' => 'Deposit', 'channel' => $meta['channel'] ?? 'mobile',
+                'method' => strtolower($paymentMethod) ,'status' => 'approved'
+            ]);
+
+            try 
+            {
+                NotificationController::sendDepositSuccessfulNotification($transaction);
+            } catch (\Exception $e) 
+            { 
+                $emailError = true; 
+            }
+                    
             return response([], 200);
         } else {
             logger(json_encode($event));
