@@ -108,20 +108,52 @@ class PaymentController extends Controller
 
     public function handleWebhook(Request $request)
     {
-        // Log the entire request for debugging purposes
-        \Log::info('Monnify Webhook Received:', $request->all() ?? []);
+        $event = $request->all();
 
-        // Retrieve the transaction response
-        $transactionResponse = $request->input('data');
+        if ($event['eventType'] == 'SUCCESSFUL_TRANSACTION') {
+            $eventData = $event['eventData'];
+            $amountPaid = $eventData['amountPaid'];
+            $transactionReference = $eventData['transactionReference'];
+            $paymentMethod = $eventData['paymentMethod'];
+            $settlementAmount = $eventData['settlementAmount'];
+            $paidOn = $eventData['paidOn'];
+            $customerEmail = $eventData['customer']['email'];
 
-        // Log or display the transaction response
-        \Log::info('Monnify Transaction Response:', $transactionResponse ?? []);
+            $meta = [
+                'payment_method' => $paymentMethod,
+                'settlement_amount' => $settlementAmount,
+                'customer_email' => $customerEmail,
+                'paid_on' => $paidOn,
+                'event_type' => $event['eventType'],
+            ];
 
-        // You can also use dd() to display the response in the browser
-        // dd($transactionResponse);
+            $data['channel'] = 'web';
+            $paymentData = [
+                'amount' => $amountPaid,
+                'reference' => $transactionReference,
+                'email' => auth()->user()['email'],
+                'currency' => 'NGN',
+                'metadata' => json_encode($data),
+            ];
+            auth()->user()->payments()->create([
+                'reference' => $paymentData['reference'],
+                'amount' => $amountPaid,
+                'type' => $data['type'],
+                'gateway' => 'paystack',
+                'meta' => json_encode($data)
+            ]);
+            \request()->merge($paymentData);
+            try{
+                return redirect($event['data']['payment_url']);
+            }catch(\Exception $e) {
+                return back()->with('error', 'The paystack token has expired. Please refresh the page and try again.');
+            }
 
-        // Add any additional logic here (e.g., update your database, notify users, etc.)
+            return response([], 200);
+        } else {
+            logger(json_encode($event));
 
-        return response()->json(['success' => true]);
+            return response([], 400);
+        }
     }
 }
