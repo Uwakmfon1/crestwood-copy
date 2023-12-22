@@ -160,8 +160,7 @@ class PaymentController extends Controller
     }
 
     public static function processTransaction($payment, $meta) {
-        // $type = $meta['type'] ?? $meta['event_type'];
-        $type = 'deposit';
+        $type = $meta['type'] ?? $meta['event_type'];
         switch ($type){
             case 'deposit':
                 $payment->user->nairaWallet()->increment('balance', $payment['amount']);
@@ -211,33 +210,24 @@ class PaymentController extends Controller
         return $payment->update(['status' => 'success']);
     }
 
-    public function handleMonnify(Request $request) {
-        logger('Pinged');
-        $res = $request['data'];
-        
-        logger('Monnify webhook');
-            // Verify the webhook signature from Monnify
-            $payload = @file_get_contents("php://input");
-            if (!$this->verifyMonnifyWebhookSignature($request, $payload)) {
-                logger('Monnify signature verification failed');
-                http_response_code(401);
-                exit();
-            }
 
-            logger('Monnify signature verified');
 
-            // Process the Monnify webhook based on the event type
-            if ($request['event'] == 'payment.success' && $res['status'] == 'success') {
-                $payment = Payment::where('reference', $res['paymentReference'])->first();
+    public function handleWebhook(Request $request)
+    {
+        // Log the entire request for debugging purposes
+        \Log::info('Monnify Webhook Received:', $request->all());
 
-                if ($payment && $payment['status'] == 'pending') {
-                    $meta = json_decode($payment['meta'], true);
-                    // Adjust the processTransaction method based on your logic
-                    $this->processTransaction($payment, $meta);
-                    logger('Payment processed and settled');
-                    http_response_code(200);
-                    exit();
-                }
-            }
+        // Retrieve the transaction response
+        $transactionResponse = $request->input('data');
+
+        // Log or display the transaction response
+        \Log::info('Monnify Transaction Response:', $transactionResponse);
+
+        // You can also use dd() to display the response in the browser
+        // dd($transactionResponse);
+
+        // Add any additional logic here (e.g., update your database, notify users, etc.)
+
+        return response()->json(['success' => true]);
     }
 }
