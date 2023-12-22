@@ -81,7 +81,7 @@ class PaymentController extends Controller
         return response()->json([
             'message' => "Card payment method is currently unavailable, try again later"
         ], 422);
-//        Validate request
+        //        Validate request
         $validator = Validator::make($request->all(), [
             'reference' => ['required'],
             'amount' => ['required'],
@@ -95,7 +95,7 @@ class PaymentController extends Controller
         }
         if ($request['amount'] > 500000)
             return response()->json(['message' => 'We can\'t process card payment above ₦500,000'], 400);
-//        Create Payment
+        //        Create Payment
         if (auth('api')->user()->payments()->create([
             'reference' => $request['reference'],
             'amount' => $request['amount'],
@@ -104,5 +104,24 @@ class PaymentController extends Controller
             'meta' => $request['meta']
         ])) return response()->json(['message' => 'Payment initialized successfully']);
         return response()->json(['message' => 'Error initialized payment'], 400);
+    }
+
+    public function handleWebhook(Request $request)
+    {
+        // Log the entire request for debugging purposes
+        \Log::info('Monnify Webhook Received:', $request->all());
+
+        // Retrieve the transaction response
+        $transactionResponse = $request->input('data');
+
+        // Log or display the transaction response
+        \Log::info('Monnify Transaction Response:', $transactionResponse);
+
+        // You can also use dd() to display the response in the browser
+        // dd($transactionResponse);
+
+        // Add any additional logic here (e.g., update your database, notify users, etc.)
+
+        return response()->json(['success' => true]);
     }
 }
