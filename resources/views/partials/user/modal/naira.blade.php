@@ -21,7 +21,7 @@
                     </div>
                     <div class="form-group">
                         <label for="paymentDeposit">Payment Method</label>
-                        <select name="payment" style="height: 45px; font-size: 14px" class="text-dark" required id="paymentDeposit">
+                        <select onchange="checkbutton()" name="payment" style="height: 45px; font-size: 14px" class="text-dark" required id="paymentDeposit">
                             <option value="card">Card</option>
                             <option value="deposit">Bank Transfer / Deposit</option>
                         </select>
@@ -54,8 +54,8 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <button type="button" onclick="confirmFormSubmit('depositForm')" class="btn btn-primary">Deposit</button>
-                <button type="button" onclick="payWithMonnify()" class="btn btn-primary">Monnify Pay</button>
+                <button type="button" id="transfer" onclick="confirmFormSubmit('depositForm')" class="btn btn-primary" style="display: none;">Deposit</button>
+                <button type="button" id="card" onclick="payWithMonnify()" class="btn btn-success">Deposit</button>
             </div>
         </div>
     </div>
@@ -142,5 +142,17 @@
                 window.location.href = '/wallet';
             }
         });
+    }
+
+    function checkbutton() {
+        var deposittype = document.getElementById('paymentDeposit').value
+
+        if (deposittype == 'card') {
+            $('#transfer').hide();
+            $('#card').show();
+        } else {
+            $('#transfer').show();
+            $('#card').hide();
+        }
     }
 </script>
