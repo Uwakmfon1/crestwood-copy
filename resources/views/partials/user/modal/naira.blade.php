@@ -133,6 +133,14 @@
             apiKey: "MK_TEST_FXMH1JTGXD",
             contractCode: "4401579811",
             paymentDescription: "deposit",
+            onComplete: function(response) {
+                //Implement what happens when the transaction is completed.
+                window.location.href = '/transactions';
+            },
+            onClose: function(data) {
+                //Implement what should happen when the modal is closed here
+                window.location.href = '/wallet';
+            }
         });
     }
 </script>
