@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers\API;
 
-use App\Http\Controllers\Controller;
+use App\Models\User;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
 
 class PaymentController extends Controller
@@ -128,14 +129,16 @@ class PaymentController extends Controller
             ];
 
             $data['channel'] = 'web';
+            $user = User::where('email', $customerEmail)->first();
+
             $paymentData = [
                 'amount' => $amountPaid,
                 'reference' => $transactionReference,
-                'email' => auth()->user()['email'],
+                'email' => $user['email'],
                 'currency' => 'NGN',
                 'metadata' => json_encode($data),
             ];
-            auth()->user()->payments()->create([
+            $user->payments()->create([
                 'reference' => $paymentData['reference'],
                 'amount' => $amountPaid,
                 'type' => $data['type'],
