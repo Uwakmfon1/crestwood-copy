@@ -141,7 +141,7 @@ class PaymentController extends Controller
             $user->payments()->create([
                 'reference' => $paymentData['reference'],
                 'amount' => $amountPaid,
-                'type' =>  $event['eventType'],
+                'type' =>  'deposit',
                 'gateway' => 'monnify',
                 'meta' => json_encode($data)
             ]);
