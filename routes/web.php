@@ -71,7 +71,5 @@ Route::group(['middleware' => ['auth','verified', 'active_user']], function (){
 
         Route::get('/payment/callback', [PaymentController::class, 'handlePaymentCallback'])->name('payment.callback');
         Route::get('/payment/initiate', [PaymentController::class, 'initiatePayment'])->name('payment.initiate');
-
-        Route::get('/monnify-payment/callback', [PaymentController::class, 'handleWebhook'])->name('payment.callback');
     });
 });

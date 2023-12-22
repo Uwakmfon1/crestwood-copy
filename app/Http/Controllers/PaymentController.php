@@ -209,25 +209,4 @@ class PaymentController extends Controller
         }
         return $payment->update(['status' => 'success']);
     }
-
-
-
-    public function handleWebhook(Request $request)
-    {
-        // Log the entire request for debugging purposes
-        \Log::info('Monnify Webhook Received:', $request->all());
-
-        // Retrieve the transaction response
-        $transactionResponse = $request->input('data');
-
-        // Log or display the transaction response
-        \Log::info('Monnify Transaction Response:', $transactionResponse);
-
-        // You can also use dd() to display the response in the browser
-        // dd($transactionResponse);
-
-        // Add any additional logic here (e.g., update your database, notify users, etc.)
-
-        return response()->json(['success' => true]);
-    }
 }
