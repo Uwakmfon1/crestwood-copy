@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Response;
 use Illuminate\Support\Facades\Validator;
 use Intervention\Image\Facades\Image;
+use Illuminate\Support\Facades\DB;
 
 class HomeController extends Controller
 {
@@ -183,6 +184,10 @@ class HomeController extends Controller
                 NotificationController::sendWelcomeEmailNotification(auth()->user());
                 auth()->user()->update(['gotMail' => 1]);
             }
+            //Generate wallet
+            $walletController = new WalletController();
+            $walletController->generateVirtualAccount();
+
             return back()->with('success', 'Profile updated successfully');
         }
         return back()->withInput()->with('error', 'Error updating profile');
@@ -286,6 +291,22 @@ class HomeController extends Controller
             'paidInvestment' => $paidInvestment,
             'totalInvestment' => $totalInvestment
         ];
+    }
+
+    private function _stateCountryIDForCountryName($country_name)
+    {
+        return DB::table('countries')->where("name", "$country_name")->first()->id;
+    }
+    
+    public function getState($country_name)
+    {
+        $country_name = urldecode($country_name);
+        $country_id = self::_stateCountryIDForCountryName($country_name);
+        $states = DB::table("states")
+            ->where("country_id", $country_id)
+            ->get('name', 'id');
+
+        return json_encode($states);
     }
 
     public static function formatHumanFriendlyNumber($num)

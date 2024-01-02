@@ -1,4 +1,5 @@
-<?php return array (
+<?php return function ($fontDir, $rootDir) {
+return array (
   'sans-serif' => array(
     'normal' => $rootDir . '/lib/fonts/Helvetica',
     'bold' => $rootDir . '/lib/fonts/Helvetica-Bold',
@@ -80,7 +81,8 @@
   'overpass' => array(
     '300' => $fontDir . '/overpass_300_33e1ba92775427f0b38b4c472e982c13',
     'normal' => $fontDir . '/overpass_normal_dc17bce502cdb244d0e4c91d6b935807',
-    '500' => $fontDir . '/overpass_500_44bc2f80a321df5ebc253690b3d153c0',
-    'bold' => $fontDir . '/overpass_bold_756830a31c89c9d1217d81d242e0b739',
+    '500' => $fontDir . '/overpass_500_d01c132dbd08c85118cc381e58864791',
+    'bold' => $fontDir . '/overpass_bold_5927ee0a67fb23ffef28ca17075c1383',
   ),
-) ?>
+);
+}; ?>

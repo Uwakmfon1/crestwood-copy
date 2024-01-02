@@ -12,32 +12,35 @@
     <div class="sidebar-body">
         <ul class="nav">
             <li class="nav-item nav-category">Main</li>
-{{--            <li class="nav-item @if(request()->routeIs(['dashboard', 'dashboard.investment', 'dashboard.trading'])) active @endif">--}}
-{{--                <a class="nav-link" data-toggle="collapse" href="#dashboard" role="button" aria-expanded="false" aria-controls="investment">--}}
-{{--                    <i class="link-icon" data-feather="grid"></i>--}}
-{{--                    <span class="link-title">Dashboard</span>--}}
-{{--                    <i class="link-arrow" data-feather="chevron-down"></i>--}}
-{{--                </a>--}}
-{{--                <div class="collapse" id="dashboard">--}}
-{{--                    <ul class="nav sub-menu">--}}
-{{--                        <li class="nav-item">--}}
-{{--                            <a href="{{ route('dashboard') }}" class="nav-link @if(request()->routeIs(['dashboard'])) text-primary @endif">Quick Overview</a>--}}
-{{--                        </li>--}}
-{{--                        <li class="nav-item">--}}
-{{--                            <a href="{{ route('dashboard.investment') }}" class="nav-link @if(request()->routeIs(['dashboard.investment'])) text-primary @endif">Investment</a>--}}
-{{--                        </li>--}}
-{{--                        <li class="nav-item">--}}
-{{--                            <a href="{{ route('dashboard.trading') }}" class="nav-link @if(request()->routeIs(['dashboard.trading'])) text-primary @endif">Trading</a>--}}
-{{--                        </li>--}}
-{{--                    </ul>--}}
-{{--                </div>--}}
-{{--            </li>--}}
-            <li class="nav-item @if(request()->is('dashboard')) active @endif">
-                <a href="{{ route('dashboard') }}" class="nav-link">
+            <li class="nav-item @if(request()->routeIs(['dashboard', 'dashboard.investment', 'dashboard.trading'])) active @endif">
+                <a class="nav-link" data-toggle="collapse" href="#dashboard" role="button" aria-expanded="false" aria-controls="investment">
                     <i class="link-icon" data-feather="grid"></i>
                     <span class="link-title">Dashboard</span>
+                    <i class="link-arrow" data-feather="chevron-down"></i>
+                </a>
+                <div class="collapse" id="dashboard">
+                    <ul class="nav sub-menu">
+                        <li class="nav-item">
+                            <a href="{{ route('dashboard') }}" class="nav-link @if(request()->routeIs(['dashboard'])) text-primary @endif">Quick Overview</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{ route('dashboard.investment') }}" class="nav-link @if(request()->routeIs(['dashboard.investment'])) text-primary @endif">Investment</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{ route('dashboard.trading') }}" class="nav-link @if(request()->routeIs(['dashboard.trading'])) text-primary @endif">Savings</a>
+                        </li>
+                    </ul>
+                </div>
+            </li>
+            <li class="nav-item @if(request()->is('transactions')) active @endif">
+                <a href="{{ route('transactions') }}" class="nav-link">
+                    <i class="link-icon" data-feather="command"></i>
+                    <span class="link-title">Transactions</span>
                 </a>
             </li>
+
+            <li class="nav-item nav-category">Investment</li>
+
             <li class="nav-item @if(request()->is('packages')) active @endif">
                 <a href="{{ route('packages') }}" class="nav-link">
                     <i class="link-icon" data-feather="package"></i>
@@ -76,7 +79,28 @@
                     </ul>
                 </div>
             </li>
-            <li class="nav-item @if(request()->is('transactions')) active @endif">
+
+            <li class="nav-item nav-category">Savings</li>
+
+            <li class="nav-item @if(request()->is('packages')) active @endif">
+                <a href="{{ route('packages') }}" class="nav-link">
+                    <i class="link-icon" data-feather="package"></i>
+                    <span class="link-title">Packages</span>
+                </a>
+            </li>
+            <li class="nav-item @if(request()->is('invest')) active @endif">
+                <a href="{{ route('invest') }}" class="nav-link">
+                    <i class="link-icon" data-feather="tag"></i>
+                    <span class="link-title">New Savings</span>
+                </a>
+            </li>
+            <li class="nav-item @if(request()->is('invest')) active @endif">
+                <a href="{{ route('invest') }}" class="nav-link">
+                    <i class="link-icon" data-feather="tag"></i>
+                    <span class="link-title">My Savings</span>
+                </a>
+            </li>
+            {{-- <li class="nav-item @if(request()->is('transactions')) active @endif">
                 <a class="nav-link" data-toggle="collapse" href="#transaction" role="button" aria-expanded="false" aria-controls="transaction">
                     <i class="link-icon" data-feather="command"></i>
                     <span class="link-title">Transactions</span>
@@ -98,7 +122,7 @@
                         </li>
                     </ul>
                 </div>
-            </li>
+            </li> --}}
 {{--            <li class="nav-item @if(request()->is('trades')) active @endif">--}}
 {{--                <a class="nav-link" data-toggle="collapse" href="#trade" role="button" aria-expanded="false" aria-controls="trade">--}}
 {{--                    <i class="link-icon" data-feather="trending-up"></i>--}}
@@ -138,7 +162,9 @@
 {{--                    <span class="link-title">Statistics / Market</span>--}}
 {{--                </a>--}}
 {{--            </li>--}}
-            <li class="nav-item nav-category">Account</li>
+
+            <li class="nav-item nav-category">Wallet</li>
+
             <li class="nav-item @if(request()->is('wallet')) active @endif">
                 <a href="{{ route('wallet') }}" class="nav-link">
                     <i class="link-icon" data-feather="credit-card"></i>
@@ -164,7 +190,7 @@
                     </button>
                 @endif
             </li>
-            <li class="nav-item nav-category">Personal</li>
+            <li class="nav-item nav-category">Account</li>
             <li class="nav-item @if(request()->is('profile')) active @endif">
                 <a href="{{ route('profile') }}" class="nav-link">
                     <i class="link-icon" data-feather="user"></i>

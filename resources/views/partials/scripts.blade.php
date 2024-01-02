@@ -1,3 +1,5 @@
+<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+
 <script src="{{ asset('assets/vendors/core/core.js') }}"></script>
 <script src="{{ asset('assets/vendors/feather-icons/feather.min.js') }}"></script>
 <script src="{{ asset('assets/js/template.js') }}"></script>
@@ -89,4 +91,20 @@
             console.log(e)
         }
     }
+</script>
+<script>
+    $(document).ready(function () {
+        $('#password-addon').on('click', function () {
+            var passwordInput = $('input[name="password"]');
+            var passwordIcon = $('#password-addon i');
+
+            if (passwordInput.attr('type') === 'password') {
+                passwordInput.attr('type', 'text');
+                passwordIcon.removeClass('mdi-eye-outline').addClass('mdi-eye');
+            } else {
+                passwordInput.attr('type', 'password');
+                passwordIcon.removeClass('mdi-eye').addClass('mdi-eye-outline');
+            }
+        });
+    });
 </script>
