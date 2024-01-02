@@ -4,6 +4,11 @@
     <link rel="stylesheet" href="{{ asset('assets/vendors/bootstrap-datepicker/bootstrap-datepicker.min.css') }}">
 @endsection
 
+@php
+    $user = auth()->user();
+    $virtualAccount = json_decode($user['virtual_account'], true);
+@endphp
+
 @section('breadcrumbs')
     <nav aria-label="breadcrumb">
         <ol class="breadcrumb">
@@ -15,6 +20,28 @@
 
 @section('content')
     <div class="row">
+        <div class="col-12">
+            @if($virtualAccount != null)
+                <div class="card mb-4">
+                    <div class="card-body">
+                        <div class="d-flex justify-content-around">
+                            <div class=" align-items-center">
+                                <p>Account Number:</p>
+                                <h3 class="fw-600">{{ $virtualAccount['account_number'] }}</h3>
+                            </div>
+                            <div class=" align-items-center">
+                                <p>Bank Name:</p>
+                                <h3 class="fw-600">{{ $virtualAccount['bank_name'] }}</h3>
+                            </div>
+                            <div class=" align-items-center">
+                                <p>Account Name:</p>
+                                <h3 class="fw-600">{{ $virtualAccount['account_name'] }}</h3>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            @endif
+        </div>
         <div class="col-12 col-xl-12 stretch-card">
             <div class="row flex-grow">
                 <div class="col-md-4 grid-margin stretch-card">

@@ -1,11 +1,12 @@
 <?php
 
-use App\Http\Controllers\Auth\EmailverificationController;
-use App\Http\Controllers\ExportController;
-use App\Http\Controllers\PaymentController;
-use App\Http\Controllers\TransactionController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\ExportController;
+use App\Http\Controllers\WalletController;
+use App\Http\Controllers\PaymentController;
+use App\Http\Controllers\TransactionController;
+use App\Http\Controllers\Auth\EmailverificationController;
 
 /*
 |--------------------------------------------------------------------------
@@ -36,6 +37,7 @@ Route::group(['middleware' => ['auth','verified', 'active_user']], function (){
     Route::get('/profile', [App\Http\Controllers\HomeController::class, 'profile'])->name('profile');
     Route::post('/password/custom/update', [App\Http\Controllers\HomeController::class, 'changePassword'])->name('password.custom.update');
     Route::post('/profile/update', [App\Http\Controllers\HomeController::class, 'updateProfile'])->name('profile.update');
+    Route::get('/getStates/{name}', [App\Http\Controllers\HomeController::class, 'getState'])->name('user.getstate');
 
     Route::group(['middleware' => ['profile_completed']], function (){
         Route::get('/', [App\Http\Controllers\HomeController::class, 'index']);
@@ -72,4 +74,6 @@ Route::group(['middleware' => ['auth','verified', 'active_user']], function (){
         Route::get('/payment/callback', [PaymentController::class, 'handlePaymentCallback'])->name('payment.callback');
         Route::get('/payment/initiate', [PaymentController::class, 'initiatePayment'])->name('payment.initiate');
     });
+
+    Route::post('/test', [WalletController::class, 'generateVirtualAccount'])->name('create.account');
 });

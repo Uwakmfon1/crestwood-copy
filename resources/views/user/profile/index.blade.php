@@ -146,9 +146,12 @@
                         <div class="form-group col-md-6">
                             <label for="country">Country <span class="text-danger">*</span></label>
                             <select name="country" id="country" style="height: 40px; font-size: 15px" class="form-control text-dark">
-                            @foreach(\App\Models\User::$countries as $key => $country)
-                                <option @if(old("country") == $country['name'] || auth()->user()['country'] == $country['name']) selected @elseif($key == 159) selected @endif value="{{$country['name']}}" data-code="+{{$country['phonecode']}}">{{$country['name']}}</option>
-                            @endforeach
+                                {{-- @foreach(\App\Models\User::$countries as $key => $country)
+                                        <option @if(old("phone_code") == $country['phonecode'] || auth()->user()['phone_code'] == $country['phonecode']) selected @elseif($key == 159) selected @endif value="{{$country['phonecode']}}">{{ $country['phonecode']}}</option>
+                                    @endforeach --}}
+                                    @foreach(\App\Models\Country::query()->orderBy('name')->get() as $country)
+                                        <option value="{{ $country->name }}" @if(old('country') == $country->name) selected @endif>{{ ucwords($country->name) }}</option>
+                                    @endforeach
                             </select>
                             @error('country')
                                 <span class="text-danger small" role="alert">
@@ -174,12 +177,15 @@
                         </div>
                         <div class="form-group col-md-6">
                             <label for="state">State <span class="text-danger">*</span></label>
-                            <input type="text" value="{{ old("state") ?? auth()->user()['state'] }}" style="height: 40px; font-size: 15px" class="form-control" name="state" id="state" placeholder="State">
-                            @error('state')
-                                <span class="text-danger small" role="alert">
-                                    <strong>{{ $message }}</strong>
-                                </span>
-                            @enderror
+                            <select class="form-select @error('state') is-invalid @enderror" name="state" id="state">
+                                @if(old('country'))
+                                    @foreach(\App\Models\Country::query()->where('name', old('country'))->first()->states()->orderBy('name')->get() as $state)
+                                        <option value="{{ $state->name }}" @if(old('state') == $state->name) selected @endif>{{ ucwords($state->name) }}</option>
+                                    @endforeach
+                                @else
+                                    <option selected value="">Select A Country</option>
+                                @endif
+                            </select>
                         </div>
                         <div class="form-group col-md-6">
                             <label for="city">City <span class="text-danger">*</span></label>
@@ -274,7 +280,14 @@
                         </div>
                         <div class="form-group col-md-6">
                             <label for="nk_phone">Phone <span class="text-danger">*</span></label>
-                            <input type="number" value="{{ old("nk_phone") ?? auth()->user()['nk_phone'] }}" style="height: 40px; font-size: 15px" class="form-control" name="nk_phone" id="nk_phone" placeholder="Phone">
+                            <div class="d-flex mb-3">
+                                <select name="phone_code" style="height: 40px; font-size: 15px; width: 25%" class="text-dark">
+                                    @foreach(\App\Models\User::$countries as $key => $country)
+                                        <option @if(old("phone_code") == $country['phonecode'] || auth()->user()['phone_code'] == $country['phonecode']) selected @elseif($key == 159) selected @endif value="{{$country['phonecode']}}">{{ $country['phonecode']}}</option>
+                                    @endforeach
+                                </select>
+                                <input style="height: 40px; font-size: 15px" type="text" class="form-control" name="nk_phone" id="nk_phone" placeholder="Phone" required value="{{ old('nk_phone') ?? auth()->user()['nk_phone'] }}">
+                            </div>
                             @error('nk_phone')
                                 <span class="text-danger small" role="alert">
                                     <strong>{{ $message }}</strong>
@@ -302,6 +315,35 @@
 
 @section('scripts')
     <script>
+        $(document).ready(function() {
+            $('select[name="country"]').on('change', function() {
+                $("select").attr("data-trigger", "");
+                var countryID = $(this).val();
+                if(countryID)
+                    $.ajax({
+                        url: '/getStates/'+encodeURI(countryID),
+                        type: "GET",
+                        dataType: "json",
+                        success:function(data) {
+                            console.log(data);
+                            // $('#state').removeAttr('data-trigger');
+                        $('select[name="state"]').empty()
+                            .append('<option value="">Select State</option>')
+                        $.each(data, function(key, value) {
+                            // console.log(value.name, key);
+                            $('select[name="state"]').append('<option value="'+ value.name +'">'+ value.name.charAt(0).toUpperCase() + value.name.slice(1) +'</option>');
+                            });
+                        }
+
+                    });
+
+                else
+                    $('select[name="state"]').empty()
+                        .append('<option value="">Select A Country</option>')
+
+            });
+        });
+
         function getPhoneCode(obj){
             document.getElementById('phone_code').innerHTML = obj.options[obj.selectedIndex].getAttribute('data-code');
             document.getElementById('phone_code_input').value = obj.options[obj.selectedIndex].getAttribute('data-code');

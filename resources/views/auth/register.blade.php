@@ -28,7 +28,12 @@
                 </div>
                 <div class="form-group">
                     <label for="password">Password</label>
-                    <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="current-password">
+                    <div class="input-group auth-pass-inputgroup">
+                        <input type="password" class="form-control @error('password') is-invalid @enderror" name="password" placeholder="Enter password" aria-label="Password" aria-describedby="password-addon">
+                        <button class="btn btn-light shadow-none ms-0" type="button" id="password-addon">
+                            <i class="mdi mdi-eye-outline"></i>
+                        </button>
+                    </div>
                     @error('password')
                     <span class="invalid-feedback" role="alert">
                             <strong>{{ $message }}</strong>
