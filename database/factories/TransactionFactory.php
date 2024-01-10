@@ -24,8 +24,7 @@ class TransactionFactory extends Factory
     {
         return [
             'user_id' => 19,
-            // 'user_id' => User::all()->random()['id'],
-            'type' => $this->faker->randomElement(['deposit', 'withdrawal', 'others']),
+            'type' => $this->faker->randomElement(['deposit', 'withdrawal', 'investment', 'savings']),
             'amount' => $this->faker->randomNumber(5),
             'description' => "Test",
             'status' => $this->faker->randomElement(['approved', 'pending', 'declined'])

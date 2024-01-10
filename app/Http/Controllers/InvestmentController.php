@@ -88,7 +88,7 @@ class InvestmentController extends Controller
             'return_date' => now()->addMonths($package['duration'])->format('Y-m-d H:i:s'), 'status' => $status
         ]);
         if ($investment) {
-            TransactionController::storeInvestmentTransaction($investment, $request['payment']);
+            TransactionController::storeInvestmentTransaction($investment, $request['payment'], 'investment');
             if ($investment['status'] == 'active'){
                 NotificationController::sendInvestmentCreatedNotification($investment);
             }else{

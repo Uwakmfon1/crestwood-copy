@@ -53,11 +53,28 @@
             </li>
             @endif
             @can('View Packages')
-            <li class="nav-item @if(request()->routeIs(['admin.packages', 'admin.packages.create', 'admin.packages.edit'])) active @endif">
+            <!-- <li class="nav-item @if(request()->routeIs(['admin.packages', 'admin.packages.create', 'admin.packages.edit'])) active @endif">
                 <a href="{{ route('admin.packages') }}" class="nav-link">
                     <i class="link-icon" data-feather="package"></i>
                     <span class="link-title">Packages</span>
                 </a>
+            </li> -->
+            <li class="nav-item @if(request()->is('admin.saving.package') || request()->routeIs(['admin.packages'])) active @endif">
+                <a class="nav-link" data-toggle="collapse" href="#savings" role="button" aria-expanded="false" aria-controls="savings">
+                    <i class="link-icon" data-feather="layers"></i>
+                    <span class="link-title">Packages </span>
+                    <i class="link-arrow" data-feather="chevron-down"></i>
+                </a>
+                <div class="collapse" id="savings">
+                    <ul class="nav sub-menu">
+                        <li class="nav-item">
+                            <a href="{{ route('admin.packages') }}" class="nav-link @if(request()->is('admin/investments') && !request('type')) text-primary @endif">Investment</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{ route('admin.saving.package') }}" class="nav-link @if(request('type') == 'active') text-primary @endif">Savings</a>
+                        </li>
+                    </ul>
+                </div>
             </li>
             @endcan
             @can('View Users')

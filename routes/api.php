@@ -77,4 +77,6 @@ Route::group(['middleware' => 'api'], function () {
     Route::post('/payment/{type}/webhook', [\App\Http\Controllers\PaymentController::class, 'handlePaymentWebhook'])->name('payment.webhook');
 
     Route::post('/monnify-payment/callback', [PaymentController::class, 'handleWebhook'])->name('payment.callback');
+
+    Route::get('/info', [WalletController::class, 'getPrice']);
 });
