@@ -95,7 +95,7 @@ Route::group(['middleware' => ['auth:admin', 'active_admin']], function (){
     Route::post('/payments/{payment}/resolve', [App\Http\Controllers\Admin\PaymentController::class, 'resolve'])->name('payments.resolve')->middleware('permission:Resolve Payments');
 
     Route::post('/users/{type}/fetch/ajax', [App\Http\Controllers\Admin\UserController::class, 'fetchUsersWithAjax'])->name('users.ajax')->middleware('permission:View Users');
-    Route::post('/investments/{type}/fetch/ajax', [App\Http\Controllers\Admin\InvestmentController::class, 'fetchInvestmentsWithAjax'])->name('investments.ajax')->middleware('permission:View Investments');
+    Route::post('/investments/{type}/fetch/ajax', [App\Http\Controllers\Admin\InvestmentController::class, 'fetchInvestmentsWithAjax'])->name('investments.ajax')->middleware('permission:View Investments'); 
     Route::post('/maturity/investments/fetch/ajax', [App\Http\Controllers\Admin\HomeController::class, 'fetchInvestmentsMaturityWithAjax'])->name('investments.maturity.ajax')->middleware('permission:View Investments Maturity');
     Route::post('/transactions/{type}/fetch/ajax', [App\Http\Controllers\Admin\TransactionController::class, 'fetchTransactionsWithAjax'])->name('transactions.ajax')->middleware('permission:View Transactions');
     Route::post('/trades/{type}/fetch/ajax', [App\Http\Controllers\Admin\TradeController::class, 'fetchTradesWithAjax'])->name('trades.ajax')->middleware('permission:View Trades');
@@ -105,4 +105,15 @@ Route::group(['middleware' => ['auth:admin', 'active_admin']], function (){
     Route::get('/transactions/export/{type}/download', [ExportController::class, 'exportTransactions'])->name('transactions.export')->middleware('permission:Export Transactions CSV');
     Route::get('/trades/export/{type}/download', [ExportController::class, 'exportTrades'])->name('trades.export')->middleware('permission:Export Trades CSV');
     Route::get('/users/export/{type}/download', [ExportController::class, 'exportUsers'])->name('users.export')->middleware('permission:Export Users CSV');
+
+    Route::get('/savings/package', [App\Http\Controllers\Admin\SavingsController::class, 'index'])->name('saving.package');
+    Route::get('/savings/package/create', [App\Http\Controllers\Admin\SavingsController::class, 'create'])->name('saving.package.create');
+    Route::post('/savings/package/store', [App\Http\Controllers\Admin\SavingsController::class, 'store'])->name('saving.package.store');
+    Route::get('/savings/package/{package}/edit', [App\Http\Controllers\Admin\SavingsController::class, 'edit'])->name('saving.package.edit');
+    Route::put('/savings/package/{package}/update', [App\Http\Controllers\Admin\SavingsController::class, 'update'])->name('saving.package.update');
+    Route::delete('/savings/package/{package}/destroy', [App\Http\Controllers\Admin\SavingsController::class, 'destroy'])->name('saving.package.destroy');
+
+    Route::get('/packages/{savings}/savings', [App\Http\Controllers\Admin\SavingsController::class, 'savings'])->name('saving.table');
+    Route::post('/savings/{type}/fetch/ajax', [App\Http\Controllers\Admin\SavingsController::class, 'fetchSavingsWithAjax'])->name('savings.ajax'); 
+    Route::get('/savings/{saving}/show', [App\Http\Controllers\Admin\SavingsController::class, 'show'])->name('savings.show');
 });

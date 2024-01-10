@@ -82,20 +82,20 @@
 
             <li class="nav-item nav-category">Savings</li>
 
-            <li class="nav-item @if(request()->is('packages')) active @endif">
-                <a href="{{ route('packages') }}" class="nav-link">
+            <li class="nav-item @if(request()->is('savingsPackage')) active @endif">
+                <a href="{{ route('savingsPackage') }}" class="nav-link">
                     <i class="link-icon" data-feather="package"></i>
                     <span class="link-title">Packages</span>
                 </a>
             </li>
-            <li class="nav-item @if(request()->is('invest')) active @endif">
-                <a href="{{ route('invest') }}" class="nav-link">
+            <li class="nav-item @if(request()->is('savings.create')) active @endif">
+                <a href="{{ route('savings.create') }}" class="nav-link">
                     <i class="link-icon" data-feather="tag"></i>
                     <span class="link-title">New Savings</span>
                 </a>
             </li>
-            <li class="nav-item @if(request()->is('invest')) active @endif">
-                <a href="{{ route('invest') }}" class="nav-link">
+            <li class="nav-item @if(request()->is('savings')) active @endif">
+                <a href="{{ route('savings') }}" class="nav-link">
                     <i class="link-icon" data-feather="tag"></i>
                     <span class="link-title">My Savings</span>
                 </a>

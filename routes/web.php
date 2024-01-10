@@ -7,6 +7,7 @@ use App\Http\Controllers\WalletController;
 use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\TransactionController;
 use App\Http\Controllers\Auth\EmailverificationController;
+use App\Http\Controllers\SavingsController;
 
 /*
 |--------------------------------------------------------------------------
@@ -70,10 +71,19 @@ Route::group(['middleware' => ['auth','verified', 'active_user']], function (){
         Route::get('/investments/export/{type}/download', [ExportController::class, 'exportInvestments'])->name('investments.export');
         Route::get('/transactions/export/{type}/download', [ExportController::class, 'exportTransactions'])->name('transactions.export');
         Route::get('/trades/export/{type}/download', [ExportController::class, 'exportTrades'])->name('trades.export');
+        
+        Route::get('/savings/packages', [SavingsController::class, 'packages'])->name('savingsPackage');
+        Route::get('/savings/create', [SavingsController::class, 'create'])->name('savings.create');
+        Route::post('/savings/store', [SavingsController::class, 'store'])->name('savings.store');
+        Route::get('/savings', [SavingsController::class, 'index'])->name('savings');
+        Route::get('/savings/{savings}/show', [SavingsController::class, 'show'])->name('savings.show');
+        Route::post('/payment/{savings}', [SavingsController::class, 'makePayment'])->name('make.payment');
+        Route::post('/savings/{savings}/settle', [SavingsController::class, 'settlePayment'])->name('settle.payment');
+
+        Route::get('/test/jods', [App\Http\Controllers\CommandController::class, 'handleSavings']);
+
 
         Route::get('/payment/callback', [PaymentController::class, 'handlePaymentCallback'])->name('payment.callback');
         Route::get('/payment/initiate', [PaymentController::class, 'initiatePayment'])->name('payment.initiate');
     });
-
-    Route::post('/test', [WalletController::class, 'generateVirtualAccount'])->name('create.account');
 });

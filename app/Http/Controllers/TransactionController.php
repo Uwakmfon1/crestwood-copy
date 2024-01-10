@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\SavingTransaction;
 use App\Models\Setting;
 use App\Models\Transaction;
 use Illuminate\Http\Request;
@@ -100,7 +101,7 @@ class TransactionController extends Controller
         $desc = !$byCompany ? 'Investment' : 'Investment by '.env('APP_NAME');
         Transaction::create([
             'investment_id' => $investment['id'],
-            'user_id' => $investment->user['id'], 'type' => 'others',
+            'user_id' => $investment->user['id'], 'type' => 'Investment',
             'amount' => $investment['amount'], 'description' => $desc,
             'method' => $method, 'channel' => $channel,
             'status' => $investment['status'] == 'active' ? 'approved' : 'pending'
@@ -117,6 +118,19 @@ class TransactionController extends Controller
             'amount' => $trade['amount'], 'description' => $desc,
             'method' => $method, 'channel' => $channel,
             'status' => $trade['status'] == 'success' ? 'approved' : 'pending'
+        ]);
+    }
+
+    public static function storeSavingTransaction($saving, $method, $type, $byCompany = false, $channel = 'web')
+    {
+        $desc = !$byCompany ? 'Savings' : 'Savings by '.env('APP_NAME');
+        Transaction::create([
+            'saving_id' => $saving['id'],
+            'user_id' => $saving->user['id'], 'type' => $type,
+            'amount' => $saving['amount'],
+            'description' => $desc,
+            'method' => $method, 'channel' => $channel,
+            'status' => $saving['status'] == 'active' ? 'approved' : 'pending'
         ]);
     }
 }

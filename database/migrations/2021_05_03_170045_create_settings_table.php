@@ -46,7 +46,7 @@ class CreateSettingsTable extends Migration
             'referral_earning' => 0,
             'bank_name' => 'Access Bank',
             'account_number' => '0123456789',
-            'account_name' => 'Rare Gems'
+            'account_name' => 'SandBox'
         ]);
     }
 

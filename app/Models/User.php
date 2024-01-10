@@ -303,6 +303,11 @@ class User extends Authenticatable implements MustVerifyEmail, JWTSubject
         return $this->hasMany(Trade::class);
     }
 
+    public function savings(): HasMany
+    {
+        return $this->hasMany(Saving::class);
+    }
+
     public function transactions(): HasMany
     {
         return $this->hasMany(Transaction::class);

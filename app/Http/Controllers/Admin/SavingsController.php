@@ -3,115 +3,145 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Http\Controllers\NotificationController;
-use App\Http\Controllers\TransactionController;
-use App\Models\Investment;
-use App\Models\Package;
-use App\Models\User;
+use App\Models\Saving;
+use App\Models\SavingPackage;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 
-class InvestmentController extends Controller
+class SavingsController extends Controller
 {
     public function index()
     {
-        return view('admin.investment.index', ['type' => \request('type') ?? 'all']);
+        return view('admin.package.savings', ['packages' => SavingPackage::all()]);
     }
 
-    public function show(Investment $investment)
+    public function show(Saving $saving)
     {
-        return view('admin.investment.show', ['investment' => $investment, 'packages' => Package::where('investment', 'enabled')->get()]);
+        return view('admin.savings.show', ['investment' => $saving, 'packages' => SavingPackage::all()]);
     }
 
-    public function invest(User $user)
+    public function create()
     {
-        return view('admin.user.investment.add', ['packages' => Package::where('investment', 'enabled')->get(), 'user' => $user]);
+        return view('admin.savingsPackage.create');
     }
+
+    public function savings(SavingPackage $savings)
+    {
+        return view('admin.savings.index', ['investments' => $savings->savings()->get(), 'type' => 'packages', 'id' => $savings['id']]);
+    }
+
+    public function edit(SavingPackage $package)
+    {
+        return view('admin.savingsPackage.edit', ['package' => $package]);
+    }
+    
+    // Savings Package CRUD
 
     public function store(Request $request): \Illuminate\Http\RedirectResponse
     {
-        //        Validate request
         $validator = Validator::make($request->all(), [
-            'user_id' => ['required', 'numeric'],
-            'package' => ['required'],
-            'slots' => ['required', 'numeric', 'min:1', 'integer'],
-            'payment' => ['required']
+            'name' => ['required', 'unique:packages,name'],
+            'roi' => ['required', 'numeric'],
+            'price' => ['required', 'numeric', 'gt:0'],
+            'duration' => ['required'],
+            'milestone' => ['required', 'numeric', 'gt:0'],
+            'description' => ['required'],
+            'image' => ['required', 'mimes:jpeg,jpg,png', 'max:1024']
         ]);
         if ($validator->fails()){
             return back()->withErrors($validator)->withInput()->with('error', 'Invalid input data');
         }
-//        Find package and check if investment is enabled
-        $package = Package::all()->where('name', $request['package'])->first();
-        if (!($package && $package->canRunInvestment())){
-            return back()->with('error', 'Can\'t process investment, package not found or disabled');
+        $data = $request->all();
+        
+        $data['image'] = $this->uploadPackageImageAndReturnPathToSave($request['image']);
+        
+        if (SavingPackage::create($data)){
+            return redirect()->route('admin.saving.package')->with('success', 'Package created successfully');
         }
-//        Find user
-        $user = User::all()->where('id', $request['user_id'])->first();
-        if (!$user) {
-            return back()->with('error', 'Can\'t process investment, user not found');
-        }
-//        Process investment based on payment method
-        if ($request['payment'] == 'wallet'){
-            if (!$user->hasSufficientBalanceForTransaction($request['slots'] * $package['price'])){
-                return back()->withInput()->with('error', 'Insufficient wallet balance');
-            }
-            $user->nairaWallet()->decrement('balance', $request['slots'] * $package['price']);
-        }
-//        Create Investment
-        $investment = $user->investments()->create([
-            'savings_package_id'=>$package['id'], 'slots' => $request['slots'], 'amount' => $request['slots'] * $package['price'],
-            'total_return' => $request['slots'] * $package['price'] * (( 100 + $package['roi'] ) / 100 ),
-            'investment_date' => now()->format('Y-m-d H:i:s'),
-            'return_date' => now()->addMonths($package['duration'])->format('Y-m-d H:i:s'), 'status' => 'active'
-        ]);
-        if ($investment) {
-            TransactionController::storeInvestmentTransaction($investment, $request['payment'], 'investment', true);
-            NotificationController::sendInvestmentCreatedNotification($investment);
-            return redirect()->route('admin.users.show', $user['id'])->with('success', 'Investment created successfully');
-        }
-        return back()->withInput()->with('error', 'Error processing investment');
+        return back()->with('error', 'Error creating package');
     }
 
-    public function showUserInvestment(User $user, Investment $investment)
+    public function update(Request $request, SavingPackage $package): \Illuminate\Http\RedirectResponse
     {
-        return view('admin.user.investment.show', ['user' => $user, 'investment' => $investment, 'packages' => Package::all()]);
+        $validator = Validator::make($request->all(), [
+            'name' => ['required', 'unique:packages,name,'.$package['id']],
+            'roi' => ['required', 'numeric'],
+            'price' => ['required', 'numeric', 'gt:0'],
+            'duration' => ['required'],
+            'milestone' => ['required', 'numeric', 'gt:0'],
+            'description' => ['required'],
+            'image' => ['sometimes', 'mimes:jpeg,jpg,png'],
+        ]);
+        if ($validator->fails()){
+            return back()->withErrors($validator)->withInput()->with('error', 'Invalid input data');
+        }
+        $data = $request->except('image');
+        
+        if ($request->file('image')){
+            $data['image'] = $this->uploadPackageImageAndReturnPathToSave($request['image']);
+        }
+
+        if ($package->update($data)){
+            return redirect()->route('admin.saving.package')->with('success', 'Package updated successfully');
+        }
+        return back()->with('error', 'Error updating package');
     }
 
-    public function fetchInvestmentsWithAjax(Request $request, $type)
+    public function destroy(SavingPackage $package)
+    {
+        if ($package->savings()->count() > 0){
+            return back()->with('error', 'Can\'t delete package, Savings already associated');
+        }
+        unlink($package['image']);
+        if ($package->delete()){
+            return redirect()->route('admin.saving.package')->with('success', 'Package deleted successfully');
+        }
+        return back()->with('error', 'Error deleting package');
+    }
+
+    protected function uploadPackageImageAndReturnPathToSave($image): string
+    {
+        $destinationPath = 'assets/savings'; // upload path
+        $transferImage = \auth()->user()['id'].'-'. time() . '.' . $image->getClientOriginalExtension();
+        $image->move($destinationPath, $transferImage);
+        return $destinationPath ."/".$transferImage;
+    }
+
+    public function fetchSavingsWithAjax(Request $request, $type)
     {
         //        Define all column names
         $columns = [
             'id', 'name', 'package', 'slots', 'total_invested', 'expected_returns', 'return_date', 'status', 'action'
         ];
-//        Find data based on page
+        //        Find data based on page
         switch ($type){
             case 'active':
-                $investments = Investment::query()->latest()->where('status', 'active');
+                $investments = Saving::query()->latest()->where('status', 'active');
                 break;
             case 'pending':
-                $investments = Investment::query()->latest()->where('status', 'pending');
+                $investments = Saving::query()->latest()->where('status', 'pending');
                 break;
             case 'cancelled':
-                $investments = Investment::query()->latest()->where('status', 'cancelled');
+                $investments = Saving::query()->latest()->where('status', 'cancelled');
                 break;
             case 'settled':
-                $investments = Investment::query()->latest()->where('status', 'settled');
+                $investments = Saving::query()->latest()->where('status', 'settled');
                 break;
             case 'packages':
-                $investments = Investment::query()->latest()->whereHas('package',function ($q) use ($request) { $q->where('id', $request['package']); });
+                $investments = Saving::query()->latest()->whereHas('package',function ($q) use ($request) { $q->where('id', $request['package']); });
                 break;
             default:
-                $investments = Investment::query()->latest();
+                $investments = Saving::query()->latest();
 
         }
-//        Set helper variables from request and DB
+        //        Set helper variables from request and DB
         $totalData = $totalFiltered = $investments->count();
         $limit = $request['length'];
         $start = $request['start'];
         $order = $columns[$request['order.0.column']];
         $dir = $request['order.0.dir'];
         $search = $request['search.value'];
-//        Check if request wants to search or not and fetch data
+        //        Check if request wants to search or not and fetch data
         if(empty($search))
         {
             $investments = $investments->offset($start)
@@ -132,7 +162,7 @@ class InvestmentController extends Controller
                 ->orderBy($order,$dir)
                 ->get();
         }
-//        Loop through all data and mutate data
+        //        Loop through all data and mutate data
         $data = [];
         $i = $start + 1;
         foreach ($investments as $investment)
@@ -167,7 +197,7 @@ class InvestmentController extends Controller
                 $datum['name'] = ucwords($investment->user['name']);
             }
             $datum['package'] = $investment->package['name'];
-            $datum['slots'] = $investment['slots'];
+            // $datum['slots'] = $investment['slots'];
             $datum['total_invested'] = '₦ '.number_format($investment['amount']);
             $datum['expected_returns'] = '₦ '.number_format($investment['total_return']);
             $datum['return_date'] = $investment->return_date->format('M d, Y');
@@ -177,14 +207,14 @@ class InvestmentController extends Controller
                                             Action <i class="icon-lg fa fa-angle-down"></i>
                                         </button>
                                         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton3">
-                                            <a class="dropdown-item d-flex align-items-center" href="'.route('admin.investments.show', $investment['id']).'"><i style="font-size: 13px" class="icon-sm text-secondary fa fa-eye mr-2"></i> <span class="">View</span></a>'.
+                                            <a class="dropdown-item d-flex align-items-center" href="'.route('admin.savings.show', $investment['id']).'"><i style="font-size: 13px" class="icon-sm text-secondary fa fa-eye mr-2"></i> <span class="">View</span></a>'.
                                             $action.'
                                         </div>
                                     </div>';
             $data[] = $datum;
             $i++;
         }
-//      Ready results for datatable
+        //      Ready results for datatable
         $res = array(
             "draw"            => intval($request->input('draw')),
             "recordsTotal"    => intval($totalData),

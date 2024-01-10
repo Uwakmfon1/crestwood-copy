@@ -2,21 +2,22 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Controllers\Admin\NotificationController;
-use App\Models\Email;
-use App\Models\Investment;
-use App\Models\Payment;
-use App\Models\Referral;
-use App\Models\Setting;
-use App\Models\Transaction;
-use App\Models\User;
-use App\Notifications\CustomNotificationByEmail;
-use App\Notifications\CustomNotificationByEmailWithoutGreeting;
-use App\Notifications\CustomNotificationWithoutGreeting;
 use Carbon\Carbon;
+use App\Models\User;
+use App\Models\Email;
+use App\Models\Saving;
+use App\Models\Payment;
+use App\Models\Setting;
+use App\Models\Referral;
+use App\Models\Investment;
+use App\Models\Transaction;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Notification;
+use App\Notifications\CustomNotificationByEmail;
+use App\Http\Controllers\Admin\NotificationController;
+use App\Notifications\CustomNotificationWithoutGreeting;
+use App\Notifications\CustomNotificationByEmailWithoutGreeting;
 
 class CommandController extends Controller
 {
@@ -258,5 +259,10 @@ class CommandController extends Controller
                 }
             }
         }
+    }
+
+    public static function handleSavings() 
+    {
+        
     }
 }
