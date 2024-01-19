@@ -149,9 +149,10 @@
                                 {{-- @foreach(\App\Models\User::$countries as $key => $country)
                                         <option @if(old("phone_code") == $country['phonecode'] || auth()->user()['phone_code'] == $country['phonecode']) selected @elseif($key == 159) selected @endif value="{{$country['phonecode']}}">{{ $country['phonecode']}}</option>
                                     @endforeach --}}
-                                    @foreach(\App\Models\Country::query()->orderBy('name')->get() as $country)
-                                        <option value="{{ $country->name }}" @if(old('country') == $country->name) selected @endif>{{ ucwords($country->name) }}</option>
-                                    @endforeach
+                                <option selected value="">Select Country</option>
+                                @foreach(\App\Models\Country::query()->orderBy('name')->get() as $country)
+                                    <option value="{{ $country->name }}" @if((old('country') ?? auth()->user()['country']) == $country->name) selected @elseif('Nigeria' == $country->name) selected @endif>{{ ucwords($country->name) }}</option>
+                                @endforeach
                             </select>
                             @error('country')
                                 <span class="text-danger small" role="alert">
@@ -178,9 +179,10 @@
                         <div class="form-group col-md-6">
                             <label for="state">State <span class="text-danger">*</span></label>
                             <select class="form-select @error('state') is-invalid @enderror" name="state" id="state">
-                                @if(old('country'))
-                                    @foreach(\App\Models\Country::query()->where('name', old('country'))->first()->states()->orderBy('name')->get() as $state)
-                                        <option value="{{ $state->name }}" @if(old('state') == $state->name) selected @endif>{{ ucwords($state->name) }}</option>
+                                @if(old('country') || auth()->user()['country'])
+                                    <option value="">Select State</option>
+                                    @foreach(\App\Models\Country::query()->where('name', old('country') ?? auth()->user()['country'])->first()->states()->orderBy('name')->get() as $state)
+                                        <option value="{{ $state->name }}" @if((old('state') ?? auth()->user()['state']) == $state->name) selected @endif>{{ ucwords($state->name) }}</option>
                                     @endforeach
                                 @else
                                     <option selected value="">Select A Country</option>
