@@ -1,4 +1,4 @@
-@extends('layouts.user')
+@extends('layouts.admin')
 
 @section('styles')
     <link rel="stylesheet" href="{{ asset('assets/vendors/datatables.net-bs4/dataTables.bootstrap4.css') }}">
@@ -7,8 +7,8 @@
 @section('breadcrumbs')
     <nav aria-label="breadcrumb">
         <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="{{ route('dashboard') }}">Dashboard</a></li>
-            <li class="breadcrumb-item"><a href="{{ route('investments') }}">Savings</a></li>
+            <li class="breadcrumb-item"><a href="{{ route('admin.dashboard') }}">Dashboard</a></li>
+            <li class="breadcrumb-item"><a href="{{ route('admin.saving.package') }}">Savings</a></li>
             <li class="breadcrumb-item active" aria-current="page">Details</li>
         </ol>
     </nav>
@@ -19,9 +19,9 @@
         <div class="col-md-12 grid-margin stretch-card">
             <div class="card">
                 <div class="card-body row">
-                    <h4 class="card-title col-12">Savings Countdown</h4>
+                <h4 class="card-title col-12">Savings Countdown</h4>
                     <div id="countdown" class="col-md-5">
-                        @if($investment['status'] == 'active')
+                        @if($savings['status'] == 'active')
                             <div class="d-flex justify-content-between" style="overflow-x: auto">
                                 <div class="px-3 py-2 bg-light" style="border-radius: 5px">
                                     <div id="days" class="display-3 text-center">00</div>
@@ -40,11 +40,11 @@
                                     <span class="text-center">Seconds</span>
                                 </div>
                             </div>
-                        @elseif($investment['status'] == 'pending')
+                        @elseif($savings['status'] == 'pending')
                             <h2 class='text-warning'>Pending</h2>
-                        @elseif($investment['status'] == 'cancelled')
+                        @elseif($savings['status'] == 'cancelled')
                             <h2 class='text-danger'>Cancelled</h2>
-                        @elseif($investment['status'] == 'settled')
+                        @elseif($savings['status'] == 'settled')
                             <h2 class='text-secondary'>Settled</h2>
                         @endif
                     </div>
@@ -55,7 +55,7 @@
                                 <label class="col-form-label">Package</label>
                             </div>
                             <div class="col-lg-8">
-                                <input style="height: 50px; font-size: 14px" class="form-control" type="text" value="{{ $investment->package['name'] }}" readonly>
+                                <input style="height: 50px; font-size: 14px" class="form-control" type="text" value="{{ $savings->package['name'] }}" readonly>
                             </div>
                         </div>
                     </div>
@@ -65,7 +65,7 @@
                                 <label class="col-form-label">Saving Amount</label>
                             </div>
                             <div class="col-lg-8">
-                                <input style="height: 50px; font-size: 14px" class="form-control" type="text" value="₦ {{ number_format($investment['amount']) }}" readonly>
+                                <input style="height: 50px; font-size: 14px" class="form-control" type="text" value="₦ {{ number_format($savings['amount']) }}" readonly>
                             </div>
                         </div>
                     </div>
@@ -75,7 +75,7 @@
                                 <label class="col-form-label">Saving Duration</label>
                             </div>
                             <div class="col-lg-8">
-                                <input style="height: 50px; font-size: 14px" class="form-control text-capitalize" type="text" value="{{ $investment->package['duration'] }}" readonly>
+                                <input style="height: 50px; font-size: 14px" class="form-control text-capitalize" type="text" value="{{ $savings->package['duration'] }}" readonly>
                             </div>
                         </div>
                     </div>
@@ -85,7 +85,7 @@
                                 <label class="col-form-label">Total ROI</label>
                             </div>
                             <div class="col-lg-8">
-                                <input style="height: 50px; font-size: 14px" class="form-control" type="text" value="₦ {{ number_format($investment['amount'] / $investment->package['roi'] * $investment->package['milestone']) }}" readonly>
+                                <input style="height: 50px; font-size: 14px" class="form-control" type="text" value="₦ {{ number_format($savings['amount'] / $savings->package['roi'] * $savings->package['milestone']) }}" readonly>
                             </div>
                         </div>
                     </div>
@@ -95,7 +95,7 @@
                                 <label class="col-form-label">ROI</label>
                             </div>
                             <div class="col-lg-8">
-                                <input style="height: 50px; font-size: 14px" class="form-control" type="text" value="{{ $investment->package['roi'] }} %" readonly>
+                                <input style="height: 50px; font-size: 14px" class="form-control" type="text" value="{{ $savings->package['roi'] }} %" readonly>
                             </div>
                         </div>
                     </div>
@@ -105,7 +105,7 @@
                                 <label class="col-form-label">Current ROI</label>
                             </div>
                             <div class="col-lg-8">
-                                <input style="height: 50px; font-size: 14px" class="form-control" type="text" value="₦ {{ number_format($investment['amount'] / $investment->package['roi']) }}" readonly>
+                                <input style="height: 50px; font-size: 14px" class="form-control" type="text" value="₦ {{ number_format($savings['amount'] / $savings->package['roi']) }}" readonly>
                             </div>
                         </div>
                     </div>
@@ -115,7 +115,7 @@
                                 <label class="col-form-label">Amount Saved</label>
                             </div>
                             <div class="col-lg-8">
-                                <input style="height: 50px; font-size: 14px" class="form-control" type="text" value="₦ {{ number_format($investment['amount'] * $paid) }}" readonly>
+                                <input style="height: 50px; font-size: 14px" class="form-control" type="text" value="₦ {{ number_format($savings['amount'] * $paid) }}" readonly>
                             </div>
                         </div>
                     </div>
@@ -125,7 +125,7 @@
                                 <label class="col-form-label">Target Amount</label>
                             </div>
                             <div class="col-lg-8">
-                                <input style="height: 50px; font-size: 14px" class="form-control" type="text" value="₦ {{ number_format($investment['amount'] * $investment->package['milestone']) }}" readonly>
+                                <input style="height: 50px; font-size: 14px" class="form-control" type="text" value="₦ {{ number_format($savings['amount'] * $savings->package['milestone']) }}" readonly>
                             </div>
                         </div>
                     </div>
@@ -135,7 +135,7 @@
                                 <label class="col-form-label">Total Milestone</label>
                             </div>
                             <div class="col-lg-8">
-                                <input style="height: 50px; font-size: 14px" class="form-control" type="text" value="{{ $investment->package['milestone'] }}" readonly>
+                                <input style="height: 50px; font-size: 14px" class="form-control" type="text" value="{{ $savings->package['milestone'] }}" readonly>
                             </div>
                         </div>
                     </div>
@@ -155,7 +155,7 @@
                                 <label class="col-form-label">Savings Date</label>
                             </div>
                             <div class="col-lg-8">
-                            <input style="height: 50px; font-size: 14px" class="form-control" type="text" value="{{ $investment['created_at']->format('M d, Y \a\t h:i A') }}" readonly>
+                            <input style="height: 50px; font-size: 14px" class="form-control" type="text" value="{{ $savings['created_at']->format('M d, Y \a\t h:i A') }}" readonly>
                             </div>
                         </div>
                     </div>
@@ -165,7 +165,7 @@
                                 <label class="col-form-label">Maturity Date</label>
                             </div>
                             <div class="col-lg-8">
-                                <input style="height: 50px; font-size: 14px" class="form-control" type="text" value="{{ $investment['return_date']->format('M d, Y \a\t h:i A') }}" readonly>
+                                <input style="height: 50px; font-size: 14px" class="form-control" type="text" value="{{ $savings['return_date']->format('M d, Y \a\t h:i A') }}" readonly>
                             </div>
                         </div>
                     </div>
@@ -179,19 +179,18 @@
                                 <th>Amount</th>
                                 <th>Date Range</th>
                                 <th>Status</th>
-                                <th>Action</th>
                             </tr>
                             </thead>
                             <tbody>
-                                @for ($i = 1; $i <= $investment->package['milestone']; $i++)
+                                @for ($i = 1; $i <= $savings->package['milestone']; $i++)
                                     <tr>
                                         <td>Milestone {{ $i }}</td>
-                                        <td>₦ {{ number_format($investment['amount']) }}</td>
+                                        <td>₦ {{ number_format($savings['amount']) }}</td>
                                         <td>
-                                            @if($investment->package['duration'] == 'weekly')
-                                                {{ \Carbon\Carbon::make($investment['savings_date'])->addWeeks($i - 1)->format('M d, Y H:m:s') }}
+                                            @if($savings->package['duration'] == 'weekly')
+                                                {{ \Carbon\Carbon::make($savings['savings_date'])->addWeeks($i - 1)->format('M d, Y H:m:s') }}
                                             @else
-                                                {{ \Carbon\Carbon::make($investment['savings_date'])->addMonths($i - 1)->format('M d, Y H:m:s') }}
+                                                {{ \Carbon\Carbon::make($savings['savings_date'])->addMonths($i - 1)->format('M d, Y H:m:s') }}
                                             @endif
                                         </td>
                                         <td>
@@ -199,40 +198,17 @@
                                             @if ($paid >= $i)
                                                 <span class="badge badge-pill badge-success py-1 px-3">Paid</span>
                                             @else
-                                                @if($investment->package['duration'] == 'weekly')
-                                                    @if(\Carbon\Carbon::now() > \Carbon\Carbon::make($investment['savings_date'])->addWeeks($i - 1))
+                                                @if($savings->package['duration'] == 'weekly')
+                                                    @if(\Carbon\Carbon::now() > \Carbon\Carbon::make($savings['savings_date'])->addWeeks($i - 1))
                                                         <span class="badge badge-pill badge-dark py-1 px-3">Void</span>
                                                     @else
                                                         <span class="badge badge-pill badge-warning py-1 px-3">Pending</span>
                                                     @endif
                                                 @else
-                                                    @if(\Carbon\Carbon::now() > \Carbon\Carbon::make($investment['savings_date'])->addMonths($i - 1))
+                                                    @if(\Carbon\Carbon::now() > \Carbon\Carbon::make($savings['savings_date'])->addMonths($i - 1))
                                                         <span class="badge badge-pill badge-dark py-1 px-3">Void</span>
                                                     @else
                                                         <span class="badge badge-pill badge-warning py-1 px-3">Pending</span>
-                                                    @endif
-                                                @endif
-                                            @endif
-                                        </td>
-                                        <td>
-                                            <!-- <a href="#" class="btn btn-sm btn-primary">Retry Payment</a> -->
-
-                                            @if ($paid >= $i)
-                                                <!-- <button  class="btn btn-dark" disabled="disabled">Retry Payment</button> -->
-                                            @else
-                                                @if($investment->package['duration'] == 'weekly')
-                                                    @if(\Carbon\Carbon::now() > \Carbon\Carbon::make($investment['savings_date'])->addWeeks($i - 1))
-                                                        <form action="{{ route('make.payment', $investment['id']) }}" method="post">
-                                                            @csrf
-                                                            <button type="submit" class="btn btn-primary">Retry Payment</button>
-                                                        </form>
-                                                    @endif
-                                                @else
-                                                    @if(\Carbon\Carbon::now() > \Carbon\Carbon::make($investment['savings_date'])->addMonths($i - 1))
-                                                        <form action="{{ route('make.payment', $investment['id']) }}" method="post">
-                                                            @csrf
-                                                            <button type="submit" class="btn btn-primary">Retry Payment</button>
-                                                        </form>
                                                     @endif
                                                 @endif
                                             @endif
@@ -240,89 +216,29 @@
                                     </tr>
                                 @endfor
                             </tbody>
-                            @if($paid >= $investment->package['milestone'])
+                            @if($paid >= $savings->package['milestone'])
                             <tr>
                                 <td>Total</td>
-                                <td><b>₦ {{ number_format($investment['amount'] * $paid + $investment['amount'] / $investment->package['roi'] * $investment->package['milestone']) }}</b></td>
+                                <td><b>₦ {{ number_format($savings['amount'] * $paid + $savings['amount'] / $savings->package['roi'] * $savings->package['milestone']) }}</b></td>
                                 <td class="text-success"><b>Completed 🥳</b></td>
                                 
                                 <td>
                                     <span class="badge badge-pill badge-info py-1 px-3">Credited✅</span>
                                 </td>
                                 <td>
-                                    @if($paid == $investment->package['milestone'])
-                                    <form action="{{ route('settle.payment', $investment['id']) }}" method="post">
+                                    @if($paid == $savings->package['milestone'])
+                                    <form action="{{ route('settle.payment', $savings['id']) }}" method="post">
                                         @csrf
-                                        <button type="submit" class="btn btn-primary">Withdraw</button>
+                                        <!-- <button type="submit" class="btn btn-primary">Withdraw</button> -->
                                     </form> 
-                                    @elseif($paid > $investment->package['milestone'])
-                                        <button type="button" disabled class="btn btn-dark">Withdraw</button>
+                                    @elseif($paid > $savings->package['milestone'])
+                                        <!-- <button type="button" disabled class="btn btn-dark">Withdraw</button> -->
                                     @endif
                                 </td>
                             </tr>
                             @endif
                         </table>
                     </div>
-
-
-                    <!-- <h4 class="card-title mt-4 mb-0 col-12">Investment Rollover</h4>
-                    <div class="col-12">
-                        <div class="form-check mt-3 form-check-flat form-check-primary">
-                            <label class="form-check-label">
-                                Will you like to rollover your investment?
-                                <input type="checkbox" @if($investment['status'] <> 'active') disabled @endif @if($investment->rollover) checked @endif id="rolloverOption" class="form-check-input">
-                            </label>
-                        </div>
-                    </div>
-                    <div class="col-12">
-                        <form action="{{ route('investments.rollover') }}" id="rolloverForm" style="display: none" method="POST">
-                            @csrf
-                            <div class="form-group">
-                                <label for="package"></label>
-                                <select id="package" @if($investment->rollover) disabled @endif name="package" style="height: 50px; font-size: 14px" class="text-dark">
-                                    <option value="">Select Package</option>
-                                    @foreach($packages as $package)
-                                        <option @if($investment->rollover) @if($investment->rollover['package']['name'] == $package['name']) selected @endif @if(old('package') == $package['name']) selected @endif @endif value="{{ $package['name'] }}" data-price="{{ $package['price'] }}" data-roi="{{ $package['roi'] }}" data-duration="{{ $package['duration'] }}">{{ $package['name'] }}</option>
-                                    @endforeach
-                                </select>
-                                <input type="hidden" name="investment" value="{{ $investment['id'] }}">
-                                <input type="hidden" id="price">
-                                <input type="hidden" id="roi">
-                                <input type="hidden" id="duration">
-                                @error('package')
-                                    <span class="text-danger small" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-                            <div class="form-group">
-                                <label for="slots" class="d-flex justify-content-between"><span>No of slots</span><span id="slotInfo"></span></label>
-                                <input id="slots" type="number" @if($investment->rollover) disabled @endif value="@if($investment->rollover){{ $investment->rollover['slots'] }}@else{{ old('slots') }}@endif" name="slots" class="form-control" style="height: 50px; font-size: 14px" placeholder="Slots">
-                                @error('package')
-                                    <span class="text-danger small" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-                            <div class="form-group">
-                                <label for="amount">Amount to Invest</label>
-                                <input type="text" class="form-control" id="amount" style="height: 50px; font-size: 14px" value="@if($investment->rollover)₦ {{ number_format($investment->rollover['slots'] * $investment->rollover['package']['price']) }}@else ₦ 0.00 @endif" disabled>
-                            </div>
-                            <div class="form-group">
-                                <label for="returns">Expected Return <span id="returnInfo"></span></label>
-                                <input type="text" class="form-control" id="returns" style="height: 50px; font-size: 14px" value="@if($investment->rollover)₦ {{ number_format($investment->rollover['slots'] * $investment->rollover['package']['price'] * ((100 + $investment->rollover['package']['roi'])/100)) }}@else ₦ 0.00 @endif" disabled>
-                            </div>
-                            @if($investment->rollover)
-                                <button type="button" disabled class="btn btn-block btn-secondary mr-2" style="height: 50px; font-size: 14px">Rolled Over</button>
-                            @else
-                                @if($investment['status'] <> 'active')
-                                    <button type="button" disabled class="btn btn-block btn-secondary mr-2" style="height: 50px; font-size: 14px">Unavailable</button>
-                                @else
-                                    <button type="button" disabled onclick="confirmFormSubmit('rolloverForm')" id="submitButton" class="btn btn-block btn-primary mr-2" style="height: 50px; font-size: 14px">Rollover Investment</button>
-                                @endif
-                            @endif
-                        </form>
-                    </div> -->
                 </div>
             </div>
         </div>
@@ -347,7 +263,7 @@
             let rolloverBtn = $('#rolloverOption');
             let rolloverForm = $('#rolloverForm');
             let submitButton = $('#submitButton');
-            let investmentReturns = parseFloat({{ $investment['total_return'] }});
+            let savingsReturns = parseFloat({{ $savings['total_return'] }});
             displayRolloverForm();
             packageName.on('change', function (){
                 $("#package option").each(function(){
@@ -384,7 +300,7 @@
             }
             function checkIfFormCanSubmit(){
                 if (packageName.val() && slots.val() && (slots.val() > 0)){
-                    if ((slots.val() * price.val()) <= investmentReturns ){
+                    if ((slots.val() * price.val()) <= savingsReturns ){
                         submitButton.removeAttr('disabled');
                         slots.css('borderColor', '#10B759');
                     }else{
@@ -398,9 +314,9 @@
         });
     </script>
     <script>
-        @if($investment['status'] == 'active')
+        @if($savings['status'] == 'active')
             // let countDownDate = new Date("May 1, 2021 15:37:25").getTime();
-            let countDownDate = new Date("{{ $investment['return_date']->format('F d, Y H:i:s') }}").getTime();
+            let countDownDate = new Date("{{ $savings['return_date']->format('F d, Y H:i:s') }}").getTime();
             let countDown = document.getElementById('countdown');
             let x = setInterval(function() {
                 let now = new Date().getTime();

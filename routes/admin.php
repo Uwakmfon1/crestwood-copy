@@ -116,4 +116,5 @@ Route::group(['middleware' => ['auth:admin', 'active_admin']], function (){
     Route::get('/packages/{savings}/savings', [App\Http\Controllers\Admin\SavingsController::class, 'savings'])->name('saving.table');
     Route::post('/savings/{type}/fetch/ajax', [App\Http\Controllers\Admin\SavingsController::class, 'fetchSavingsWithAjax'])->name('savings.ajax'); 
     Route::get('/savings/{saving}/show', [App\Http\Controllers\Admin\SavingsController::class, 'show'])->name('savings.show');
+    Route::get('/users/{user}/savings/{saving}/show', [App\Http\Controllers\Admin\SavingsController::class, 'showUserSavings'])->name('users.savings.show');
 });

@@ -66,7 +66,7 @@
                             <label for="payment">Pay Via</label>
                             <select name="payment" id="payment" style="height: 50px; font-size: 14px" class="text-dark">
                                 <option value="wallet">Naira Wallet</option>
-                                <option value="card">Card</option>
+                                <!-- <option value="card">Card</option> -->
                                 <option value="deposit">Deposit / Bank Transfer</option>
                             </select>
                             @error('payment')

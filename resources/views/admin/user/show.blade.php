@@ -28,6 +28,7 @@
                     <a href="#wallets" class="btn btn-sm btn-primary">Wallets</a>
 {{--                    <a href="#trades" class="btn btn-sm btn-primary">Trades</a>--}}
                     <a href="#investments" class="btn btn-sm btn-primary">Investments</a>
+                    <a href="#saving" class="btn btn-sm btn-primary">Savings</a>
                     <a href="#referrals" class="btn btn-sm btn-primary">Referrals</a>
                 </div>
             </div>
@@ -348,6 +349,7 @@
 {{--                        </div>--}}
 {{--                    </div>--}}
 {{--                </div>--}}
+
                 <div id="investments" class="col-12 mb-5">
                     <div class="card rounded">
                         <div class="card-body">
@@ -355,9 +357,9 @@
                                 <div class="d-flex mb-3 align-items-center justify-content-between">
                                     <h6 class="card-title my-auto">Investments</h6>
                                     <div>
-{{--                                        @can('Make Investment For Users')--}}
-{{--                                        <a href="{{ route('admin.users.invest', $user['id']) }}" class="btn btn-sm btn-primary">New Investment</a>--}}
-{{--                                        @endcan--}}
+                                        {{--@can('Make Investment For Users')--}}
+                                        {{-- <a href="{{ route('admin.users.invest', $user['id']) }}" class="btn btn-sm btn-primary">New Investment</a>--}}
+                                        {{-- @endcan--}}
                                     </div>
                                 </div>
                                 <div class="table-responsive">
@@ -423,6 +425,78 @@
                                                             @method('PUT')
                                                         </form>
                                                     @endif
+                                                </td>
+                                            </tr>
+                                        @endforeach
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div id="saving" class="col-12 mb-5">
+                    <div class="card rounded">
+                        <div class="card-body">
+                            <div class="mb-5">
+                                <div class="d-flex mb-3 align-items-center justify-content-between">
+                                    <h6 class="card-title my-auto">Savings</h6>
+                                    <div>
+                                    </div>
+                                </div>
+                                <div class="table-responsive">
+                                    <table id="dataTableExample1" class="table">
+                                        <thead>
+                                        <tr>
+                                            <th><i class="fas fa-list-ul"></i></th>
+                                            <th>Package</th>
+                                            <th>Duration</th>
+                                            <th>Amount Saved</th>
+                                            <th>Amount Remaining</th>
+                                            <th>Days Left</th>
+                                            <th>Status</th>
+                                            <th>Action</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        @foreach($user->savings()->latest()->get() as $key=>$saving)
+                                            @php 
+                                                $paid = $saving->transaction()->where('status', 'approved')->count();
+                                            @endphp
+                                            <tr>
+                                                <td>{{ $key + 1 }}</td>
+                                            <td>{{ $saving->package['name'] }}</td>
+                                            <td class="text-capitalize">{{ $saving->package['duration'] }}</td>
+                                            <td>₦ {{ number_format($saving['amount'] * $paid) }}</td>
+                                            <td>₦ {{ number_format(($saving['amount'] * $saving->package['milestone']) - ($saving['amount'] * $paid)) }}</td>
+                                            <td>
+                                                @if($saving['status'] == 'active')
+                                                    {{ $saving['return_date']->diffInDays(now()) > 0 ? $saving['return_date']->diffInDays(now()) : '---' }}
+                                                @else
+                                                    --
+                                                @endif
+                                            </td>
+                                            <td>
+                                                @if($saving['status'] == 'active')
+                                                    <span class="badge badge-pill badge-success">Active</span>
+                                                @elseif($saving['status'] == 'pending')
+                                                    <span class="badge badge-pill badge-warning">Pending</span>
+                                                @elseif($saving['status'] == 'cancelled')
+                                                    <span class="badge badge-pill badge-danger">Cancelled</span>
+                                                @elseif($saving['status'] == 'settled')
+                                                    <span class="badge badge-pill badge-secondary">Settled</span>
+                                                @endif
+                                            </td>
+                                                <td>
+                                                    <div class="dropdown">
+                                                        <button class="btn btn-sm btn-primary" type="button" id="dropdownMenuButton3" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                            Action <i class="icon-lg" data-feather="chevron-down"></i>
+                                                        </button>
+                                                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton3">
+                                                            <a class="dropdown-item d-flex align-items-center" href="{{ route('admin.users.savings.show', ['user' => $user['id'], 'saving' =>  $saving['id']]) }}"><i data-feather="eye" class="icon-sm mr-2"></i> <span class="">View</span></a>
+                                                            
+                                                        </div>
+                                                    </div>
                                                 </td>
                                             </tr>
                                         @endforeach

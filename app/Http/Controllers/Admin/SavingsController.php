@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Controllers\Controller;
+use App\Models\User;
 use App\Models\Saving;
-use App\Models\SavingPackage;
 use Illuminate\Http\Request;
+use App\Models\SavingPackage;
+use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
 
 class SavingsController extends Controller
@@ -33,6 +34,13 @@ class SavingsController extends Controller
     public function edit(SavingPackage $package)
     {
         return view('admin.savingsPackage.edit', ['package' => $package]);
+    }
+
+    public function showUserSavings(User $user, Saving $saving)
+    {
+        $paid = $saving->transaction()->where('status', 'approved')->count();
+
+        return view('admin.user.saving.show', ['user' => $user, 'savings' => $saving, 'packages' => SavingPackage::all(), 'paid' => $paid]);
     }
     
     // Savings Package CRUD
