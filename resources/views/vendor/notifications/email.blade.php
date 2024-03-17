@@ -46,7 +46,7 @@
 {{ $salutation }}
 @else
 @lang('Regards'),<br>
-{{ config('app.name') }}
+{{ config('app.name') }} NextIn Savings & Investment
 @endif
 
 {{-- Subcopy --}}

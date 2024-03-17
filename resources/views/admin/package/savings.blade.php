@@ -35,7 +35,7 @@
                                             <h6 class="text-muted text-center mb-4 font-weight-normal">₦ {{ number_format($package['price']) }} per slot</h6>
                                             <div class="d-flex align-items-center mb-2">
                                                 <i data-feather="clock" class="icon-md text-secondary mr-2"></i>
-                                                <p>{{ $package['duration'] }} Months</p>
+                                                <p>{{ $package['duration'] }} ({{ $package['milestone'] }})</p> 
                                             </div>
                                             <div class="d-flex align-items-center mb-2">
                                                 <i data-feather="layers" class="icon-md text-secondary mr-2"></i>

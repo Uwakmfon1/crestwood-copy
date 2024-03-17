@@ -165,9 +165,12 @@
                 if (packageName.val()){
                     if (duration.val() == 'weekly') {
                         durValue = 'Week'
-                    } else {
+                    } else if (duration.val() == 'monthly') {
                         durValue = 'Month'
+                    } else {
+                        durValue = 'Day'
                     }
+                    
                     returnInfo.html('after <b>'+ milestone.val() +' '+ durValue +'(s)</b>');
                     slotInfo.text('₦ ' + price.val() + '/' + durValue );
 

@@ -190,8 +190,10 @@
                                         <td>
                                             @if($investment->package['duration'] == 'weekly')
                                                 {{ \Carbon\Carbon::make($investment['savings_date'])->addWeeks($i - 1)->format('M d, Y H:m:s') }}
-                                            @else
+                                            @elseif($investment->package['duration'] == 'montly')
                                                 {{ \Carbon\Carbon::make($investment['savings_date'])->addMonths($i - 1)->format('M d, Y H:m:s') }}
+                                            @else
+                                                {{ \Carbon\Carbon::make($investment['savings_date'])->addDays($i - 1)->format('M d, Y H:m:s') }}
                                             @endif
                                         </td>
                                         <td>
@@ -227,8 +229,15 @@
                                                             <button type="submit" class="btn btn-primary">Retry Payment</button>
                                                         </form>
                                                     @endif
-                                                @else
+                                                @elseif($investment->package['duration'] == 'montly')
                                                     @if(\Carbon\Carbon::now() > \Carbon\Carbon::make($investment['savings_date'])->addMonths($i - 1))
+                                                        <form action="{{ route('make.payment', $investment['id']) }}" method="post">
+                                                            @csrf
+                                                            <button type="submit" class="btn btn-primary">Retry Payment</button>
+                                                        </form>
+                                                    @endif
+                                                @else
+                                                    @if(\Carbon\Carbon::now() > \Carbon\Carbon::make($investment['savings_date'])->addDays($i - 1))
                                                         <form action="{{ route('make.payment', $investment['id']) }}" method="post">
                                                             @csrf
                                                             <button type="submit" class="btn btn-primary">Retry Payment</button>

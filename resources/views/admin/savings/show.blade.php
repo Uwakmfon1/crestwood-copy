@@ -149,7 +149,7 @@
                             </div>
                         </div>
                     </div>
-                    <h4 class="card-title mt-4 mb-0 col-12">Investment Rollover</h4>
+                    <!-- <h4 class="card-title mt-4 mb-0 col-12">Investment Rollover</h4>
                     <div class="col-12">
                         <div class="form-check mt-3 form-check-flat form-check-primary">
                             <label class="form-check-label">
@@ -157,7 +157,7 @@
                                 <input type="checkbox" @if($investment['status'] <> 'active') disabled @endif @if($investment->rollover) checked @endif id="rolloverOption" class="form-check-input">
                             </label>
                         </div>
-                    </div>
+                    </div> -->
                     <div class="col-12">
                         <form action="{{ route('admin.investments.rollover') }}" id="rolloverForm" style="display: none" method="POST">
                             @csrf

@@ -35,7 +35,7 @@ class NotificationController extends Controller
     {
         $msg = 'Welcome to '.env('APP_NAME').'.<br>
                 Your profile has been completed successfully and your account is active.<br>
-                You can proceed to trade gold and also invest in our awesome packages.';
+                You can proceed to making savings and also investing in our packages to earn amazing rewards.';
         try {
             $user->notify(new CustomNotificationByEmail('Welcome to '.env('APP_NAME'), $msg, 'Login to Dashboard', route('login')));
         }catch (\Exception) {

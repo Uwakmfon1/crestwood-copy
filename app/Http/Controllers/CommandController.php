@@ -166,7 +166,7 @@ class CommandController extends Controller
     {
         $payments = Payment::query()->where('status', 'pending')->get();
         foreach ($payments as $payment){
-//            if ($payment->canRetryVerification()){
+        //            if ($payment->canRetryVerification()){
                 $paymentDetails = Http::withHeaders([
                     'Authorization' => 'Bearer '.env('PAYSTACK_SECRET_KEY')
                 ])->get('https://api.paystack.co/transaction/verify/'.$payment['reference']);
@@ -185,7 +185,72 @@ class CommandController extends Controller
                 } catch (\Exception $e) {
                     $payment->update(['status' => 'failed']);
                 }
-//            }
+        //            }
+        }
+    }
+
+    public static function settleSavings()
+    {
+        $savings = Saving::query()->where('status', 'active')->get();
+
+        foreach ($savings as $saving){
+            $user = $saving->user;
+
+            $paid = $saving->transaction()->where('status', 'approved')->count();
+
+            for ($i = 1; $i <= $saving->package['milestone']; $i++)
+            {
+                if($paid >= $i){
+                    //nothing
+                } else {
+                    if ($saving->package['duration'] == 'daily') {
+                        if (\Carbon\Carbon::now() > \Carbon\Carbon::make($saving->savings_date)->addDays($i - 1)) {
+                            if ($user->hasSufficientBalanceForTransaction($saving->amount)){
+                                TransactionController::storeSavingTransaction($saving, 'wallet', 'savings');
+                                $user->nairaWallet()->decrement('balance', $saving->amount);
+                                
+                                logger('Auto Save Successfully ✅ (daily)');
+                            } else {
+                                logger('Insufficient wallet balance ❌ (daily)'. $i);
+                            }
+                        }
+                    } elseif($saving->package['duration'] == 'weekly') {
+                        if (\Carbon\Carbon::now() > \Carbon\Carbon::make($saving->savings_date)->addWeeks($i - 1)) {
+                            if ($user->hasSufficientBalanceForTransaction($saving->amount)){
+                                TransactionController::storeSavingTransaction($saving, 'wallet', 'savings');
+                                $user->nairaWallet()->decrement('balance', $saving->amount);
+                                
+                                logger('Auto Save Successfully ✅ (weekly)');
+                            } else {
+                                logger('Insufficient wallet balance ❌ (weekly)'. $i);
+                            }
+                        }
+                    } elseif($saving->package['duration'] == 'monthly') {
+                        if (\Carbon\Carbon::now() > \Carbon\Carbon::make($saving->savings_date)->addWeeks($i - 1)) {
+                            if ($user->hasSufficientBalanceForTransaction($saving->amount)){
+                                TransactionController::storeSavingTransaction($saving, 'wallet', 'savings');
+                                $user->nairaWallet()->decrement('balance', $saving->amount);
+                                
+                                logger('Auto Save Successfully ✅ (monthly)');
+                            } else {
+                                logger('Insufficient wallet balance ❌ (monthly)'. $i);
+                            }
+                        }
+                    }
+                }
+            }
+
+            // if ($saving->isReadyForDeduction()) {
+            //     if ($user->hasSufficientBalanceForTransaction($saving->amount)){
+            //         logger('Sufficient wallet balance ✅');
+            //     } else {
+            //         // TransactionController::storeSavingTransaction($savings, 'wallet', 'savings');
+            //         // $user()->nairaWallet()->decrement('balance', $saving->amount);
+            //         logger('Insufficient wallet balance ❌');
+
+            //         // logger('Auto Save Successfully ✅');
+            //     }
+            // }
         }
     }
 

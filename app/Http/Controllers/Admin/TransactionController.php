@@ -2,12 +2,13 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Controllers\Controller;
-use App\Http\Controllers\NotificationController;
-use App\Models\Transaction;
 use App\Models\User;
+use App\Models\Saving;
+use App\Models\Transaction;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
+use App\Http\Controllers\NotificationController;
 
 class TransactionController extends Controller
 {
@@ -99,6 +100,7 @@ class TransactionController extends Controller
         }
 //        Process transaction based on type
         $user = $transaction['user'];
+        
         switch ($transaction['type']){
             case 'deposit':
                 $user->nairaWallet()->increment('balance', $transaction['amount']);
@@ -107,8 +109,7 @@ class TransactionController extends Controller
             case 'withdrawal':
                 NotificationController::sendWithdrawalSuccessfulNotification($transaction);
                 break;
-            case 'others':
-                if ($transaction['investment']){
+            case 'investment':
                     $transaction->investment()->update([
                         'investment_date' => now()->format('Y-m-d H:i:s'),
                         'return_date' => now()->addMonths($transaction['investment']['investment_date']
@@ -117,15 +118,22 @@ class TransactionController extends Controller
                         'status' => 'active'
                     ]);
                     NotificationController::sendInvestmentCreatedNotification($transaction['investment']);
-                }elseif ($transaction['trade']){
-                    if($transaction['trade']['product'] == 'gold'){
-                        $user->goldWallet()->increment('balance', $transaction['trade']['grams']);
-                    }elseif($transaction['trade']['product'] == 'silver'){
-                        $user->silverWallet()->increment('balance', $transaction['trade']['grams']);
+                break;
+            case 'savings':
+                    $savings = Saving::find($transaction['saving_id']);
+
+                    if ($savings['package']['duration'] == 'monthly') {
+                        $returnDate = now()->addMonths($savings['package']['milestone'])->format('Y-m-d H:i:s');
+                    } elseif($savings['package']['duration'] == 'weekly') {
+                        $returnDate = now()->addWeeks($savings['package']['milestone'])->format('Y-m-d H:i:s');
                     }
-                    $transaction->trade()->update(['status' => 'success']);
-                    NotificationController::sendTradeSuccessfulNotification($transaction['trade']);
-                }
+
+                    $savings->update([
+                        'savings_date' => now()->format('Y-m-d H:i:s'),
+                        'return_date' => $returnDate,
+                        'status' => 'active'
+                    ]);
+                    NotificationController::sendInvestmentCreatedNotification($savings);
                 break;
         }
 //        Update transaction

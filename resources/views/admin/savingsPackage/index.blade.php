@@ -35,7 +35,7 @@
                                             <h6 class="text-muted text-center mb-4 font-weight-normal">₦ {{ number_format($package['price']) }} per slot</h6>
                                             <div class="d-flex align-items-center mb-2">
                                                 <i data-feather="clock" class="icon-md text-secondary mr-2"></i>
-                                                <p>{{ $package['duration'] }} Months</p>
+                                                <!-- <p>{{ $package['milestone'] }} {{ $package['duration'] }}(s)</p> -->
                                             </div>
                                             <div class="d-flex align-items-center mb-2">
                                                 <i data-feather="layers" class="icon-md text-secondary mr-2"></i>
@@ -60,7 +60,7 @@
                                                         @can('Delete Packages')
                                                         <a class="dropdown-item d-flex align-items-center" href="{{ route('admin.packages.destroy', $package['id']) }}" onclick="event.preventDefault(); confirmFormSubmit('deletePackage{{ $package['id'] }}')"><i data-feather="delete" class="icon-sm mr-2"></i> <span class="">Delete</span></a>
                                                         @endcan
-                                                        @can('View Investments')
+                                                        @can('View Savings')
                                                         <a class="dropdown-item d-flex align-items-center" href="{{ route('admin.packages.investments', $package['id']) }}"><i data-feather="layers" class="icon-sm mr-2"></i> <span class="">View Investments</span></a>
                                                         @endcan
                                                     </div>

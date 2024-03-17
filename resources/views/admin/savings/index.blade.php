@@ -12,16 +12,16 @@
                 <li class="breadcrumb-item"><a href="{{ route('admin.packages') }}">Packages</a></li>
             @endif
             @if(request()->offsetExists('active'))
-                <li class="breadcrumb-item"><a href="{{ route('admin.investments') }}">Savings</a></li>
+                <li class="breadcrumb-item"><a href="{{ route('admin.savings') }}">Savings</a></li>
                 <li class="breadcrumb-item active" aria-current="page">Active</li>
             @elseif(request()->offsetExists('pending'))
-                <li class="breadcrumb-item"><a href="{{ route('admin.investments') }}">Savings</a></li>
+                <li class="breadcrumb-item"><a href="{{ route('admin.savings') }}">Savings</a></li>
                 <li class="breadcrumb-item active" aria-current="page">Pending</li>
             @elseif(request()->offsetExists('cancelled'))
-                <li class="breadcrumb-item"><a href="{{ route('admin.investments') }}">Savings</a></li>
+                <li class="breadcrumb-item"><a href="{{ route('admin.savings') }}">Savings</a></li>
                 <li class="breadcrumb-item active" aria-current="page">Cancelled</li>
             @elseif(request()->offsetExists('settled'))
-                <li class="breadcrumb-item"><a href="{{ route('admin.investments') }}">Savings</a></li>
+                <li class="breadcrumb-item"><a href="{{ route('admin.savings') }}">Savings</a></li>
                 <li class="breadcrumb-item active" aria-current="page">Settled</li>
             @else
                 <li class="breadcrumb-item active" aria-current="page">Savings</li>

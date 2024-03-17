@@ -21,6 +21,11 @@ class Transaction extends Model
         return $this->belongsTo(Investment::class);
     }
 
+    public function savings(): \Illuminate\Database\Eloquent\Relations\BelongsTo
+    {
+        return $this->belongsTo(Saving::class);
+    }
+
     public function trade(): \Illuminate\Database\Eloquent\Relations\BelongsTo
     {
         return $this->belongsTo(Trade::class);

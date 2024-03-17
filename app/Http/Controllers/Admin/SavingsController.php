@@ -16,6 +16,11 @@ class SavingsController extends Controller
         return view('admin.package.savings', ['packages' => SavingPackage::all()]);
     }
 
+    public function all()
+    {
+        return view('admin.savings.index', ['type' => \request('type') ?? 'all']);
+    }
+
     public function show(Saving $saving)
     {
         return view('admin.savings.show', ['investment' => $saving, 'packages' => SavingPackage::all()]);
@@ -180,16 +185,16 @@ class SavingsController extends Controller
                 $status = '<span class="badge badge-pill badge-success">Active</span>';
             }elseif ($investment['status'] == 'pending'){
                 $status = '<span class="badge badge-pill badge-warning">Pending</span>';
-                // $action .= '<a class="dropdown-item d-flex align-items-center" onclick="event.preventDefault(); confirmFormSubmit(\'transactionApprove'.$investment['id'].'\')" href="'.route('admin.transactions.approve', $investment['transaction']['id']).'"><i style="font-size: 13px" class="icon-sm text-secondary fa fa-check mr-2"></i> <span class="">Approve</span></a>
-                //            <form id="transactionApprove'.$investment['id'].'" action="'.route('admin.transactions.approve', $investment['transaction']['id']).'" method="POST">
-                //                <input type="hidden" name="_token" value="'.csrf_token().'">
-                //                <input type="hidden" name="_method" value="PUT">
-                //            </form>';
-                // $action .= '<a class="dropdown-item d-flex align-items-center" onclick="event.preventDefault(); confirmFormSubmit(\'transactionDecline'.$investment['id'].'\')" href="'.route('admin.transactions.decline', $investment['transaction']['id']).'"><i style="font-size: 13px" class="icon-sm text-secondary fa fa-times mr-2"></i> <span class="">Decline</span></a>
-                //            <form id="transactionDecline'.$investment['id'].'" action="'.route('admin.transactions.decline', $investment['transaction']['id']).'" method="POST">
-                //                <input type="hidden" name="_token" value="'.csrf_token().'">
-                //                <input type="hidden" name="_method" value="PUT">
-                //            </form>';
+                $action .= '<a class="dropdown-item d-flex align-items-center" onclick="event.preventDefault(); confirmFormSubmit(\'transactionApprove'.$investment['id'].'\')" href="'.route('admin.transactions.approve', $investment['transaction']['id']).'"><i style="font-size: 13px" class="icon-sm text-secondary fa fa-check mr-2"></i> <span class="">Approve</span></a>
+                           <form id="transactionApprove'.$investment['id'].'" action="'.route('admin.transactions.approve', $investment['transaction']['id']).'" method="POST">
+                               <input type="hidden" name="_token" value="'.csrf_token().'">
+                               <input type="hidden" name="_method" value="PUT">
+                           </form>';
+                $action .= '<a class="dropdown-item d-flex align-items-center" onclick="event.preventDefault(); confirmFormSubmit(\'transactionDecline'.$investment['id'].'\')" href="'.route('admin.transactions.decline', $investment['transaction']['id']).'"><i style="font-size: 13px" class="icon-sm text-secondary fa fa-times mr-2"></i> <span class="">Decline</span></a>
+                           <form id="transactionDecline'.$investment['id'].'" action="'.route('admin.transactions.decline', $investment['transaction']['id']).'" method="POST">
+                               <input type="hidden" name="_token" value="'.csrf_token().'">
+                               <input type="hidden" name="_method" value="PUT">
+                           </form>';
                 if (!auth()->user()->can('Approve Transactions') && !auth()->user()->can('Decline Transactions')){
                     $action = null;
                 }

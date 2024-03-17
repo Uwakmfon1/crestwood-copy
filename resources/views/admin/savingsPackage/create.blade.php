@@ -50,6 +50,7 @@
                             <label for="duration">Duration</label>
                             <select name="duration" id="duration" style="height: 50px; font-size: 14px" class="form-control" value="{{ old('duration') }}">
                                 <option value="#">Select Duration</option>
+                                <option value="daily">Daily</option>
                                 <option value="weekly">Weekly</option>
                                 <option value="monthly">Monthly</option>
                             </select>

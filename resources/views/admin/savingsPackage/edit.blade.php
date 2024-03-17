@@ -50,6 +50,7 @@
                             <label for="duration">Duration</label>
                             <select name="duration" id="duration" style="height: 50px; font-size: 14px" class="form-control">
                                 <option value="#" {{ old('duration') == '#' ? 'selected' : '' }}>Select Duration</option>
+                                <option value="daily" {{ old('duration') == 'daily' ? 'selected' : ($package['duration'] == 'daily' ? 'selected' : '') }}>Daily</option>
                                 <option value="weekly" {{ old('duration') == 'weekly' ? 'selected' : ($package['duration'] == 'weekly' ? 'selected' : '') }}>Weekly</option>
                                 <option value="monthly" {{ old('duration') == 'monthly' ? 'selected' : ($package['duration'] == 'monthly' ? 'selected' : '') }}>Monthly</option>
                             </select>

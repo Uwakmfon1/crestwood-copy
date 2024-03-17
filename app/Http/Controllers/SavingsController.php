@@ -96,6 +96,8 @@ class SavingsController extends Controller
             $returnDate = now()->addMonths($request['milestone'])->format('Y-m-d H:i:s');
         } elseif($package['duration'] == 'weekly') {
             $returnDate = now()->addWeeks($request['milestone'])->format('Y-m-d H:i:s');
+        } else {
+            $returnDate = now()->addDays($request['milestone'])->format('Y-m-d H:i:s');
         }
 
 //        Create Investment

@@ -1,6 +1,7 @@
 @php
     $trxs = \App\Models\Transaction::query()->where('status', 'pending')->count();
     $invs = \App\Models\Investment::query()->where('status', 'pending')->count();
+    $save = \App\Models\Saving::query()->where('status', 'pending')->count();
     $trds = \App\Models\Trade::query()->where('status', 'pending')->count();
     $pyts = \App\Models\Payment::query()->where('status', 'pending')->count();
 @endphp
@@ -122,6 +123,34 @@
                         </li>
                         <li class="nav-item">
                             <a href="{{ route('admin.investments', ['type' => 'settled']) }}" class="nav-link @if(request('type') == 'settled') text-primary @endif">Settled</a>
+                        </li>
+                    </ul>
+                </div>
+            </li>
+            @endcan
+            @can('View Investments')
+            <li class="nav-item @if(request()->is('admin/savings') || request()->routeIs(['admin.savings.show'])) active @endif">
+                <a class="nav-link" data-toggle="collapse" href="#saving" role="button" aria-expanded="false" aria-controls="investment">
+                    <i class="link-icon" data-feather="layers"></i>
+                    <span class="link-title">Savings @if($save > 0) <span class="badge badge-primary badge-pill px-2">{{ $save }}</span> @endif</span>
+                    <i class="link-arrow" data-feather="chevron-down"></i>
+                </a>
+                <div class="collapse" id="saving">
+                    <ul class="nav sub-menu">
+                        <li class="nav-item">
+                            <a href="{{ route('admin.savings') }}" class="nav-link @if(request()->is('admin/savings') && !request('type')) text-primary @endif">All</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{ route('admin.savings', ['type' => 'active']) }}" class="nav-link @if(request('type') == 'active') text-primary @endif">Active</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{ route('admin.savings', ['type' => 'pending']) }}" class="nav-link @if(request('type') == 'pending') text-primary @endif">Pending</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{ route('admin.savings', ['type' => 'cancelled']) }}" class="nav-link @if(request('type') == 'cancelled') text-primary @endif">Cancelled</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{ route('admin.savings', ['type' => 'settled']) }}" class="nav-link @if(request('type') == 'settled') text-primary @endif">Settled</a>
                         </li>
                     </ul>
                 </div>

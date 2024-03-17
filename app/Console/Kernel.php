@@ -30,6 +30,9 @@ class Kernel extends ConsoleKernel
          $schedule->command('investment:settle')
                     ->withoutOverlapping()
                     ->everyMinute();
+        $schedule->command('savings:settle')
+                    ->withoutOverlapping()
+                    ->everyMinute();
 //         $schedule->command('users:delete')
 //                    ->withoutOverlapping()
 //                    ->everyMinute();
