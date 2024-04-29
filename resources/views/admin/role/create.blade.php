@@ -41,7 +41,7 @@
                             <div class="col-md-6">
                                 <div class="form-check">
                                     <label style="white-space: normal" class="form-check-label">
-                                        <input @if($permission['name'] == 'View Quick Overview') checked disabled @endif value="{{ $permission['name'] }}" type="checkbox" class="form-check-input permission-check-box">
+                                        <input @if($permission['name'] == 'View Quick Overview') checked disabled @endif value="{{ $permission['name'] }}" name="permissions[]" type="checkbox" class="form-check-input permission-check-box">
                                         {{ $permission['name'] }}
                                     </label>
                                 </div>
