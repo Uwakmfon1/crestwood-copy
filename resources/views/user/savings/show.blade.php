@@ -189,11 +189,11 @@
                                         <td>₦ {{ number_format($investment['amount']) }}</td>
                                         <td>
                                             @if($investment->package['duration'] == 'weekly')
-                                                {{ \Carbon\Carbon::make($investment['savings_date'])->addWeeks($i - 1)->format('M d, Y H:m:s') }}
+                                                {{ \Carbon\Carbon::make($investment['savings_date'])->addWeeks($i - 1)->format('M d, Y \a\t h:i A') }}
                                             @elseif($investment->package['duration'] == 'montly')
-                                                {{ \Carbon\Carbon::make($investment['savings_date'])->addMonths($i - 1)->format('M d, Y H:m:s') }}
+                                                {{ \Carbon\Carbon::make($investment['savings_date'])->addMonths($i - 1)->format('M d, Y \a\t h:i A') }}
                                             @else
-                                                {{ \Carbon\Carbon::make($investment['savings_date'])->addDays($i - 1)->format('M d, Y H:m:s') }}
+                                                {{ \Carbon\Carbon::make($investment['savings_date'])->addDays($i - 1)->format('M d, Y \a\t h:i A') }}
                                             @endif
                                         </td>
                                         <td>

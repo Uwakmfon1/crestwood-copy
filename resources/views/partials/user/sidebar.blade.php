@@ -23,12 +23,12 @@
                         <li class="nav-item">
                             <a href="{{ route('dashboard') }}" class="nav-link @if(request()->routeIs(['dashboard'])) text-primary @endif">Quick Overview</a>
                         </li>
-                        <li class="nav-item">
+                        <!-- <li class="nav-item">
                             <a href="{{ route('dashboard.investment') }}" class="nav-link @if(request()->routeIs(['dashboard.investment'])) text-primary @endif">Investment</a>
                         </li>
                         <li class="nav-item">
                             <a href="{{ route('dashboard.trading') }}" class="nav-link @if(request()->routeIs(['dashboard.trading'])) text-primary @endif">Savings</a>
-                        </li>
+                        </li> -->
                     </ul>
                 </div>
             </li>

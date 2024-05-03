@@ -34,6 +34,9 @@ class CustomNotification extends Notification
             case 'investment':
                 $this->icon = '<div class="icon icon-sm"><i data-feather="layers"></i></div>';
                 break;
+            case 'savings':
+                $this->icon = '<div class="icon icon-sm"><i data-feather="money"></i></div>';
+                break;
             case 'trade':
                 $this->icon = '<div class="icon icon-sm"><i data-feather="trending-up"></i></div>';
                 break;

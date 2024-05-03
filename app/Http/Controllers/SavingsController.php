@@ -68,10 +68,7 @@ class SavingsController extends Controller
         }
         //        Find package and check if investment is enabled
         $package = SavingPackage::all()->where('name', $request['package'])->first();
-        // if (!($package && $package->canRunInvestment())){
-        //     return back()->with('error', 'Can\'t process investment, package not found or disabled');
-        // }
-        //        Process investment based on payment method
+        //   Process investment based on payment method
         switch ($request['payment']){
             case 'wallet':
                 if (!auth()->user()->hasSufficientBalanceForTransaction($request['slots'] * $package['price'])){
@@ -79,11 +76,11 @@ class SavingsController extends Controller
                 }
                 auth()->user()->nairaWallet()->decrement('balance', $request['slots'] * $package['price']);
                 $status = 'active';
-                $msg = 'Investment created successfully';
+                $msg = 'Savings created successfully';
                 break;
             case 'deposit':
                 $status = 'pending';
-                $msg = 'Investment queued successfully';
+                $msg = 'Savings queued successfully';
                 break;
             case 'card':
                 $data = ['type' => 'investment', 'package' => $package, 'slots' => $request['slots']];
@@ -115,7 +112,7 @@ class SavingsController extends Controller
         if ($savings) {
             TransactionController::storeSavingTransaction($savings, $request['payment'], 'savings');
             // if ($savings['status'] == 'active'){
-            //     NotificationController::sendInvestmentCreatedNotification($savings);
+                NotificationController::sendSavingsCreatedNotification($savings);
             // }else{
             //     NotificationController::sendInvestmentQueuedNotification($savings);
             // }

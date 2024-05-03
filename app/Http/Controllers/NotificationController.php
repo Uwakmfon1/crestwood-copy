@@ -43,6 +43,30 @@ class NotificationController extends Controller
         }
     }
 
+    public static function sendSavingsCreatedNotification($savings)
+    {
+        $savingsDate = \Carbon\Carbon::parse($savings->savings_date);
+        $returnDate = \Carbon\Carbon::parse($savings->return_date);
+        $description = 'Your Savings of <b>₦ '.number_format($savings->amount).'</b> in our <b>'.$savings->package["name"].'</b> package was successful.';
+        $msg = 'Your savings of <b>₦ '.number_format($savings->amount).'</b> in our <b>'.$savings->package["name"].'</b> package was successful.<br><br>
+                <b><u>Savings details:</u></b><br>
+                Savings package: <b>'.$savings->package["name"].'</b><br>
+                Total amount invested: <b>₦ '.number_format($savings->amount).'</b><br>
+                ROI amount: <b>₦ '.number_format($savings['amount'] / $savings->package['roi'] * $savings->package['milestone']).'</b><br>
+                Expected returns: <b>₦ '.number_format($savings->total_return).'</b><br>
+                Savings date: <b>'.$savingsDate->format('M d, Y \a\t h:i A').'</b><br>
+                Return date: <b>'.$returnDate->format('M d, Y \a\t h:i A').'</b><br>
+                <b><u>Wallet details:</u></b><br>
+                Amount debited: <b>₦ '.number_format($savings->amount, 2).'</b><br>
+                Wallet balance: <b>₦ '.number_format($savings->user->nairaWallet['balance'], 2).'</b><br>
+                ';
+        try {
+            $savings->user->notify(new CustomNotification('savings', 'Savings Created', $msg, $description));
+        }catch (\Exception) {
+            logger('There was an error sending the email');
+        }
+    }
+
     public static function sendInvestmentCreatedNotification($investment)
     {
         $pdf = PDF::loadView('pdf.certificate', ['investment' => $investment]);
