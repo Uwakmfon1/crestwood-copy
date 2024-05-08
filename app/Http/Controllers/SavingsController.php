@@ -112,7 +112,7 @@ class SavingsController extends Controller
         $desc = 'Saved to '. $package['name'];
 
         if ($savings) {
-            TransactionController::storeSavingTransaction($savings, $savings['amount'], $request['payment'], 'savings', $desc, Null);
+            TransactionController::storeSavingTransaction($savings, $savings['amount'], $request['payment'], 'savings', $desc, $savings['id']);
                 NotificationController::sendSavingsCreatedNotification($savings);
             return redirect()->route('savings')->with('success', $msg);
         }
