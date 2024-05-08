@@ -252,7 +252,7 @@
                                     </tr>
                                 @endfor
                             </tbody>
-                            @if(\Carbon\Carbon::now()->format('H:i') >= \Carbon\Carbon::make($investment['return_date'])->format('H:i') && \Carbon\Carbon::now()->startOfDay() >= \Carbon\Carbon::make($investment['return_date'])->startOfDay())
+                            @if(\Carbon\Carbon::now()->startOfDay() >= \Carbon\Carbon::make($investment['return_date'])->startOfDay() && \Carbon\Carbon::now()->format('H:i') >= \Carbon\Carbon::make($investment['return_date'])->format('H:i'))
                             <tr>
                                 <td>Total</td>
                                 <td><b>₦ {{ number_format($investment['amount'] * $paid + $investment['amount'] / $investment->package['roi'] * $paid) }}</b></td>

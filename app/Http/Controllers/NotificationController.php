@@ -91,9 +91,24 @@ class NotificationController extends Controller
         }
     }
 
+    public static function sendSettleSavingsNotification($savings, $amount)
+    {
+        $description = 'Your Savings of <b>₦ '.number_format($amount).'</b> in our <b>'.$savings->package["name"].'</b> package has been settled.';
+        $msg = 'Your Savings of <b>₦ '.number_format($amount).'</b> in our <b>'.$savings->package["name"].'</b> package has been settled.<br><br>
+                <b><u>Wallet details:</u></b><br>
+                Amount credited: <b>₦ '.number_format($amount, 2).'</b><br>
+                Wallet balance: <b>₦ '.number_format($savings->user->nairaWallet['balance'], 2).'</b><br>
+                ';
+        try {
+            $savings->user->notify(new CustomNotification('savings', 'Savings Settled', $msg, $description));
+        }catch (\Exception) {
+            logger('There was an error sending the email');
+        }
+    }
+
     public static function sendInvestmentCreatedNotification($investment)
     {
-        $pdf = PDF::loadView('pdf.certificate', ['investment' => $investment]);
+        // $pdf = PDF::loadView('pdf.certificate', ['investment' => $investment]);
         $description = 'Your investment of <b>₦ '.number_format($investment->amount).'</b> in our <b>'.$investment->package["name"].'</b> package was successful.';
         $msg = 'Your investment of <b>₦ '.number_format($investment->amount).'</b> in our <b>'.$investment->package["name"].'</b> package was successful.<br><br>
                 <b><u>Investment details:</u></b><br>
@@ -110,7 +125,7 @@ class NotificationController extends Controller
                 Wallet balance: <b>₦ '.number_format($investment->user->nairaWallet['balance'], 2).'</b><br>
                 ';
         try {
-            $investment->user->notify(new CustomNotification('investment', 'Investment Created', $msg, $description, $pdf->output()));
+            $investment->user->notify(new CustomNotification('investment', 'Investment Created', $msg, $description));
         }catch (\Exception) {
             logger('There was an error sending the email');
         }

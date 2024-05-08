@@ -49,8 +49,7 @@ class SavingsController extends Controller
         return view('user.savings.show', ['title' => 'Savings', 'investment' => $savings, 'packages' => SavingPackage::all(), 'paid' => $paid]);
     }
 
-    // Savings
-
+    //Create Savings
     public function store(Request $request): \Illuminate\Http\RedirectResponse
     {
         //        Validate request
@@ -98,7 +97,7 @@ class SavingsController extends Controller
             $returnDate = now()->addDays($request['milestone'])->format('Y-m-d H:i:s');
         }
 
-//        Create Investment
+        //        Create Investment
         $savings = auth()->user()->savings()->create([
             'savings_package_id'=>$package['id'], 
             'duration' => $package['duration'], 
@@ -146,7 +145,7 @@ class SavingsController extends Controller
         $amount_paid = $total_amount + $total_roi;
 
         $partial_amount = $savings['amount'] * $paid + $savings['amount'] / $roi * $paid;
-        $partial_date = Carbon::now()->addDays(4)->startOfDay() >= Carbon::make($savings['return_date'])->startOfDay() && \Carbon\Carbon::now()->format('H:i') >= \Carbon\Carbon::make($savings['return_date'])->format('H:i');
+        $partial_date = Carbon::now()->startOfDay() >= Carbon::make($savings['return_date'])->startOfDay() && \Carbon\Carbon::now()->format('H:i') >= \Carbon\Carbon::make($savings['return_date'])->format('H:i');
 
         $desc = 'Withdrawal from ' .$package[0]['name']. ' savings package';
         if ($savings && $paid == $milestone && $savings['status'] != 'settled')
@@ -156,7 +155,7 @@ class SavingsController extends Controller
             auth()->user()->nairaWallet()->increment('balance', $amount_paid);
             $savings->update(['status' => 'settled']);
 
-            NotificationController::sendWithdrawalSuccessfulNotification($savings);
+            NotificationController::sendSettleSavingsNotification($savings, $amount_paid);
 
             return back()->withInput()->with('success', 'Wallet Credited ✅');
         } elseif($partial_date && $savings['status'] != 'settled') { 
@@ -165,7 +164,7 @@ class SavingsController extends Controller
             auth()->user()->nairaWallet()->increment('balance', $partial_amount);
             $savings->update(['status' => 'settled']); 
 
-            NotificationController::sendWithdrawalSuccessfulNotification($savings);
+            NotificationController::sendSettleSavingsNotification($savings, $partial_amount);
 
             return back()->withInput()->with('success', 'Wallet Credited ✅');
         }
