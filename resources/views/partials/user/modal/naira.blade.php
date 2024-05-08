@@ -99,6 +99,7 @@
                         </tr>
                     </table>
                 </div>
+                <div class="small text-primary"><a href="{{ route('profile') }}"><b>Change Acconunt Details</b></a></div>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>

@@ -16,6 +16,7 @@ use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Notification;
 use App\Notifications\CustomNotificationByEmail;
 use App\Http\Controllers\Admin\NotificationController;
+use App\Http\Controllers\NotificationController as Notifications;
 use App\Notifications\CustomNotificationWithoutGreeting;
 use App\Notifications\CustomNotificationByEmailWithoutGreeting;
 
@@ -206,8 +207,11 @@ class CommandController extends Controller
                     if ($saving->package['duration'] == 'daily') {
                         if (\Carbon\Carbon::now() > \Carbon\Carbon::make($saving->savings_date)->addDays($i - 1)) {
                             if ($user->hasSufficientBalanceForTransaction($saving->amount)){
-                                TransactionController::storeSavingTransaction($saving, 'wallet', 'savings');
+                                $desc = "Auto Saved to ". $saving->package['name'];
+                                TransactionController::storeSavingTransaction($savings, $saving->amount, 'wallet', 'savings', $desc, Null);
                                 $user->nairaWallet()->decrement('balance', $saving->amount);
+
+                                Notifications::sendSavingsNotification($saving);
                                 
                                 logger('Auto Save Successfully ✅ (daily)');
                             } else {
@@ -217,8 +221,11 @@ class CommandController extends Controller
                     } elseif($saving->package['duration'] == 'weekly') {
                         if (\Carbon\Carbon::now() > \Carbon\Carbon::make($saving->savings_date)->addWeeks($i - 1)) {
                             if ($user->hasSufficientBalanceForTransaction($saving->amount)){
-                                TransactionController::storeSavingTransaction($saving, 'wallet', 'savings');
+                                $desc = "Auto Saved to ". $saving->package['name'];
+                                TransactionController::storeSavingTransaction($savings, $saving->amount, 'wallet', 'savings', $desc, Null);
                                 $user->nairaWallet()->decrement('balance', $saving->amount);
+
+                                Notifications::sendSavingsNotification($saving);
                                 
                                 logger('Auto Save Successfully ✅ (weekly)');
                             } else {
@@ -228,8 +235,11 @@ class CommandController extends Controller
                     } elseif($saving->package['duration'] == 'monthly') {
                         if (\Carbon\Carbon::now() > \Carbon\Carbon::make($saving->savings_date)->addWeeks($i - 1)) {
                             if ($user->hasSufficientBalanceForTransaction($saving->amount)){
-                                TransactionController::storeSavingTransaction($saving, 'wallet', 'savings');
+                                $desc = "Auto Saved to ". $saving->package['name'];
+                                TransactionController::storeSavingTransaction($savings, $saving->amount, 'wallet', 'savings', $desc, Null);
                                 $user->nairaWallet()->decrement('balance', $saving->amount);
+
+                                Notifications::sendSavingsNotification($saving);
                                 
                                 logger('Auto Save Successfully ✅ (monthly)');
                             } else {
@@ -237,22 +247,8 @@ class CommandController extends Controller
                             }
                         }
                     }
-
-                    // \App\Http\Controllers\NotificationController::sendSavingsCreatedNotification($saving);
                 }
             }
-
-            // if ($saving->isReadyForDeduction()) {
-            //     if ($user->hasSufficientBalanceForTransaction($saving->amount)){
-            //         logger('Sufficient wallet balance ✅');
-            //     } else {
-            //         // TransactionController::storeSavingTransaction($savings, 'wallet', 'savings');
-            //         // $user()->nairaWallet()->decrement('balance', $saving->amount);
-            //         logger('Insufficient wallet balance ❌');
-
-            //         // logger('Auto Save Successfully ✅');
-            //     }
-            // }
         }
     }
 
@@ -285,7 +281,7 @@ class CommandController extends Controller
                         ]);
                         if ($newInvestment){
                             TransactionController::storeInvestmentTransaction($newInvestment, 'wallet');
-                            \App\Http\Controllers\NotificationController::sendRolloverInvestmentCreatedNotification($newInvestment);
+                            Notifications::sendRolloverInvestmentCreatedNotification($newInvestment);
                         }
 //                        Check if user has balance and refund
                         if ($balance > 0){

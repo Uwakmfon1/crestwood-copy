@@ -121,13 +121,12 @@ class TransactionController extends Controller
         ]);
     }
 
-    public static function storeSavingTransaction($saving, $method, $type, $byCompany = false, $channel = 'web')
+    public static function storeSavingTransaction($saving, $amount, $method, $type, $desc, $saving_id, $channel = 'web')
     {
-        $desc = !$byCompany ? 'Savings' : 'Savings by '.env('APP_NAME');
         Transaction::create([
-            'saving_id' => $saving['id'],
+            'saving_id' => $saving_id,
             'user_id' => $saving->user['id'], 'type' => $type,
-            'amount' => $saving['amount'],
+            'amount' => $amount,
             'description' => $desc,
             'method' => $method, 'channel' => $channel,
             'status' => $saving['status'] == 'active' ? 'approved' : 'pending'

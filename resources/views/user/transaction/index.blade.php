@@ -57,7 +57,7 @@
                                         <td>{{ $key + 1 }}</td>
                                         <td>₦ {{ number_format($transaction['amount']) }}</td>
                                         <td>{{ $transaction['description'] }}</td>
-                                        <td>{{ $transaction['created_at']->format('M d, Y') }}</td>
+                                        <td>{{ $transaction['created_at']->format('M d, Y \a\t h:i A') }}</td>
                                         <td>
                                             @if($transaction['status'] == 'approved')
                                                 <span class="badge badge-pill badge-success">Approved</span>

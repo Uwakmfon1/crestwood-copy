@@ -184,9 +184,10 @@ class HomeController extends Controller
                 NotificationController::sendWelcomeEmailNotification(auth()->user());
                 auth()->user()->update(['gotMail' => 1]);
             }
+
             //Generate wallet
-            $walletController = new WalletController();
-            $walletController->generateVirtualAccount();
+            // $walletController = new WalletController();
+            // $walletController->generateVirtualAccount();
 
             return back()->with('success', 'Profile updated successfully');
         }

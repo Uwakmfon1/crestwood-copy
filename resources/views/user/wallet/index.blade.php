@@ -33,24 +33,24 @@
             @if($virtualAccount != null)
                 <div class="card mb-4">
                     <div class="card-body">
-                        <div class="d-flex justify-content-around">
-                            <div class=" align-items-center">
-                                <p>Account Number:</p>
+                        <div class="row">
+                            <div class="col-12 col-md-4 mb-3 mb-md-0">
+                                <p class="mb-0">Account Number:</p>
                                 <h3 class="fw-600">{{ $virtualAccount['account_number'] }}</h3>
                             </div>
-                            <div class=" align-items-center">
-                                <p>Bank Name:</p>
+                            <div class="col-12 col-md-4 mb-3 mb-md-0">
+                                <p class="mb-0">Bank Name:</p>
                                 <h3 class="fw-600">{{ $virtualAccount['bank_name'] }}</h3>
                             </div>
-                            <div class=" align-items-center">
-                                <p>Account Name:</p>
+                            <div class="col-12 col-md-4 mb-3 mb-md-0">
+                                <p class="mb-0">Account Name:</p>
                                 <h3 class="fw-600">{{ $virtualAccount['account_name'] }}</h3>
                             </div>
                         </div>
                     </div>
                 </div>
             @else
-                <form action="{{ route('create.account') }}" method="post">
+                <form action="{{ route('create.virtual_account') }}" method="post">
                     @csrf
                     <button class="btn my-2 mx-1 btn-success" type="submit">Generate Account</button>
                 </form>

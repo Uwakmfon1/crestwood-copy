@@ -96,7 +96,7 @@
             </li>
             <li class="nav-item @if(request()->is('savings')) active @endif">
                 <a href="{{ route('savings') }}" class="nav-link">
-                    <i class="link-icon" data-feather="tag"></i>
+                    <i class="link-icon" data-feather="layers"></i>
                     <span class="link-title">My Savings</span>
                 </a>
             </li>

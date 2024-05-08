@@ -70,14 +70,18 @@
                                         <td>₦ {{ number_format(($saving['amount'] * $saving->package['milestone']) - ($saving['amount'] * $paid)) }}</td>
                                         <td>
                                             @if($saving['status'] == 'active')
-                                                {{ $saving['return_date']->diffInDays(now()) > 0 ? $saving['return_date']->diffInDays(now()) : '---' }}
+                                                {{ $saving['return_date']->diffInDays(now()) >= 1 ? $saving['return_date']->diffInDays(now()) : 0 }}
                                             @else
-                                                --
+                                                Completed
                                             @endif
                                         </td>
                                         <td>
                                             @if($saving['status'] == 'active')
-                                                <span class="badge badge-pill badge-success">Active</span>
+                                                @if($saving['return_date']->diffInDays(now()) >= 1)
+                                                    <span class="badge badge-pill badge-success">Active</span>
+                                                @else
+                                                    <span class="badge badge-pill badge-warning">Completed</span>
+                                                @endif
                                             @elseif($saving['status'] == 'pending')
                                                 <span class="badge badge-pill badge-warning">Pending</span>
                                             @elseif($saving['status'] == 'cancelled')

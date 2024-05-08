@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Saving;
+use Carbon\Carbon;
 use App\Models\User;
+use App\Models\Saving;
 use App\Models\Setting;
 use Illuminate\Http\Request;
 use App\Models\SavingPackage;
@@ -108,14 +109,11 @@ class SavingsController extends Controller
             'status' => $status
         ]);
 
+        $desc = 'Saved to '. $package['name'];
 
         if ($savings) {
-            TransactionController::storeSavingTransaction($savings, $request['payment'], 'savings');
-            // if ($savings['status'] == 'active'){
+            TransactionController::storeSavingTransaction($savings, $savings['amount'], $request['payment'], 'savings', $desc, Null);
                 NotificationController::sendSavingsCreatedNotification($savings);
-            // }else{
-            //     NotificationController::sendInvestmentQueuedNotification($savings);
-            // }
             return redirect()->route('savings')->with('success', $msg);
         }
         return back()->withInput()->with('error', 'Error processing investment');
@@ -126,9 +124,11 @@ class SavingsController extends Controller
         if (!auth()->user()->hasSufficientBalanceForTransaction($savings['amount'])){
             return back()->withInput()->with('error', 'Insufficient wallet balance ❌');
         } else {
-                TransactionController::storeSavingTransaction($savings, 'wallet', 'savings');
+                TransactionController::storeSavingTransaction($savings, $savings['amount'], 'wallet', 'savings', 'Payment for new savings', $savings['id']);
 
-                auth()->user()->nairaWallet()->decrement('balance', $savings['amount']);
+                auth()->user()->nairaWallet()->decrement('balance', $savings['amount']); 
+
+                NotificationController::sendSavingsNotification($savings);
 
             return back()->withInput()->with('success', 'Savings Updated ✅');
         }
@@ -145,20 +145,33 @@ class SavingsController extends Controller
         $total_roi = (($savings['amount']) * ($roi/100)) * $paid;
         $amount_paid = $total_amount + $total_roi;
 
-        if ($savings && $paid == $milestone)
+        $partial_amount = $savings['amount'] * $paid + $savings['amount'] / $roi * $paid;
+        $partial_date = Carbon::now()->addDays(4)->startOfDay() >= Carbon::make($savings['return_date'])->startOfDay() && \Carbon\Carbon::now()->format('H:i') >= \Carbon\Carbon::make($savings['return_date'])->format('H:i');
+
+        $desc = 'Withdrawal from ' .$package[0]['name']. ' savings package';
+        if ($savings && $paid == $milestone && $savings['status'] != 'settled')
         {
-            TransactionController::storeSavingTransaction($savings, 'wallet', 'savings');
+            TransactionController::storeSavingTransaction($savings, $amount_paid, 'wallet', 'savings', $desc, Null);
 
             auth()->user()->nairaWallet()->increment('balance', $amount_paid);
+            $savings->update(['status' => 'settled']);
 
-            auth()->user()->savings()->update(['status' => 'settled']);
+            NotificationController::sendWithdrawalSuccessfulNotification($savings);
 
             return back()->withInput()->with('success', 'Wallet Credited ✅');
-            
-        } else {
+        } elseif($partial_date && $savings['status'] != 'settled') { 
+            TransactionController::storeSavingTransaction($savings, $partial_amount, 'wallet', 'savings', $desc, Null);
+
+            auth()->user()->nairaWallet()->increment('balance', $partial_amount);
+            $savings->update(['status' => 'settled']); 
+
+            NotificationController::sendWithdrawalSuccessfulNotification($savings);
+
+            return back()->withInput()->with('success', 'Wallet Credited ✅');
+        }
+        else{
 
             return back()->withInput()->with('error', 'Incomplete Savings');
-
         }
     }
 }

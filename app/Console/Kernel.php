@@ -33,18 +33,12 @@ class Kernel extends ConsoleKernel
         $schedule->command('savings:settle')
                     ->withoutOverlapping()
                     ->everyMinute();
-//         $schedule->command('users:delete')
-//                    ->withoutOverlapping()
-//                    ->everyMinute();
          $schedule->command('emails:send')
                     ->withoutOverlapping()
                     ->everyMinute();
          $schedule->command('emails:fail')
                     ->withoutOverlapping()
                     ->everyMinute();
-        //  $schedule->command('payments:settle')
-        //             ->withoutOverlapping()
-        //             ->everyMinute();
         $schedule->command('transaction:notify')
                     ->withoutOverlapping()
                     ->everyMinute();

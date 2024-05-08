@@ -190,7 +190,7 @@
                                         <td>
                                             @if($investment->package['duration'] == 'weekly')
                                                 {{ \Carbon\Carbon::make($investment['savings_date'])->addWeeks($i - 1)->format('M d, Y \a\t h:i A') }}
-                                            @elseif($investment->package['duration'] == 'montly')
+                                            @elseif($investment->package['duration'] == 'monthly')
                                                 {{ \Carbon\Carbon::make($investment['savings_date'])->addMonths($i - 1)->format('M d, Y \a\t h:i A') }}
                                             @else
                                                 {{ \Carbon\Carbon::make($investment['savings_date'])->addDays($i - 1)->format('M d, Y \a\t h:i A') }}
@@ -207,8 +207,16 @@
                                                     @else
                                                         <span class="badge badge-pill badge-warning py-1 px-3">Pending</span>
                                                     @endif
-                                                @else
+                                                @endif
+                                                @if($investment->package['duration'] == 'monthly')
                                                     @if(\Carbon\Carbon::now() > \Carbon\Carbon::make($investment['savings_date'])->addMonths($i - 1))
+                                                        <span class="badge badge-pill badge-dark py-1 px-3">Void</span>
+                                                    @else
+                                                        <span class="badge badge-pill badge-warning py-1 px-3">Pending</span>
+                                                    @endif
+                                                @endif
+                                                @if($investment->package['duration'] == 'daily')
+                                                    @if(\Carbon\Carbon::now() > \Carbon\Carbon::make($investment['savings_date'])->addDays($i - 1))
                                                         <span class="badge badge-pill badge-dark py-1 px-3">Void</span>
                                                     @else
                                                         <span class="badge badge-pill badge-warning py-1 px-3">Pending</span>
@@ -217,55 +225,52 @@
                                             @endif
                                         </td>
                                         <td>
-                                            <!-- <a href="#" class="btn btn-sm btn-primary">Retry Payment</a> -->
 
                                             @if ($paid >= $i)
                                                 <!-- <button  class="btn btn-dark" disabled="disabled">Retry Payment</button> -->
                                             @else
-                                                @if($investment->package['duration'] == 'weekly')
-                                                    @if(\Carbon\Carbon::now() > \Carbon\Carbon::make($investment['savings_date'])->addWeeks($i - 1))
-                                                        <form action="{{ route('make.payment', $investment['id']) }}" method="post">
-                                                            @csrf
-                                                            <button type="submit" class="btn btn-primary">Retry Payment</button>
-                                                        </form>
-                                                    @endif
-                                                @elseif($investment->package['duration'] == 'montly')
-                                                    @if(\Carbon\Carbon::now() > \Carbon\Carbon::make($investment['savings_date'])->addMonths($i - 1))
-                                                        <form action="{{ route('make.payment', $investment['id']) }}" method="post">
-                                                            @csrf
-                                                            <button type="submit" class="btn btn-primary">Retry Payment</button>
-                                                        </form>
-                                                    @endif
-                                                @else
-                                                    @if(\Carbon\Carbon::now() > \Carbon\Carbon::make($investment['savings_date'])->addDays($i - 1))
-                                                        <form action="{{ route('make.payment', $investment['id']) }}" method="post">
-                                                            @csrf
-                                                            <button type="submit" class="btn btn-primary">Retry Payment</button>
-                                                        </form>
-                                                    @endif
+                                                @if($investment->package['duration'] == 'weekly' && \Carbon\Carbon::now()->format('H:i') >= \Carbon\Carbon::make($investment['savings_date'])->format('H:i') && \Carbon\Carbon::now()->startOfDay() == \Carbon\Carbon::make($investment['savings_date'])->addWeeks($i - 1)->startOfDay())
+                                                    <form action="{{ route('make.payment', $investment['id']) }}" method="post">
+                                                        @csrf
+                                                        <button type="submit" class="btn btn-primary">Retry Payment</button>
+                                                    </form>
+                                                @endif
+                                                @if($investment->package['duration'] == 'monthly' && \Carbon\Carbon::now()->format('H:i') >= \Carbon\Carbon::make($investment['savings_date'])->format('H:i') && \Carbon\Carbon::now()->startOfDay() == \Carbon\Carbon::make($investment['savings_date'])->addMonths($i - 1)->startOfDay())
+                                                    <form action="{{ route('make.payment', $investment['id']) }}" method="post">
+                                                        @csrf
+                                                        <button type="submit" class="btn btn-primary">Retry Payment</button>
+                                                    </form>
+                                                @endif
+                                                @if($investment->package['duration'] == 'daily' && \Carbon\Carbon::now()->format('H:i') >= \Carbon\Carbon::make($investment['savings_date'])->format('H:i') && \Carbon\Carbon::now()->startOfDay() == \Carbon\Carbon::make($investment['savings_date'])->addDays($i - 1)->startOfDay())
+                                                    <form action="{{ route('make.payment', $investment['id']) }}" method="post">
+                                                        @csrf
+                                                        <button type="submit" class="btn btn-primary">Retry Payment</button>
+                                                    </form>
                                                 @endif
                                             @endif
                                         </td>
                                     </tr>
                                 @endfor
                             </tbody>
-                            @if($paid >= $investment->package['milestone'])
+                            @if(\Carbon\Carbon::now()->format('H:i') >= \Carbon\Carbon::make($investment['return_date'])->format('H:i') && \Carbon\Carbon::now()->startOfDay() >= \Carbon\Carbon::make($investment['return_date'])->startOfDay())
                             <tr>
                                 <td>Total</td>
-                                <td><b>₦ {{ number_format($investment['amount'] * $paid + $investment['amount'] / $investment->package['roi'] * $investment->package['milestone']) }}</b></td>
-                                <td class="text-success"><b>Completed 🥳</b></td>
+                                <td><b>₦ {{ number_format($investment['amount'] * $paid + $investment['amount'] / $investment->package['roi'] * $paid) }}</b></td>
+                                <td><b>{{ $investment['return_date']->format('M d, Y \a\t h:i A') }}</b></td>
                                 
                                 <td>
-                                    <span class="badge badge-pill badge-info py-1 px-3">Credited✅</span>
+                                    @if($investment['status'] == 'settled')
+                                        <span class="badge badge-pill badge-success py-1 px-3">Credited✅</span>
+                                    @else
+                                        <span class="text-success"><b>Completed 🥳</b></span>
+                                    @endif
                                 </td>
                                 <td>
-                                    @if($paid == $investment->package['milestone'])
-                                    <form action="{{ route('settle.payment', $investment['id']) }}" method="post">
-                                        @csrf
-                                        <button type="submit" class="btn btn-primary">Withdraw</button>
-                                    </form> 
-                                    @elseif($paid > $investment->package['milestone'])
-                                        <button type="button" disabled class="btn btn-dark">Withdraw</button>
+                                    @if($investment['status'] != 'settled' && \Carbon\Carbon::now()->startOfDay() >= \Carbon\Carbon::make($investment['return_date'])->startOfDay() && \Carbon\Carbon::now()->format('H:i') >= \Carbon\Carbon::make($investment['return_date'])->format('H:i'))
+                                        <form action="{{ route('settle.payment', $investment['id']) }}" method="post">
+                                            @csrf
+                                            <button type="submit" class="btn btn-primary">Withdraw</button>
+                                        </form>
                                     @endif
                                 </td>
                             </tr>

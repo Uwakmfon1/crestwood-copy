@@ -82,6 +82,8 @@ Route::group(['middleware' => ['auth','verified', 'active_user']], function (){
 
         Route::get('/test/jods', [App\Http\Controllers\CommandController::class, 'handleSavings']);
 
+        Route::post('/account/generate', [WalletController::class, 'generateVirtualAccount'])->name('create.virtual_account');
+
 
         Route::get('/payment/callback', [PaymentController::class, 'handlePaymentCallback'])->name('payment.callback');
         Route::get('/payment/initiate', [PaymentController::class, 'initiatePayment'])->name('payment.initiate');
