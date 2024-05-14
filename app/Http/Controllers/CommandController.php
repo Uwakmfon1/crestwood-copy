@@ -208,7 +208,7 @@ class CommandController extends Controller
                         if (\Carbon\Carbon::now() > \Carbon\Carbon::make($saving->savings_date)->addDays($i - 1)) {
                             if ($user->hasSufficientBalanceForTransaction($saving->amount)){
                                 $desc = "Auto Saved to ". $saving->package['name'];
-                                TransactionController::storeSavingTransaction($savings, $saving->amount, 'wallet', 'savings', $desc, Null);
+                                TransactionController::storeSavingTransaction($saving, $saving->amount, 'wallet', 'savings', $desc, $saving['id']);
                                 $user->nairaWallet()->decrement('balance', $saving->amount);
 
                                 Notifications::sendSavingsNotification($saving);
@@ -222,7 +222,7 @@ class CommandController extends Controller
                         if (\Carbon\Carbon::now() > \Carbon\Carbon::make($saving->savings_date)->addWeeks($i - 1)) {
                             if ($user->hasSufficientBalanceForTransaction($saving->amount)){
                                 $desc = "Auto Saved to ". $saving->package['name'];
-                                TransactionController::storeSavingTransaction($savings, $saving->amount, 'wallet', 'savings', $desc, Null);
+                                TransactionController::storeSavingTransaction($saving, $saving->amount, 'wallet', 'savings', $desc, $saving['id']);
                                 $user->nairaWallet()->decrement('balance', $saving->amount);
 
                                 Notifications::sendSavingsNotification($saving);
@@ -236,7 +236,7 @@ class CommandController extends Controller
                         if (\Carbon\Carbon::now() > \Carbon\Carbon::make($saving->savings_date)->addWeeks($i - 1)) {
                             if ($user->hasSufficientBalanceForTransaction($saving->amount)){
                                 $desc = "Auto Saved to ". $saving->package['name'];
-                                TransactionController::storeSavingTransaction($savings, $saving->amount, 'wallet', 'savings', $desc, Null);
+                                TransactionController::storeSavingTransaction($saving, $saving->amount, 'wallet', 'savings', $desc, $saving['id']);
                                 $user->nairaWallet()->decrement('balance', $saving->amount);
 
                                 Notifications::sendSavingsNotification($saving);

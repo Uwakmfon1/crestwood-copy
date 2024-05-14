@@ -14,7 +14,7 @@ class PaymentController extends Controller
 {
     public static function initializeOnlineTransaction($amount, $data): \Illuminate\Http\RedirectResponse
     {
-        return back()->withInput()->with('error', 'Payment with card is currently unavailable, please use other payment methods.');
+        // return back()->withInput()->with('error', 'Payment with card is currently unavailable, please use other payment methods.');
         if ($amount > 500000)
             return redirect()->route('dashboard')->with('error', 'We can\'t process card payment above ₦500,000');
         $data['channel'] = 'web';
