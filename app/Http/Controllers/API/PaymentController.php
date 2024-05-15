@@ -189,7 +189,7 @@ class PaymentController extends Controller
             $encodedAuthCode = encrypt($paymentDetails['data']['authorization']['authorization_code']);
     
             // Find the user by email and update their auth_key
-            $user = auth()->user();
+            $user = User::where('email', $paymentDetails['data']['customer']['email'])->first();
             $payment = Payment::query()->where('reference', $paymentDetails['data']['reference'])->first();
             $type = json_decode($payment['meta'], true)['type'];
             if ($user) {
