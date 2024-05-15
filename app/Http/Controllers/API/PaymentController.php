@@ -3,13 +3,14 @@
 namespace App\Http\Controllers\API;
 
 use App\Models\User;
+use App\Models\Payment;
 use App\Models\Transaction;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use Unicodeveloper\Paystack\Facades\Paystack;
 use Illuminate\Support\Facades\Http;
 
 use Illuminate\Support\Facades\Validator;
+use Unicodeveloper\Paystack\Facades\Paystack;
 use App\Http\Controllers\NotificationController;
 use HenryEjemuta\LaravelMonnify\Facades\Monnify;
 use HenryEjemuta\LaravelMonnify\Classes\MonnifyPaymentMethod;
@@ -183,9 +184,24 @@ class PaymentController extends Controller
     {
         $paymentDetails = Paystack::getPaymentData();
 
-        dd($paymentDetails);
-        // Now you have the payment details,
-        // you can store the authorization_code in your db to allow for recurrent subscriptions
-        // you can then redirect or do whatever you want
+        if ($paymentDetails['status'] && isset($paymentDetails['data']['authorization']['authorization_code'])) {
+            // Encode the authorization code
+            $encodedAuthCode = encrypt($paymentDetails['data']['authorization']['authorization_code']);
+    
+            // Find the user by email and update their auth_key
+            $user = User::where('email', $paymentDetails['data']['email'])->first();
+            $payment = Payment::query()->where('reference', $paymentDetails['data']['reference'])->first();
+            $type = json_decode($payment['meta'], true)['type'];
+            if ($user) {
+                $user->update(['auth_key' => $encodedAuthCode]);
+                return view('user.payment.success', compact('type', 'payment'));
+            } else {
+                if ($payment['status'] == 'pending')
+                        $payment->update(['status' => 'failed']);
+                    return view('user.payment.error', compact('type', 'payment'));
+            }
+        } else {
+            dd($paymentDetails);
+        }
     }
 }

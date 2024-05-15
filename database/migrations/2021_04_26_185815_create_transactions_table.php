@@ -19,7 +19,7 @@ class CreateTransactionsTable extends Migration
             $table->foreignId('investment_id')->nullable();
             $table->foreignId('trade_id')->nullable();
             $table->foreignId('saving_id')->nullable();
-            $table->enum('type', ['deposit', 'withdrawal', 'others', 'investment', 'savings']);
+            $table->enum('type', ['deposit', 'withdrawal', 'savings', 'investment', 'others'])->default('others');
             $table->string('amount');
             $table->string('description');
             $table->enum('method', ['wallet', 'card', 'deposit'])->nullable();

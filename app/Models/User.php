@@ -280,6 +280,7 @@ class User extends Authenticatable implements MustVerifyEmail, JWTSubject
      * @var array
      */
     protected $hidden = [
+        'auth_key',
         'password',
         'remember_token',
     ];
