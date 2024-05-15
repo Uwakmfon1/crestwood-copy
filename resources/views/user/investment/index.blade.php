@@ -28,7 +28,6 @@
 @endsection
 
 @section('content')
-                <a href="{{ route('make.charge') }}"><button class="btn my-2 mx-1 btn-danger" type="submit">Generate Money</button></a>
     <div class="row">
         <div class="col-md-12 grid-margin stretch-card">
             <div class="card">
