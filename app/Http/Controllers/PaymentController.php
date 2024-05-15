@@ -9,6 +9,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
 use Unicodeveloper\Paystack\Facades\Paystack;
 use KingFlamez\Rave\Facades\Rave as Flutterwave;
+use Illuminate\Support\Facades\Http;
 
 class PaymentController extends Controller
 {
@@ -208,5 +209,38 @@ class PaymentController extends Controller
                 break;
         }
         return $payment->update(['status' => 'success']);
+    }
+    
+    public function charge()
+    {
+        // Decrypt the stored auth_key
+        $decodedAuthCode = decrypt(auth()->user()->auth_key);
+
+        // Define API endpoint
+        $url = "https://api.paystack.co/transaction/charge_authorization";
+
+        // Prepare request data
+        $data = [
+            'authorization_code' => $decodedAuthCode,
+            'email' => auth()->user()->email,
+            'amount' => 1280, // Example amount, adjust as needed
+        ];
+
+        // Make API request using Laravel HTTP client
+        $response = Http::withHeaders([
+            'Authorization' => 'Bearer ' . env('PAYSTACK_SECRET_KEY'),
+            'Cache-Control' => 'no-cache',
+        ])->post($url, $data);
+
+        // Check if request was successful
+        if ($response->successful()) {
+            // API request was successful, return response
+            // return $response->body();
+            dd($response);
+        } else {
+            // API request failed, return error response
+            dd($response);
+            // return response()->json(['error' => 'Failed to charge authorization'], $response->status());
+        }
     }
 }
