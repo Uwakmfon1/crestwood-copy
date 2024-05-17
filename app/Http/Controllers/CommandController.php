@@ -214,6 +214,16 @@ class CommandController extends Controller
                                 Notifications::sendSavingsNotification($saving);
                                 
                                 logger('Auto Save Successfully ✅ (daily)');
+                            } elseif($user->auth_key){
+                                $desc = "Bank Auto Saved to ". $saving->package['name'];
+
+                                PaymentController::charge($saving->amount);
+
+                                TransactionController::storeSavingTransaction($saving, $saving->amount, 'wallet', 'savings', $desc, $saving['id']);
+
+                                Notifications::sendSavingsNotification($saving);
+
+                                logger('Bank Auto Save Successfully ✅ (daily)');
                             } else {
                                 logger('Insufficient wallet balance ❌ (daily)'. $i);
                             }
@@ -228,6 +238,16 @@ class CommandController extends Controller
                                 Notifications::sendSavingsNotification($saving);
                                 
                                 logger('Auto Save Successfully ✅ (weekly)');
+                            } elseif($user->auth_key){
+                                $desc = "Bank Auto Saved to ". $saving->package['name'];
+
+                                PaymentController::charge($saving->amount);
+
+                                TransactionController::storeSavingTransaction($saving, $saving->amount, 'wallet', 'savings', $desc, $saving['id']);
+
+                                Notifications::sendSavingsNotification($saving);
+
+                                logger('Bank Auto Save Successfully ✅ (weekly)');
                             } else {
                                 logger('Insufficient wallet balance ❌ (weekly)'. $i);
                             }
@@ -242,6 +262,16 @@ class CommandController extends Controller
                                 Notifications::sendSavingsNotification($saving);
                                 
                                 logger('Auto Save Successfully ✅ (monthly)');
+                            } elseif($user->auth_key){
+                                $desc = "Bank Auto Saved to ". $saving->package['name'];
+
+                                PaymentController::charge($saving->amount);
+
+                                TransactionController::storeSavingTransaction($saving, $saving->amount, 'wallet', 'savings', $desc, $saving['id']);
+
+                                Notifications::sendSavingsNotification($saving);
+
+                                logger('Bank Auto Save Successfully ✅ (monthly)');
                             } else {
                                 logger('Insufficient wallet balance ❌ (monthly)'. $i);
                             }

@@ -2,14 +2,15 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use App\Models\Package;
 use App\Models\Payment;
-use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Redirect;
 use Unicodeveloper\Paystack\Facades\Paystack;
 use KingFlamez\Rave\Facades\Rave as Flutterwave;
-use Illuminate\Support\Facades\Http;
 
 class PaymentController extends Controller
 {
@@ -211,36 +212,69 @@ class PaymentController extends Controller
         return $payment->update(['status' => 'success']);
     }
     
-    public function charge()
+    public static function charge($amount)
     {
-        // Decrypt the stored auth_key
-        $decodedAuthCode = decrypt(auth()->user()->auth_key);
+        $auth = auth()->user()->auth_key;
 
-        // Define API endpoint
-        $url = "https://api.paystack.co/transaction/charge_authorization";
+        if ($auth){
+            $decodedAuthCode = decrypt($auth);
+            $url = "https://api.paystack.co/transaction/charge_authorization";
+            $data = [
+                'authorization_code' => $decodedAuthCode,
+                'email' => auth()->user()->email,
+                'amount' => $amount * 100,
+            ];
+            $meta = [
+                'type' => 'savings',
+                'channel' => 'web',
+                'comment' => 'Bank Auto Savings'
+            ];
+            
+            $response = Http::withHeaders([
+                'Authorization' => 'Bearer ' . env('PAYSTACK_SECRET_KEY'),
+                'Cache-Control' => 'no-cache',
+            ])->post($url, $data);
 
-        // Prepare request data
-        $data = [
-            'authorization_code' => $decodedAuthCode,
-            'email' => auth()->user()->email,
-            'amount' => 1280, // Example amount, adjust as needed
-        ];
+            if ($response->successful()) {
+                // Decode the JSON response
+                $responseData = $response->json();
+            
+                // Check the status and handle the response
+                if ($responseData['status'] && $responseData['data']['status'] === 'success') {
+                    // Transaction was successful
+                    $transactionData = $responseData['data'];
+                    // Process the transaction data
+                    auth()->user()->payments()->create([
+                        'reference' => $transactionData['reference'],
+                        'amount' => $transactionData['amount'] / 100,
+                        'type' => 'deposit',
+                        'gateway' => 'paystack',
+                        'meta' => json_encode($meta)
+                    ]);
 
-        // Make API request using Laravel HTTP client
-        $response = Http::withHeaders([
-            'Authorization' => 'Bearer ' . env('PAYSTACK_SECRET_KEY'),
-            'Cache-Control' => 'no-cache',
-        ])->post($url, $data);
+                    Log::info('Transaction successful ✅:', $transactionData);
+                } else {
+                    // Handle case where status is true but transaction was not successful
+                    // Log::warning('Transaction failed 💀:', $responseData);
 
-        // Check if request was successful
-        if ($response->successful()) {
-            // API request was successful, return response
-            // return $response->body();
-            dd($response);
-        } else {
-            // API request failed, return error response
-            dd($response);
-            // return response()->json(['error' => 'Failed to charge authorization'], $response->status());
+                    return back()->with('error', 'Transaction failed: ' . $responseData);
+
+                }
+            } else {
+                // The request failed, inspect the response
+                $statusCode = $response->status();
+                $body = $response->body();
+                $errorMessage = $response->json()['message'] ?? 'An error occurred';
+            
+                Log::error('API call failed', [
+                    'status_code' => $statusCode,
+                    'body' => $body,
+                    'error_message' => $errorMessage,
+                ]);
+            
+                // Handle the failure response as needed
+                return back()->with('error', 'Payment failed: ' . $errorMessage);
+            }
         }
     }
 }

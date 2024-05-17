@@ -190,18 +190,38 @@ class PaymentController extends Controller
     
             // Find the user by email and update their auth_key
             $user = User::where('email', $paymentDetails['data']['customer']['email'])->first();
-            $payment = Payment::query()->where('reference', $paymentDetails['data']['reference'])->first();
-            $type = json_decode($payment['meta'], true)['type'];
             if ($user) {
                 $user->update(['auth_key' => $encodedAuthCode]);
+                $meta = [
+                    'type' => 'deposit',
+                    'channel' => 'web',
+                    'comment' => 'Bank Deposit'
+                ];
+                $payment = $user->payments()->create([
+                    'reference' => $paymentDetails['data']['reference'],
+                    'amount' => $paymentDetails['data']['amount'],
+                    'type' =>  'deposit',
+                    'gateway' => 'paystack',
+                    'meta' => json_encode($meta)
+                ]);
+                $type = json_decode($payment['meta'], true)['type'];
+    
+                $user->nairaWallet()->increment('balance', $paymentDetails['data']['amount']);
+                $transaction = $payment->user->transactions()->create([
+                    'type' => 'deposit', 
+                    'amount' => $payment['amount'],
+                    'description' => 'Deposit', 
+                    'channel' => $meta['channel'] ?? 'mobile',
+                    'method' => 'wallet',
+                    'status' => 'approved'
+                ]);
+
                 return view('user.payment.success', compact('type', 'payment'));
             } else {
-                if ($payment['status'] == 'pending')
-                        $payment->update(['status' => 'failed']);
-                    return view('user.payment.error', compact('type', 'payment'));
+                return back()->withInput()->with('error', 'Error processing user data');
             }
         } else {
-            dd($paymentDetails);
+            return back()->withInput()->with('error', 'Error processing bank deposit');
         }
     }
 }

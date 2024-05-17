@@ -121,7 +121,16 @@ class SavingsController extends Controller
     public function makePayment(Saving $savings) : \Illuminate\Http\RedirectResponse
     {
         if (!auth()->user()->hasSufficientBalanceForTransaction($savings['amount'])){
-            return back()->withInput()->with('error', 'Insufficient wallet balance ❌');
+            if (auth()->user()->auth_key) {
+                PaymentController::charge($savings->amount);
+
+                TransactionController::storeSavingTransaction($savings, $savings['amount'], 'wallet', 'savings', 'Bank Payment for ' . $savings['name'], $savings['id']);
+
+                NotificationController::sendSavingsNotification($savings);
+                return back()->withInput()->with('success', 'Bank Savings Updated ✅');
+            } else {
+                return back()->withInput()->with('error', 'Insufficient wallet balance ❌');
+            }
         } else {
                 TransactionController::storeSavingTransaction($savings, $savings['amount'], 'wallet', 'savings', 'Payment for new savings', $savings['id']);
 

@@ -188,94 +188,85 @@
                                         <td>Milestone {{ $i }}</td>
                                         <td>₦ {{ number_format($investment['amount']) }}</td>
                                         <td>
-                                            @if($investment->package['duration'] == 'weekly')
-                                                {{ \Carbon\Carbon::make($investment['savings_date'])->addWeeks($i - 1)->format('M d, Y \a\t h:i A') }}
-                                            @elseif($investment->package['duration'] == 'monthly')
-                                                {{ \Carbon\Carbon::make($investment['savings_date'])->addMonths($i - 1)->format('M d, Y \a\t h:i A') }}
-                                            @else
-                                                {{ \Carbon\Carbon::make($investment['savings_date'])->addDays($i - 1)->format('M d, Y \a\t h:i A') }}
-                                            @endif
+                                            @php
+                                                // Determine the milestone date based on the package duration
+                                                switch ($investment->package['duration']) {
+                                                    case 'weekly':
+                                                        $milestoneDate = \Carbon\Carbon::make($investment['savings_date'])->addWeeks($i - 1);
+                                                        break;
+                                                    case 'monthly':
+                                                        $milestoneDate = \Carbon\Carbon::make($investment['savings_date'])->addMonths($i - 1);
+                                                        break;
+                                                    default:
+                                                        $milestoneDate = \Carbon\Carbon::make($investment['savings_date'])->addDays($i - 1);
+                                                        break;
+                                                }
+
+                                                // Check if there is an approved transaction on the milestone date
+                                                $isPaid = $investment->transaction()
+                                                    ->where('status', 'approved')
+                                                    ->whereDate('created_at', $milestoneDate->toDateString())
+                                                    ->exists();
+                                            @endphp
+                                            {{ $milestoneDate->format('M d, Y \a\t h:i A') }}
                                         </td>
                                         <td>
-                                            <!-- <span class="badge badge-pill badge-success">Active</span> -->
-                                            @if ($paid >= $i)
+                                            @if ($isPaid)
                                                 <span class="badge badge-pill badge-success py-1 px-3">Paid</span>
                                             @else
-                                                @if($investment->package['duration'] == 'weekly')
-                                                    @if(\Carbon\Carbon::now() > \Carbon\Carbon::make($investment['savings_date'])->addWeeks($i - 1))
-                                                        <span class="badge badge-pill badge-dark py-1 px-3">Void</span>
-                                                    @else
-                                                        <span class="badge badge-pill badge-warning py-1 px-3">Pending</span>
-                                                    @endif
-                                                @endif
-                                                @if($investment->package['duration'] == 'monthly')
-                                                    @if(\Carbon\Carbon::now() > \Carbon\Carbon::make($investment['savings_date'])->addMonths($i - 1))
-                                                        <span class="badge badge-pill badge-dark py-1 px-3">Void</span>
-                                                    @else
-                                                        <span class="badge badge-pill badge-warning py-1 px-3">Pending</span>
-                                                    @endif
-                                                @endif
-                                                @if($investment->package['duration'] == 'daily')
-                                                    @if(\Carbon\Carbon::now() > \Carbon\Carbon::make($investment['savings_date'])->addDays($i - 1))
-                                                        <span class="badge badge-pill badge-dark py-1 px-3">Void</span>
-                                                    @else
-                                                        <span class="badge badge-pill badge-warning py-1 px-3">Pending</span>
-                                                    @endif
+                                                @if (\Carbon\Carbon::now()->greaterThan($milestoneDate))
+                                                    <span class="badge badge-pill badge-dark py-1 px-3">Void</span>
+                                                @else
+                                                    <span class="badge badge-pill badge-warning py-1 px-3">Pending</span>
                                                 @endif
                                             @endif
                                         </td>
                                         <td>
-
-                                            @if ($paid >= $i)
-                                                <!-- <button  class="btn btn-dark" disabled="disabled">Retry Payment</button> -->
-                                            @else
-                                                @if($investment->package['duration'] == 'weekly' && \Carbon\Carbon::now()->format('H:i') >= \Carbon\Carbon::make($investment['savings_date'])->format('H:i') && \Carbon\Carbon::now()->startOfDay() == \Carbon\Carbon::make($investment['savings_date'])->addWeeks($i - 1)->startOfDay())
-                                                    <form action="{{ route('make.payment', $investment['id']) }}" method="post">
-                                                        @csrf
-                                                        <button type="submit" class="btn btn-primary">Retry Payment</button>
-                                                    </form>
-                                                @endif
-                                                @if($investment->package['duration'] == 'monthly' && \Carbon\Carbon::now()->format('H:i') >= \Carbon\Carbon::make($investment['savings_date'])->format('H:i') && \Carbon\Carbon::now()->startOfDay() == \Carbon\Carbon::make($investment['savings_date'])->addMonths($i - 1)->startOfDay())
-                                                    <form action="{{ route('make.payment', $investment['id']) }}" method="post">
-                                                        @csrf
-                                                        <button type="submit" class="btn btn-primary">Retry Payment</button>
-                                                    </form>
-                                                @endif
-                                                @if($investment->package['duration'] == 'daily' && \Carbon\Carbon::now()->format('H:i') >= \Carbon\Carbon::make($investment['savings_date'])->format('H:i') && \Carbon\Carbon::now()->startOfDay() == \Carbon\Carbon::make($investment['savings_date'])->addDays($i - 1)->startOfDay())
-                                                    <form action="{{ route('make.payment', $investment['id']) }}" method="post">
-                                                        @csrf
-                                                        <button type="submit" class="btn btn-primary">Retry Payment</button>
-                                                    </form>
-                                                @endif
+                                            @if (!$isPaid && \Carbon\Carbon::now()->isSameDay($milestoneDate))
+                                                <form action="{{ route('make.payment', $investment['id']) }}" method="post">
+                                                    @csrf
+                                                    <button type="submit" class="btn btn-primary">Retry Payment</button>
+                                                </form>
                                             @endif
                                         </td>
                                     </tr>
                                 @endfor
+
                             </tbody>
-                            @if(\Carbon\Carbon::now()->startOfDay() >= \Carbon\Carbon::make($investment['return_date'])->startOfDay() && \Carbon\Carbon::now()->format('H:i') >= \Carbon\Carbon::make($investment['return_date'])->format('H:i'))
-                            <tr>
-                                <td>Total</td>
-                                <td><b>₦ {{ number_format($investment['amount'] * $paid + $investment['amount'] / $investment->package['roi'] * $paid) }}</b></td>
-                                <td><b>{{ $investment['return_date']->format('M d, Y \a\t h:i A') }}</b></td>
-                                
-                                <td>
-                                    @if($investment['status'] == 'settled')
-                                        <span class="badge badge-pill badge-success py-1 px-3">Credited✅</span>
-                                    @else
-                                        <span class="text-success"><b>Completed 🥳</b></span>
-                                    @endif
-                                </td>
-                                <td>
-                                    @if($investment['status'] != 'settled' && \Carbon\Carbon::now()->startOfDay() >= \Carbon\Carbon::make($investment['return_date'])->startOfDay() && \Carbon\Carbon::now()->format('H:i') >= \Carbon\Carbon::make($investment['return_date'])->format('H:i'))
-                                        <form action="{{ route('settle.payment', $investment['id']) }}" method="post">
-                                            @csrf
-                                            <button type="submit" class="btn btn-primary">Withdraw</button>
-                                        </form>
-                                    @endif
-                                </td>
-                            </tr>
-                            @endif
-                        </table>
+                                @php
+                                    $currentDate = \Carbon\Carbon::now();
+                                    $returnDate = \Carbon\Carbon::make($investment['return_date']);
+                                    $isReturnDateDue = $currentDate->startOfDay()->greaterThanOrEqualTo($returnDate->startOfDay()) 
+                                                    && $currentDate->format('H:i') >= $returnDate->format('H:i');
+                                @endphp
+
+                                @if ($isReturnDateDue)
+                                    <tr>
+                                        <td>Total</td>
+                                        <td>
+                                            <b>₦ {{ number_format($investment['amount'] * $paid + $investment['amount'] / $investment->package['roi'] * $paid) }}</b>
+                                        </td>
+                                        <td>
+                                            <b>{{ $returnDate->format('M d, Y \a\t h:i A') }}</b>
+                                        </td>
+                                        <td>
+                                            @if ($investment['status'] == 'settled')
+                                                <span class="badge badge-pill badge-success py-1 px-3">Credited ✅</span>
+                                            @else
+                                                <span class="text-success"><b>Completed 🥳</b></span>
+                                            @endif
+                                        </td>
+                                        <td>
+                                            @if ($investment['status'] != 'settled' && $isReturnDateDue)
+                                                <form action="{{ route('settle.payment', $investment['id']) }}" method="post">
+                                                    @csrf
+                                                    <button type="submit" class="btn btn-primary">Withdraw</button>
+                                                </form>
+                                            @endif
+                                        </td>
+                                    </tr>
+                                @endif
+                            </table>
                     </div>
 
 
