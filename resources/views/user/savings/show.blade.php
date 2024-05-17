@@ -222,7 +222,7 @@
                                             @endif
                                         </td>
                                         <td>
-                                            @if (!$isPaid && \Carbon\Carbon::now()->isSameDay($milestoneDate))
+                                            @if (!$isPaid && \Carbon\Carbon::now()->isSameDay($milestoneDate) && \Carbon\Carbon::now()->format('H:i') >= $milestoneDate->format('H:i'))
                                                 <form action="{{ route('make.payment', $investment['id']) }}" method="post">
                                                     @csrf
                                                     <button type="submit" class="btn btn-primary">Retry Payment</button>

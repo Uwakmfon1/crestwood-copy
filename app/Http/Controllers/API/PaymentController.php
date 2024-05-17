@@ -197,19 +197,20 @@ class PaymentController extends Controller
                     'channel' => 'web',
                     'comment' => 'Bank Deposit'
                 ];
+                $amount = $paymentDetails['data']['amount'] / 100;
                 $payment = $user->payments()->create([
                     'reference' => $paymentDetails['data']['reference'],
-                    'amount' => $paymentDetails['data']['amount'],
+                    'amount' => $amount,
                     'type' =>  'deposit',
                     'gateway' => 'paystack',
                     'meta' => json_encode($meta)
                 ]);
                 $type = json_decode($payment['meta'], true)['type'];
     
-                $user->nairaWallet()->increment('balance', $paymentDetails['data']['amount']);
+                $user->nairaWallet()->increment('balance', $amount);
                 $transaction = $payment->user->transactions()->create([
                     'type' => 'deposit', 
-                    'amount' => $payment['amount'],
+                    'amount' => $amount,
                     'description' => 'Deposit', 
                     'channel' => $meta['channel'] ?? 'mobile',
                     'method' => 'wallet',
