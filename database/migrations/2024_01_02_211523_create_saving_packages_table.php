@@ -18,8 +18,6 @@ class CreateSavingPackagesTable extends Migration
             $table->string('name');
             $table->string('roi');
             $table->string('price');
-            $table->enum('duration', ['weekly', 'monthly', 'daily']);
-            $table->string('milestone');
             $table->text('description');
             $table->text('image');
             $table->timestamps();

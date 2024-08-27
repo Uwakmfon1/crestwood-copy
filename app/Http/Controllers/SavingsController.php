@@ -8,6 +8,7 @@ use App\Models\Saving;
 use App\Models\Setting;
 use Illuminate\Http\Request;
 use App\Models\SavingPackage;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 
 class SavingsController extends Controller
@@ -15,22 +16,13 @@ class SavingsController extends Controller
     public function index()
     {
         $savings = auth()->user()->savings()->latest();
-        switch (true){
-            case \request()->offsetExists('active'):
-                $savings = $savings->where('status', 'active');
-                break;
-            case \request()->offsetExists('pending'):
-                $savings = $savings->where('status', 'pending');
-                break;
-            case \request()->offsetExists('cancelled'):
-                $savings = $savings->where('status', 'cancelled');
-                break;
-            case \request()->offsetExists('settled'):
-                $savings = $savings->where('status', 'settled');
-                break;
-        }
 
-        return view('user.savings.index', ['title' => 'Savings', 'savings' => $savings->get()]);
+        $active_savings = $savings->where('status', 'active')->count();
+        $completed_savings = $savings->where('status', 'settled')->count();
+
+        $balance = auth()->user()->savingsWalletBalance();
+
+        return view('user_.savings.index', ['title' => 'Savings', 'savings' => auth()->user()->savings()->latest()->get(), 'balance' => $balance, 'asv' => $active_savings, 'csv' => $completed_savings]);
     }
     public function packages()
     {
@@ -39,14 +31,129 @@ class SavingsController extends Controller
 
     public function create()
     {
-        return view('user.savings.create', ['title' => 'Save', 'setting' => Setting::all()->first(), 'packages' => SavingPackage::all()]);
+        return view('user_.savings.create', ['title' => 'Save', 'setting' => Setting::all()->first(), 'packages' => SavingPackage::all()]);
     }
 
     public function show(Saving $savings)
     {
         $paid = $savings->transaction()->where('status', 'approved')->count();
 
-        return view('user.savings.show', ['title' => 'Savings', 'investment' => $savings, 'packages' => SavingPackage::all(), 'paid' => $paid]);
+        // Generate dates for the progress report (for example, daily progress)
+        $progressDates = [];
+        $progressAmounts = [];
+
+        $currentAmount = $savings->deposit;
+        $contributionPerDay = $savings->contribution / 30; // assuming 30 days in a month for simplicity
+
+        $startDate = \Carbon\Carbon::parse($savings->savings_date);
+        $endDate = \Carbon\Carbon::parse($savings->return_date);
+
+        while ($startDate <= $endDate) {
+            $progressDates[] = $startDate->format('Y-m-d');
+            $progressAmounts[] = $currentAmount;
+
+            // Add the daily contribution to the current amount
+            $currentAmount += $contributionPerDay;
+
+            // Move to the next day
+            $startDate->addDay();
+        }
+
+        return view('user_.savings.show', [
+            'title' => 'Savings', 
+            'savings' => $savings, 
+            'packages' => SavingPackage::all(), 
+            'paid' => $paid, 
+            'progressDates' => $progressDates,
+            'progressAmounts' => $progressAmounts,
+        ]);
+    }
+
+    public function save(Request $request): \Illuminate\Http\RedirectResponse
+    {
+        // Validate the request
+        $validated = $request->validate([
+            'timeframe' => 'required|in:weekly,monthly,daily,yearly',
+            'duration' => 'required',
+            'roi' => 'required|numeric',
+            'deposit' => 'required|numeric|min:0',
+            'contribution' => 'required|numeric|min:0',
+        ]);
+
+        // Extract and prepare data
+        $user_id = Auth::id();
+        $savings_date = Carbon::now();
+        $durationInDays = $this->calculateDurationInDays($validated['duration']);
+        $return_date = $savings_date->copy()->addDays($durationInDays);
+
+        // Calculate total contributions based on the timeframe and duration
+        $total_contributions = $this->calculateTotalContributions(
+            $validated['timeframe'], 
+            $validated['contribution'], 
+            $durationInDays
+        );
+
+        // Calculate total return
+        $total_return = ($validated['deposit'] + $total_contributions) * (1 + ($validated['roi'] / 100));
+
+        // Create the savings record
+        $savings = Saving::create([
+            'user_id' => $user_id,
+            'timeframe' => $validated['timeframe'],
+            'duration' => $validated['duration'],
+            'roi' => $validated['roi'],
+            'deposit' => $validated['deposit'],
+            'contribution' => $validated['contribution'],
+            'total_return' => $total_return,
+            'savings_date' => $savings_date,
+            'return_date' => $return_date,
+            'status' => 'active',
+        ]);
+
+        // Optionally schedule contributions (if needed)
+        $this->scheduleContributions($savings);
+
+        return redirect()->route('savings')->with('success', 'Savings plan created successfully.');
+    }
+
+    private function calculateDurationInDays(string $duration): int
+    {
+        switch ($duration) {
+            case '1w':
+                return 7;
+            case '2w':
+                return 14;
+            case '4w':
+                return 28;
+            case '1m':
+                return Carbon::now()->daysInMonth;
+            case '1y':
+                return 365;
+            default:
+                return 30; // Default to 1 month (30 days)
+        }
+    }
+
+    private function calculateTotalContributions(string $timeframe, float $contribution, int $durationInDays): float
+    {
+        switch ($timeframe) {
+            case 'daily':
+                return $contribution * $durationInDays;
+            case 'weekly':
+                return $contribution * ($durationInDays / 7);
+            case 'monthly':
+                return $contribution * ($durationInDays / 30);
+            case 'yearly':
+                return $contribution * ($durationInDays / 365);
+            default:
+                return 0.0;
+        }
+    }
+
+
+    private function scheduleContributions(Saving $savings)
+    {
+        // Implement scheduling logic if needed
     }
 
     //Create Savings
@@ -57,24 +164,28 @@ class SavingsController extends Controller
             'package' => ['required'],
             'slots' => ['required', 'numeric', 'min:1', 'integer'],
             'milestone' => ['required', 'numeric', 'integer'],
-            'payment' => ['required'],
+            'duration' => ['required'],
         ]);
         if ($validator->fails()){
             return back()->withErrors($validator)->withInput()->with('error', 'Invalid input data');
         }
-        //        Check if investment is allowed
+        
+        $payment = 'wallet'; // $request['payment']
+
         if (Setting::all()->first()['save'] == 0){
-            return back()->with('error', 'Investment in packages is currently unavailable, check back later');
+            return back()->with('error', 'Savings in packages is currently unavailable, check back later');
         }
-        //        Find package and check if investment is enabled
-        $package = SavingPackage::all()->where('name', $request['package'])->first();
-        //   Process investment based on payment method
-        switch ($request['payment']){
+
+        $package = SavingPackage::all()->where('id', $request['package'])->first();
+
+        $amount = $request['slots'] * $package['price'];
+        
+        switch ($payment){
             case 'wallet':
-                if (!auth()->user()->hasSufficientBalanceForTransaction($request['slots'] * $package['price'])){
-                    return back()->withInput()->with('error', 'Insufficient wallet balance');
+                if (!auth()->user()->hasSufficientBalance($amount, 'savings')){
+                    return back()->withInput()->with('error', 'Insufficient savings balance');
                 }
-                auth()->user()->nairaWallet()->decrement('balance', $request['slots'] * $package['price']);
+                auth()->user()->savingsWallet->decrement('balance', $amount);
                 $status = 'active';
                 $msg = 'Savings created successfully';
                 break;
@@ -97,16 +208,31 @@ class SavingsController extends Controller
             $returnDate = now()->addDays($request['milestone'])->format('Y-m-d H:i:s');
         }
 
-        //        Create Investment
+        $totalReturn = ($amount * $request['milestone']) + (($amount / $package['roi']) * $request['milestone']);
+
         $savings = auth()->user()->savings()->create([
             'savings_package_id'=>$package['id'], 
-            'duration' => $package['duration'], 
-            'amount' => $request['slots'] * $package['price'],
-            'total_return' => $request['milestone'] * $package['price'] * (( 100 + $package['roi'] ) / 100 ),
+            'duration' => $request['duration'], 
+            'milestone' => $request['milestone'], 
+            'amount' => $amount,
+            'slot' =>  $request['slots'],
+            'total_return' => $totalReturn,
             'savings_date' => now()->format('Y-m-d H:i:s'),
             'return_date' => $returnDate, 
             'status' => $status
         ]);
+
+        $savings->savingsTransactions()->create(
+            [
+                'user_id' => auth()->user()->id,
+                'amount' => $amount, 
+                'type' => 'withdrawal',
+                'account_type' => 'savings',
+                'description' => 'Savings into ' . $package['name'],
+                'method' => 'wallet',
+                'status' => 'approved'
+            ]
+        );
 
         $desc = 'Saved to '. $package['name'];
 
@@ -116,70 +242,5 @@ class SavingsController extends Controller
             return redirect()->route('savings')->with('success', $msg);
         }
         return back()->withInput()->with('error', 'Error processing investment');
-    }
-
-    public function makePayment(Saving $savings) : \Illuminate\Http\RedirectResponse
-    {
-        if (!auth()->user()->hasSufficientBalanceForTransaction($savings['amount'])){
-            if (auth()->user()->auth_key) {
-                PaymentController::charge($savings->amount);
-
-                TransactionController::storeSavingTransaction($savings, $savings['amount'], 'wallet', 'savings', 'Bank Payment for ' . $savings['name'], $savings['id']);
-
-                NotificationController::sendSavingsNotification($savings);
-                return back()->withInput()->with('success', 'Bank Savings Updated ✅');
-            } else {
-                return back()->withInput()->with('error', 'Insufficient wallet balance ❌');
-            }
-        } else {
-                TransactionController::storeSavingTransaction($savings, $savings['amount'], 'wallet', 'savings', 'Payment for new savings', $savings['id']);
-
-                auth()->user()->nairaWallet()->decrement('balance', $savings['amount']); 
-
-                NotificationController::sendSavingsNotification($savings);
-
-            return back()->withInput()->with('success', 'Savings Updated ✅');
-        }
-    }
-
-    public function settlePayment(Saving $savings) 
-    {
-        $paid = $savings->transaction()->where('status', 'approved')->count();
-        $package = $savings->package()->get();
-
-        $milestone = $package[0]['milestone'];
-        $roi = $package[0]['roi'];
-        $total_amount = $savings['amount'] * $paid;
-        $total_roi = (($savings['amount']) * ($roi/100)) * $paid;
-        $amount_paid = $total_amount + $total_roi;
-
-        $partial_amount = $savings['amount'] * $paid + $savings['amount'] / $roi * $paid;
-        $partial_date = Carbon::now()->startOfDay() >= Carbon::make($savings['return_date'])->startOfDay() && \Carbon\Carbon::now()->format('H:i') >= \Carbon\Carbon::make($savings['return_date'])->format('H:i');
-
-        $desc = 'Withdrawal from ' .$package[0]['name']. ' savings package';
-        if ($savings && $paid == $milestone && $savings['status'] != 'settled')
-        {
-            TransactionController::storeSavingTransaction($savings, $amount_paid, 'wallet', 'savings', $desc, Null);
-
-            auth()->user()->nairaWallet()->increment('balance', $amount_paid);
-            $savings->update(['status' => 'settled']);
-
-            NotificationController::sendSettleSavingsNotification($savings, $amount_paid);
-
-            return back()->withInput()->with('success', 'Wallet Credited ✅');
-        } elseif($partial_date && $savings['status'] != 'settled') { 
-            TransactionController::storeSavingTransaction($savings, $partial_amount, 'wallet', 'savings', $desc, Null);
-
-            auth()->user()->nairaWallet()->increment('balance', $partial_amount);
-            $savings->update(['status' => 'settled']); 
-
-            NotificationController::sendSettleSavingsNotification($savings, $partial_amount);
-
-            return back()->withInput()->with('success', 'Wallet Credited ✅');
-        }
-        else{
-
-            return back()->withInput()->with('error', 'Incomplete Savings');
-        }
     }
 }

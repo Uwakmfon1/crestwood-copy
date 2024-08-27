@@ -14,14 +14,21 @@ class WalletController extends Controller
         $user = auth()->user();
         $virtualAccount = json_decode($user['virtual_account'], true);
 
+        $savings = auth()->user()->savingsWalletBalance();
+        $investment = auth()->user()->investmentWalletBalance();
+        $trading = auth()->user()->tradingWalletBalance();
+
         $ledgerBalance = $user->investments()->where('status', 'active')->sum('total_return');
 
-        return view('user.wallet.index', [ 
+        return view('user_.wallet.index', [ 
             'title', 
             'Wallets', 
             'setting' => Setting::all()->first(), 
             'virtualAccount' => $virtualAccount, 
-            'ledgerBalance' => $ledgerBalance
+            'ledgerBalance' => $ledgerBalance,
+            'savings' => $savings,
+            'trading' => $trading,
+            'investment' => $investment
         ]);
     }
 

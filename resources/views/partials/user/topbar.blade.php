@@ -7,7 +7,7 @@
             <li class="nav-item d-md-flex d-none dropdown nav-apps">
                 <a href="{{ route('wallet') }}" class="mx-2">
                     <p style="font-size: 9px">Naira Balance</p>
-                    <p>₦ {{ number_format(auth()->user()['nairaWallet']['balance'], 2) }}</p>
+                    <p>₦ {{ number_format(auth()->user()->walletBalance(), 2) }}</p>
                 </a>
 {{--                <a href="{{ route('wallet') }}" class="mx-3">--}}
 {{--                    <p style="font-size: 9px">Gold Balance</p>--}}

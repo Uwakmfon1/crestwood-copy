@@ -20,6 +20,20 @@
                             </strong>
                         @enderror
                     </div>
+                    <div class="form-group">
+                        <input type="hidden" name="type" value="deposit">
+                        <label for="paymentDeposit">Account Type</label>
+                        <select name="account" style="height: 45px; font-size: 14px" class="text-dark" required id="paymentDeposit">
+                            <option value="savings">Savings</option>
+                            <option value="investment">Investments</option>
+                            <option value="trading">Trade</option>
+                        </select>
+                        @error('account')
+                            <strong class="small text-danger">
+                                {{ $message }}
+                            </strong>
+                        @enderror
+                    </div>
                 </form>
             </div>
             <div class="modal-footer">

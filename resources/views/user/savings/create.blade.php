@@ -131,7 +131,7 @@
             let securedByPaystack = $('#securedByPaystack');
             let submitButton = $('#submitButton');
             let agreed = $('#agreed');
-            let nairaWalletBalance = parseFloat({{ auth()->user()['nairaWallet']['balance'] }});
+            let nairaWalletBalance = parseFloat({{ auth()->user()->savingsWalletBalance() }});
             agreed.on('change', checkIfFormCanSubmit);
             payment.on('change', function (){
                 if (payment.val() === 'deposit') {

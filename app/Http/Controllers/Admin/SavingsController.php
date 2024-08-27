@@ -56,8 +56,8 @@ class SavingsController extends Controller
             'name' => ['required', 'unique:packages,name'],
             'roi' => ['required', 'numeric'],
             'price' => ['required', 'numeric', 'gt:0'],
-            'duration' => ['required'],
-            'milestone' => ['required', 'numeric', 'gt:0'],
+            // 'duration' => ['required'],
+            // 'milestone' => ['required', 'numeric', 'gt:0'],
             'description' => ['required'],
             'image' => ['required', 'mimes:jpeg,jpg,png', 'max:1024']
         ]);

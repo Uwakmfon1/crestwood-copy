@@ -1,5 +1,6 @@
 <?php
 
+
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ExportController;
@@ -8,6 +9,8 @@ use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\TransactionController;
 use App\Http\Controllers\Auth\EmailverificationController;
 use App\Http\Controllers\SavingsController;
+use App\Http\Controllers\TradeController as ControllersTradeController;
+use App\Http\Controllers\TradingController;
 
 /*
 |--------------------------------------------------------------------------
@@ -30,7 +33,7 @@ Route::group(['middleware' => ['auth', 'unverified']], function (){
     Route::get('/email/verify', [EmailverificationController::class, 'verify'])->name('verification.notice');
     Route::post('/email/verify-with-code', [EmailverificationController::class, 'verifyWithCode'])->name('verification.verify.code');
     Route::get('/email/verify/{id}/{hash}', [EmailverificationController::class, 'verifyMail'])->middleware(['signed'])->name('verification.verify');
-    Route::post('/email/verification-notification', [EmailverificationController::class, 'resend'])->middleware(['throttle:6,1'])->name('verification.send');
+    Route::get('/email/verification-notification', [EmailverificationController::class, 'resend'])->middleware(['throttle:6,1'])->name('verification.send');
 });
 
 Route::group(['middleware' => ['auth','verified', 'active_user']], function (){
@@ -74,7 +77,7 @@ Route::group(['middleware' => ['auth','verified', 'active_user']], function (){
         
         Route::get('/savings/packages', [SavingsController::class, 'packages'])->name('savingsPackage');
         Route::get('/savings/create', [SavingsController::class, 'create'])->name('savings.create');
-        Route::post('/savings/store', [SavingsController::class, 'store'])->name('savings.store');
+        Route::post('/savings/store', [SavingsController::class, 'save'])->name('savings.store');
         Route::get('/savings', [SavingsController::class, 'index'])->name('savings');
         Route::get('/savings/{savings}/show', [SavingsController::class, 'show'])->name('savings.show');
         Route::post('/payment/{savings}', [SavingsController::class, 'makePayment'])->name('make.payment');
@@ -89,5 +92,11 @@ Route::group(['middleware' => ['auth','verified', 'active_user']], function (){
         Route::get('/payment/initiate', [PaymentController::class, 'initiatePayment'])->name('payment.initiate');
 
         Route::get('/payment/auth', [PaymentController::class, 'charge'])->name('make.charge');
+
+        Route::post('/trading/stock', [TradingController::class, 'store'])->name('trade.stock');
+        Route::get('/trade', [TradingController::class, 'index'])->name('tradings');
+        Route::get('/trade/{stock}/{symbol}', [TradingController::class, 'show'])->name('trade.show');
+
+        Route::get('/user/asset', [TradingController::class, 'asset'])->name('assets');
     });
 });

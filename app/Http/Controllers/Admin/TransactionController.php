@@ -9,6 +9,8 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
 use App\Http\Controllers\NotificationController;
+use App\Models\WalletsTransactions;
+use App\Models\WalletTransaction;
 
 class TransactionController extends Controller
 {
@@ -35,32 +37,72 @@ class TransactionController extends Controller
 
     public function deposit(Request $request): \Illuminate\Http\RedirectResponse
     {
-//        Validate request
+        // Validate request
         $validator = Validator::make($request->all(), [
             'user_id' => ['required', 'numeric'],
             'amount' => ['required', 'numeric', 'gt:0'],
+            'account' => ['required'],
         ]);
-        if ($validator->fails()){
+
+        if ($validator->fails()) {
             return back()->withErrors($validator)->withInput()->with('error', 'Invalid input data');
         }
-//        Find user
-        $user = User::all()->where('id', $request['user_id'])->first();
+
+        // Find user
+        $user = User::find($request['user_id']);
         if (!$user) {
             return back()->with('error', 'Can\'t process investment, user not found');
         }
-//        Check for deposit method and process
-        $user->nairaWallet()->increment('balance', $request['amount']);
-        $transaction = $user->transactions()->create([
-            'type' => 'deposit', 'amount' => $request['amount'],
-            'description' => 'Deposit by '.env('APP_NAME'),
-            'method' => 'deposit' ,'status' => 'approved'
-        ]);
+
+        // Check Account
+        switch ($request['account']) {
+            case 'savings':
+                $user->savingsWallet->increment('balance', $request['amount']);
+                $transaction = $user->savingsWallet->walletTransactions()->create([
+                    'user_id' => $user->id,
+                    'amount' => $request['amount'],
+                    'account_type' => $request['account'],
+                    'type' => 'deposit',
+                    'description' => env('APP_NAME') . ' admin Deposit',
+                    'method' => 'wallet',
+                    'status' => 'approved'
+                ]);
+                break;
+            case 'trading':
+                $user->tradingWallet->increment('balance', $request['amount']);
+                $transaction = $user->tradingWallet->walletTransactions()->create([
+                    'user_id' => $user->id,
+                    'amount' => $request['amount'],
+                    'account_type' => $request['account'],
+                    'type' => 'deposit',
+                    'description' => env('APP_NAME') . ' admin Deposit',
+                    'method' => 'wallet',
+                    'status' => 'approved'
+                ]);
+                break;
+            case 'investment':
+                $user->investmentWallet->increment('balance', $request['amount']);
+                $transaction = $user->investmentWallet->walletTransactions()->create([
+                    'user_id' => $user->id,
+                    'amount' => $request['amount'],
+                    'account_type' => $request['account'],
+                    'type' => 'deposit',
+                    'description' => env('APP_NAME') . ' admin Deposit',
+                    'method' => 'wallet',
+                    'status' => 'approved'
+                ]);
+                break;
+            default:
+                return back()->withInput()->with('error', 'Invalid account method');
+        }
+
         if ($transaction) {
-            NotificationController::sendDepositSuccessfulNotification($transaction);
+            // NotificationController::sendDepositSuccessfulNotification($transaction);
             return redirect()->route('admin.users.show', $user['id'])->with('success', 'Deposit made successfully');
         }
         return redirect()->route('admin.users.show', $user['id'])->with('error', 'Error processing deposit');
     }
+
 
     public function withdraw(Request $request): \Illuminate\Http\RedirectResponse
     {
@@ -92,7 +134,7 @@ class TransactionController extends Controller
         return redirect()->route('admin.users.show', $user['id'])->with('error', 'Error processing withdrawal');
     }
 
-    public function approve(Transaction $transaction): \Illuminate\Http\RedirectResponse
+    public function approve(WalletsTransactions $transaction): \Illuminate\Http\RedirectResponse
     {
 //        Check if transaction is pending
         if (!$transaction['status'] == 'pending'){
@@ -103,8 +145,21 @@ class TransactionController extends Controller
         
         switch ($transaction['type']){
             case 'deposit':
-                $user->nairaWallet()->increment('balance', $transaction['amount']);
-                NotificationController::sendDepositSuccessfulNotification($transaction);
+                // Check Account
+                switch ($transaction['account_type']) {
+                    case 'savings':
+                        $user->savingsWallet->increment('balance', $transaction['amount']);
+                        break;
+                    case 'trading':
+                        $user->tradingWallet->increment('balance', $transaction['amount']);
+                        break;
+                    case 'investment':
+                        $user->investmentWallet->increment('balance', $transaction['amount']);
+                        break;
+                    default:
+                        return back()->withInput()->with('error', 'Invalid account method');
+                }
+                // NotificationController::sendDepositSuccessfulNotification($transaction);
                 break;
             case 'withdrawal':
                 NotificationController::sendWithdrawalSuccessfulNotification($transaction);
@@ -177,6 +232,7 @@ class TransactionController extends Controller
         }
         return back()->with('error', 'Error declining transaction');
     }
+    
     public function fetchTransactionsWithAjax(Request $request, $type)
     {
 //        Define all column names
@@ -186,19 +242,19 @@ class TransactionController extends Controller
 //        Find data based on page
         switch ($type){
             case 'pending':
-                $transactions = Transaction::query()->latest()->where('status', 'pending');
+                $transactions = WalletsTransactions::query()->latest()->where('status', 'pending');
                 break;
             case 'withdrawal':
-                $transactions = Transaction::query()->latest()->where('type', 'withdrawal');
+                $transactions = WalletsTransactions::query()->latest()->where('type', 'withdrawal');
                 break;
             case 'deposit':
-                $transactions = Transaction::query()->latest()->where('type', 'deposit');
+                $transactions = WalletsTransactions::query()->latest()->where('type', 'deposit');
                 break;
             case 'others':
-                $transactions = Transaction::query()->latest()->where('type', 'others');
+                $transactions = WalletsTransactions::query()->latest()->where('type', 'others');
                 break;
             default:
-                $transactions = Transaction::query()->latest();
+                $transactions = WalletsTransactions::query()->latest();
         }
 //        Set helper variables from request and DB
         $totalData = $totalFiltered = $transactions->count();

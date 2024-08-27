@@ -3,7 +3,7 @@
 <head>
     @include('partials.header')
     @yield('styles')
-    <title>Sandbox @isset($title) | @endisset {{ $title ?? '' }} </title>
+    <title>{{ env('APP_NAME') }}  @isset($title) | @endisset {{ $title ?? '' }} </title>
 </head>
 <body>
 <div class="main-wrapper">

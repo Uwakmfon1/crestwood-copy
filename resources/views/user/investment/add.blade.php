@@ -62,11 +62,12 @@
                         </div>
                         <div class="form-group">
                             <label for="payment">Pay Via</label>
-                            <select name="payment" id="payment" style="height: 50px; font-size: 14px" class="text-dark">
+                            <select name="payment" id="payment" style="height: 50px; font-size: 14px" class="text-dark" disabled>
                                 <option value="wallet">Naira Wallet</option>
-                                <option value="card">Card</option>
-                                <option value="deposit">Deposit / Bank Transfer</option>
+                                <!-- <option value="card">Card</option>
+                                <option value="deposit">Deposit / Bank Transfer</option> -->
                             </select>
+                            <input type="hidden" value="wallet" name="payment">
                             @error('payment')
                             <strong class="small text-danger">
                                 {{ $message }}
@@ -127,7 +128,7 @@
             let securedByPaystack = $('#securedByPaystack');
             let submitButton = $('#submitButton');
             let agreed = $('#agreed');
-            let nairaWalletBalance = parseFloat({{ auth()->user()['nairaWallet']['balance'] }});
+            let nairaWalletBalance = parseFloat({{ auth()->user()->investmentWalletBalance() }});
             agreed.on('change', checkIfFormCanSubmit);
             payment.on('change', function (){
                 if (payment.val() === 'deposit') {
@@ -173,13 +174,13 @@
             function checkIfFormCanSubmit(){
                 if (packageName.val() && slots.val() && (slots.val() > 0) && payment.val() && agreed.prop('checked')){
                     if (payment.val() === 'wallet'){
-                        if ((slots.val() * price.val()) <= nairaWalletBalance ){
+                        // if ((slots.val() * price.val()) <= nairaWalletBalance ){
                             submitButton.removeAttr('disabled');
                             slots.css('borderColor', '#10B759');
-                        }else{
-                            submitButton.prop('disabled', true);
-                            slots.css('borderColor', 'red');
-                        }
+                        // }else{
+                        //     submitButton.prop('disabled', true);
+                        //     slots.css('borderColor', 'red');
+                        // }
                     }else{
                         submitButton.removeAttr('disabled');
                         slots.css('borderColor', '#10B759');

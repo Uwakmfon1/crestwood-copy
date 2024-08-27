@@ -2,17 +2,18 @@
 
 namespace App\Models;
 
-use App\Notifications\VerifyEmailNotification;
 use Exception;
-use Illuminate\Contracts\Auth\MustVerifyEmail;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Relations\HasMany;
-use Illuminate\Database\Eloquent\Relations\HasOne;
-use Illuminate\Foundation\Auth\User as Authenticatable;
-use Illuminate\Notifications\Notifiable;
-use Illuminate\Support\Str;
-use Tymon\JWTAuth\Contracts\JWTSubject;
 use Carbon\Carbon;
+use Illuminate\Support\Str;
+use InvalidArgumentException;
+use Tymon\JWTAuth\Contracts\JWTSubject;
+use Illuminate\Notifications\Notifiable;
+use App\Notifications\VerifyEmailNotification;
+use Illuminate\Contracts\Auth\MustVerifyEmail;
+use Illuminate\Database\Eloquent\Relations\HasOne;
+use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Foundation\Auth\User as Authenticatable;
 
 class User extends Authenticatable implements MustVerifyEmail, JWTSubject
 {
@@ -294,6 +295,81 @@ class User extends Authenticatable implements MustVerifyEmail, JWTSubject
         'email_verified_at' => 'datetime',
     ];
 
+    //Construct new wallet
+
+        public function savingsWallet(): HasOne
+        {
+            return $this->hasOne(SavingsWallet::class);
+        }
+
+        public function tradingWallet(): HasOne
+        {
+            return $this->hasOne(TradingWallet::class);
+        }
+
+        public function investmentWallet(): HasOne
+        {
+            return $this->hasOne(InvestmentWallet::class);
+        }
+
+        public function walletBalance(): float
+        {
+            $savingsBalance = $this->savingsWallet ? $this->savingsWallet->balance : 0;
+            $tradingBalance = $this->tradingWallet ? $this->tradingWallet->balance : 0;
+            $investmentBalance = $this->investmentWallet ? $this->investmentWallet->balance : 0;
+
+            return $savingsBalance + $tradingBalance + $investmentBalance;
+        }
+
+        public function savingsWalletBalance(): float
+        {
+            $savingsBalance = $this->savingsWallet ? $this->savingsWallet->balance : 0;
+            return $savingsBalance;
+        }
+
+        public function tradingWalletBalance(): float
+        {
+            $tradingBalance = $this->tradingWallet ? $this->tradingWallet->balance : 0;
+            return $tradingBalance;
+        }
+
+        public function investmentWalletBalance(): float
+        {
+            $investmentBalance = $this->investmentWallet ? $this->investmentWallet->balance : 0;
+            return $investmentBalance;
+        }
+
+        // public function hasSufficientBalance($amount): bool
+        // {
+        //     return $this->walletBalance() >= $amount;
+        // }
+
+        public function hasSufficientBalance($amount, $type): bool
+        {
+            $balance = 0;
+
+            switch ($type) {
+                case 'savings':
+                    $balance = $this->savingsWalletBalance();
+                    break;
+                case 'trading':
+                    $balance = $this->tradingWalletBalance();
+                    break;
+                case 'investment':
+                    $balance = $this->investmentWalletBalance();
+                    break;
+                default:
+                    throw new InvalidArgumentException('Invalid wallet type');
+            }
+
+            return $balance >= $amount;
+        }
+
+        public function walletsTransactions(): HasMany
+        {
+            return $this->hasMany(WalletsTransactions::class);
+        }
+
     public function investments(): HasMany
     {
         return $this->hasMany(Investment::class);
@@ -301,7 +377,7 @@ class User extends Authenticatable implements MustVerifyEmail, JWTSubject
 
     public function trades(): HasMany
     {
-        return $this->hasMany(Trade::class);
+        return $this->hasMany(Trading::class);
     }
 
     public function savings(): HasMany

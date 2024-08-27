@@ -46,6 +46,8 @@
                             <tr>
                                 <th><i class="fas fa-list-ul"></i></th>
                                 <th>Amount</th>
+                                <th>Type</th>
+                                <th>Account</th>
                                 <th>Description</th>
                                 <th>Date</th>
                                 <th>Status</th>
@@ -56,6 +58,8 @@
                                     <tr>
                                         <td>{{ $key + 1 }}</td>
                                         <td>₦ {{ number_format($transaction['amount']) }}</td>
+                                        <td>{{ $transaction['type'] }}</td>
+                                        <td>{{ $transaction['account_type'] }}</td>
                                         <td>{{ $transaction['description'] }}</td>
                                         <td>{{ $transaction['created_at']->format('M d, Y \a\t h:i A') }}</td>
                                         <td>

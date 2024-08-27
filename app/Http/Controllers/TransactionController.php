@@ -21,80 +21,171 @@ class TransactionController extends Controller
 {
     public function index()
     {
-        $transactions = auth()->user()->transactions()->latest();
-        switch (true){
-            case \request()->offsetExists('all'):
-                $transactions = $transactions->where('type', 'all');
-                break;
-            case \request()->offsetExists('withdrawal'):
-                $transactions = $transactions->where('type', 'withdrawal');
-                break;
-            case \request()->offsetExists('deposit'):
-                $transactions = $transactions->where('type', 'deposit');
-                break;
-            case \request()->offsetExists('others'):
-                $transactions = $transactions->where('type', 'others');
-                break;
-        }
-        return view('user.transaction.index', ['tittle' => 'Transactions', 'transactions' => $transactions->get()]);
+        $user = auth()->user();
+
+        $transactions = $user->walletsTransactions(); 
+
+        $total = $user->walletBalance();
+
+        $s_balance = auth()->user()->savingsWalletBalance();
+        $t_balance = auth()->user()->tradingWalletBalance();
+        $i_balance = auth()->user()->investmentWalletBalance();
+
+    
+        return view('user_.wallet.index', [
+            'tittle' => 'Transactions',
+            'transactions' => $transactions->latest()->paginate(20),
+            'total' => $total,
+            'savings' => $s_balance,
+            'trading' => $t_balance,
+            'investment' => $i_balance,
+            'setting' => Setting::all()->first(), 
+        ]);
     }
 
     public function deposit(Request $request)
     {
         // Validate request
         $validator = Validator::make($request->all(), [
-            'amount' => ['required', 'numeric', 'gt:0'],
-            'payment' => ['required']
+            'amount' => ['required', 'numeric', 'gt:0', 'min:10'],
+            'account_type' => ['required'],
         ]);
         if ($validator->fails()){
             return back()->withErrors($validator)->withInput()->with('error', 'Invalid input data');
         }
 
-        // Check for deposit method and process
-        if ($request['payment'] == 'card') {
-            $data = ['type' => 'deposit'];
-            return PaymentController::initializeOnlineTransaction($request['amount'], $data);
+        $user = auth()->user();
+
+        //        Check Account
+        switch ($request['account_type']){
+            case 'savings':
+                $transaction = $user->savingsWallet->walletTransactions()->create(
+                    [
+                        'user_id' => $user->id,
+                        'amount' => $request['amount'], 
+                        'account_type' => $request['account_type'],
+                        'type' => 'deposit',
+                        'description' => 'Deposit into ' . $request['account_type'] . ' account',
+                        'method' => 'wallet',
+                        'status' => 'pending'
+                    ]
+                );
+                break;
+            case 'trading':
+                $transaction = $user->tradingWallet->walletTransactions()->create(
+                    [
+                        'user_id' => $user->id,
+                        'amount' => $request['amount'],  
+                        'account_type' => $request['account_type'],
+                        'type' => 'deposit',
+                        'description' => 'Deposit into ' . $request['account_type'] . ' account',
+                        'method' => 'wallet',
+                        'status' => 'pending'
+                    ]
+                );
+                break;
+            case 'investment':
+                $transaction = $user->investmentWallet->walletTransactions()->create(
+                    [
+                        'user_id' => $user->id,
+                        'amount' => $request['amount'],  
+                        'account_type' => $request['account_type'],
+                        'type' => 'deposit',
+                        'description' => 'Deposit into ' . $request['account_type'] . ' account',
+                        'method' => 'wallet',
+                        'status' => 'pending'
+                    ]
+                );
+                break;
+            default:
+                return back()->withInput()->with('error', 'Invalid account method');
         }
-        $transaction = auth()->user()->transactions()->create([
-            'type' => 'deposit', 'amount' => $request['amount'],
-            'method' => $request['payment'],
-            'description' => 'Deposit', 'status' => 'pending'
-        ]);
+
         if ($transaction) {
-            NotificationController::sendDepositQueuedNotification($transaction);
-            return redirect()->route('wallet')->with('success', 'Deposit queued successfully');
+            // NotificationController::sendDepositQueuedNotification($transaction);
+            // return redirect()->route('wallet')->with('success', 'Deposit queued successfully');
+            return back()->withInput()->with('success', 'Deposit queued successfully');
         }
         return redirect()->route('wallet')->with('error', 'Error processing deposit');
     }
 
     public function withdraw(Request $request): \Illuminate\Http\RedirectResponse
     {
-        //        Validate request
+        // Validate request
         $validator = Validator::make($request->all(), [
-            'amount' => ['required', 'numeric', 'gt:0'],
+            'amount' => ['required', 'numeric', 'gt:0', 'min:100'],
+            'account_type' => ['required'],
         ]);
-        if ($validator->fails()){
+        if ($validator->fails()) {
             return back()->withErrors($validator)->withInput()->with('error', 'Invalid input data');
         }
-        //        Check if withdrawal is allowed
-        if (Setting::all()->first()['withdrawal'] == 0){
+
+        // Check if withdrawal is allowed
+        if (Setting::first()['withdrawal'] == 0) {
             return back()->with('error', 'Withdrawal from wallet is currently unavailable, check back later');
         }
-        //        Check if user has sufficient balance
-        if (!auth()->user()->hasSufficientBalanceForTransaction($request['amount'])) return back()->withInput()->with('error', 'Insufficient wallet balance');
-        //        Process withdrawal
-        auth()->user()->nairaWallet()->decrement('balance', $request['amount']);
-        $transaction = auth()->user()->transactions()->create([
-            'type' => 'withdrawal', 'amount' => $request['amount'],
-            'method' => 'wallet',
-            'description' => 'Withdrawal', 'status' => 'pending'
-        ]);
+
+        $user = auth()->user();
+
+        // Check Account
+        switch ($request['account_type']) {
+            case 'savings':
+                if (!$user->hasSufficientBalance($request['amount'], 'savings')) {
+                    return back()->withInput()->with('error', 'Insufficient savings balance');
+                }
+                $user->savingsWallet->decrement('balance', $request['amount']);
+                $transaction = $user->savingsWallet->walletTransactions()->create([
+                    'user_id' => $user->id,
+                    'amount' => $request['amount'],
+                    'account_type' => $request['account_type'],
+                    'type' => 'withdrawal',
+                    'description' => 'Withdrawal from ' . $request['account_type'] . ' account',
+                    'method' => 'wallet',
+                    'status' => 'pending',
+                ]);
+                break;
+            case 'trading':
+                if (!$user->hasSufficientBalance($request['amount'], 'trading')) {
+                    return back()->withInput()->with('error', 'Insufficient trading balance');
+                }
+                $user->tradingWallet->decrement('balance', $request['amount']);
+                $transaction = $user->tradingWallet->walletTransactions()->create([
+                    'user_id' => $user->id,
+                    'amount' => $request['amount'],
+                    'account_type' => $request['account_type'],
+                    'type' => 'withdrawal',
+                    'description' => 'Withdrawal from ' . $request['account_type'] . ' account',
+                    'method' => 'wallet',
+                    'status' => 'pending',
+                ]);
+                break;
+            case 'investment':
+                if (!$user->hasSufficientBalance($request['amount'], 'investment')) {
+                    return back()->withInput()->with('error', 'Insufficient investment balance');
+                }
+                $user->investmentWallet->decrement('balance', $request['amount']);
+                $transaction = $user->investmentWallet->walletTransactions()->create([
+                    'user_id' => $user->id,
+                    'amount' => $request['amount'],
+                    'account_type' => $request['account_type'],
+                    'type' => 'withdrawal',
+                    'description' => 'Withdrawal from ' . $request['account_type'] . ' account',
+                    'method' => 'wallet',
+                    'status' => 'pending',
+                ]);
+                break;
+            default:
+                return back()->withInput()->with('error', 'Invalid account type');
+        }
+
         if ($transaction) {
             NotificationController::sendWithdrawalQueuedNotification($transaction);
-            return redirect()->route('wallet')->with('success', 'Withdrawal queued successfully');
+            return redirect()->route('transactions')->with('success', 'Withdrawal queued successfully');
         }
-        return redirect()->route('wallet')->with('error', 'Error processing withdrawal');
+
+        return back()->withInput()->with('error', 'Error processing withdrawal');
     }
+
 
     public static function storeInvestmentTransaction($investment, $method, $byCompany = false, $channel = 'web')
     {

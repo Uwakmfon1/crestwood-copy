@@ -212,7 +212,7 @@ class NotificationController extends Controller
                 Deposit method: <b>'.$method.'</b><br><br>
                 <b><u>Wallet details:</u></b><br>
                 Amount credited: <b>₦ '.number_format($transaction->amount, 2).'</b><br>
-                Wallet balance: <b>₦ '.number_format($transaction->user->nairaWallet['balance'], 2).'</b><br>';
+                Wallet balance: <b>₦ '.number_format($transaction->wallet['balance'], 2).'</b><br>';
         try {
             $transaction->user->notify(new CustomNotification('deposit', 'Deposit Successful', $msg, $description));
         }catch (\Exception) {

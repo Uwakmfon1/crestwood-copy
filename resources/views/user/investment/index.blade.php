@@ -43,6 +43,11 @@
                             </div>
                         </div>
                     </div>
+                    @if (session('error'))
+                        <div class="alert alert-danger">
+                            {{ session('error') }}
+                        </div>
+                    @endif
                     <div class="table-responsive">
                         <table id="dataTableExample" class="table">
                             <thead>

@@ -16,9 +16,11 @@ class CreateSavingsTable extends Migration
         Schema::create('savings', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id');
-            $table->foreignId('savings_package_id');
+            $table->enum('timeframe', ['weekly', 'monthly', 'daily', 'yearly']);
             $table->string('duration');
-            $table->string('amount');
+            $table->decimal('roi');
+            $table->string('deposit');
+            $table->string('contribution');
             $table->string('total_return');
             $table->dateTime('savings_date');
             $table->dateTime('return_date');

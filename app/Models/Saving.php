@@ -5,6 +5,7 @@ namespace App\Models;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\MorphMany;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Saving extends Model
@@ -52,5 +53,10 @@ class Saving extends Model
             default:
                 return $lastDeductionDate->addDay();
         }
+    }
+
+    public function savingsTransactions(): MorphMany
+    {
+        return $this->morphMany(WalletsTransactions::class, 'transactable');
     }
 }

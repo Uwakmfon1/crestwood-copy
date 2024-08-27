@@ -3,95 +3,41 @@
 namespace App\Http\Controllers;
 
 use App\Models\Setting;
+use App\Models\Trading;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Http;
+use Intervention\Image\Facades\Image;
 use Illuminate\Support\Facades\Response;
 use Illuminate\Support\Facades\Validator;
-use Intervention\Image\Facades\Image;
-use Illuminate\Support\Facades\DB;
 
 class HomeController extends Controller
 {
     public function index()
     {
-        return $this->investmentDashboard();
-        $data = $this->getDashboardData();
-        return view('user.dashboard.index', [
-            'title' => 'Dashboard', 'transactions' => $data['transactions'],
-            'investments' => $data['investments'],
-            'paidInvestment' => ['reg' => $data['paidInvestment'], 'hf' => self::formatHumanFriendlyNumber($data['paidInvestment'])],
-            'totalInvestment' => ['reg' => $data['totalInvestment'], 'hf' => self::formatHumanFriendlyNumber($data['totalInvestment'])],
-        ]);
-    }
 
-    public static function fetchGoldBuyPriceInNGN($raw = false)
-    {
-        $settings = Setting::all()->first();
-        $price = $settings['gold_to_usd'] * ($settings['usd_to_ngn'] + $settings['buy_rate_plus']);
-        if (!$raw) return $price + $settings['gold_buy_price_diff'];
-        else return $price;
-    }
+        $savings = auth()->user()->savingsWalletBalance();
+        $investment = auth()->user()->investmentWalletBalance();
+        $trading = auth()->user()->tradingWalletBalance();
 
-    public static function fetchGoldSellPriceInNGN($raw = false)
-    {
-        $settings = Setting::all()->first();
-        $price = $settings['gold_to_usd'] * ($settings['usd_to_ngn'] + $settings['sell_rate_plus']);
-        if (!$raw) return $price + $settings['gold_sell_price_diff'];
-        else return $price;
-    }
+        $assets = Trading::where('user_id', auth()->id())->latest()->get();
 
-    public static function fetchSilverSellPriceInNGN($raw = false)
-    {
-        $settings = Setting::all()->first();
-        $price = $settings['silver_to_usd'] * ($settings['usd_to_ngn'] + $settings['sell_rate_plus']);
-        if (!$raw) return $price + $settings['silver_sell_price_diff'];
-        else return $price;
-    }
+        $transactions = auth()->user()->walletsTransactions()->latest()->paginate(6); 
 
-    public static function fetchSilverBuyPriceInNGN($raw = false)
-    {
-        $settings = Setting::all()->first();
-        $price = $settings['silver_to_usd'] * ($settings['usd_to_ngn'] + $settings['buy_rate_plus']);
-        if (!$raw) return $price + $settings['silver_buy_price_diff'];
-        else return $price;
-    }
+        // Calculate the total amount of all trades
+        $totalAmount = $assets->sum(function($asset) {
+            return $asset->amount * $asset->quantity;
+        });
 
-    public static function fetchExchangeRates(): array
-    {
-        $res = Http::withHeaders(['X-API-KEY' => env('GOLD_PRICE_API_KEY')])->get('http://goldpricez.com/api/rates/currency/ngn/measure/gram/metal/all');
-        $res = json_decode(json_decode($res, true), true);
-        return [
-            'gold_to_usd' => $res['ounce_price_usd'] * $res['gram_to_ounce_formula'],
-            'silver_to_usd' => $res['silver_gram_in_usd'],
-            'usd_to_ngn' => $res['usd_to_ngn'],
-            'gram_to_ounce' => $res['gram_to_ounce_formula']
-        ];
-    }
-
-    public function investmentDashboard()
-    {
-        $data = $this->getDashboardData();
-        return view('user.dashboard.investment', [
-            'title' => 'Investment Dashboard', 'transactions' => $data['transactions'],
-            'investments' => $data['investments'],
-            'paidInvestment' => ['reg' => $data['paidInvestment'], 'hf' => $this->formatHumanFriendlyNumber($data['paidInvestment'])],
-            'totalInvestment' => ['reg' => $data['totalInvestment'], 'hf' => $this->formatHumanFriendlyNumber($data['totalInvestment'])],
-        ]);
-    }
-
-    public function tradingDashboard()
-    {
-        $data = $this->getDashboardData();
-        return view('user.dashboard.trading', [
-            'title' => 'Trading Dashboard',
-            'transactions' => $data['transactions'],
-            'tradesBuy' => $data['tradesBuy'],
-            'tradesSell' => $data['tradesSell'],
-            'investments' => $data['investments'],
-            'paidInvestment' => ['reg' => $data['paidInvestment'], 'hf' => $this->formatHumanFriendlyNumber($data['paidInvestment'])],
-            'totalInvestment' => ['reg' => $data['totalInvestment'], 'hf' => $this->formatHumanFriendlyNumber($data['totalInvestment'])],
+        return view('user_.dashboard.index', [
+            'title' => 'Dashboard', 
+            'savings' => $savings,
+            'trading' => $trading,
+            'investment' => $investment,
+            'assets' => $totalAmount,
+            'transactions' => $transactions,
         ]);
     }
 
@@ -102,7 +48,23 @@ class HomeController extends Controller
         }catch (\Exception $exception){
             $banks = [];
         }
-        return view('user.profile.index', ['banks' => $banks, 'title' => 'Profile']);
+
+        $user = auth()->user();
+        $balance = auth()->user()->walletBalance();
+
+        $savings = auth()->user()->savings()->count();
+        $trading = auth()->user()->trades()->count();
+        $investment = auth()->user()->investments()->count();
+        
+        return view('user_.profile.index', [
+            'banks' => $banks, 
+            'title' => 'Profile',
+            'user' => $user,
+            'balance' => $balance,
+            'savings' => $savings,
+            'trading' => $trading,
+            'investment' => $investment,
+        ]);
     }
 
     public function showMarket($product)

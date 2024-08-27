@@ -3,7 +3,7 @@
 <head>
     @include('partials.header')
     @yield('styles')
-    <title>Sandbox</title>
+    <title>{{ env('APP_NAME') }} </title>
 </head>
 <body class="@if(\App\Models\Setting::all()->first()['sidebar'] == 'dark')sidebar-dark @endif">
 <div class="main-wrapper">

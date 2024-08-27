@@ -100,6 +100,21 @@
                     <span class="link-title">My Savings</span>
                 </a>
             </li>
+
+            <li class="nav-item nav-category">Trading</li>
+
+            <li class="nav-item @if(request()->is('savings.create')) active @endif">
+                <a href="{{ route('savings.create') }}" class="nav-link">
+                    <i class="link-icon" data-feather="tag"></i>
+                    <span class="link-title">New Trade</span>
+                </a>
+            </li>
+            <li class="nav-item @if(request()->is('savings')) active @endif">
+                <a href="{{ route('tradings') }}" class="nav-link">
+                    <i class="link-icon" data-feather="layers"></i>
+                    <span class="link-title">My Trades</span>
+                </a>
+            </li>
             {{-- <li class="nav-item @if(request()->is('transactions')) active @endif">
                 <a class="nav-link" data-toggle="collapse" href="#transaction" role="button" aria-expanded="false" aria-controls="transaction">
                     <i class="link-icon" data-feather="command"></i>

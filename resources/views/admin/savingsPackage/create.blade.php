@@ -46,7 +46,7 @@
                                 </strong>
                             @enderror
                         </div>
-                        <div class="form-group">
+                        <!-- <div class="form-group">
                             <label for="duration">Duration</label>
                             <select name="duration" id="duration" style="height: 50px; font-size: 14px" class="form-control" value="{{ old('duration') }}">
                                 <option value="#">Select Duration</option>
@@ -59,8 +59,8 @@
                                     {{ $message }}
                                 </strong>
                             @enderror
-                        </div>
-                        <div class="form-group">
+                        </div> -->
+                        <!-- <div class="form-group">
                             <label for="milestone">Milestone</label>
                             <input type="number" name="milestone" style="height: 50px; font-size: 14px" class="form-control" value="{{ old('milestone') }}" id="milestone" placeholder="Milestone">
                             @error('milestone')
@@ -68,7 +68,7 @@
                                     {{ $message }}
                                 </strong>
                             @enderror
-                        </div>
+                        </div> -->
                         <div class="form-group">
                             <label for="description">Description</label>
                             <textarea name="description" id="description" class="form-control" placeholder="Description" rows="5">{{ old('description') }}</textarea>

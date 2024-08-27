@@ -22,7 +22,7 @@
                     <div class="form-group">
                         <label for="paymentDeposit">Payment Method</label>
                         <select onchange="checkbutton()" name="payment" style="height: 45px; font-size: 14px" class="text-dark" required id="paymentDeposit">
-                            <option value="card">Card</option>
+                            <!-- <option value="card">Card</option> -->
                             <option value="deposit">Bank Transfer / Deposit</option>
                         </select>
                         @error('payment')
@@ -31,11 +31,25 @@
                             </strong>
                         @enderror
                     </div>
+                    <div class="form-group">
+                        <input type="hidden" name="type" value="deposit">
+                        <label for="paymentDeposit">Account Type</label>
+                        <select name="account_type" style="height: 45px; font-size: 14px" class="text-dark" required id="paymentDeposit">
+                            <option value="savings">Savings</option>
+                            <option value="investment">Investments</option>
+                            <option value="trading">Trade</option>
+                        </select>
+                        @error('payment')
+                            <strong class="small text-danger">
+                                {{ $message }}
+                            </strong>
+                        @enderror
+                    </div>
                 </div>
-                <div id="securedByPaystackLogo" class="mx-auto text-center">
+                <div id="securedByPaystackLogo" style="display: none" class="mx-auto text-center">
                     <img src="{{ asset('assets/images/paystack.png') }}" class="img-fluid mb-3" alt="Secured-by-paystack">
                 </div>
-                <div id="bankDetailsForDepositForm" style="display: none" class="alert mx-3 alert-fill-light">
+                <div id="bankDetailsForDepositForm" class="alert mx-3 alert-fill-light">
                     <table>
                         <tr>
                             <td>Bank Name:</td>
