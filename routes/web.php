@@ -28,6 +28,7 @@ Auth::routes(['verify' => true]);
 Route::get('/auth/{provider}/attempt', [App\Http\Controllers\Auth\SocialController::class, 'redirect'])->name('auth.social.attempt');
 Route::get('/login/{provider}/callback', [App\Http\Controllers\Auth\SocialController::class, 'socialLoginAttempt'])->name('auth.social.login.attempt');
 Route::get('/market/{product}/chart', [App\Http\Controllers\HomeController::class, 'showMarket'])->name('market.show');
+Route::get('/getStates/{name}', [App\Http\Controllers\HomeController::class, 'getState'])->name('user.getstate');
 
 Route::group(['middleware' => ['auth', 'unverified']], function (){
     Route::get('/email/verify', [EmailverificationController::class, 'verify'])->name('verification.notice');
@@ -41,9 +42,9 @@ Route::group(['middleware' => ['auth','verified', 'active_user']], function (){
     Route::get('/profile', [App\Http\Controllers\HomeController::class, 'profile'])->name('profile');
     Route::post('/password/custom/update', [App\Http\Controllers\HomeController::class, 'changePassword'])->name('password.custom.update');
     Route::post('/profile/update', [App\Http\Controllers\HomeController::class, 'updateProfile'])->name('profile.update');
-    Route::get('/getStates/{name}', [App\Http\Controllers\HomeController::class, 'getState'])->name('user.getstate');
+    // Route::get('/getStates/{name}', [App\Http\Controllers\HomeController::class, 'getState'])->name('user.getstate');
 
-    Route::group(['middleware' => ['profile_completed']], function (){
+    // Route::group(['middleware' => ['profile_completed']], function (){
         Route::get('/', [App\Http\Controllers\HomeController::class, 'index']);
         Route::get('/dashboard', [App\Http\Controllers\HomeController::class, 'index'])->name('dashboard');
         Route::get('/dashboard/investment', [App\Http\Controllers\HomeController::class, 'investmentDashboard'])->name('dashboard.investment');
@@ -98,5 +99,5 @@ Route::group(['middleware' => ['auth','verified', 'active_user']], function (){
         Route::get('/trade/{stock}/{symbol}', [TradingController::class, 'show'])->name('trade.show');
 
         Route::get('/user/asset', [TradingController::class, 'asset'])->name('assets');
-    });
+    // });
 });

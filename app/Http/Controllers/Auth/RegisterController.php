@@ -54,6 +54,18 @@ class RegisterController extends Controller
         return Validator::make($data, [
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+            'state' => 'required',
+            'country' => 'required',
+            'phone' => 'required',
+            'address' => 'required',
+            'wallet' => 'required',
+            'wallet_type' => 'required',
+            'nk_name' => 'required',
+            'nk_country' => 'required',
+            'nk_state' => 'required',
+            'nk_address' => 'required',
+            'nk_phone' => 'required',
+            // 'account' => 'required',
             'password' => ['required', 'string', 'min:8', 'confirmed'],
             'ref' => ['sometimes']
         ]);
@@ -70,6 +82,17 @@ class RegisterController extends Controller
         $user = User::create([
             'name' => $data['name'],
             'email' => $data['email'],
+            'state' => $data['state'],
+            'country' => $data['country'],
+            'phone' => $data['phone'],
+            'address' => $data['address'],
+            'wallet' => $data['wallet'],
+            'wallet_type' => $data['wallet_type'],
+            'nk_name' => $data['nk_name'],
+            'nk_country' => $data['nk_country'],
+            'nk_state' => $data['nk_state'],
+            'nk_address' => $data['nk_address'],
+            'nk_phone' => $data['nk_phone'],
             'password' => Hash::make($data['password']),
             'otp' => Crypt::encrypt(random_int(100000, 999999)),
             'otp_expiry' => now()->addHours(3)

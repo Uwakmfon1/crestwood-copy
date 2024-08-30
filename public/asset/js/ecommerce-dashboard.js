@@ -170,7 +170,7 @@ var total = {
       enabled: false,
     }
   }
-  var total = new ApexCharts(document.querySelector("#audience-report"), total);
+  var total = new ApexCharts(document.querySelector(".audience-report"), total);
   total.render();
 /* audience report */
 

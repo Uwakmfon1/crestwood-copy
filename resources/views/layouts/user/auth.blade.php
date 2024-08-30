@@ -26,20 +26,63 @@
     <!-- Icons Css -->
     <link href="{{ asset('asset/css/icons.css') }}" rel="stylesheet" >
 
+    <!-- Node Waves Css -->
+    <link href="{{ asset('asset/libs/node-waves/waves.min.css') }}" rel="stylesheet" > 
+
+    <!-- Simplebar Css -->
+    <link href="{{ asset('asset/libs/simplebar/simplebar.min.css') }}" rel="stylesheet" >
+
+    <!-- Color Picker Css -->
+    <link rel="stylesheet" href="{{ asset('asset/libs/flatpickr/flatpickr.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('asset/libs/@simonwep/pickr/themes/nano.min.css') }}">
+
+    <!-- Choices Css -->
+    <link rel="stylesheet" href="{{ asset('asset/libs/choices.js/public/assets/styles/choices.min.css') }}">
+
+    <!-- FlatPickr CSS -->
+    <link rel="stylesheet" href="{{ asset('asset/libs/flatpickr/flatpickr.min.css') }}">
+
+    <!-- Auto Complete CSS -->
+    <link rel="stylesheet" href="{{ asset('asset/libs/@tarekraafat/autocomplete.js/css/autoComplete.css') }}">
+
+
+    <!-- FlatPickr CSS -->
+    <link rel="stylesheet" href="{{ asset('asset/libs/flatpickr/flatpickr.min.css') }}">
+
 
 </head>
 
-<body class="authentication-background">
+<body class="bg-white">
 
 
     @yield('content')
 
+
+   
 
     <!-- Bootstrap JS -->
     <script src="{{ asset('asset/libs/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
 
     <!-- Show Password JS -->
     <script src="{{ asset('asset/js/show-password.js') }}"></script>
+
+    <!-- Custom-Switcher JS -->
+    <script src="{{ asset('asset/js/custom-switcher.min.js') }}"></script>
+
+    <!-- Date & Time Picker JS -->
+    <script src="{{ asset('asset/libs/flatpickr/flatpickr.min.js') }}"></script>
+
+    <!-- Vanilla-Wizard JS -->
+    <script src="{{ asset('asset/libs/vanilla-wizard/js/wizard.min.js') }}"></script>
+
+    <!-- Internal Form Wizard JS -->
+    <script src="{{ asset('asset/js/form-wizard.js') }}"></script>
+    <script src="{{ asset('asset/js/form-wizard-init.js') }}"></script>
+
+    <!-- Custom JS -->
+    <script src="{{ asset('asset/js/custom.js') }}"></script>
+
+    @yield('scripts')
 
 </body>
 
