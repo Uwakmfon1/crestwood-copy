@@ -776,7 +776,7 @@
                                                     <img src="{{ $stock->img }}" alt="" class="invert-1">
                                                 </span>
                                                 <div class="flex-fill lh-1">
-                                                    <span class="mb-1 fs-14 fw-medium">{{ $stock->name }}</span>
+                                                <a href="javascript:void(0);" class="d-block mb-1 fs-14 fw-medium">{{ $stock->name }}</a>
                                                     <span class="d-block fs-12 text-muted">{{ $stock->symbol }}</span>
                                                 </div>
                                             </div>
