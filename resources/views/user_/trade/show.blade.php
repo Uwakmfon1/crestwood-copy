@@ -25,7 +25,7 @@
     @include('partials.users.alert')
 
         <!-- TradingView Widget BEGIN -->
-        <div class="tradingview-widget-container mb-4">
+        <div class="tradingview-widget-container mb-2 mt-2">
             <div class="tradingview-widget-container__widget"></div>
             <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-symbol-info.js" async>
             {
@@ -33,7 +33,7 @@
                 "width": "100%",
                 "locale": "en",
                 "colorTheme": "light",
-                "isTransparent": true
+                "isTransparent": false
             }
             </script>
         </div>
@@ -83,27 +83,28 @@
 
             <div class="col-lg-4 col-md-12">
                 <div>
-                    <div class="row">
-                        {{-- <div class="input-group mb-3">
-                            <button type="button" class="input-group-text btn btn-primary-light btn-wave decrement-btn" style="border-radius: 20px 0 0 20px;">&lt;</button>
-                            <input type="number" name="quantity" step="0.001" class="form-control text-center quantity-input" id="quantity-input" placeholder="Enter Quantity..." aria-label="Stock Quantity" value="0.001" min="0.001" data-price="{{ $stock->price }}" required>
-                            <button type="button" class="input-group-text btn btn-primary-light btn-wave increment-btn" style="border-radius: 0 20px 20px 0;">&gt;</button>
-                        </div> --}}
-
-                        <div class="col-6">
-                            <button class="btn btn-wave btn-md btn-success w-100" data-bs-toggle="modal" data-bs-target="#exampleModalBuy" type="submit">
-                                BUY <i class="ri-arrow-right-line align-middle"></i>
-                            </button>
-                        </div>
-                        <div class="col-6">
-                            <button class="btn btn-wave btn-md btn-danger w-100" data-bs-toggle="modal" data-bs-target="#exampleModalSell" type="submit">
-                                SELL <i class="ri-arrow-right-line align-middle"></i>
-                            </button>
+                    <div class="card custom-card px-4 py-2">
+                        <div class="row">
+                            {{-- <div class="input-group mb-3">
+                                <button type="button" class="input-group-text btn btn-primary-light btn-wave decrement-btn" style="border-radius: 20px 0 0 20px;">&lt;</button>
+                                <input type="number" name="quantity" step="0.001" class="form-control text-center quantity-input" id="quantity-input" placeholder="Enter Quantity..." aria-label="Stock Quantity" value="0.001" min="0.001" data-price="{{ $stock->price }}" required>
+                                <button type="button" class="input-group-text btn btn-primary-light btn-wave increment-btn" style="border-radius: 0 20px 20px 0;">&gt;</button>
+                            </div> --}}
+                            <div class="col-6">
+                                <button class="btn btn-wave btn-md btn-success w-100" data-bs-toggle="modal" data-bs-target="#exampleModalBuy" type="submit">
+                                    BUY <i class="ri-arrow-right-line align-middle"></i>
+                                </button>
+                            </div>
+                            <div class="col-6">
+                                <button class="btn btn-wave btn-md btn-danger w-100" data-bs-toggle="modal" data-bs-target="#exampleModalSell" type="submit">
+                                    SELL <i class="ri-arrow-right-line align-middle"></i>
+                                </button>
+                            </div>
                         </div>
                     </div>
 
                     <!-- TradingView Financials Widget BEGIN -->
-                    <div class="tradingview-widget-container mt-4">
+                    <div class="tradingview-widget-container">
                         <div class="tradingview-widget-container__widget"></div>
                         <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-financials.js" async>
                         {
