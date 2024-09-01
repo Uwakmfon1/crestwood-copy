@@ -51,3 +51,54 @@
         </div>
     </div>
 @endsection
+
+
+
+
+
+
+
+<div class="row gy-3">
+                                <div class="col-xl-12">
+                                    <label for="name" class="form-label text-default">Name</label>
+                                    <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus placeholder="Enter name...">
+                                    @error('name')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
+                                </div>
+                                <div class="col-xl-12">
+                                    <label for="email" class="form-label text-default">Email address</label>
+                                    <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus placeholder="Enter email...">
+                                    @error('email')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
+                                </div>
+                                <div class="col-xl-12">
+                                    <label for="signup-password" class="form-label text-default">Password</label>
+                                    <div class="input-group">
+                                        <input type="password" class="form-control @error('password') is-invalid @enderror" name="password" id="signup-password" placeholder="Enter Password...">
+                                        <a href="javascript:void(0);" class="input-group-text text-muted" onclick="createpassword('signup-password',this)"><i class="ri-eye-off-line align-middle"></i></a>
+                                    </div>
+                                    @error('password')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
+                                </div>
+                                <div class="col-xl-12">
+                                    <div class="form-group">
+                                        <label for="password-confirm" class="form-label text-default">Confirm Password</label>
+                                        <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password" placeholder="Confirm Password...">
+                                    </div>
+                                </div>
+                                <div class="col-xl-12">
+                                    <div class="form-group">
+                                        <label for="ref" class="form-label text-default">Referral Code</label>
+                                        <input id="ref" type="text" value="{{ request('ref') ?? old('ref') }}" class="form-control" name="ref" placeholder="(optional)">
+                                    </div>
+                                </div>
+                            </div>

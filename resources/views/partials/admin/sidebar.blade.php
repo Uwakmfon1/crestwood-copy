@@ -8,7 +8,7 @@
 <nav class="sidebar">
     <div class="sidebar-header">
         <a href="{{ route('admin.dashboard') }}" class="sidebar-brand mx-auto">
-            <img src="{{ asset('assets/images/logos/sandbox-dashboard-logo-large.png') }}" width="150px" class="img-fluid" alt="Logo">
+            {{-- <img src="{{ asset('assets/images/logos/sandbox-dashboard-logo-large.png') }}" width="150px" class="img-fluid" alt="Logo"> --}}
         </a>
         <div class="sidebar-toggler not-active">
             <span></span>

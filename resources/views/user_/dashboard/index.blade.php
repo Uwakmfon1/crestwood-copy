@@ -115,7 +115,7 @@
                                     </div>
                                     <div class="mt-3">
                                         <h4 class="fw-semibold mb-1">&#36;{{ number_format($investment, 2) }}</h4>
-                                        <span class="text-muted fs-12">Investment Balance<span class="text-success ms-2 d-inline-block">0.45%<i class="ti ti-arrow-narrow-up"></i></span></span>
+                                        <span class="text-muted fs-12">Investment Balance<span class="text-danger ms-2 d-inline-block">-1.32%<i class="ti ti-arrow-narrow-down"></i></span></span>
 
                                     </div>
                                 </div>
@@ -152,7 +152,7 @@
                         <div class="card custom-card">
                             <div class="card-header justify-content-between">
                                 <div class="card-title">
-                                    Order Status
+                                    Activity Stats
                                 </div>
                                 <div class="dropdown">
                                     <a href="javascript:void(0);" class="p-2 fs-12 text-muted"
@@ -457,7 +457,7 @@
         <!-- End:: row-1 -->
 
         <div class="row">
-            <div class="col-xxl-9">
+            <div class="col-xxl-9" style="height: 620px;">
                 <!-- TradingView Widget BEGIN -->
                 <div class="tradingview-widget-container">
                     <div class="tradingview-widget-container__widget"></div>
@@ -668,6 +668,375 @@
                             </div>
                         </div>
                     </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-xl-12">
+                <div class="card card-bg-primary reviews-container">
+                    <div class="card-header">
+                        <div class="card-title">
+                            Market News
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <div class="swiper pagination-dynamic testimonialSwiperService swiper-initialized swiper-horizontal swiper-backface-hidden">
+                            <div class="swiper-wrapper" id="swiper-wrapper-7e2c2dd51d54262a" aria-live="off" style="transition-duration: 0ms; transform: translate3d(-1146px, 0px, 0px); transition-delay: 0ms;">
+                                
+                                
+                                
+                                
+                                
+                                
+                            <div class="swiper-slide" role="group" aria-label="5 / 6" style="width: 352px; margin-right: 30px;" data-swiper-slide-index="4">
+                                    <div class="card text-fixed-white border-0">
+                                        <div class="card-body">
+                                            <div class="d-flex align-items-center mb-3">
+                                                <span class="avatar rounded-circle me-2">
+                                                    <img src="../assets/images/faces/1.jpg" alt="" class="img-fluid rounded-circle">
+                                                </span>
+                                                <div>
+                                                    <p class="mb-0 fw-semibold fs-14">Ethan Brown</p>
+                                                    <p class="mb-0 fs-11 fw-normal op-8">
+                                                        ethanbrown345@gmail.com</p>
+                                                </div>
+                                            </div>
+                                            <div class="mb-3">
+                                                <span class="op-8">- Lorem ipsum dolor sit amet consectetur
+                                                    adipisicing elit. Earum autem quaerat distinctio -- <a href="javascript:void(0);" class="fw-semibold fs-11 text-fixed-white" data-bs-toggle="tooltip" data-bs-custom-class="tooltip-dark" data-bs-placement="top" data-bs-title="Lorem ipsum dolor sit amet consectetur adipisicing elit. Earum autem quaerat distinctio">Read
+                                                        More</a></span>
+                                            </div>
+                                            <div class="d-flex align-items-center justify-content-between flex-wrap gap-2">
+                                                <div class="d-flex align-items-center">
+                                                    <span class="op-8">Rating : </span>
+                                                    <span class="text-warning d-block ms-1">
+                                                        <i class="ri-star-fill"></i>
+                                                        <i class="ri-star-fill"></i>
+                                                        <i class="ri-star-fill"></i>
+                                                        <i class="ri-star-fill"></i>
+                                                        <i class="ri-star-half-line"></i>
+                                                    </span>
+                                                </div>
+                                                <div class="float-end fs-12 fw-semibold op-8 text-end">
+                                                    <span>16 days ago</span>
+                                                    <span class="d-block fs-12 text-success"><i>Ethan
+                                                            Brown</i></span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div><div class="swiper-slide" role="group" aria-label="6 / 6" style="width: 352px; margin-right: 30px;" data-swiper-slide-index="5">
+                                    <div class="card text-fixed-white border-0">
+                                        <div class="card-body">
+                                            <div class="d-flex align-items-center mb-3">
+                                                <span class="avatar rounded-circle me-2">
+                                                    <img src="../assets/images/faces/5.jpg" alt="" class="img-fluid rounded-circle">
+                                                </span>
+                                                <div>
+                                                    <p class="mb-0 fw-semibold fs-14">Lily Baker</p>
+                                                    <p class="mb-0 fs-11 fw-normal op-8">lilybaker21@gmail.com
+                                                    </p>
+                                                </div>
+                                            </div>
+                                            <div class="mb-3">
+                                                <span class="op-8">- Lorem ipsum dolor sit amet consectetur
+                                                    adipisicing elit. Earum autem quaerat distinctio -- <a href="javascript:void(0);" class="fw-semibold fs-11 text-fixed-white" data-bs-toggle="tooltip" data-bs-custom-class="tooltip-dark" data-bs-placement="top" data-bs-title="Lorem ipsum dolor sit amet consectetur adipisicing elit. Earum autem quaerat distinctio">Read
+                                                        More</a></span>
+                                            </div>
+                                            <div class="d-flex align-items-center justify-content-between flex-wrap gap-2">
+                                                <div class="d-flex align-items-center">
+                                                    <span class="op-8">Rating : </span>
+                                                    <span class="text-warning d-block ms-1">
+                                                        <i class="ri-star-fill"></i>
+                                                        <i class="ri-star-fill"></i>
+                                                        <i class="ri-star-fill"></i>
+                                                        <i class="ri-star-fill"></i>
+                                                        <i class="ri-star-half-line"></i>
+                                                    </span>
+                                                </div>
+                                                <div class="float-end fs-12 fw-semibold op-8 text-end">
+                                                    <span>1 month ago</span>
+                                                    <span class="d-block fs-12 text-success"><i>Lily
+                                                            Baker</i></span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div><div class="swiper-slide swiper-slide-prev" role="group" aria-label="1 / 6" style="width: 352px; margin-right: 30px;" data-swiper-slide-index="0">
+                                    <div class="card text-fixed-white border-0">
+                                        <div class="card-body">
+                                            <div class="d-flex align-items-center mb-3">
+                                                <span class="avatar rounded-circle me-2">
+                                                    <img src="../assets/images/faces/3.jpg" alt="" class="img-fluid rounded-circle">
+                                                </span>
+                                                <div>
+                                                    <p class="mb-0 fw-semibold fs-14">Juniper Cruz</p>
+                                                    <p class="mb-0 fs-11 fw-normal op-8">junipercriz12@gmail.com
+                                                    </p>
+                                                </div>
+                                            </div>
+                                            <div class="mb-3">
+                                                <span class="op-8">- Lorem ipsum dolor sit amet consectetur
+                                                    adipisicing elit. Earum autem quaerat distinctio -- <a href="javascript:void(0);" class="fw-semibold fs-11 text-fixed-white" data-bs-toggle="tooltip" data-bs-custom-class="tooltip-dark" data-bs-placement="top" data-bs-title="Lorem ipsum dolor sit amet consectetur adipisicing elit. Earum autem quaerat distinctio">Read
+                                                        More</a></span>
+                                            </div>
+                                            <div class="d-flex align-items-center justify-content-between flex-wrap gap-2">
+                                                <div class="d-flex align-items-center">
+                                                    <span class="op-8">Rating : </span>
+                                                    <span class="text-warning d-block ms-1">
+                                                        <i class="ri-star-fill"></i>
+                                                        <i class="ri-star-fill"></i>
+                                                        <i class="ri-star-fill"></i>
+                                                        <i class="ri-star-fill"></i>
+                                                        <i class="ri-star-half-line"></i>
+                                                    </span>
+                                                </div>
+                                                <div class="float-end fs-12 fw-semibold op-8 text-end">
+                                                    <span>12 days ago</span>
+                                                    <span class="d-block fs-12 text-success"><i>Charlotte
+                                                            Martinez</i></span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div><div class="swiper-slide swiper-slide-active" role="group" aria-label="2 / 6" style="width: 352px; margin-right: 30px;" data-swiper-slide-index="1">
+                                    <div class="card text-fixed-white border-0">
+                                        <div class="card-body">
+                                            <div class="d-flex align-items-center mb-3">
+                                                <span class="avatar rounded-circle me-2">
+                                                    <img src="../assets/images/faces/9.jpg" alt="" class="img-fluid rounded-circle">
+                                                </span>
+                                                <div>
+                                                    <p class="mb-0 fw-semibold fs-14">Caleb Brooks</p>
+                                                    <p class="mb-0 fs-11 fw-normal op-8">calebbrooks@gmail.com
+                                                    </p>
+                                                </div>
+                                            </div>
+                                            <div class="mb-3">
+                                                <span class="op-8">- Lorem ipsum dolor sit amet consectetur
+                                                    adipisicing elit. Earum autem quaerat distinctio -- <a href="javascript:void(0);" class="fw-semibold fs-11 text-fixed-white" data-bs-toggle="tooltip" data-bs-custom-class="tooltip-dark" data-bs-placement="top" data-bs-title="Lorem ipsum dolor sit amet consectetur adipisicing elit. Earum autem quaerat distinctio">Read
+                                                        More</a></span>
+                                            </div>
+                                            <div class="d-flex align-items-center justify-content-between flex-wrap gap-2">
+                                                <div class="d-flex align-items-center">
+                                                    <span class="op-8">Rating : </span>
+                                                    <span class="text-warning d-block ms-1">
+                                                        <i class="ri-star-fill"></i>
+                                                        <i class="ri-star-fill"></i>
+                                                        <i class="ri-star-fill"></i>
+                                                        <i class="ri-star-fill"></i>
+                                                        <i class="ri-star-half-fill"></i>
+                                                    </span>
+                                                </div>
+                                                <div class="float-end fs-12 fw-semibold op-8 text-end">
+                                                    <span>9 days ago</span>
+                                                    <span class="d-block fs-12 text-success"><i>Charlotte
+                                                            Martinez</i></span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div><div class="swiper-slide swiper-slide-next" role="group" aria-label="3 / 6" style="width: 352px; margin-right: 30px;" data-swiper-slide-index="2">
+                                    <div class="card text-fixed-white border-0">
+                                        <div class="card-body">
+                                            <div class="d-flex align-items-center mb-3">
+                                                <span class="avatar rounded-circle me-2">
+                                                    <img src="../assets/images/faces/8.jpg" alt="" class="img-fluid rounded-circle">
+                                                </span>
+                                                <div>
+                                                    <p class="mb-0 fw-semibold fs-14">Barina Silva</p>
+                                                    <p class="mb-0 fs-11 fw-normal op-8">
+                                                        barinasilva212@gmail.com</p>
+                                                </div>
+                                            </div>
+                                            <div class="mb-3">
+                                                <span class="op-8">- Lorem ipsum dolor sit amet consectetur
+                                                    adipisicing elit. Earum autem quaerat distinctio -- <a href="javascript:void(0);" class="fw-semibold fs-11 text-fixed-white" data-bs-toggle="tooltip" data-bs-custom-class="tooltip-dark" data-bs-placement="top" data-bs-title="Lorem ipsum dolor sit amet consectetur adipisicing elit. Earum autem quaerat distinctio">Read
+                                                        More</a></span>
+                                            </div>
+                                            <div class="d-flex align-items-center justify-content-between flex-wrap gap-2">
+                                                <div class="d-flex align-items-center">
+                                                    <span class="op-8">Rating : </span>
+                                                    <span class="text-warning d-block ms-1">
+                                                        <i class="ri-star-fill"></i>
+                                                        <i class="ri-star-fill"></i>
+                                                        <i class="ri-star-fill"></i>
+                                                        <i class="ri-star-fill"></i>
+                                                        <i class="ri-star-half-line"></i>
+                                                    </span>
+                                                </div>
+                                                <div class="float-end fs-12 fw-semibold op-8 text-end">
+                                                    <span>6 days ago</span>
+                                                    <span class="d-block fs-12 text-success"><i>Barina
+                                                            Silva</i></span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div><div class="swiper-slide" role="group" aria-label="4 / 6" style="width: 352px; margin-right: 30px;" data-swiper-slide-index="3">
+                                    <div class="card text-fixed-white border-0">
+                                        <div class="card-body">
+                                            <div class="d-flex align-items-center mb-3">
+                                                <span class="avatar rounded-circle me-2">
+                                                    <img src="../assets/images/faces/10.jpg" alt="" class="img-fluid rounded-circle">
+                                                </span>
+                                                <div>
+                                                    <p class="mb-0 fw-semibold fs-14">Lucas Tope</p>
+                                                    <p class="mb-0 fs-11 fw-normal op-8">lucastope1999@gmail.com
+                                                    </p>
+                                                </div>
+                                            </div>
+                                            <div class="mb-3">
+                                                <span class="op-8">- Lorem ipsum dolor sit amet consectetur
+                                                    adipisicing elit. Earum autem quaerat distinctio -- <a href="javascript:void(0);" class="fw-semibold fs-11 text-fixed-white" data-bs-toggle="tooltip" data-bs-custom-class="tooltip-dark" data-bs-placement="top" data-bs-title="Lorem ipsum dolor sit amet consectetur adipisicing elit. Earum autem quaerat distinctio">Read
+                                                        More</a></span>
+                                            </div>
+                                            <div class="d-flex align-items-center justify-content-between flex-wrap gap-2">
+                                                <div class="d-flex align-items-center">
+                                                    <span class="op-8">Rating : </span>
+                                                    <span class="text-warning d-block ms-1">
+                                                        <i class="ri-star-fill"></i>
+                                                        <i class="ri-star-fill"></i>
+                                                        <i class="ri-star-fill"></i>
+                                                        <i class="ri-star-fill"></i>
+                                                        <i class="ri-star-half-line"></i>
+                                                    </span>
+                                                </div>
+                                                <div class="float-end fs-12 fw-semibold op-8 text-end">
+                                                    <span>10 days ago</span>
+                                                    <span class="d-block fs-12 text-success"><i>Lucas
+                                                            Tope</i></span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div></div>
+                            <div class="swiper-pagination swiper-pagination-clickable swiper-pagination-bullets swiper-pagination-horizontal swiper-pagination-bullets-dynamic" style="width: 140px;"><span class="swiper-pagination-bullet swiper-pagination-bullet-active-prev" tabindex="0" role="button" aria-label="Go to slide 1" style="left: 28px;"></span><span class="swiper-pagination-bullet swiper-pagination-bullet-active swiper-pagination-bullet-active-main" tabindex="0" role="button" aria-label="Go to slide 2" aria-current="true" style="left: 28px;"></span><span class="swiper-pagination-bullet swiper-pagination-bullet-active-next" tabindex="0" role="button" aria-label="Go to slide 3" style="left: 28px;"></span><span class="swiper-pagination-bullet swiper-pagination-bullet-active-next-next" tabindex="0" role="button" aria-label="Go to slide 4" style="left: 28px;"></span><span class="swiper-pagination-bullet" tabindex="0" role="button" aria-label="Go to slide 5" style="left: 28px;"></span><span class="swiper-pagination-bullet" tabindex="0" role="button" aria-label="Go to slide 6" style="left: 28px;"></span></div>
+                        <span class="swiper-notification" aria-live="assertive" aria-atomic="true"></span></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-xxl-12" style="height: 550px;">
+                <div class="tradingview-widget-container">
+                    <div class="tradingview-widget-container__widget"></div>
+                    <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-market-quotes.js" async>
+                        {
+                            "width": "100%",
+                            "height": "95%",
+                            "symbolsGroups": [
+                                {
+                                    "name": "Crestwood Stock",
+                                    "symbols": [
+                                        {
+                                            "name": "NASDAQ:AAPL",
+                                            "displayName": "Apple Inc."
+                                        },
+                                        {
+                                            "name": "NASDAQ:MSFT",
+                                            "displayName": "Microsoft Corporation"
+                                        },
+                                        {
+                                            "name": "NASDAQ:GOOG",
+                                            "displayName": "Alphabet Inc. (Google)"
+                                        },
+                                        {
+                                            "name": "NASDAQ:AMZN",
+                                            "displayName": "Amazon.com, Inc."
+                                        },
+                                        {
+                                            "name": "NASDAQ:TSLA",
+                                            "displayName": "Tesla, Inc."
+                                        },
+                                        {
+                                            "name": "NASDAQ:NVDA",
+                                            "displayName": "NVIDIA Corporation"
+                                        },
+                                        {
+                                            "name": "NASDAQ:META",
+                                            "displayName": "Meta Platforms, Inc."
+                                        },
+                                        {
+                                            "name": "NYSE:BRK.B",
+                                            "displayName": "Berkshire Hathaway Inc."
+                                        },
+                                        {
+                                            "name": "NASDAQ:CRWD",
+                                            "displayName": "CrowdStrike Holdings, Inc."
+                                        },
+                                        {
+                                            "name": "NYSE:TSM",
+                                            "displayName": "Taiwan Semiconductor Manufacturing Company Limited"
+                                        },
+                                        {
+                                            "name": "NASDAQ:AMD",
+                                            "displayName": "Advanced Micro Devices, Inc."
+                                        },
+                                        {
+                                            "name": "NASDAQ:SOFI",
+                                            "displayName": "SoFi Technologies, Inc."
+                                        },
+                                        {
+                                            "name": "NYSE:NKE",
+                                            "displayName": "Nike, Inc."
+                                        },
+                                        {
+                                            "name": "NYSE:V",
+                                            "displayName": "Visa Inc."
+                                        },
+                                        {
+                                            "name": "NYSE:JPM",
+                                            "displayName": "JPMorgan Chase & Co."
+                                        },
+                                        {
+                                            "name": "NASDAQ:ARM",
+                                            "displayName": "Arm Holdings plc"
+                                        },
+                                        {
+                                            "name": "NASDAQ:PYPL",
+                                            "displayName": "PayPal Holdings, Inc."
+                                        },
+                                        {
+                                            "name": "NASDAQ:INTC",
+                                            "displayName": "Intel Corporation"
+                                        },
+                                        {
+                                            "name": "NASDAQ:ADBE",
+                                            "displayName": "Adobe Inc."
+                                        },
+                                        {
+                                            "name": "NASDAQ:CSCO",
+                                            "displayName": "Cisco Systems, Inc."
+                                        },
+                                        {
+                                            "name": "NASDAQ:SBUX",
+                                            "displayName": "Starbucks Corporation"
+                                        },
+                                        {
+                                            "name": "NASDAQ:QCOM",
+                                            "displayName": "Qualcomm Incorporated"
+                                        },
+                                        {
+                                            "name": "NYSE:BABA",
+                                            "displayName": "Alibaba Group Holding Limited"
+                                        },
+                                        {
+                                            "name": "NASDAQ:ORCL",
+                                            "displayName": "Oracle Corporation"
+                                        }
+                                    ]
+                                }
+                            ],
+                            "showSymbolLogo": true,
+                            "isTransparent": false,
+                            "colorTheme": "light",
+                            "locale": "en",
+                            "backgroundColor": "#ffffff"
+                        }
+                    </script>
                 </div>
             </div>
         </div>

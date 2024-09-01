@@ -2,14 +2,15 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Controllers\Controller;
-use App\Http\Controllers\NotificationController;
-use App\Http\Controllers\TransactionController;
-use App\Models\Investment;
-use App\Models\Package;
 use App\Models\User;
+use App\Models\Package;
+use App\Models\Investment;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
+use App\Http\Controllers\TransactionController;
+use App\Http\Controllers\NotificationController;
 
 class InvestmentController extends Controller
 {
@@ -79,12 +80,13 @@ class InvestmentController extends Controller
 
     public function fetchInvestmentsWithAjax(Request $request, $type)
     {
-        //        Define all column names
+        // Define all column names
         $columns = [
             'id', 'name', 'package', 'slots', 'total_invested', 'expected_returns', 'return_date', 'status', 'action'
         ];
-//        Find data based on page
-        switch ($type){
+
+        // Determine the query based on the type parameter
+        switch ($type) {
             case 'active':
                 $investments = Investment::query()->latest()->where('status', 'active');
                 break;
@@ -98,99 +100,117 @@ class InvestmentController extends Controller
                 $investments = Investment::query()->latest()->where('status', 'settled');
                 break;
             case 'packages':
-                $investments = Investment::query()->latest()->whereHas('package',function ($q) use ($request) { $q->where('id', $request['package']); });
+                $packageId = $request->input('package');
+                $investments = Investment::query()->latest()->whereHas('package', function ($q) use ($packageId) {
+                    $q->where('id', $packageId);
+                });
                 break;
             default:
                 $investments = Investment::query()->latest();
-
         }
-//        Set helper variables from request and DB
+
+        // Set helper variables from request and DB
         $totalData = $totalFiltered = $investments->count();
-        $limit = $request['length'];
-        $start = $request['start'];
-        $order = $columns[$request['order.0.column']];
-        $dir = $request['order.0.dir'];
-        $search = $request['search.value'];
-//        Check if request wants to search or not and fetch data
-        if(empty($search))
-        {
+        $limit = $request->input('length');
+        $start = $request->input('start');
+        $orderColumnIndex = $request->input('order.0.column');
+        $orderDirection = $request->input('order.0.dir');
+        $searchValue = $request->input('search.value');
+
+        $orderColumn = $columns[$orderColumnIndex] ?? 'id';
+
+        // Apply search filtering if necessary
+        if (empty($searchValue)) {
             $investments = $investments->offset($start)
                 ->limit($limit)
-                ->orderBy($order,$dir)
+                ->orderBy($orderColumn, $orderDirection)
                 ->get();
-        }
-        else {
-            $investments = $investments->whereHas('user',function ($q) use ($search) { $q->where('name', 'LIKE',"%{$search}%"); })
-                ->orWhereHas('package',function ($q) use ($search) { $q->where('name', 'LIKE',"%{$search}%"); })
-                ->orWhere('slots', 'LIKE',"%{$search}%")
-                ->orWhere('status', 'LIKE',"%{$search}%")
-                ->orWhere('total_return', 'LIKE',"%{$search}%")
-                ->orWhere('amount', 'LIKE',"%{$search}%");
+        } else {
+            $investments = $investments->where(function ($query) use ($searchValue) {
+                $query->whereHas('user', function ($q) use ($searchValue) {
+                    $q->where('name', 'LIKE', "%{$searchValue}%");
+                })
+                ->orWhereHas('package', function ($q) use ($searchValue) {
+                    $q->where('name', 'LIKE', "%{$searchValue}%");
+                })
+                ->orWhere('slots', 'LIKE', "%{$searchValue}%")
+                ->orWhere('status', 'LIKE', "%{$searchValue}%")
+                ->orWhere('total_return', 'LIKE', "%{$searchValue}%")
+                ->orWhere('amount', 'LIKE', "%{$searchValue}%");
+            });
             $totalFiltered = $investments->count();
             $investments = $investments->offset($start)
                 ->limit($limit)
-                ->orderBy($order,$dir)
+                ->orderBy($orderColumn, $orderDirection)
                 ->get();
         }
-//        Loop through all data and mutate data
+
+        // Prepare data for DataTable
         $data = [];
         $i = $start + 1;
-        foreach ($investments as $investment)
-        {
+        foreach ($investments as $investment) {
             $status = $action = null;
-            if($investment['status'] == 'active'){
-                $status = '<span class="badge badge-pill badge-success">Active</span>';
-            }elseif ($investment['status'] == 'pending'){
-                $status = '<span class="badge badge-pill badge-warning">Pending</span>';
-                $action .= '<a class="dropdown-item d-flex align-items-center" onclick="event.preventDefault(); confirmFormSubmit(\'transactionApprove'.$investment['id'].'\')" href="'.route('admin.transactions.approve', $investment['transaction']['id']).'"><i style="font-size: 13px" class="icon-sm text-secondary fa fa-check mr-2"></i> <span class="">Approve</span></a>
-                           <form id="transactionApprove'.$investment['id'].'" action="'.route('admin.transactions.approve', $investment['transaction']['id']).'" method="POST">
-                               <input type="hidden" name="_token" value="'.csrf_token().'">
-                               <input type="hidden" name="_method" value="PUT">
-                           </form>';
-                $action .= '<a class="dropdown-item d-flex align-items-center" onclick="event.preventDefault(); confirmFormSubmit(\'transactionDecline'.$investment['id'].'\')" href="'.route('admin.transactions.decline', $investment['transaction']['id']).'"><i style="font-size: 13px" class="icon-sm text-secondary fa fa-times mr-2"></i> <span class="">Decline</span></a>
-                           <form id="transactionDecline'.$investment['id'].'" action="'.route('admin.transactions.decline', $investment['transaction']['id']).'" method="POST">
-                               <input type="hidden" name="_token" value="'.csrf_token().'">
-                               <input type="hidden" name="_method" value="PUT">
-                           </form>';
-                if (!auth()->user()->can('Approve Transactions') && !auth()->user()->can('Decline Transactions')){
-                    $action = null;
-                }
-            }elseif ($investment['status'] == 'cancelled'){
-                $status = '<span class="badge badge-pill badge-danger">Cancelled</span>';
-            }elseif ($investment['status'] == 'settled'){
-                $status = '<span class="badge badge-pill badge-secondary">Settled</span>';
+            $user = $investment->user;
+            $package = $investment->package;
+
+            // Status badge
+            switch ($investment->status) {
+                case 'active':
+                    $status = '<span class="badge badge-pill badge-success">Active</span>';
+                    break;
+                case 'pending':
+                    $status = '<span class="badge badge-pill badge-warning">Pending</span>';
+                    if (Auth::user()->can('Approve Transactions') || Auth::user()->can('Decline Transactions')) {
+                        $transactionId = optional($investment->transaction)->id;
+                        $action = '<a class="dropdown-item d-flex align-items-center" onclick="event.preventDefault(); confirmFormSubmit(\'transactionApprove'.$investment->id.'\')" href="'.route('admin.transactions.approve', $transactionId).'"><i style="font-size: 13px" class="icon-sm text-secondary fa fa-check mr-2"></i> <span class="">Approve</span></a>
+                                    <form id="transactionApprove'.$investment->id.'" action="'.route('admin.transactions.approve', $transactionId).'" method="POST">
+                                        <input type="hidden" name="_token" value="'.csrf_token().'">
+                                        <input type="hidden" name="_method" value="PUT">
+                                    </form>
+                                    <a class="dropdown-item d-flex align-items-center" onclick="event.preventDefault(); confirmFormSubmit(\'transactionDecline'.$investment->id.'\')" href="'.route('admin.transactions.decline', $transactionId).'"><i style="font-size: 13px" class="icon-sm text-secondary fa fa-times mr-2"></i> <span class="">Decline</span></a>
+                                    <form id="transactionDecline'.$investment->id.'" action="'.route('admin.transactions.decline', $transactionId).'" method="POST">
+                                        <input type="hidden" name="_token" value="'.csrf_token().'">
+                                        <input type="hidden" name="_method" value="PUT">
+                                    </form>';
+                    }
+                    break;
+                case 'cancelled':
+                    $status = '<span class="badge badge-pill badge-danger">Cancelled</span>';
+                    break;
+                case 'settled':
+                    $status = '<span class="badge badge-pill badge-secondary">Settled</span>';
+                    break;
             }
-            $datum['sn'] = $i;
-            if (auth()->user()->can('View Users')){
-                $datum['name'] = '<a href="'.route('admin.users.show', $investment->user['id']).'">'.ucwords($investment->user['name']).'</a>';
-            }else{
-                $datum['name'] = ucwords($investment->user['name']);
-            }
-            $datum['package'] = $investment->package['name'];
-            $datum['slots'] = $investment['slots'];
-            $datum['total_invested'] = '₦ '.number_format($investment['amount']);
-            $datum['expected_returns'] = '₦ '.number_format($investment['total_return']);
-            $datum['return_date'] = $investment->return_date->format('M d, Y');
-            $datum['status'] = $status;
-            $datum['action'] = '<div class="dropdown">
-                                        <button class="btn btn-sm btn-primary" type="button" id="dropdownMenuButton3" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                            Action <i class="icon-lg fa fa-angle-down"></i>
-                                        </button>
-                                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton3">
-                                            <a class="dropdown-item d-flex align-items-center" href="'.route('admin.investments.show', $investment['id']).'"><i style="font-size: 13px" class="icon-sm text-secondary fa fa-eye mr-2"></i> <span class="">View</span></a>'.
-                                            $action.'
-                                        </div>
-                                    </div>';
-            $data[] = $datum;
+
+            $data[] = [
+                'sn' => $i,
+                'name' => Auth::user()->can('View Users') && $user ? '<a href="'.route('admin.users.show', $user->id).'">'.ucwords($user->name).'</a>' : 'Deleted Account',
+                'package' => optional($package)->name,
+                'slots' => $investment->slots,
+                'total_invested' => '$ ' . number_format($investment->amount),
+                'expected_returns' => '$ ' . number_format($investment->total_return),
+                'return_date' => $investment->return_date->format('M d, Y'),
+                'status' => $status,
+                'action' => '<div class="dropdown">
+                                <button class="btn btn-sm btn-primary" type="button" id="dropdownMenuButton3" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    Action <i class="icon-lg fa fa-angle-down"></i>
+                                </button>
+                                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton3">
+                                    <a class="dropdown-item d-flex align-items-center" href="'.route('admin.investments.show', $investment->id).'"><i style="font-size: 13px" class="icon-sm text-secondary fa fa-eye mr-2"></i> <span class="">View</span></a>'.
+                                    $action.'
+                                </div>
+                            </div>',
+            ];
             $i++;
         }
-//      Ready results for datatable
-        $res = array(
-            "draw"            => intval($request->input('draw')),
-            "recordsTotal"    => intval($totalData),
+
+        // Return results for DataTables
+        return response()->json([
+            "draw" => intval($request->input('draw')),
+            "recordsTotal" => intval($totalData),
             "recordsFiltered" => intval($totalFiltered),
-            "data"            => $data
-        );
-        echo json_encode($res);
+            "data" => $data
+        ]);
     }
+
 }
