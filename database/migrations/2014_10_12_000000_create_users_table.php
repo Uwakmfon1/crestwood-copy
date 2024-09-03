@@ -15,19 +15,31 @@ class CreateUsersTable extends Migration
     {
         Schema::create('users', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
+            $table->string('first_name');
+            $table->string('last_name');
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
+            $table->foreignId('account_id');
+            $table->foreignId('wallet_id');
             $table->string('phone');
             $table->string('state');
             $table->string('country');
+            $table->string('postal_code');
+            $table->string('location');
             $table->text('address');
+            $table->string('bank_name')->nullable();
+            $table->string('account_number')->nullable();
+            $table->string('account_name')->nullable();
+            $table->string('account_info')->nullable();
+            $table->string('wallet_asset')->nullable();
+            $table->string('wallet_network')->nullable();
+            $table->string('wallet_address')->nullable();
             $table->text('identification')->nullable();
             $table->text('avatar')->nullable();
-            $table->string('wallet')->nullable();
-            $table->string('wallet_type')->nullable();
             $table->string('nk_name')->nullable();
             $table->string('nk_phone')->nullable();
+            $table->string('nk_relation')->nullable();
+            $table->string('nk_postal')->nullable();
             $table->text('nk_country')->nullable();
             $table->text('nk_state')->nullable();
             $table->text('nk_address')->nullable();

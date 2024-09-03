@@ -43,6 +43,8 @@ Route::group(['middleware' => ['auth','verified', 'active_user']], function (){
     Route::post('/password/custom/update', [App\Http\Controllers\HomeController::class, 'changePassword'])->name('password.custom.update');
     Route::post('/profile/update', [App\Http\Controllers\HomeController::class, 'updateProfile'])->name('profile.update');
     // Route::get('/getStates/{name}', [App\Http\Controllers\HomeController::class, 'getState'])->name('user.getstate');
+    Route::get('/settings', [App\Http\Controllers\HomeController::class, 'settings'])->name('settings');
+
 
     // Route::group(['middleware' => ['profile_completed']], function (){
         Route::get('/', [App\Http\Controllers\HomeController::class, 'index']);

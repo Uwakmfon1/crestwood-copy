@@ -5,37 +5,56 @@
 @section('content')
 <!-- Start::app-content -->
 
-<div class="row authentication authentication-cover-main mx-0">
+<style>
+    .account_select {
+        border-radius: 20px !important; 
+        border: 1px solid #f0f0f0;
+        /* cursor: pointer; */
+    }
 
-    <div class="col-xxl-5 col-xl-5 col-lg-12 d-xl-block d-none px-0">
-        <div class="authentication-cover overflow-hidden">
-            <div class="row justify-content-center">
-                <div class="col-xl-7">
-                <div class="aunthentication-content p-5  rounded text-center">
-                    <img width="100" src="https://spruko.com/demo/vertix/dist/assets/images/media/media-89.png" alt="img" class="mb-4">
-                    <div>
-                        <h2 class="fs-4 text-fixed-white lh-base">Welcome!</h2>
-                        <p class="mb-0 fs-14 lh-base text-fixed-white op-8">
-                            Sign in to manage your account and explore personalized features. Your security is our priority—enter your credentials with confidence.
-                        </p>
-                    </div>
+    .account_select:hover {
+        border: 1px solid grey;
+        cursor: pointer;
+    }
+
+    select {
+        appearance: auto !important;
+        -webkit-appearance: auto;
+        -moz-appearance: auto;
+    }
+
+</style>
+
+<link rel="stylesheet" href="{{ asset('asset/libs/intl-tel-input/build/css/intlTelInput.min.css') }}">
+
+<div class="container">
+    <div class="row justify-content-center authentication authentication-basic align-items-center h-100">
+
+        <div class="toast-container position-fixed top-0 end-0 p-3">
+            <div id="solid-dangerToast" class="toast colored-toast bg-danger text-fixed-white" role="alert" aria-live="assertive" aria-atomic="true">
+                <div class="toast-header bg-danger text-fixed-white">
+                    <img class="bd-placeholder-img rounded me-2" src="../assets/images/brand-logos/toggle-dark.png" alt="...">
+                    <strong class="me-auto">Vertix</strong>
+                    <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
                 </div>
+                <div class="toast-body">
+                    <span id="toastMessage">Your toast message here.</span>
                 </div>
             </div>
         </div>
-    </div>
-    <div class="col-xxl-7 col-xl-7">
-        <div class="row justify-content-center cover-background align-items-center h-100">
-            <div id="square-1"></div>
-            <div class="col-xxl-12 col-xl-9 col-lg-6 col-md-6 col-sm-12 col-12">
-                <div class="authentication-cover-logo mb-4 justify-content-center d-flex mt-4"> 
-                    <a href="index.html"> 
-                        <img src="https://spruko.com/demo/vertix/dist/assets/images/brand-logos/desktop-logo.png" alt="logo" class="desktop-logo">  
-                        <img src="../assets/images/brand-logos/desktop-dark.png" alt="logo" class="desktop-dark"> 
-                    </a> 
-                </div>
-                <div class="card custom-card cover-bg  shadow-none my-auto">
-                    <div class="card-body p-5">
+        <!-- <div id="square-1"></div> -->
+        <div class="col-xxl-7 col-xl-9 col-lg-9 col-md-12 col-sm-12 col-12">
+            <div class="rounded my-4 bg-white basic-page">
+                <div class="basicpage-border"></div>
+                <div class="basicpage-border1"></div>
+                <div class="card-body">
+                    <div class="card-body px-5 py-4">
+                        <div class="mb-3 d-flex justify-content-center"> 
+                            <a href="index.html"> 
+                                <img src="../assets/images/brand-logos/desktop-logo.png" alt="logo" class="desktop-logo"> 
+                                <img src="../assets/images/brand-logos/desktop-dark.png" alt="logo" class="desktop-dark"> 
+                            </a>
+                        </div>
                         <p class="h4 mb-1 fw-semibold">Sign In</p>
                         <p class="mb-4 text-muted fw-normal">Welcome back !</p>
                         @if (session('error'))
@@ -46,9 +65,9 @@
                         @endif
                         <div class="card custom-card">
                             <form class="wizard wizard-tab horizontal" method="POST" action="{{ route('register') }}">
-                             @csrf
+                                @csrf
                                 <aside class="wizard-content container">
-                                    <div class=" wizard-step " data-title="Personal Information"
+                                    <div class=" wizard-step " data-title="Account Info"
                                         data-id="2e8WqSV3slGIpTbnjcJzmDwBQaHrfh0Z">
                                         <div class="row justify-content-center">
                                             <div class="col-xl-12">
@@ -56,72 +75,57 @@
                                                     <div class="row gy-3">
                                                         <!-- Full Name -->
                                                         <div class="col-xl-6">
-                                                            <label for="name" class="form-label">Full Name</label>
-                                                            <input name="name" type="text" class="form-control @error('name') is-invalid @enderror" id="name"
-                                                                placeholder="Enter name..." value="{{ old('name') }}">
-                                                            @error('name')
+                                                            <label for="first_name" class="form-label">First name</label>
+                                                            <input name="first_name" type="text" class="form-control @error('first_name') is-invalid @enderror" id="first_name"
+                                                                placeholder="Enter first name..." value="{{ old('first_name') }}" required>
+                                                            @error('first_name')
                                                                 <span class="invalid-feedback" role="alert">
                                                                     <strong>{{ $message }}</strong>
                                                                 </span>
                                                             @enderror
                                                         </div>
-                                                        <!-- Email Address -->
+                                                        <div class="col-xl-6">
+                                                            <label for="last_name" class="form-label">Last name</label>
+                                                            <input name="last_name" type="text" class="form-control @error('last_name') is-invalid @enderror" id="last_name"
+                                                                placeholder="Enter last name..." value="{{ old('last_name') }}" required>
+                                                            @error('last_name')
+                                                                <span class="invalid-feedback" role="alert">
+                                                                    <strong>{{ $message }}</strong>
+                                                                </span>
+                                                            @enderror
+                                                        </div>
                                                         <div class="col-xl-6">
                                                             <label for="email" class="form-label">Email address</label>
-                                                            <input name="email" type="email" class="form-control @error('email') is-invalid @enderror" id="email"
-                                                                placeholder="Enter email..." value="{{ old('email') }}">
+                                                            <!-- <div class="input-group"> -->
+                                                                <input name="email" type="email" class="form-control @error('email') is-invalid @enderror" id="email"
+                                                                    placeholder="Enter email..." value="{{ old('email') }}" required>
+                                                                <!-- <button type="submit" class="btn btn-dark input-group-text">Submit</button> -->
+                                                            <!-- </div> -->
                                                             @error('email')
                                                                 <span class="invalid-feedback" role="alert">
                                                                     <strong>{{ $message }}</strong>
                                                                 </span>
                                                             @enderror
                                                         </div>
-                                                        <!-- Country -->
-                                                        <div class="col-xl-6">
-                                                            <label class="form-label">Country</label>
-                                                            <select name="country" id="country" class="form-control text-dark text-capitalize @error('country') is-invalid @enderror">
-                                                                <option value="">Select Country</option>
-                                                                @foreach(\App\Models\Country::all() as $country)
-                                                                    <option value="{{ $country->name }}" data-phone-code="{{ $country->phone_code }}" {{ old('country') == $country->name ? 'selected' : '' }}>{{ $country->name }}</option>
-                                                                @endforeach
-                                                            </select>
-                                                            @error('country')
+                                                        {{-- <div class="col-xl-6">
+                                                            <label for="email" class="form-label">Verify code</label>
+                                                            <div class="input-group">
+                                                                <input name="email" type="number" class="form-control @error('email') is-invalid @enderror" id="email"
+                                                                    placeholder="Enter verification code..." value="{{ old('email') }}">
+                                                                <button type="submit" class="btn btn-success">Verify</button>
+                                                            </div>
+                                                            @error('email')
                                                                 <span class="invalid-feedback" role="alert">
                                                                     <strong>{{ $message }}</strong>
                                                                 </span>
                                                             @enderror
-                                                        </div>
-                                                        <!-- State -->
-                                                        <div class="col-xl-6">
-                                                            <label class="form-label">Select State</label>
-                                                            <select name="state" id="state" class="form-control @error('state') is-invalid @enderror">
-                                                                <option value="">Select State</option>
-                                                            </select>
-                                                            @error('state')
-                                                                <span class="invalid-feedback" role="alert">
-                                                                    <strong>{{ $message }}</strong>
-                                                                </span>
-                                                            @enderror
-                                                        </div>
-                                                        <!-- Address -->
-                                                        <div class="col-xl-6">
-                                                            <label for="address" class="form-label">Address</label>
-                                                            <input name="address" type="text" class="form-control @error('address') is-invalid @enderror" id="address"
-                                                                placeholder="Enter address..." value="{{ old('address') }}">
-                                                            @error('address')
-                                                                <span class="invalid-feedback" role="alert">
-                                                                    <strong>{{ $message }}</strong>
-                                                                </span>
-                                                            @enderror
-                                                        </div>
+                                                        </div> --}}
                                                         <!-- Phone Number -->
                                                         <div class="col-xl-6">
-                                                            <label for="phone" class="form-label">Phone Number</label>
-                                                            <div class="input-group">
-                                                                <span class="input-group-text" id="phone_code">+0</span>
-                                                                <input name="phone" type="text" class="form-control @error('phone') is-invalid @enderror"
-                                                                    placeholder="Enter Phone Number" aria-label="Phone Number" aria-describedby="phone_code" value="{{ old('phone') }}">
-                                                            </div>
+                                                            <label for="phonez" class="form-label d-block">Phone Number</label>
+                                                            <input class="form-control" id="phone" type="tel" name="phone" style="width: 260px;" required value="{{ old('phone') }}">
+                                                            <!-- Hidden fields to store phone code and formatted phone number -->
+                                                            <input type="hidden" id="phoneCode" name="phone_code">
                                                             @error('phone')
                                                                 <span class="invalid-feedback" role="alert">
                                                                     <strong>{{ $message }}</strong>
@@ -130,44 +134,28 @@
                                                         </div>
                                                         <!-- Password -->
                                                         <div class="col-xl-6">
-                                                            <label for="password" class="form-label">Enter Password</label>
-                                                            <input name="password" type="password" class="form-control @error('password') is-invalid @enderror" id="password"
-                                                                placeholder="Enter Password">
-                                                            @error('password')
-                                                                <span class="invalid-feedback" role="alert">
-                                                                    <strong>{{ $message }}</strong>
-                                                                </span>
-                                                            @enderror
+                                                            <label for="signin-password" class="form-label text-default d-block">Password</label>
+                                                            <div class="input-group">
+                                                                <input name="password" type="password" class="form-control" id="signin-password" placeholder="Enter password..." required>
+                                                                <a href="javascript:void(0);" class="input-group-text bg-white text-muted" onclick="createpassword('signin-password',this)"><i class="ri-eye-off-line align-middle"></i></a>
+                                                                @error('password')
+                                                                    <span class="invalid-feedback" role="alert">
+                                                                        <strong>{{ $message }}</strong>
+                                                                    </span>
+                                                                @enderror
+                                                            </div>
                                                         </div>
                                                         <!-- Confirm Password -->
                                                         <div class="col-xl-6">
-                                                            <label for="password_confirmation" class="form-label">Confirm Password</label>
-                                                            <input name="password_confirmation" type="password" class="form-control" id="password_confirmation"
-                                                                placeholder="Confirm Password">
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col-xl-7">
-                                                <div class="login-page d-none">
-                                                    <h6 class="mb-3">Sign In :</h6>
-                                                    <div class="row justify-content-center gy-4">
-                                                        <div class="col-xl-12">
-                                                            <label for="email-adress" class="form-label">Email
-                                                                Address</label>
-                                                            <input type="text" class="form-control " id="email-adress"
-                                                                placeholder="Enter Email Adress">
-                                                        </div>
-                                                        <div class="col-xl-12">
-                                                            <label for="password" class="form-label">Enter
-                                                                Password</label>
-                                                            <input type="text" class="form-control " id="password"
-                                                                placeholder="Enter Password">
-                                                        </div>
-                                                        <div class="col-xl-12">
-                                                            <div class="d-grid">
-                                                                <a href="javascript:void(0);"
-                                                                    class="btn btn-primary px-4">Login</a>
+                                                            <label for="signin-password" class="form-label text-default d-block">Confirm Password</label>
+                                                            <div class="input-group">
+                                                                <input name="password_confirmation" type="password" class="form-control" id="password_confirmation" placeholder="Confirm Password..." required>
+                                                                <a href="javascript:void(0);" class="input-group-text bg-white text-muted" onclick="createpassword('signin-password',this)"><i class="ri-eye-off-line align-middle"></i></a>
+                                                                @error('password')
+                                                                    <span class="invalid-feedback" role="alert">
+                                                                        <strong>{{ $message }}</strong>
+                                                                    </span>
+                                                                @enderror
                                                             </div>
                                                         </div>
                                                     </div>
@@ -175,178 +163,331 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div class=" wizard-step active" data-title="Select Account"
+                                    <div class=" wizard-step active" data-title="Account Type"
                                         data-id="2e8WqSV3slGIpTbnjcJzmDwBQaHrfh0Z">
-                                        <div class="row gy-4">
-                                            <div class="col-xl-4">
-                                                <div class="col">
-                                                    <div class="form-check d-flex align-items-center gap-1 py-4 px-6 border" style="border-radius: 20px !important;">
+                                        <div class="gy-3">
+                                            <div class="">
+                                                <label for="flexCheckChecked1" style="width: 100%;">
+                                                    <div class="form-check d-flex align-items-center gap-1 py-3 px-2 account_select">
                                                         <div>
-                                                            <span class="avatar avatar-lg avatar-rounded bg-success-transparent">
-                                                                <i class="bi bi-hospital fs-5"></i>
+                                                            <span class="avatar avatar-md avatar-rounded bg-success-transparent">
+                                                                <i class="bi bi-hospital"></i>
                                                             </span>
                                                         </div>
                                                         <div class="flex-fill">
-                                                            <label class="form-check-label d-block fw-medium fs-15" for="flexCheckChecked2">Trading Account</label>
-                                                            <span class="fs-12 text-muted">Lorem, ipsum dolor sit.</span>
+                                                            <label class="form-check-label d-block fw-medium fs-14" for="flexCheckChecked1">Trading Account</label>
+                                                            <span class="fs-11 text-muted">Lorem, ipsum dolor sit.</span>
                                                         </div>
                                                         <div>
-                                                            <input class="form-check-input form-checked-success rounded-circle" type="checkbox" value="" id="flexCheckChecked2">
+                                                            <input class="form-check-input form-checked-success rounded-circle" type="checkbox" value="" id="flexCheckChecked1">
                                                         </div>
                                                     </div>
-                                                </div>
+                                                </label>
                                             </div>
-                                            <div class="col-xl-4">
-                                                <div class="col">
-                                                    <div class="form-check d-flex align-items-center gap-1 py-4 px-6 border" style="border-radius: 20px !important;">
+                                            <div class="">
+                                                <label for="flexCheckChecked2" style="width: 100%;">
+                                                    <div class="form-check d-flex align-items-center gap-1 py-3 px-2 account_select">
                                                         <div>
-                                                            <span class="avatar avatar-lg avatar-rounded bg-orange-transparent">
-                                                                <i class="bi bi-hospital fs-5"></i>
+                                                            <span class="avatar avatar-md avatar-rounded bg-orange-transparent">
+                                                                <i class="bi bi-hospital"></i>
                                                             </span>
                                                         </div>
                                                         <div class="flex-fill">
-                                                            <label class="form-check-label d-block fw-medium fs-15" for="flexCheckChecked3">Savings Account</label>
-                                                            <span class="fs-12 text-muted">Lorem, ipsum dolor sit.</span>
+                                                            <label class="form-check-label d-block fw-medium fs-14" for="flexCheckChecked2">Investment Account</label>
+                                                            <span class="fs-11 text-muted">Lorem, ipsum dolor sit.</span>
                                                         </div>
                                                         <div>
-                                                            <input class="form-check-input form-checked-orange rounded-circle" type="checkbox" value="" id="flexCheckChecked3">
+                                                            <input class="form-check-input form-checked-warning rounded-circle" type="checkbox" value="" id="flexCheckChecked2">
                                                         </div>
                                                     </div>
-                                                </div>
+                                                </label>
                                             </div>
-                                            <div class="col-xl-4">
-                                                <div class="col">
-                                                    <div class="form-check d-flex align-items-center gap-1 py-4 px-6 border" style="border-radius: 20px !important;">
+                                            <div class="">
+                                                <label for="flexCheckChecked3" style="width: 100%;">
+                                                    <div class="form-check d-flex align-items-center gap-1 py-3 px-2 account_select">
                                                         <div>
-                                                            <span class="avatar avatar-lg avatar-rounded bg-info-transparent">
-                                                                <i class="bi bi-hospital fs-5"></i>
+                                                            <span class="avatar avatar-md avatar-rounded bg-info-transparent">
+                                                                <i class="bi bi-hospital"></i>
                                                             </span>
                                                         </div>
                                                         <div class="flex-fill">
-                                                            <label class="form-check-label d-block fw-medium fs-15" for="flexCheckChecked4">Investment Account</label>
-                                                            <span class="fs-12 text-muted">Lorem, ipsum dolor sit.</span>
+                                                            <label class="form-check-label d-block fw-medium fs-14" for="flexCheckChecked3">Trading Account</label>
+                                                            <span class="fs-11 text-muted">Lorem, ipsum dolor sit.</span>
                                                         </div>
                                                         <div>
-                                                            <input class="form-check-input form-checked-info rounded-circle" type="checkbox" value="" id="flexCheckChecked4">
+                                                            <input class="form-check-input form-checked-info rounded-circle" type="checkbox" value="" id="flexCheckChecked3">
                                                         </div>
                                                     </div>
-                                                </div>
+                                                </label>
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="wizard-step" data-title="Wallet"
+                                    <div class="wizard-step" data-title="Payment Information"
                                         data-id="dOM0iRAyJXsLTr9b3KZfQ2jNv4pgn6Gu" data-limit="3">
                                         <div class="row">
-                                            <div class="col-xl-12">
-                                                <div>
-                                                    <!-- Wallet Address -->
-                                                    <div class="mb-3">
-                                                        <label for="wallet" class="form-label">Wallet Address</label>
-                                                        <input name="wallet" type="text" class="form-control @error('wallet') is-invalid @enderror"
-                                                            placeholder="Enter Wallet address..." value="{{ old('wallet') }}">
-                                                        @error('wallet')
-                                                            <span class="invalid-feedback" role="alert">
-                                                                <strong>{{ $message }}</strong>
-                                                            </span>
-                                                        @enderror
+                                            <div class="card-body">
+                                                <ul class="nav nav-tabs mb-3 nav-justified nav-style-1 d-sm-flex d-block" role="tablist">
+                                                    <li class="nav-item" role="presentation">
+                                                        <a class="nav-link active" data-bs-toggle="tab" role="tab" href="#home1-justified" aria-selected="false" tabindex="-1">Bank Account</a>
+                                                    </li>
+                                                    <li class="nav-item" role="presentation">
+                                                        <a class="nav-link" data-bs-toggle="tab" role="tab" href="#about1-justified" aria-selected="true">Wallet Information</a>
+                                                    </li>
+                                                </ul>
+                                                <div class="tab-content">
+                                                    <div class="tab-pane text-muted active show" id="home1-justified" role="tabpanel">
+                                                        <div class="row">
+                                                            <div class="col-xl-12 my-2">
+                                                                <label for="bank_name" class="form-label">Bank Name</label>
+                                                                <input name="bank_name" type="text" class="form-control @error('bank_name') is-invalid @enderror" id="bank_name"
+                                                                    placeholder="Enter bank name..." value="{{ old('bank_name') }}">
+                                                                @error('bank_name')
+                                                                    <span class="invalid-feedback" role="alert">
+                                                                        <strong>{{ $message }}</strong>
+                                                                    </span>
+                                                                @enderror
+                                                            </div>
+                                                            <div class="col-xl-12 my-2">
+                                                                <label for="account_number" class="form-label">Account Number</label>
+                                                                <input name="account_number" type="number" class="form-control @error('account_number') is-invalid @enderror" id="account_number"
+                                                                    placeholder="Enter bank name..." value="{{ old('account_number') }}">
+                                                                @error('account_number')
+                                                                    <span class="invalid-feedback" role="alert">
+                                                                        <strong>{{ $message }}</strong>
+                                                                    </span>
+                                                                @enderror
+                                                            </div>
+                                                            <div class="col-xl-12 my-2">
+                                                                <label for="account_name" class="form-label">Account Name</label>
+                                                                <input name="account_name" type="text" class="form-control @error('account_name') is-invalid @enderror" id="account_name"
+                                                                    placeholder="Enter bank name..." value="{{ old('account_name') }}">
+                                                                @error('account_name')
+                                                                    <span class="invalid-feedback" role="alert">
+                                                                        <strong>{{ $message }}</strong>
+                                                                    </span>
+                                                                @enderror
+                                                            </div>
+                                                            <div class="col-xl-12 my-2">
+                                                                <label for="account_info" class="form-label">Other Information</label>
+                                                                <textarea class="form-control @error('account_info') is-invalid @enderror" name="account_info" id="account_info" rows="3" cols="10">{{ old('account_info') }}</textarea>
+                                                                @error('account_info')
+                                                                    <span class="invalid-feedback" role="alert">
+                                                                        <strong>{{ $message }}</strong>
+                                                                    </span>
+                                                                @enderror
+                                                            </div>
+                                                        </div>
                                                     </div>
-                                                    <!-- Wallet Type -->
-                                                    <div class="mb-3">
-                                                        <label for="wallet_type" class="form-label">Wallet Type</label>
-                                                        <select name="wallet_type" id="wallet_type" class="form-control @error('wallet_type') is-invalid @enderror">
-                                                            <option value="">Select Wallet</option>
-                                                            <option value="bnb" {{ old('wallet_type') == 'bnb' ? 'selected' : '' }}>BNB Wallet</option>
-                                                            <option value="eth" {{ old('wallet_type') == 'eth' ? 'selected' : '' }}>ETH Blockchain</option>
+                                                    <div class="tab-pane text-muted" id="about1-justified" role="tabpanel">
+                                                        <div class="row">
+                                                            <div class="col-xl-12 my-2">
+                                                                <label for="wallet_asset" class="form-label">Asset</label>
+                                                                <input name="wallet_asset" type="text" class="form-control @error('wallet_asset') is-invalid @enderror" id="wallet_asset"
+                                                                    placeholder="Enter wallet asset..." value="{{ old('wallet_asset') }}">
+                                                                @error('wallet_asset')
+                                                                    <span class="invalid-feedback" role="alert">
+                                                                        <strong>{{ $message }}</strong>
+                                                                    </span>
+                                                                @enderror
+                                                            </div>
+                                                            <div class="col-xl-12 my-2">
+                                                                <label for="wallet_network" class="form-label">Network</label>
+                                                                <input name="wallet_network" type="number" class="form-control @error('wallet_network') is-invalid @enderror" id="wallet_network"
+                                                                    placeholder="Enter wallet network..." value="{{ old('wallet_network') }}">
+                                                                @error('wallet_network')
+                                                                    <span class="invalid-feedback" role="alert">
+                                                                        <strong>{{ $message }}</strong>
+                                                                    </span>
+                                                                @enderror
+                                                            </div>
+                                                            <div class="col-xl-12 my-2">
+                                                                <label for="wallet_address" class="form-label">Wallet Address</label>
+                                                                <input name="wallet_address" type="number" class="form-control @error('wallet_address') is-invalid @enderror" id="wallet_address"
+                                                                    placeholder="Enter wallet address..." value="{{ old('wallet_address') }}">
+                                                                @error('wallet_address')
+                                                                    <span class="invalid-feedback" role="alert">
+                                                                        <strong>{{ $message }}</strong>
+                                                                    </span>
+                                                                @enderror
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="register-page my-4">
+                                                <div class="fs-15 fw-medium d-sm-flex d-block align-items-center justify-content-between mb-3">
+                                                    <div>Personal Information:</div>
+                                                </div>
+                                                <div class="row gy-3">
+                                                    <div class="col-lg-6">
+                                                        <label class="form-label">Loaction Type</label>
+                                                        <select name="location" id="location" class="form-control text-dark text-capitalize @error('location') is-invalid @enderror ">
+                                                            <option value="">Select Loaction Type</option>
+                                                            <option value="home">Home</option>
+                                                            <option value="office">Office</option>
                                                         </select>
-                                                        @error('wallet_type')
+                                                        @error('location')
                                                             <span class="invalid-feedback" role="alert">
                                                                 <strong>{{ $message }}</strong>
                                                             </span>
                                                         @enderror
                                                     </div>
+                                                    <div class="col-lg-6">
+                                                        <label class="form-label">Country</label>
+                                                        <select name="country" id="country" class="form-control text-dark text-capitalize @error('country') is-invalid @enderror" required>
+                                                            <option value="">Select Country</option>
+                                                            @foreach(\App\Models\Country::get() as $country)
+                                                                <option value="{{ $country->name }}" data-phone-code="{{ $country->phone_code }}" 
+                                                                    {{ old('nk_country') == $country->name ? 'selected' : '' }}>
+                                                                    {{ $country->name }}
+                                                                </option>
+                                                            @endforeach
+                                                        </select>
+                                                        @error('country')
+                                                            <span class="invalid-feedback" role="alert">
+                                                                <strong>{{ $message }}</strong>
+                                                            </span>
+                                                        @enderror
+                                                    </div>
+                                                    <div class="col-xl-6">
+                                                        <label class="form-label">Select State</label>
+                                                        <select name="state" id="state" class="form-control @error('state') is-invalid @enderror" data-trigger required>
+                                                            <option value="">Select Country</option>
+                                                            @if(old('state'))
+                                                                <option value="{{ old('state') }}" selected>{{ old('state') }}</option>
+                                                            @endif
+                                                        </select>
+                                                        @error('state')
+                                                            <span class="invalid-feedback" role="alert">
+                                                                <strong>{{ $message }}</strong>
+                                                            </span>
+                                                        @enderror
+                                                    </div>
+                                                    <div class="col-xl-6">
+                                                        <label for="postal_code" class="form-label">Postal Code</label>
+                                                        <input name="postal_code" type="text" class="form-control @error('postal_code') is-invalid @enderror" id="postal_code"
+                                                            placeholder="Enter postal code..." value="{{ old('postal_code') }}">
+                                                        @error('postal_code')
+                                                            <span class="invalid-feedback" role="alert">
+                                                                <strong>{{ $message }}</strong>
+                                                            </span>
+                                                        @enderror
+                                                    </div>
+                                                    <div class="col-xl-6">
+                                                        <label class="form-label" for="address">Address</label>
+                                                        <textarea class="form-control @error('address') is-invalid @enderror" name="address" id="address" placeholder="Enter address..." rows="3" cols="10" >{{ old('address') }}</textarea>
+                                                        @error('address')
+                                                            <span class="invalid-feedback" role="alert">
+                                                                <strong>{{ $message }}</strong>
+                                                            </span>
+                                                        @enderror
+                                                    </div>
+                                                    <div class="col-xl-6">
+                                                        <label class="form-label" for="address">Address line 2</label>
+                                                        <textarea class="form-control @error('address2') is-invalid @enderror" name="address2" id="address2" placeholder="Enter address..." rows="3" cols="10">{{ old('address') }}</textarea>
+                                                        
+                                                    </div>
                                                 </div>
                                             </div>
-                                        </div>
-                                    </div>
-                                    <div class="wizard-step" data-title="Others"
-                                        data-id="H53WJiv9blN17MYTztq4g8U6eSVkaZDx">
-                                        <div class="register-page">
-                                            <div class="fs-15 fw-medium d-sm-flex d-block align-items-center justify-content-between mb-3">
-                                                <div>Next of kin:</div>
-                                            </div>
-                                            <div class="row gy-3">
-                                                <div class="col-xl-6">
-                                                    <label for="nk_name" class="form-label">Name</label>
-                                                    <input name="nk_name" type="text" class="form-control @error('nk_name') is-invalid @enderror" id="nk_name"
-                                                        placeholder="Enter name..." value="{{ old('nk_name') }}">
-                                                    @error('nk_name')
-                                                        <span class="invalid-feedback" role="alert">
-                                                            <strong>{{ $message }}</strong>
-                                                        </span>
-                                                    @enderror
+                                            <div class="register-page my-4">
+                                                <div class="fs-15 fw-medium d-sm-flex d-block align-items-center justify-content-between mb-3">
+                                                    <div>Next of kin:</div>
                                                 </div>
-                                                <div class="col-lg-6">
-                                                    <label class="form-label">Country</label>
-                                                    <select name="nk_country" id="nk_country" class="form-control text-dark text-capitalize @error('nk_country') is-invalid @enderror">
-                                                        <option value="">Select Country</option>
-                                                        @foreach(\App\Models\Country::get() as $country)
-                                                            <option value="{{ $country->name }}" data-phone-code="{{ $country->phone_code }}" 
-                                                                {{ old('nk_country') == $country->name ? 'selected' : '' }}>
-                                                                {{ $country->name }}
-                                                            </option>
-                                                        @endforeach
-                                                    </select>
-                                                    @error('nk_country')
-                                                        <span class="invalid-feedback" role="alert">
-                                                            <strong>{{ $message }}</strong>
-                                                        </span>
-                                                    @enderror
-                                                </div>
-                                                <div class="col-xl-6">
-                                                    <label class="form-label">Select State</label>
-                                                    <select name="nk_state" id="nk_states" class="form-control @error('nk_state') is-invalid @enderror" data-trigger>
-                                                        <option value="">Select State</option>
-                                                    </select>
-                                                    @error('nk_state')
-                                                        <span class="invalid-feedback" role="alert">
-                                                            <strong>{{ $message }}</strong>
-                                                        </span>
-                                                    @enderror
-                                                </div>
-                                                <div class="col-xl-6">
-                                                    <label class="form-label">Address</label>
-                                                    <input type="text" name="nk_address" id="nk_address" class="form-control @error('nk_address') is-invalid @enderror"
-                                                        placeholder="Enter address..." value="{{ old('nk_address') }}">
-                                                    @error('nk_address')
-                                                        <span class="invalid-feedback" role="alert">
-                                                            <strong>{{ $message }}</strong>
-                                                        </span>
-                                                    @enderror
-                                                </div>
-                                                <div class="col-xl-12">
-                                                    <label class="form-label">Phone Number</label>
-                                                    <div class="input-group">
-                                                        <span class="input-group-text" id="nk_phone_code">+0</span>
-                                                        <input type="text" name="nk_phone" class="form-control @error('nk_phone') is-invalid @enderror"
-                                                            placeholder="Enter Phone Number" aria-label="Phone Number" aria-describedby="phone-code"
-                                                            value="{{ old('nk_phone') }}">
+                                                <div class="row gy-3">
+                                                    <div class="col-xl-6">
+                                                        <label for="nk_name" class="form-label">Full Name</label>
+                                                        <input name="nk_name" type="text" class="form-control @error('nk_name') is-invalid @enderror" id="nk_name"
+                                                            placeholder="Enter name..." value="{{ old('nk_name') }}" required>
+                                                        @error('nk_name')
+                                                            <span class="invalid-feedback" role="alert">
+                                                                <strong>{{ $message }}</strong>
+                                                            </span>
+                                                        @enderror
+                                                    </div>
+                                                    <div class="col-xl-6">
+                                                        <label for="phone-validation" class="form-label d-block">Phone Number</label>
+                                                        <input class="form-control" id="phone-validation" type="tel" name="nk_phone" style="width: 260px;" required>
                                                         @error('nk_phone')
                                                             <span class="invalid-feedback" role="alert">
                                                                 <strong>{{ $message }}</strong>
                                                             </span>
                                                         @enderror
                                                     </div>
+                                                    <div class="col-lg-6">
+                                                        <label class="form-label">Relationship</label>
+                                                        <select name="nk_relationship" id="nk_relationship" class="form-control text-dark text-capitalize @error('nk_relationship') is-invalid @enderror " required>
+                                                            <option value="parent" {{ old('nk_relationship') == 'parent' ? 'selected' : '' }}>Parent</option>
+                                                            <option value="family" {{ old('nk_relationship') == 'family' ? 'selected' : '' }}>Family</option>
+                                                            <option value="friend" {{ old('nk_relationship') == 'friend' ? 'selected' : '' }}>Friend</option>
+                                                        </select>
+                                                        @error('nk_relationship')
+                                                            <span class="invalid-feedback" role="alert">
+                                                                <strong>{{ $message }}</strong>
+                                                            </span>
+                                                        @enderror
+                                                    </div>
+                                                    <div class="col-lg-6">
+                                                        <label class="form-label">Country</label>
+                                                        <select name="nk_country" id="nk_country" class="form-control text-dark text-capitalize @error('nk_country') is-invalid @enderror" required>
+                                                            <option value="">Select Country</option>
+                                                            @foreach(\App\Models\Country::get() as $country)
+                                                                <option value="{{ $country->name }}" data-phone-code="{{ $country->phone_code }}" 
+                                                                    {{ old('nk_country') == $country->name ? 'selected' : '' }}>
+                                                                    {{ $country->name }}
+                                                                </option>
+                                                            @endforeach
+                                                        </select>
+                                                        @error('nk_country')
+                                                            <span class="invalid-feedback" role="alert">
+                                                                <strong>{{ $message }}</strong>
+                                                            </span>
+                                                        @enderror
+                                                    </div>
+                                                    <div class="col-xl-6">
+                                                        <label class="form-label">Select State</label>
+                                                        <select name="nk_state" id="nk_state" class="form-control @error('nk_state') is-invalid @enderror" data-trigger required>
+                                                            <option value="">Select State</option>
+                                                            @if(old('nk_state'))
+                                                                <option value="{{ old('nk_country') }}" selected>{{ old('nk_state') }}</option>
+                                                            @endif
+                                                        </select>
+                                                        @error('nk_state')
+                                                            <span class="invalid-feedback" role="alert">
+                                                                <strong>{{ $message }}</strong>
+                                                            </span>
+                                                        @enderror
+                                                    </div>
+                                                    <div class="col-xl-6">
+                                                        <label class="form-label">Address</label>
+                                                        <input type="text" name="nk_address" id="nk_address" class="form-control @error('nk_address') is-invalid @enderror"
+                                                            placeholder="Enter address..." value="{{ old('nk_address') }}" required>
+                                                        @error('nk_address')
+                                                            <span class="invalid-feedback" role="alert">
+                                                                <strong>{{ $message }}</strong>
+                                                            </span>
+                                                        @enderror
+                                                    </div>
+                                                    <div class="col-xl-12">
+                                                        <label class="form-label">Postal Code</label>
+                                                        <input type="text" name="nk_postal" id="nk_postal" class="form-control @error('nk_postal') is-invalid @enderror"
+                                                            placeholder="Enter postal code..." value="{{ old('nk_postal') }}" required>
+                                                        @error('nk_postal')
+                                                            <span class="invalid-feedback" role="alert">
+                                                                <strong>{{ $message }}</strong>
+                                                            </span>
+                                                        @enderror
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="wizard-step" data-title="Confirmation"
+                                    <div class="wizard-step" data-title="Finish"
                                         data-id="dOM0iRAyJXsLTr9b3KZfQ2jNv4pgn6Gu" data-limit="3">
                                         <div class="row">
                                             <div class="col-xl-12">
                                                 <div class="checkout-payment-success">
                                                     <div class="mb-4">
-                                                        <h5 class="text-success fw-medium">Great Job!</h5>
+                                                        <h5 class="text-success fw-medium">Great Job!🎉</h5>
                                                     </div>
                                                     <!-- <div class="mb-4">
                                                         <img src="../assets/images/ecommerce/png/24.png" alt="" class="img-fluid">
@@ -369,8 +510,8 @@
                     </div>
                 </div>
             </div>
-            <div id="circle-1"></div>
         </div>
+        <div id="circle-1"></div>
     </div>
 </div>
 
@@ -379,9 +520,55 @@
 
 @section('scripts')
 
+<script src="{{ asset('asset/libs/@tarekraafat/autocomplete.js/autoComplete.min.js') }}"></script>
+<script src="{{ asset('asset/libs/intl-tel-input/build/js/intlTelInput.min.js') }}"></script>
+<script src="{{ asset('asset/js/form-advanced.js') }}"></script>
+
 <script>
 document.addEventListener('DOMContentLoaded', function() {
-    console.log('FIre!!');
+    @if ($errors->any())
+        // Construct the error message
+        let errorMessage = '';
+        @foreach ($errors->all() as $error)
+            errorMessage += '{{ $error }}\n';
+        @endforeach
+        
+        // Set the toast message
+        document.getElementById('toastMessage').innerText = errorMessage;
+
+        // Show the toast
+        var toastEl = document.getElementById('dangerToast');
+        var toast = new bootstrap.Toast(toastEl);
+        toast.show();
+    @endif
+
+        const input = document.querySelector("#phone");
+        const iti = window.intlTelInput(input, {
+            initialCountry: "us",
+            utilsScript: "https://cdn.jsdelivr.net/npm/intl-tel-input@24.3.4/build/js/utils.js",
+        });
+
+        // Store the instance variable globally
+        window.iti = iti;
+
+        // Function to get the phone code and phone number
+        function getPhoneDetails() {
+            const phoneCode = iti.getSelectedCountryData().dialCode;
+            const phoneNumber = iti.getNumber(); // E.164 formatted number
+
+            console.log('Phone Code:', phoneCode);
+            console.log('Phone Number:', phoneNumber);
+
+            // Optionally, set these values to hidden fields to include them in form submission
+            document.querySelector('#phoneCode').value = phoneCode;
+            document.querySelector('#phoneNumber').value = phoneNumber;
+            input.value = phoneCode + phoneNumber;
+        }
+
+        // Bind to form submission or any event you want
+        document.querySelector('form').addEventListener('submit', function () {
+            getPhoneDetails();
+        });
     
     document.getElementById('country').addEventListener('change', function() {
         var countryID = this.value;
@@ -391,17 +578,17 @@ document.addEventListener('DOMContentLoaded', function() {
         
 
         // Update phone code span
-        var phoneCodeElement = document.getElementById('phone_code');
-        phoneCodeElement.textContent = `${phoneCode}`;
+        // var phoneCodeElement = document.getElementById('phone_code');
+        // phoneCodeElement.textContent = `${phoneCode}`;
 
         // Append phone code to the phone input value
-        var phoneInput = document.getElementById('phone');
-        if (phoneInput) {
-            // Remove existing phone code if present
-            phoneInput.value = phoneInput.value.replace(/^\+\d+/, '');
-            // Prepend the new phone code
-            phoneInput.value = `+${phoneCode} ${phoneInput.value}`;
-        }
+        // var phoneInput = document.getElementById('phone');
+        // if (phoneInput) {
+        //     // Remove existing phone code if present
+        //     phoneInput.value = phoneInput.value.replace(/^\+\d+/, '');
+        //     // Prepend the new phone code
+        //     phoneInput.value = `+${phoneCode} ${phoneInput.value}`;
+        // }
 
         // Clear state and city dropdowns
         var stateSelect = document.getElementById('state');
@@ -415,7 +602,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 .then(data => {
                     data.forEach(function(state) {
                         var option = document.createElement('option');
-                        option.value = state.id;
+                        option.value = state.name;
                         option.textContent = state.name.charAt(0).toUpperCase() + state.name.slice(1);
                         stateSelect.appendChild(option);
                     });
@@ -450,15 +637,8 @@ document.addEventListener('DOMContentLoaded', function() {
         var nk_countryID = this.value;
         var nk_phoneCode = this.options[this.selectedIndex].getAttribute('data-phone-code');
 
-        console.log(nk_countryID, nk_phoneCode);
-        
-
-        // Update phone code span
-        var phoneCodeElement = document.getElementById('nk_phone_code');
-            phoneCodeElement.textContent = `${nk_phoneCode}`;
-
         // Clear state and city dropdowns
-        var nk_stateSelect = document.getElementById('nk_states');
+        var nk_stateSelect = document.getElementById('nk_state');
         nk_stateSelect.innerHTML = '<option value="">Select State</option>';
 
         if (nk_countryID) {
@@ -467,7 +647,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 .then(data => {
                     data.forEach(function(state) {
                         var option = document.createElement('option');
-                        option.value = state.id;
+                        option.value = state.name;
                         option.textContent = state.name.charAt(0).toUpperCase() + state.name.slice(1);
                         nk_stateSelect.appendChild(option);
                     });
@@ -477,8 +657,6 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 
 });
-
-
 </script>
 
 @endsection

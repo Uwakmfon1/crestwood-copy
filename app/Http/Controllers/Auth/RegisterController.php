@@ -52,23 +52,37 @@ class RegisterController extends Controller
     protected function validator(array $data)
     {
         return Validator::make($data, [
-            'name' => ['required', 'string', 'max:255'],
+            'first_name' => ['required', 'string', 'max:255'],
+            'last_name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-            'state' => 'required',
-            'country' => 'required',
-            'phone' => 'required',
-            'address' => 'required',
-            'wallet' => 'required',
-            'wallet_type' => 'required',
-            'nk_name' => 'required',
-            'nk_country' => 'required',
-            'nk_state' => 'required',
-            'nk_address' => 'required',
-            'nk_phone' => 'required',
-            // 'account' => 'required',
+            // 'account_id' => ['required', 'exists:accounts,id'], // Assuming there is an `accounts` table
+            // 'wallet_id' => ['required', 'exists:wallets,id'], // Assuming there is a `wallets` table
+            'phone' => ['required', 'string', 'max:20'], // Adjust max length as needed
+            'state' => ['required', 'string', 'max:255'],
+            'country' => ['required', 'string', 'max:255'],
+            'postal_code' => ['required', 'string', 'max:20'], // Adjust max length as needed
+            'location' => ['required', 'string', 'max:255'],
+            'address' => ['required', 'string'],
+            'bank_name' => ['nullable', 'string', 'max:255'],
+            'account_number' => ['nullable', 'string', 'max:255'],
+            'account_name' => ['nullable', 'string', 'max:255'],
+            'account_info' => ['nullable', 'string'],
+            'wallet_asset' => ['nullable', 'string'],
+            'wallet_network' => ['nullable', 'string'],
+            'wallet_address' => ['nullable', 'string'],
+            'identification' => ['nullable', 'string'],
+            'avatar' => ['nullable', 'string'],
+            'nk_name' => ['required', 'string', 'max:255'],
+            'nk_phone' => ['required', 'string', 'max:20'], // Adjust max length as needed
+            'nk_relation' => ['nullable', 'string', 'max:255'],
+            'nk_postal' => ['nullable', 'string', 'max:20'], // Adjust max length as needed
+            'nk_country' => ['nullable', 'string', 'max:255'],
+            'nk_state' => ['nullable', 'string', 'max:255'],
+            'nk_address' => ['nullable', 'string'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
-            'ref' => ['sometimes']
+            'ref_code' => ['sometimes', 'nullable', 'string', 'exists:users,ref_code'], // Assuming ref_code exists in the users table
         ]);
+        
     }
 
     /**
@@ -80,32 +94,57 @@ class RegisterController extends Controller
     protected function create(array $data)
     {
         $user = User::create([
-            'name' => $data['name'],
+            'first_name' => $data['first_name'],
+            'last_name' => $data['last_name'],
             'email' => $data['email'],
+            'account_id' => 1, //$data['account_id'],
+            'wallet_id' => 1, //$data['wallet_id'],
+            'phone' => $data['phone_code'] ?? '' . $data['phone'],
             'state' => $data['state'],
             'country' => $data['country'],
-            'phone' => $data['phone'],
+            'postal_code' => $data['postal_code'],
+            'location' => $data['location'],
             'address' => $data['address'],
-            'wallet' => $data['wallet'],
-            'wallet_type' => $data['wallet_type'],
+            'bank_name' => $data['bank_name'] ?? null,
+            'account_number' => $data['account_number'] ?? null,
+            'account_name' => $data['account_name'] ?? null,
+            'account_info' => $data['account_info'] ?? null,
+            'wallet_asset' => $data['wallet_asset'] ?? null,
+            'wallet_network' => $data['wallet_network'] ?? null,
+            'wallet_address' => $data['wallet_address'] ?? null,
+            'identification' => $data['identification'] ?? null,
+            'avatar' => $data['avatar'] ?? null,
             'nk_name' => $data['nk_name'],
-            'nk_country' => $data['nk_country'],
-            'nk_state' => $data['nk_state'],
-            'nk_address' => $data['nk_address'],
             'nk_phone' => $data['nk_phone'],
+            'nk_relation' => $data['nk_relation'] ?? null,
+            'nk_postal' => $data['nk_postal'] ?? null,
+            'nk_country' => $data['nk_country'] ?? null,
+            'nk_state' => $data['nk_state'] ?? null,
+            'nk_address' => $data['nk_address'] ?? null,
             'password' => Hash::make($data['password']),
+            'facebook_id' => $data['facebook_id'] ?? null,
+            'google_id' => $data['google_id'] ?? null,
+            'ref_code' => $data['ref_code'] ?? null,
+            'gotMail' => $data['gotMail'] ?? false,
+            'active' => $data['active'] ?? true,
             'otp' => Crypt::encrypt(random_int(100000, 999999)),
-            'otp_expiry' => now()->addHours(3)
+            'otp_expiry' => now()->addHours(3),
+            'reset_otp' => $data['reset_otp'] ?? null,
+            'reset_otp_expiry' => $data['reset_otp_expiry'] ?? null,
         ]);
-        if (isset($data['ref']) && $data['ref']){
-            $referee = User::all()->where('ref_code', $data['ref'])->first();
-            if ($referee){
+
+        // Handle referral if referral code is provided
+        if (isset($data['ref']) && $data['ref']) {
+            $referee = User::where('ref_code', $data['ref'])->first();
+            if ($referee) {
                 $referee->referrals()->create([
-                    'referred_id' => $user['id'],
-                    'amount' => Setting::all()->first()['referral_earning']
+                    'referred_id' => $user->id,
+                    'amount' => Setting::first()->referral_earning,
                 ]);
             }
         }
+
         return $user;
     }
+
 }

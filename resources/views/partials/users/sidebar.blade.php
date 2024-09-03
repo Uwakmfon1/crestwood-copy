@@ -23,7 +23,7 @@
         </div>
         <ul class="main-menu">
             <!-- Start::slide__category -->
-            <li class="slide__category"><span class="category-name">Dashboards</span></li>
+            <li class="slide__category"><span class="category-name">Main</span></li>
             <!-- End::slide__category -->
 
             
@@ -34,10 +34,6 @@
                     <span class="side-menu__label">Dashboard</span>
                 </a>
             </li>
-
-             <!-- Start::slide__category -->
-             <li class="slide__category"><span class="category-name">Features</span></li>
-             <!-- End::slide__category -->
 
              <!-- Start::slide -->
              <li class="slide has-sub @if(request()->routeIs(['savings', 'savings.create'])) active @endif">
@@ -98,6 +94,13 @@
                     <span class="side-menu__label">Assets</span>
                 </a>
             </li>
+
+            <li class="slide @if(request()->routeIs(['asset'])) active @endif">
+                <a href="{{ route('assets') }}" class="side-menu__item">
+                    <i class="fe fe-credit-card mx-2"></i>
+                    <span class="side-menu__label">Assets History</span>
+                </a>
+            </li>
           
             
             <!-- Start::slide__category -->
@@ -107,7 +110,14 @@
             <li class="slide @if(request()->routeIs(['transactions'])) active @endif">
                 <a href="{{ route('transactions') }}" class="side-menu__item">
                     <i class="fe fe-dollar-sign mx-2"></i>
-                    <span class="side-menu__label">Wallet</span>
+                    <span class="side-menu__label">Cash</span>
+                </a>
+            </li>
+
+            <li class="slide @if(request()->routeIs(['transaction'])) active @endif">
+                <a href="{{ route('transactions') }}" class="side-menu__item">
+                    <i class="fe fe-dollar-sign mx-2"></i>
+                    <span class="side-menu__label">History</span>
                 </a>
             </li>
 
@@ -119,6 +129,13 @@
                 <a href="{{ route('profile') }}" class="side-menu__item">
                     <i class="fe fe-user mx-2"></i>
                     <span class="side-menu__label">Profile</span>
+                </a>
+            </li>
+
+            <li class="slide @if(request()->routeIs(['settings'])) active @endif">
+                <a href="{{ route('settings') }}" class="side-menu__item">
+                    <i class="fe fe-user mx-2"></i>
+                    <span class="side-menu__label">Settings</span>
                 </a>
             </li>
 

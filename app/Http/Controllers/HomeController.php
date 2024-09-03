@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Setting;
 use App\Models\Trading;
+use App\Notifications\EmailOTPNotification;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\File;
@@ -12,6 +13,11 @@ use Illuminate\Support\Facades\Http;
 use Intervention\Image\Facades\Image;
 use Illuminate\Support\Facades\Response;
 use Illuminate\Support\Facades\Validator;
+
+
+use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Cache;
+use Illuminate\Support\Facades\Crypt;
 
 class HomeController extends Controller
 {
@@ -64,6 +70,16 @@ class HomeController extends Controller
             'savings' => $savings,
             'trading' => $trading,
             'investment' => $investment,
+        ]);
+    }
+
+    public function settings()
+    {
+        $user = auth()->user();
+        
+        return view('user_.profile.settings', [
+            'title' => 'Profile',
+            'user' => $user,
         ]);
     }
 

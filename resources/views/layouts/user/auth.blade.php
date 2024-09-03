@@ -52,14 +52,11 @@
 
 </head>
 
-<body class="bg-white">
+<body class="authentication-background">
 
 
     @yield('content')
-
-
    
-
     <!-- Bootstrap JS -->
     <script src="{{ asset('asset/libs/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
 
