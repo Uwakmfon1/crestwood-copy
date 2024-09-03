@@ -59,7 +59,7 @@
                                 <th>Date</th>
                                 <th>Details</th>
                                 <th>Method</th>
-                                <th>Channel</th>
+                                <!-- <th>Channel</th> -->
                                 <th>Status</th>
                                 <th>Action</th>
                             </tr>
@@ -105,7 +105,7 @@
                     { "data": "date" },
                     { "data": "details" },
                     { "data": "method" },
-                    { "data": "channel" },
+                    // { "data": "channel" },
                     { "data": "status" },
                     { "data": "action" }
                 ],

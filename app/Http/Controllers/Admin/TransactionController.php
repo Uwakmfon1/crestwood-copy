@@ -289,7 +289,7 @@ class TransactionController extends Controller
         foreach ($transactions as $transaction)
         {
             $status = $action = $disabled = $details = null;
-            if($transaction['type'] == 'withdrawal'){
+            if($transaction['type'] == 'withdrawal' && $transaction->user){
                 $bank_name = $transaction['user']['bank_name'];
                 $account_name = $transaction['user']['account_name'];
                 $account_number = $transaction['user']['account_number'];
@@ -326,12 +326,12 @@ class TransactionController extends Controller
                 $disabled = 'disabled';
             }
             $datum['sn'] = $i;
-            if (auth()->user()->can('View Users')){
+            if (auth()->user()->can('View Users') && $transaction->user){
                 $datum['name'] = '<a href="'.route('admin.users.show', $transaction->user['id']).'">'.ucwords($transaction->user['name']).'</a>';
             }else{
-                $datum['name'] = ucwords($transaction->user['name']);
+                $datum['name'] = "Deleted Account";
             }
-            $datum['amount'] = '₦ '.number_format($transaction['amount']);
+            $datum['amount'] = '$'.number_format($transaction['amount'], 2);
             $datum['description'] = $transaction['description'];
             $datum['date'] = $transaction['created_at']->format('M d, Y \a\t h:i A');
             $datum['details'] = $details;
