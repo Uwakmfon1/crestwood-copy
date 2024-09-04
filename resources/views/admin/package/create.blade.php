@@ -20,7 +20,7 @@
                         @csrf
                         <div class="form-group">
                             <label for="name">Name</label>
-                            <input type="text" name="name" style="height: 50px; font-size: 14px" class="form-control" value="{{ old('name') }}" id="name" placeholder="Name">
+                            <input type="text" name="name"  class="form-control" value="{{ old('name') }}" id="name" placeholder="Name">
                             @error('name')
                                 <strong class="small text-danger">
                                     {{ $message }}
@@ -28,17 +28,8 @@
                             @enderror
                         </div>
                         <div class="form-group">
-                            <label for="roi">ROI in %</label>
-                            <input type="number" name="roi" style="height: 50px; font-size: 14px" class="form-control" value="{{ old('roi') }}" id="roi" placeholder="ROI">
-                            @error('roi')
-                                <strong class="small text-danger">
-                                    {{ $message }}
-                                </strong>
-                            @enderror
-                        </div>
-                        <div class="form-group">
                             <label for="price">Price per slot</label>
-                            <input type="number" name="price" style="height: 50px; font-size: 14px" class="form-control" value="{{ old('price') }}" id="price" placeholder="Price">
+                            <input type="number" name="price"  class="form-control" value="{{ old('price') }}" id="price" placeholder="Price">
                             @error('price')
                                 <strong class="small text-danger">
                                     {{ $message }}
@@ -46,9 +37,36 @@
                             @enderror
                         </div>
                         <div class="form-group">
-                            <label for="duration">Duration in months</label>
-                            <input type="number" name="duration" style="height: 50px; font-size: 14px" class="form-control" value="{{ old('duration') }}" id="duration" placeholder="Duration">
-                            @error('duration')
+                            <label for="min_duration">Minimum Duration (3_days, 5_months, 1_year)</label>
+                            <input type="text" name="min_duration"  class="form-control" value="{{ old('min_duration') }}" id="min_duration" placeholder="Enter minimum day...">
+                            @error('min_duration')
+                                <strong class="small text-danger">
+                                    {{ $message }}
+                                </strong>
+                            @enderror
+                        </div>
+                        <div class="form-group">
+                            <label for="daily_roi">Daily ROI (%)</label>
+                            <input type="number" name="daily_roi"  class="form-control" value="{{ old('daily_roi') }}" id="daily_roi" placeholder="Daily ROI">
+                            @error('daily_roi')
+                                <strong class="small text-danger">
+                                    {{ $message }}
+                                </strong>
+                            @enderror
+                        </div>
+                        <div class="form-group">
+                            <label for="weekly_roi">Weekly ROI (%)</label>
+                            <input type="number" name="weekly_roi"  class="form-control" value="{{ old('weekly_roi') }}" id="weekly_roi" placeholder="Weekly ROI">
+                            @error('weekly_roi')
+                                <strong class="small text-danger">
+                                    {{ $message }}
+                                </strong>
+                            @enderror
+                        </div>
+                        <div class="form-group">
+                            <label for="yearly_roi">Yearly ROI (%)</label>
+                            <input type="number" name="yearly_roi"  class="form-control" value="{{ old('yearly_roi') }}" id="yearly_roi" placeholder="Yearly ROI">
+                            @error('yearly_roi')
                                 <strong class="small text-danger">
                                     {{ $message }}
                                 </strong>
@@ -65,7 +83,7 @@
                         </div>
                         <div class="form-group">
                             <label for="image">Image</label>
-                            <input type="file" name="image" style="height: 50px; font-size: 14px" class="form-control-file" id="image">
+                            <input type="file" name="image"  class="form-control-file" id="image">
                             @error('image')
                                 <strong class="small text-danger">
                                     {{ $message }}
@@ -94,7 +112,7 @@
                                 </div>
                             @enderror
                         </div>
-                        <button type="button" onclick="confirmFormSubmit('createPackageForm')" id="submitButton" class="btn btn-block btn-primary mr-2" style="height: 50px; font-size: 14px">Create Package</button>
+                        <button type="button" onclick="confirmFormSubmit('createPackageForm')" id="submitButton" class="btn btn-block btn-primary mr-2" >Create Package</button>
                     </form>
                 </div>
             </div>

@@ -39,9 +39,9 @@
                         <span class="avatar avatar-xxl avatar-rounded bg-info online">
                             <img width="40" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTr3jhpAFYpzxx39DRuXIYxNPXc0zI5F6IiMQ&s" alt="">
                         </span>
-                        @if(auth()->user()->getAvatar())
+                        @if(auth()->user()['avatar'])
                             <span class="avatar avatar-xxl avatar-rounded bg-info online">
-                                <img width="80px"  src="{{ auth()->user()->getAvatar() }}" style="border-radius: 5px" alt="{{ auth()->user()['name'] }}">
+                                <img width="80px"  src="{{ auth()->user()['avatar'] }}" style="border-radius: 5px" alt="{{ auth()->user()['first_name'] }}">
                             </span>
                         @else
                             <span class="avatar avatar-xxl avatar-rounded bg-info online">
@@ -139,953 +139,384 @@
                 </div>
                 <div class="row">
                     <div class="col-xl-12">
-                        <div class="tab-content" id="profile-tabs">
-                            <div class="tab-pane show active p-0 border-0" id="profile-about-tab-pane"
-                                role="tabpanel" aria-labelledby="profile-about-tab" tabindex="0">
-                                <div class="card custom-card overflow-hidden">
-                                    <div class="card-body p-3">
-                                        <form class="forms-sample row" id="profileForm" action="{{ route('profile.update') }}" method="POST" enctype="multipart/form-data">
-                                            @csrf
-                                            <div class="form-group col-md-6">
-                                                <label class="form-label text-muted fs-12" for="exampleInputUsername1">Name <span class="text-danger">*</span></label>
-                                                <input type="text" class="form-control" value="{{ old('name') ?? auth()->user()['name'] }}" name="name" id="exampleInputUsername1" placeholder="Name">
-                                                @error('name')
-                                                    <span class="text-danger small" role="alert">
-                                                        <strong>{{ $message }}</strong>
-                                                    </span>
-                                                @enderror
-                                            </div>
-                                            <div class="form-group col-md-6">
-                                                <label class="form-label mt-2 text-muted fs-12" for="email">Email address <span class="text-danger">*</span></label>
-                                                <input type="email" value="{{ auth()->user()['email'] }}" class="form-control" disabled name="email" id="email" placeholder="Email">
-                                            </div>
-                                            <div class="form-group col-md-6">
-                                                <label class="form-label mt-2 text-muted fs-12" for="country">Country <span class="text-danger">*</span></label>
-                                                <select name="country" id="country" class="form-control text-dark">
-                                                    {{-- @foreach(\App\Models\User::$countries as $key => $country)
-                                                            <option @if(old("phone_code") == $country['phonecode'] || auth()->user()['phone_code'] == $country['phonecode']) selected @elseif($key == 159) selected @endif value="{{$country['phonecode']}}">{{ $country['phonecode']}}</option>
-                                                        @endforeach --}}
-                                                        <option value="">Select Country</option>
-                                                        @foreach(\App\Models\Country::orderBy('name')->get() as $country)
-                                                            <option value="{{ $country->name }}"
-                                                                @if(old('country') !== null && old('country') == $country->name)
-                                                                    selected
-                                                                @elseif(auth()->user()->country == $country->name && old('country') === null)
-                                                                    selected
-                                                                @elseif(auth()->user()->country === null && $country->name == 'Nigeria')
-                                                                    selected
-                                                                @endif
-                                                            >
-                                                                {{ ucwords($country->name) }}
-                                                            </option>
-                                                        @endforeach
-
-                                                </select>
-                                                @error('country')
-                                                    <span class="text-danger small" role="alert">
-                                                        <strong>{{ $message }}</strong>
-                                                    </span>
-                                                @enderror
-                                            </div>
-                                            <div class="form-group col-md-6">
-                                                <label class="form-label mt-2 text-muted fs-12" for="phone">Phone <span class="text-danger">*</span></label>
-                                                <div class="d-flex mb-3">
-                                                    <select name="phone_code" style="width: 25%" class="form-control text-muted">
-                                                        @foreach(\App\Models\User::$countries as $key => $country)
-                                                            <option @if(old("phone_code") == $country['phonecode'] || auth()->user()['phone_code'] == $country['phonecode']) selected @elseif($key == 159) selected @endif value="{{$country['phonecode']}}">+{{ $country['phonecode']}}</option>
-                                                        @endforeach
-                                                    </select>
-                                                    <input type="text" class="form-control" name="phone" id="phone" placeholder="Phone" required value="{{ old('phone') ?? auth()->user()['phone'] }}">
-                                                </div>
-                                                @error('phone')
-                                                <span class="text-danger small" role="alert">
-                                                            <strong>{{ $message }}</strong>
-                                                        </span>
-                                                @enderror
-                                            </div>
-                                            <div class="form-group col-md-6">
-                                                <label class="form-label mt-2 text-muted fs-12" for="state">State <span class="text-danger">*</span></label>
-                                                <select class="form-select @error('state') is-invalid @enderror" name="state" id="state">
-                                                    @if(old('country') || auth()->user()['country'])
-                                                        <option value="">Select State</option>
-                                                        @foreach(\App\Models\Country::query()->where('name', old('country') ?? auth()->user()['country'])->first()->states()->orderBy('name')->get() as $state)
-                                                            <option value="{{ $state->name }}" @if((old('state') ?? auth()->user()['state']) == $state->name) selected @endif>{{ ucwords($state->name) }}</option>
-                                                        @endforeach
-                                                    @else
-                                                        <option selected value="">Select A Country</option>
-                                                    @endif
-                                                </select>
-                                            </div>
-                                            <div class="form-group col-md-6">
-                                                <label class="form-label mt-2 text-muted fs-12" for="city">City <span class="text-danger">*</span></label>
-                                                <input type="text" value="{{ old("city") ?? auth()->user()['city'] }}" class="form-control" name="city" id="city" placeholder="City">
-                                                @error('city')
-                                                    <span class="text-danger small" role="alert">
-                                                        <strong>{{ $message }}</strong>
-                                                    </span>
-                                                @enderror
-                                            </div>
-                                            <div class="form-group col-md-12">
-                                                <label class="form-label mt-2 text-muted fs-12" for="address">Address <span class="text-danger">*</span></label>
-                                                <input type="text" value="{{ old("address") ?? auth()->user()['address'] }}" class="form-control" name="address" id="address" placeholder="Address">
-                                                @error('address')
-                                                    <span class="text-danger small" role="alert">
-                                                        <strong>{{ $message }}</strong>
-                                                    </span>
-                                                @enderror
-                                            </div>
-                                            <div class="col-md-6">
-                                                <label class="form-label mt-2 text-muted fs-12" for="avatar">Avatar</label>
-                                                <input type="file" id="avatar" name="avatar" class="form-control"/>
-                                                @error('avatar')
-                                                    <span class="text-danger small" role="alert">
-                                                        <strong>{{ $message }}</strong>
-                                                    </span>
-                                                @enderror
-                                            </div>
-                                            <div class="col-md-6">
-                                                <label class="form-label mt-2 text-muted fs-12" for="id">Valid Identification </label>
-                                                <input type="file" id="id" name="id" class="form-control"/>
-                                                @error('id')
-                                                    <span class="text-danger small" role="alert">
-                                                        <strong>{{ $message }}</strong>
-                                                    </span>
-                                                @enderror
-                                            </div>
-                                            <div class="col-12 mt-4 pt-4">
-                                                <h6 class="card-title">Bank Information</h6>
-                                            </div>
-                                            <div class="form-group col-md-6">
-                                                <label class="form-label mt-2 text-muted fs-12" for="bankList">Bank Name <span class="text-danger">*</span></label>
-                                                <select name="bank_name" class="form-control text-dark" id="bankList">
-                                                    @if(count($banks) > 0)
-                                                        <option value="">Select Bank</option>
-                                                        @foreach($banks as $bank)
-                                                            <option @if(old("bank_name") == $bank['name'] || auth()->user()['bank_name'] == $bank['name']) selected @endif value="{{ $bank['name'] }}" data-code="{{ $bank['code'] }}">{{ $bank['name'] }}</option>
-                                                        @endforeach
-                                                    @else
-                                                        <option value="">Error Fetching Banks</option>
-                                                    @endif
-                                                </select>
-                                                @error('bank_name')
-                                                    <span class="text-danger small" role="alert">
-                                                        <strong>{{ $message }}</strong>
-                                                    </span>
-                                                @enderror
-                                                <input type="hidden" id="bankCode" value="@if(count($banks) > 0) @foreach($banks as $bank) @if(auth()->user()['bank_name'] == $bank['name']) {{ $bank['code'] }} @endif @endforeach @endif">
-                                            </div>
-                                            <div class="form-group col-md-6">
-                                                <label class="form-label mt-2 text-muted fs-12" for="account_number">Account Number <span class="text-danger">*</span></label>
-                                                <input type="text" value="{{ old("account_number") ?? auth()->user()['account_number'] }}" class="form-control" name="account_number" id="account_number" placeholder="Account Number">
-                                                @error('account_number')
-                                                    <span class="text-danger small" role="alert">
-                                                        <strong>{{ $message }}</strong>
-                                                    </span>
-                                                @enderror
-                                            </div>
-                                            <div class="form-group col-md-12">
-                                                <label class="form-label mt-2 text-muted fs-12" for="account_name" class="d-flex justify-content-between">
-                                                    <span class="d-block">Account Name <span class="text-danger">*</span></span>
-                                                    <span id="verifyingDisplay" class="small d-block"></span>
-                                                </label>
-                                                <input type="text" value="{{ old("account_name") ?? auth()->user()['account_name'] }}" readonly class="form-control" name="account_name" id="account_name" placeholder="Account Name">
-                                                @error('account_name')
-                                                    <span class="text-danger small" role="alert">
-                                                        <strong>{{ $message }}</strong>
-                                                    </span>
-                                                @enderror
-                                            </div>
-                                            <div class="col-12 mt-4 pt-4">
-                                                <h6 class="card-title">Next of Kin</h6>
-                                            </div>
-                                            <div class="form-group col-md-6">
-                                                <label class="form-label mt-2 text-muted fs-12" for="nk_name">Full Name <span class="text-danger">*</span></label>
-                                                <input type="text" value="{{ old("nk_name") ?? auth()->user()['nk_name'] }}" class="form-control" name="nk_name" id="nk_name" placeholder="Full Name">
-                                                @error('nk_name')
-                                                    <span class="text-danger small" role="alert">
-                                                        <strong>{{ $message }}</strong>
-                                                    </span>
-                                                @enderror
-                                            </div>
-                                            <div class="form-group col-md-6">
-                                                <label class="form-label mt-2 text-muted fs-12" for="nk_phone">Phone <span class="text-danger">*</span></label>
-                                                <div class="d-flex mb-3">
-                                                    <select name="phone_code" style="height: 40px; font-size: 15px; width: 25%" class="form-control">
-                                                        @foreach(\App\Models\User::$countries as $key => $country)
-                                                            <option @if(old("phone_code") == $country['phonecode'] || auth()->user()['phone_code'] == $country['phonecode']) selected @elseif($key == 159) selected @endif value="{{$country['phonecode']}}">{{ $country['phonecode']}}</option>
-                                                        @endforeach
-                                                    </select>
-                                                    <input type="text" class="form-control" name="nk_phone" id="nk_phone" placeholder="Phone" required value="{{ old('nk_phone') ?? auth()->user()['nk_phone'] }}">
-                                                </div>
-                                                @error('nk_phone')
-                                                    <span class="text-danger small" role="alert">
-                                                        <strong>{{ $message }}</strong>
-                                                    </span>
-                                                @enderror
-                                            </div>
-                                            <div class="form-group col-md-12">
-                                                <label class="form-label mt-2 text-muted fs-12" for="nk_address">Address</label>
-                                                <input type="text" value="{{ old("nk_address") ?? auth()->user()['nk_address'] }}" style="height: 40px; font-size: 15px" class="form-control" name="nk_address" id="nk_address" placeholder="Address">
-                                                @error('nk_address')
-                                                    <span class="text-danger small" role="alert">
-                                                        <strong>{{ $message }}</strong>
-                                                    </span>
-                                                @enderror
-                                            </div>
-                                            <div class="col-12 mt-3">
-                                                <button type="submit" class="btn btn-primary mr-2">Update Profile</button>
-                                            </div>
-                                        </form>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="tab-pane p-0 border-0" id="edit-profile-tab-pane" role="tabpanel"
-                                aria-labelledby="edit-profile-tab" tabindex="0">
-                                <div class="card custom-card overflow-hidden">
-                                    <div class="card-body p-0">
-                                        <ul class="list-group list-group-flush">
-                                            <li class="list-group-item p-4">
-                                                <span class="fw-medium fs-15 d-block mb-3">Personal Info
-                                                    :</span>
-                                                <div class="row gy-4 align-items-center">
-                                                    <div class="col-xl-3">
-                                                        <div class="lh-1">
-                                                            <span class="fw-medium">User Name :</span>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-xl-9">
-                                                        <input type="text" class="form-control"
-                                                            placeholder="Placeholder" value="Ethan Brown">
-                                                    </div>
-                                                    <div class="col-xl-3">
-                                                        <div class="lh-1">
-                                                            <span class="fw-medium">First Name :</span>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-xl-9">
-                                                        <input type="text" class="form-control"
-                                                            placeholder="Placeholder" value="Ethan">
-                                                    </div>
-                                                    <div class="col-xl-3">
-                                                        <div class="lh-1">
-                                                            <span class="fw-medium">Last Name :</span>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-xl-9">
-                                                        <input type="text" class="form-control"
-                                                            placeholder="Placeholder" value="Brown">
-                                                    </div>
-                                                    <div class="col-xl-3">
-                                                        <div class="lh-1">
-                                                            <span class="fw-medium">Designation :</span>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-xl-9">
-                                                        <input type="text" class="form-control"
-                                                            placeholder="Placeholder"
-                                                            value="Chief Executive Officer (C.E.O)">
-                                                    </div>
-                                                </div>
-                                            </li>
-                                            <li class="list-group-item p-4">
-                                                <span class="fw-medium fs-15 d-block mb-3">Contact Info :</span>
-                                                <div class="row gy-4 align-items-center">
-                                                    <div class="col-xl-3">
-                                                        <div class="lh-1">
-                                                            <span class="fw-medium">Email :</span>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-xl-9">
-                                                        <input type="email" class="form-control"
-                                                            placeholder="Placeholder"
-                                                            value="your.email@example.com">
-                                                    </div>
-                                                    <div class="col-xl-3">
-                                                        <div class="lh-1">
-                                                            <span class="fw-medium">Phone :</span>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-xl-9">
-                                                        <input type="text" class="form-control"
-                                                            placeholder="Placeholder" value="+1 (555) 123-4567">
-                                                    </div>
-                                                    <div class="col-xl-3">
-                                                        <div class="lh-1">
-                                                            <span class="fw-medium">Website :</span>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-xl-9">
-                                                        <input type="text" class="form-control"
-                                                            placeholder="Placeholder"
-                                                            value="www.yourwebsite.com">
-                                                    </div>
-                                                    <div class="col-xl-3">
-                                                        <div class="lh-1">
-                                                            <span class="fw-medium">Location :</span>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-xl-9">
-                                                        <input type="text" class="form-control"
-                                                            placeholder="Placeholder"
-                                                            value="Georgia, Washington D.C">
-                                                    </div>
-                                                </div>
-                                            </li>
-                                            <li class="list-group-item p-4">
-                                                <span class="fw-medium fs-15 d-block mb-3">Social Info :</span>
-                                                <div class="row gy-4 align-items-center">
-                                                    <div class="col-xl-3">
-                                                        <div class="lh-1">
-                                                            <span class="fw-medium">Github :</span>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-xl-9">
-                                                        <input type="text" class="form-control"
-                                                            placeholder="Placeholder" value="github.com/spruko">
-                                                    </div>
-                                                    <div class="col-xl-3">
-                                                        <div class="lh-1">
-                                                            <span class="fw-medium">Twitter :</span>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-xl-9">
-                                                        <input type="text" class="form-control"
-                                                            placeholder="Placeholder"
-                                                            value="twitter.com/spruko.me">
-                                                    </div>
-                                                    <div class="col-xl-3">
-                                                        <div class="lh-1">
-                                                            <span class="fw-medium">Linkedin :</span>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-xl-9">
-                                                        <input type="text" class="form-control"
-                                                            placeholder="Placeholder"
-                                                            value="linkedin.com/in/spruko">
-                                                    </div>
-                                                    <div class="col-xl-3">
-                                                        <div class="lh-1">
-                                                            <span class="fw-medium">Portfolio :</span>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-xl-9">
-                                                        <input type="text" class="form-control"
-                                                            placeholder="Placeholder" value="spruko.com/">
-                                                    </div>
-                                                </div>
-                                            </li>
-                                            <li class="list-group-item p-4">
-                                                <span class="fw-medium fs-15 d-block mb-3">About :</span>
-                                                <div class="row gy-4 align-items-center">
-                                                    <div class="col-xl-3">
-                                                        <div class="lh-1">
-                                                            <span class="fw-medium">Biographical Info :</span>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-xl-9">
-                                                        <textarea class="form-control" id="text-area" rows="4">Hello there! I'm Ethan Brown, a dedicated CEO enthusiast hailing from Pune. My passion for developing fuels my exploration of the intricate nuances within software. Whether delving into designing or mastering new techniques, I'm always fueled by an insatiable thirst for knowledge and growth.
-                                                    </textarea>
-                                                    </div>
-                                                </div>
-                                            </li>
-                                            <li class="list-group-item p-4">
-                                                <span class="fw-medium fs-15 d-block mb-3">Skills :</span>
-                                                <div class="row gy-4 align-items-center">
-                                                    <div class="col-xl-3">
-                                                        <div class="lh-1">
-                                                            <span class="fw-medium">skills :</span>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-xl-9">
-                                                        <input class="form-control"
-                                                            id="choices-text-preset-values" type="text"
-                                                            value="Time Management, UX/UI Design, Cloud Computing, Version Control, Web Development, Problem-Solving, Continuous Learning, Customer Service, Budgeting and Finance, Leadership, Data Analysis, Adaptability"
-                                                            placeholder="This is a placeholder">
-                                                    </div>
-                                                </div>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="tab-pane p-0 border-0" id="timeline-tab-pane" role="tabpanel"
-                                aria-labelledby="timeline-tab" tabindex="0">
-                                <div class="card custom-card overflow-hidden">
-                                    <div class="card-body p-4">
-                                        <ul class="list-unstyled profile-timeline">
-                                            <li>
-                                                <div>
-                                                    <span
-                                                        class="avatar avatar-sm bg-primary-transparent avatar-rounded profile-timeline-avatar">
-                                                        E
-                                                    </span>
-                                                    <p class="mb-2">
-                                                        <span class="fw-semibold">Embarking on a fresh journey!
-                                                            Ready to embrace new challenges and create
-                                                            unforgettable experiences.<span
-                                                                class="float-end fs-11 text-muted">24,Dec 2024 -
-                                                                14:34</span>
-                                                    </p>
-                                                    <p class="profile-activity-media mb-0">
-                                                        <a href="javascript:void(0);">
-                                                            <img src="../assets/images/media/media-17.jpg"
-                                                                alt="">
-                                                        </a>
-                                                        <a href="javascript:void(0);">
-                                                            <img src="../assets/images/media/media-18.jpg"
-                                                                alt="">
-                                                        </a>
-                                                    </p>
-                                                </div>
-                                            </li>
-                                            <li>
-                                                <div>
-                                                    <span
-                                                        class="avatar avatar-sm avatar-rounded profile-timeline-avatar">
-                                                        <img src="../assets/images/faces/11.jpg" alt="">
-                                                    </span>
-                                                    <p class="mb-2">
-                                                        Achieved a personal milestone today! &#127942; <span
-                                                            class="text-primary fw-medium text-decoration-underline">#Hard
-                                                            work pays off</span>.<span
-                                                            class="float-end fs-11 text-muted">18,Dec 2024 -
-                                                            12:16</span>
-                                                    </p>
-                                                    <p class="text-muted mb-0">
-                                                        Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                                                        Repudiandae, repellendus rem rerum excepturi aperiam
-                                                        ipsam temporibus inventore ullam tempora eligendi libero
-                                                        sequi dignissimos cumque, et a sint tenetur consequatur
-                                                        omnis!
-                                                    </p>
-                                                </div>
-                                            </li>
-                                            <li>
-                                                <div>
-                                                    <span
-                                                        class="avatar avatar-sm avatar-rounded profile-timeline-avatar">
-                                                        <img src="../assets/images/faces/4.jpg" alt="">
-                                                    </span>
-                                                    <p class="text-muted mb-2">
-                                                        <span class="text-default">Participated in a
-                                                            thought-provoking webinar covering [topic]. Always
-                                                            striving to expand my knowledge horizons!
-                                                            &#128218;</span>.<span
-                                                            class="float-end fs-11 text-muted">21,Dec 2024 -
-                                                            15:32</span>
-                                                    </p>
-                                                    <p class="profile-activity-media mb-0">
-                                                        <a href="javascript:void(0);">
-                                                            <img src="../assets/images/media/file-manager/3.png"
-                                                                alt="">
-                                                        </a>
-                                                        <span class="fs-11 text-muted">432.87KB</span>
-                                                    </p>
-                                                </div>
-                                            </li>
-                                            <li>
-                                                <div>
-                                                    <span
-                                                        class="avatar avatar-sm bg-success-transparent avatar-rounded profile-timeline-avatar">
-                                                        P
-                                                    </span>
-                                                    <p class="text-muted mb-2">
-                                                        <span class="text-default">Shared a mouthwatering recipe
-                                                            I experimented with. Cooking adventures are way to
-                                                            explore creativity in the kitchen!
-                                                            &#127858;</span>.<span
-                                                            class="float-end fs-11 text-muted">28,Dec 2024 -
-                                                            18:46</span>
-                                                    </p>
-                                                    <p class="profile-activity-media mb-2">
-                                                        <a href="javascript:void(0);">
-                                                            <img src="../assets/images/media/media-70.jpg"
-                                                                alt="">
-                                                        </a>
-                                                    </p>
-                                                </div>
-                                            </li>
-                                            <li>
-                                                <div>
-                                                    <span
-                                                        class="avatar avatar-sm avatar-rounded profile-timeline-avatar">
-                                                        <img src="../assets/images/faces/5.jpg" alt="">
-                                                    </span>
-                                                    <p class="text-muted mb-1">
-                                                        <span class="text-default">Enjoyed a weekend getaway to
-                                                            <span
-                                                                class="fw-semibold text-primary text-decoration-underline">#Africa</span>.
-                                                            Nature therapy at its best!</span>.<span
-                                                            class="float-end fs-11 text-muted">11,Dec 2024 -
-                                                            11:18</span>
-                                                    </p>
-                                                    <p class="text-muted">you are already feeling the tense
-                                                        atmosphere of the video playing in the background</p>
-                                                    <p class="profile-activity-media mb-0">
-                                                        <a href="javascript:void(0);">
-                                                            <img src="../assets/images/media/media-59.jpg"
-                                                                class="m-1" alt="">
-                                                        </a>
-                                                        <a href="javascript:void(0);">
-                                                            <img src="../assets/images/media/media-60.jpg"
-                                                                class="m-1" alt="">
-                                                        </a>
-                                                        <a href="javascript:void(0);">
-                                                            <img src="../assets/images/media/media-61.jpg"
-                                                                class="m-1" alt="">
-                                                        </a>
-                                                    </p>
-                                                </div>
-                                            </li>
-                                            <li>
-                                                <div>
-                                                    <span
-                                                        class="avatar avatar-sm avatar-rounded profile-timeline-avatar">
-                                                        <img src="../assets/images/media/media-39.jpg" alt="">
-                                                    </span>
-                                                    <p class="mb-1">
-                                                        Celebrated a dear friend's birthday with a surprise
-                                                        bash! Nothing beats the joy of creating moments with
-                                                        loved ones! &#127881;<span
-                                                            class="float-end fs-11 text-muted">24,Dec 2024 -
-                                                            14:34</span>
-                                                    </p>
-                                                    <p class="profile-activity-media mb-0">
-                                                        <a href="javascript:void(0);">
-                                                            <img src="../assets/images/media/media-26.jpg"
-                                                                alt="">
-                                                        </a>
-                                                        <a href="javascript:void(0);">
-                                                            <img src="../assets/images/media/media-29.jpg"
-                                                                alt="">
-                                                        </a>
-                                                    </p>
-                                                </div>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="tab-pane p-0 border-0" id="gallery-tab-pane" role="tabpanel"
-                                aria-labelledby="gallery-tab" tabindex="0">
-                                <div class="card custom-card overflow-hidden">
-                                    <div class="card-body">
-                                        <div class="row">
-                                            <div class="col-xxl-3 col-xl-3 col-lg-3 col-md-6 col-sm-12">
-                                                <a href="../assets/images/media/media-40.jpg"
-                                                    class="glightbox card" data-gallery="gallery1">
-                                                    <img src="../assets/images/media/media-40.jpg" alt="image">
-                                                </a>
-                                            </div>
-                                            <div class="col-xxl-3 col-xl-3 col-lg-3 col-md-6 col-sm-12">
-                                                <a href="../assets/images/media/media-41.jpg"
-                                                    class="glightbox card" data-gallery="gallery1">
-                                                    <img src="../assets/images/media/media-41.jpg" alt="image">
-                                                </a>
-                                            </div>
-                                            <div class="col-xxl-3 col-xl-3 col-lg-3 col-md-6 col-sm-12">
-                                                <a href="../assets/images/media/media-42.jpg"
-                                                    class="glightbox card" data-gallery="gallery1">
-                                                    <img src="../assets/images/media/media-42.jpg" alt="image">
-                                                </a>
-                                            </div>
-                                            <div class="col-xxl-3 col-xl-3 col-lg-3 col-md-6 col-sm-12">
-                                                <a href="../assets/images/media/media-43.jpg"
-                                                    class="glightbox card" data-gallery="gallery1">
-                                                    <img src="../assets/images/media/media-43.jpg" alt="image">
-                                                </a>
-                                            </div>
-                                            <div class="col-xxl-3 col-xl-3 col-lg-3 col-md-6 col-sm-12">
-                                                <a href="../assets/images/media/media-44.jpg"
-                                                    class="glightbox card" data-gallery="gallery1">
-                                                    <img src="../assets/images/media/media-44.jpg" alt="image">
-                                                </a>
-                                            </div>
-                                            <div class="col-xxl-3 col-xl-3 col-lg-3 col-md-6 col-sm-12">
-                                                <a href="../assets/images/media/media-45.jpg"
-                                                    class="glightbox card" data-gallery="gallery1">
-                                                    <img src="../assets/images/media/media-45.jpg" alt="image">
-                                                </a>
-                                            </div>
-                                            <div class="col-xxl-3 col-xl-3 col-lg-3 col-md-6 col-sm-12">
-                                                <a href="../assets/images/media/media-46.jpg"
-                                                    class="glightbox card" data-gallery="gallery1">
-                                                    <img src="../assets/images/media/media-46.jpg" alt="image">
-                                                </a>
-                                            </div>
-                                            <div class="col-xxl-3 col-xl-3 col-lg-3 col-md-6 col-sm-12">
-                                                <a href="../assets/images/media/media-60.jpg"
-                                                    class="glightbox card" data-gallery="gallery1">
-                                                    <img src="../assets/images/media/media-60.jpg" alt="image">
-                                                </a>
-                                            </div>
-                                            <div class="col-xxl-3 col-xl-3 col-lg-3 col-md-6 col-sm-12">
-                                                <a href="../assets/images/media/media-26.jpg"
-                                                    class="glightbox card" data-gallery="gallery1">
-                                                    <img src="../assets/images/media/media-26.jpg" alt="image">
-                                                </a>
-                                            </div>
-                                            <div class="col-xxl-3 col-xl-3 col-lg-3 col-md-6 col-sm-12">
-                                                <a href="../assets/images/media/media-32.jpg"
-                                                    class="glightbox card" data-gallery="gallery1">
-                                                    <img src="../assets/images/media/media-32.jpg" alt="image">
-                                                </a>
-                                            </div>
-                                            <div class="col-xxl-3 col-xl-3 col-lg-3 col-md-6 col-sm-12">
-                                                <a href="../assets/images/media/media-30.jpg"
-                                                    class="glightbox card" data-gallery="gallery1">
-                                                    <img src="../assets/images/media/media-30.jpg" alt="image">
-                                                </a>
-                                            </div>
-                                            <div class="col-xxl-3 col-xl-3 col-lg-3 col-md-6 col-sm-12">
-                                                <a href="../assets/images/media/media-31.jpg"
-                                                    class="glightbox card" data-gallery="gallery1">
-                                                    <img src="../assets/images/media/media-31.jpg" alt="image">
-                                                </a>
-                                            </div>
-                                            <div class="col-xxl-3 col-xl-3 col-lg-3 col-md-6 col-sm-12">
-                                                <a href="../assets/images/media/media-46.jpg"
-                                                    class="glightbox card" data-gallery="gallery1">
-                                                    <img src="../assets/images/media/media-46.jpg" alt="image">
-                                                </a>
-                                            </div>
-                                            <div class="col-xxl-3 col-xl-3 col-lg-3 col-md-6 col-sm-12">
-                                                <a href="../assets/images/media/media-59.jpg"
-                                                    class="glightbox card" data-gallery="gallery1">
-                                                    <img src="../assets/images/media/media-59.jpg" alt="image">
-                                                </a>
-                                            </div>
-                                            <div class="col-xxl-3 col-xl-3 col-lg-3 col-md-6 col-sm-12">
-                                                <a href="../assets/images/media/media-61.jpg"
-                                                    class="glightbox card" data-gallery="gallery1">
-                                                    <img src="../assets/images/media/media-61.jpg" alt="image">
-                                                </a>
-                                            </div>
-                                            <div class="col-xxl-3 col-xl-3 col-lg-3 col-md-6 col-sm-12">
-                                                <a href="../assets/images/media/media-42.jpg"
-                                                    class="glightbox card" data-gallery="gallery1">
-                                                    <img src="../assets/images/media/media-42.jpg" alt="image">
-                                                </a>
-                                            </div>
+                        <div class="card custom-card">
+                            <div class="card-body d-flex align-items-start">
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <div class="nav flex-column nav-pills me-3 tab-style-7" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+                                        <button class="nav-link text-start active" id="main-profile-tab" data-bs-toggle="pill" data-bs-target="#main-profile" type="button" role="tab" aria-controls="main-profile" aria-selected="true"><i class="ri-shield-user-line me-1 align-middle d-inline-block"></i>Account Information</button>
+                                        <button class="nav-link text-start" id="man-password-tab" data-bs-toggle="pill" data-bs-target="#man-password" type="button" role="tab" aria-controls="man-password" aria-selected="false" tabindex="-1"><i class="ri-u-disk-line me-1 align-middle d-inline-block"></i>Payment Methond</button>
+                                        <button class="nav-link text-start" id="main-team-tab" data-bs-toggle="pill" data-bs-target="#main-team" type="button" role="tab" aria-controls="main-team" aria-selected="false" tabindex="-1"><i class="ri-group-line me-1 align-middle d-inline-block"></i>Personal Information</button>
+                                        <button class="nav-link text-start" id="main-billing-tab" data-bs-toggle="pill" data-bs-target="#main-billing" type="button" role="tab" aria-controls="main-billing" aria-selected="false" tabindex="-1"><i class="ri-bill-line me-1 align-middle d-inline-block"></i>Identity & Verification</button>
                                         </div>
                                     </div>
-                                </div>
-                            </div>
-                            <div class="tab-pane p-0 border-0" id="friends-tab-pane" role="tabpanel"
-                                aria-labelledby="friends-tab" tabindex="0">
-                                <div class="card custom-card">
-                                    <div class="card-body">
-                                        <div class="row">
-                                            <div class="col-xxl-4 col-xl-4 col-lg-6 col-md-6 col-sm-12">
-                                                <div class="card custom-card shadow-none border">
-                                                    <div class="card-body p-4">
-                                                        <div class="text-center">
-                                                            <span class="avatar avatar-xl avatar-rounded">
-                                                                <img src="../assets/images/faces/2.jpg" alt="">
-                                                            </span>
-                                                            <div class="mt-2">
-                                                                <p class="mb-0 fw-semibold">Luna Park</p>
-                                                                <p class="fs-12 op-7 mb-1 text-muted">
-                                                                    lunapark2912@gmail.com</p>
-                                                                <span class="badge bg-primary-transparent">Team
-                                                                    Member</span>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="card-footer text-center">
-                                                        <div
-                                                            class="d-flex gap-2 flex-wrap justify-content-center">
-                                                            <div class="btn-list">
-                                                                <button
-                                                                    class="btn btn-sm btn-light btn-wave">Block</button>
-                                                                <button
-                                                                    class="btn btn-sm btn-primary btn-wave me-0">Unfollow</button>
-                                                            </div>
-                                                            <div class="dropdown">
-                                                                <a aria-label="anchor"
-                                                                    class="btn btn-primary-light btn-icon btn-sm btn-wave"
-                                                                    href="javascript:void(0);"
-                                                                    data-bs-toggle="dropdown">
-                                                                    <i class="ri-more-2-fill"></i>
-                                                                </a>
-                                                                <ul class="dropdown-menu" role="menu">
-                                                                    <li><a class="dropdown-item"
-                                                                            href="javascript:void(0);">Message</a>
-                                                                    </li>
-                                                                    <li><a class="dropdown-item"
-                                                                            href="javascript:void(0);">Edit</a>
-                                                                    </li>
-                                                                    <li><a class="dropdown-item"
-                                                                            href="javascript:void(0);">View</a>
-                                                                    </li>
-                                                                    <li><a class="dropdown-item"
-                                                                            href="javascript:void(0);">Delete</a>
-                                                                    </li>
-                                                                </ul>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col-xxl-4 col-xl-4 col-lg-6 col-md-6 col-sm-12">
-                                                <div class="card custom-card shadow-none border">
-                                                    <div class="card-body p-4">
-                                                        <div class="text-center">
-                                                            <span class="avatar avatar-xl avatar-rounded">
-                                                                <img src="../assets/images/faces/15.jpg" alt="">
-                                                            </span>
-                                                            <div class="mt-2">
-                                                                <p class="mb-0 fw-semibold">Tristan Sawyer</p>
-                                                                <p class="fs-12 op-7 mb-1 text-muted">
-                                                                    tristansawyer98@gmail.com</p>
-                                                                <span class="badge bg-success-transparent">Team
-                                                                    Lead</span>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="card-footer text-center">
-                                                        <div
-                                                            class="d-flex gap-2 flex-wrap justify-content-center">
-                                                            <div class="btn-list">
-                                                                <button
-                                                                    class="btn btn-sm btn-light btn-wave">Block</button>
-                                                                <button
-                                                                    class="btn btn-sm btn-primary btn-wave me-0">Unfollow</button>
-                                                            </div>
-                                                            <div class="dropdown">
-                                                                <a aria-label="anchor"
-                                                                    class="btn btn-primary-light btn-icon btn-sm btn-wave"
-                                                                    href="javascript:void(0);"
-                                                                    data-bs-toggle="dropdown">
-                                                                    <i class="ri-more-2-fill"></i>
-                                                                </a>
-                                                                <ul class="dropdown-menu" role="menu">
-                                                                    <li><a class="dropdown-item"
-                                                                            href="javascript:void(0);">Message</a>
-                                                                    </li>
-                                                                    <li><a class="dropdown-item"
-                                                                            href="javascript:void(0);">Edit</a>
-                                                                    </li>
-                                                                    <li><a class="dropdown-item"
-                                                                            href="javascript:void(0);">View</a>
-                                                                    </li>
-                                                                    <li><a class="dropdown-item"
-                                                                            href="javascript:void(0);">Delete</a>
-                                                                    </li>
-                                                                </ul>
+                                    <div class="col-md-8">
+                                        <div class="tab-content" id="v-pills-tabContent">
+                                            <div class="tab-pane show active" id="main-profile" role="tabpanel" tabindex="0" aria-labelledby="main-profile-tab">
+                                                <div class="d-sm-flex">
+                                                    <div>
+                                                        <div class="my-md-auto mt-4 ms-md-3">
+                                                            <!-- <h5 class="font-weight-semibold ms-2 mb-1 pb-0">Adam Smith</h5> -->
+                                                            <div class="row gy-3">
+                                                                <div class="me-3">
+                                                                    <span class="avatar avatar-xl bg-dark-transparent rounded-circle p-3">
+                                                                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/59/User-avatar.svg/2048px-User-avatar.svg.png" alt="img">
+                                                                    </span>
+                                                                    <div class="col-md-6">
+                                                                        <label class="form-label mt-2 text-muted fs-12" for="avatar">Avatar</label>
+                                                                        <input type="file" id="avatar" name="avatar" class="form-control"/>
+                                                                        @error('avatar')
+                                                                            <span class="text-danger small" role="alert">
+                                                                                <strong>{{ $message }}</strong>
+                                                                            </span>
+                                                                        @enderror
+                                                                    </div>
+                                                                </div>
+                                                                <!-- Full Name -->
+                                                                <div class="col-xl-12">
+                                                                    <label for="first_name" class="form-label">First name</label>
+                                                                    <input name="first_name" type="text" class="form-control @error('first_name') is-invalid @enderror" id="first_name"
+                                                                        placeholder="Enter first name..." value="{{ $user->first_name }}" required>
+                                                                    @error('first_name')
+                                                                        <span class="invalid-feedback" role="alert">
+                                                                            <strong>{{ $message }}</strong>
+                                                                        </span>
+                                                                    @enderror
+                                                                </div>
+                                                                <div class="col-xl-12">
+                                                                    <label for="last_name" class="form-label">Last name</label>
+                                                                    <input name="last_name" type="text" class="form-control @error('last_name') is-invalid @enderror" id="last_name"
+                                                                        placeholder="Enter last name..." value="{{ $user->last_name }}" required>
+                                                                    @error('last_name')
+                                                                        <span class="invalid-feedback" role="alert">
+                                                                            <strong>{{ $message }}</strong>
+                                                                        </span>
+                                                                    @enderror
+                                                                </div>
+                                                                <div class="col-xl-12">
+                                                                    <label for="email" class="form-label">Email address</label>
+                                                                    <!-- <div class="input-group"> -->
+                                                                        <input name="email" type="email" class="form-control @error('email') is-invalid @enderror" id="email"
+                                                                            placeholder="Enter email..." value="{{ $user->email }}" disabled>
+                                                                        <!-- <button type="submit" class="btn btn-dark input-group-text">Submit</button> -->
+                                                                    <!-- </div> -->
+                                                                    @error('email')
+                                                                        <span class="invalid-feedback" role="alert">
+                                                                            <strong>{{ $message }}</strong>
+                                                                        </span>
+                                                                    @enderror
+                                                                </div>
+                                                                <div class="col-xl-12">
+                                                                    <label for="phonez" class="form-label d-block">Phone Number</label>
+                                                                    <input class="form-control" id="phone" type="tel" name="phone" disabled value="{{ $user->phone }}"> 
+                                                                    <input type="hidden" id="phoneCode" name="phone_code">
+                                                                    @error('phone')
+                                                                        <span class="invalid-feedback" role="alert">
+                                                                            <strong>{{ $message }}</strong>
+                                                                        </span>
+                                                                    @enderror
+                                                                </div>
+                                                                <div>
+                                                                    <button class="btn btn-success">Submit</button>
+                                                                </div>
                                                             </div>
                                                         </div>
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div class="col-xxl-4 col-xl-4 col-lg-6 col-md-6 col-sm-12">
-                                                <div class="card custom-card shadow-none border">
-                                                    <div class="card-body p-4">
-                                                        <div class="text-center">
-                                                            <span class="avatar avatar-xl avatar-rounded">
-                                                                <img src="../assets/images/faces/5.jpg" alt="">
-                                                            </span>
-                                                            <div class="mt-2">
-                                                                <p class="mb-0 fw-semibold">Juniper Cruz</p>
-                                                                <p class="fs-12 op-7 mb-1 text-muted">
-                                                                    junipercruz43@gmail.com</p>
-                                                                <span class="badge bg-primary-transparent">Team
-                                                                    Member</span>
+                                            <div class="tab-pane" id="man-password" role="tabpanel" tabindex="0" aria-labelledby="man-password-tab">
+                                                <div class="card-body">
+                                                    <ul class="nav nav-tabs mb-3 nav-justified nav-style-1 d-sm-flex d-block" role="tablist">
+                                                        <li class="nav-item" role="presentation">
+                                                            <a class="nav-link active" data-bs-toggle="tab" role="tab" href="#home1-justified" aria-selected="false" tabindex="-1">Bank Account</a>
+                                                        </li>
+                                                        <li class="nav-item" role="presentation">
+                                                            <a class="nav-link" data-bs-toggle="tab" role="tab" href="#about1-justified" aria-selected="true">Wallet Information</a>
+                                                        </li>
+                                                    </ul>
+                                                    <div class="tab-content">
+                                                        <div class="tab-pane text-muted active show" id="home1-justified" role="tabpanel">
+                                                            <div class="row">
+                                                                <div class="col-xl-12 my-2">
+                                                                    <label for="bank_name" class="form-label">Bank Name</label>
+                                                                    <input name="bank_name" type="text" class="form-control @error('bank_name') is-invalid @enderror" id="bank_name"
+                                                                        placeholder="Enter bank name..." value="{{ old('bank_name') }}">
+                                                                    @error('bank_name')
+                                                                        <span class="invalid-feedback" role="alert">
+                                                                            <strong>{{ $message }}</strong>
+                                                                        </span>
+                                                                    @enderror
+                                                                </div>
+                                                                <div class="col-xl-12 my-2">
+                                                                    <label for="account_number" class="form-label">Account Number</label>
+                                                                    <input name="account_number" type="number" class="form-control @error('account_number') is-invalid @enderror" id="account_number"
+                                                                        placeholder="Enter bank name..." value="{{ old('account_number') }}">
+                                                                    @error('account_number')
+                                                                        <span class="invalid-feedback" role="alert">
+                                                                            <strong>{{ $message }}</strong>
+                                                                        </span>
+                                                                    @enderror
+                                                                </div>
+                                                                <div class="col-xl-12 my-2">
+                                                                    <label for="account_name" class="form-label">Account Name</label>
+                                                                    <input name="account_name" type="text" class="form-control @error('account_name') is-invalid @enderror" id="account_name"
+                                                                        placeholder="Enter bank name..." value="{{ old('account_name') }}">
+                                                                    @error('account_name')
+                                                                        <span class="invalid-feedback" role="alert">
+                                                                            <strong>{{ $message }}</strong>
+                                                                        </span>
+                                                                    @enderror
+                                                                </div>
+                                                                <div class="col-xl-12 my-2">
+                                                                    <label for="account_info" class="form-label">Other Information</label>
+                                                                    <textarea class="form-control @error('account_info') is-invalid @enderror" name="account_info" id="account_info" rows="3" cols="10">{{ old('account_info') }}</textarea>
+                                                                    @error('account_info')
+                                                                        <span class="invalid-feedback" role="alert">
+                                                                            <strong>{{ $message }}</strong>
+                                                                        </span>
+                                                                    @enderror
+                                                                </div>
+                                                                <div>
+                                                                    <button class="btn btn-success">Submit</button>
+                                                                </div>
                                                             </div>
                                                         </div>
-                                                    </div>
-                                                    <div class="card-footer text-center">
-                                                        <div
-                                                            class="d-flex gap-2 flex-wrap justify-content-center">
-                                                            <div class="btn-list">
-                                                                <button
-                                                                    class="btn btn-sm btn-light btn-wave">Block</button>
-                                                                <button
-                                                                    class="btn btn-sm btn-primary btn-wave me-0">Unfollow</button>
-                                                            </div>
-                                                            <div class="dropdown">
-                                                                <a aria-label="anchor"
-                                                                    class="btn btn-primary-light btn-icon btn-sm btn-wave"
-                                                                    href="javascript:void(0);"
-                                                                    data-bs-toggle="dropdown">
-                                                                    <i class="ri-more-2-fill"></i>
-                                                                </a>
-                                                                <ul class="dropdown-menu" role="menu">
-                                                                    <li><a class="dropdown-item"
-                                                                            href="javascript:void(0);">Message</a>
-                                                                    </li>
-                                                                    <li><a class="dropdown-item"
-                                                                            href="javascript:void(0);">Edit</a>
-                                                                    </li>
-                                                                    <li><a class="dropdown-item"
-                                                                            href="javascript:void(0);">View</a>
-                                                                    </li>
-                                                                    <li><a class="dropdown-item"
-                                                                            href="javascript:void(0);">Delete</a>
-                                                                    </li>
-                                                                </ul>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col-xxl-4 col-xl-4 col-lg-6 col-md-6 col-sm-12">
-                                                <div class="card custom-card shadow-none border">
-                                                    <div class="card-body p-4">
-                                                        <div class="text-center">
-                                                            <span class="avatar avatar-xl avatar-rounded">
-                                                                <img src="../assets/images/faces/11.jpg" alt="">
-                                                            </span>
-                                                            <div class="mt-2">
-                                                                <p class="mb-0 fw-semibold">Marina Silva</p>
-                                                                <p class="fs-12 op-7 mb-1 text-muted">
-                                                                    marinasilva34@gmail.com</p>
-                                                                <span class="badge bg-warning-transparent">Team
-                                                                    Manager</span>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="card-footer text-center">
-                                                        <div
-                                                            class="d-flex gap-2 flex-wrap justify-content-center">
-                                                            <div class="btn-list">
-                                                                <button
-                                                                    class="btn btn-sm btn-light btn-wave">Block</button>
-                                                                <button
-                                                                    class="btn btn-sm btn-primary btn-wave me-0">Unfollow</button>
-                                                            </div>
-                                                            <div class="dropdown">
-                                                                <a aria-label="anchor"
-                                                                    class="btn btn-primary-light btn-icon btn-sm btn-wave"
-                                                                    href="javascript:void(0);"
-                                                                    data-bs-toggle="dropdown">
-                                                                    <i class="ri-more-2-fill"></i>
-                                                                </a>
-                                                                <ul class="dropdown-menu" role="menu">
-                                                                    <li><a class="dropdown-item"
-                                                                            href="javascript:void(0);">Message</a>
-                                                                    </li>
-                                                                    <li><a class="dropdown-item"
-                                                                            href="javascript:void(0);">Edit</a>
-                                                                    </li>
-                                                                    <li><a class="dropdown-item"
-                                                                            href="javascript:void(0);">View</a>
-                                                                    </li>
-                                                                    <li><a class="dropdown-item"
-                                                                            href="javascript:void(0);">Delete</a>
-                                                                    </li>
-                                                                </ul>
+                                                        <div class="tab-pane text-muted" id="about1-justified" role="tabpanel">
+                                                            <div class="row">
+                                                                <div class="col-xl-12 my-2">
+                                                                    <label for="wallet_asset" class="form-label">Asset</label>
+                                                                    <input name="wallet_asset" type="text" class="form-control @error('wallet_asset') is-invalid @enderror" id="wallet_asset"
+                                                                        placeholder="Enter wallet asset..." value="{{ old('wallet_asset') }}">
+                                                                    @error('wallet_asset')
+                                                                        <span class="invalid-feedback" role="alert">
+                                                                            <strong>{{ $message }}</strong>
+                                                                        </span>
+                                                                    @enderror
+                                                                </div>
+                                                                <div class="col-xl-12 my-2">
+                                                                    <label for="wallet_network" class="form-label">Network</label>
+                                                                    <input name="wallet_network" type="number" class="form-control @error('wallet_network') is-invalid @enderror" id="wallet_network"
+                                                                        placeholder="Enter wallet network..." value="{{ old('wallet_network') }}">
+                                                                    @error('wallet_network')
+                                                                        <span class="invalid-feedback" role="alert">
+                                                                            <strong>{{ $message }}</strong>
+                                                                        </span>
+                                                                    @enderror
+                                                                </div>
+                                                                <div class="col-xl-12 my-2">
+                                                                    <label for="wallet_address" class="form-label">Wallet Address</label>
+                                                                    <input name="wallet_address" type="number" class="form-control @error('wallet_address') is-invalid @enderror" id="wallet_address"
+                                                                        placeholder="Enter wallet address..." value="{{ old('wallet_address') }}">
+                                                                    @error('wallet_address')
+                                                                        <span class="invalid-feedback" role="alert">
+                                                                            <strong>{{ $message }}</strong>
+                                                                        </span>
+                                                                    @enderror
+                                                                </div>
+                                                                <div>
+                                                                    <button class="btn btn-success">Submit</button>
+                                                                </div>
                                                             </div>
                                                         </div>
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div class="col-xxl-4 col-xl-4 col-lg-6 col-md-6 col-sm-12">
-                                                <div class="card custom-card shadow-none border">
-                                                    <div class="card-body p-4">
-                                                        <div class="text-center">
-                                                            <span class="avatar avatar-xl avatar-rounded">
-                                                                <img src="../assets/images/faces/7.jpg" alt="">
-                                                            </span>
-                                                            <div class="mt-2">
-                                                                <p class="mb-0 fw-semibold">Daxton Reed</p>
-                                                                <p class="fs-12 op-7 mb-1 text-muted">
-                                                                    daxtonreed45@gmail.com</p>
-                                                                <span class="badge bg-primary-transparent">Team
-                                                                    Member</span>
-                                                            </div>
-                                                        </div>
+                                            <div class="tab-pane" id="main-team" role="tabpanel" aria-labelledby="main-team-tab" tabindex="0">
+                                                <div class="register-page my-4">
+                                                    <div class="fs-15 fw-medium d-sm-flex d-block align-items-center justify-content-between mb-3">
+                                                        <div>Personal Information:</div>
                                                     </div>
-                                                    <div class="card-footer text-center">
-                                                        <div
-                                                            class="d-flex gap-2 flex-wrap justify-content-center">
-                                                            <div class="btn-list">
-                                                                <button
-                                                                    class="btn btn-sm btn-light btn-wave">Block</button>
-                                                                <button
-                                                                    class="btn btn-sm btn-primary btn-wave me-0">Unfollow</button>
-                                                            </div>
-                                                            <div class="dropdown">
-                                                                <a aria-label="anchor"
-                                                                    class="btn btn-primary-light btn-icon btn-sm btn-wave"
-                                                                    href="javascript:void(0);"
-                                                                    data-bs-toggle="dropdown">
-                                                                    <i class="ri-more-2-fill"></i>
-                                                                </a>
-                                                                <ul class="dropdown-menu" role="menu">
-                                                                    <li><a class="dropdown-item"
-                                                                            href="javascript:void(0);">Message</a>
-                                                                    </li>
-                                                                    <li><a class="dropdown-item"
-                                                                            href="javascript:void(0);">Edit</a>
-                                                                    </li>
-                                                                    <li><a class="dropdown-item"
-                                                                            href="javascript:void(0);">View</a>
-                                                                    </li>
-                                                                    <li><a class="dropdown-item"
-                                                                            href="javascript:void(0);">Delete</a>
-                                                                    </li>
-                                                                </ul>
-                                                            </div>
+                                                    <div class="row gy-3">
+                                                        <div class="col-lg-6">
+                                                            <label class="form-label">Loaction Type</label>
+                                                            <select name="location" id="location" class="form-control text-dark text-capitalize @error('location') is-invalid @enderror ">
+                                                                <option value="">Select Loaction Type</option>
+                                                                <option value="home">Home</option>
+                                                                <option value="office">Office</option>
+                                                            </select>
+                                                            @error('location')
+                                                                <span class="invalid-feedback" role="alert">
+                                                                    <strong>{{ $message }}</strong>
+                                                                </span>
+                                                            @enderror
                                                         </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col-xxl-4 col-xl-4 col-lg-6 col-md-6 col-sm-12">
-                                                <div class="card custom-card shadow-none border">
-                                                    <div class="card-body p-4">
-                                                        <div class="text-center">
-                                                            <span class="avatar avatar-xl avatar-rounded">
-                                                                <img src="../assets/images/faces/12.jpg" alt="">
-                                                            </span>
-                                                            <div class="mt-2">
-                                                                <p class="mb-0 fw-semibold">Willow Blake </p>
-                                                                <p class="fs-12 op-7 mb-1 text-muted">
-                                                                    willowblake9456@gmail.com</p>
-                                                                <span class="badge bg-primary-transparent">Team
-                                                                    Member</span>
-                                                            </div>
+                                                        <div class="col-lg-6">
+                                                            <label class="form-label">Country</label>
+                                                            <select name="country" id="country" class="form-control text-dark text-capitalize @error('country') is-invalid @enderror" required>
+                                                                <option value="">Select Country</option>
+                                                                @foreach(\App\Models\Country::get() as $country)
+                                                                    <option value="{{ $country->name }}" data-phone-code="{{ $country->phone_code }}" 
+                                                                        {{ old('nk_country') == $country->name ? 'selected' : '' }}>
+                                                                        {{ $country->name }}
+                                                                    </option>
+                                                                @endforeach
+                                                            </select>
+                                                            @error('country')
+                                                                <span class="invalid-feedback" role="alert">
+                                                                    <strong>{{ $message }}</strong>
+                                                                </span>
+                                                            @enderror
                                                         </div>
-                                                    </div>
-                                                    <div class="card-footer text-center">
-                                                        <div
-                                                            class="d-flex gap-2 flex-wrap justify-content-center">
-                                                            <div class="btn-list">
-                                                                <button
-                                                                    class="btn btn-sm btn-light btn-wave">Block</button>
-                                                                <button
-                                                                    class="btn btn-sm btn-primary btn-wave me-0">Unfollow</button>
-                                                            </div>
-                                                            <div class="dropdown">
-                                                                <a aria-label="anchor"
-                                                                    class="btn btn-primary-light btn-icon btn-sm btn-wave"
-                                                                    href="javascript:void(0);"
-                                                                    data-bs-toggle="dropdown">
-                                                                    <i class="ri-more-2-fill"></i>
-                                                                </a>
-                                                                <ul class="dropdown-menu" role="menu">
-                                                                    <li><a class="dropdown-item"
-                                                                            href="javascript:void(0);">Message</a>
-                                                                    </li>
-                                                                    <li><a class="dropdown-item"
-                                                                            href="javascript:void(0);">Edit</a>
-                                                                    </li>
-                                                                    <li><a class="dropdown-item"
-                                                                            href="javascript:void(0);">View</a>
-                                                                    </li>
-                                                                    <li><a class="dropdown-item"
-                                                                            href="javascript:void(0);">Delete</a>
-                                                                    </li>
-                                                                </ul>
-                                                            </div>
+                                                        <div class="col-xl-6">
+                                                            <label class="form-label">Select State</label>
+                                                            <select name="state" id="state" class="form-control @error('state') is-invalid @enderror" data-trigger required>
+                                                                <option value="">Select Country</option>
+                                                                @if(old('state'))
+                                                                    <option value="{{ old('state') }}" selected>{{ old('state') }}</option>
+                                                                @endif
+                                                            </select>
+                                                            @error('state')
+                                                                <span class="invalid-feedback" role="alert">
+                                                                    <strong>{{ $message }}</strong>
+                                                                </span>
+                                                            @enderror
+                                                        </div>
+                                                        <div class="col-xl-6">
+                                                            <label for="postal_code" class="form-label">Postal Code</label>
+                                                            <input name="postal_code" type="text" class="form-control @error('postal_code') is-invalid @enderror" id="postal_code"
+                                                                placeholder="Enter postal code..." value="{{ old('postal_code') }}">
+                                                            @error('postal_code')
+                                                                <span class="invalid-feedback" role="alert">
+                                                                    <strong>{{ $message }}</strong>
+                                                                </span>
+                                                            @enderror
+                                                        </div>
+                                                        <div class="col-xl-6">
+                                                            <label class="form-label" for="address">Address</label>
+                                                            <textarea class="form-control @error('address') is-invalid @enderror" name="address" id="address" placeholder="Enter address..." rows="3" cols="10" >{{ old('address') }}</textarea>
+                                                            @error('address')
+                                                                <span class="invalid-feedback" role="alert">
+                                                                    <strong>{{ $message }}</strong>
+                                                                </span>
+                                                            @enderror
+                                                        </div>
+                                                        <div class="col-xl-6">
+                                                            <label class="form-label" for="address">Address line 2</label>
+                                                            <textarea class="form-control @error('address2') is-invalid @enderror" name="address2" id="address2" placeholder="Enter address..." rows="3" cols="10">{{ old('address') }}</textarea>
+                                                            
                                                         </div>
                                                     </div>
                                                 </div>
+
+                                                <div class="register-page my-4">
+                                                    <div class="fs-15 fw-medium d-sm-flex d-block align-items-center justify-content-between mb-3">
+                                                        <div>Next of kin:</div>
+                                                    </div>
+                                                    <div class="row gy-3">
+                                                        <div class="col-xl-6">
+                                                            <label for="nk_name" class="form-label">Full Name</label>
+                                                            <input name="nk_name" type="text" class="form-control @error('nk_name') is-invalid @enderror" id="nk_name"
+                                                                placeholder="Enter name..." value="{{ old('nk_name') }}" required>
+                                                            @error('nk_name')
+                                                                <span class="invalid-feedback" role="alert">
+                                                                    <strong>{{ $message }}</strong>
+                                                                </span>
+                                                            @enderror
+                                                        </div>
+                                                        <div class="col-xl-6">
+                                                            <label for="phone-validation" class="form-label d-block">Phone Number</label>
+                                                            <input class="form-control" id="phone-validation" type="tel" name="nk_phone" style="width: 260px;" required>
+                                                            @error('nk_phone')
+                                                                <span class="invalid-feedback" role="alert">
+                                                                    <strong>{{ $message }}</strong>
+                                                                </span>
+                                                            @enderror
+                                                        </div>
+                                                        <div class="col-lg-6">
+                                                            <label class="form-label">Relationship</label>
+                                                            <select name="nk_relationship" id="nk_relationship" class="form-control text-dark text-capitalize @error('nk_relationship') is-invalid @enderror " required>
+                                                                <option value="parent" {{ old('nk_relationship') == 'parent' ? 'selected' : '' }}>Parent</option>
+                                                                <option value="family" {{ old('nk_relationship') == 'family' ? 'selected' : '' }}>Family</option>
+                                                                <option value="friend" {{ old('nk_relationship') == 'friend' ? 'selected' : '' }}>Friend</option>
+                                                            </select>
+                                                            @error('nk_relationship')
+                                                                <span class="invalid-feedback" role="alert">
+                                                                    <strong>{{ $message }}</strong>
+                                                                </span>
+                                                            @enderror
+                                                        </div>
+                                                        <div class="col-lg-6">
+                                                            <label class="form-label">Country</label>
+                                                            <select name="nk_country" id="nk_country" class="form-control text-dark text-capitalize @error('nk_country') is-invalid @enderror" required>
+                                                                <option value="">Select Country</option>
+                                                                @foreach(\App\Models\Country::get() as $country)
+                                                                    <option value="{{ $country->name }}" data-phone-code="{{ $country->phone_code }}" 
+                                                                        {{ old('nk_country') == $country->name ? 'selected' : '' }}>
+                                                                        {{ $country->name }}
+                                                                    </option>
+                                                                @endforeach
+                                                            </select>
+                                                            @error('nk_country')
+                                                                <span class="invalid-feedback" role="alert">
+                                                                    <strong>{{ $message }}</strong>
+                                                                </span>
+                                                            @enderror
+                                                        </div>
+                                                        <div class="col-xl-6">
+                                                            <label class="form-label">Select State</label>
+                                                            <select name="nk_state" id="nk_state" class="form-control @error('nk_state') is-invalid @enderror" data-trigger required>
+                                                                <option value="">Select State</option>
+                                                                @if(old('nk_state'))
+                                                                    <option value="{{ old('nk_country') }}" selected>{{ old('nk_state') }}</option>
+                                                                @endif
+                                                            </select>
+                                                            @error('nk_state')
+                                                                <span class="invalid-feedback" role="alert">
+                                                                    <strong>{{ $message }}</strong>
+                                                                </span>
+                                                            @enderror
+                                                        </div>
+                                                        <div class="col-xl-6">
+                                                            <label class="form-label">Address</label>
+                                                            <input type="text" name="nk_address" id="nk_address" class="form-control @error('nk_address') is-invalid @enderror"
+                                                                placeholder="Enter address..." value="{{ old('nk_address') }}" required>
+                                                            @error('nk_address')
+                                                                <span class="invalid-feedback" role="alert">
+                                                                    <strong>{{ $message }}</strong>
+                                                                </span>
+                                                            @enderror
+                                                        </div>
+                                                        <div class="col-xl-12">
+                                                            <label class="form-label">Postal Code</label>
+                                                            <input type="text" name="nk_postal" id="nk_postal" class="form-control @error('nk_postal') is-invalid @enderror"
+                                                                placeholder="Enter postal code..." value="{{ old('nk_postal') }}" required>
+                                                            @error('nk_postal')
+                                                                <span class="invalid-feedback" role="alert">
+                                                                    <strong>{{ $message }}</strong>
+                                                                </span>
+                                                            @enderror
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div>
+                                                    <button class="btn btn-success">Submit</button>
+                                                </div>
                                             </div>
-                                            <div class="col-xl-12">
-                                                <div class="text-center">
-                                                    <button class="btn btn-primary-light btn-wave">Show
-                                                        All</button>
+                                            <div class="tab-pane" id="main-billing" role="tabpanel" aria-labelledby="main-billing-tab" tabindex="0">
+                                                <div class="row">
+                                                    <div class="col-md-12 my-2">
+                                                        <label class="form-label mt-2 text-muted fs-12" for="avatar">ID Type</label>
+                                                        <select class="form-select" name="" id="">
+                                                            <option value="">Select Type</option>
+                                                            <option value="">Driver's License</option>
+                                                            <option value="">International Passport</option>
+                                                        </select>
+                                                    </div>
+                                                    <div class="col-md-12 my-2">
+                                                        <label class="form-label mt-2 text-muted fs-12" for="id_number">Identification Number</label>
+                                                        <input type="text" id="id_number" name="avatar" class="form-control"/>
+                                                    </div>
+                                                    <div class="col-md-12 my-2">
+                                                        <label class="form-label mt-2 text-muted fs-12" for="avatar">Upload Image (Front)</label>
+                                                        <input type="file" id="avatar" name="avatar" class="form-control"/>
+                                                    </div>
+                                                    <div class="col-md-12 my-2">
+                                                        <label class="form-label mt-2 text-muted fs-12" for="avatar">Upload Image (Back)</label>
+                                                        <input type="file" id="avatar" name="avatar" class="form-control"/>
+                                                    </div>
+                                                    <div class="my-2">
+                                                        <button class="btn btn-success">Submit</button>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
@@ -1181,7 +612,7 @@
                         @endif
                     </div>
                 </div>
-                <div class="card custom-card">
+                {{-- <div class="card custom-card">
                         <div class="card-body">
                             <h6 class="card-title fs-15">Change Password</h6>
                             <form class="forms-sample" @if(!auth()->user()->authenticatedWithSocials()) action="{{ route('password.custom.update') }}" method="POST"  @endif id="changePasswordForm">
@@ -1215,7 +646,7 @@
                                 @endif
                             </form>
                         </div>
-                </div>
+                </div> --}}
             </div>
         </div>
         <!-- End:: row-1 -->

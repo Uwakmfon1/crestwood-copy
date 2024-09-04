@@ -38,41 +38,10 @@
                         </div>
                     </div>
                     <div class="card-body">
-                        <div id="countdown">
-                            @if($investment['status'] == 'active')
-                            <div class="d-flex justify-content-between my-4">
-                                <div class="mx-2 alert alert-primary px-2" style="width: 80%;">
-                                    <div id="days" class="display-3 text-center">00</div>
-                                    <span class="text-center">Days</span>
-                                </div>
-                                <div class="mx-2 alert alert-primary px-2" style="width: 80%;">
-                                    <div id="hours" class="display-3 text-center">00</div>
-                                    <span class="text-center">Hours</span>
-                                </div>
-                                <div class="mx-2 alert alert-primary px-2" style="width: 80%;">
-                                    <div id="minutes" class="display-3 text-center">00</div>
-                                    <span class="text-center">Minutes</span>
-                                </div>
-                                <div class="mx-2 alert alert-primary px-2" style="width: 80%;">
-                                    <div id="seconds" class="display-3 text-center">00</div>
-                                    <span class="text-center">Seconds</span>
-                                </div>
-                                <div class="alert alert-primary" style="display: none; margin: 0px !important; padding: 0px !important;">
-                                    
-                                </div>
-                            </div>
-                            @elseif($investment['status'] == 'pending')
-                                <h2 class='text-warning py-3'>Pending</h2>
-                            @elseif($investment['status'] == 'cancelled')
-                                <h2 class='text-danger py-3'>Cancelled</h2>
-                            @elseif($investment['status'] == 'settled')
-                                <h2 class='text-secondary py-3'>Settled</h2>
-                            @endif
-                        </div>
                         <div class="row gy-3">
                             <div class="col-xl-4 col-6 my-2">
-                                <p class="fw-medium text-muted mb-1">Price / Slot:</p>
-                                <p class="fs-15 mb-1">₦ {{ number_format($investment['amount'] / $investment['slots']) }}</p>
+                                <p class="fw-medium text-muted mb-1">Price:</p>
+                                <p class="fs-15 mb-1">₦ {{ number_format($investment['amount'] / 1) }}</p>
                             </div>
                             <div class="col-xl-4 col-6 my-2">
                                 <p class="fw-medium text-muted mb-1">Duration :</p>
@@ -80,7 +49,7 @@
                             </div>
                             <div class="col-xl-4 col-6 my-2">
                                 <p class="fw-medium text-muted mb-1">Slots Purchased :</p>
-                                <p class="fs-15 mb-1">{{ $investment['slots'] }}</p>
+                                <p class="fs-15 mb-1">1</p>
                             </div>
                             <div class="col-xl-4 col-6 my-2">
                                 <p class="fw-medium text-muted mb-1">ROI</p>
@@ -215,6 +184,37 @@
                                     </table>
                                 </div>
                             </div> --}}
+                        </div>
+                        <div id="countdown">
+                            @if($investment['status'] == 'active')
+                            <div class="d-flex justify-content-between my-4">
+                                <div class="mx-2 alert alert-primary px-2" style="width: 80%;">
+                                    <div id="days" class="display-3 text-center">00</div>
+                                    <span class="text-center">Days</span>
+                                </div>
+                                <div class="mx-2 alert alert-primary px-2" style="width: 80%;">
+                                    <div id="hours" class="display-3 text-center">00</div>
+                                    <span class="text-center">Hours</span>
+                                </div>
+                                <div class="mx-2 alert alert-primary px-2" style="width: 80%;">
+                                    <div id="minutes" class="display-3 text-center">00</div>
+                                    <span class="text-center">Minutes</span>
+                                </div>
+                                <div class="mx-2 alert alert-primary px-2" style="width: 80%;">
+                                    <div id="seconds" class="display-3 text-center">00</div>
+                                    <span class="text-center">Seconds</span>
+                                </div>
+                                <div class="alert alert-primary" style="display: none; margin: 0px !important; padding: 0px !important;">
+                                    
+                                </div>
+                            </div>
+                            @elseif($investment['status'] == 'pending')
+                                <h2 class='text-warning py-3 my-4'>Pending</h2>
+                            @elseif($investment['status'] == 'cancelled')
+                                <h2 class='text-danger py-3 my-4'>Cancelled</h2>
+                            @elseif($investment['status'] == 'settled')
+                                <h2 class='text-secondary py-3 my-4'>Settled</h2>
+                            @endif
                         </div>
                     </div>
                 </div>

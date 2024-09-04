@@ -23,8 +23,8 @@
                 <!-- <button class="btn btn-white btn-wave border-0 me-0 fw-normal waves-effect waves-light">
                     <i class="ri-filter-3-fill me-2"></i>Filter
                 </button> -->
-                <a class="btn btn-primary btn-wave waves-effect waves-light" href="{{ route('invest') }}">
-                    <i class="ri-upload-2-line me-2"></i> New Investment
+                <a class="btn btn-primary btn-wave waves-effect waves-light" href="{{ route('investments.history') }}">
+                    <i class="ri-upload-2-line me-2"></i> Investment History
                 </a>
             </div>
         </div>
@@ -244,7 +244,11 @@
                                         @foreach($investments as $key=>$investment)
                                             <tr>
                                                 <td>{{ $key + 1 }}</td>
-                                                <td>{{ $investment->package['name'] }}</td>
+                                                @if($investment->package)
+                                                    <td>{{ $investment->package['name'] }}</td>
+                                                @else
+                                                    <td>Deleted Package</td>
+                                                @endif
                                                 <td>{{ $investment['slots'] }}</td>
                                                 <td>${{ number_format($investment['amount']) }}</td>
                                                 <td>${{ number_format($investment['total_return']) }}</td>

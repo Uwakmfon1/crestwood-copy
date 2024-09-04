@@ -9,6 +9,6 @@ class PackageController extends Controller
 {
     public function index()
     {
-        return view('user.package.index', ['title' => 'Packages', 'packages' => Package::where('investment', 'enabled')->get()]);
+        return view('user_.investment.packages', ['title' => 'Packages', 'packages' => Package::where('investment', 'enabled')->get()]);
     }
 }

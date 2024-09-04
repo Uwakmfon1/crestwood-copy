@@ -25,6 +25,7 @@ class Kernel extends ConsoleKernel
     {
          $schedule->command('backup:clean')->twiceDaily(0, 12);
          $schedule->command('backup:run --only-db')->twiceDaily(0, 12);
+         $schedule->command('stocks:update')->everyFiveMinutes();
          $schedule->command('settings:generate')
                     ->everyMinute();
          $schedule->command('investment:settle')

@@ -53,6 +53,7 @@ Route::group(['middleware' => ['auth','verified', 'active_user']], function (){
         Route::get('/dashboard/trading', [App\Http\Controllers\HomeController::class, 'tradingDashboard'])->name('dashboard.trading');
         Route::get('/packages', [App\Http\Controllers\PackageController::class, 'index'])->name('packages');
         Route::get('/investments', [App\Http\Controllers\InvestmentController::class, 'index'])->name('investments');
+        Route::get('/investment/history', [App\Http\Controllers\InvestmentController::class, 'history'])->name('investments.history');
         Route::get('/investments/{investment}/show', [App\Http\Controllers\InvestmentController::class, 'show'])->name('investments.show');
         Route::get('/invest', [App\Http\Controllers\InvestmentController::class, 'invest'])->name('invest');
         Route::get('/transactions', [App\Http\Controllers\TransactionController::class, 'index'])->name('transactions');

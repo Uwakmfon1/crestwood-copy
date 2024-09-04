@@ -36,6 +36,34 @@ class InvestmentController extends Controller
         return view('user_.investment.index', ['title' => 'Investments', 'investments' => auth()->user()->investments()->latest()->get(), 'balance' => $balance, 'asv' => $active_savings, 'csv' => $completed_savings]);
     }
 
+    public function history(Request $request)
+    {
+        $query = Investment::query();
+
+        // Search functionality
+        if ($request->filled('search')) {
+            $searchTerm = $request->input('search');
+            $query->where(function ($q) use ($searchTerm) {
+                $q->whereHas('package', function ($q2) use ($searchTerm) {
+                    $q2->where('name', 'like', '%' . $searchTerm . '%');
+                })
+                ->orWhere('amount', 'like', '%' . $searchTerm . '%')
+                ->orWhere('total_return', 'like', '%' . $searchTerm . '%')
+                ->orWhere('status', 'like', '%' . $searchTerm . '%');
+            });
+        }
+
+        // Filter functionality
+        if ($request->has('status')) {
+            $status = $request->get('status');
+            $query->where('status', $status);
+        }
+
+        $investments = $query->paginate(10);
+
+        return view('user_.investment.history', ['title' => 'Investments History', 'investments' => $investments]);
+    }
+
     public function show(Investment $investment)
     {
         return view('user_.investment.show', ['title' => 'Investment', 'investment' => $investment, 'packages' => Package::where('investment', 'enabled')->get()]);
@@ -50,9 +78,11 @@ class InvestmentController extends Controller
     {
         $validator = Validator::make($request->all(), [
             'package' => ['required'],
-            'slots' => ['required', 'numeric', 'min:1', 'integer'],
+            'amount' => ['required', 'numeric', 'min:1', 'integer'],
+            'duration_type' => ['required'],
+            'duration' => ['required'],
+            'roi_method' => ['required'],
         ]);
-        $payment = 'wallet'; // $request['payment']
 
         if ($validator->fails()){
             return back()->withErrors($validator)->withInput()->with('error', 'Invalid input data');
@@ -60,47 +90,39 @@ class InvestmentController extends Controller
         if (Setting::all()->first()['invest'] == 0){
             return back()->with('error', 'Investment in packages is currently unavailable, check back later');
         }
+
         $package = Package::all()->where('id', $request['package'])->first();
 
         if (!($package && $package->canRunInvestment())){
             return back()->with('error', 'Can\'t process investment, package not found or disabled');
         }
 
-        $amount = $request['slots'] * $package['price'];
-
-        switch ($payment){
-            case 'wallet':
-                if (!auth()->user()->hasSufficientBalance($amount, 'investment')){
-                    return back()->withInput()->with('error', 'Insufficient investment balance');
-                }
-                auth()->user()->investmentWallet->decrement('balance', $amount);
-                $status = 'active';
-                $msg = 'Investment created successfully';
-                break;
-            case 'deposit':
-                $status = 'pending';
-                $msg = 'Investment queued successfully';
-                break;
-            case 'card':
-                $data = ['type' => 'investment', 'package' => $package, 'slots' => $request['slots']];
-                return PaymentController::initializeOnlineTransaction($request['slots'] * $package['price'], $data);
-            default:
-                return back()->withInput()->with('error', 'Invalid payment method');
+        if (!auth()->user()->hasSufficientBalance($request->amount, 'investment')){
+            return back()->withInput()->with('error', 'Insufficient investment balance!');
         }
-//        Create Investment
+
+        auth()->user()->investmentWallet->decrement('balance', $request->amount);
+
+        $status = 'active';
+        $msg = 'Investment created successfully';
+
+        // Create Investment
         $investment = auth()->user()->investments()->create([
             'package_id'=>$package['id'], 
-            'slots' => $request['slots'], 
-            'amount' => $amount,
-            'total_return' => $amount * (( 100 + $package['roi'] ) / 100 ),
+            'amount' => $request->amount,
+            'duration_type' => $request->duration_type,
+            'duration' => $request->duration,
+            'roi_method' => $request->roi_method,
+            'total_return' => $request->amount * $package['daily_roi'],
             'investment_date' => now()->format('Y-m-d H:i:s'),
-            'return_date' => now()->addMonths($package['duration'])->format('Y-m-d H:i:s'), 'status' => $status
+            'return_date' => now()->addMonths($package['duration'])->format('Y-m-d H:i:s'), 
+            'status' => $status
         ]);
 
         $investment->investmentTransactions()->create(
             [
                 'user_id' => auth()->user()->id,
-                'amount' => $amount, 
+                'amount' => $request->amount, 
                 'type' => 'withdrawal',
                 'account_type' => 'investment',
                 'description' => 'Invested into ' . $package['name'],

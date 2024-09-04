@@ -36,52 +36,71 @@ class PackageController extends Controller
 
     public function store(Request $request): \Illuminate\Http\RedirectResponse
     {
-//        Validate request
+        // Validate request
         $validator = Validator::make($request->all(), [
             'name' => ['required', 'unique:packages,name'],
-            'roi' => ['required', 'numeric'],
             'price' => ['required', 'numeric', 'gt:0'],
-            'duration' => ['required', 'numeric'],
+            'min_duration' => ['required'],
+            'daily_roi' => ['required', 'numeric'],
+            'weekly_roi' => ['required', 'numeric'],
+            'yearly_roi' => ['required', 'numeric'],
             'description' => ['required'],
             'image' => ['required', 'mimes:jpeg,jpg,png', 'max:1024'],
-            'investment' => ['required']
+            'investment' => ['required', 'in:enabled,disabled'],
         ]);
-        if ($validator->fails()){
+
+        if ($validator->fails()) {
             return back()->withErrors($validator)->withInput()->with('error', 'Invalid input data');
         }
-//        Collect data from request
-        $data = $request->all();
-//        Save file to folder
-        $data['image'] = $this->uploadPackageImageAndReturnPathToSave($request['image']);
-//        Store package
-        if (Package::create($data)){
+
+        // Collect data from request
+        $data = $request->only([
+            'name',
+            'price',
+            'min_duration',
+            'daily_roi',
+            'weekly_roi',
+            'yearly_roi',
+            'description',
+            'investment',
+        ]);
+
+        // Handle file upload
+        if ($request->hasFile('image')) {
+            $data['image'] = $this->uploadPackageImageAndReturnPathToSave($request->file('image'));
+        }
+
+        // Store package
+        if (Package::create($data)) {
             return redirect()->route('admin.packages')->with('success', 'Package created successfully');
         }
+
         return back()->with('error', 'Error creating package');
     }
 
     public function update(Request $request, Package $package): \Illuminate\Http\RedirectResponse
     {
-//        Validate request
+        // Validate request
         $validator = Validator::make($request->all(), [
-            'name' => ['required', 'unique:packages,name,'.$package['id']],
-            'roi' => ['required', 'numeric'],
-            'price' => ['required', 'numeric'],
-            'duration' => ['required', 'numeric', 'gt:0'],
+            'name' => ['required'],
+            'price' => ['required', 'numeric', 'gt:0'],
+            'min_duration' => ['required'],
+            'daily_roi' => ['required', 'numeric'],
+            'weekly_roi' => ['required', 'numeric'],
+            'yearly_roi' => ['required', 'numeric'],
             'description' => ['required'],
-            'image' => ['sometimes', 'mimes:jpeg,jpg,png'],
-            'investment' => ['required']
+            'investment' => ['required', 'in:enabled,disabled'],
         ]);
         if ($validator->fails()){
             return back()->withErrors($validator)->withInput()->with('error', 'Invalid input data');
         }
-//        Collect data from request
+        // Collect data from request
         $data = $request->except('image');
-//        Save file to folder if uploaded
+        // Save file to folder if uploaded
         if ($request->file('image')){
             $data['image'] = $this->uploadPackageImageAndReturnPathToSave($request['image']);
         }
-//        Store package
+        // Store package
         if ($package->update($data)){
             return redirect()->route('admin.packages')->with('success', 'Package updated successfully');
         }
@@ -90,7 +109,7 @@ class PackageController extends Controller
 
     public function destroy(Package $package)
     {
-//        check if package doesn't have investment
+        // check if package doesn't have investment
         if ($package->investments()->count() > 0){
             return back()->with('error', 'Can\'t delete package, investments already associated');
         }

@@ -73,9 +73,19 @@
                     <li class="slide">
                         <a href="{{ route('invest') }}" class="side-menu__item @if(request()->routeIs(['invest'])) active @endif">New Investment</a>
                     </li>
+                    <li class="slide">
+                        <a href="{{ route('investments.history') }}" class="side-menu__item @if(request()->routeIs(['investments.history'])) active @endif">Investment History</a>
+                    </li>
                 </ul>
             </li>
             <!-- End::slide -->
+
+            <li class="slide @if(request()->routeIs(['packages'])) active @endif">
+                <a href="{{ route('packages') }}" class="side-menu__item">
+                    <i class="fe fe-layout mx-2"></i>
+                    <span class="side-menu__label">Packages</span>
+                </a>
+            </li>
 
             <!-- Start::slide__category -->
             <li class="slide__category"><span class="category-name">Trade</span></li>
@@ -125,16 +135,16 @@
             <li class="slide__category"><span class="category-name">Account</span></li>
             <!-- End::slide__category -->
 
-            <li class="slide @if(request()->routeIs(['profile'])) active @endif">
+            <!-- <li class="slide @if(request()->routeIs(['profile'])) active @endif">
                 <a href="{{ route('profile') }}" class="side-menu__item">
                     <i class="fe fe-user mx-2"></i>
                     <span class="side-menu__label">Profile</span>
                 </a>
-            </li>
+            </li> -->
 
-            <li class="slide @if(request()->routeIs(['settings'])) active @endif">
-                <a href="{{ route('settings') }}" class="side-menu__item">
-                    <i class="fe fe-user mx-2"></i>
+            <li class="slide @if(request()->routeIs(['profile'])) active @endif">
+                <a href="{{ route('profile') }}" class="side-menu__item">
+                    <i class="fe fe-settings mx-2"></i>
                     <span class="side-menu__label">Settings</span>
                 </a>
             </li>
