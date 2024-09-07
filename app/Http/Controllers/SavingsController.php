@@ -243,4 +243,32 @@ class SavingsController extends Controller
         }
         return back()->withInput()->with('error', 'Error processing investment');
     }
+
+    public function history(Request $request)
+    {
+        $query = auth()->user()->savings();
+
+        // Search functionality
+        if ($request->filled('search')) {
+            $searchTerm = $request->input('search');
+            $query->where(function ($q) use ($searchTerm) {
+                $q->whereHas('package', function ($q2) use ($searchTerm) {
+                    $q2->where('name', 'like', '%' . $searchTerm . '%');
+                })
+                ->orWhere('amount', 'like', '%' . $searchTerm . '%')
+                ->orWhere('total_return', 'like', '%' . $searchTerm . '%')
+                ->orWhere('status', 'like', '%' . $searchTerm . '%');
+            });
+        }
+
+        // Filter functionality
+        if ($request->has('status')) {
+            $status = $request->get('status');
+            $query->where('status', $status);
+        }
+
+        $investments = $query->paginate(10);
+
+        return view('user_.savings.history', ['title' => 'Savings History', 'investments' => $investments]);
+    }
 }

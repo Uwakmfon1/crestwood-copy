@@ -47,6 +47,16 @@ class HomeController extends Controller
         ]);
     }
 
+    public function kyc()
+    {
+        $user = auth()->user();
+
+        return view('auth.kyc', [
+            'title' => 'Complete KYC',
+            'user' => $user
+        ]);
+    }
+
     public function profile()
     {
         try {
@@ -311,4 +321,72 @@ class HomeController extends Controller
             File::makeDirectory($path);
         }
     }
+
+    public function updateUserInfo(Request $request)
+    {
+        // Validate all inputs
+        $validator = Validator::make($request->all(), [
+            // Payment Information
+            'bank_name' => 'nullable|string|max:255',
+            'account_number' => 'nullable|numeric',
+            'account_name' => 'nullable|string|max:255',
+            'account_info' => 'nullable|string',
+            'wallet_asset' => 'nullable|string',
+            'wallet_network' => 'nullable|string',
+            'wallet_address' => 'nullable|string',
+            
+            // Personal Information
+            'location' => 'required|string',
+            'country' => 'required|string',
+            'state' => 'nullable|string',
+            'postal_code' => 'required|string',
+            'address' => 'required|string',
+            
+            // Next of Kin Information
+            'nk_name' => 'required|string|max:255',
+            'nk_phone' => 'required|string', // Adjust validation according to phone format
+            'nk_relationship' => 'required|string',
+            'nk_country' => 'required|string',
+            'nk_state' => 'nullable|string',
+            'nk_address' => 'required|string',
+            'nk_postal' => 'required|string',
+        ]);
+
+        if ($validator->fails()) {
+            return redirect()->back()->withErrors($validator)->withInput();
+        }
+
+        $user = auth()->user();
+
+        // Update user information
+        $user->update([
+            // Payment Information
+            'bank_name' => $request->input('bank_name'),
+            'account_number' => $request->input('account_number'),
+            'account_name' => $request->input('account_name'),
+            'account_info' => $request->input('account_info'),
+            'wallet_asset' => $request->input('wallet_asset'),
+            'wallet_network' => $request->input('wallet_network'),
+            'wallet_address' => $request->input('wallet_address'),
+            
+            // Personal Information
+            'location' => $request->input('location'),
+            'country' => $request->input('country'),
+            'state' => $request->input('state'),
+            'postal_code' => $request->input('postal_code'),
+            'address' => $request->input('address'),
+            
+            // Next of Kin Information
+            'nk_name' => $request->input('nk_name'),
+            'nk_phone' => $request->input('nk_phone'),
+            'nk_relation' => $request->input('nk_relationship'),
+            'nk_country' => $request->input('nk_country'),
+            'nk_state' => $request->input('nk_state'),
+            'nk_address' => $request->input('nk_address'),
+            'nk_postal' => $request->input('nk_postal'),
+        ]);
+
+        return redirect()->route('dashboard')->with('status', 'Your information has been updated successfully!');
+    }
+
 }

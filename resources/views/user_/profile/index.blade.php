@@ -1,5 +1,30 @@
 @extends('layouts.user.index')
 
+<style>
+    .account_select {
+        border-radius: 20px !important; 
+        border: 1px solid #f0f0f0;
+        /* cursor: pointer; */
+    }
+
+    .account_select:hover {
+        border: 1px solid grey;
+        cursor: pointer;
+    }
+
+    select {
+        appearance: auto !important;
+        -webkit-appearance: auto;
+        -moz-appearance: auto;
+    }
+    .wizard-tab .wizard-nav.dots .wizard-step span {
+        cursor: pointer;
+        font-weight: 400;
+        font-size: 13px;
+    }
+
+</style>
+
 @section('content')
 <!-- Start::app-content -->
 <div class="main-content app-content">
@@ -145,9 +170,12 @@
                                     <div class="col-md-4">
                                         <div class="nav flex-column nav-pills me-3 tab-style-7" id="v-pills-tab" role="tablist" aria-orientation="vertical">
                                         <button class="nav-link text-start active" id="main-profile-tab" data-bs-toggle="pill" data-bs-target="#main-profile" type="button" role="tab" aria-controls="main-profile" aria-selected="true"><i class="ri-shield-user-line me-1 align-middle d-inline-block"></i>Account Information</button>
+                                        <button class="nav-link text-start" id="acct-type-tab" data-bs-toggle="pill" data-bs-target="#acct-type" type="button" role="tab" aria-controls="acct-type" aria-selected="false" tabindex="-1"><i class="ri-u-disk-line me-1 align-middle d-inline-block"></i>Account Type</button>
                                         <button class="nav-link text-start" id="man-password-tab" data-bs-toggle="pill" data-bs-target="#man-password" type="button" role="tab" aria-controls="man-password" aria-selected="false" tabindex="-1"><i class="ri-u-disk-line me-1 align-middle d-inline-block"></i>Payment Methond</button>
                                         <button class="nav-link text-start" id="main-team-tab" data-bs-toggle="pill" data-bs-target="#main-team" type="button" role="tab" aria-controls="main-team" aria-selected="false" tabindex="-1"><i class="ri-group-line me-1 align-middle d-inline-block"></i>Personal Information</button>
+                                        <button class="nav-link text-start" id="main-nextkin-tab" data-bs-toggle="pill" data-bs-target="#main-nextkin" type="button" role="tab" aria-controls="main-nextkin" aria-selected="false" tabindex="-1"><i class="ri-group-line me-1 align-middle d-inline-block"></i>Next of kin</button>
                                         <button class="nav-link text-start" id="main-billing-tab" data-bs-toggle="pill" data-bs-target="#main-billing" type="button" role="tab" aria-controls="main-billing" aria-selected="false" tabindex="-1"><i class="ri-bill-line me-1 align-middle d-inline-block"></i>Identity & Verification</button>
+                                        <button class="nav-link text-start" id="main-password-tab" data-bs-toggle="pill" data-bs-target="#main-password" type="button" role="tab" aria-controls="main-password" aria-selected="false" tabindex="-1"><i class="ri-user-line me-1 align-middle d-inline-block"></i>Password</button>
                                         </div>
                                     </div>
                                     <div class="col-md-8">
@@ -220,6 +248,66 @@
                                                                     <button class="btn btn-success">Submit</button>
                                                                 </div>
                                                             </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="tab-pane" id="acct-type" role="tabpanel" tabindex="0" aria-labelledby="acct-type-tab">
+                                                <div class="card-body">
+                                                    <div class="row">
+                                                        <div class="col-md-6">
+                                                            <label for="flexCheckChecked1" style="width: 100%; margin: 10px 0px;">
+                                                                <div class="form-check d-flex align-items-center gap-1 py-3 px-2 account_select">
+                                                                    <div>
+                                                                        <span class="avatar avatar-md avatar-rounded bg-success-transparent">
+                                                                            <i class="bi bi-hospital"></i>
+                                                                        </span>
+                                                                    </div>
+                                                                    <div class="flex-fill">
+                                                                        <label class="form-check-label d-block fw-medium fs-14" for="flexCheckChecked1">Savings Account</label>
+                                                                        <span class="fs-11 text-muted">Lorem, ipsum dolor sit.</span>
+                                                                    </div>
+                                                                    <div>
+                                                                        <input class="form-check-input form-checked-success rounded-circle" type="checkbox" value="" id="flexCheckChecked1" name="test[]">
+                                                                    </div>
+                                                                </div>
+                                                            </label>
+                                                        </div>
+                                                        <div class="col-md-6">
+                                                            <label for="flexCheckChecked2" style="width: 100%; margin: 10px 0px;">
+                                                                <div class="form-check d-flex align-items-center gap-1 py-3 px-2 account_select">
+                                                                    <div>
+                                                                        <span class="avatar avatar-md avatar-rounded bg-orange-transparent">
+                                                                            <i class="bi bi-hospital"></i>
+                                                                        </span>
+                                                                    </div>
+                                                                    <div class="flex-fill">
+                                                                        <label class="form-check-label d-block fw-medium fs-14" for="flexCheckChecked2">Investment Account</label>
+                                                                        <span class="fs-11 text-muted">Lorem, ipsum dolor sit.</span>
+                                                                    </div>
+                                                                    <div>
+                                                                        <input class="form-check-input form-checked-warning rounded-circle" type="checkbox" value="" id="flexCheckChecked2" name="test[]">
+                                                                    </div>
+                                                                </div>
+                                                            </label>
+                                                        </div>
+                                                        <div class="col-md-12">
+                                                            <label for="flexCheckChecked3" style="width: 100%; margin: 10px 0px;">
+                                                                <div class="form-check d-flex align-items-center gap-1 py-3 px-2 account_select m-auto">
+                                                                    <div>
+                                                                        <span class="avatar avatar-md avatar-rounded bg-info-transparent">
+                                                                            <i class="bi bi-hospital"></i>
+                                                                        </span>
+                                                                    </div>
+                                                                    <div class="flex-fill">
+                                                                        <label class="form-check-label d-block fw-medium fs-14" for="flexCheckChecked3">Trading Account</label>
+                                                                        <span class="fs-11 text-muted">Lorem, ipsum dolor sit.</span>
+                                                                    </div>
+                                                                    <div>
+                                                                        <input class="form-check-input form-checked-info rounded-circle" type="checkbox" value="" id="flexCheckChecked3" name="test[]">
+                                                                    </div>
+                                                                </div>
+                                                            </label>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -397,11 +485,15 @@
                                                         </div>
                                                     </div>
                                                 </div>
-
+                                                <div>
+                                                    <button class="btn btn-success">Submit</button>
+                                                </div>
+                                            </div>
+                                            <div class="tab-pane" id="main-nextkin" role="tabpanel" aria-labelledby="main-nextkin-tab" tabindex="0">
                                                 <div class="register-page my-4">
-                                                    <div class="fs-15 fw-medium d-sm-flex d-block align-items-center justify-content-between mb-3">
+                                                    <!-- <div class="fs-15 fw-medium d-sm-flex d-block align-items-center justify-content-between mb-3">
                                                         <div>Next of kin:</div>
-                                                    </div>
+                                                    </div> -->
                                                     <div class="row gy-3">
                                                         <div class="col-xl-6">
                                                             <label for="nk_name" class="form-label">Full Name</label>
@@ -519,6 +611,39 @@
                                                     </div>
                                                 </div>
                                             </div>
+                                            <div class="tab-pane" id="main-password" role="tabpanel" aria-labelledby="main-password-tab" tabindex="0">
+                                                <form action="" method="post">
+                                                    <div class="row">
+                                                        <div class="col-md-12 my-2">
+                                                            <label class="form-label mt-2 text-muted fs-12" for="old_password">Old Password</label>
+                                                            <input type="password" @if(auth()->user()->authenticatedWithSocials()) disabled @endif name="old_password" class="form-control" id="old_password" autocomplete="off" placeholder="Old Password">
+                                                            @error('old_password')
+                                                                <strong class="small font-weight-bold text-danger">
+                                                                    {{ $message }}
+                                                                </strong>
+                                                            @enderror
+                                                        </div>
+                                                        <div class="col-md-12 my-2">
+                                                            <div class="form-group">
+                                                                <label class="form-label mt-2 text-muted fs-12" for="new_password">New Password</label>
+                                                                <input type="password" @if(auth()->user()->authenticatedWithSocials()) disabled @endif name="new_password" class="form-control" id="new_password" autocomplete="off" placeholder="New Password">
+                                                                @error('new_password')
+                                                                    <strong class="small font-weight-bold text-danger">
+                                                                        {{ $message }}
+                                                                    </strong>
+                                                                @enderror
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-12 my-2">
+                                                            <label class="form-label mt-2 text-muted fs-12" for="confirm_password">Confirm Password</label>
+                                                            <input type="password" @if(auth()->user()->authenticatedWithSocials()) disabled @endif name="confirm_password" class="form-control" id="confirm_password" autocomplete="off" placeholder="Confirm Password">
+                                                        </div>
+                                                        <div class="my-2">
+                                                            <button class="btn btn-success">Submit</button>
+                                                        </div>
+                                                    </div>
+                                                </form>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -538,7 +663,7 @@
                         <ul class="list-group list-group-flush">
                             <li class="list-group-item">
                                 <div><span class="fw-medium me-2">Name :</span>
-                                <span class="text-muted">{{ $user->name }}</span>
+                                <span class="text-muted">{{ $user->first_name }} {{ $user->last_name }}</span>
                             </div>
                             </li>
                             <li class="list-group-item">

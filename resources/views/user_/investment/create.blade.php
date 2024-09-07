@@ -136,39 +136,18 @@
                                     </strong>
                                 @enderror
                             </div>
-                            <div class="col-lg-6">
-                                <label class="form-label" for="duration-type">Duration Type</label>
-                                <select name="duration_type" id="duration-type" class="form-control">
-                                    <option value="daily">Daily</option>
-                                    <option value="weekly">Weekly</option>
-                                    <option value="monthly">Monthly</option>
-                                    <option value="yearly">Yearly</option>
-                                </select>
-                            </div>
-                            <div class="col-lg-6">
-                                <label class="form-label" for="duration">Duration</label>
-                                <input class="form-control" type="number" name="duration" id="duration" placeholder="Enter duration...">
-                            </div>
-                            <div class="col-lg-12">
-                                <label class="form-label" for="duration-type">ROI Method</label>
-                                <select name="roi_method" id="duration-type" class="form-control">
-                                    <option value="1">Daily</option>
-                                    <option value="2">Weekly</option>
-                                    <option value="3">Monthly</option>
-                                </select>
-                            </div>
-                            {{-- <div class="col-xl-12">
-                                <div class="row">
-                                    <div class="col-6">
-                                        <label for="amount" class="form-label">Amount to Invest</label>
-                                        <input name="amount" type="text" class="form-control" id="amount" value="&#36; 0.00" disabled>
-                                    </div>
-                                    <div class="col-6">
-                                        <label for="returns" class="form-label">Expected Return</label>
-                                        <input name="returns" type="text" class="form-control" id="returns" value="&#36; 0.00" disabled>
-                                    </div>
+                            <div class="col-xl-12">
+                                <label class="form-label" for="duration-type">ROI Preiod</label>
+                                <div class="input-group">
+                                    <input type="text" aria-label="First name" class="form-control">
+                                    <select name="duration_type" id="duration-type" class="form-control">
+                                        <option value="daily">Daily</option>
+                                        <option value="weekly">Weekly</option>
+                                        <option value="monthly">Monthly</option>
+                                        <option value="yearly">Yearly</option>
+                                    </select>
                                 </div>
-                            </div> --}}
+                            </div>
                             <div class="col-xl-10 mx-3 alert alert-primary" id="savings-summary" style="display: none;">
                                 The Investment will run for <strong id="summary-duration"></strong> at an ROI of <strong id="summary-roi"></strong>.
                             </div>
@@ -177,7 +156,7 @@
                     <div class="card-footer">
                         @if($setting['invest'] == 1)
                             <div class="btn-list text-start">
-                                <button type="submit" class="btn btn-primary">Start Investment</button>
+                                <button type="submit" class="btn btn-success">Start Investment</button>
                             </div>
                         @else
                             <div class="btn-list text-end">
@@ -189,7 +168,7 @@
             </form>
         </div>
 
-        <div class="col-xl-6 col-lg-4 col-md-12 col-sm-12">
+        {{-- <div class="col-xl-6 col-lg-4 col-md-12 col-sm-12">
             <div class="card custom-card team-member" id="package-details-card">
                 <div class="card-body text-center p-5">
                     <!-- Skeleton Loader -->
@@ -225,6 +204,87 @@
                             </div>
                         </div>
                     </div>
+                </div>
+            </div>
+        </div> --}}
+
+        <div class="col-xl-6 col-lg-4 col-md-12 col-sm-12">
+            <div class="card custom-card overflow-hidden">
+                <div class="card-header">
+                    <div class="card-title">
+                        <div class="card custom-card" style="width: 100%; border: 0px; padding: 0px; margin: 0px;">
+                            <div class="row g-0 w-100">
+                                <div class="col-md-6">
+                                    <div class="card-header">
+                                        <h3 class="card-title fs-24">{{$package['name']}}</h3>
+                                    </div>
+                                    <div class="card-body" style="border: 0px;">
+                                        <p class="card-text"><small class="text-muted">{{$package['description']}}</small></p>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <img src="{{$package['image']}}" class="img-fluid rounded-end h-80 w-100" alt="...">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <div class="d-flex align-items-center mb-2">
+                        <h4 class="fw-semibold mb-0">${{ number_format($package['price'], 2) }}</h4>
+                        <div class="ms-2">
+                            <span class="badge bg-success-transparent">+{{$package['daily_roi']}}%</span>
+                        </div>
+                    </div>
+                    <div class="progress-stacked progress-xs">
+                        <div class="progress-bar" role="progressbar" style="width: 30%" aria-valuenow="30" aria-valuemin="0" aria-valuemax="100"></div>
+                        <div class="progress-bar bg-secondary" role="progressbar" style="width: 20%" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100"></div>
+                        <div class="progress-bar bg-success" role="progressbar" style="width: 23%" aria-valuenow="23" aria-valuemin="0" aria-valuemax="100"></div>
+                        <div class="progress-bar bg-info" role="progressbar" style="width: 27%" aria-valuenow="27" aria-valuemin="0" aria-valuemax="100"></div>
+                    </div>
+                </div>
+                <div class="card-footer p-0">
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item">
+                            <div class="d-flex align-items-center">
+                                <div class="flex-fill align-items-center pt-1">
+                                    <div class="d-flex align-items-top justify-content-between">
+                                        <p class="mb-0 text-muted fs-10 d-flex align-items-center"><i class="ti ti-point-filled fs-20 text-primary me-2"></i>
+                                            Amount</p>
+                                        <!-- <h6 class="fw-medium fs-12 bg-primary-transparent px-3 py-1 rounded ">$20</h6> -->
+                                        <div class="d-flex align-items-center mb-2">
+                                            <h4 class="fw-semibold mb-0 fs-15">${{ number_format($package['price'], 2) }}</h4>
+                                            <div class="ms-2">
+                                                <span class="badge bg-primary-transparent">+$400.23</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="list-group-item success">
+                            <div class="d-flex align-items-center">
+                                <div class="flex-fill align-items-center pt-1">
+                                    <div class="d-flex align-items-top justify-content-between">
+                                        <p class="mb-0 text-muted fs-10  d-flex align-items-center"><i class="ti ti-point-filled fs-20 text-success me-2"></i>
+                                            Investment Period</p>
+                                        <h6 class="fw-medium fs-11 bg-success-transparent px-3 py-1 rounded">3 Months</h6>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="list-group-item success">
+                            <div class="d-flex align-items-center">
+                                <div class="flex-fill align-items-center pt-1">
+                                    <div class="d-flex align-items-top justify-content-between">
+                                        <p class="mb-0 text-muted fs-10 d-flex align-items-center"><i class="ti ti-point-filled fs-20 text-info me-2"></i>
+                                            Return Date</p>
+                                        <h6 class="fw-medium fs-11 bg-info-transparent px-3 py-1 rounded">2nd, Nov. 2024</h6>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
                 </div>
             </div>
         </div>

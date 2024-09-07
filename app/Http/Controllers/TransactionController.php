@@ -34,13 +34,54 @@ class TransactionController extends Controller
     
         return view('user_.wallet.index', [
             'tittle' => 'Transactions',
-            'transactions' => $transactions->latest()->paginate(20),
+            'transactions' => $transactions->latest()->paginate(10),
             'total' => $total,
             'savings' => $s_balance,
             'trading' => $t_balance,
             'investment' => $i_balance,
             'setting' => Setting::all()->first(), 
         ]);
+    }
+
+    public function history(Request $request)
+    {
+        $user = auth()->user();
+
+        $query = $user->walletsTransactions(); 
+
+
+        $transaction = $query->paginate(10);
+
+        // Search functionality
+        if ($request->filled('search')) {
+            $searchTerm = $request->input('search');
+
+            // Adjusting the query to search within fields
+            $query->where(function ($q) use ($searchTerm) {
+                $q->where('description', 'like', '%' . $searchTerm . '%')
+                ->orWhere('amount', 'like', '%' . $searchTerm . '%');
+            });
+
+            $transaction = $query->paginate(10000);
+        }
+
+        // Filter functionality
+        if ($request->has('status')) {
+            $status = $request->get('status');
+            $query->where('status', $status);
+
+            $transaction = $query->paginate(10000);
+        }
+
+        // Filter Type
+        if ($request->has('type')) {
+            $type = $request->get('type');
+            $query->where('type', $type);
+
+            $transaction = $query->paginate(10000);
+        }
+
+        return view('user_.wallet.history', ['title' => 'Transaction History', 'transactions' => $transaction]);
     }
 
     public function deposit(Request $request)

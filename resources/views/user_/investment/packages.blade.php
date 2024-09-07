@@ -33,7 +33,7 @@
         <!-- Start:: row-1 -->
         <div class="row">
             @foreach($packages as $package)
-                <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6 col-12 mb-lg-0 mb-4">
+                <div class="col-xl-4 col-lg-4 col-md-6 col-sm-6 col-12 mb-lg-0 mb-4">
                     <div class="card custom-card team-member">
                         <div class=""></div>
                         <div class="card-body text-center p-5">
@@ -44,10 +44,13 @@
                             </div>
                             <div class="text-center">
                                 <h6 class="mb-0 fw-semibold">{{ $package->name }}</h6>
-                                <p class="mb-0 text-muted">{{ $package->description }}</p>
+                                <p class="mb-0 text-muted  text-truncate">{{ $package->description }}</p>
                                 <div class="d-flex justify-content-center mt-3">
                                     <span class="text-primary w-100 py-2 rounded fw-bold fs-20">${{ number_format($package->price, 2) }}</span>
                                 </div>
+                                <span class="badge border bg-success-transparent text-success custom-badge">
+                                    {{ number_format($package->daily_roi) }}<i class="fe fe-percent me-1 d-inline-block"></i>
+                                </span>
                                 <div class="mt-4">
                                     @if($package->canRunInvestment())
                                         <a class="btn btn-primary w-100" href="/invest?package={{ $package['name'] }}">Invest</a>

@@ -29,6 +29,9 @@ Route::get('/auth/{provider}/attempt', [App\Http\Controllers\Auth\SocialControll
 Route::get('/login/{provider}/callback', [App\Http\Controllers\Auth\SocialController::class, 'socialLoginAttempt'])->name('auth.social.login.attempt');
 Route::get('/market/{product}/chart', [App\Http\Controllers\HomeController::class, 'showMarket'])->name('market.show');
 Route::get('/getStates/{name}', [App\Http\Controllers\HomeController::class, 'getState'])->name('user.getstate');
+Route::get('/user/registration/kyc', [App\Http\Controllers\HomeController::class, 'kyc'])->name('user.kyc');
+Route::post('/user/registration/kyc/update', [App\Http\Controllers\HomeController::class, 'updateUserInfo'])->name('update.kyc');
+
 
 Route::group(['middleware' => ['auth', 'unverified']], function (){
     Route::get('/email/verify', [EmailverificationController::class, 'verify'])->name('verification.notice');
@@ -37,7 +40,7 @@ Route::group(['middleware' => ['auth', 'unverified']], function (){
     Route::get('/email/verification-notification', [EmailverificationController::class, 'resend'])->middleware(['throttle:6,1'])->name('verification.send');
 });
 
-Route::group(['middleware' => ['auth','verified', 'active_user']], function (){
+Route::group(['middleware' => ['auth','verified', 'active_user', 'profile_completed']], function (){
     Route::get('/email/verification/success', [App\Http\Controllers\HomeController::class, 'verificationSuccess']);
     Route::get('/profile', [App\Http\Controllers\HomeController::class, 'profile'])->name('profile');
     Route::post('/password/custom/update', [App\Http\Controllers\HomeController::class, 'changePassword'])->name('password.custom.update');
@@ -86,6 +89,7 @@ Route::group(['middleware' => ['auth','verified', 'active_user']], function (){
         Route::get('/savings/{savings}/show', [SavingsController::class, 'show'])->name('savings.show');
         Route::post('/payment/{savings}', [SavingsController::class, 'makePayment'])->name('make.payment');
         Route::post('/savings/{savings}/settle', [SavingsController::class, 'settlePayment'])->name('settle.payment');
+        Route::get('/savings/history', [SavingsController::class, 'history'])->name('savings.history');
 
         Route::get('/test/jods', [App\Http\Controllers\CommandController::class, 'handleSavings']);
 
@@ -102,5 +106,7 @@ Route::group(['middleware' => ['auth','verified', 'active_user']], function (){
         Route::get('/trade/{stock}/{symbol}', [TradingController::class, 'show'])->name('trade.show');
 
         Route::get('/user/asset', [TradingController::class, 'asset'])->name('assets');
+        Route::get('/wallet/history', [App\Http\Controllers\TransactionController::class, 'history'])->name('transactions.history');
+
     // });
 });

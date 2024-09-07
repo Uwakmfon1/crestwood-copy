@@ -17,12 +17,11 @@ class ProfileCompleteMiddleware
     public function handle(Request $request, Closure $next)
     {
         $user = auth()->user();
-        if (!($user['name'] && $user['email'] && $user['phone'] &&
-            $user['state'] && $user['country'] && $user['city'] &&
-            $user['address'] && $user['bank_name'] && $user['account_name'] &&
-            $user['account_number'] && $user['nk_name'] && $user['nk_phone'] &&
+        if (!($user['first_name'] && $user['email'] && $user['phone'] &&
+            $user['country'] && 
+            $user['address'] && $user['bank_name'] &&
             $user['nk_address']))
-            return redirect()->route('profile')->with('info', 'Kindly complete your profile to proceed');
+            return redirect()->route('user.kyc')->with('info', 'Kindly complete your profile to proceed');
         return $next($request);
     }
 }

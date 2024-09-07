@@ -22,11 +22,11 @@ class CreateUsersTable extends Migration
             $table->foreignId('account_id');
             $table->foreignId('wallet_id');
             $table->string('phone');
-            $table->string('state');
-            $table->string('country');
-            $table->string('postal_code');
-            $table->string('location');
-            $table->text('address');
+            $table->string('state')->nullable();
+            $table->string('country')->nullable();
+            $table->string('postal_code')->nullable();
+            $table->string('location')->nullable();
+            $table->text('address')->nullable();
             $table->string('bank_name')->nullable();
             $table->string('account_number')->nullable();
             $table->string('account_name')->nullable();

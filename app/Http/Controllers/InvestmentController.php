@@ -38,7 +38,7 @@ class InvestmentController extends Controller
 
     public function history(Request $request)
     {
-        $query = Investment::query();
+        $query = auth()->user()->investments();
 
         // Search functionality
         if ($request->filled('search')) {

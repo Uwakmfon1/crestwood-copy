@@ -28,55 +28,55 @@
                         </div>
                     @endif
                     <form action="{{ route('login') }}" method="post">
-                            @csrf
-                            <div class="row gy-3">
-                                <div class="col-xl-12">
-                                    <label for="signin-username" class="form-label text-default">Email</label>
-                                    <input name="email" type="text" class="form-control" id="signin-username" placeholder="Enter email...">
-                                    @error('email')
+                        @csrf
+                        <div class="row gy-3">
+                            <div class="col-xl-12">
+                                <label for="signin-username" class="form-label text-default">Email</label>
+                                <input name="email" type="text" class="form-control" id="signin-username" placeholder="Enter email...">
+                                @error('email')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                            <div class="col-xl-12 mb-2">
+                                <label for="signin-password" class="form-label text-default d-block">Password<a href="reset-password-basic.html" class="float-end link-primary op-5 fw-medium fs-12">Forget password ?</a></label>
+                                <div class="input-group">
+                                    <input name="password" type="password" class="form-control" id="signin-password" placeholder="Enter password...">
+                                    <a href="javascript:void(0);" class="input-group-text bg-white text-muted" onclick="createpassword('signin-password',this)"><i class="ri-eye-off-line align-middle"></i></a>
+                                    @error('password')
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{ $message }}</strong>
                                         </span>
                                     @enderror
                                 </div>
-                                <div class="col-xl-12 mb-2">
-                                    <label for="signin-password" class="form-label text-default d-block">Password<a href="reset-password-basic.html" class="float-end link-primary op-5 fw-medium fs-12">Forget password ?</a></label>
-                                    <div class="input-group">
-                                        <input name="password" type="password" class="form-control" id="signin-password" placeholder="Enter password...">
-                                        <a href="javascript:void(0);" class="input-group-text bg-white text-muted" onclick="createpassword('signin-password',this)"><i class="ri-eye-off-line align-middle"></i></a>
-                                        @error('password')
-                                            <span class="invalid-feedback" role="alert">
-                                                <strong>{{ $message }}</strong>
-                                            </span>
-                                        @enderror
-                                    </div>
-                                    <div class="mt-2">
-                                        <div class="form-check">
-                                            <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
-                                            <label class="form-check-label text-muted fw-normal fs-12" for="defaultCheck1">
-                                                Remember password ?
-                                            </label>
-                                        </div>
+                                <div class="mt-2">
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
+                                        <label class="form-check-label text-muted fw-normal fs-12" for="defaultCheck1">
+                                            Remember password ?
+                                        </label>
                                     </div>
                                 </div>
                             </div>
-                            <div class="text-center my-3 authentication-barrier">
-                                <span class="op-4 fs-11">Or SignIn With</span>
-                            </div>
-                            <div class="d-flex align-items-center justify-content-center gap-3 mb-3 flex-wrap">
-                                <button class="btn btn-primary-light btn-md btn-icon">
-                                    <i class="ti ti-brand-google fs-18"></i>
-                            </button>
+                        </div>
+                        <div class="text-center my-3 authentication-barrier">
+                            <span class="op-4 fs-11">Or SignIn With</span>
+                        </div>
+                        <div class="d-flex align-items-center justify-content-center gap-3 mb-3 flex-wrap">
                             <button class="btn btn-primary-light btn-md btn-icon">
-                                    <i class="ti ti-mail  fs-18"></i>
-                            </button>
-                            <button class="btn btn-primary-light btn-md btn-icon">
-                                    <i class="ti ti-brand-facebook  fs-18"></i>
-                            </button>
-                            </div>
-                            <div class="d-grid mt-4">
-                                <button type="submit" class="btn btn-primary">Sign In</button>
-                            </div>
+                                <i class="ti ti-brand-google fs-18"></i>
+                        </button>
+                        <button class="btn btn-primary-light btn-md btn-icon">
+                                <i class="ti ti-mail  fs-18"></i>
+                        </button>
+                        <button class="btn btn-primary-light btn-md btn-icon">
+                                <i class="ti ti-brand-facebook  fs-18"></i>
+                        </button>
+                        </div>
+                        <div class="d-grid mt-4">
+                            <button type="submit" class="btn btn-primary">Sign In</button>
+                        </div>
                     </form>
                     <div class="text-center">
                         <p class="text-muted mt-3 mb-0">Dont have an account? <a href="{{ route('register') }}" class="text-primary">Sign Up</a></p>

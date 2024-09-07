@@ -203,32 +203,12 @@
                     <div class="card custom-card">
                         <div class="card-header justify-content-between">
                             <div class="card-title">
-                                Transactions 
+                                Latest Transactions 
                             </div>
                             <div class="d-flex flex-wrap gap-2"> 
                                 <div class="dropdown"> 
                                     <a href="javascript:void(0);" class="btn btn-primary btn-sm btn-wave waves-effect waves-light" data-bs-toggle="dropdown" aria-expanded="false"> Sort By<i class="ri-arrow-down-s-line align-middle ms-1 d-inline-block"></i> 
-                                    </a> 
-                                    <ul class="dropdown-menu" role="menu"> 
-                                        <li><a class="dropdown-item" href="{{ request()->offsetExists('pending') }}">New</a></li> 
-                                        <li><a class="dropdown-item" href="javascript:void(0);">Popular</a></li> 
-                                        <li><a class="dropdown-item" href="javascript:void(0);">Relevant</a></li> 
-                                        @if(request()->offsetExists('active'))
-                                            <li class="breadcrumb-item"><a href="{{ route('savings') }}">Savings</a></li>
-                                            <li class="breadcrumb-item active" aria-current="page">Active</li>
-                                        @elseif(request()->offsetExists('pending'))
-                                            <li class="breadcrumb-item"><a href="{{ route('savings') }}">Savings</a></li>
-                                            <li class="breadcrumb-item active" aria-current="page">Pending</li>
-                                        @elseif(request()->offsetExists('cancelled'))
-                                            <li class="breadcrumb-item"><a href="{{ route('savings') }}">Savings</a></li>
-                                            <li class="breadcrumb-item active" aria-current="page">Cancelled</li>
-                                        @elseif(request()->offsetExists('settled'))
-                                            <li class="breadcrumb-item"><a href="{{ route('savings') }}">Savings</a></li>
-                                            <li class="breadcrumb-item active" aria-current="page">Settled</li>
-                                        @else
-                                            <li class="breadcrumb-item active" aria-current="page">Savings</li>
-                                        @endif
-                                    </ul> 
+                                    </a>  
                                 </div> 
                             </div>
                         </div>
@@ -294,9 +274,6 @@
                                             <div class="d-flex align-items-center">
                                                 <div> Showing {{ $transactions->count() }} of {{ $transactions->total() }} Entries <i class="bi bi-arrow-right ms-2 fw-semibold"></i> </div>
                                                 <div class="ms-auto">
-                                                    <nav aria-label="Page navigation" class="pagination-style-4">
-                                                        {{ $transactions->links() }}
-                                                    </nav>
                                                 </div>
                                             </div>
                                         </div>

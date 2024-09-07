@@ -52,6 +52,9 @@
                     <li class="slide">
                         <a href="{{ route('savings.create') }}" class="side-menu__item @if(request()->routeIs(['savings.create'])) active @endif">New Savings</a>
                     </li>
+                    <li class="slide">
+                        <a href="{{ route('savings.history') }}" class="side-menu__item @if(request()->routeIs(['savings.history'])) active @endif">History</a>
+                    </li>
                 </ul>
             </li>
             <!-- End::slide -->
@@ -71,21 +74,14 @@
                         <a href="{{ route('investments') }}" class="side-menu__item @if(request()->routeIs(['investments'])) active @endif">My Investment</a>
                     </li>
                     <li class="slide">
-                        <a href="{{ route('invest') }}" class="side-menu__item @if(request()->routeIs(['invest'])) active @endif">New Investment</a>
+                        <a href="{{ route('packages') }}" class="side-menu__item @if(request()->routeIs(['packages'])) active @endif">Packages</a>
                     </li>
                     <li class="slide">
-                        <a href="{{ route('investments.history') }}" class="side-menu__item @if(request()->routeIs(['investments.history'])) active @endif">Investment History</a>
+                        <a href="{{ route('investments.history') }}" class="side-menu__item @if(request()->routeIs(['investments.history'])) active @endif">History</a>
                     </li>
                 </ul>
             </li>
             <!-- End::slide -->
-
-            <li class="slide @if(request()->routeIs(['packages'])) active @endif">
-                <a href="{{ route('packages') }}" class="side-menu__item">
-                    <i class="fe fe-layout mx-2"></i>
-                    <span class="side-menu__label">Packages</span>
-                </a>
-            </li>
 
             <!-- Start::slide__category -->
             <li class="slide__category"><span class="category-name">Trade</span></li>
@@ -124,8 +120,8 @@
                 </a>
             </li>
 
-            <li class="slide @if(request()->routeIs(['transaction'])) active @endif">
-                <a href="{{ route('transactions') }}" class="side-menu__item">
+            <li class="slide @if(request()->routeIs(['transactions.history'])) active @endif">
+                <a href="{{ route('transactions.history') }}" class="side-menu__item">
                     <i class="fe fe-dollar-sign mx-2"></i>
                     <span class="side-menu__label">History</span>
                 </a>
