@@ -91,7 +91,50 @@
 
         <!-- Start::row-1 -->
         <div class="row">
-        <div class="col-xl-6 col-lg-8 col-md-12 col-sm-12">
+            <div class="col-xl-7">
+                <div class="card custom-card border-0 bg-primary-transparent podcast-card">
+                    <div class="card-body p-4">
+                        <div class="row justify-content-between">
+                            <div class="col-xxl-4 col-xl-5 col-lg-7 col-md-7 col-sm-7 text-end my-auto">
+                                <img src="/{{ $package['image'] }}" alt="" class="img-fluid my-1">
+                            </div>
+                            <div class="col-xxl-8 col-xl-7 col-lg-5 col-md-5 col-sm-5">
+                                <h4 class="mb-2 fw-semibold">{{$package['name']}}</h4>
+                                <p class="mb-2">{{$package['description']}}</p>
+                                <span class="fw-medium rounded">
+                                    <i class="fe fe-check-circle text-primary me-1"></i> 
+                                    <span class="text-primary">
+                                        {{ number_format($package['roi']) }}%
+                                    </span>
+                                    <span class="ms-2 text-default fs-12 op-8 text-primary"><i class="fe fe-calendar fs-13 me-1 text-primary"></i>2 months</span>
+                                        <div class="d-flex align-items-center gap-2 mt-3">
+                                            <!-- <button class="btn btn-primary btn-wave waves-effect waves-light">Listen Now</button>
+                                            <button class="btn btn-outline-primary btn-wave waves-effect waves-light">Add To
+                                                Favorite</button> -->
+                                                <div class="d-flex align-items-center justify-content-between"> 
+                                                <p class="mb-1">
+                                                    <span class="fs-22 fw-semibold">
+                                                        ${{ number_format($package['min_amount'], 2) }}
+                                                    </span>
+                                                    <span class="mx-1">-</span>
+                                                    <span class="fs-22 fw-semibold">
+                                                        ${{ number_format($package['max_amount'], 2) }}
+                                                    </span>
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </span>
+                                </span>
+                                <div class="d-flex align-items-center gap-2 mt-3">
+                                    <button class="btn btn-primary btn-wave waves-effect waves-light">View Plan</button>
+                                    <!-- <button class="btn btn-outline-primary btn-wave waves-effect waves-light"></button> -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        <div class="col-xl-7 col-lg-8 col-md-12 col-sm-12">
             <form action="{{ route('invest.store') }}" method="post">
                 @csrf
                 <div class="card custom-card">
@@ -136,7 +179,7 @@
                                     </strong>
                                 @enderror
                             </div>
-                            <div class="col-xl-12">
+                            <!-- <div class="col-xl-12">
                                 <label class="form-label" for="duration-type">ROI Preiod</label>
                                 <div class="input-group">
                                     <input type="text" aria-label="First name" class="form-control">
@@ -147,9 +190,36 @@
                                         <option value="yearly">Yearly</option>
                                     </select>
                                 </div>
+                            </div> -->
+                            <div class="col-xl-12">
+                                <label class="form-label" for="duration-type">ROI Method</label>
+                                <div class="input-group my-1">
+                                    <button type="button" class="input-group-text btn btn-dark-light btn-wave decrement-btn-buy">-</button>
+                                    <input type="number" name="roi_method" step="1" class="form-control text-center quantity-input-buy" id="quantity-input-buy" placeholder="Enter Method..." aria-label="Stock Quantity" value="1" min="1" required>
+                                    <button type="button" class="input-group-text btn btn-dark-light btn-wave increment-btn-buy">+</button>
+                                </div>
+                                <strong class="fs-10 text-muted">
+                                    Specify the frequency you want you ROI
+                                </strong>
                             </div>
-                            <div class="col-xl-10 mx-3 alert alert-primary" id="savings-summary" style="display: none;">
-                                The Investment will run for <strong id="summary-duration"></strong> at an ROI of <strong id="summary-roi"></strong>.
+                            <div class="col-xl-12">
+                                <label class="form-label" for="duration-type">ROI Duration</label>
+                                <div class="input-group">
+                                    <select name="roi_duration" id="duration-type" class="form-control">
+                                        <option value="days">Daily</option>
+                                        <option value="weeks">Weekly</option>
+                                        <option value="months">Monthly</option>
+                                        <option value="years">Yearly</option>
+                                    </select>
+                                </div>
+                                <strong class="fs-10 text-muted">
+                                    Specify the frequency duration you want you ROI
+                                </strong>
+                            </div>
+                            <div class="col-xl-12">
+                                <div class="fs-12 alert alert-primary w-100" id="savings-summaryX" style="">
+                                    Your investment of {amount} into <strong>{{ $package->name }}</strong> will run for <strong>{duration}</strong>.
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -206,7 +276,7 @@
                     </div>
                 </div>
             </div>
-        </div> --}}
+        </div>
 
         <div class="col-xl-6 col-lg-4 col-md-12 col-sm-12">
             <div class="card custom-card overflow-hidden">
@@ -288,7 +358,7 @@
                 </div>
             </div>
         </div>
-        </div>
+        </div> --}}
         <!--End::row-1 -->
 
     </div>
@@ -298,6 +368,50 @@
 @endsection
 
 @section('scripts')
+<script>
+$(document).ready(function() {
+    // Function to update the wallet price based on the quantity
+    function updateWalletPrice(modalType) {
+        const pricePerUnit = parseFloat($(`#quantity-input-${modalType}`).data('price'));
+        const quantity = Math.max(0.001, parseFloat($(`#quantity-input-${modalType}`).val()) || 0.001);
+        const totalPrice = pricePerUnit * quantity;
+
+        $(`#wallet-price-${modalType}`).text(totalPrice.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 }));
+        $(`#quantity-display-${modalType}`).text(`${quantity} Unit${quantity > 1 ? 's' : ''}`);
+    }
+
+    // Handle quantity input change
+    $('.quantity-input-buy, .quantity-input-sell').on('input', function() {
+        const modalType = $(this).hasClass('quantity-input-buy') ? 'buy' : 'sell';
+        updateWalletPrice(modalType);
+    });
+
+    // Handle increment button click
+    $('.increment-btn-buy, .increment-btn-sell').click(function() {
+        const modalType = $(this).hasClass('increment-btn-buy') ? 'buy' : 'sell';
+        let $input = $(`#quantity-input-${modalType}`);
+        let step = parseFloat($input.attr('step')) || 0.001;
+        let currentValue = parseFloat($input.val()) || 0.001;
+        $input.val((currentValue + step));
+        updateWalletPrice(modalType);
+    });
+
+    // Handle decrement button click
+    $('.decrement-btn-buy, .decrement-btn-sell').click(function() {
+        const modalType = $(this).hasClass('decrement-btn-buy') ? 'buy' : 'sell';
+        let $input = $(`#quantity-input-${modalType}`);
+        let step = parseFloat($input.attr('step')) || 0.001;
+        let currentValue = parseFloat($input.val()) || 0.001;
+        let minValue = parseFloat($input.attr('min')) || 0.001;
+        let newValue = (currentValue - step);
+        if (newValue >= minValue) {
+            $input.val(newValue);
+            updateWalletPrice(modalType);
+        }
+    });
+});
+
+</script>
 <script>
     function updatePackageDetails(selectedOption) {
         if (selectedOption.value) {

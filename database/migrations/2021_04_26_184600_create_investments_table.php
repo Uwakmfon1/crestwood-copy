@@ -17,12 +17,9 @@ class CreateInvestmentsTable extends Migration
             $table->id();
             $table->foreignId('user_id');
             $table->foreignId('package_id');
-            $table->string('amount');
-            $table->enum('duration_type', ['daily', 'monthly', 'weekly', 'yearly']);
-            $table->string('duration');
-            $table->string('roi_method');
+            $table->decimal('amount', 15, 2)->default(0);
+            $table->string('roi_duration');
             $table->string('total_return');
-            $table->dateTime('investment_date');
             $table->dateTime('return_date');
             $table->enum('status', ['active', 'pending', 'cancelled', 'settled']);
             $table->timestamps();

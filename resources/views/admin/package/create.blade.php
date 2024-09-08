@@ -28,45 +28,50 @@
                             @enderror
                         </div>
                         <div class="form-group">
-                            <label for="price">Price per slot</label>
-                            <input type="number" name="price"  class="form-control" value="{{ old('price') }}" id="price" placeholder="Price">
-                            @error('price')
+                            <label for="min_amount">Min Amount</label>
+                            <input type="number" name="min_amount"  class="form-control" value="{{ old('min_amount') }}" id="min_amount" placeholder="Min Amount">
+                            @error('min_amount')
                                 <strong class="small text-danger">
                                     {{ $message }}
                                 </strong>
                             @enderror
                         </div>
                         <div class="form-group">
-                            <label for="min_duration">Minimum Duration (3_days, 5_months, 1_year)</label>
-                            <input type="text" name="min_duration"  class="form-control" value="{{ old('min_duration') }}" id="min_duration" placeholder="Enter minimum day...">
-                            @error('min_duration')
+                            <label for="max_amount">Max Amount</label>
+                            <input type="number" name="max_amount"  class="form-control" value="{{ old('max_amount') }}" id="max_amount" placeholder="Max Amount">
+                            @error('max_amount')
                                 <strong class="small text-danger">
                                     {{ $message }}
                                 </strong>
                             @enderror
                         </div>
                         <div class="form-group">
-                            <label for="daily_roi">Daily ROI (%)</label>
-                            <input type="number" name="daily_roi"  class="form-control" value="{{ old('daily_roi') }}" id="daily_roi" placeholder="Daily ROI">
-                            @error('daily_roi')
+                            <label for="roi">ROI (%)</label>
+                            <input type="number" name="roi"  class="form-control" value="{{ old('roi') }}" id="roi" placeholder="ROI">
+                            @error('roi')
                                 <strong class="small text-danger">
                                     {{ $message }}
                                 </strong>
                             @enderror
                         </div>
                         <div class="form-group">
-                            <label for="weekly_roi">Weekly ROI (%)</label>
-                            <input type="number" name="weekly_roi"  class="form-control" value="{{ old('weekly_roi') }}" id="weekly_roi" placeholder="Weekly ROI">
-                            @error('weekly_roi')
+                            <label for="milestone">ROI Method</label>
+                            <input type="text" name="milestone"  class="form-control" value="{{ old('milestone') }}" id="milestone" placeholder="Enter minimum day...">
+                            @error('milestone')
                                 <strong class="small text-danger">
                                     {{ $message }}
                                 </strong>
                             @enderror
                         </div>
                         <div class="form-group">
-                            <label for="yearly_roi">Yearly ROI (%)</label>
-                            <input type="number" name="yearly_roi"  class="form-control" value="{{ old('yearly_roi') }}" id="yearly_roi" placeholder="Yearly ROI">
-                            @error('yearly_roi')
+                            <label for="duration">ROI Duration</label>
+                            <select name="duration" id="duration" class="form-control">
+                                <option value="daily">Daily</option>
+                                <option value="weekly">Weekly</option>
+                                <option value="monthly">Monthly</option>
+                                <option value="yearly">Yearly</option>
+                            </select>
+                            @error('duration')
                                 <strong class="small text-danger">
                                     {{ $message }}
                                 </strong>

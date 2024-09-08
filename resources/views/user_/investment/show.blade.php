@@ -69,20 +69,20 @@
                             </div>
                             <div class="col-xl-4 col-6 my-2">
                                 <p class="fw-medium text-muted mb-1">Investment Date :</p>
-                                <p class="fs-15 mb-1">{{ $investment['investment_date']->format('M d, Y \a\t h:i A') }}</p>
+                                <p class="fs-15 mb-1">{{ $investment['created_at']->format('M d, Y \a\t h:i A') }}</p>
                             </div>
                             <div class="col-xl-4 col-6 my-2">
                                 <p class="fw-medium text-muted mb-1">Return Date :</p>
                                 <p class="fs-15 mb-1">{{ $investment['return_date']->format('M d, Y \a\t h:i A') }}</p>
                             </div>
-                            <div class="col-xl-4 col-6 my-2">
+                            <!-- <div class="col-xl-4 col-6 my-2">
                                 <p class="fw-medium text-muted mb-1">investment Date :</p>
                                 <p class="fs-15 mb-1">{{ $investment['created_at']->format('M d, Y \a\t h:i A') }}</p>
                             </div>
                             <div class="col-xl-4 col-6 my-2">
                                 <p class="fw-medium text-muted mb-1">Maturity Date :</p>
                                 <p class="fs-15 mb-1">{{ $investment['return_date']->format('M d, Y \a\t h:i A') }}</p>
-                            </div>
+                            </div> -->
 
                             {{-- <div class="col-xl-12 my-5">
                                 <h6 class="fw-medium text-muted my-3">Milestone:</h6>

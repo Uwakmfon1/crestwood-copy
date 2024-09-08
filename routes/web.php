@@ -58,7 +58,7 @@ Route::group(['middleware' => ['auth','verified', 'active_user', 'profile_comple
         Route::get('/investments', [App\Http\Controllers\InvestmentController::class, 'index'])->name('investments');
         Route::get('/investment/history', [App\Http\Controllers\InvestmentController::class, 'history'])->name('investments.history');
         Route::get('/investments/{investment}/show', [App\Http\Controllers\InvestmentController::class, 'show'])->name('investments.show');
-        Route::get('/invest', [App\Http\Controllers\InvestmentController::class, 'invest'])->name('invest');
+        Route::get('/invest/{package}', [App\Http\Controllers\InvestmentController::class, 'invest'])->name('invest');
         Route::get('/transactions', [App\Http\Controllers\TransactionController::class, 'index'])->name('transactions');
         Route::get('/trades', [App\Http\Controllers\TradeController::class, 'index'])->name('trades');
         Route::get('/buy', [App\Http\Controllers\TradeController::class, 'showBuyForm'])->name('buy');

@@ -69,9 +69,16 @@ class InvestmentController extends Controller
         return view('user_.investment.show', ['title' => 'Investment', 'investment' => $investment, 'packages' => Package::where('investment', 'enabled')->get()]);
     }
 
-    public function invest()
+    public function invest($packageName)
     {
-        return view('user_.investment.create', ['title' => 'Invest', 'setting' => Setting::all()->first(), 'packages' => Package::where('investment', 'enabled')->get()]);
+        $package = Package::where('name', $packageName)->firstOrFail(); // Find the package by its name
+
+        return view('user_.investment.create', [
+            'title' => 'Invest', 
+            'setting' => Setting::all()->first(), 
+            'package' => $package,
+            'packages' => Package::where('investment', 'enabled')->get()
+        ]);
     }
 
     public function store(Request $request): \Illuminate\Http\RedirectResponse
@@ -79,9 +86,8 @@ class InvestmentController extends Controller
         $validator = Validator::make($request->all(), [
             'package' => ['required'],
             'amount' => ['required', 'numeric', 'min:1', 'integer'],
-            'duration_type' => ['required'],
-            'duration' => ['required'],
             'roi_method' => ['required'],
+            'roi_duration' => ['required'],
         ]);
 
         if ($validator->fails()){
@@ -110,12 +116,9 @@ class InvestmentController extends Controller
         $investment = auth()->user()->investments()->create([
             'package_id'=>$package['id'], 
             'amount' => $request->amount,
-            'duration_type' => $request->duration_type,
-            'duration' => $request->duration,
-            'roi_method' => $request->roi_method,
-            'total_return' => $request->amount * $package['daily_roi'],
-            'investment_date' => now()->format('Y-m-d H:i:s'),
-            'return_date' => now()->addMonths($package['duration'])->format('Y-m-d H:i:s'), 
+            'roi_duration' => $request->roi_method . '_' . $request->roi_duration,
+            'total_return' => $request->amount,
+            'return_date' => now()->addMonths($request->roi_method)->format('Y-m-d H:i:s'), 
             'status' => $status
         ]);
 
@@ -132,12 +135,12 @@ class InvestmentController extends Controller
         );
 
         if ($investment) {
-            TransactionController::storeInvestmentTransaction($investment, $request['payment'], 'investment');
-            if ($investment['status'] == 'active'){
-                NotificationController::sendInvestmentCreatedNotification($investment);
-            }else{
-                NotificationController::sendInvestmentQueuedNotification($investment);
-            }
+            // TransactionController::storeInvestmentTransaction($investment, $request['payment'], 'investment');
+            // if ($investment['status'] == 'active'){
+            //     NotificationController::sendInvestmentCreatedNotification($investment);
+            // }else{
+            //     NotificationController::sendInvestmentQueuedNotification($investment);
+            // }
             return redirect()->route('investments')->with('success', $msg);
         }
         return back()->withInput()->with('error', 'Error processing investment');

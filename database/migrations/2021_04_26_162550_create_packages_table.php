@@ -16,14 +16,14 @@ class CreatePackagesTable extends Migration
         Schema::create('packages', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->string('price');
-            $table->string('min_duration');
             $table->text('description');
-            $table->text('image');
-            $table->string('daily_roi');
-            $table->string('weekly_roi');
-            $table->string('yearly_roi');
+            $table->string('roi');
+            $table->decimal('min_amount', 15, 2)->default(0);
+            $table->decimal('max_amount', 15, 2)->default(0);
+            $table->string('milestone');
+            $table->string('duration');
             $table->enum('investment', ['enabled', 'disabled']);
+            $table->text('image');
             $table->timestamps();
         });
     }

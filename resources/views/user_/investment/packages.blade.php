@@ -2,6 +2,16 @@
 
 @section('content')
 
+<style>
+    .truncate-2-lines {
+        display: -webkit-box;
+        -webkit-line-clamp: 2; /* Limits to 2 lines */
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+</style>
+
 <!-- Start::app-content -->
 <div class="main-content app-content">
     <div class="container-fluid">
@@ -9,12 +19,12 @@
         <!-- Page Header -->
         <div class="my-4 page-header-breadcrumb d-flex align-items-center justify-content-between flex-wrap gap-2">
             <div>
-                <h1 class="page-title fw-medium fs-18 mb-2">Packages</h1>
+                <h1 class="page-title fw-medium fs-18 mb-2">Plans</h1>
                 <div class="">
                     <nav>
                         <ol class="breadcrumb mb-0">
                             <li class="breadcrumb-item"><a href="javascript:void(0);">Investment</a></li>
-                            <li class="breadcrumb-item active" aria-current="page">Packages</li>
+                            <li class="breadcrumb-item active" aria-current="page">Plans</li>
                         </ol>
                     </nav>
                 </div>
@@ -34,32 +44,81 @@
         <div class="row">
             @foreach($packages as $package)
                 <div class="col-xl-4 col-lg-4 col-md-6 col-sm-6 col-12 mb-lg-0 mb-4">
-                    <div class="card custom-card team-member">
-                        <div class=""></div>
-                        <div class="card-body text-center p-5">
-                            <div class="mb-4 lh-1">
-                                <span class="avatar avatar-xxl avatar-rounded p-2 bg-light">
-                                    <img src="{{ $package->image }}" class="card-img bg-primary" alt="...">
-                                </span>
-                            </div>
-                            <div class="text-center">
-                                <h6 class="mb-0 fw-semibold">{{ $package->name }}</h6>
-                                <p class="mb-0 text-muted  text-truncate">{{ $package->description }}</p>
-                                <div class="d-flex justify-content-center mt-3">
-                                    <span class="text-primary w-100 py-2 rounded fw-bold fs-20">${{ number_format($package->price, 2) }}</span>
-                                </div>
-                                <span class="badge border bg-success-transparent text-success custom-badge">
-                                    {{ number_format($package->daily_roi) }}<i class="fe fe-percent me-1 d-inline-block"></i>
-                                </span>
-                                <div class="mt-4">
-                                    @if($package->canRunInvestment())
-                                        <a class="btn btn-primary w-100" href="/invest?package={{ $package['name'] }}">Invest</a>
-                                    @else
-                                        <button class="btn btn-dark-transparent w-100 text-dark" disabled>Invest</button>
-                                    @endif
-                                </div>
-                            </div>
-                        </div>
+                    <div class="card custom-card card-style-2"> 
+                        <div class="card-body p-0"> 
+                            <span class="ribbon-4 ribbon-secondary top-left">
+                                <span>5%</span>
+                            </span>
+                             <div class="card-img-top"> 
+                                <a href="product-details.html" class="stretched-link"></a> 
+                                <div class="img-box-2 p-2"> 
+                                    <img src="{{ $package->image }}" alt="img" class=" img-fluid w-100 rounded" style="max-height: 250px;"> 
+                                </div> 
+                            </div> 
+                            <div class="p-3"> 
+                                <div class="d-flex align-items-start justify-content-between"> 
+                                    <div class="flex-grow-1"> 
+                                        <div class="d-flex align-items-center justify-content-between"> 
+                                            <h6 class="truncate-2-lines mb-1 fw-semibold fs-16">
+                                                <a href="product-details.html">Sony Headphones Lorem ipsum dolor sit amet consectetur, adipisicing elit. sdfdgfhjgfdsa</a> 
+                                            </h6>
+                                        </div> 
+
+                                        <div class="d-flex align-items-center justify-content-between mt-1"> 
+                                            <div> 
+                                                <!-- <a href="javascript:void(0);" class="mb-2 d-inline-block text-primary fs-13 fw-semibold">Top Brand</a>  -->
+                                                 <sapn class="d-inline-block fw-bold text-primary fs-13 rounded">2 months</span>
+                                            </div> 
+                                            <div class="d-flex align-items-baseline"> 
+                                                <!-- <h5 class="fw-semibold text-primary mb-0">$120</h5> 
+                                                <span class="fs-13 ms-2 text-muted text-decoration-line-through">$399</span>  -->
+                                                <span class="fw-bold d-inline-block bg-success-transparent fs-12 rounded px-3 py-0">{{ $package->roi }}%</span>
+                                            </div> 
+                                        </div> 
+                                        <div class="d-flex align-items-center justify-content-between"> 
+                                            <span class="mt-1">
+                                                <span class="fs-22 fw-semibold">
+                                                    $150.59
+                                                </span>
+                                                <span class="mx-1">-</span>
+                                                <span class="fs-22 fw-semibold">
+                                                    $1,499.45
+                                                    <!-- <sup class="fw-bold bg-success-transparent fs-13 rounded px-2"></sup> -->
+                                                </span>
+                                            </span>
+                                        </div>
+                                        <!-- <div class="d-flex align-items-center justify-content-between"> 
+                                            <h6 class="fw-semibold fs-16">
+                                                <a href="product-details.html">Sony Headphones</a> 
+                                                <span class="fw-bold bg-success-transparent fs-12 rounded px-3 py-0">35%</span>
+                                            </h6> 
+                                            <div class="d-flex align-items-baseline fs-11"> 
+                                                <div class="min-w-fit-content"> 
+                                                    <span class="text-warning">
+                                                        <i class="bi bi-star-fill"></i>
+                                                    </span> 
+                                                    <span class="text-warning">
+                                                        <i class="bi bi-star-fill"></i>
+                                                    </span> 
+                                                    <span class="text-warning">
+                                                        <i class="bi bi-star-fill"></i>
+                                                    </span> 
+                                                    <span class="text-warning">
+                                                        <i class="bi bi-star-half"></i>
+                                                    </span> 
+                                                </div> 
+                                            </div> 
+                                        </div>  -->
+                                    </div> 
+                                </div> 
+                            </div> 
+                        </div> 
+                        <div class="card-footer border-top-0 pt-0 text-center d-grid"> 
+                            <a href="/invest/{{ $package['name'] }}" class="btn btn-primary-light">
+                                <!-- <i class="ri-shopping-cart-2-line me-2 align-middle d-inline-block"></i> -->
+                                Start Investment
+                            </a> 
+                        </div> 
                     </div>
                 </div>
             @endforeach

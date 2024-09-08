@@ -59,29 +59,12 @@
             </li>
             <!-- End::slide -->
 
-            <!-- Start::slide -->
-            <li class="slide has-sub @if(request()->routeIs(['investments', 'invest'])) active @endif">
-                <a href="javascript:void(0);" class="side-menu__item">
+            <li class="slide @if(request()->routeIs(['investments'])) active @endif">
+                <a href="{{ route('investments') }}" class="side-menu__item">
                     <i class="fe fe-inbox mx-2"></i>
                     <span class="side-menu__label">Investment</span>
-                    <i class="ri-arrow-right-s-line side-menu__angle"></i>
                 </a>
-                <ul class="slide-menu child1 pages-ul">
-                    <!-- <li class="slide side-menu__label1">
-                        <a href="javascript:void(0)">My Savings</a>
-                    </li> -->
-                    <li class="slide">
-                        <a href="{{ route('investments') }}" class="side-menu__item @if(request()->routeIs(['investments'])) active @endif">My Investment</a>
-                    </li>
-                    <li class="slide">
-                        <a href="{{ route('packages') }}" class="side-menu__item @if(request()->routeIs(['packages'])) active @endif">Packages</a>
-                    </li>
-                    <li class="slide">
-                        <a href="{{ route('investments.history') }}" class="side-menu__item @if(request()->routeIs(['investments.history'])) active @endif">History</a>
-                    </li>
-                </ul>
             </li>
-            <!-- End::slide -->
 
             <!-- Start::slide__category -->
             <li class="slide__category"><span class="category-name">Trade</span></li>

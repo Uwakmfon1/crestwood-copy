@@ -39,11 +39,11 @@ class PackageController extends Controller
         // Validate request
         $validator = Validator::make($request->all(), [
             'name' => ['required', 'unique:packages,name'],
-            'price' => ['required', 'numeric', 'gt:0'],
-            'min_duration' => ['required'],
-            'daily_roi' => ['required', 'numeric'],
-            'weekly_roi' => ['required', 'numeric'],
-            'yearly_roi' => ['required', 'numeric'],
+            'min_amount' => ['required', 'numeric', 'gt:0'],
+            'max_amount' => ['required', 'numeric', 'gt:0'],
+            'duration' => ['required'],
+            'roi' => ['required', 'numeric'],
+            'milestone' => ['required', 'numeric'],
             'description' => ['required'],
             'image' => ['required', 'mimes:jpeg,jpg,png', 'max:1024'],
             'investment' => ['required', 'in:enabled,disabled'],
@@ -56,11 +56,11 @@ class PackageController extends Controller
         // Collect data from request
         $data = $request->only([
             'name',
-            'price',
-            'min_duration',
-            'daily_roi',
-            'weekly_roi',
-            'yearly_roi',
+            'min_amount',
+            'max_amount',
+            'roi',
+            'duration',
+            'milestone',
             'description',
             'investment',
         ]);
