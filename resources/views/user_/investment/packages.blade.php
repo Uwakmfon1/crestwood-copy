@@ -19,7 +19,7 @@
         <!-- Page Header -->
         <div class="my-4 page-header-breadcrumb d-flex align-items-center justify-content-between flex-wrap gap-2">
             <div>
-                <h1 class="page-title fw-medium fs-18 mb-2">Plans</h1>
+                <h1 class="page-title fw-medium fs-18 mb-2">Select Plan</h1>
                 <div class="">
                     <nav>
                         <ol class="breadcrumb mb-0">
@@ -47,7 +47,7 @@
                     <div class="card custom-card card-style-2"> 
                         <div class="card-body p-0"> 
                             <span class="ribbon-4 ribbon-secondary top-left">
-                                <span>5%</span>
+                                <span>{{ $package->roi }}%</span>
                             </span>
                              <div class="card-img-top"> 
                                 <a href="product-details.html" class="stretched-link"></a> 
@@ -58,32 +58,31 @@
                             <div class="p-3"> 
                                 <div class="d-flex align-items-start justify-content-between"> 
                                     <div class="flex-grow-1"> 
-                                        <div class="d-flex align-items-center justify-content-between"> 
-                                            <h6 class="truncate-2-lines mb-1 fw-semibold fs-16">
-                                                <a href="product-details.html">Sony Headphones Lorem ipsum dolor sit amet consectetur, adipisicing elit. sdfdgfhjgfdsa</a> 
-                                            </h6>
-                                        </div> 
 
-                                        <div class="d-flex align-items-center justify-content-between mt-1"> 
+                                        <div class="d-flex align-items-center justify-content-between mt-1 my-1"> 
                                             <div> 
                                                 <!-- <a href="javascript:void(0);" class="mb-2 d-inline-block text-primary fs-13 fw-semibold">Top Brand</a>  -->
-                                                 <sapn class="d-inline-block fw-bold text-primary fs-13 rounded">2 months</span>
+                                                 <sapn class="d-inline-block fw-bold text-primary fs-12 rounded"> <span class="text-muted">Duration: </span>{{ $package->milestone }} {{ $package->duration }}</span>
                                             </div> 
                                             <div class="d-flex align-items-baseline"> 
                                                 <!-- <h5 class="fw-semibold text-primary mb-0">$120</h5> 
                                                 <span class="fs-13 ms-2 text-muted text-decoration-line-through">$399</span>  -->
-                                                <span class="fw-bold d-inline-block bg-success-transparent fs-12 rounded px-3 py-0">{{ $package->roi }}%</span>
+                                                <span class="fw-bold d-inline-block text-primary fs-12 rounded px-3 py-0"><span class="text-muted">ROI: </span>{{ $package->roi }}%</span>
                                             </div> 
                                         </div> 
                                         <div class="d-flex align-items-center justify-content-between"> 
+                                            <h6 class="truncate-2-lines mb-1 fw-semibold fs-16">
+                                                <a href="/invest/{{ $package['name'] }}">{{ $package->name }}</a> 
+                                            </h6>
+                                        </div> 
+                                        <div class="d-flex align-items-center justify-content-between"> 
                                             <span class="mt-1">
-                                                <span class="fs-22 fw-semibold">
-                                                    $150.59
+                                                <span class="fs-20 fw-semibold text-primary">
+                                                    {{ number_format($package->min_amount, 2) }} <span class="fs-14 text-muted">USD</span> 
                                                 </span>
                                                 <span class="mx-1">-</span>
-                                                <span class="fs-22 fw-semibold">
-                                                    $1,499.45
-                                                    <!-- <sup class="fw-bold bg-success-transparent fs-13 rounded px-2"></sup> -->
+                                                <span class="fs-20 fw-semibold text-primary">
+                                                    {{ number_format($package->max_amount, 2) }} <span class="fs-14 text-muted">USD</span> 
                                                 </span>
                                             </span>
                                         </div>

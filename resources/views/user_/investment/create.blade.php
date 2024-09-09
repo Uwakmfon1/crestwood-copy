@@ -42,7 +42,7 @@
         <!-- Start::page-header -->
         <div class="my-4 page-header-breadcrumb d-flex align-items-center justify-content-between flex-wrap gap-2">
             <div>
-                <h1 class="page-title fw-medium fs-18 mb-2">Investment</h1>
+                <h1 class="page-title fw-medium fs-18 mb-2">Create New Investment</h1>
                 <ol class="breadcrumb mb-0">
                     <li class="breadcrumb-item">
                         <a href="javascript:void(0);">
@@ -53,32 +53,7 @@
                     <li class="breadcrumb-item active" aria-current="page">Create</li>
                 </ol>
             </div>
-            <!-- <div class="d-flex gap-2">
-                <button class="btn btn-white btn-wave border-0 me-0 fw-normal waves-effect waves-light">
-                    <i class="ri-filter-3-fill me-2"></i>Filter
-                </button>
-                <button type="button" class="btn btn-primary btn-wave waves-effect waves-light"> 
-                    <i class="ri-upload-2-line me-2"></i> Export report
-                </button> 
-            </div> -->
         </div>
-        <!-- End::page-header -->
-        <!-- @if ($errors->any())
-            <div class="row">
-                <div class="col-6 my-1">
-                    <div class="alert alert-danger" role="alert">
-                        <ul>
-                            @foreach ($errors->all() as $error)
-                            <li>
-                                <i data-feather="alert-circle" class="mr-2"></i>
-                                <strong style="font-size: 13px" class="small">{{ $error }}</strong>
-                            </li>
-                            @endforeach
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        @endif -->
         @if (session('error'))
             <div class="row">
                 <div class="col-6 my-1">
@@ -91,7 +66,121 @@
 
         <!-- Start::row-1 -->
         <div class="row">
-            <div class="col-xl-7">
+            <div class="col-xl-5 col-lg-8 col-md-12 col-sm-12">
+                <form action="{{ route('invest.store') }}" method="post" id="investment-form">
+                    @csrf
+                    <div class="card custom-card">
+                        <div class="card-header">
+                            <div class="card-title">New Investment</div>
+                        </div>
+                        <div class="card-body">
+                            <div class="row gy-3">
+                                <div class="col-xl-12">
+                                    <input type="hidden" id="price">
+                                    <input type="hidden" id="roi">
+                                    <input type="hidden" id="duration">
+
+                                    <label for="package" class="form-label">
+                                        Investment Package 
+                                        <a href="javascript:void(0);" data-bs-toggle="tooltip" data-bs-custom-class="tooltip-primary" title="Select Package Investment" class="text-primary mx-1">
+                                            <i class="fe fe-info"></i>
+                                        </a>
+                                    </label>
+
+                                    <select class="form-control py-2" name="package" id="package">
+                                        <option value="">Select Package</option>
+                                        @foreach($packages as $package)
+                                        <option 
+                                            @if((old('package') == $package->name) || (request('package') == $package->name)) selected @endif 
+                                            value="{{ $package->id }}" 
+                                            data-image="{{ $package->image }}"
+                                            data-name="{{ $package->name }}" 
+                                            data-description="{{ $package->description }}" 
+                                            data-min="{{ $package->min_amount }}" 
+                                            data-max="{{ $package->max_amount }}" 
+                                            data-roi="{{ $package->roi }}" 
+                                            data-duration="{{ $package->milestone }} {{ $package->duration }}">
+                                            {{ $package->name }}
+                                        </option>
+                                        @endforeach
+                                    </select>
+
+                                    @error('package')
+                                    <strong class="small text-danger">{{ $message }}</strong>
+                                    @enderror
+
+                                    <div class="d-flex justify-content-between my-2 mx-1">
+                                        <strong class="small text-muted">Duration: <span class="text-primary duration">{{ $package->milestone }} {{ $package->duration }}</span></strong>
+                                        <strong class="small text-muted">ROI: <span class="text-primary roi">{{ $package->roi }}%</span></strong>
+                                    </div>
+
+                                    <div class="d-flex justify-content-between my-2 mx-1">
+                                        <strong class="small text-muted">Min Amount: <span class="text-primary" id="min-amount">${{ $package->min_amount }}</span></strong>
+                                        <strong class="small text-muted">Max Amount: <span class="text-primary" id="max-amount">${{ $package->max_amount }}</span></strong>
+                                    </div>
+                                </div>
+                                <div class="col-xl-12">
+                                    <label for="amount" class="form-label">
+                                        Amount 
+                                        <a href="javascript:void(0);" data-bs-toggle="tooltip" data-bs-custom-class="tooltip-primary" title="Specify the amount for your investment" class="text-primary mx-1">
+                                            <i class="fe fe-info"></i>
+                                        </a>
+                                    </label>
+                                    <input name="amount" type="number" class="form-control py-2" id="amount" placeholder="Enter amount" value="">
+                                    <strong id="amount-error" class="small text-danger my-1" style="display:none;"></strong>
+                                    @error('amount')
+                                        <strong class="small text-danger">{{ $message }}</strong>
+                                    @enderror
+                                </div>
+                                <div class="col-xl-6">
+                                    <label class="form-label" for="duration-type">ROI Method <a href="javascript:void(0);" data-bs-toggle="tooltip" data-bs-custom-class="tooltip-primary" title="Specify the frequency you want you ROI" class="text-primary mx-1"><i class="fe fe-info"></i></a></label>
+                                    <div class="input-group">
+                                        <button type="button" class="input-group-text btn btn-dark-light btn-wave decrement-btn-buy">-</button>
+                                        <input type="number" name="roi_method" step="1" class="form-control text-center quantity-input-buy" id="quantity-input-buy" placeholder="Enter Method..." aria-label="Stock Quantity" value="1" min="1" required>
+                                        <button type="button" class="input-group-text btn btn-dark-light btn-wave increment-btn-buy">+</button>
+                                    </div>
+                                </div>
+                                <div class="col-xl-6">
+                                    <label class="form-label" for="duration-type">ROI Duration <a href="javascript:void(0);" data-bs-toggle="tooltip" data-bs-custom-class="tooltip-primary" title="Specify the frequency duration you want you ROI" class="text-primary mx-1"><i class="fe fe-info"></i></a></label>
+                                    <div class="input-group"> 
+                                        <select name="roi_duration" id="duration-type" class="form-control py-2">
+                                            <option value="days">Daily</option>
+                                            <option value="weeks">Weekly</option>
+                                            <option value="months">Monthly</option>
+                                            <option value="years">Yearly</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-xl-12">
+                                    <strong id="roi-error" class="small text-danger my-1" style="display:none;"></strong>
+                                </div>
+                                <div class="col-xl-12">
+                                    <div class="fs-12 alert alert-primary w-100">
+                                        <div class="my-1" id="savings-summaryX" style="">
+                                            
+                                        </div>
+                                        <div class="" id="roi-summaryX" style="">
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-footer">
+                            @if($setting['invest'] == 1)
+                                <div class="btn-list text-start w-100">
+                                    <button type="submit" class="btn btn-primary w-100" id="submit-button">Start Investment</button>
+                                </div>
+                            @else
+                                <div class="btn-list text-end">
+                                    <button type="button" class="btn btn-sm btn-primary" disabled>Start Investment</button>
+                                </div>
+                            @endif
+                        </div>
+                    </div>
+                </form>
+            </div>
+            {{-- <div class="col-xl-7">
                 <div class="card custom-card border-0 bg-primary-transparent podcast-card">
                     <div class="card-body p-4">
                         <div class="row justify-content-between">
@@ -133,110 +222,7 @@
                         </div>
                     </div>
                 </div>
-            </div>
-        <div class="col-xl-7 col-lg-8 col-md-12 col-sm-12">
-            <form action="{{ route('invest.store') }}" method="post">
-                @csrf
-                <div class="card custom-card">
-                    <div class="card-header">
-                        <div class="card-title">New Investment</div>
-                    </div>
-                    <div class="card-body">
-                        <div class="row gy-3">
-                            <div class="col-xl-12">
-                                <input type="hidden" id="price">
-                                <input type="hidden" id="roi">
-                                <input type="hidden" id="duration">
-                                <label for="package" class="form-label">Investment Package</label>
-                                <select class="form-control" name="package" id="package">
-                                    <option value="">Select Package</option>
-                                    @foreach($packages as $package)
-                                        <option 
-                                            @if((old('package') == $package['name']) || (request('package') == $package['name'])) selected @endif 
-                                            value="{{ $package['id'] }}" 
-                                            data-image="{{ $package['image'] }}"
-                                            data-name="{{ $package['name'] }}" 
-                                            data-description="{{ $package['description'] }}" 
-                                            data-price="{{ $package['price'] }}" 
-                                            data-roi="{{ $package['daily_roi'] }}" 
-                                            data-duration="{{ $package['duration'] }}">
-                                            {{ $package['name'] }}
-                                        </option>
-                                    @endforeach
-                                </select>
-                                @error('package')
-                                    <strong class="small text-danger">
-                                        {{ $message }}
-                                    </strong>
-                                @enderror
-                            </div>
-                            <div class="col-xl-12">
-                                <label for="amount" class="form-label">Amount</label>
-                                <input name="amount" type="number" class="form-control" id="amount" placeholder="Enter amount">
-                                @error('amount')
-                                    <strong class="small text-danger">
-                                        {{ $message }}
-                                    </strong>
-                                @enderror
-                            </div>
-                            <!-- <div class="col-xl-12">
-                                <label class="form-label" for="duration-type">ROI Preiod</label>
-                                <div class="input-group">
-                                    <input type="text" aria-label="First name" class="form-control">
-                                    <select name="duration_type" id="duration-type" class="form-control">
-                                        <option value="daily">Daily</option>
-                                        <option value="weekly">Weekly</option>
-                                        <option value="monthly">Monthly</option>
-                                        <option value="yearly">Yearly</option>
-                                    </select>
-                                </div>
-                            </div> -->
-                            <div class="col-xl-12">
-                                <label class="form-label" for="duration-type">ROI Method</label>
-                                <div class="input-group my-1">
-                                    <button type="button" class="input-group-text btn btn-dark-light btn-wave decrement-btn-buy">-</button>
-                                    <input type="number" name="roi_method" step="1" class="form-control text-center quantity-input-buy" id="quantity-input-buy" placeholder="Enter Method..." aria-label="Stock Quantity" value="1" min="1" required>
-                                    <button type="button" class="input-group-text btn btn-dark-light btn-wave increment-btn-buy">+</button>
-                                </div>
-                                <strong class="fs-10 text-muted">
-                                    Specify the frequency you want you ROI
-                                </strong>
-                            </div>
-                            <div class="col-xl-12">
-                                <label class="form-label" for="duration-type">ROI Duration</label>
-                                <div class="input-group">
-                                    <select name="roi_duration" id="duration-type" class="form-control">
-                                        <option value="days">Daily</option>
-                                        <option value="weeks">Weekly</option>
-                                        <option value="months">Monthly</option>
-                                        <option value="years">Yearly</option>
-                                    </select>
-                                </div>
-                                <strong class="fs-10 text-muted">
-                                    Specify the frequency duration you want you ROI
-                                </strong>
-                            </div>
-                            <div class="col-xl-12">
-                                <div class="fs-12 alert alert-primary w-100" id="savings-summaryX" style="">
-                                    Your investment of {amount} into <strong>{{ $package->name }}</strong> will run for <strong>{duration}</strong>.
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="card-footer">
-                        @if($setting['invest'] == 1)
-                            <div class="btn-list text-start">
-                                <button type="submit" class="btn btn-success">Start Investment</button>
-                            </div>
-                        @else
-                            <div class="btn-list text-end">
-                                <button type="button" class="btn btn-sm btn-primary" disabled>Start Investment</button>
-                            </div>
-                        @endif
-                    </div>
-                </div>
-            </form>
-        </div>
+            </div> --}}
 
         {{-- <div class="col-xl-6 col-lg-4 col-md-12 col-sm-12">
             <div class="card custom-card team-member" id="package-details-card">
@@ -370,147 +356,154 @@
 @section('scripts')
 <script>
 $(document).ready(function() {
-    // Function to update the wallet price based on the quantity
+    // Convert duration to days
+    function convertToDays(value, unit) {
+        switch (unit) {
+            case 'days': return value;
+            case 'weeks': return value * 7;
+            case 'months': return value * 30; // Approximation
+            case 'years': return value * 365; // Approximation
+            default: return value;
+        }
+    }
+
+    // Parse duration string into value and unit
+    function parseDuration(durationString) {
+        const [value, unit] = durationString.split(' ');
+        return { value: parseInt(value), unit };
+    }
+
+    // Update the savings summary
+    function updateSavingsSummary() {
+        const selectedPackage = $('#package option:selected');
+        const amount = $('#amount').val() || selectedPackage.data('min');
+        const packageName = selectedPackage.data('name');
+        const packageDurationString = selectedPackage.data('duration');
+        const parsedPackageDuration = parseDuration(packageDurationString);
+        const packageDurationValue = parsedPackageDuration.value;
+        const packageDurationUnit = parsedPackageDuration.unit;
+        const roiMethod = parseInt($('#quantity-input-buy').val());
+        const roiDuration = $('#duration-type').val();
+
+        const roiInDays = convertToDays(roiMethod, roiDuration);
+        const packageInDays = convertToDays(packageDurationValue, packageDurationUnit);
+
+        const summary = `Your investment of $${amount} into <strong>${packageName}</strong> will run for <strong>${packageDurationString}</strong>.`;
+        const summaryRoi = `Your ROI will be paid every <strong>${roiMethod} ${roiDuration}</strong>.`;
+
+        $('#savings-summaryX').html(summary);
+        $('#roi-summaryX').html(summaryRoi);
+
+        // Validation
+        if (roiInDays > packageInDays) {
+            $('#roi-error').text(`ROI duration exceeds the package limit of ${packageDurationString}.`).show();
+            $('#submit-button').prop('disabled', true);
+        } else {
+            $('#roi-error').hide();
+            $('#submit-button').prop('disabled', false);
+        }
+    }
+
+    // Update the amount limits based on the selected package
+    function updateAmountLimits() {
+        const selectedPackage = $('#package option:selected');
+        const minAmount = parseFloat(selectedPackage.data('min'));
+        const maxAmount = parseFloat(selectedPackage.data('max'));
+
+        $('#amount').on('input', function() {
+            const amount = parseFloat($(this).val());
+            if (amount < minAmount || amount > maxAmount) {
+                $('#amount-error').text(`Amount must be between $${minAmount.toFixed(2)} and $${maxAmount.toFixed(2)}.`).show();
+                $('#submit-button').prop('disabled', true);
+            } else {
+                $('#amount-error').hide();
+                $('#submit-button').prop('disabled', false);
+            }
+            updateSavingsSummary();
+        });
+    }
+
+    // Update package details and UI elements
+    function updatePackageDetails() {
+        const selectedPackage = $('#package option:selected');
+        const packageName = selectedPackage.data('name');
+        const packagePrice = parseFloat(selectedPackage.data('price')).toFixed(2);
+        const packageDescription = selectedPackage.data('description');
+        const packageImage = selectedPackage.data('image');
+        const roi = selectedPackage.data('roi');
+        const duration = selectedPackage.data('duration');
+
+        $('#package-info').removeClass('d-none').find('#package-image').attr('src', packageImage);
+        $('#package-name').text(packageName);
+        $('#package-description').text(packageDescription);
+        $('#package-price').text(`$${packagePrice}`);
+        $('#invest-button').text(`${roi}%`);
+
+        $('#savings-summary').show();
+        $('.text-primary.duration').text(duration);
+        $('.text-primary.roi').text(`${roi}%`);
+        $('#min-amount').text(`$${parseFloat(selectedPackage.data('min')).toFixed(2)}`);
+        $('#max-amount').text(`$${parseFloat(selectedPackage.data('max')).toFixed(2)}`);
+    }
+
+    // Handle package change event
+    $('#package').on('change', function() {
+        updatePackageDetails();
+        updateAmountLimits();
+        updateSavingsSummary();
+    });
+
+    // Handle quantity and ROI input changes
+    $('#quantity-input-buy, #duration-type').on('input change', function() {
+        updateSavingsSummary();
+    });
+
+    // Handle amount input changes
+    $('#amount').on('input', function() {
+        updateSavingsSummary();
+    });
+
+    // Handle quantity changes with increment and decrement buttons
     function updateWalletPrice(modalType) {
         const pricePerUnit = parseFloat($(`#quantity-input-${modalType}`).data('price'));
         const quantity = Math.max(0.001, parseFloat($(`#quantity-input-${modalType}`).val()) || 0.001);
         const totalPrice = pricePerUnit * quantity;
-
         $(`#wallet-price-${modalType}`).text(totalPrice.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 }));
         $(`#quantity-display-${modalType}`).text(`${quantity} Unit${quantity > 1 ? 's' : ''}`);
     }
 
-    // Handle quantity input change
     $('.quantity-input-buy, .quantity-input-sell').on('input', function() {
         const modalType = $(this).hasClass('quantity-input-buy') ? 'buy' : 'sell';
         updateWalletPrice(modalType);
     });
 
-    // Handle increment button click
     $('.increment-btn-buy, .increment-btn-sell').click(function() {
+        updateSavingsSummary();
         const modalType = $(this).hasClass('increment-btn-buy') ? 'buy' : 'sell';
         let $input = $(`#quantity-input-${modalType}`);
         let step = parseFloat($input.attr('step')) || 0.001;
         let currentValue = parseFloat($input.val()) || 0.001;
-        $input.val((currentValue + step));
+        $input.val(currentValue + step);
         updateWalletPrice(modalType);
     });
 
-    // Handle decrement button click
     $('.decrement-btn-buy, .decrement-btn-sell').click(function() {
+        updateSavingsSummary();
         const modalType = $(this).hasClass('decrement-btn-buy') ? 'buy' : 'sell';
         let $input = $(`#quantity-input-${modalType}`);
         let step = parseFloat($input.attr('step')) || 0.001;
         let currentValue = parseFloat($input.val()) || 0.001;
         let minValue = parseFloat($input.attr('min')) || 0.001;
-        let newValue = (currentValue - step);
-        if (newValue >= minValue) {
-            $input.val(newValue);
+        if (currentValue - step >= minValue) {
+            $input.val(currentValue - step);
             updateWalletPrice(modalType);
         }
     });
-});
 
-</script>
-<script>
-    function updatePackageDetails(selectedOption) {
-        if (selectedOption.value) {
-            // Hide Skeleton Loader
-            document.getElementById('skeleton-loader').classList.add('d-none');
-            // Show Package Info
-            document.getElementById('package-info').classList.remove('d-none');
-
-            // Update Package Info
-            document.getElementById('package-image').src = selectedOption.getAttribute('data-image');
-            document.getElementById('package-name').textContent = selectedOption.getAttribute('data-name');
-            document.getElementById('package-description').textContent = selectedOption.getAttribute('data-description');
-            document.getElementById('package-price').textContent = '$' + parseFloat(selectedOption.getAttribute('data-price')).toFixed(2);
-            document.getElementById('invest-button').textContent = parseFloat(selectedOption.getAttribute('data-roi')) + '%';
-            
-            // Update Invest Button URL
-            // document.getElementById('invest-button').setAttribute('href', '/invest?package=' + selectedOption.getAttribute('data-name'));
-        } else {
-            // Show Skeleton Loader
-            document.getElementById('skeleton-loader').classList.remove('d-none');
-            // Hide Package Info
-            document.getElementById('package-info').classList.add('d-none');
-        }
-    }
-
-    document.getElementById('package').addEventListener('change', function () {
-        const selectedOption = this.options[this.selectedIndex];
-        updatePackageDetails(selectedOption);
-    });
-
-    // Check for a pre-selected package on page load
-    window.addEventListener('DOMContentLoaded', function () {
-        const packageSelect = document.getElementById('package');
-        const selectedOption = packageSelect.options[packageSelect.selectedIndex];
-
-        if (selectedOption.value) {
-            updatePackageDetails(selectedOption);
-        }
-    });
-</script>
-<script>
-$(document).ready(function() {
-    $('#savings-summary').hide();
-
-    function updateSummary() {
-        var selectedPackage = $('#package').find('option:selected');
-        var roi = selectedPackage.attr('data-roi');
-        var duration = selectedPackage.attr('data-duration');
-
-        if (duration) {
-            var durationText = '1 ' + (duration === 'daily' ? 'day' : duration === 'weekly' ? 'week' : 'month');
-
-            $('#summary-roi').text(roi + '%');
-            $('#summary-duration').text(durationText);
-            $('#savings-summary').show();
-        } else { 
-            $('#savings-summary').hide();
-        }
-    }
-
-    $('#package').change(function() {
-        var selectedPackage = $(this).find('option:selected');
-        var price = selectedPackage.attr('data-price');
-        var slot = parseFloat($('#slots').val());
-
-        if (price && !isNaN(slot)) {
-            price = parseFloat(price);
-            var amountToInvest = price * slot;
-            $('#amount').val('$ ' + amountToInvest.toLocaleString());
-        } else {
-            $('#amount').val('$ 0.00');
-        }
-
-        calculateReturns();
-        updateSummary();
-    });
-
-    $('#slots').on('input change', function() {
-        calculateReturns();
-        updateSummary();
-    });
-
-    function calculateReturns() {
-        var selectedPackage = $('#package').find('option:selected');
-        var price = parseFloat(selectedPackage.attr('data-price'));
-        var roi = parseFloat(selectedPackage.attr('data-roi'));
-        var slot = parseFloat($('#slots').val());
-
-        if (isNaN(price) || isNaN(roi) || isNaN(slot)) {
-            $('#returns').val('$ 0.00');
-            return;
-        }
-
-        var amountToInvest = price * slot;
-        var expectedReturn = amountToInvest * (1 + roi / 100);
-        $('#amount').val('$ ' + amountToInvest.toLocaleString());
-        $('#returns').val('$ ' + expectedReturn.toLocaleString());
-    }
+    // Initialize on page load
+    $('#package').trigger('change');
 });
 </script>
+
 
 @endsection

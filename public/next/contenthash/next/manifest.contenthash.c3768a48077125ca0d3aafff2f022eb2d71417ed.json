@@ -1,0 +1,9 @@
+{
+  "name": "Wealthfront",
+  "icons": [
+    { "src": "/images/icons/android-192.png", "type": "image/png", "sizes": "192x192" },
+    { "src": "/images/icons/android-512.png", "type": "image/png", "sizes": "512x512" }
+  ],
+  "prefer_related_applications": true,
+  "related_applications": [{ "platform": "play", "id": "com.wealthfront" }]
+}

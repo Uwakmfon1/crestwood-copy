@@ -37,35 +37,67 @@
                             <!-- <a class="btn btn-sm btn-primary">Back to investment<i class="ri-file-pdf-line ms-1 align-middle d-inline-block"></i></a> -->
                         </div>
                     </div>
+
+                    <div id="countdown">
+                            @if($investment['status'] == 'active')
+                            <div class="d-flex justify-content-between my-4">
+                                <div class="mx-2 alert alert-primary px-2" style="width: 80%;">
+                                    <div id="days" class="display-3 text-center">00</div>
+                                    <span class="text-center">Days</span>
+                                </div>
+                                <div class="mx-2 alert alert-primary px-2" style="width: 80%;">
+                                    <div id="hours" class="display-3 text-center">00</div>
+                                    <span class="text-center">Hours</span>
+                                </div>
+                                <div class="mx-2 alert alert-primary px-2" style="width: 80%;">
+                                    <div id="minutes" class="display-3 text-center">00</div>
+                                    <span class="text-center">Minutes</span>
+                                </div>
+                                <div class="mx-2 alert alert-primary px-2" style="width: 80%;">
+                                    <div id="seconds" class="display-3 text-center">00</div>
+                                    <span class="text-center">Seconds</span>
+                                </div>
+                                <div class="alert alert-primary" style="display: none; margin: 0px !important; padding: 0px !important;">
+                                    
+                                </div>
+                            </div>
+                            @elseif($investment['status'] == 'pending')
+                                <h2 class='text-warning py-3 my-4'>Pending</h2>
+                            @elseif($investment['status'] == 'cancelled')
+                                <h2 class='text-danger py-3 my-4'>Cancelled</h2>
+                            @elseif($investment['status'] == 'settled')
+                                <h2 class='text-secondary py-3 my-4'>Settled</h2>
+                            @endif
+                        </div>
                     <div class="card-body">
                         <div class="row gy-3">
                             <div class="col-xl-4 col-6 my-2">
                                 <p class="fw-medium text-muted mb-1">Price:</p>
-                                <p class="fs-15 mb-1">₦ {{ number_format($investment['amount'] / 1) }}</p>
+                                <p class="fs-15 mb-1">$ {{ number_format($investment['amount']) }}</p>
                             </div>
                             <div class="col-xl-4 col-6 my-2">
                                 <p class="fw-medium text-muted mb-1">Duration :</p>
-                                <p class="fs-15 mb-1">{{ $investment['return_date']->diff($investment['investment_date'])->m }} months</p>
+                                <p class="fs-15 mb-1">{{ $investment->package['milestone'] }} {{ $investment->package['duration'] }}</p>
                             </div>
                             <div class="col-xl-4 col-6 my-2">
-                                <p class="fw-medium text-muted mb-1">Slots Purchased :</p>
+                                <p class="fw-medium text-muted mb-1">Unit Purchased :</p>
                                 <p class="fs-15 mb-1">1</p>
                             </div>
                             <div class="col-xl-4 col-6 my-2">
                                 <p class="fw-medium text-muted mb-1">ROI</p>
-                                <p class="fs-15 mb-1">{{ (($investment['total_return'] - $investment['amount']) / $investment['amount'] ) * 100 }} %</p>
+                                <p class="fs-15 mb-1">{{ $investment->package['roi'] }} %</p>
                             </div>
                             <div class="col-xl-4 col-6 my-2">
                                 <p class="fw-medium text-muted mb-1">ROI Amount :</p>
-                                <p class="fs-15 mb-1">₦ {{ number_format($investment['total_return'] - $investment['amount']) }}</p>
+                                <p class="fs-15 mb-1">$ {{ number_format(($investment->package['roi'] * $investment->amount) / 100, 2) }} </p>
                             </div>
                             <div class="col-xl-4 col-6 my-2">
                                 <p class="fw-medium text-muted mb-1">Amount Invested :</p>
-                                <p class="fs-15 mb-1">₦ {{ number_format($investment['amount']) }}</p>
+                                <p class="fs-15 mb-1">$ {{ number_format($investment['amount']) }}</p>
                             </div>
                             <div class="col-xl-4 col-6 my-2">
                                 <p class="fw-medium text-muted mb-1">Expected Returns :</p>
-                                <p class="fs-15 mb-1">₦ {{ number_format($investment['total_return']) }}</p>
+                                <p class="fs-15 mb-1">$ {{ number_format($investment['total_return']) }}</p>
                             </div>
                             <div class="col-xl-4 col-6 my-2">
                                 <p class="fw-medium text-muted mb-1">Investment Date :</p>
@@ -73,7 +105,7 @@
                             </div>
                             <div class="col-xl-4 col-6 my-2">
                                 <p class="fw-medium text-muted mb-1">Return Date :</p>
-                                <p class="fs-15 mb-1">{{ $investment['return_date']->format('M d, Y \a\t h:i A') }}</p>
+                                <p class="fs-15 mb-1">{{ \Carbon\Carbon::parse($investment['created_at'])->add($investment->package['milestone'], $investment->package['duration'])->format('M d, Y \a\t h:i A') }}</p>
                             </div>
                             <!-- <div class="col-xl-4 col-6 my-2">
                                 <p class="fw-medium text-muted mb-1">investment Date :</p>
@@ -101,7 +133,7 @@
                                             @for ($i = 1; $i <= $investment['milestone']; $i++)
                                                 <tr>
                                                     <td>Milestone {{ $i }}</td>
-                                                    <td>₦ {{ number_format($investment['amount']) }}</td>
+                                                    <td>$ {{ number_format($investment['amount']) }}</td>
                                                     <td>
                                                         @php
                                                             // Determine the milestone date based on the package duration
@@ -159,7 +191,7 @@
                                                 <tr>
                                                     <td>Total</td>
                                                     <td>
-                                                        <b>₦ {{ number_format($investment['amount'] * $paid + $investment['amount'] / $investment->package['roi'] * $paid) }}</b>
+                                                        <b>$ {{ number_format($investment['amount'] * $paid + $investment['amount'] / $investment->package['roi'] * $paid) }}</b>
                                                     </td>
                                                     <td>
                                                         <b>{{ $returnDate->format('M d, Y \a\t h:i A') }}</b>
@@ -185,37 +217,6 @@
                                 </div>
                             </div> --}}
                         </div>
-                        <div id="countdown">
-                            @if($investment['status'] == 'active')
-                            <div class="d-flex justify-content-between my-4">
-                                <div class="mx-2 alert alert-primary px-2" style="width: 80%;">
-                                    <div id="days" class="display-3 text-center">00</div>
-                                    <span class="text-center">Days</span>
-                                </div>
-                                <div class="mx-2 alert alert-primary px-2" style="width: 80%;">
-                                    <div id="hours" class="display-3 text-center">00</div>
-                                    <span class="text-center">Hours</span>
-                                </div>
-                                <div class="mx-2 alert alert-primary px-2" style="width: 80%;">
-                                    <div id="minutes" class="display-3 text-center">00</div>
-                                    <span class="text-center">Minutes</span>
-                                </div>
-                                <div class="mx-2 alert alert-primary px-2" style="width: 80%;">
-                                    <div id="seconds" class="display-3 text-center">00</div>
-                                    <span class="text-center">Seconds</span>
-                                </div>
-                                <div class="alert alert-primary" style="display: none; margin: 0px !important; padding: 0px !important;">
-                                    
-                                </div>
-                            </div>
-                            @elseif($investment['status'] == 'pending')
-                                <h2 class='text-warning py-3 my-4'>Pending</h2>
-                            @elseif($investment['status'] == 'cancelled')
-                                <h2 class='text-danger py-3 my-4'>Cancelled</h2>
-                            @elseif($investment['status'] == 'settled')
-                                <h2 class='text-secondary py-3 my-4'>Settled</h2>
-                            @endif
-                        </div>
                     </div>
                 </div>
             </div>
@@ -229,6 +230,9 @@
                     <div class="card-body">
                         <div class="row gy-3">
                             <div class="col-xl-12">
+                                <div>
+                                    <img src="/{{ $investment->package['image'] }}" class="w-100 my-1 rounded" alt="" height="180">
+                                </div>
                                 <p>
                                     <span class="fw-medium text-muted fs-12">Name :</span> {{ $investment->package['name'] }}
                                 </p>
@@ -236,11 +240,14 @@
                                     <span class="fw-medium text-muted fs-12">Description :</span> {{ $investment->package['description'] }}
                                 </p>
                                 <p>
-                                    <span class="fw-medium text-muted fs-12">Amount :</span> <span class="text-primary fw-medium fs-14">&#36; {{ number_format($investment->package['price']) }}</span>
+                                    <span class="fw-medium text-muted fs-12">Amount :</span> <span class="text-primary fw-medium fs-14">{{ number_format($investment->package['min_amount']) }} <span class="text-muted fs-11">USD</span> - {{ number_format($investment->package['max_amount']) }} <span class="text-muted fs-11">USD</span></span>
                                 </p>
-                                <!-- <p>
-                                    <span class="fw-medium text-muted fs-12">Duration :</span> {{ $investment->package['description'] }} - <span class="text-danger fs-12 fw-medium">30 days due</span>
-                                </p> -->
+                                <p>
+                                    <span class="fw-medium text-muted fs-12">Duration :</span> {{ $investment->package['milestone'] }} {{ $investment->package['duration'] }} - 
+                                    <span class="text-danger fs-12 fw-medium">
+                                        {{ \Carbon\Carbon::now()->diffInDays(\Carbon\Carbon::parse($investment['created_at'])->add($investment->package['milestone'], $investment->package['duration'])) }} days due
+                                    </span>
+                                </p>
                                 <p>
                                     <span class="fw-medium text-muted fs-12">ROI : <span class="badge bg-primary-transparent">{{ $investment->package['roi'] }}%</span></span>
                                 </p>
@@ -265,7 +272,7 @@
 <script>
     @if($investment['status'] == 'active')
             // let countDownDate = new Date("May 1, 2021 15:37:25").getTime();
-            let countDownDate = new Date("{{ $investment['return_date']->format('F d, Y H:i:s') }}").getTime();
+            let countDownDate = new Date("{{ \Carbon\Carbon::parse($investment['created_at'])->add($investment->package['milestone'], $investment->package['duration'])->format('F d, Y H:i:s') }}").getTime();
             let countDown = document.getElementById('countdown');
             let x = setInterval(function() {
                 let now = new Date().getTime();

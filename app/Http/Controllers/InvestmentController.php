@@ -33,7 +33,18 @@ class InvestmentController extends Controller
         $active_savings = $investments->where('status', 'active')->count();
         $completed_savings = $investments->where('status', 'settled')->count();
 
-        return view('user_.investment.index', ['title' => 'Investments', 'investments' => auth()->user()->investments()->latest()->get(), 'balance' => $balance, 'asv' => $active_savings, 'csv' => $completed_savings]);
+        $total_amount = auth()->user()->investments()->sum('amount');
+        $total_invest = auth()->user()->investments()->sum('total_return');
+
+        return view('user_.investment.index', [
+            'title' => 'Investments', 
+            'investments' => auth()->user()->investments()->latest()->get(), 
+            'balance' => $balance, 
+            'asv' => $active_savings, 
+            'csv' => $completed_savings,
+            'total_amount' => $total_amount,
+            'total_invest' => $total_invest
+        ]);
     }
 
     public function history(Request $request)
@@ -117,7 +128,7 @@ class InvestmentController extends Controller
             'package_id'=>$package['id'], 
             'amount' => $request->amount,
             'roi_duration' => $request->roi_method . '_' . $request->roi_duration,
-            'total_return' => $request->amount,
+            'total_return' => (($package['roi'] * $request->amount) / 100) + $request->amount ,
             'return_date' => now()->addMonths($request->roi_method)->format('Y-m-d H:i:s'), 
             'status' => $status
         ]);

@@ -66,10 +66,10 @@
                         <div class="form-group">
                             <label for="duration">ROI Duration</label>
                             <select name="duration" id="duration" class="form-control">
-                                <option value="daily">Daily</option>
-                                <option value="weekly">Weekly</option>
-                                <option value="monthly">Monthly</option>
-                                <option value="yearly">Yearly</option>
+                                <option value="days">Daily</option>
+                                <option value="weeks">Weekly</option>
+                                <option value="months">Monthly</option>
+                                <option value="years">Yearly</option>
                             </select>
                             @error('duration')
                                 <strong class="small text-danger">
