@@ -134,9 +134,9 @@ class UserController extends Controller
                 }
             }
             $datum['sn'] = $i;
-            $datum['name'] = '<a href="'.route('admin.users.show', $user['id']).'">'.ucwords($user['name']).'</a>';
+            $datum['name'] = '<a href="'.route('admin.users.show', $user['id']).'">'.ucwords($user->first_name) . ' ' . ucwords($user->last_name).'</a>';
             $datum['email'] = $user['email'];
-            $datum['phone'] = $user->getPhone();
+            $datum['phone'] = $user['phone'];
             $datum['joined'] = $user['created_at']->format('F d, Y');
             $datum['verification'] = $user['email_verified_at'] ? '<span class="badge badge-pill badge-success">Verified</span>' : '<span class="badge badge-pill badge-warning">Unverified</span>';
             $datum['status'] = $user['active'] == 1 ? '<span class="badge badge-pill badge-success">Active</span>' : '<span class="badge badge-pill badge-danger">Blocked</span>';

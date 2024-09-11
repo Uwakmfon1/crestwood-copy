@@ -1,6 +1,6 @@
 @extends('layouts.user.auth')
 
-@section('title', '| Login')
+@section('title', '| Complete Registration')
 
 @section('content')
 <!-- Start::app-content -->
@@ -61,7 +61,7 @@
                                 <img src="../assets/images/brand-logos/desktop-dark.png" alt="logo" class="desktop-dark"> 
                             </a>
                         </div>
-                        <p class="h4 mb-1 fw-semibold text-center">Finish Registration</p>
+                        <p class="h4 mb-1 fw-semibold text-center">Complete Registration</p>
                         <p class="mb-4 text-muted fw-normal text-center">Setup your account with us by completing you registration</p>
                         @if (session('error'))
                             <div class="alert alert-fill-danger" role="alert">
@@ -262,13 +262,32 @@
                                                     </div>
                                                     <div class="col-xl-6 my-3">
                                                         <label class="form-label">Select State</label>
-                                                        <select name="state" id="state" class="form-control @error('state') is-invalid @enderror" data-trigger>
+                                                        <select name="state" id="state" class="form-control @error('state') is-invalid @enderror" data-trigger style="height: 35px;">
                                                             <option value="">Select Country</option>
                                                             @if(old('state'))
                                                                 <option value="{{ old('state') }}" selected>{{ old('state') }}</option>
                                                             @endif
                                                         </select>
                                                         @error('state')
+                                                            <span class="invalid-feedback" role="alert">
+                                                                <strong>{{ $message }}</strong>
+                                                            </span>
+                                                        @enderror
+                                                    </div>
+                                                    <div class="col-xl-6 my-3">
+                                                        <label for="city" class="form-label">City</label>
+                                                        <input name="city" type="text" class="form-control @error('city') is-invalid @enderror" id="city"
+                                                            placeholder="Enter city..." value="{{ old('city') }}">
+                                                        @error('city')
+                                                            <span class="invalid-feedback" role="alert">
+                                                                <strong>{{ $message }}</strong>
+                                                            </span>
+                                                        @enderror
+                                                    </div>
+                                                    <div class="col-xl-6 my-3">
+                                                        <label class="form-label" for="address">Address</label>
+                                                        <input class="form-control @error('address') is-invalid @enderror" name="address" id="address" placeholder="Enter address..." type="text" >{{ old('address') }}</input>
+                                                        @error('address')
                                                             <span class="invalid-feedback" role="alert">
                                                                 <strong>{{ $message }}</strong>
                                                             </span>
@@ -284,20 +303,6 @@
                                                             </span>
                                                         @enderror
                                                     </div>
-                                                    <div class="col-xl-6 my-3">
-                                                        <label class="form-label" for="address">Address</label>
-                                                        <textarea class="form-control @error('address') is-invalid @enderror" name="address" id="address" placeholder="Enter address..." rows="3" cols="10" >{{ old('address') }}</textarea>
-                                                        @error('address')
-                                                            <span class="invalid-feedback" role="alert">
-                                                                <strong>{{ $message }}</strong>
-                                                            </span>
-                                                        @enderror
-                                                    </div>
-                                                    <div class="col-xl-6 my-3">
-                                                        <label class="form-label" for="address">Address line 2</label>
-                                                        <textarea class="form-control @error('address2') is-invalid @enderror" name="address2" id="address2" placeholder="Enter address..." rows="3" cols="10">{{ old('address') }}</textarea>
-                                                        
-                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
@@ -308,9 +313,9 @@
                                             <div class="register-page">
                                                 <div class="row gy-3">
                                                     <div class="col-xl-6">
-                                                        <label for="nk_name" class="form-label">Full Name</label>
+                                                        <label for="nk_name" class="form-label">Full name</label>
                                                         <input name="nk_name" type="text" class="form-control @error('nk_name') is-invalid @enderror" id="nk_name"
-                                                            placeholder="Enter name..." value="{{ old('nk_name') }}">
+                                                            placeholder="Enter name..." value="{{ old('nk_name') }}" required>
                                                         @error('nk_name')
                                                             <span class="invalid-feedback" role="alert">
                                                                 <strong>{{ $message }}</strong>
@@ -319,7 +324,17 @@
                                                     </div>
                                                     <div class="col-xl-6">
                                                         <label for="phone-validation" class="form-label d-block">Phone Number</label>
-                                                        <input class="form-control" id="phone-validation" type="tel" name="nk_phone" style="width: 260px;">
+                                                        <div class="input-group">
+                                                            <select class="input-group-text text-start" style="width: 60px; font-size: 12px; padding:0px 5px;" name="nk_phone_code" id="" style="appearance: none !important;">
+                                                                @foreach(\App\Models\Country::orderBy('phone_code', 'asc')->get() as $country)
+                                                                    <option style="width: 10px;" value="{{ $country->phone_code }}" 
+                                                                        {{ old('phone_code') == $country->phone_code ? 'selected' : '' }}>
+                                                                        {{ $country->phone_code }}
+                                                                    </option>
+                                                                @endforeach
+                                                            </select>
+                                                            <input class="form-control" id="phone-val" type="number" name="nk_phone" required value="{{ old('nk_phone') }}">
+                                                        </div>
                                                         @error('nk_phone')
                                                             <span class="invalid-feedback" role="alert">
                                                                 <strong>{{ $message }}</strong>
@@ -328,10 +343,12 @@
                                                     </div>
                                                     <div class="col-lg-6">
                                                         <label class="form-label">Relationship</label>
-                                                        <select name="nk_relationship" id="nk_relationship" class="form-control text-dark text-capitalize @error('nk_relationship') is-invalid @enderror ">
-                                                            <option value="parent" {{ old('nk_relationship') == 'parent' ? 'selected' : '' }}>Parent</option>
-                                                            <option value="family" {{ old('nk_relationship') == 'family' ? 'selected' : '' }}>Family</option>
-                                                            <option value="friend" {{ old('nk_relationship') == 'friend' ? 'selected' : '' }}>Friend</option>
+                                                        <select name="nk_relationship" id="nk_relationship" class="form-control text-dark text-capitalize @error('nk_relationship') is-invalid @enderror " required>
+                                                            <option value="father" {{ old('nk_relationship') == 'father' ? 'selected' : '' }}>Father</option>
+                                                            <option value="mother" {{ old('nk_relationship') == 'mother' ? 'selected' : '' }}>Mother</option>
+                                                            <option value="brother/sister" {{ old('nk_relationship') == 'brother/sister' ? 'selected' : '' }}>Brother/Sister</option>
+                                                            <option value="cousin/niece" {{ old('nk_relationship') == 'cousin/niece' ? 'selected' : '' }}>Cousin/Niece</option>
+                                                            <option value="friend" {{ old('nk_relationship') == 'friend' ? 'selected' : '' }}>Close F riend</option>
                                                         </select>
                                                         @error('nk_relationship')
                                                             <span class="invalid-feedback" role="alert">
@@ -341,7 +358,7 @@
                                                     </div>
                                                     <div class="col-lg-6">
                                                         <label class="form-label">Country</label>
-                                                        <select name="nk_country" id="nk_country" class="form-control text-dark text-capitalize @error('nk_country') is-invalid @enderror">
+                                                        <select name="nk_country" id="nk_country" class="form-control text-dark text-capitalize @error('nk_country') is-invalid @enderror" required>
                                                             <option value="">Select Country</option>
                                                             @foreach(\App\Models\Country::get() as $country)
                                                                 <option value="{{ $country->name }}" data-phone-code="{{ $country->phone_code }}" 
@@ -358,7 +375,7 @@
                                                     </div>
                                                     <div class="col-xl-6">
                                                         <label class="form-label">Select State</label>
-                                                        <select name="nk_state" id="nk_state" class="form-control @error('nk_state') is-invalid @enderror" data-trigger>
+                                                        <select name="nk_state" id="nk_state" class="form-control @error('nk_state') is-invalid @enderror" data-trigger required>
                                                             <option value="">Select State</option>
                                                             @if(old('nk_state'))
                                                                 <option value="{{ old('nk_country') }}" selected>{{ old('nk_state') }}</option>
@@ -371,19 +388,29 @@
                                                         @enderror
                                                     </div>
                                                     <div class="col-xl-6">
+                                                        <label class="form-label">City</label>
+                                                        <input type="text" name="city" id="city" class="form-control @error('city') is-invalid @enderror"
+                                                            placeholder="Enter address..." value="{{ old('city') }}" required>
+                                                        @error('city')
+                                                            <span class="invalid-feedback" role="alert">
+                                                                <strong>{{ $message }}</strong>
+                                                            </span>
+                                                        @enderror
+                                                    </div>
+                                                    <div class="col-xl-6">
                                                         <label class="form-label">Address</label>
                                                         <input type="text" name="nk_address" id="nk_address" class="form-control @error('nk_address') is-invalid @enderror"
-                                                            placeholder="Enter address..." value="{{ old('nk_address') }}">
+                                                            placeholder="Enter address..." value="{{ old('nk_address') }}" required>
                                                         @error('nk_address')
                                                             <span class="invalid-feedback" role="alert">
                                                                 <strong>{{ $message }}</strong>
                                                             </span>
                                                         @enderror
                                                     </div>
-                                                    <div class="col-xl-12">
+                                                    <div class="col-xl-6">
                                                         <label class="form-label">Postal Code</label>
                                                         <input type="text" name="nk_postal" id="nk_postal" class="form-control @error('nk_postal') is-invalid @enderror"
-                                                            placeholder="Enter postal code..." value="{{ old('nk_postal') }}">
+                                                            placeholder="Enter postal code..." value="{{ old('nk_postal') }}" required>
                                                         @error('nk_postal')
                                                             <span class="invalid-feedback" role="alert">
                                                                 <strong>{{ $message }}</strong>
@@ -409,7 +436,7 @@
                                                         <p class="mb-1 fs-14">You've done a good job by filling all the necessary information</p>
                                                         <p class="text-muted">Thank you for your time.</p>
                                                     </div>
-                                                    <button class="btn btn-success" type="submit">Submit Form</button>
+                                                    <button class="btn btn-primary" type="submit">Submit Form</button>
                                                 </div>
                                             </div>
                                         </div>
@@ -418,7 +445,11 @@
                             </form>
                         </div>
                     <div class="text-center">
-                        <p class="text-muted mt-3 mb-0">Already have an account? <a href="{{ route('login') }}" class="text-primary">Sign In</a></p>
+                        <p class="text-muted mt-3 mb-0">Already have an account?</p>
+                        <form action="{{ route('logout') }}" method="post">
+                            @csrf
+                            <button class="text-primary" style="background: transparent; border: 0px;" id="logout">Sign In</button>
+                        </form>
                     </div>
                     </div>
                 </div>

@@ -184,7 +184,7 @@ class InvestmentController extends Controller
 
             $data[] = [
                 'sn' => $i,
-                'name' => Auth::user()->can('View Users') && $user ? '<a href="'.route('admin.users.show', $user->id).'">'.ucwords($user->name).'</a>' : 'Deleted Account',
+                'name' => Auth::user()->can('View Users') && $user ? '<a href="'.route('admin.users.show', $user->id).'">'.ucwords($user->first_name) . ' ' . ucwords($user->last_name).'</a>' : 'Deleted Account',
                 'package' => optional($package)->name,
                 'slots' => $investment->slots,
                 'total_invested' => '$ ' . number_format($investment->amount),

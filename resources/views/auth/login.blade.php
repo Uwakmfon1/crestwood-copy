@@ -22,7 +22,7 @@
                     <p class="h4 fw-semibold mb-2 text-center">Sign In</p>
                     <p class="mb-4 text-muted fw-normal text-center">Welcome back !</p>
                     @if (session('error'))
-                        <div class="alert alert-fill-danger" role="alert">
+                        <div class="alert alert-fill-danger">
                             <i data-feather="alert-circle" class="mr-2"></i>
                             <strong class="small">{{ session('error') }}</strong>
                         </div>
@@ -34,8 +34,8 @@
                                 <label for="signin-username" class="form-label text-default">Email</label>
                                 <input name="email" type="text" class="form-control" id="signin-username" placeholder="Enter email...">
                                 @error('email')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
+                                    <span class="text-danger">
+                                        <i class="fe fe-info fs-5 mx-1"></i><strong class="fs-10">{{ $message }}</strong>
                                     </span>
                                 @enderror
                             </div>
@@ -44,12 +44,12 @@
                                 <div class="input-group">
                                     <input name="password" type="password" class="form-control" id="signin-password" placeholder="Enter password...">
                                     <a href="javascript:void(0);" class="input-group-text bg-white text-muted" onclick="createpassword('signin-password',this)"><i class="ri-eye-off-line align-middle"></i></a>
-                                    @error('password')
-                                        <span class="invalid-feedback" role="alert">
-                                            <strong>{{ $message }}</strong>
-                                        </span>
-                                    @enderror
                                 </div>
+                                @error('password')
+                                    <span class="text-danger">
+                                        <i class="fe fe-info fs-5 mx-1"></i><strong class="fs-10">{{ $message }}</strong>
+                                    </span>
+                                @enderror
                                 <div class="mt-2">
                                     <div class="form-check">
                                         <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">

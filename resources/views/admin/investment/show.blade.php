@@ -65,7 +65,7 @@
                                 <label class="col-form-label">Price / Slot</label>
                             </div>
                             <div class="col-lg-8">
-                                <input style="height: 50px; font-size: 14px" class="form-control" type="text" value="₦ {{ number_format($investment['amount'] / $investment['slots']) }}" readonly>
+                                <input style="height: 50px; font-size: 14px" class="form-control" type="text" value="₦ {{ number_format($investment['amount']) }}" readonly>
                             </div>
                         </div>
                     </div>
@@ -82,10 +82,10 @@
                     <div class="col-md-6">
                         <div class="form-group row">
                             <div class="col-lg-3">
-                                <label class="col-form-label">Slots Purchased</label>
+                                <label class="col-form-label">Unit Purchased</label>
                             </div>
                             <div class="col-lg-8">
-                                <input style="height: 50px; font-size: 14px" class="form-control" type="text" value="{{ $investment['slots'] }}" readonly>
+                                <input style="height: 50px; font-size: 14px" class="form-control" type="text" value="1" readonly>
                             </div>
                         </div>
                     </div>
@@ -135,7 +135,7 @@
                                 <label class="col-form-label">Investment Date</label>
                             </div>
                             <div class="col-lg-8">
-                                <input style="height: 50px; font-size: 14px" class="form-control" type="text" value="{{ $investment['investment_date']->format('M d, Y \a\t h:i A') }}" readonly>
+                                <input style="height: 50px; font-size: 14px" class="form-control" type="text" value="{{ $investment['created_at']->format('M d, Y \a\t h:i A') }}" readonly>
                             </div>
                         </div>
                     </div>

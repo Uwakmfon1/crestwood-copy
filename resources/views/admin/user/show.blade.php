@@ -185,7 +185,7 @@
                                             <h5 class="card-title text-center">Naira Wallet</h5>
                                             <div class="my-2">
                                                 <p class="mt-3 small">Total Balance</p>
-                                                <h3 class="font-weight-light">₦ {{ number_format($user->walletBalance(), 2) }}</h3>
+                                                <h3 class="font-weight-light">${{ number_format($user->walletBalance(), 2) }}</h3>
                                             </div>
                                             <div class="mt-3 bg-light py-3 mb-2 d-flex justify-content-around" style="border-radius: 5px">
                                                 @can('Deposit For Users')
@@ -403,7 +403,7 @@
                                                     @endif
                                                 </td>
                                                 <td>
-                                                    <div class="dropdown">
+                                                    {{-- <div class="dropdown">
                                                         <button class="btn btn-sm btn-primary" type="button" id="dropdownMenuButton3" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                                             Action <i class="icon-lg" data-feather="chevron-down"></i>
                                                         </button>
@@ -424,7 +424,7 @@
                                                             @csrf
                                                             @method('PUT')
                                                         </form>
-                                                    @endif
+                                                    @endif --}}
                                                 </td>
                                             </tr>
                                         @endforeach

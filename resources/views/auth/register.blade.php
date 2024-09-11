@@ -54,8 +54,8 @@
                                             <input name="first_name" type="text" class="form-control @error('first_name') is-invalid @enderror" id="first_name"
                                                 placeholder="Enter first name..." value="{{ old('first_name') }}" required>
                                             @error('first_name')
-                                                <span class="invalid-feedback" role="alert">
-                                                    <strong>{{ $message }}</strong>
+                                                <span class="text-danger">
+                                                    <i class="fe fe-info fs-5 mx-1"></i><strong class="fs-10">{{ $message }}</strong>
                                                 </span>
                                             @enderror
                                         </div>
@@ -64,21 +64,18 @@
                                             <input name="last_name" type="text" class="form-control @error('last_name') is-invalid @enderror" id="last_name"
                                                 placeholder="Enter last name..." value="{{ old('last_name') }}" required>
                                             @error('last_name')
-                                                <span class="invalid-feedback" role="alert">
-                                                    <strong>{{ $message }}</strong>
+                                                <span class="text-danger">
+                                                    <i class="fe fe-info fs-5 mx-1"></i><strong class="fs-10">{{ $message }}</strong>
                                                 </span>
                                             @enderror
                                         </div>
                                         <div class="col-xl-6">
                                             <label for="email" class="form-label">Email address</label>
-                                            <!-- <div class="input-group"> -->
                                                 <input name="email" type="email" class="form-control @error('email') is-invalid @enderror" id="email"
                                                     placeholder="Enter email..." value="{{ old('email') }}" required>
-                                                <!-- <button type="submit" class="btn btn-dark input-group-text">Submit</button> -->
-                                            <!-- </div> -->
                                             @error('email')
-                                                <span class="invalid-feedback" role="alert">
-                                                    <strong>{{ $message }}</strong>
+                                                <span class="text-danger">
+                                                    <i class="fe fe-info fs-5 mx-1"></i><strong class="fs-10">{{ $message }}</strong>
                                                 </span>
                                             @enderror
                                         </div>
@@ -97,8 +94,8 @@
                                                 <input class="form-control" id="phone" type="number" name="phone" required value="{{ old('phone') }}">
                                             </div>
                                             @error('phone')
-                                                <span class="invalid-feedback" role="alert">
-                                                    <strong>{{ $message }}</strong>
+                                                <span class="text-danger">
+                                                    <i class="fe fe-info fs-5 mx-1"></i><strong class="fs-10">{{ $message }}</strong>
                                                 </span>
                                             @enderror
                                         </div>
@@ -109,8 +106,8 @@
                                                 <input name="password" type="password" class="form-control" id="signin-password" placeholder="Enter password..." required>
                                                 <a href="javascript:void(0);" class="input-group-text bg-white text-muted" onclick="createpassword('signin-password',this)"><i class="ri-eye-off-line align-middle"></i></a>
                                                 @error('password')
-                                                    <span class="invalid-feedback" role="alert">
-                                                        <strong>{{ $message }}</strong>
+                                                    <span class="text-danger">
+                                                        <i class="fe fe-info fs-5 mx-1"></i><strong class="fs-10">{{ $message }}</strong>
                                                     </span>
                                                 @enderror
                                             </div>
@@ -122,8 +119,8 @@
                                                 <input name="password_confirmation" type="password" class="form-control" id="password_confirmation" placeholder="Confirm Password..." required>
                                                 <a href="javascript:void(0);" class="input-group-text bg-white text-muted" onclick="createpassword('password_confirmation',this)"><i class="ri-eye-off-line align-middle"></i></a>
                                                 @error('password')
-                                                    <span class="invalid-feedback" role="alert">
-                                                        <strong>{{ $message }}</strong>
+                                                    <span class="text-danger">
+                                                        <i class="fe fe-info fs-5 mx-1"></i><strong class="fs-10">{{ $message }}</strong>
                                                     </span>
                                                 @enderror
                                             </div>
@@ -147,7 +144,7 @@
                         </button>
                         </div>
                         <div class="d-grid mt-4">
-                            <button type="submit" class="btn btn-primary">Sign In</button>
+                            <button type="submit" class="btn btn-primary">Sign Up</button>
                         </div>
                     </form>
                     <div class="text-center">

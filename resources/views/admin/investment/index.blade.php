@@ -58,7 +58,6 @@
                                 <th><i class="fas fa-list-ul"></i></th>
                                 <th>Name</th>
                                 <th>Package</th>
-                                <th>Slots</th>
                                 <th>Total Invested</th>
                                 <th>Expected Returns</th>
                                 <th>Return Date</th>
@@ -94,7 +93,6 @@
                     { "data": "sn" },
                     { "data": "name" },
                     { "data": "package" },
-                    { "data": "slots" },
                     { "data": "total_invested" },
                     { "data": "expected_returns" },
                     { "data": "return_date" },
