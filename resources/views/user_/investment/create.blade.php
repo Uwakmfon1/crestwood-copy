@@ -1,5 +1,7 @@
 @extends('layouts.user.index')
 
+@section('title', 'New Investment')
+
 @section('content')
 <style>
     .skeleton-loader {
@@ -99,7 +101,7 @@
                                             data-min="{{ $package->min_amount }}" 
                                             data-max="{{ $package->max_amount }}" 
                                             data-roi="{{ $package->roi }}" 
-                                            data-duration="{{ $package->milestone }} {{ $package->duration }}">
+                                            data-duration="{{ $package->milestone }} {{ $package->milestone == 1 ? rtrim($package->duration, 's') : $package->duration }}">
                                             {{ $package->name }}
                                         </option>
                                         @endforeach
@@ -144,10 +146,10 @@
                                     <label class="form-label" for="duration-type">ROI Duration <a href="javascript:void(0);" data-bs-toggle="tooltip" data-bs-custom-class="tooltip-primary" title="Specify the frequency duration you want you ROI" class="text-primary mx-1"><i class="fe fe-info"></i></a></label>
                                     <div class="input-group"> 
                                         <select name="roi_duration" id="duration-type" class="form-control py-2">
-                                            <option value="days">Daily</option>
-                                            <option value="weeks">Weekly</option>
-                                            <option value="months">Monthly</option>
-                                            <option value="years">Yearly</option>
+                                            <option value="days">Day(s)</option>
+                                            <option value="weeks">Week(s)</option>
+                                            <option value="months">Month(s)</option>
+                                            <option value="years">Year(s)</option>
                                         </select>
                                     </div>
                                 </div>
@@ -356,6 +358,13 @@
 @section('scripts')
 <script>
 $(document).ready(function() {
+
+    function formatDuration(roiMethod, roiDuration) {
+        return roiMethod === 1 
+            ? roiDuration.slice(0, -1)  // Remove the "s" if roiMethod is 1
+            : roiDuration;  // Keep the plural otherwise
+    }
+
     // Convert duration to days
     function convertToDays(value, unit) {
         switch (unit) {
@@ -389,7 +398,7 @@ $(document).ready(function() {
         const packageInDays = convertToDays(packageDurationValue, packageDurationUnit);
 
         const summary = `Your investment of $${amount} into <strong>${packageName}</strong> will run for <strong>${packageDurationString}</strong>.`;
-        const summaryRoi = `Your ROI will be paid every <strong>${roiMethod} ${roiDuration}</strong>.`;
+        const summaryRoi = `Your ROI will be paid every <strong>${roiMethod} ${formatDuration(roiMethod, roiDuration)}</strong>.`;
 
         $('#savings-summaryX').html(summary);
         $('#roi-summaryX').html(summaryRoi);
@@ -432,6 +441,7 @@ $(document).ready(function() {
         const packageImage = selectedPackage.data('image');
         const roi = selectedPackage.data('roi');
         const duration = selectedPackage.data('duration');
+        const amount = $('#amount').val();
 
         $('#package-info').removeClass('d-none').find('#package-image').attr('src', packageImage);
         $('#package-name').text(packageName);
@@ -442,8 +452,10 @@ $(document).ready(function() {
         $('#savings-summary').show();
         $('.text-primary.duration').text(duration);
         $('.text-primary.roi').text(`${roi}%`);
-        $('#min-amount').text(`$${parseFloat(selectedPackage.data('min')).toFixed(2)}`);
-        $('#max-amount').text(`$${parseFloat(selectedPackage.data('max')).toFixed(2)}`);
+        $('#min-amount').text(`$${parseFloat(selectedPackage.data('min')).toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`);
+        $('#max-amount').text(`$${parseFloat(selectedPackage.data('max')).toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`);
+
+        $('#amount').val(parseFloat(selectedPackage.data('min')));
     }
 
     // Handle package change event
@@ -478,17 +490,16 @@ $(document).ready(function() {
     });
 
     $('.increment-btn-buy, .increment-btn-sell').click(function() {
-        updateSavingsSummary();
         const modalType = $(this).hasClass('increment-btn-buy') ? 'buy' : 'sell';
         let $input = $(`#quantity-input-${modalType}`);
-        let step = parseFloat($input.attr('step')) || 0.001;
-        let currentValue = parseFloat($input.val()) || 0.001;
+        let step = parseFloat($input.attr('step')) || 1;
+        let currentValue = parseFloat($input.val()) || 1;
         $input.val(currentValue + step);
         updateWalletPrice(modalType);
+        updateSavingsSummary();
     });
 
     $('.decrement-btn-buy, .decrement-btn-sell').click(function() {
-        updateSavingsSummary();
         const modalType = $(this).hasClass('decrement-btn-buy') ? 'buy' : 'sell';
         let $input = $(`#quantity-input-${modalType}`);
         let step = parseFloat($input.attr('step')) || 0.001;
@@ -498,6 +509,7 @@ $(document).ready(function() {
             $input.val(currentValue - step);
             updateWalletPrice(modalType);
         }
+        updateSavingsSummary();
     });
 
     // Initialize on page load
