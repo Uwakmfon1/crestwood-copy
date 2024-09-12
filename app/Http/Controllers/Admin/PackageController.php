@@ -78,32 +78,55 @@ class PackageController extends Controller
         return back()->with('error', 'Error creating package');
     }
 
-    public function update(Request $request, Package $package): \Illuminate\Http\RedirectResponse
+    public function update(Request $request, $id): \Illuminate\Http\RedirectResponse
     {
         // Validate request
         $validator = Validator::make($request->all(), [
-            'name' => ['required'],
-            'price' => ['required', 'numeric', 'gt:0'],
-            'min_duration' => ['required'],
-            'daily_roi' => ['required', 'numeric'],
-            'weekly_roi' => ['required', 'numeric'],
-            'yearly_roi' => ['required', 'numeric'],
+            'name' => ['required', 'unique:packages,name,' . $id],
+            'min_amount' => ['required', 'numeric', 'gt:0'],
+            'max_amount' => ['required', 'numeric', 'gt:0'],
+            'duration' => ['required'],
+            'roi' => ['required', 'numeric'],
+            'milestone' => ['required', 'numeric'],
             'description' => ['required'],
+            'image' => ['nullable', 'mimes:jpeg,jpg,png', 'max:1024'],
             'investment' => ['required', 'in:enabled,disabled'],
         ]);
-        if ($validator->fails()){
+
+        if ($validator->fails()) {
             return back()->withErrors($validator)->withInput()->with('error', 'Invalid input data');
         }
+
+        // Find the package to update
+        $package = Package::findOrFail($id);
+
         // Collect data from request
-        $data = $request->except('image');
-        // Save file to folder if uploaded
-        if ($request->file('image')){
-            $data['image'] = $this->uploadPackageImageAndReturnPathToSave($request['image']);
+        $data = $request->only([
+            'name',
+            'min_amount',
+            'max_amount',
+            'roi',
+            'duration',
+            'milestone',
+            'description',
+            'investment',
+        ]);
+
+        // Handle file upload
+        if ($request->hasFile('image')) {
+            // Delete the old image if it exists
+            if ($package->image) {
+                $this->deletePackageImage($package->image);
+            }
+            // Upload new image
+            $data['image'] = $this->uploadPackageImageAndReturnPathToSave($request->file('image'));
         }
-        // Store package
-        if ($package->update($data)){
+
+        // Update package
+        if ($package->update($data)) {
             return redirect()->route('admin.packages')->with('success', 'Package updated successfully');
         }
+
         return back()->with('error', 'Error updating package');
     }
 
