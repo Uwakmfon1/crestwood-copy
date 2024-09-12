@@ -249,7 +249,7 @@
                                                 </td>
                                                 <td class="text-danger">
                                                     @if($investment['status'] == 'active')
-                                                    {{ \Carbon\Carbon::now()->diffInDays(\Carbon\Carbon::parse($investment['created_at'])->add($investment->package['milestone'], $investment->package['duration'])) }} days
+                                                        {{ \Carbon\Carbon::now()->diffInDays(\Carbon\Carbon::parse($investment['created_at'])->add($investment->package['milestone'], $investment->package['duration'])) }} days
                                                     @else
                                                         --
                                                     @endif

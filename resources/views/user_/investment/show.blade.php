@@ -172,7 +172,7 @@
                                             <tr>
                                                 <td>Milestone {{ $i }}</td>
                                                 @if ($milestoneCount > 0)
-                                                    <td>${{ number_format(($investment->package['roi'] * $investment->amount) / 100, 2) / $milestoneCount }}</td>
+                                                    <td>${{ number_format((($investment->package['roi'] * $investment->amount) / 100) / ($milestoneCount), 2) }}</td>
                                                 @endif
                                                 <td>{{ $milestoneDate->format('M d, Y \a\t h:i A') }}</td>
                                                 <td>
