@@ -55,7 +55,7 @@
                             @enderror
                         </div>
                         <div class="form-group">
-                            <label for="milestone">ROI Method</label>
+                            <label for="milestone">Investment Method</label>
                             <input type="text" name="milestone"  class="form-control" value="{{ old('milestone') }}" id="milestone" placeholder="Enter minimum day...">
                             @error('milestone')
                                 <strong class="small text-danger">
@@ -64,12 +64,12 @@
                             @enderror
                         </div>
                         <div class="form-group">
-                            <label for="duration">ROI Duration</label>
+                            <label for="duration">Investment Duration</label>
                             <select name="duration" id="duration" class="form-control">
-                                <option value="days">Daily</option>
-                                <option value="weeks">Weekly</option>
-                                <option value="months">Monthly</option>
-                                <option value="years">Yearly</option>
+                                <option value="days">Day(s)</option>
+                                <option value="weeks">Week(s)</option>
+                                <option value="months">Month(s)</option>
+                                <option value="years">Year(s)</option>
                             </select>
                             @error('duration')
                                 <strong class="small text-danger">

@@ -56,7 +56,7 @@
                             @enderror
                         </div>
                         <div class="form-group">
-                            <label for="milestone">ROI Method</label>
+                            <label for="milestone">Investment Method</label>
                             <input type="text" name="milestone" class="form-control" value="{{ old('milestone', $package->milestone) }}" id="milestone" placeholder="Enter minimum day...">
                             @error('milestone')
                                 <strong class="small text-danger">
@@ -65,12 +65,12 @@
                             @enderror
                         </div>
                         <div class="form-group">
-                            <label for="duration">ROI Duration</label>
+                            <label for="duration">Investment Duration</label>
                             <select name="duration" id="duration" class="form-control">
-                                <option value="days" {{ old('duration', $package->duration) == 'days' ? 'selected' : '' }}>Daily</option>
-                                <option value="weeks" {{ old('duration', $package->duration) == 'weeks' ? 'selected' : '' }}>Weekly</option>
-                                <option value="months" {{ old('duration', $package->duration) == 'months' ? 'selected' : '' }}>Monthly</option>
-                                <option value="years" {{ old('duration', $package->duration) == 'years' ? 'selected' : '' }}>Yearly</option>
+                                <option value="days" {{ old('duration', $package->duration) == 'days' ? 'selected' : '' }}>Day(s)</option>
+                                <option value="weeks" {{ old('duration', $package->duration) == 'weeks' ? 'selected' : '' }}>Week(s)</option>
+                                <option value="months" {{ old('duration', $package->duration) == 'months' ? 'selected' : '' }}>Month(s)</option>
+                                <option value="years" {{ old('duration', $package->duration) == 'years' ? 'selected' : '' }}>Year(s)</option>
                             </select>
                             @error('duration')
                                 <strong class="small text-danger">
