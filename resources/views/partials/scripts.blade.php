@@ -1,5 +1,6 @@
 <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 
+
 <script src="{{ asset('assets/vendors/core/core.js') }}"></script>
 <script src="{{ asset('assets/vendors/feather-icons/feather.min.js') }}"></script>
 <script src="{{ asset('assets/js/template.js') }}"></script>
@@ -108,3 +109,4 @@
         });
     });
 </script>
+

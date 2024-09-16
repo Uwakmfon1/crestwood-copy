@@ -42,9 +42,8 @@
 
 <!-- Start::app-content -->
 <div class="main-content app-content">
+@include('partials.users.alert')
     <div class="container-fluid">
-
-        @include('partials.users.alert')
 
         <!-- Start::page-header -->
         {{-- <div

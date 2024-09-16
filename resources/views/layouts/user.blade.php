@@ -4,6 +4,7 @@
     @include('partials.header')
     @yield('styles')
     <title>{{ env('APP_NAME') }}  @isset($title) | @endisset {{ $title ?? '' }} </title>
+    
 </head>
 <body>
 <div class="main-wrapper">
@@ -53,6 +54,7 @@
         @include('partials.footer')
     </div>
 </div>
+    <script src="{{ asset('asset/js/toasts.js') }}"></script>
     @include('partials.scripts')
     @yield('scripts')
     {{-- <script src="https://desk.zoho.com/portal/api/feedbackwidget/691549000000186183?orgId=769978518&displayType=popout"></script> --}}
