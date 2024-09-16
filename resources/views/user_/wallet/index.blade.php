@@ -229,11 +229,13 @@
                                                 <td>${{ number_format($transaction['amount'], 2) }}</td>
                                                 <td>
                                                     @if($transaction['account_type'] == 'trading')
-                                                        <span class="badge bg-dark-transparent">Trading</span>
+                                                        <span class="badge bg-secondary-transparent">Trading</span>
                                                     @elseif($transaction['account_type'] == 'savings')
                                                         <span class="badge bg-info-transparent">Savings</span>
                                                     @elseif($transaction['account_type'] == 'investment')
                                                         <span class="badge bg-primary-transparent">Investment</span>
+                                                    @elseif($transaction['account_type'] == 'wallet')
+                                                        <span class="badge bg-dark-transparent">Wallet</span>
                                                     @endif
                                                 </td>
                                                 <td>{{ $transaction['description'] }}</td>
