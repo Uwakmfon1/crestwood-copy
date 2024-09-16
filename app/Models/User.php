@@ -328,18 +328,30 @@ class User extends Authenticatable implements MustVerifyEmail, JWTSubject
 
         public function savingsWalletBalance(): float
         {
+            if (!$this->savingsWallet) {
+                $this->savingsWallet()->create([ 'balance' => 0 ]);
+            }
+
             $savingsBalance = $this->savingsWallet ? $this->savingsWallet->balance : 0;
             return $savingsBalance;
         }
 
         public function tradingWalletBalance(): float
         {
+            if (!$this->tradingWallet) {
+                $this->tradingWallet()->create([ 'balance' => 0 ]);
+            }
+
             $tradingBalance = $this->tradingWallet ? $this->tradingWallet->balance : 0;
             return $tradingBalance;
         }
 
         public function investmentWalletBalance(): float
         {
+            if (!$this->investmentWallet) {
+                $this->investmentWallet()->create([ 'balance' => 0 ]);
+            }
+
             $investmentBalance = $this->investmentWallet ? $this->investmentWallet->balance : 0;
             return $investmentBalance;
         }
