@@ -450,7 +450,7 @@
         </div>
         <!-- End:: row-3 -->
 
-        <div class="row">
+        {{-- <div class="row">
             <div class="col-xl-9" style="height: 485px;">
                 <div class="tradingview-widget-container">
                     <div class="tradingview-widget-container__widget"></div>
@@ -724,7 +724,7 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </div> --}}
 
         <div class="row">
             <div class="col-xl-12">
