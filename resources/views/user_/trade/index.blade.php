@@ -956,49 +956,6 @@
                 </div>
             </div>
         </div>
-
-        <div class="row">
-            <div class="col-xl-6" style="height: 600px;">
-                <div class="tradingview-widget-container">
-                    <div class="tradingview-widget-container__widget"></div>
-                    <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-stock-heatmap.js" async>
-                        {
-                            "exchanges": [],
-                            "dataSource": "SPX500",
-                            "grouping": "sector",
-                            "blockSize": "market_cap_basic",
-                            "blockColor": "change",
-                            "locale": "en",
-                            "symbolUrl": "",
-                            "colorTheme": "light",
-                            "hasTopBar": false,
-                            "isDataSetEnabled": false,
-                            "isZoomEnabled": true,
-                            "hasSymbolTooltip": true,
-                            "isMonoSize": false,
-                            "width": "100%",
-                            "height": "95%"
-                        }
-                    </script>
-                </div>
-            </div>
-            <div class="col-xl-6" style="height: 600px;">
-                <div class="tradingview-widget-container">
-                    <div class="tradingview-widget-container__widget"></div>
-                    <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-timeline.js" async>
-                        {
-                            "feedMode": "all_symbols",
-                            "isTransparent": false,
-                            "displayMode": "regular",
-                            "width": "100%",
-                            "height": "95%",
-                            "colorTheme": "light",
-                            "locale": "en"
-                        }
-                    </script>
-                </div>
-            </div>
-        </div>
     </div>
 </div>
 <!-- End::app-content -->
