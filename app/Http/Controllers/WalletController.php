@@ -166,7 +166,7 @@ class WalletController extends Controller
             'amount' => $request['amount'],
             'account_type' => 'wallet',
             'type' => 'deposit',
-            'description' => 'Top up transaction from ' . $request['from_account'] .' to '. $request['to_account'],
+            'description' => 'Credit transaction from ' . $request['from_account'] .' to '. $request['to_account'],
             'method' => 'wallet',
             'status' => 'approved'
         ]);
@@ -174,7 +174,7 @@ class WalletController extends Controller
         if ($transaction) {
             // NotificationController::sendDepositSuccessfulNotification($transaction);
             // return redirect()->route('admin.users.show', $user['id'])->with('success', 'Top up was made successfully');
-            return back()->with('success', 'Top up was made successfully');
+            return back()->with('success', 'Transfer was made successfully');
         }
         return redirect()->route('admin.users.show', $user['id'])->with('error', 'Error processing deposit');
     }

@@ -368,7 +368,10 @@
                                                 </td>
                                                 <td>{{ $asset['created_at']->format('M d, Y \a\t h:i A') }}</td>
                                                 <td>
-                                                    <button class="btn btn-danger btn-wave waves-effect waves-light" data-bs-toggle="modal" data-bs-target="#exampleModal{{ $asset->id }}sell">
+                                                    <button class="btn bg-success-transparent text-success btn-wave waves-effect waves-light" data-bs-toggle="modal" data-bs-target="#exampleModal{{ $asset->id }}buy">
+                                                        BUY
+                                                    </button>
+                                                    <button class="btn bg-danger-transparent text-danger btn-wave waves-effect waves-light" data-bs-toggle="modal" data-bs-target="#exampleModal{{ $asset->id }}sell">
                                                         SELL
                                                     </button>
                                                 </td>

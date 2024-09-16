@@ -87,7 +87,7 @@
             <li class="slide @if(request()->routeIs(['asset'])) active @endif">
                 <a href="{{ route('assets') }}" class="side-menu__item">
                     <i class="fe fe-credit-card mx-2"></i>
-                    <span class="side-menu__label">Assets History</span>
+                    <span class="side-menu__label">History</span>
                 </a>
             </li>
           

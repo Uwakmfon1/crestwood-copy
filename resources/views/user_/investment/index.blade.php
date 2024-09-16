@@ -60,7 +60,7 @@
                                         <span class="text-muted fs-12">Portfolio Balance<span class="text-success ms-2 d-inline-block">0.45%<i class="ti ti-arrow-narrow-up"></i></span></span>
                                     </div>
                                     <div class="mt-1">
-                                        <a href="javascript:void(0);" class="py-2 fs-11 text-primary fw-semibold" data-bs-toggle="modal" data-bs-target="#nairaDepositModal">Top Up Balance <i class="fe fe-arrow-right me-2 align-middle d-inline-block"></i></a>
+                                        <a href="javascript:void(0);" class="py-2 fs-11 text-primary fw-semibold" data-bs-toggle="modal" data-bs-target="#nairaDepositModal">Top Up Wallet <i class="fe fe-arrow-right me-2 align-middle d-inline-block"></i></a>
                                     </div>
                                 </div>
                             </div>
@@ -144,7 +144,7 @@
                         <div>
                             <span class="text-fixed-white op-8">Available Balance</span>
                             <h4 class="fw-semibold d-block text-fixed-white mt-2">{{ number_format($balance, 2) }}<span class="fs-12 ms-1 op-8 d-inline-flex">USD</span></h4>
-                            <span>Locked Balance: ${{ number_format($total_amount + ($total_invest - $total_amount), 2) }}</span>
+                            <span>Locked Funds: ${{ number_format($total_amount + ($total_invest - $total_amount), 2) }}</span>
                         </div>
                         <div class="row mt-2">
                             <div class="col">

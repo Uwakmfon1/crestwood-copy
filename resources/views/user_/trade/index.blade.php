@@ -15,6 +15,12 @@
     input[type=number] {
         -moz-appearance: textfield; /* For Firefox */
     }
+
+    select {
+        appearance: auto !important;
+        -webkit-appearance: auto;
+        -moz-appearance: auto;
+    }
 </style>
 
 @endsection
@@ -76,7 +82,7 @@
                                     <div class="lh-1">
                                         <div class="avatar avatar-md  bg-primary-transparent">
                                             <div class="avatar avatar-sm  bg-primary  svg-white">
-                                                <i class="bi bi-apple fs-18"></i>
+                                                <i class="fe fe-tag mx-2"></i>
                                             </div>
                                         </div>
                                     </div>
@@ -94,7 +100,10 @@
                                         <span class="fs-11 text-muted">Amount</span>
                                         <span class="fs-20  fw-semibold d-block">${{ number_format($balance, 2) }}</span>
                                     </div>
-                                    <!-- <div id="apple-stock-chart"></div> -->
+                                    <div id="apple-stock-chart"></div>
+                                </div>
+                                <div class="mt-1">
+                                    <a href="javascript:void(0);" class="py-2 fs-11 text-primary fw-semibold" data-bs-toggle="modal" data-bs-target="#nairaDepositModal">Top Up Wallet <i class="fe fe-arrow-right me-2 align-middle d-inline-block"></i></a>
                                 </div>
                             </div>
                         </div>
@@ -104,9 +113,9 @@
                             <div class="card-body">
                                 <div class="d-flex align-items-center gap-3 mb-3">
                                     <div class="lh-1">
-                                        <div class="avatar avatar-md  bg-success-transparent">
-                                            <div class="avatar avatar-sm  bg-success  svg-white">
-                                                <i class="bi bi-nvidia fs-18"></i>
+                                        <div class="avatar avatar-md  bg-primary-transparent">
+                                            <div class="avatar avatar-sm  bg-primary  svg-white">
+                                                <i class="fe fe-tag mx-2"></i>
                                             </div>
                                         </div>
                                     </div>
@@ -116,15 +125,18 @@
                                     </div>
                                     <div class="text-end">
                                         <span class="text-success fs-12 d-block">{{ $buyTrade }}</span>
-                                        <span class="fs-12 text-muted">trades</span>
+                                        <span class="fs-12 text-muted">Stocks</span>
                                     </div>
                                 </div>
                                 <div class="d-flex align-items-center justify-content-between">
                                     <div>
-                                        <span class="fs-11 text-muted">CURRENT VALUE</span>
+                                        <span class="fs-11 text-muted">Amount</span>
                                         <span class="fs-20 fw-semibold d-block">${{ number_format($buyAmount, 2) }}</span>
                                     </div>
                                     <!-- <div id="nvidia-stock"></div> -->
+                                </div>
+                                <div class="mt-1">
+                                    <a href="{{ route('assets') }}" class="py-2 fs-11 text-primary fw-semibold">View Assets<i class="fe fe-arrow-right me-2 align-middle d-inline-block"></i></a>
                                 </div>
                             </div>
                         </div>
@@ -139,7 +151,7 @@
                                         {
                                             "symbol": "NASDAQ:TSLA",
                                             "width": "100%",
-                                            "height": "105",
+                                            "height": "130",
                                             "locale": "en",
                                             "dateRange": "12M",
                                             "colorTheme": "light",
@@ -953,6 +965,64 @@
                             </div>
                         </div>
                     </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="modal fade" id="nairaDepositModal" tabindex="-1" role="dialog" aria-labelledby="nairaDepositModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <form method="POST" action="{{ route('swap.balance') }}" id="depositForm">
+                        @csrf
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="nairaDepositModalLabel">Top Up</h5>
+                        </div>
+                        <div class="modal-body">
+                            <div class="form-group">
+                                <label for="amountDeposit" class="form-label">Amount</label>
+                                <input type="number" value="{{ old('amount') }}" required step="any" class="form-control" name="amount" id="amountDeposit" placeholder="Amount">
+                                @error('amount')
+                                    <strong class="small text-danger">
+                                        {{ $message }}
+                                    </strong>
+                                @enderror
+                            </div>
+                            <div class="form-group my-4">
+                                <label for="paymentDeposit" class="form-label">From</label>
+                                <select name="from_account" class="form-control text-dark" required id="paymentDeposit">
+                                    <option value="wallet">Portfolio Wallet</option>
+                                    <option value="savings">Savings Wallet</option>
+                                    <option value="trading">Trading Wallet</option>
+                                </select>
+                                @error('from_account')
+                                    <strong class="small text-danger">
+                                        {{ $message }}
+                                    </strong>
+                                @enderror
+                            </div>
+                            <div class="form-group my-4">
+                                <input type="hidden" name="to_account" value="trading">
+                                <label for="paymentDeposit" class="form-label">To</label>
+                                <select name="to_account" class="form-control text-dark" disabled id="paymentDeposit">
+                                    <option value="investment">Trading Wallet</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div id="securedByPaystackLogo" style="display: none" class="mx-auto text-center">
+                            <img src="{{ asset('assets/images/paystack.png') }}" class="img-fluid mb-3" alt="Secured-by-paystack">
+                        </div>
+                        <div id="bankDetailsForDepositForm" class="alert mx-2 alert-primary">
+                            <div class="">
+                                <p class=""><strong>Note: </strong> A sum of <strong>$100.98</strong> will be transferred into your Trading wallet</p>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            <!-- <button type="button" id="transfer" onclick="confirmFormSubmit('depositForm')" class="btn btn-primary" style="display: none;">Deposit</button> -->
+                            <button type="submit" id="card"  class="btn btn-success">Top up</button>
+                            <!-- <button type="button" id="card" onclick="payWithMonnify()" class="btn btn-success">Deposit</button> -->
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>

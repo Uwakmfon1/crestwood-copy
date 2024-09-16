@@ -119,6 +119,7 @@
                                     <tr>
                                         <th>Amount</th>
                                         <th>Balance</th>
+                                        <th>Type</th>
                                         <th>Date</th>
                                         <th>Status</th>
                                     </tr>
@@ -127,6 +128,9 @@
                                         <tr>
                                             <td>${{ number_format(0, 2) }}</td>
                                             <td>${{ number_format($investment['amount'], 2) }}</td>
+                                            <td>
+                                                <span class="badge bg-danger-transparent">Deposit</span>
+                                            </td>
                                             <td>{{ $investment['created_at']->format('M d, Y \a\t h:i A') }}</td>
                                             <td>
                                                 <span class="badge bg-success-transparent"><i class="ri-check-fill align-middle me-1"></i>Paid</span>
@@ -139,6 +143,9 @@
                                             <tr>
                                                 <td>${{ number_format($transaction->amount, 2) }}</td>
                                                 <td>${{ number_format($balance, 2) }}</td> <!-- Display updated balance -->
+                                                <td>
+                                                    <span class="badge bg-success-transparent">Profit</span>
+                                                </td>
                                                 <td>{{ $transaction['created_at']->format('M d, Y \a\t h:i A') }}</td>
                                                 <td>
                                                     <span class="badge bg-success-transparent"><i class="ri-check-fill align-middle me-1"></i>Paid</span>
