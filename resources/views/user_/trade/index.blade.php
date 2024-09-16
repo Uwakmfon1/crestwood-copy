@@ -769,8 +769,8 @@
                                 <tbody>
                                     @foreach($stocks as $key => $stock)
 
-                                    <tr onclick="window.location='{{ route('trade.show', ['stock' => $stock['id'], 'symbol' => $stock['symbol']]) }}';" style="cursor: pointer;">
-                                        <td>
+                                    <tr style="cursor: pointer;">
+                                        <td onclick="window.location='{{ route('trade.show', ['stock' => $stock['id'], 'symbol' => $stock['symbol']]) }}';">
                                             <div class="d-flex align-items-start gap-3">
                                                 <span class="avatar avatar-md p-1 avatar-rounded bg-light">
                                                     <img src="{{ $stock->img }}" alt="" class="invert-1">
@@ -781,8 +781,8 @@
                                                 </div>
                                             </div>
                                         </td>
-                                        <td>${{ $stock->price }}</td>
-                                        <td>${{ formatMarketCap($stock->market_cap) }}</td>
+                                        <td onclick="window.location='{{ route('trade.show', ['stock' => $stock['id'], 'symbol' => $stock['symbol']]) }}';">${{ $stock->price }}</td>
+                                        <td onclick="window.location='{{ route('trade.show', ['stock' => $stock['id'], 'symbol' => $stock['symbol']]) }}';">${{ formatMarketCap($stock->market_cap) }}</td>
                                         <td>
                                             <span class="badge {{ $stock->change < 0 ? 'bg-danger-transparent' : 'bg-success-transparent' }}">
                                                 {{ $stock->change }}

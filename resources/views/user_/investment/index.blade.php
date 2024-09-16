@@ -310,7 +310,7 @@
                             <div class="form-group my-4">
                                 <label for="paymentDeposit" class="form-label">From</label>
                                 <select name="from_account" class="form-control text-dark" required id="paymentDeposit">
-                                    <option value="wallet">Portfolio</option>
+                                    <option value="wallet">Portfolio Wallet</option>
                                     <option value="savings">Savings Wallet</option>
                                     <option value="trading">Trading Wallet</option>
                                 </select>
