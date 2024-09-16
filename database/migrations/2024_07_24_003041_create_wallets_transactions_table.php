@@ -18,10 +18,11 @@ class CreateWalletsTransactionsTable extends Migration
             $table->foreignId('user_id');
             $table->decimal('amount', 15, 2)->default(0);
             $table->enum('type', ['deposit', 'withdrawal']);
-            $table->enum('account_type', ['savings', 'trading', 'investment']);
+            $table->enum('account_type', ['savings', 'trading', 'investment', 'wallet']);
             $table->morphs('transactable');
             $table->enum('status', ['approved', 'pending', 'declined']);
             $table->enum('method', ['wallet', 'card', 'deposit'])->nullable();
+            $table->boolean('is_profit')->default(0);
             $table->string('description');
             $table->timestamps();
         });

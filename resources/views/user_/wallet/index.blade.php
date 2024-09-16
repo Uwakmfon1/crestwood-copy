@@ -52,24 +52,20 @@
                         </div>
                         <hr class="text-fixed-white op-1">
                         <div>
-                            <span class="text-fixed-white op-8">Portfolio Balance</span>
-                            <h4 class="fw-semibold d-block text-fixed-white mt-2">{{ number_format($total, 2) }}<sub class="fs-12 ms-2 op-8 d-inline-flex">USD</sub></h4>
+                            <span class="text-fixed-white op-8">My Portfolio</span>
+                            <h4 class="fw-semibold d-block text-fixed-white mt-2">
+                                {{ number_format($wallet, 2) }}
+                                <span class="fs-12 ms-1 d-inline-flex" style="margin-top: -5px;">USD</span>
+                            </h4>
                         </div>
                         <div class="row">
                             <div class="col">
                                 <div class="text-center p-2 my-2 bg-white-transparent rounded">
                                     <div class="d-flex">
-                                        <!-- <span class="avatar avatar-sm bg-dark avatar-rounded me-2 svg-white">
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="#000000" viewBox="0 0 256 256">
-                                                <path d="M192,168a40,40,0,0,1-40,40H128V128h24A40,40,0,0,1,192,168ZM112,48a40,40,0,0,0,0,80h16V48Z" opacity="0.2"></path>
-                                                <path d="M152,120H136V56h8a32,32,0,0,1,32,32,8,8,0,0,0,16,0,48.05,48.05,0,0,0-48-48h-8V24a8,8,0,0,0-16,0V40h-8a48,48,0,0,0,0,96h8v64H104a32,32,0,0,1-32-32,8,8,0,0,0-16,0,48.05,48.05,0,0,0,48,48h16v16a8,8,0,0,0,16,0V216h16a48,48,0,0,0,0-96Zm-40,0a32,32,0,0,1,0-64h8v64Zm40,80H136V136h16a32,32,0,0,1,0,64Z">
-                                                </path>
-                                            </svg>
-                                        </span> -->
-                                        <span class="fs-10">Available Balance</span>
+                                        <span class="fs-10">Available Cash</span>
                                     </div>
                                     <div class="d-flex">
-                                        <span class="fs-18 fw-semibold text-start">0.00 USD</span>
+                                        <span class="fs-18 fw-semibold text-start">{{ number_format($cash, 2) }} USD</span>
                                     </div>
                                     <div class="mt-1">  </div>
                                 </div>
@@ -305,6 +301,7 @@
                             </strong>
                         @enderror
                     </div>
+                    <input type="hidden" name="account_type" value="wallet">
                     {{-- <div class="form-group">
                         <label for="paymentDeposit">Payment Method</label>
                         <select onchange="checkbutton()" name="payment" style="height: 45px; font-size: 14px" class="form-control" required id="paymentDeposit">
@@ -317,7 +314,7 @@
                             </strong>
                         @enderror
                     </div> --}}
-                    <div class="form-group my-4">
+                    {{-- <div class="form-group my-4">
                         <input type="hidden" name="type" value="deposit">
                         <label for="paymentDeposit" class="form-label">Account Type</label>
                         <select name="account_type" style="height: 45px; font-size: 14px" class="form-control text-dark" required id="paymentDeposit">
@@ -331,7 +328,7 @@
                                 {{ $message }}
                             </strong>
                         @enderror
-                    </div>
+                    </div> --}}
                 </div>
                 <div id="securedByPaystackLogo" style="display: none" class="mx-auto text-center">
                     <img src="{{ asset('assets/images/paystack.png') }}" class="img-fluid mb-3" alt="Secured-by-paystack">

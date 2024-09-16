@@ -6,6 +6,7 @@ use App\Models\Setting;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
 use Symfony\Component\HttpFoundation\Exception\BadRequestException;
+use Illuminate\Support\Facades\Validator;
 
 class WalletController extends Controller
 {
@@ -17,18 +18,25 @@ class WalletController extends Controller
         $savings = auth()->user()->savingsWalletBalance();
         $investment = auth()->user()->investmentWalletBalance();
         $trading = auth()->user()->tradingWalletBalance();
+        $wallet = auth()->user()->portfolioBalance();
 
         $ledgerBalance = $user->investments()->where('status', 'active')->sum('total_return');
+        $transactions = $user->walletsTransactions(); 
+
+        $availableCash = ($wallet + ($savings + $investment + $trading));
 
         return view('user_.wallet.index', [ 
             'title', 
             'Wallets', 
             'setting' => Setting::all()->first(), 
+            'transactions' => $transactions->latest()->paginate(10),
             'virtualAccount' => $virtualAccount, 
             'ledgerBalance' => $ledgerBalance,
             'savings' => $savings,
             'trading' => $trading,
-            'investment' => $investment
+            'investment' => $investment,
+            'wallet' => $availableCash,
+            'cash' => $wallet,
         ]);
     }
 
@@ -100,5 +108,74 @@ class WalletController extends Controller
         $user->update(['virtual_account' => $virtualAccount]);
 
         return back()->with('success', 'Virtual Account created successfully');
+    }
+
+    public function walletSwap(Request $request): \Illuminate\Http\RedirectResponse
+    {
+        $user = auth()->user();
+
+        // Validate request
+        $validator = Validator::make($request->all(), [
+            'amount' => ['required', 'numeric', 'gt:0'],
+            'from_account' => ['required'],
+            'to_account' => ['required'],
+        ]);
+
+        if ($validator->fails()) {
+            return back()->withErrors($validator)->withInput()->with('error', 'Invalid input data');
+        }
+
+        if($request['to_account'] == 'investment') {
+
+            $user->investmentWallet->increment('balance', $request['amount']);
+
+        } elseif($request['to_account'] == 'savings') {
+
+            $user->savingsWallet->increment('balance', $request['amount']);
+            
+        } elseif($request['to_account'] == 'trading') {
+
+            $user->tradingWallet->increment('balance', $request['amount']);
+
+        } else {
+            return back()->withInput()->with('error', 'Invalid account method');
+        }
+
+        if($request['from_account'] == 'investment') {
+
+            $user->investmentWallet->decrement('balance', $request['amount']);
+
+        } elseif($request['from_account'] == 'savings') {
+
+            $user->savingsWallet->decrement('balance', $request['amount']);
+            
+        } elseif($request['from_account'] == 'trading') {
+
+            $user->tradingWallet->decrement('balance', $request['amount']);
+
+        } elseif($request['from_account'] == 'wallet') {
+
+            $user->wallet->decrement('balance', $request['amount']);
+
+        } else {
+            return back()->withInput()->with('error', 'Invalid account method');
+        }
+
+        $transaction = $user->wallet->walletTransactions()->create([
+            'user_id' => $user->id,
+            'amount' => $request['amount'],
+            'account_type' => 'wallet',
+            'type' => 'deposit',
+            'description' => 'Top up transaction from ' . $request['from_account'] .' to '. $request['to_account'],
+            'method' => 'wallet',
+            'status' => 'approved'
+        ]);
+
+        if ($transaction) {
+            // NotificationController::sendDepositSuccessfulNotification($transaction);
+            // return redirect()->route('admin.users.show', $user['id'])->with('success', 'Top up was made successfully');
+            return back()->with('success', 'Top up was made successfully');
+        }
+        return redirect()->route('admin.users.show', $user['id'])->with('error', 'Error processing deposit');
     }
 }

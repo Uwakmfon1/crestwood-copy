@@ -408,4 +408,79 @@ class CommandController extends Controller
             $command->error('Failed to fetch stock data.');
         }
     }
+
+    public static function distributeProfit($command)
+    {
+        // Fetch active investments
+        $investments = Investment::where('status', 'active')
+            ->where('return_date', '>=', now())
+            ->with('user') // Eager load the user relationship
+            ->get();
+
+        foreach ($investments as $investment) {
+            // Get the total ROI and ROI duration
+            $total_roi = $investment->package->roi;
+            $total_profit = ($total_roi * $investment->amount) / 100;
+            $roi_duration = $investment->roi_duration; // e.g., '2_days'
+            $investment_duration = Carbon::parse($investment->created_at)->diffInDays($investment->return_date);
+            $remaining_days = Carbon::now()->diffInDays($investment->return_date);
+
+            if ($investment->user) {
+                Log::info('Processing investment for user: ' . $investment->user->id);
+            } else {
+                Log::warning('Investment has no associated user: ' . $investment->id);
+                continue; // Skip this investment if no user is associated
+            }
+
+            // Determine the profit percentage based on the remaining days
+            $profit_percentage = self::getProfitPercentage($investment_duration, $remaining_days);
+
+            // Calculate the profit to be credited today
+            $profit_for_today = ($profit_percentage * $total_profit) / 100;
+
+            if (self::shouldDistributeProfit($investment, $remaining_days)) {
+                // Credit user's wallet
+                $investment->user->investmentWallet->increment('balance', $profit_for_today);
+
+                // Create a wallet transaction for the profit
+                $investment->investmentTransactions()->create(
+                    [
+                        'user_id' => $investment->user->id,
+                        'amount' => $profit_for_today,
+                        'type' => 'deposit',
+                        'account_type' => 'investment',
+                        'description' => '$'. $profit_for_today . ' profit on ' . $investment->package->name,
+                        'method' => 'wallet',
+                        'status' => 'approved',
+                        'is_profit' => 1
+                    ]
+                );
+
+                Log::info('Profit to distribute today: ' . $profit_for_today);
+            }
+        }
+
+        $command->info('Investment profits distributed successfully.');
+    }
+
+    protected static function getProfitPercentage($investment_duration, $remaining_days)
+    {
+        if ($remaining_days == 0) {
+            return 35; // Last day, 35% profit
+        } elseif ($remaining_days <= $investment_duration / 2) {
+            return 40; // Middle period, 40% profit
+        } else {
+            return 25; // First period, 25% profit
+        }
+    }
+
+    /**
+     * Check if we should distribute the profit based on the current ROI duration.
+     */
+    protected static function shouldDistributeProfit($investment, $remaining_days)
+    {
+        $next_distribution_date = Carbon::parse($investment->created_at)->addDays($investment->roi_duration);
+
+        return Carbon::now()->gte($next_distribution_date);
+    }
 }

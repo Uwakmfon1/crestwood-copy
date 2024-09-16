@@ -137,6 +137,18 @@ class TransactionController extends Controller
                         'status' => 'pending'
                     ]
                 );
+            case 'wallet':
+                $transaction = $user->wallet->walletTransactions()->create(
+                    [
+                        'user_id' => $user->id,
+                        'amount' => $request['amount'],  
+                        'account_type' => $request['account_type'],
+                        'type' => 'deposit',
+                        'description' => 'Deposit into portfolio wallet',
+                        'method' => 'wallet',
+                        'status' => 'pending'
+                    ]
+                );
                 break;
             default:
                 return back()->withInput()->with('error', 'Invalid account method');

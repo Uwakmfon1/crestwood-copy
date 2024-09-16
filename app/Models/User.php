@@ -312,6 +312,11 @@ class User extends Authenticatable implements MustVerifyEmail, JWTSubject
             return $this->hasOne(InvestmentWallet::class);
         }
 
+        public function wallet(): HasOne
+        {
+            return $this->hasOne(UserWallet::class);
+        }
+
         public function walletBalance(): float
         {
             $savingsBalance = $this->savingsWallet ? $this->savingsWallet->balance : 0;
@@ -339,10 +344,14 @@ class User extends Authenticatable implements MustVerifyEmail, JWTSubject
             return $investmentBalance;
         }
 
-        // public function hasSufficientBalance($amount): bool
-        // {
-        //     return $this->walletBalance() >= $amount;
-        // }
+        public function portfolioBalance(): int
+        {
+            if (!$this->wallet) {
+                $this->wallet()->create([ 'balance' => 0 ]);
+            }
+
+            return $this->wallet ? $this->wallet->balance : 0;
+        }
 
         public function hasSufficientBalance($amount, $type): bool
         {

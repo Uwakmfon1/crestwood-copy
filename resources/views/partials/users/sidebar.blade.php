@@ -96,8 +96,8 @@
             <li class="slide__category"><span class="category-name">Finance</span></li>
             <!-- End::slide__category -->
 
-            <li class="slide @if(request()->routeIs(['transactions'])) active @endif">
-                <a href="{{ route('transactions') }}" class="side-menu__item">
+            <li class="slide @if(request()->routeIs(['wallet'])) active @endif">
+                <a href="{{ route('wallet') }}" class="side-menu__item">
                     <i class="fe fe-dollar-sign mx-2"></i>
                     <span class="side-menu__label">Cash</span>
                 </a>

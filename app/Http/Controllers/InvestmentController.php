@@ -77,7 +77,16 @@ class InvestmentController extends Controller
 
     public function show(Investment $investment)
     {
-        return view('user_.investment.show', ['title' => 'Investment', 'investment' => $investment, 'packages' => Package::where('investment', 'enabled')->get()]);
+        $user = auth()->user()->walletsTransactions();
+
+        $transaction = $user->where('is_profit', 1)->get();
+
+        return view('user_.investment.show', [
+            'title' => 'Investment', 
+            'investment' => $investment, 
+            'packages' => Package::where('investment', 'enabled')->get(),
+            'transactions' => $transaction,
+        ]);
     }
 
     public function invest($packageName)

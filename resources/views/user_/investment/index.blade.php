@@ -5,6 +5,8 @@
 <div class="main-content app-content">
     <div class="container-fluid">
 
+    @include('partials.users.alert')
+
         <!-- Start::page-header -->
         <div
             class="my-4 page-header-breadcrumb d-flex align-items-center justify-content-between flex-wrap gap-2">
@@ -58,7 +60,7 @@
                                         <span class="text-muted fs-12">Portfolio Balance<span class="text-success ms-2 d-inline-block">0.45%<i class="ti ti-arrow-narrow-up"></i></span></span>
                                     </div>
                                     <div class="mt-1">
-                                        <a href="javascript:void(0);" class="py-2 fs-11 text-primary fw-semibold">Top Up Balance <i class="fe fe-arrow-right me-2 align-middle d-inline-block"></i></a>
+                                        <a href="javascript:void(0);" class="py-2 fs-11 text-primary fw-semibold" data-bs-toggle="modal" data-bs-target="#nairaDepositModal">Top Up Balance <i class="fe fe-arrow-right me-2 align-middle d-inline-block"></i></a>
                                     </div>
                                 </div>
                             </div>
@@ -141,7 +143,7 @@
                         <hr class="text-fixed-white op-1">
                         <div>
                             <span class="text-fixed-white op-8">Available Balance</span>
-                            <h4 class="fw-semibold d-block text-fixed-white mt-2">{{ number_format($balance, 2) }}<sub class="fs-12 ms-2 op-8 d-inline-flex">USD</sub></h4>
+                            <h4 class="fw-semibold d-block text-fixed-white mt-2">{{ number_format($balance, 2) }}<span class="fs-12 ms-1 op-8 d-inline-flex">USD</span></h4>
                             <span>Locked Balance: ${{ number_format($total_amount + ($total_invest - $total_amount), 2) }}</span>
                         </div>
                         <div class="row mt-2">
@@ -202,90 +204,148 @@
             </div>
         </div>
 
-            <!-- Start:: row-2 -->
-            <div class="row">
-                <div class="col-xxl-12 col-xl-12">
-                    <div class="card custom-card">
-                        <div class="card-header justify-content-between">
-                            <div class="card-title">
-                                Latest Investment 
-                            </div>
+        <!-- Start:: row-2 -->
+        <div class="row">
+            <div class="col-xxl-12 col-xl-12">
+                <div class="card custom-card">
+                    <div class="card-header justify-content-between">
+                        <div class="card-title">
+                            Latest Investment 
                         </div>
-                        <div class="card-body p-0">
-                            <div class="table-responsive">
-                                <table class="table text-nowrap">
-                                    <thead>
-                                        <tr>
-                                            <th>S/N</th>
-                                            <th>Package</th>
-                                            <th>Amount</th>
-                                            <th>ROI</th>
-                                            <th>Profit</th>
-                                            <!-- <th>Expected returns</th> -->
-                                            <th>Due Days</th>
-                                            <th>Status</th>
-                                            <th>Date Created</th>
-                                            <th>Action</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        @foreach($investments as $key=>$investment)
-                                            <tr>
-                                                <td>{{ $key + 1 }}</td>
-                                                @if($investment->package)
-                                                    <td>{{ $investment->package['name'] }}</td>
-                                                @else
-                                                    <td>Deleted Package</td>
-                                                @endif
-                                                <td>${{ number_format($investment['amount']) }}</td>
-                                                @if($investment->package)
-                                                    <td>{{ $investment->package['roi'] }}%</td>
-                                                @else
-                                                    <td>Deleted Package</td>
-                                                @endif
-                                                <!-- <td>${{ number_format($investment['total_return']) }}</td> -->
-                                                <td class="text-primary">
-                                                    <strong>${{ number_format(($investment['amount'] * $investment->package['roi']) / 100, 2) }}</strong>
-                                                </td>
-                                                <td class="text-danger">
-                                                    @if($investment['status'] == 'active')
-                                                        {{ \Carbon\Carbon::now()->diffInDays(\Carbon\Carbon::parse($investment['created_at'])->add($investment->package['milestone'], $investment->package['duration'])) }} days
-                                                    @else
-                                                        --
-                                                    @endif
-                                                </td>
-                                                <td>
-                                                    @if($investment['status'] == 'active')
-                                                        <span class="badge bg-success-transparent"><i class="ri-check-fill align-middle me-1"></i>Active</span>
-                                                    @elseif($investment['status'] == 'pending')
-                                                        <span class="badge bg-warning-transparent"><i class="ri-info-fill align-middle me-1"></i>Pending</span>
-                                                    @elseif($investment['status'] == 'cancelled')
-                                                        <span class="badge bg-danger-transparent"><i class="ri-close-fill align-middle me-1"></i>Cancelled</span>
-                                                    @elseif($investment['status'] == 'settled')
-                                                        <span class="badge bg-light text-dark"><i class="ri-reply-line align-middle me-1"></i>Settled</span>
-                                                    @endif
-                                                </td>
-                                                <td>{{ $investment['created_at']->format('M d, Y \a\t h:i A') }}</td>
-                                                <td>
-                                                    <a href="{{ route('investments.show', $investment['id']) }}" class="btn btn-sm btn-primary">View</a>
-                                                </td>
-                                            </tr>
-                                        @endforeach
-                                    </tbody>
-                                </table>
-                                @if($investments->count() == 0)
+                    </div>
+                    <div class="card-body p-0">
+                        <div class="table-responsive">
+                            <table class="table text-nowrap">
+                                <thead>
                                     <tr>
-                                        <p class="py-4 text-center">
-                                            No Investment
-                                        </p>
+                                        <th>S/N</th>
+                                        <th>Package</th>
+                                        <th>Amount</th>
+                                        <th>ROI</th>
+                                        <th>Profit</th>
+                                        <!-- <th>Expected returns</th> -->
+                                        <th>Due Days</th>
+                                        <th>Status</th>
+                                        <th>Date Created</th>
+                                        <th>Action</th>
                                     </tr>
-                                @endif
-                            </div>
+                                </thead>
+                                <tbody>
+                                    @foreach($investments as $key=>$investment)
+                                        <tr>
+                                            <td>{{ $key + 1 }}</td>
+                                            @if($investment->package)
+                                                <td>{{ $investment->package['name'] }}</td>
+                                            @else
+                                                <td>Deleted Package</td>
+                                            @endif
+                                            <td>${{ number_format($investment['amount']) }}</td>
+                                            @if($investment->package)
+                                                <td>{{ $investment->package['roi'] }}%</td>
+                                            @else
+                                                <td>Deleted Package</td>
+                                            @endif
+                                            <!-- <td>${{ number_format($investment['total_return']) }}</td> -->
+                                            <td class="text-primary">
+                                                <strong>${{ number_format(($investment['amount'] * $investment->package['roi']) / 100, 2) }}</strong>
+                                            </td>
+                                            <td class="text-danger">
+                                                @if($investment['status'] == 'active')
+                                                    {{ \Carbon\Carbon::now()->diffInDays(\Carbon\Carbon::parse($investment['created_at'])->add($investment->package['milestone'], $investment->package['duration'])) }} days
+                                                @else
+                                                    --
+                                                @endif
+                                            </td>
+                                            <td>
+                                                @if($investment['status'] == 'active')
+                                                    <span class="badge bg-success-transparent"><i class="ri-check-fill align-middle me-1"></i>Active</span>
+                                                @elseif($investment['status'] == 'pending')
+                                                    <span class="badge bg-warning-transparent"><i class="ri-info-fill align-middle me-1"></i>Pending</span>
+                                                @elseif($investment['status'] == 'cancelled')
+                                                    <span class="badge bg-danger-transparent"><i class="ri-close-fill align-middle me-1"></i>Cancelled</span>
+                                                @elseif($investment['status'] == 'settled')
+                                                    <span class="badge bg-light text-dark"><i class="ri-reply-line align-middle me-1"></i>Settled</span>
+                                                @endif
+                                            </td>
+                                            <td>{{ $investment['created_at']->format('M d, Y \a\t h:i A') }}</td>
+                                            <td>
+                                                <a href="{{ route('investments.show', $investment['id']) }}" class="btn btn-sm btn-primary">View</a>
+                                            </td>
+                                        </tr>
+                                    @endforeach
+                                </tbody>
+                            </table>
+                            @if($investments->count() == 0)
+                                <tr>
+                                    <p class="py-4 text-center">
+                                        No Investment
+                                    </p>
+                                </tr>
+                            @endif
                         </div>
                     </div>
                 </div>
             </div>
-            <!-- End:: row-2 -->
+        </div>
+        <!-- End:: row-2 -->
+
+        <div class="modal fade" id="nairaDepositModal" tabindex="-1" role="dialog" aria-labelledby="nairaDepositModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <form method="POST" action="{{ route('swap.balance') }}" id="depositForm">
+                        @csrf
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="nairaDepositModalLabel">Top Up</h5>
+                        </div>
+                        <div class="modal-body">
+                            <div class="form-group">
+                                <label for="amountDeposit" class="form-label">Amount</label>
+                                <input type="number" value="{{ old('amount') }}" required step="any" class="form-control" name="amount" id="amountDeposit" placeholder="Amount">
+                                @error('amount')
+                                    <strong class="small text-danger">
+                                        {{ $message }}
+                                    </strong>
+                                @enderror
+                            </div>
+                            <div class="form-group my-4">
+                                <label for="paymentDeposit" class="form-label">From</label>
+                                <select name="from_account" class="form-control text-dark" required id="paymentDeposit">
+                                    <option value="wallet">Portfolio</option>
+                                    <option value="savings">Savings Wallet</option>
+                                    <option value="trading">Trading Wallet</option>
+                                </select>
+                                @error('from_account')
+                                    <strong class="small text-danger">
+                                        {{ $message }}
+                                    </strong>
+                                @enderror
+                            </div>
+                            <div class="form-group my-4">
+                                <input type="hidden" name="to_account" value="investment">
+                                <label for="paymentDeposit" class="form-label">To</label>
+                                <select name="to_account" class="form-control text-dark" disabled id="paymentDeposit">
+                                    <option value="investment">Investment Wallet</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div id="securedByPaystackLogo" style="display: none" class="mx-auto text-center">
+                            <img src="{{ asset('assets/images/paystack.png') }}" class="img-fluid mb-3" alt="Secured-by-paystack">
+                        </div>
+                        <div id="bankDetailsForDepositForm" class="alert mx-2 alert-primary">
+                            <div class="">
+                                <p class=""><strong>Note: </strong> A sum of <strong>$100.98</strong> will be deposited into your Investment wallet</p>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            <!-- <button type="button" id="transfer" onclick="confirmFormSubmit('depositForm')" class="btn btn-primary" style="display: none;">Deposit</button> -->
+                            <button type="submit" id="card"  class="btn btn-success">Top up</button>
+                            <!-- <button type="button" id="card" onclick="payWithMonnify()" class="btn btn-success">Deposit</button> -->
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
 <!-- End::app-content -->

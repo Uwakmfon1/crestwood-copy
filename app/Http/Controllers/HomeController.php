@@ -113,7 +113,7 @@ class HomeController extends Controller
 
     public function updateProfile(Request $request): \Illuminate\Http\RedirectResponse
     {
-//        Validate request
+        //        Validate request
         $validator = Validator::make($request->all(), [
             'name' => ['required'],
             'phone' => ['required', 'size:10'],
@@ -138,12 +138,12 @@ class HomeController extends Controller
         if ($validator->fails()){
             return back()->withInput()->withErrors($validator)->with('error', 'Invalid input data');
         }
-//        Collect data from request
+        //        Collect data from request
         $data = $request->only([
             'name', 'phone', 'phone_code', 'state', 'country', 'city',
             'address', 'bank_name', 'account_name', 'account_number',
             'nk_name', 'nk_phone', 'nk_address']);
-//        Check if user uploaded file and save
+        //        Check if user uploaded file and save
         if ($request->file('avatar')){
             if ($oldAvatar = auth()->user()['avatar'])
                 try {unlink($oldAvatar);}
@@ -166,7 +166,7 @@ class HomeController extends Controller
             $image->save($destinationPath . '/' . $transferImage, 40);
             $data['identification'] = $destinationPath ."/".$transferImage;
         }
-//        Update profile
+        //        Update profile
         if (auth()->user()->update($data)){
             if (auth()->user()['gotMail'] == 0) {
                 NotificationController::sendWelcomeEmailNotification(auth()->user());

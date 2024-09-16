@@ -73,7 +73,7 @@
                         <div class="row gy-3">
                             <div class="col-xl-4 col-6 my-2">
                                 <p class="fw-medium text-muted mb-1">Price:</p>
-                                <p class="fs-15 mb-1">$ {{ number_format($investment['amount']) }}</p>
+                                <p class="fs-15 mb-1">${{ number_format($investment['amount']) }}</p>
                             </div>
                             <div class="col-xl-4 col-6 my-2">
                                 <p class="fw-medium text-muted mb-1">Duration :</p>
@@ -107,143 +107,45 @@
                                 <p class="fw-medium text-muted mb-1">Return Date :</p>
                                 <p class="fs-15 mb-1">{{ \Carbon\Carbon::parse($investment['created_at'])->add($investment->package['milestone'], $investment->package['duration'])->format('M d, Y \a\t h:i A') }}</p>
                             </div>
+                            @php
+                                $balance = $investment['amount']; // Initialize balance with the investment amount
+                            @endphp
 
                             <div class="col-xl-12 my-5">
-                                <h6 class="fw-medium text-muted my-3">Milestone:</h6>
+                                <h6 class="fw-medium text-muted my-3">Profit:</h6>
                                 <div class="table-responsive">
                                 <table class="table text-nowrap table-striped table-hover">
                                     <thead>
                                     <tr>
-                                        <th>Milestone</th>
                                         <th>Amount</th>
-                                        <th>Date Range</th>
+                                        <th>Balance</th>
+                                        <th>Date</th>
                                         <th>Status</th>
-                                        <th>Action</th>
                                     </tr>
                                     </thead>
                                     <tbody>
-                                        @php
-                                            // Convert roi_duration string to Carbon interval
-                                            $roiParts = explode('_', $investment['roi_duration']);
-                                            $roiValue = (int) $roiParts[0]; // Get the number (e.g., 2)
-                                            $roiUnit = $roiParts[1]; // Get the time unit (e.g., days, weeks, months)
-
-                                            // Convert package duration to Carbon-compatible format
-                                            $packageDurationParts = explode('_', $investment->package['milestone'] . '_' . $investment->package['duration']);
-                                            $milestoneValue = (int) $packageDurationParts[0]; // e.g., 3
-                                            $milestoneUnit = $packageDurationParts[1]; // e.g., weeks, months
-
-                                            // Calculate the end date of the investment based on the package duration
-                                            $investmentEndDate = \Carbon\Carbon::make($investment['created_at'])->add($milestoneValue, $milestoneUnit);
-
-                                            // Calculate the total number of milestones
-                                            $milestoneCount = 0;
-                                            $milestoneDate = \Carbon\Carbon::make($investment['created_at']);
-                                            while ($milestoneDate->lt($investmentEndDate)) {
-                                                $milestoneCount++;
-                                                $milestoneDate->add($roiValue, $roiUnit);
-                                            }
-
-                                            // Calculate the amount per milestone
-                                            $amountPerMilestone = $milestoneCount > 0 ? $investment['amount'] / $milestoneCount : 0;
-                                        @endphp
-
-                                        @php
-                                            // Reset the milestone date for the loop
-                                            $milestoneDate = \Carbon\Carbon::make($investment['created_at']);
-                                        @endphp
-
-                                        @for ($i = 1; $milestoneDate->lt($investmentEndDate); $i++)
-                                            @php
-                                                // Add roi_duration to the milestone date for each iteration
-                                                $milestoneDate = \Carbon\Carbon::make($investment['created_at'])->add($roiValue * $i, $roiUnit);
-
-                                                // Check if the milestone date falls within the package duration
-                                                if ($milestoneDate->gt($investmentEndDate)) {
-                                                    break; // Stop if the next milestone is beyond the package duration
-                                                }
-
-                                                // Check if the transaction is paid
-                                                $isPaid = $investment->transaction()
-                                                    ->where('status', 'approved')
-                                                    ->whereDate('created_at', $milestoneDate->toDateString())
-                                                    ->exists();
-                                            @endphp
-                                            <tr>
-                                                <td>Milestone {{ $i }}</td>
-                                                @if ($milestoneCount > 0)
-                                                    <td>${{ number_format((($investment->package['roi'] * $investment->amount) / 100) / ($milestoneCount), 2) }}</td>
-                                                @endif
-                                                <td>{{ $milestoneDate->format('M d, Y \a\t h:i A') }}</td>
-                                                <td>
-                                                    @if ($isPaid)
-                                                        <span class="badge bg-success-transparent"><i class="ri-check-fill align-middle me-1"></i>Paid</span>
-                                                    @else
-                                                        @if (\Carbon\Carbon::now()->greaterThan($milestoneDate))
-                                                            <span class="badge bg-light text-dark"><i class="ri-reply-line align-middle me-1"></i>Void</span>
-                                                        @else
-                                                            <span class="badge bg-warning-transparent"><i class="ri-delete-fill align-middle me-1"></i>Pending</span>
-                                                        @endif
-                                                    @endif
-                                                </td>
-                                                <td>
-                                                    @if (!$isPaid && \Carbon\Carbon::now()->isSameDay($milestoneDate) && \Carbon\Carbon::now()->format('H:i') >= $milestoneDate->format('H:i'))
-                                                        <form action="{{ route('make.payment', $investment['id']) }}" method="post">
-                                                            @csrf
-                                                            <button type="submit" class="btn btn-primary">Retry Payment</button>
-                                                        </form>
-                                                    @endif
-                                                </td>
-                                            </tr>
-                                        @endfor
-
-                                        <!-- Display the total number of milestones -->
-                                        @if ($milestoneCount > 0)
-                                            {{-- <tr>
-                                                <td colspan="4"><b>Total Number of Milestones:</b></td>
-                                                <td><b>{{ $milestoneCount }}</b></td>
-                                            </tr> --}}
-                                            <tr>
-                                                <td colspan="4"><b>Total Amount:</b></td>
-                                                <td><b>${{  number_format(($investment->package['roi'] * $investment->amount) / 100, 2) }}</b></td>
-                                            </tr>
-                                        @endif
-                                    </tbody>
-
-
-                                    @php
-                                        $currentDate = \Carbon\Carbon::now();
-                                        $returnDate = \Carbon\Carbon::make($investment['return_date']);
-                                        $isReturnDateDue = $currentDate->startOfDay()->greaterThanOrEqualTo($returnDate->startOfDay()) 
-                                                        && $currentDate->format('H:i') >= $returnDate->format('H:i');
-                                    @endphp
-
-                                    @if ($isReturnDateDue)
                                         <tr>
-                                            <td>Total</td>
+                                            <td>${{ number_format(0, 2) }}</td>
+                                            <td>${{ number_format($investment['amount'], 2) }}</td>
+                                            <td>{{ $investment['created_at']->format('M d, Y \a\t h:i A') }}</td>
                                             <td>
-                                                <b>$ {{ number_format($investment['amount'] * $paid + $investment['amount'] / $investment->package['roi'] * $paid) }}</b>
-                                            </td>
-                                            <td>
-                                                <b>{{ $returnDate->format('M d, Y \a\t h:i A') }}</b>
-                                            </td>
-                                            <td>
-                                                @if ($investment['status'] == 'settled')
-                                                    <span class="badge badge-pill badge-success py-1 px-3">Credited ✅</span>
-                                                @else
-                                                    <span class="text-success"><b>Completed 🥳</b></span>
-                                                @endif
-                                            </td>
-                                            <td>
-                                                @if ($investment['status'] != 'settled' && $isReturnDateDue)
-                                                    <form action="{{ route('settle.payment', $investment['id']) }}" method="post">
-                                                        @csrf
-                                                        <button type="submit" class="btn btn-primary">Withdraw</button>
-                                                    </form>
-                                                @endif
+                                                <span class="badge bg-success-transparent"><i class="ri-check-fill align-middle me-1"></i>Paid</span>
                                             </td>
                                         </tr>
-                                    @endif
+                                        @foreach($transactions as $transaction)
+                                            @php
+                                                $balance += $transaction->amount; // Add the transaction amount to the balance
+                                            @endphp
+                                            <tr>
+                                                <td>${{ number_format($transaction->amount, 2) }}</td>
+                                                <td>${{ number_format($balance, 2) }}</td> <!-- Display updated balance -->
+                                                <td>{{ $transaction['created_at']->format('M d, Y \a\t h:i A') }}</td>
+                                                <td>
+                                                    <span class="badge bg-success-transparent"><i class="ri-check-fill align-middle me-1"></i>Paid</span>
+                                                </td>
+                                            </tr>
+                                        @endforeach
+                                    </tbody>
                                 </table>
 
 
@@ -327,4 +229,128 @@
             }
         @endif
 </script>
+@endsection
+
+@section('trash')
+
+
+{{--
+@php
+                                        $currentDate = \Carbon\Carbon::now();
+                                        $returnDate = \Carbon\Carbon::make($investment['return_date']);
+                                        $isReturnDateDue = $currentDate->startOfDay()->greaterThanOrEqualTo($returnDate->startOfDay()) 
+                                                        && $currentDate->format('H:i') >= $returnDate->format('H:i');
+                                    @endphp
+
+                                    @if ($isReturnDateDue)
+                                        <tr>
+                                            <td>Total</td>
+                                            <td>
+                                                <b>$ {{ number_format($investment['amount'] * $paid + $investment['amount'] / $investment->package['roi'] * $paid) }}</b>
+                                            </td>
+                                            <td>
+                                                <b>{{ $returnDate->format('M d, Y \a\t h:i A') }}</b>
+                                            </td>
+                                            <td>
+                                                @if ($investment['status'] == 'settled')
+                                                    <span class="badge badge-pill badge-success py-1 px-3">Credited ✅</span>
+                                                @else
+                                                    <span class="text-success"><b>Completed 🥳</b></span>
+                                                @endif
+                                            </td>
+                                            <td>
+                                                @if ($investment['status'] != 'settled' && $isReturnDateDue)
+                                                    <form action="{{ route('settle.payment', $investment['id']) }}" method="post">
+                                                        @csrf
+                                                        <button type="submit" class="btn btn-primary">Withdraw</button>
+                                                    </form>
+                                                @endif
+                                            </td>
+                                        </tr>
+                                    @endif
+
+<tbody>
+                                        @php
+                                            // Convert roi_duration string to Carbon interval
+                                            $roiParts = explode('_', $investment['roi_duration']);
+                                            $roiValue = (int) $roiParts[0]; // Get the number (e.g., 2)
+                                            $roiUnit = $roiParts[1]; // Get the time unit (e.g., days, weeks, months)
+
+                                            // Convert package duration to Carbon-compatible format
+                                            $packageDurationParts = explode('_', $investment->package['milestone'] . '_' . $investment->package['duration']);
+                                            $milestoneValue = (int) $packageDurationParts[0]; // e.g., 3
+                                            $milestoneUnit = $packageDurationParts[1]; // e.g., weeks, months
+
+                                            // Calculate the end date of the investment based on the package duration
+                                            $investmentEndDate = \Carbon\Carbon::make($investment['created_at'])->add($milestoneValue, $milestoneUnit);
+
+                                            // Calculate the total number of milestones
+                                            $milestoneCount = 0;
+                                            $milestoneDate = \Carbon\Carbon::make($investment['created_at']);
+                                            while ($milestoneDate->lt($investmentEndDate)) {
+                                                $milestoneCount++;
+                                                $milestoneDate->add($roiValue, $roiUnit);
+                                            }
+
+                                            // Calculate the amount per milestone
+                                            $amountPerMilestone = $milestoneCount > 0 ? $investment['amount'] / $milestoneCount : 0;
+                                        @endphp
+
+                                        @php
+                                            // Reset the milestone date for the loop
+                                            $milestoneDate = \Carbon\Carbon::make($investment['created_at']);
+                                        @endphp
+
+                                        @for ($i = 1; $milestoneDate->lt($investmentEndDate); $i++)
+                                            @php
+                                                // Add roi_duration to the milestone date for each iteration
+                                                $milestoneDate = \Carbon\Carbon::make($investment['created_at'])->add($roiValue * $i, $roiUnit);
+
+                                                // Check if the milestone date falls within the package duration
+                                                if ($milestoneDate->gt($investmentEndDate)) {
+                                                    break; // Stop if the next milestone is beyond the package duration
+                                                }
+
+                                                // Check if the transaction is paid
+                                                $isPaid = $investment->transaction()
+                                                    ->where('status', 'approved')
+                                                    ->whereDate('created_at', $milestoneDate->toDateString())
+                                                    ->exists();
+                                            @endphp
+                                            <tr>
+                                                <td>Milestone {{ $i }}</td>
+                                                @if ($milestoneCount > 0)
+                                                    <td>${{ number_format((($investment->package['roi'] * $investment->amount) / 100) / ($milestoneCount), 2) }}</td>
+                                                @endif
+                                                <td>{{ $milestoneDate->format('M d, Y \a\t h:i A') }}</td>
+                                                <td>
+                                                    @if ($isPaid)
+                                                        <span class="badge bg-success-transparent"><i class="ri-check-fill align-middle me-1"></i>Paid</span>
+                                                    @else
+                                                        @if (\Carbon\Carbon::now()->greaterThan($milestoneDate))
+                                                            <span class="badge bg-light text-dark"><i class="ri-reply-line align-middle me-1"></i>Void</span>
+                                                        @else
+                                                            <span class="badge bg-warning-transparent"><i class="ri-delete-fill align-middle me-1"></i>Pending</span>
+                                                        @endif
+                                                    @endif
+                                                </td>
+                                                <td>
+                                                    @if (!$isPaid && \Carbon\Carbon::now()->isSameDay($milestoneDate) && \Carbon\Carbon::now()->format('H:i') >= $milestoneDate->format('H:i'))
+                                                        <form action="{{ route('make.payment', $investment['id']) }}" method="post">
+                                                            @csrf
+                                                            <button type="submit" class="btn btn-primary">Retry Payment</button>
+                                                        </form>
+                                                    @endif
+                                                </td>
+                                            </tr>
+                                        @endfor
+
+                                        <!-- Display the total number of milestones -->
+                                        @if ($milestoneCount > 0)
+                                            <tr>
+                                                <td colspan="4"><b>Total Amount:</b></td>
+                                                <td><b>${{  number_format(($investment->package['roi'] * $investment->amount) / 100, 2) }}</b></td>
+                                            </tr>
+                                        @endif
+                                    </tbody> --}}
 @endsection

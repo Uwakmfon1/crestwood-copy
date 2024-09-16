@@ -92,6 +92,18 @@ class TransactionController extends Controller
                     'status' => 'approved'
                 ]);
                 break;
+            case 'wallet':
+                $user->wallet->increment('balance', $request['amount']);
+                $transaction = $user->savingsWallet->walletTransactions()->create([
+                    'user_id' => $user->id,
+                    'amount' => $request['amount'],
+                    'account_type' => $request['account'],
+                    'type' => 'deposit',
+                    'description' => env('APP_NAME') . ' admin Deposit',
+                    'method' => 'wallet',
+                    'status' => 'approved'
+                ]);
+                break;
             default:
                 return back()->withInput()->with('error', 'Invalid account method');
         }
@@ -155,6 +167,9 @@ class TransactionController extends Controller
                         break;
                     case 'investment':
                         $user->investmentWallet->increment('balance', $transaction['amount']);
+                        break;
+                    case 'wallet':
+                        $user->wallet->increment('balance', $transaction['amount']);
                         break;
                     default:
                         return back()->withInput()->with('error', 'Invalid account method');
@@ -327,7 +342,7 @@ class TransactionController extends Controller
             }
             $datum['sn'] = $i;
             if (auth()->user()->can('View Users') && $transaction->user){
-                $datum['name'] = '<a href="'.route('admin.users.show', $transaction->user['id']).'">'.ucwords($transaction->user['name']).'</a>';
+                $datum['name'] = '<a href="'.route('admin.users.show', $transaction->user['id']).'">'.ucwords($transaction->user['first_name']) . ' ' . ucwords($transaction->user['last_name']).'</a>';
             }else{
                 $datum['name'] = "Deleted Account";
             }
