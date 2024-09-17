@@ -108,6 +108,9 @@ Route::group(['middleware' => ['auth','verified', 'active_user', 'profile_comple
         Route::get('/user/asset', [TradingController::class, 'asset'])->name('assets');
         Route::get('/wallet/history', [App\Http\Controllers\TransactionController::class, 'history'])->name('transactions.history');
         Route::post('/balance/topup', [WalletController::class, 'walletSwap'])->name('swap.balance');
+
+        Route::get('/user/asset/view/{stock}', [TradingController::class, 'showAsset'])->name('user.asset');
+        Route::get('/wallet-balance', [WalletController::class, 'getWalletBalance'])->name('wallet.balance');
         
     // });
 });

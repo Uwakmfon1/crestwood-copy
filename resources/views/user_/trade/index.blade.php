@@ -102,7 +102,7 @@
                                     <div id="apple-stock-chart"></div>
                                 </div>
                                 <div class="mt-1">
-                                    <a href="javascript:void(0);" class="py-2 fs-11 text-primary fw-semibold" data-bs-toggle="modal" data-bs-target="#nairaDepositModal">Top Up Wallet <i class="fe fe-arrow-right me-2 align-middle d-inline-block"></i></a>
+                                    <a href="javascript:void(0);" class="py-2 fs-11 text-primary fw-semibold" data-bs-toggle="modal" data-bs-target="#transferModal" id="openTradingModal">Top Up Wallet <i class="fe fe-arrow-right me-2 align-middle d-inline-block"></i></a>
                                 </div>
                             </div>
                         </div>
@@ -817,71 +817,76 @@
 
                                     <div class="modal fade" id="exampleModal{{ $stock->id }}buy" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                         <div class="modal-dialog modal-lg">
-                                            <div class="modal-content" style="height: 500px; max-width: 650px !important;">
+                                            <div class="modal-content" style="height: 600px; max-width: 650px !important;">
                                                 <div class="modal-body p-2" style="height: 100%;">
-                                                    <div id="tradingview-widget-{{ $stock->id }}" style="height: 60%;"></div>
+                                                    <div id="tradingview-widget-{{ $stock->id }}" style="height: 55%;"></div>
                                                     <div class="">
                                                         <div class="d-flex align-items-center flex-wrap gap-3">
                                                             <div class="flex-grow-1 my-1">
-                                                                <div class="row">
-                                                                    <div class="col-6">
-                                                                        <div class="card custom-card overflow-hidden" style="border-radius: 10px; padding: 0px !important; margin: 0px !important;">
-                                                                            <div class="card-body p-3 d-flex gap-2">
+                                                                <div class="card custom-card overflow-hidden">
+                                                                    <div class="d-flex justify-content-between">
+                                                                        <div style="border-radius: 10px; padding: 0px !important; margin: 0px !important;">
+                                                                            <div class="px-3 py-4">
                                                                                 <div>
-                                                                                    <span class="avatar avatar-sm bg-primary svg-white">
-                                                                                        <i class="ti ti-school fs-18"></i>
+                                                                                    <span class="d-block mb-1 fs-12 text-muted">Purchase</span>
+                                                                                    <h5 class="fw-bold fs-24 mb-1">$<span id="wallet-price-{{ $key }}">0.00</span></h5>
+                                                                                    <span class="text-muted fs-12">
+                                                                                        Quantity: <span class="text-primary fs-15 fw-bold ms-1 d-inline-block" id="quantity-display-{{ $key }}">0.00 Units</span>
                                                                                     </span>
                                                                                 </div>
-                                                                                <div>
-                                                                                    <span class="d-block mb-1 fs-12 text-muted">Stock Price</span>
-                                                                                    <h5 class="fw-semibold mb-1">${{ number_format($stock->price, 2) }}</h5>
-                                                                                    <span class="fs-12">
-                                                                                        Today 
-                                                                                        <span class="{{ $stock->changes_percentage < 0 ? 'text-danger' : 'text-success' }} fs-10 fw-medium ms-1 d-inline-block">
-                                                                                            <i class="{{ $stock->changes_percentage < 0 ? 'ri-arrow-down-line' : 'ri-arrow-up-line' }} me-1"></i>
-                                                                                            {{ number_format($stock->changes_percentage, 2) }}%
-                                                                                        </span>
-                                                                                    </span>
-                                                                                </div>
-                                                                            </div>
+                                                                            </div> 
                                                                         </div>
-                                                                    </div>
-
-                                                                    <div class="col-6">
-                                                                        <div class="card custom-card overflow-hidden" style="border-radius: 10px; padding: 0px !important; margin: 0px !important;">
-                                                                            <div class="card-body p-3 d-flex gap-2">
-                                                                                <div>
-                                                                                    <span class="avatar avatar-sm bg-primary svg-white">
-                                                                                        <i class="ti ti-school fs-18"></i>
+                                                                        <div class="text-end" style="border-radius: 10px; padding: 0px !important; margin: 0px !important;">
+                                                                            <div class="px-3 py-4">
+                                                                                <span class="d-block mb-1 fs-12 text-muted">Stock Price</span>
+                                                                                <h5 class="fw-bold fs-24 mb-1">${{ number_format($stock->price, 2) }}</h5>
+                                                                                <span class="fs-12 text-muted">
+                                                                                    Today 
+                                                                                    <span class="{{ $stock->changes_percentage < 0 ? 'text-danger' : 'text-success' }} fs-14 fw-bold ms-1 d-inline-block">
+                                                                                        <i class="{{ $stock->changes_percentage < 0 ? 'ri-arrow-down-line' : 'ri-arrow-up-line' }} me-1"></i>
+                                                                                        {{ number_format($stock->changes_percentage, 2) }}%
                                                                                     </span>
-                                                                                </div>
-                                                                                <div>
-                                                                                    <span class="d-block mb-1 fs-12 text-muted">Wallet Price</span>
-                                                                                    <h5 class="fw-semibold mb-1">$<span id="wallet-price-{{ $key }}">{{ number_format($stock->price * 0.001, 2) }}</span></h5>
-                                                                                    <span class="fs-12">
-                                                                                        Quantity <span class="text-primary fs-10 fw-bold ms-1 d-inline-block" id="quantity-display-{{ $key }}">0.001 Unit</span>
-                                                                                    </span>
-                                                                                </div>
-                                                                            </div>
+                                                                                </span>
+                                                                            </div> 
                                                                         </div>
                                                                     </div>
                                                                 </div>
                                                             </div>
                                                         </div>
                                                     </div>
+
+                                                    <!-- Form for Stock Purchase -->
                                                     <form action="{{ route('trade.stock') }}" method="post">
                                                         @csrf
-                                                        <div class="input-group my-1">
-                                                            <button type="button" class="input-group-text btn btn-primary-light btn-wave decrement-btn" style="border-radius: 20px 0px 0px 20px;">&lt;</button>
-                                                            <input type="number" name="quantity" step="0.001" class="form-control text-center quantity-input" id="quantity-input-{{ $key }}" placeholder="Enter Quantity..." aria-label="Stock Quantity" value="0.001" min="0.001" data-key="{{ $key }}" data-price="{{ $stock->price }}" required>
-                                                            <button type="button" class="input-group-text btn btn-primary-light btn-wave increment-btn" style="border-radius: 0px 20px 20px 0px;">&gt;</button>
+                                                        <div class="row">
+                                                            <div class="col-6 text-center">
+                                                                <label class="text-muted fs-12" for="quantity-input-{{ $key }}">Quantity</label>
+                                                                <div class="input-group my-1">
+                                                                    <button type="button" class="input-group-text btn btn-primary-light btn-wave decrement-btn" style="border-radius: 5px 0px 0px 5px;">-</button>
+                                                                    <input type="number" name="quantity" class="form-control text-center quantity-input" id="quantity-input-{{ $key }}" placeholder="0.00" aria-label="Stock Quantity" value="0.0000" data-key="{{ $key }}" data-price="{{ $stock->price }}" min="0.0001" step="0.0001" required>
+                                                                    <button type="button" class="input-group-text btn btn-primary-light btn-wave increment-btn" style="border-radius: 0px 5px 5px 0px;">+</button>
+                                                                </div>
+                                                            </div>
+
+                                                            <div class="col-6 text-center">
+                                                                <label class="text-muted fs-12" for="amount-input-{{ $key }}">Amount</label>
+                                                                <div class="input-group my-1">
+                                                                    <button type="button" class="input-group-text btn btn-primary-light btn-wave" style="border-radius: 5px 0px 0px 5px;">$</button>
+                                                                    <input type="number" name="amountX" class="form-control text-center amount-input" id="amount-input-{{ $key }}" placeholder="0.0000" aria-label="Stock Amount" value="0.00" data-key="{{ $key }}" data-price="{{ $stock->price }}" min="0.0000" step="0.0001" required>
+                                                                    <!-- Optional button for amount -->
+                                                                </div>
+                                                            </div>
                                                         </div>
+
+                                                        <!-- Hidden Inputs -->
                                                         <div>
                                                             <input type="hidden" name="stock_id" value="{{ $stock->id }}">
                                                             <input type="hidden" name="stock_symbol" value="{{ $stock->symbol }}">
                                                             <input type="hidden" name="amount" value="{{ $stock->price }}">
                                                             <input type="hidden" name="type" value="buy">
                                                         </div>
+
+                                                        <!-- Submit Button -->
                                                         <button class="my-1 btn btn-wave btn-md btn-success waves-effect waves-light w-100" type="submit">
                                                             BUY NOW <i class="ri-arrow-right-line align-middle"></i>
                                                         </button>
@@ -893,76 +898,76 @@
 
                                     <div class="modal fade" id="exampleModal{{ $stock->id }}sell" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                         <div class="modal-dialog modal-lg">
-                                            <div class="modal-content" style="height: 500px; max-width: 650px !important;">
+                                            <div class="modal-content" style="height: 600px; max-width: 650px !important;">
                                                 <div class="modal-body p-2" style="height: 100%;">
-                                                    <div id="tradingview-widget-{{ $stock->id }}sell" style="height: 60%;"></div>
+                                                    <div id="tradingview-widget-{{ $stock->id }}sell" style="height: 55%;"></div>
                                                     <div class="">
                                                         <div class="d-flex align-items-center flex-wrap gap-3">
                                                             <div class="flex-grow-1 my-1">
-                                                                <div class="row">
-                                                                    <div class="col-6">
-                                                                        <div class="card custom-card overflow-hidden" style="border-radius: 10px; padding: 0px !important; margin: 0px !important;">
-                                                                            <div class="card-body p-3 d-flex gap-2">
+                                                                <div class="card custom-card overflow-hidden">
+                                                                    <div class="d-flex justify-content-between">
+                                                                        <div style="border-radius: 10px; padding: 0px !important; margin: 0px !important;">
+                                                                            <div class="px-3 py-4">
                                                                                 <div>
-                                                                                    <span class="avatar avatar-sm bg-primary svg-white">
-                                                                                        <i class="ti ti-school fs-18"></i>
+                                                                                    <span class="d-block mb-1 fs-12 text-muted">Sale</span>
+                                                                                    <h5 class="fw-bold fs-24 mb-1">$<span id="sell-wallet-price-{{ $key }}">0.00</span></h5>
+                                                                                    <span class="text-muted fs-12">
+                                                                                        Quantity: <span class="text-primary fs-15 fw-bold ms-1 d-inline-block" id="sell-quantity-display-{{ $key }}">0.00 Units</span>
                                                                                     </span>
                                                                                 </div>
-                                                                                <div>
-                                                                                    <span class="d-block mb-1 fs-12 text-muted">Stock Price</span>
-                                                                                    <h5 class="fw-semibold mb-1">${{ number_format($stock['price'], 2) }}</h5>
-                                                                                    <span class="fs-12">
-                                                                                        Today 
-                                                                                        <span class="{{ $stock['changes_percentage'] < 0 ? 'text-danger' : 'text-success' }} fs-10 fw-medium ms-1 d-inline-block">
-                                                                                            <i class="{{ $stock['changes_percentage'] < 0 ? 'ri-arrow-down-line' : 'ri-arrow-up-line' }} me-1"></i>
-                                                                                            {{ number_format($stock['changes_percentage'], 2) }}%
-                                                                                        </span>
-                                                                                    </span>
-                                                                                </div>
-                                                                            </div>
+                                                                            </div> 
                                                                         </div>
-                                                                    </div>
-
-                                                                    <div class="col-6">
-                                                                        <div class="card custom-card overflow-hidden" style="border-radius: 10px; padding: 0px !important; margin: 0px !important;">
-                                                                            <div class="card-body p-3 d-flex gap-2">
-                                                                                <div>
-                                                                                    <span class="avatar avatar-sm bg-primary svg-white">
-                                                                                        <i class="ti ti-school fs-18"></i>
+                                                                        <div class="text-end" style="border-radius: 10px; padding: 0px !important; margin: 0px !important;">
+                                                                            <div class="px-3 py-4">
+                                                                                <span class="d-block mb-1 fs-12 text-muted">Stock Price</span>
+                                                                                <h5 class="fw-bold fs-24 mb-1">${{ number_format($stock->price, 2) }}</h5>
+                                                                                <span class="fs-12 text-muted">
+                                                                                    Today 
+                                                                                    <span class="{{ $stock->changes_percentage < 0 ? 'text-danger' : 'text-success' }} fs-14 fw-bold ms-1 d-inline-block">
+                                                                                        <i class="{{ $stock->changes_percentage < 0 ? 'ri-arrow-down-line' : 'ri-arrow-up-line' }} me-1"></i>
+                                                                                        {{ number_format($stock->changes_percentage, 2) }}%
                                                                                     </span>
-                                                                                </div>
-                                                                                <div>
-                                                                                    <span class="d-block mb-1 fs-12 text-muted">Wallet Price</span>
-                                                                                    <h5 class="fw-semibold mb-1">$<span id="wallet-price-{{ $key }}">{{ number_format($stock['price'], 2) }}</span></h5>
-                                                                                    <span class="fs-12">
-                                                                                        Quantity <span class="text-primary fs-10 fw-bold ms-1 d-inline-block" id="quantity-display-{{ $key }}">1 Unit</span>
-                                                                                    </span>
-                                                                                </div>
-                                                                            </div>
+                                                                                </span>
+                                                                            </div> 
                                                                         </div>
                                                                     </div>
                                                                 </div>
                                                             </div>
                                                         </div>
                                                     </div>
+
+                                                    <!-- Form for Stock Sale -->
                                                     <form action="{{ route('trade.stock') }}" method="post">
                                                         @csrf
-                                                        <div class="input-group my-1">
-                                                            <button type="button" class="input-group-text btn btn-primary-light btn-wave decrement-btn" style="border-radius: 20px 0px 0px 20px;">&lt;</button>
-                                                                <input type="number" name="quantity" step="0.001" class="form-control text-center quantity-input" id="quantity-input-{{ $key }}" placeholder="Enter Quantity..." aria-label="Stock Quantity" min="0.001" data-key="{{ $key }}" data-price="{{ $stock['price'] }}" value="" required>
-                                                            <button type="button" class="input-group-text btn btn-primary-light btn-wave increment-btn" style="border-radius: 0px 20px 20px 0px;">&gt;</button>
-                                                        </div>
-                                                        <div>
-                                                            {{-- <input type="hidden" name="stock_id" value="{{ $asset->stock['id'] }}">
-                                                            <input type="hidden" name="stock_symbol" value="{{ $asset->stock['symbol'] }}">
-                                                            <input type="hidden" name="amount" value="{{ $asset->stock['price'] }}">
-                                                            <input type="hidden" name="type" value="sell"> --}}
+                                                        <div class="row">
+                                                            <div class="col-6 text-center">
+                                                                <label class="text-muted fs-12" for="sell-quantity-input-{{ $key }}">Quantity</label>
+                                                                <div class="input-group my-1">
+                                                                    <button type="button" class="input-group-text btn btn-primary-light btn-wave sell-decrement-btn" style="border-radius: 5px 0px 0px 5px;">-</button>
+                                                                    <input type="number" name="quantity" class="form-control text-center sell-quantity-input" id="sell-quantity-input-{{ $key }}" placeholder="0.00" aria-label="Stock Quantity" value="0.0000" data-key="{{ $key }}" data-price="{{ $stock->price }}" min="0.0001" step="0.0001" required>
+                                                                    <button type="button" class="input-group-text btn btn-primary-light btn-wave sell-increment-btn" style="border-radius: 0px 5px 5px 0px;">+</button>
+                                                                </div>
+                                                            </div>
 
+                                                            <div class="col-6 text-center">
+                                                                <label class="text-muted fs-12" for="sell-amount-input-{{ $key }}">Amount</label>
+                                                                <div class="input-group my-1">
+                                                                    <button type="button" class="input-group-text btn btn-primary-light btn-wave" style="border-radius: 5px 0px 0px 5px;">$</button>
+                                                                    <input type="number" name="amountX" class="form-control text-center sell-amount-input" id="sell-amount-input-{{ $key }}" placeholder="0.00" aria-label="Stock Amount" value="0.00" data-key="{{ $key }}" data-price="{{ $stock->price }}" min="0.00" step="0.0001" required>
+                                                                    <!-- Optional button for amount -->
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+                                                        <!-- Hidden Inputs -->
+                                                        <div>
                                                             <input type="hidden" name="stock_id" value="{{ $stock->id }}">
                                                             <input type="hidden" name="stock_symbol" value="{{ $stock->symbol }}">
                                                             <input type="hidden" name="amount" value="{{ $stock->price }}">
-                                                            <input type="hidden" name="type" value="buy">
+                                                            <input type="hidden" name="type" value="sell">
                                                         </div>
+
+                                                        <!-- Submit Button -->
                                                         <button class="my-1 btn btn-wave btn-md btn-danger waves-effect waves-light w-100" type="submit">
                                                             SELL NOW <i class="ri-arrow-right-line align-middle"></i>
                                                         </button>
@@ -971,6 +976,7 @@
                                             </div>
                                         </div>
                                     </div>
+
 
                                     <script>
                                         document.addEventListener('DOMContentLoaded', function() {
@@ -1101,63 +1107,8 @@
             </div>
         </div>
 
-        <div class="modal fade" id="nairaDepositModal" tabindex="-1" role="dialog" aria-labelledby="nairaDepositModalLabel" aria-hidden="true">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                    <form method="POST" action="{{ route('swap.balance') }}" id="depositForm">
-                        @csrf
-                        <div class="modal-header">
-                            <h5 class="modal-title" id="nairaDepositModalLabel">Top Up</h5>
-                        </div>
-                        <div class="modal-body">
-                            <div class="form-group">
-                                <label for="amountDeposit" class="form-label">Amount</label>
-                                <input type="number" value="{{ old('amount') }}" required step="any" class="form-control" name="amount" id="amountDeposit" placeholder="Amount">
-                                @error('amount')
-                                    <strong class="small text-danger">
-                                        {{ $message }}
-                                    </strong>
-                                @enderror
-                            </div>
-                            <div class="form-group my-4">
-                                <label for="paymentDeposit" class="form-label">From</label>
-                                <select name="from_account" class="form-control text-dark" required id="paymentDeposit">
-                                    <option value="wallet">Portfolio Wallet</option>
-                                    <option value="savings">Savings Wallet</option>
-                                    <option value="trading">Trading Wallet</option>
-                                </select>
-                                @error('from_account')
-                                    <strong class="small text-danger">
-                                        {{ $message }}
-                                    </strong>
-                                @enderror
-                            </div>
-                            <div class="form-group my-4">
-                                <input type="hidden" name="to_account" value="trading">
-                                <label for="paymentDeposit" class="form-label">To</label>
-                                <select name="to_account" class="form-control text-dark" disabled id="paymentDeposit">
-                                    <option value="investment">Trading Wallet</option>
-                                </select>
-                            </div>
-                        </div>
-                        <div id="securedByPaystackLogo" style="display: none" class="mx-auto text-center">
-                            <img src="{{ asset('assets/images/paystack.png') }}" class="img-fluid mb-3" alt="Secured-by-paystack">
-                        </div>
-                        <div id="bankDetailsForDepositForm" class="alert mx-2 alert-primary">
-                            <div class="">
-                                <p class=""><strong>Note: </strong> A sum of <strong>$100.98</strong> will be transferred into your Trading wallet</p>
-                            </div>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                            <!-- <button type="button" id="transfer" onclick="confirmFormSubmit('depositForm')" class="btn btn-primary" style="display: none;">Deposit</button> -->
-                            <button type="submit" id="card"  class="btn btn-success">Top up</button>
-                            <!-- <button type="button" id="card" onclick="payWithMonnify()" class="btn btn-success">Deposit</button> -->
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
+        @include('partials.users.modal.topup')
+                    
     </div>
 </div>
 <!-- End::app-content -->
@@ -1180,47 +1131,140 @@
 <!-- Custom JS -->
 <script src="{{ asset('asset/js/custom.js') }}"></script>
 
-<script>
-    $(document).ready(function() {
-    // Function to update the wallet price
-    function updateWalletPrice($input) {
-        const key = $input.data('key'); // Get the key for the current stock
-        const pricePerUnit = parseFloat($input.data('price')); // Get the price for the current stock
-        const quantity = Math.max(0.001, parseFloat($input.val()) || 0.001); // Ensure quantity is at least 0.001
+<script> 
+$(document).ready(function() {
+    // Function to update wallet price and quantity display
+    function updateWalletPriceAndQuantity(key) {
+        const $quantityInput = $('#quantity-input-' + key);
+        const pricePerUnit = parseFloat($quantityInput.data('price'));
+        const quantity = parseFloat($quantityInput.val()) || 0; // Default to 0 if empty
         const totalPrice = pricePerUnit * quantity;
 
-        // Update the wallet price and quantity display
-        $('#wallet-price-' + key).text(totalPrice.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 }));
-        $('#quantity-display-' + key).text(`${quantity} Unit${quantity > 1 ? 's' : ''}`);
+        $('#wallet-price-' + key).text(totalPrice.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 4 }));
+        $('#quantity-display-' + key).text(`${parseFloat(quantity).toFixed(4)} Unit${quantity <= 1 ? 's' : ''}`);
     }
 
-    // Handle input change directly
+    // Function to update quantity based on amount
+    function updateQuantityFromAmount(key) {
+        const $amountInput = $('#amount-input-' + key);
+        const pricePerUnit = parseFloat($amountInput.data('price'));
+        const amount = parseFloat($amountInput.val()) || 0; // Default to 0 if empty
+        const quantity = amount / pricePerUnit;
+
+        $('#quantity-input-' + key).val(quantity.toFixed(4));
+        updateWalletPriceAndQuantity(key);
+    }
+
+    // Handle input change for amount
+    $('.amount-input').on('input', function() {
+        const key = $(this).data('key');
+        updateQuantityFromAmount(key);
+    });
+
+    // Handle input change for quantity manually
     $('.quantity-input').on('input', function() {
-        updateWalletPrice($(this));
+        const key = $(this).data('key');
+        updateWalletPriceAndQuantity(key);
     });
 
-    // Handle increment
+    // Handle increment button click for quantity
     $('.increment-btn').click(function() {
-        let $input = $(this).siblings('.quantity-input');
-        let step = parseFloat($input.attr('step')) || 1;
-        let currentValue = parseFloat($input.val()) || 0.001;
-        $input.val((currentValue + step).toFixed(3)); // Ensure 3 decimal places
-        updateWalletPrice($input);
+        const $quantityInput = $(this).siblings('.quantity-input');
+        const step = parseFloat($quantityInput.attr('step')) || 0.0001; // Default step is 0.0001 for more precision
+        const currentValue = parseFloat($quantityInput.val()) || 0;
+        const newValue = (currentValue + step).toFixed(4); // Ensure 4 decimal places
+
+        $quantityInput.val(newValue);
+        const key = $quantityInput.data('key');
+        updateWalletPriceAndQuantity(key);
+        // Also update the amount field based on the new quantity
+        updateWalletPriceAndQuantity(key); // Update amount
     });
 
-    // Handle decrement
+    // Handle decrement button click for quantity
     $('.decrement-btn').click(function() {
-        let $input = $(this).siblings('.quantity-input');
-        let step = parseFloat($input.attr('step')) || 1;
-        let currentValue = parseFloat($input.val()) || 0.001;
-        let minValue = parseFloat($input.attr('min')) || 0.001;
-        let newValue = (currentValue - step).toFixed(3);
-            if (newValue >= minValue) {
-                $input.val(newValue); // Ensure it doesn't go below the minimum value
-                updateWalletPrice($input);
-            }
-        });
+        const $quantityInput = $(this).siblings('.quantity-input');
+        const step = parseFloat($quantityInput.attr('step')) || 0.0001; // Default step is 0.0001 for more precision
+        const currentValue = parseFloat($quantityInput.val()) || 0;
+        const minValue = parseFloat($quantityInput.attr('min')) || 0; // Minimum value is 0
+        let newValue = (currentValue - step).toFixed(4);
+
+        if (newValue >= minValue) {
+            $quantityInput.val(newValue);
+            const key = $quantityInput.data('key');
+            updateWalletPriceAndQuantity(key);
+            // Also update the amount field based on the new quantity
+            updateWalletPriceAndQuantity(key); // Update amount
+        }
     });
+});
+
+$(document).ready(function() {
+    // Function to update wallet price and quantity display for sell trade
+    function updateSellWalletPriceAndQuantity(key) {
+        const $quantityInput = $('#sell-quantity-input-' + key);
+        const pricePerUnit = parseFloat($quantityInput.data('price'));
+        const quantity = parseFloat($quantityInput.val()) || 0; // Default to 0 if empty
+        const totalPrice = pricePerUnit * quantity;
+
+        $('#sell-wallet-price-' + key).text(totalPrice.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 4 }));
+        $('#sell-quantity-display-' + key).text(`${parseFloat(quantity).toFixed(4)} Unit${quantity <= 1 ? 's' : ''}`);
+    }
+
+    // Function to update quantity based on amount for sell trade
+    function updateSellQuantityFromAmount(key) {
+        const $amountInput = $('#sell-amount-input-' + key);
+        const pricePerUnit = parseFloat($amountInput.data('price'));
+        const amount = parseFloat($amountInput.val()) || 0; // Default to 0 if empty
+        const quantity = amount / pricePerUnit;
+
+        $('#sell-quantity-input-' + key).val(quantity.toFixed(4));
+        updateSellWalletPriceAndQuantity(key);
+    }
+
+    // Handle input change for amount in sell trade
+    $('.sell-amount-input').on('input', function() {
+        const key = $(this).data('key');
+        updateSellQuantityFromAmount(key);
+    });
+
+    // Handle input change for quantity manually in sell trade
+    $('.sell-quantity-input').on('input', function() {
+        const key = $(this).data('key');
+        updateSellWalletPriceAndQuantity(key);
+    });
+
+    // Handle increment button click for quantity in sell trade
+    $('.sell-increment-btn').click(function() {
+        const $quantityInput = $(this).siblings('.sell-quantity-input');
+        const step = parseFloat($quantityInput.attr('step')) || 0.0001; // Default step is 0.0001 for more precision
+        const currentValue = parseFloat($quantityInput.val()) || 0;
+        const newValue = (currentValue + step).toFixed(4); // Ensure 4 decimal places
+
+        $quantityInput.val(newValue);
+        const key = $quantityInput.data('key');
+        updateSellWalletPriceAndQuantity(key);
+        // Also update the amount field based on the new quantity
+        updateSellWalletPriceAndQuantity(key); // Update amount
+    });
+
+    // Handle decrement button click for quantity in sell trade
+    $('.sell-decrement-btn').click(function() {
+        const $quantityInput = $(this).siblings('.sell-quantity-input');
+        const step = parseFloat($quantityInput.attr('step')) || 0.0001; // Default step is 0.0001 for more precision
+        const currentValue = parseFloat($quantityInput.val()) || 0;
+        const minValue = parseFloat($quantityInput.attr('min')) || 0; // Minimum value is 0
+        let newValue = (currentValue - step).toFixed(4);
+
+        if (newValue >= minValue) {
+            $quantityInput.val(newValue);
+            const key = $quantityInput.data('key');
+            updateSellWalletPriceAndQuantity(key);
+            // Also update the amount field based on the new quantity
+            updateSellWalletPriceAndQuantity(key); // Update amount
+        }
+    });
+});
 
 </script>
 

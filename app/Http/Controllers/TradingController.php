@@ -10,6 +10,7 @@ use App\Models\Setting;
 use App\Models\Trading;
 use Illuminate\Http\Request;
 use App\Models\SavingPackage;
+use App\Models\AssetTransaction;
 use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\Validator;
 use App\Http\Controllers\PaymentController;
@@ -79,9 +80,9 @@ class TradingController extends Controller
         $validator = Validator::make($request->all(), [
             'stock_id' => ['required'],
             'stock_symbol' => ['required'],
-            'amount' => ['required', 'numeric', 'min:10'],
+            'amount' => ['required', 'numeric', 'min:1'],
             'type' => ['required'],
-            'quantity' => ['required', 'numeric', 'min:0.001'],
+            'quantity' => ['required', 'numeric', 'min:0.00001'],
         ]);
 
         // Handle validation failures
@@ -127,9 +128,9 @@ class TradingController extends Controller
 
         // Set the success message
         if ($request['type'] == 'sell') {
-            $msg = 'Sold out ' . $request['quantity'] . ' of ' . $stock['name'] . ' - $' . ($request['amount'] * $request['quantity']) . 'successfully';
+            $msg = 'Sold out ' . $request['quantity'] . ' of ' . $stock['name'] . ' $' . ($request['amount'] * $request['quantity']) . 'successfully';
         } else {
-            $msg = 'Purchase of ' . $request['quantity'] . ' ' . $stock['name'] . ' - $' . ($request['amount'] * $request['quantity']) . ' was successful';
+            $msg = 'Purchase of ' . $request['quantity'] . ' ' . $stock['name'] . ' $' . ($request['amount'] * $request['quantity']) . ' was successful';
         }
     
         // Store the savings transaction and redirect
@@ -142,33 +143,44 @@ class TradingController extends Controller
         return back()->withInput()->with('error', 'Error processing investment');
     }
 
-    /**
-     * Handle the buy trade logic.
-     */
     private function handleBuyTrade($request, $amount)
     {
         $existingTrade = auth()->user()->trades()->where('stock_id', $request['stock_id'])->first();
-
+        $stock = Stock::find($request['stock_id']); // Assuming you have stock data
+        
         if ($existingTrade) {
+            // Update the existing trade's quantity
             $existingTrade->increment('quantity', $request['quantity']);
-            return $existingTrade;
+        } else {
+            // Create a new trade if it doesn't exist
+            $existingTrade = auth()->user()->trades()->create([
+                'stock_id' => $request['stock_id'],
+                'type' => $request['type'],
+                'amount' => $request['amount'],
+                'quantity' => $request['quantity'],
+                'stock_symbol' => $request['stock_symbol']
+            ]);
         }
 
-        return auth()->user()->trades()->create([
+        // Create an asset transaction record for the buy trade
+        AssetTransaction::create([
+            'user_id' => auth()->id(),
             'stock_id' => $request['stock_id'],
-            'type' => $request['type'],
-            'amount' => $request['amount'],
+            'price' => $stock->price, // Assuming you are storing the stock price
             'quantity' => $request['quantity'],
-            'stock_symbol' => $request['stock_symbol']
+            'amount' => $amount,
+            'profit' => 0, // Initial profit for buy trades would be 0
+            'status' => 'open',
+            'type' => 'buy',
         ]);
+
+        return $existingTrade;
     }
 
-    /**
-     * Handle the sell trade logic.
-     */
     private function handleSellTrade($request, $stockAmount)
     {
         $existingTrade = auth()->user()->trades()->where('stock_id', $request['stock_id'])->first();
+        $stock = Stock::find($request['stock_id']); // Fetch stock data
 
         if ($existingTrade) {
             if ($existingTrade->quantity >= $request['quantity']) {
@@ -180,6 +192,21 @@ class TradingController extends Controller
 
                 auth()->user()->tradingWallet->increment('balance', $stockAmount);
 
+                // Calculate profit for the sell trade
+                $profit = ($request['quantity'] * $stock->price) - ($existingTrade->amount); //this is wrong
+
+                // Create an asset transaction record for the sell trade
+                AssetTransaction::create([
+                    'user_id' => auth()->id(),
+                    'stock_id' => $request['stock_id'],
+                    'price' => $stock->price,
+                    'quantity' => $request['quantity'],
+                    'amount' => $stockAmount,
+                    'profit' => $profit, // Calculate profit for sell trades
+                    'status' => 'closed',
+                    'type' => 'sell',
+                ]);
+
                 return $existingTrade;
             }
 
@@ -188,6 +215,7 @@ class TradingController extends Controller
 
         return null; // No existing trade to sell
     }
+
 
     /**
      * Create a trading transaction.
@@ -238,6 +266,26 @@ class TradingController extends Controller
         return view('user_.trade.show', [
             'title' => 'Trading', 
             'stock' => $stock, 
+        ]);
+    }
+
+    public function showAsset (Stock $stock)
+    {
+        $asset = auth()->user()->assets()->where('stock_id', $stock->id)->get();
+
+        $ownAsset = auth()->user()->trades()->where('stock_id', $stock->id)->first();
+
+        $amount = ($ownAsset->amount * $ownAsset->quantity);
+        $quantity = $ownAsset->quantity;
+        $profit = $ownAsset->amount;
+
+        return view('user_.trade.show-asset', [
+            'title' => 'My Asset', 
+            'asset' => $asset,
+            'stock' => $stock, 
+            'amount' => $amount, 
+            'quantity' => $quantity, 
+            'profit' => $profit, 
         ]);
     }
 

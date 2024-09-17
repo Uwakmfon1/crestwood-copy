@@ -4,9 +4,11 @@ namespace App\Http\Controllers;
 
 use App\Models\Setting;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Http;
-use Symfony\Component\HttpFoundation\Exception\BadRequestException;
 use Illuminate\Support\Facades\Validator;
+use Symfony\Component\HttpFoundation\Exception\BadRequestException;
 
 class WalletController extends Controller
 {
@@ -114,68 +116,128 @@ class WalletController extends Controller
     {
         $user = auth()->user();
 
-        // Validate request
+        // Validate request with improved rules
         $validator = Validator::make($request->all(), [
             'amount' => ['required', 'numeric', 'gt:0'],
-            'from_account' => ['required'],
-            'to_account' => ['required'],
+            'from_account' => ['required', 'in:investment,savings,trading,wallet'],
+            'to_account' => ['required', 'in:investment,savings,trading'],
         ]);
 
         if ($validator->fails()) {
             return back()->withErrors($validator)->withInput()->with('error', 'Invalid input data');
         }
 
-        if($request['to_account'] == 'investment') {
+        $amount = $request->input('amount');
+        $fromAccount = $request->input('from_account');
+        $toAccount = $request->input('to_account');
 
-            $user->investmentWallet->increment('balance', $request['amount']);
-
-        } elseif($request['to_account'] == 'savings') {
-
-            $user->savingsWallet->increment('balance', $request['amount']);
-            
-        } elseif($request['to_account'] == 'trading') {
-
-            $user->tradingWallet->increment('balance', $request['amount']);
-
-        } else {
-            return back()->withInput()->with('error', 'Invalid account method');
+        // Ensure from_account and to_account are different
+        if ($fromAccount === $toAccount) {
+            return back()->withInput()->with('error', 'Source and destination accounts must be different');
         }
 
-        if($request['from_account'] == 'investment') {
-
-            $user->investmentWallet->decrement('balance', $request['amount']);
-
-        } elseif($request['from_account'] == 'savings') {
-
-            $user->savingsWallet->decrement('balance', $request['amount']);
-            
-        } elseif($request['from_account'] == 'trading') {
-
-            $user->tradingWallet->decrement('balance', $request['amount']);
-
-        } elseif($request['from_account'] == 'wallet') {
-
-            $user->wallet->decrement('balance', $request['amount']);
-
-        } else {
-            return back()->withInput()->with('error', 'Invalid account method');
+        // Get current balance from the appropriate method based on the from_account
+        switch ($fromAccount) {
+            case 'savings':
+                $fromWalletBalance = $user->savingsWalletBalance();
+                break;
+            case 'investment':
+                $fromWalletBalance = $user->investmentWalletBalance();
+                break;
+            case 'trading':
+                $fromWalletBalance = $user->tradingWalletBalance();
+                break;
+            case 'wallet':
+                $fromWalletBalance = $user->portfolioBalance();
+                break;
+            default:
+                return back()->withInput()->with('error', 'Invalid source account');
         }
 
-        $transaction = $user->wallet->walletTransactions()->create([
-            'user_id' => $user->id,
-            'amount' => $request['amount'],
-            'account_type' => 'wallet',
-            'type' => 'deposit',
-            'description' => 'Credit transaction from ' . $request['from_account'] .' to '. $request['to_account'],
-            'method' => 'wallet',
-            'status' => 'approved'
-        ]);
+        // Check if the user has enough balance in the source account
+        if ($fromWalletBalance < $amount) {
+            return back()->withInput()->with('error', 'Insufficient balance in the source account');
+        }
 
-        if ($transaction) {
-            // NotificationController::sendDepositSuccessfulNotification($transaction);
-            // return redirect()->route('admin.users.show', $user['id'])->with('success', 'Top up was made successfully');
+        // Start transaction to ensure atomicity
+        DB::beginTransaction();
+        try {
+            // Increment the balance of the destination account
+            switch ($toAccount) {
+                case 'savings':
+                    $user->savingsWallet->increment('balance', $amount);
+                    break;
+                case 'investment':
+                    $user->investmentWallet->increment('balance', $amount);
+                    break;
+                case 'trading':
+                    $user->tradingWallet->increment('balance', $amount);
+                    break;
+                default:
+                    return back()->withInput()->with('error', 'Invalid destination account');
+            }
+
+            // Decrement the balance of the source account
+            switch ($fromAccount) {
+                case 'savings':
+                    $user->savingsWallet->decrement('balance', $amount);
+                    break;
+                case 'investment':
+                    $user->investmentWallet->decrement('balance', $amount);
+                    break;
+                case 'trading':
+                    $user->tradingWallet->decrement('balance', $amount);
+                    break;
+                case 'wallet':
+                    $user->wallet->decrement('balance', $amount);
+                    break;
+            }
+
+            // Log the transaction
+            $transaction = $user->wallet->walletTransactions()->create([
+                'user_id' => $user->id,
+                'amount' => $amount,
+                'account_type' => $toAccount,
+                'type' => 'deposit',
+                'description' => 'Transferred from ' . ucfirst($fromAccount) .' to '. ucfirst($toAccount),
+                'method' => 'wallet',
+                'status' => 'approved',
+            ]);
+
+            // If everything is fine, commit the transaction
+            DB::commit();
+
             return back()->with('success', 'Transfer was made successfully');
+
+        } catch (\Exception $e) {
+            // Rollback the transaction if something goes wrong
+            DB::rollBack();
+
+            // Optionally log the error for debugging
+            Log::error('Wallet transfer failed: ' . $e->getMessage());
+
+            return back()->withInput()->with('error', 'An error occurred during the transfer');
         }
-        return redirect()->route('admin.users.show', $user['id'])->with('error', 'Error processing deposit');
     }
+
+    public function getWalletBalance(Request $request)
+    {
+        $user = auth()->user();
+        $account = $request->query('account');
+
+        $balance = 0;
+        if ($account === 'savings') {
+            $balance = $user->savingsWalletBalance();
+        } elseif ($account === 'investment') {
+            $balance = $user->investmentWalletBalance();
+        } elseif ($account === 'trading') {
+            $balance = $user->tradingWalletBalance();
+        } elseif ($account === 'wallet') {
+            $balance = $user->portfolioBalance();
+        }
+
+        return response()->json(['balance' => $balance]);
+    }
+
+
 }

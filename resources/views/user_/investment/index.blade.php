@@ -60,7 +60,7 @@
                                         <span class="text-muted fs-12">Portfolio Balance<span class="text-success ms-2 d-inline-block">0.45%<i class="ti ti-arrow-narrow-up"></i></span></span>
                                     </div>
                                     <div class="mt-1">
-                                        <a href="javascript:void(0);" class="py-2 fs-11 text-primary fw-semibold" data-bs-toggle="modal" data-bs-target="#nairaDepositModal">Top Up Wallet <i class="fe fe-arrow-right me-2 align-middle d-inline-block"></i></a>
+                                        <a href="javascript:void(0);" class="py-2 fs-11 text-primary fw-semibold" data-bs-toggle="modal" data-bs-target="#transferModal" id="openInvestmentModal">Top Up Wallet <i class="fe fe-arrow-right me-2 align-middle d-inline-block"></i></a>
                                     </div>
                                 </div>
                             </div>
@@ -289,63 +289,7 @@
         </div>
         <!-- End:: row-2 -->
 
-        <div class="modal fade" id="nairaDepositModal" tabindex="-1" role="dialog" aria-labelledby="nairaDepositModalLabel" aria-hidden="true">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                    <form method="POST" action="{{ route('swap.balance') }}" id="depositForm">
-                        @csrf
-                        <div class="modal-header">
-                            <h5 class="modal-title" id="nairaDepositModalLabel">Top Up</h5>
-                        </div>
-                        <div class="modal-body">
-                            <div class="form-group">
-                                <label for="amountDeposit" class="form-label">Amount</label>
-                                <input type="number" value="{{ old('amount') }}" required step="any" class="form-control" name="amount" id="amountDeposit" placeholder="Amount">
-                                @error('amount')
-                                    <strong class="small text-danger">
-                                        {{ $message }}
-                                    </strong>
-                                @enderror
-                            </div>
-                            <div class="form-group my-4">
-                                <label for="paymentDeposit" class="form-label">From</label>
-                                <select name="from_account" class="form-control text-dark" required id="paymentDeposit">
-                                    <option value="wallet">Portfolio Wallet</option>
-                                    <option value="savings">Savings Wallet</option>
-                                    <option value="trading">Trading Wallet</option>
-                                </select>
-                                @error('from_account')
-                                    <strong class="small text-danger">
-                                        {{ $message }}
-                                    </strong>
-                                @enderror
-                            </div>
-                            <div class="form-group my-4">
-                                <input type="hidden" name="to_account" value="investment">
-                                <label for="paymentDeposit" class="form-label">To</label>
-                                <select name="to_account" class="form-control text-dark" disabled id="paymentDeposit">
-                                    <option value="investment">Investment Wallet</option>
-                                </select>
-                            </div>
-                        </div>
-                        <div id="securedByPaystackLogo" style="display: none" class="mx-auto text-center">
-                            <img src="{{ asset('assets/images/paystack.png') }}" class="img-fluid mb-3" alt="Secured-by-paystack">
-                        </div>
-                        <div id="bankDetailsForDepositForm" class="alert mx-2 alert-primary">
-                            <div class="">
-                                <p class=""><strong>Note: </strong> A sum of <strong>$100.98</strong> will be deposited into your Investment wallet</p>
-                            </div>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                            <!-- <button type="button" id="transfer" onclick="confirmFormSubmit('depositForm')" class="btn btn-primary" style="display: none;">Deposit</button> -->
-                            <button type="submit" id="card"  class="btn btn-success">Top up</button>
-                            <!-- <button type="button" id="card" onclick="payWithMonnify()" class="btn btn-success">Deposit</button> -->
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
+        @include('partials.users.modal.topup')
     </div>
 </div>
 <!-- End::app-content -->

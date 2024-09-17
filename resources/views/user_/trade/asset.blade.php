@@ -332,50 +332,57 @@
                                             <th>Asset</th>
                                             <th>Current Price</th>
                                             <th>Quantity</th>
-                                            <th>Purchase Amount</th>
-                                            <th>Profit (%)</th>
+                                            <th>Amount</th>
+                                            <th>Profit</th>
                                             <th>Date</th>
                                             <th>Action</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        @foreach($assets as $key=>$asset)
-                                            @php
-                                                $percentageDifference = (($asset->stock['price'] - $asset->amount) / $asset->amount) * 100;
-                                            @endphp
-                                            <tr>
-                                                <td>
-                                                    <div class="d-flex align-items-start gap-3">
-                                                        <span class="avatar avatar-md p-1 avatar-rounded bg-light">
-                                                            <img src="{{ $asset->stock['img'] }}" alt="" class="invert-1">
-                                                        </span>
-                                                        <div class="flex-fill lh-1">
-                                                            <a href="javascript:void(0);" class="d-block mb-1 fs-14 fw-medium">{{ $asset->stock['name'] }}</a>
-                                                            <span class="d-block fs-12 text-muted">{{ $asset->stock['symbol'] }}</span>
-                                                        </div>
-                                                    </div>
-                                                </td>
-                                                <td>${{ number_format($asset->stock['price'], 2) }}</td>
-                                                <td>{{ number_format($asset->quantity, 3) }}</td>
-                                                <td>
-                                                    ${{ number_format($asset['amount'] * $asset->quantity, 2) }}
-                                                    <span class="mx-3 badge bg-dark-transparent">${{ number_format($asset->amount, 2) }}</span>
-                                                </td>
-                                                <td>
-                                                    <span class="badge {{ $percentageDifference < 0 ? 'bg-danger-transparent' : 'bg-success-transparent' }}">
-                                                        {{ number_format($percentageDifference, 2) }}%
+                                    @foreach($assets as  $key=>$asset)
+                                        @php
+                                            // Calculate the amount the user has invested
+                                            $investmentAmount = $asset->amount * $asset->quantity; // This is the total amount the user spent when buying the asset.
+
+                                            // Calculate the current value of the asset based on its current price
+                                            $currentValue = $asset->stock['price'] * $asset->quantity;
+
+                                            // Calculate the profit (current value - investment amount)
+                                            $profit = $currentValue - $investmentAmount;
+
+                                            // Calculate percentage difference (profit percentage)
+                                            $percentageDifference = ($investmentAmount > 0) ? (($currentValue - $investmentAmount) / $investmentAmount) * 100 : 0;
+                                        @endphp
+                                        <tr>
+                                            <td>
+                                                <div class="d-flex align-items-start gap-3">
+                                                    <span class="avatar avatar-md p-1 avatar-rounded bg-light">
+                                                        <img src="{{ $asset->stock['img'] }}" alt="" class="invert-1">
                                                     </span>
-                                                </td>
-                                                <td>{{ $asset['created_at']->format('M d, Y \a\t h:i A') }}</td>
-                                                <td>
-                                                    <button class="btn bg-success-transparent text-success btn-wave waves-effect waves-light" data-bs-toggle="modal" data-bs-target="#exampleModal{{ $asset->id }}buy">
-                                                        BUY
-                                                    </button>
-                                                    <button class="btn bg-danger-transparent text-danger btn-wave waves-effect waves-light" data-bs-toggle="modal" data-bs-target="#exampleModal{{ $asset->id }}sell">
-                                                        SELL
-                                                    </button>
-                                                </td>
-                                            </tr>
+                                                    <div class="flex-fill lh-1">
+                                                        <a href="javascript:void(0);" class="d-block mb-1 fs-14 fw-medium">{{ $asset->stock['name'] }}</a>
+                                                        <span class="d-block fs-12 text-muted">{{ $asset->stock['symbol'] }}</span>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                            <td>${{ number_format($asset->stock['price'], 2) }}</td>
+                                            <td>{{ number_format($asset->quantity, 3) }}</td>
+                                            <td>
+                                                <span class="badge bg-dark-transparent">${{ number_format($investmentAmount, 2) }}</span>
+                                            </td>
+                                            <td>
+                                                ${{ number_format($profit, 2) }}
+                                                <span class="mx-2 badge {{ $percentageDifference < 0 ? 'bg-danger-transparent' : 'bg-success-transparent' }}">
+                                                    {{ number_format($percentageDifference, 2) }}%
+                                                </span>
+                                            </td>
+                                            <td>{{ $asset['created_at']->format('M d, Y \a\t h:i A') }}</td>
+                                            <td>
+                                                <a href="{{ route('user.asset', $asset->stock['id']) }}" class="btn bg-primary-transparent text-primary btn-wave waves-effect waves-light">
+                                                    View
+                                                </a>
+                                            </td>
+                                        </tr>
 
                                             <div class="modal fade" id="exampleModal{{ $asset->id }}sell" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                                 <div class="modal-dialog modal-lg">

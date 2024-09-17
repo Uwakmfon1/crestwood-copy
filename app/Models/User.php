@@ -411,6 +411,11 @@ class User extends Authenticatable implements MustVerifyEmail, JWTSubject
         return $this->hasMany(Transaction::class);
     }
 
+    public function assets(): HasMany
+    {
+        return $this->hasMany(AssetTransaction::class);
+    }
+
     public function nairaWallet(): HasOne
     {
         return $this->hasOne(NairaWallet::class);
