@@ -93,7 +93,8 @@ $(document).ready(function() {
                 method: 'GET',
                 data: { account: fromAccount },
                 success: function(response) {
-                    $('#fromAccountBalance').text('$' + response.balance.toFixed(2));
+                    const formattedBalance = response.balance.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,');
+                    $('#fromAccountBalance').text('$' + formattedBalance);
                 },
                 error: function() {
                     $('#fromAccountBalance').text('Error fetching balance');
