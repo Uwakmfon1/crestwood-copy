@@ -127,19 +127,342 @@
                 </div>
                 <div class="row">
                     <div class="col-12">
-                        <div class="card custom-card">
-                            <div class="card-header d-flex">
-                                <div class="card-title">Trading Assets</div>
-                                <div class="btn-group ms-auto">
-                                    <button class="btn btn-success btn-sm" id="one_month">1M</button>
-                                    <button class="btn btn-success btn-sm" id="six_months">6M</button>
-                                    <button class="btn btn-success btn-sm" id="one_year">1Y</button>
-                                    <button class="btn btn-success btn-sm" id="all">ALL</button>
-                                    <!-- <button class="btn btn-primary btn-sm" id="ytd">ALL</button> -->
+                        <div class="col-xxl-12 col-xl-12">
+                            <div class="card custom-card">
+                                <div class="card-body p-0">
+                                    <div class="table-responsive">
+                                        <table class="table text-nowrap">
+                                            <thead>
+                                                <tr>
+                                                    <th>Asset</th>
+                                                    <th>Current Price</th>
+                                                    <th>Quantity</th>
+                                                    <th>Amount</th>
+                                                    <th>Profit</th>
+                                                    <th>Date</th>
+                                                    <th>Action</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                            @foreach($assets as  $key=>$asset)
+                                                @php
+                                                    // Calculate the amount the user has invested
+                                                    $investmentAmount = $asset->amount * $asset->quantity; // This is the total amount the user spent when buying the asset.
+
+                                                    // Calculate the current value of the asset based on its current price
+                                                    $currentValue = $asset->stock['price'] * $asset->quantity;
+
+                                                    // Calculate the profit (current value - investment amount)
+                                                    $profit = $currentValue - $investmentAmount;
+
+                                                    // Calculate percentage difference (profit percentage)
+                                                    $percentageDifference = ($investmentAmount > 0) ? (($currentValue - $investmentAmount) / $investmentAmount) * 100 : 0;
+                                                @endphp
+                                                <tr>
+                                                    <td>
+                                                        <div class="d-flex align-items-start gap-3">
+                                                            <span class="avatar avatar-md p-1 avatar-rounded bg-light">
+                                                                <img src="{{ $asset->stock['img'] }}" alt="" class="invert-1">
+                                                            </span>
+                                                            <div class="flex-fill lh-1">
+                                                                <a href="javascript:void(0);" class="d-block mb-1 fs-14 fw-medium">{{ $asset->stock['name'] }}</a>
+                                                                <span class="d-block fs-12 text-muted">{{ $asset->stock['symbol'] }}</span>
+                                                            </div>
+                                                        </div>
+                                                    </td>
+                                                    <td>${{ number_format($asset->stock['price'], 2) }}</td>
+                                                    <td>{{ number_format($asset->quantity, 3) }}</td>
+                                                    <td>
+                                                        <span class="badge bg-dark-transparent">${{ number_format($investmentAmount, 2) }}</span>
+                                                    </td>
+                                                    <td>
+                                                        ${{ number_format($profit, 2) }}
+                                                        <span class="mx-2 badge {{ $percentageDifference < 0 ? 'bg-danger-transparent' : 'bg-success-transparent' }}">
+                                                            {{ number_format($percentageDifference, 2) }}%
+                                                        </span>
+                                                    </td>
+                                                    <td>{{ $asset['created_at']->format('M d, Y \a\t h:i A') }}</td>
+                                                    <td>
+                                                        <a href="{{ route('user.asset', $asset->stock['id']) }}" class="btn bg-primary-transparent text-primary btn-wave waves-effect waves-light">
+                                                            View
+                                                        </a>
+                                                    </td>
+                                                </tr>
+
+                                                    <div class="modal fade" id="exampleModal{{ $asset->id }}sell" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                        <div class="modal-dialog modal-lg">
+                                                            <div class="modal-content" style="height: 500px; max-width: 650px !important;">
+                                                                <div class="modal-body p-2" style="height: 100%;">
+                                                                    <div id="tradingview-widget-{{ $asset->id }}" style="height: 60%;"></div>
+                                                                    <div class="">
+                                                                        <div class="d-flex align-items-center flex-wrap gap-3">
+                                                                            <div class="flex-grow-1 my-1">
+                                                                                <div class="row">
+                                                                                    <div class="col-6">
+                                                                                        <div class="card custom-card overflow-hidden" style="border-radius: 10px; padding: 0px !important; margin: 0px !important;">
+                                                                                            <div class="card-body p-3 d-flex gap-2">
+                                                                                                <div>
+                                                                                                    <span class="avatar avatar-sm bg-primary svg-white">
+                                                                                                        <i class="ti ti-school fs-18"></i>
+                                                                                                    </span>
+                                                                                                </div>
+                                                                                                <div>
+                                                                                                    <span class="d-block mb-1 fs-12 text-muted">Stock Price</span>
+                                                                                                    <h5 class="fw-semibold mb-1">${{ number_format($asset->stock['price'], 2) }}</h5>
+                                                                                                    <span class="fs-12">
+                                                                                                        Today 
+                                                                                                        <span class="{{ $asset->stock['changes_percentage'] < 0 ? 'text-danger' : 'text-success' }} fs-10 fw-medium ms-1 d-inline-block">
+                                                                                                            <i class="{{ $asset->stock['changes_percentage'] < 0 ? 'ri-arrow-down-line' : 'ri-arrow-up-line' }} me-1"></i>
+                                                                                                            {{ number_format($asset->stock['changes_percentage'], 2) }}%
+                                                                                                        </span>
+                                                                                                    </span>
+                                                                                                </div>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                    </div>
+
+                                                                                    <div class="col-6">
+                                                                                        <div class="card custom-card overflow-hidden" style="border-radius: 10px; padding: 0px !important; margin: 0px !important;">
+                                                                                            <div class="card-body p-3 d-flex gap-2">
+                                                                                                <div>
+                                                                                                    <span class="avatar avatar-sm bg-primary svg-white">
+                                                                                                        <i class="ti ti-school fs-18"></i>
+                                                                                                    </span>
+                                                                                                </div>
+                                                                                                <div>
+                                                                                                    <span class="d-block mb-1 fs-12 text-muted">Wallet Price</span>
+                                                                                                    <h5 class="fw-semibold mb-1">$<span id="wallet-price-{{ $key }}">{{ number_format($asset->stock['price'] * $asset['quantity'], 2) }}</span></h5>
+                                                                                                    <span class="fs-12">
+                                                                                                        Quantity <span class="text-primary fs-10 fw-bold ms-1 d-inline-block" id="quantity-display-{{ $key }}">{{ $asset['quantity'] }} Unit{{ $asset['quantity'] > 1 ? 's' : '' }}</span>
+                                                                                                    </span>
+                                                                                                </div>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                    <form action="{{ route('trade.stock') }}" method="post">
+                                                                        @csrf
+                                                                        <div class="input-group my-1">
+                                                                            <button type="button" class="input-group-text btn btn-primary-light btn-wave decrement-btn" style="border-radius: 20px 0px 0px 20px;">&lt;</button>
+                                                                                <input type="number" name="quantity" step="0.001" class="form-control text-center quantity-input" id="quantity-input-{{ $key }}" placeholder="Enter Quantity..." aria-label="Stock Quantity" min="0.001" data-key="{{ $key }}" data-price="{{ $asset->stock['price'] }}" value="{{ $asset['quantity'] }}" required>
+                                                                            <button type="button" class="input-group-text btn btn-primary-light btn-wave increment-btn" style="border-radius: 0px 20px 20px 0px;">&gt;</button>
+                                                                        </div>
+                                                                        <div>
+                                                                            <input type="hidden" name="stock_id" value="{{ $asset->stock['id'] }}">
+                                                                            <input type="hidden" name="stock_symbol" value="{{ $asset->stock['symbol'] }}">
+                                                                            <input type="hidden" name="amount" value="{{ $asset->stock['price'] }}">
+                                                                            <input type="hidden" name="type" value="sell">
+                                                                        </div>
+                                                                        <button class="my-1 btn btn-wave btn-md btn-danger waves-effect waves-light w-100" type="submit">
+                                                                            SELL NOW <i class="ri-arrow-right-line align-middle"></i>
+                                                                        </button>
+                                                                    </form>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="modal fade" id="exampleModal{{ $asset->id }}buy" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                        <div class="modal-dialog modal-lg">
+                                                            <div class="modal-content" style="height: 500px; max-width: 650px !important;">
+                                                                <div class="modal-body p-2" style="height: 100%;">
+                                                                    <div id="tradingview-widget-{{ $asset->id }}buy" style="height: 60%;"></div>
+                                                                    <div class="">
+                                                                        <div class="d-flex align-items-center flex-wrap gap-3">
+                                                                            <div class="flex-grow-1 my-1">
+                                                                                <div class="row">
+                                                                                    <div class="col-6">
+                                                                                        <div class="card custom-card overflow-hidden" style="border-radius: 10px; padding: 0px !important; margin: 0px !important;">
+                                                                                            <div class="card-body p-3 d-flex gap-2">
+                                                                                                <div>
+                                                                                                    <span class="avatar avatar-sm bg-primary svg-white">
+                                                                                                        <i class="ti ti-school fs-18"></i>
+                                                                                                    </span>
+                                                                                                </div>
+                                                                                                <div>
+                                                                                                    <span class="d-block mb-1 fs-12 text-muted">Stock Price</span>
+                                                                                                    <h5 class="fw-semibold mb-1">${{ number_format($asset->stock['price'], 2) }}</h5>
+                                                                                                    <span class="fs-12">
+                                                                                                        Today 
+                                                                                                        <span class="{{ $asset->stock['changes_percentage'] < 0 ? 'text-danger' : 'text-success' }} fs-10 fw-medium ms-1 d-inline-block">
+                                                                                                            <i class="{{ $asset->stock['changes_percentage'] < 0 ? 'ri-arrow-down-line' : 'ri-arrow-up-line' }} me-1"></i>
+                                                                                                            {{ number_format($asset->stock['changes_percentage'], 2) }}%
+                                                                                                        </span>
+                                                                                                    </span>
+                                                                                                </div>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                    </div>
+
+                                                                                    <div class="col-6">
+                                                                                        <div class="card custom-card overflow-hidden" style="border-radius: 10px; padding: 0px !important; margin: 0px !important;">
+                                                                                            <div class="card-body p-3 d-flex gap-2">
+                                                                                                <div>
+                                                                                                    <span class="avatar avatar-sm bg-primary svg-white">
+                                                                                                        <i class="ti ti-school fs-18"></i>
+                                                                                                    </span>
+                                                                                                </div>
+                                                                                                <div>
+                                                                                                    <span class="d-block mb-1 fs-12 text-muted">Wallet Price</span>
+                                                                                                    <h5 class="fw-semibold mb-1">$<span id="wallet-price-{{ $key }}">{{ number_format($asset->stock['price'] * 0.001, 2) }}</span></h5>
+                                                                                                    <span class="fs-12">
+                                                                                                        Quantity <span class="text-primary fs-10 fw-bold ms-1 d-inline-block" id="quantity-display-{{ $key }}">0.001 Unit</span>
+                                                                                                    </span>
+                                                                                                </div>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                    <form action="{{ route('trade.stock') }}" method="post">
+                                                                        @csrf
+                                                                        <div class="input-group my-1">
+                                                                            <button type="button" class="input-group-text btn btn-primary-light btn-wave decrement-btn" style="border-radius: 20px 0px 0px 20px;">&lt;</button>
+                                                                            <input type="number" name="quantity" step="0.001" class="form-control text-center quantity-input" id="quantity-input-{{ $key }}" placeholder="Enter Quantity..." aria-label="Stock Quantity" value="0.001" min="0.001" data-key="{{ $key }}" data-price="{{ $asset->stock['price'] }}" required>
+                                                                            <button type="button" class="input-group-text btn btn-primary-light btn-wave increment-btn" style="border-radius: 0px 20px 20px 0px;">&gt;</button>
+                                                                        </div>
+                                                                        <div>
+                                                                            <input type="hidden" name="stock_id" value="{{ $asset->stock['id'] }}">
+                                                                            <input type="hidden" name="stock_symbol" value="{{ $asset->stock['symbol'] }}">
+                                                                            <input type="hidden" name="amount" value="{{ $asset->stock['price'] }}">
+                                                                            <input type="hidden" name="type" value="buy">
+                                                                        </div>
+                                                                        <button class="my-1 btn btn-wave btn-md btn-success waves-effect waves-light w-100" type="submit">
+                                                                            BUY NOW <i class="ri-arrow-right-line align-middle"></i>
+                                                                        </button>
+                                                                    </form>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                    <script>
+                                                        document.addEventListener('DOMContentLoaded', function() {
+                                                            $("#exampleModal{{ $asset->id }}sell").on('shown.bs.modal', function() {
+                                                                var widgetContainer = document.getElementById("tradingview-widget-{{ $asset->id }}");
+
+                                                                if (!widgetContainer.dataset.loaded) { // Check if the widget is already loaded
+                                                                    widgetContainer.dataset.loaded = true; // Mark as loaded to prevent reloading
+
+                                                                    var script = document.createElement('script');
+                                                                    script.type = 'text/javascript';
+                                                                    script.src = 'https://s3.tradingview.com/external-embedding/embed-widget-symbol-overview.js';
+                                                                    script.async = true;
+
+                                                                    script.textContent = JSON.stringify({
+                                                                        "symbols": [
+                                                                            ["{{ $asset->stock['name'] }}", "{{ $asset->stock['symbol'] }}|1M"]
+                                                                        ],
+                                                                        "chartOnly": false,
+                                                                        "width": "100%",
+                                                                        "height": "100%",
+                                                                        "locale": "en",
+                                                                        "colorTheme": "light",
+                                                                        "autosize": true,
+                                                                        "showVolume": false,
+                                                                        "showMA": false,
+                                                                        "hideDateRanges": false,
+                                                                        "hideMarketStatus": false,
+                                                                        "hideSymbolLogo": false,
+                                                                        "scalePosition": "right",
+                                                                        "scaleMode": "Normal",
+                                                                        "fontFamily": "-apple-system, BlinkMacSystemFont, Trebuchet MS, Roboto, Ubuntu, sans-serif",
+                                                                        "fontSize": "10",
+                                                                        "noTimeScale": false,
+                                                                        "valuesTracking": "1",
+                                                                        "changeMode": "price-and-percent",
+                                                                        "chartType": "area",
+                                                                        "maLineColor": "#2962FF",
+                                                                        "maLineWidth": 1,
+                                                                        "maLength": 9,
+                                                                        "headerFontSize": "medium",
+                                                                        "lineWidth": 2,
+                                                                        "lineType": 0,
+                                                                        "dateRanges": [
+                                                                            "1d|1",
+                                                                            "1m|30",
+                                                                            "3m|60",
+                                                                            "12m|1D",
+                                                                            "60m|1W",
+                                                                            "all|1M"
+                                                                        ]
+                                                                    });
+
+                                                                    widgetContainer.appendChild(script); // Append the script to the container
+                                                                }
+                                                            });
+                                                            $("#exampleModal{{ $asset->id }}buy").on('shown.bs.modal', function() {
+                                                                var widgetContainer = document.getElementById("tradingview-widget-{{ $asset->id }}buy");
+
+                                                                if (!widgetContainer.dataset.loaded) { // Check if the widget is already loaded
+                                                                    widgetContainer.dataset.loaded = true; // Mark as loaded to prevent reloading
+
+                                                                    var script = document.createElement('script');
+                                                                    script.type = 'text/javascript';
+                                                                    script.src = 'https://s3.tradingview.com/external-embedding/embed-widget-symbol-overview.js';
+                                                                    script.async = true;
+
+                                                                    script.textContent = JSON.stringify({
+                                                                        "symbols": [
+                                                                            ["{{ $asset->stock['name'] }}", "{{ $asset->stock['symbol'] }}|1M"]
+                                                                        ],
+                                                                        "chartOnly": false,
+                                                                        "width": "100%",
+                                                                        "height": "100%",
+                                                                        "locale": "en",
+                                                                        "colorTheme": "light",
+                                                                        "autosize": true,
+                                                                        "showVolume": false,
+                                                                        "showMA": false,
+                                                                        "hideDateRanges": false,
+                                                                        "hideMarketStatus": false,
+                                                                        "hideSymbolLogo": false,
+                                                                        "scalePosition": "right",
+                                                                        "scaleMode": "Normal",
+                                                                        "fontFamily": "-apple-system, BlinkMacSystemFont, Trebuchet MS, Roboto, Ubuntu, sans-serif",
+                                                                        "fontSize": "10",
+                                                                        "noTimeScale": false,
+                                                                        "valuesTracking": "1",
+                                                                        "changeMode": "price-and-percent",
+                                                                        "chartType": "area",
+                                                                        "maLineColor": "#2962FF",
+                                                                        "maLineWidth": 1,
+                                                                        "maLength": 9,
+                                                                        "headerFontSize": "medium",
+                                                                        "lineWidth": 2,
+                                                                        "lineType": 0,
+                                                                        "dateRanges": [
+                                                                            "1d|1",
+                                                                            "1m|30",
+                                                                            "3m|60",
+                                                                            "12m|1D",
+                                                                            "60m|1W",
+                                                                            "all|1M"
+                                                                        ]
+                                                                    });
+
+                                                                    widgetContainer.appendChild(script); // Append the script to the container
+                                                                }
+                                                            });
+                                                        });
+                                                    </script>
+                                                @endforeach
+                                            </tbody>
+                                        </table>
+                                        @if($assets->count() == 0)
+                                            <tr>
+                                                <p class="py-4 text-center">
+                                                    No assets...
+                                                </p>
+                                            </tr>
+                                        @endif
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="card-body">
-                                <div id="area-datetime"></div>
                             </div>
                         </div>
                     </div>
@@ -205,7 +528,7 @@
                                         <span class="text-muted fs-12 d-block">Owned assets</span>
                                     </div>
                                     <div>
-                                        <span class="fw-medium text-muted mb-0 fs-14">{{ $asset }}</span>
+                                        <span class="fw-medium text-muted mb-0 fs-14">{{ $asset->count() }}</span>
                                     </div>
                                 </div>
                             </li>
@@ -322,344 +645,7 @@
 
             <!-- Start:: row-2 -->
             <div class="row">
-                <div class="col-xxl-12 col-xl-12">
-                    <div class="card custom-card">
-                        <div class="card-body p-0">
-                            <div class="table-responsive">
-                                <table class="table text-nowrap">
-                                    <thead>
-                                        <tr>
-                                            <th>Asset</th>
-                                            <th>Current Price</th>
-                                            <th>Quantity</th>
-                                            <th>Amount</th>
-                                            <th>Profit</th>
-                                            <th>Date</th>
-                                            <th>Action</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                    @foreach($assets as  $key=>$asset)
-                                        @php
-                                            // Calculate the amount the user has invested
-                                            $investmentAmount = $asset->amount * $asset->quantity; // This is the total amount the user spent when buying the asset.
-
-                                            // Calculate the current value of the asset based on its current price
-                                            $currentValue = $asset->stock['price'] * $asset->quantity;
-
-                                            // Calculate the profit (current value - investment amount)
-                                            $profit = $currentValue - $investmentAmount;
-
-                                            // Calculate percentage difference (profit percentage)
-                                            $percentageDifference = ($investmentAmount > 0) ? (($currentValue - $investmentAmount) / $investmentAmount) * 100 : 0;
-                                        @endphp
-                                        <tr>
-                                            <td>
-                                                <div class="d-flex align-items-start gap-3">
-                                                    <span class="avatar avatar-md p-1 avatar-rounded bg-light">
-                                                        <img src="{{ $asset->stock['img'] }}" alt="" class="invert-1">
-                                                    </span>
-                                                    <div class="flex-fill lh-1">
-                                                        <a href="javascript:void(0);" class="d-block mb-1 fs-14 fw-medium">{{ $asset->stock['name'] }}</a>
-                                                        <span class="d-block fs-12 text-muted">{{ $asset->stock['symbol'] }}</span>
-                                                    </div>
-                                                </div>
-                                            </td>
-                                            <td>${{ number_format($asset->stock['price'], 2) }}</td>
-                                            <td>{{ number_format($asset->quantity, 3) }}</td>
-                                            <td>
-                                                <span class="badge bg-dark-transparent">${{ number_format($investmentAmount, 2) }}</span>
-                                            </td>
-                                            <td>
-                                                ${{ number_format($profit, 2) }}
-                                                <span class="mx-2 badge {{ $percentageDifference < 0 ? 'bg-danger-transparent' : 'bg-success-transparent' }}">
-                                                    {{ number_format($percentageDifference, 2) }}%
-                                                </span>
-                                            </td>
-                                            <td>{{ $asset['created_at']->format('M d, Y \a\t h:i A') }}</td>
-                                            <td>
-                                                <a href="{{ route('user.asset', $asset->stock['id']) }}" class="btn bg-primary-transparent text-primary btn-wave waves-effect waves-light">
-                                                    View
-                                                </a>
-                                            </td>
-                                        </tr>
-
-                                            <div class="modal fade" id="exampleModal{{ $asset->id }}sell" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                                <div class="modal-dialog modal-lg">
-                                                    <div class="modal-content" style="height: 500px; max-width: 650px !important;">
-                                                        <div class="modal-body p-2" style="height: 100%;">
-                                                            <div id="tradingview-widget-{{ $asset->id }}" style="height: 60%;"></div>
-                                                            <div class="">
-                                                                <div class="d-flex align-items-center flex-wrap gap-3">
-                                                                    <div class="flex-grow-1 my-1">
-                                                                        <div class="row">
-                                                                            <div class="col-6">
-                                                                                <div class="card custom-card overflow-hidden" style="border-radius: 10px; padding: 0px !important; margin: 0px !important;">
-                                                                                    <div class="card-body p-3 d-flex gap-2">
-                                                                                        <div>
-                                                                                            <span class="avatar avatar-sm bg-primary svg-white">
-                                                                                                <i class="ti ti-school fs-18"></i>
-                                                                                            </span>
-                                                                                        </div>
-                                                                                        <div>
-                                                                                            <span class="d-block mb-1 fs-12 text-muted">Stock Price</span>
-                                                                                            <h5 class="fw-semibold mb-1">${{ number_format($asset->stock['price'], 2) }}</h5>
-                                                                                            <span class="fs-12">
-                                                                                                Today 
-                                                                                                <span class="{{ $asset->stock['changes_percentage'] < 0 ? 'text-danger' : 'text-success' }} fs-10 fw-medium ms-1 d-inline-block">
-                                                                                                    <i class="{{ $asset->stock['changes_percentage'] < 0 ? 'ri-arrow-down-line' : 'ri-arrow-up-line' }} me-1"></i>
-                                                                                                    {{ number_format($asset->stock['changes_percentage'], 2) }}%
-                                                                                                </span>
-                                                                                            </span>
-                                                                                        </div>
-                                                                                    </div>
-                                                                                </div>
-                                                                            </div>
-
-                                                                            <div class="col-6">
-                                                                                <div class="card custom-card overflow-hidden" style="border-radius: 10px; padding: 0px !important; margin: 0px !important;">
-                                                                                    <div class="card-body p-3 d-flex gap-2">
-                                                                                        <div>
-                                                                                            <span class="avatar avatar-sm bg-primary svg-white">
-                                                                                                <i class="ti ti-school fs-18"></i>
-                                                                                            </span>
-                                                                                        </div>
-                                                                                        <div>
-                                                                                            <span class="d-block mb-1 fs-12 text-muted">Wallet Price</span>
-                                                                                            <h5 class="fw-semibold mb-1">$<span id="wallet-price-{{ $key }}">{{ number_format($asset->stock['price'] * $asset['quantity'], 2) }}</span></h5>
-                                                                                            <span class="fs-12">
-                                                                                                Quantity <span class="text-primary fs-10 fw-bold ms-1 d-inline-block" id="quantity-display-{{ $key }}">{{ $asset['quantity'] }} Unit{{ $asset['quantity'] > 1 ? 's' : '' }}</span>
-                                                                                            </span>
-                                                                                        </div>
-                                                                                    </div>
-                                                                                </div>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                            <form action="{{ route('trade.stock') }}" method="post">
-                                                                @csrf
-                                                                <div class="input-group my-1">
-                                                                    <button type="button" class="input-group-text btn btn-primary-light btn-wave decrement-btn" style="border-radius: 20px 0px 0px 20px;">&lt;</button>
-                                                                        <input type="number" name="quantity" step="0.001" class="form-control text-center quantity-input" id="quantity-input-{{ $key }}" placeholder="Enter Quantity..." aria-label="Stock Quantity" min="0.001" data-key="{{ $key }}" data-price="{{ $asset->stock['price'] }}" value="{{ $asset['quantity'] }}" required>
-                                                                    <button type="button" class="input-group-text btn btn-primary-light btn-wave increment-btn" style="border-radius: 0px 20px 20px 0px;">&gt;</button>
-                                                                </div>
-                                                                <div>
-                                                                    <input type="hidden" name="stock_id" value="{{ $asset->stock['id'] }}">
-                                                                    <input type="hidden" name="stock_symbol" value="{{ $asset->stock['symbol'] }}">
-                                                                    <input type="hidden" name="amount" value="{{ $asset->stock['price'] }}">
-                                                                    <input type="hidden" name="type" value="sell">
-                                                                </div>
-                                                                <button class="my-1 btn btn-wave btn-md btn-danger waves-effect waves-light w-100" type="submit">
-                                                                    SELL NOW <i class="ri-arrow-right-line align-middle"></i>
-                                                                </button>
-                                                            </form>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-
-                                            <div class="modal fade" id="exampleModal{{ $asset->id }}buy" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                                <div class="modal-dialog modal-lg">
-                                                    <div class="modal-content" style="height: 500px; max-width: 650px !important;">
-                                                        <div class="modal-body p-2" style="height: 100%;">
-                                                            <div id="tradingview-widget-{{ $asset->id }}buy" style="height: 60%;"></div>
-                                                            <div class="">
-                                                                <div class="d-flex align-items-center flex-wrap gap-3">
-                                                                    <div class="flex-grow-1 my-1">
-                                                                        <div class="row">
-                                                                            <div class="col-6">
-                                                                                <div class="card custom-card overflow-hidden" style="border-radius: 10px; padding: 0px !important; margin: 0px !important;">
-                                                                                    <div class="card-body p-3 d-flex gap-2">
-                                                                                        <div>
-                                                                                            <span class="avatar avatar-sm bg-primary svg-white">
-                                                                                                <i class="ti ti-school fs-18"></i>
-                                                                                            </span>
-                                                                                        </div>
-                                                                                        <div>
-                                                                                            <span class="d-block mb-1 fs-12 text-muted">Stock Price</span>
-                                                                                            <h5 class="fw-semibold mb-1">${{ number_format($asset->stock['price'], 2) }}</h5>
-                                                                                            <span class="fs-12">
-                                                                                                Today 
-                                                                                                <span class="{{ $asset->stock['changes_percentage'] < 0 ? 'text-danger' : 'text-success' }} fs-10 fw-medium ms-1 d-inline-block">
-                                                                                                    <i class="{{ $asset->stock['changes_percentage'] < 0 ? 'ri-arrow-down-line' : 'ri-arrow-up-line' }} me-1"></i>
-                                                                                                    {{ number_format($asset->stock['changes_percentage'], 2) }}%
-                                                                                                </span>
-                                                                                            </span>
-                                                                                        </div>
-                                                                                    </div>
-                                                                                </div>
-                                                                            </div>
-
-                                                                            <div class="col-6">
-                                                                                <div class="card custom-card overflow-hidden" style="border-radius: 10px; padding: 0px !important; margin: 0px !important;">
-                                                                                    <div class="card-body p-3 d-flex gap-2">
-                                                                                        <div>
-                                                                                            <span class="avatar avatar-sm bg-primary svg-white">
-                                                                                                <i class="ti ti-school fs-18"></i>
-                                                                                            </span>
-                                                                                        </div>
-                                                                                        <div>
-                                                                                            <span class="d-block mb-1 fs-12 text-muted">Wallet Price</span>
-                                                                                            <h5 class="fw-semibold mb-1">$<span id="wallet-price-{{ $key }}">{{ number_format($asset->stock['price'] * 0.001, 2) }}</span></h5>
-                                                                                            <span class="fs-12">
-                                                                                                Quantity <span class="text-primary fs-10 fw-bold ms-1 d-inline-block" id="quantity-display-{{ $key }}">0.001 Unit</span>
-                                                                                            </span>
-                                                                                        </div>
-                                                                                    </div>
-                                                                                </div>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                            <form action="{{ route('trade.stock') }}" method="post">
-                                                                @csrf
-                                                                <div class="input-group my-1">
-                                                                    <button type="button" class="input-group-text btn btn-primary-light btn-wave decrement-btn" style="border-radius: 20px 0px 0px 20px;">&lt;</button>
-                                                                    <input type="number" name="quantity" step="0.001" class="form-control text-center quantity-input" id="quantity-input-{{ $key }}" placeholder="Enter Quantity..." aria-label="Stock Quantity" value="0.001" min="0.001" data-key="{{ $key }}" data-price="{{ $asset->stock['price'] }}" required>
-                                                                    <button type="button" class="input-group-text btn btn-primary-light btn-wave increment-btn" style="border-radius: 0px 20px 20px 0px;">&gt;</button>
-                                                                </div>
-                                                                <div>
-                                                                    <input type="hidden" name="stock_id" value="{{ $asset->stock['id'] }}">
-                                                                    <input type="hidden" name="stock_symbol" value="{{ $asset->stock['symbol'] }}">
-                                                                    <input type="hidden" name="amount" value="{{ $asset->stock['price'] }}">
-                                                                    <input type="hidden" name="type" value="buy">
-                                                                </div>
-                                                                <button class="my-1 btn btn-wave btn-md btn-success waves-effect waves-light w-100" type="submit">
-                                                                    BUY NOW <i class="ri-arrow-right-line align-middle"></i>
-                                                                </button>
-                                                            </form>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-
-                                            <script>
-                                                document.addEventListener('DOMContentLoaded', function() {
-                                                    $("#exampleModal{{ $asset->id }}sell").on('shown.bs.modal', function() {
-                                                        var widgetContainer = document.getElementById("tradingview-widget-{{ $asset->id }}");
-
-                                                        if (!widgetContainer.dataset.loaded) { // Check if the widget is already loaded
-                                                            widgetContainer.dataset.loaded = true; // Mark as loaded to prevent reloading
-
-                                                            var script = document.createElement('script');
-                                                            script.type = 'text/javascript';
-                                                            script.src = 'https://s3.tradingview.com/external-embedding/embed-widget-symbol-overview.js';
-                                                            script.async = true;
-
-                                                            script.textContent = JSON.stringify({
-                                                                "symbols": [
-                                                                    ["{{ $asset->stock['name'] }}", "{{ $asset->stock['symbol'] }}|1M"]
-                                                                ],
-                                                                "chartOnly": false,
-                                                                "width": "100%",
-                                                                "height": "100%",
-                                                                "locale": "en",
-                                                                "colorTheme": "light",
-                                                                "autosize": true,
-                                                                "showVolume": false,
-                                                                "showMA": false,
-                                                                "hideDateRanges": false,
-                                                                "hideMarketStatus": false,
-                                                                "hideSymbolLogo": false,
-                                                                "scalePosition": "right",
-                                                                "scaleMode": "Normal",
-                                                                "fontFamily": "-apple-system, BlinkMacSystemFont, Trebuchet MS, Roboto, Ubuntu, sans-serif",
-                                                                "fontSize": "10",
-                                                                "noTimeScale": false,
-                                                                "valuesTracking": "1",
-                                                                "changeMode": "price-and-percent",
-                                                                "chartType": "area",
-                                                                "maLineColor": "#2962FF",
-                                                                "maLineWidth": 1,
-                                                                "maLength": 9,
-                                                                "headerFontSize": "medium",
-                                                                "lineWidth": 2,
-                                                                "lineType": 0,
-                                                                "dateRanges": [
-                                                                    "1d|1",
-                                                                    "1m|30",
-                                                                    "3m|60",
-                                                                    "12m|1D",
-                                                                    "60m|1W",
-                                                                    "all|1M"
-                                                                ]
-                                                            });
-
-                                                            widgetContainer.appendChild(script); // Append the script to the container
-                                                        }
-                                                    });
-                                                    $("#exampleModal{{ $asset->id }}buy").on('shown.bs.modal', function() {
-                                                        var widgetContainer = document.getElementById("tradingview-widget-{{ $asset->id }}buy");
-
-                                                        if (!widgetContainer.dataset.loaded) { // Check if the widget is already loaded
-                                                            widgetContainer.dataset.loaded = true; // Mark as loaded to prevent reloading
-
-                                                            var script = document.createElement('script');
-                                                            script.type = 'text/javascript';
-                                                            script.src = 'https://s3.tradingview.com/external-embedding/embed-widget-symbol-overview.js';
-                                                            script.async = true;
-
-                                                            script.textContent = JSON.stringify({
-                                                                "symbols": [
-                                                                    ["{{ $asset->stock['name'] }}", "{{ $asset->stock['symbol'] }}|1M"]
-                                                                ],
-                                                                "chartOnly": false,
-                                                                "width": "100%",
-                                                                "height": "100%",
-                                                                "locale": "en",
-                                                                "colorTheme": "light",
-                                                                "autosize": true,
-                                                                "showVolume": false,
-                                                                "showMA": false,
-                                                                "hideDateRanges": false,
-                                                                "hideMarketStatus": false,
-                                                                "hideSymbolLogo": false,
-                                                                "scalePosition": "right",
-                                                                "scaleMode": "Normal",
-                                                                "fontFamily": "-apple-system, BlinkMacSystemFont, Trebuchet MS, Roboto, Ubuntu, sans-serif",
-                                                                "fontSize": "10",
-                                                                "noTimeScale": false,
-                                                                "valuesTracking": "1",
-                                                                "changeMode": "price-and-percent",
-                                                                "chartType": "area",
-                                                                "maLineColor": "#2962FF",
-                                                                "maLineWidth": 1,
-                                                                "maLength": 9,
-                                                                "headerFontSize": "medium",
-                                                                "lineWidth": 2,
-                                                                "lineType": 0,
-                                                                "dateRanges": [
-                                                                    "1d|1",
-                                                                    "1m|30",
-                                                                    "3m|60",
-                                                                    "12m|1D",
-                                                                    "60m|1W",
-                                                                    "all|1M"
-                                                                ]
-                                                            });
-
-                                                            widgetContainer.appendChild(script); // Append the script to the container
-                                                        }
-                                                    });
-                                                });
-                                            </script>
-                                        @endforeach
-                                    </tbody>
-                                </table>
-                                @if($assets->count() == 0)
-                                    <tr>
-                                        <p class="py-4 text-center">
-                                            No assets...
-                                        </p>
-                                    </tr>
-                                @endif
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                
             </div>
             <!-- End:: row-2 -->
     </div>
