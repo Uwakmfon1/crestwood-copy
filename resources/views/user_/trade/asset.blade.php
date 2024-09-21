@@ -147,79 +147,82 @@
             </div>
             <div class="col-xl-3">
                 <div class="card custom-card overflow-hidden">
-                    <div class="card-header justify-content-between">
-                        <div class="card-title">
-                            Watch List
-                        </div>
-                    </div>
                     <div class="card-body">
-                        <ul class="list-unstyled transactions-list mb-0">
-                            <li>
-                                <div class="d-flex align-items-center justify-content-between">
-                                    <div class="d-flex align-items-start flex-wrap gap-2">
-                                        <div>
-                                            <span class="avatar avatar-md bg-primary-transparent avatar-rounded p-2">
-                                                <span class="avatar avatar-sm bg-primary p-2 avatar-rounded">
-                                                    <i class="ri-bank-line fs-18"></i> 
-                                                </span>
-                                            </span> 
-                                        </div>
-                                        <div>
-                                            <a href="javascript:void(0);">
-                                                <span class="d-block fw-medium mb-1">Swiss Bank</span>
-                                            </a>
-                                            <span class="d-block fs-11 text-muted">30 trades</span>
+                        <!-- <div class="card custom-card bg-primary"> -->
+                            <div class="card-body p-2">
+                                <div class="">
+                                    <div class="text-fixed-dark mb-2">Equity Balance <span class="ms-2 d-inline-block text-success op-5"><i class="fe fe-arrow-up-right text-success"></i>0.25%</span>
+                                    </div>
+                                    <h4 class="fw-semibold mb-0 text-fixed-dark">$3,065.50</h4>
+                                </div>
+                            </div>
+                        <!-- </div> -->
+                    </div>
+                    <div class="card-footer p-0">
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item">
+                                <div class="d-flex align-items-center gap-3">
+                                    <div class="main-card-icon primary">
+                                        <div class="avatar avatar-md bg-light">
+                                            <div class="avatar avatar-sm svg-primary">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="#000000" viewBox="0 0 256 256"><path d="M216,40H72A16,16,0,0,0,56,56V72H40A16,16,0,0,0,24,88V200a16,16,0,0,0,16,16H184a16,16,0,0,0,16-16V184h16a16,16,0,0,0,16-16V56A16,16,0,0,0,216,40ZM172,72a12,12,0,1,1-12,12A12,12,0,0,1,172,72Zm12,128H40V88H56v80a16,16,0,0,0,16,16H184Zm32-32H72V120.69l30.34-30.35a8,8,0,0,1,11.32,0L163.31,140,189,114.34a8,8,0,0,1,11.31,0L216,130.07V168Z"></path></svg>                                                           </div>
                                         </div>
                                     </div>
-                                    <div class="text-end">
-                                        <span class="d-block fw-medium">$12,300</span>
-                                        <span class="text-success fs-12">+40.93%</span>
+                                    <div class="flex-fill">
+                                        <span class="fw-medium fs18">Profit/Loss</span>
+                                        <span class="text-success fs-11 d-block">+20.32%</span>
+                                    </div>
+                                    <div>
+                                        <span class="fw-medium text-muted mb-0 fs-12">$40.22</span>
                                     </div>
                                 </div>
                             </li>
-                            <li>
-                                <div class="d-flex align-items-center justify-content-between">
-                                    <div class="d-flex align-items-start flex-wrap gap-2">
-                                        <div>
-                                            <span class="avatar avatar-md bg-secondary-transparent avatar-rounded">
-                                                <span class="avatar avatar-sm bg-secondary avatar-rounded">
-                                                    <i class="ri-wallet-3-line fs-18"></i>
-                                                </span>
-                                            </span> 
-                                        </div>
-                                        <div>
-                                            <a href="javascript:void(0);">
-                                                <span class="d-block fw-medium mb-1">Digital Wallet</span>
-                                            </a>    
-                                            <span class="d-block fs-11 text-muted">8 trades</span>
-                                        </div>
+                            <li class="list-group-item">
+                                <div class="d-flex align-items-center gap-3">
+                                    <div class="main-card-icon primary">
+                                        <div class="avatar avatar-md bg-light">
+                                            <div class="avatar avatar-sm svg-primary">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="#000000" viewBox="0 0 256 256"><path d="M74.34,85.66A8,8,0,0,1,85.66,74.34L120,108.69V24a8,8,0,0,1,16,0v84.69l34.34-34.35a8,8,0,0,1,11.32,11.32l-48,48a8,8,0,0,1-11.32,0ZM240,136v64a16,16,0,0,1-16,16H32a16,16,0,0,1-16-16V136a16,16,0,0,1,16-16H84.4a4,4,0,0,1,2.83,1.17L111,145A24,24,0,0,0,145,145l23.8-23.8A4,4,0,0,1,171.6,120H224A16,16,0,0,1,240,136Zm-40,32a12,12,0,1,0-12,12A12,12,0,0,0,200,168Z"></path></svg></div>                                                            </div>
                                     </div>
-                                    <div class="text-end">
-                                        <span class="d-block fw-medium">$11,449</span>
-                                        <span class="text-danger fs-12">-30%</span>
+                                    <div class="flex-fill">
+                                        <span class="fw-medium">Balance</span>
+                                        <span class="text-danger fs-12 d-block">-20%</span>
+                                    </div>
+                                    <div>
+                                        <span class="fw-medium text-muted mb-0 fs-14">$3,890.87</span>
                                     </div>
                                 </div>
                             </li>
-                            <li class="mb-0">
-                                <div class="d-flex align-items-center justify-content-between">
-                                    <div class="d-flex align-items-start flex-wrap gap-2">
-                                        <div>
-                                            <span class="avatar avatar-md bg-warning-transparent avatar-rounded">
-                                                <span class="avatar avatar-sm bg-warning avatar-rounded">
-                                                    <i class="ri-amazon-fill fs-18"></i>
-                                                </span>
-                                            </span> 
-                                        </div>
-                                        <div>
-                                            <a href="javascript:void(0);">
-                                                <span class="d-block fw-medium mb-1">Amazon pay</span>
-                                            </a>    
-                                            <span class="d-block fs-11 text-muted">2 trades</span>
+                            <li class="list-group-item">
+                                <div class="d-flex align-items-center gap-3">
+                                    <div class="main-card-icon primary">
+                                        <div class="avatar avatar-md bg-light">
+                                            <div class="avatar avatar-sm svg-primary">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="#000000" viewBox="0 0 256 256"><path d="M120,56v48a16,16,0,0,1-16,16H56a16,16,0,0,1-16-16V56A16,16,0,0,1,56,40h48A16,16,0,0,1,120,56Zm80-16H152a16,16,0,0,0-16,16v48a16,16,0,0,0,16,16h48a16,16,0,0,0,16-16V56A16,16,0,0,0,200,40Zm-96,96H56a16,16,0,0,0-16,16v48a16,16,0,0,0,16,16h48a16,16,0,0,0,16-16V152A16,16,0,0,0,104,136Zm96,0H152a16,16,0,0,0-16,16v48a16,16,0,0,0,16,16h48a16,16,0,0,0,16-16V152A16,16,0,0,0,200,136Z"></path></svg></div>                                                            </div>
+                                    </div>
+                                    <div class="flex-fill">
+                                        <span class="fw-medium">Asset</span>
+                                        <span class="text-muted fs-12 d-block">Owned assets</span>
+                                    </div>
+                                    <div>
+                                        <span class="fw-medium text-muted mb-0 fs-14">{{ $asset }}</span>
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="list-group-item">
+                                <div class="d-flex align-items-center gap-3">
+                                    <div class="main-card-icon primary">
+                                        <div class="avatar avatar-md bg-light">
+                                            <div class="avatar avatar-sm svg-primary">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="#000000" viewBox="0 0 256 256"><path d="M245,110.64A16,16,0,0,0,232,104H216V88a16,16,0,0,0-16-16H130.67L102.94,51.2a16.14,16.14,0,0,0-9.6-3.2H40A16,16,0,0,0,24,64V208h0a8,8,0,0,0,8,8H211.1a8,8,0,0,0,7.59-5.47l28.49-85.47A16.05,16.05,0,0,0,245,110.64ZM93.34,64,123.2,86.4A8,8,0,0,0,128,88h72v16H69.77a16,16,0,0,0-15.18,10.94L40,158.7V64Z"></path></svg>                                                                </div>
                                         </div>
                                     </div>
-                                    <div class="text-end">
-                                        <span class="d-block fw-medium">$7,799</span>
-                                        <span class="text-muted fs-12">0.00%</span>
+                                    <div class="flex-fill">
+                                        <span class="fw-medium">Total Profit</span>
+                                        <span class="text-success fs-12 d-block">-35%</span>
+                                    </div>
+                                    <div>
+                                        <span class="fw-medium text-muted mb-0 fs-14">$50.98</span>
                                     </div>
                                 </div>
                             </li>
@@ -229,7 +232,7 @@
                 <div class="card custom-card overflow-hidden">
                     <div class="card-header justify-content-between">
                         <div class="card-title">
-                            Recent Transactions
+                            Watch list
                         </div>
                     </div>
                     <div class="card-body">
