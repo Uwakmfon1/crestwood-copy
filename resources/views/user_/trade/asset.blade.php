@@ -130,7 +130,7 @@
                         <div class="col-xxl-12 col-xl-12">
                             <div class="card custom-card">
                                 <div class="card-body p-0">
-                                    <div class="table-responsive">
+                                    <div class="table-responsive" style="min-height: 520px;">
                                         <table class="table text-nowrap">
                                             <thead>
                                                 <tr>
