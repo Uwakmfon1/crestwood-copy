@@ -139,7 +139,6 @@
                                                     <th>Quantity</th>
                                                     <th>Amount</th>
                                                     <th>Profit</th>
-                                                    <th>Date</th>
                                                     <th>Action</th>
                                                 </tr>
                                             </thead>
@@ -181,7 +180,6 @@
                                                             {{ number_format($percentageDifference, 2) }}%
                                                         </span>
                                                     </td>
-                                                    <td>{{ $asset['created_at']->format('M d, Y \a\t h:i A') }}</td>
                                                     <td>
                                                         <a href="{{ route('user.asset', $asset->stock['id']) }}" class="btn bg-primary-transparent text-primary btn-wave waves-effect waves-light">
                                                             View
