@@ -30,11 +30,16 @@
         <div
             class="my-4 page-header-breadcrumb d-flex align-items-center justify-content-between flex-wrap gap-2">
             <div>
-                <h1 class="page-title fw-medium fs-18 mb-2">Asset</h1>
+                <h1 class="page-title fw-medium fs-18 mb-2">Stock Holdings</h1>
                 <ol class="breadcrumb mb-0">
                     <li class="breadcrumb-item">
                         <a href="javascript:void(0);">
-                            Asset
+                            Dashboard
+                        </a>
+                    </li>
+                    <li class="breadcrumb-item">
+                        <a href="javascript:void(0);">
+                            Holdings
                         </a>
                     </li>
                     <li class="breadcrumb-item active" aria-current="page">Overview</li>
@@ -526,7 +531,7 @@
                                         <span class="text-muted fs-12 d-block">Owned assets</span>
                                     </div>
                                     <div>
-                                        <span class="fw-medium text-muted mb-0 fs-14">{{ $asset->count() }}</span>
+                                        <span class="fw-medium text-muted mb-0 fs-14">{{ $asset ? $asset->count() : 0 }}</span>
                                     </div>
                                 </div>
                             </li>

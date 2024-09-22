@@ -112,5 +112,7 @@ Route::group(['middleware' => ['auth','verified', 'active_user', 'profile_comple
         Route::get('/user/asset/view/{stock}', [TradingController::class, 'showAsset'])->name('user.asset');
         Route::get('/wallet-balance', [WalletController::class, 'getWalletBalance'])->name('wallet.balance');
         
+        Route::post('/trade/{assetTransaction}/close', [TradingController::class, 'closeTrade'])->name('trade.close');
+        Route::post('/trade/{stock}/close/all', [TradingController::class, 'closeAllTrades'])->name('trade.close.all');
     // });
 });

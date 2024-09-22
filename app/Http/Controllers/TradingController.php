@@ -216,7 +216,6 @@ class TradingController extends Controller
         return null; // No existing trade to sell
     }
 
-
     /**
      * Create a trading transaction.
      */
@@ -263,31 +262,141 @@ class TradingController extends Controller
 
     public function show (Stock $stock)
     {
+        $assets = auth()->user()->assets()->where('stock_id', $stock->id)->get();
+
+        // Initialize variables for overall P/L
+        $totalCost = 0;
+        $totalRevenue = 0;
+
+        foreach ($assets as $asset) {
+            $totalCost += $asset->amount; // total amount spent on the asset
+            $totalRevenue += $stock->price * $asset->quantity; // total value of asset at current price
+        }
+
+        $ownAsset = auth()->user()->trades()->where('stock_id', $stock->id)->first();
+        $amount = $ownAsset ? ($ownAsset->amount * $ownAsset->quantity) : 0;
+        $quantity = $ownAsset ? $ownAsset->quantity : 0;
+        $profit = $ownAsset ? $ownAsset->amount : 0;
+
+        // Calculate overall profit/loss
+        $overallProfitLoss = $totalRevenue - $totalCost;
+        $percentageOverallProfitLoss = $totalCost > 0 ? ($overallProfitLoss / $totalCost) * 100 : 0;
+
         return view('user_.trade.show', [
             'title' => 'Trading', 
             'stock' => $stock, 
+            'asset' => $assets,
+            'amount' => $amount,
+            'quantity' => $quantity,
+            'profit' => $profit,
+            'overallProfitLoss' => $overallProfitLoss,
+            'percentageOverallProfitLoss' => $percentageOverallProfitLoss,
         ]);
     }
 
-    public function showAsset (Stock $stock)
+    public function showAsset(Stock $stock)
     {
-        $asset = auth()->user()->assets()->where('stock_id', $stock->id)->get();
+        $assets = auth()->user()->assets()->where('stock_id', $stock->id)->get();
+
+        if ($assets->count() <= 0) {
+            return back()->with('info', "You don't have any holdings on " . $stock->name);
+        }
+
+        // Initialize variables for overall P/L
+        $totalCost = 0;
+        $totalRevenue = 0;
+
+        foreach ($assets as $asset) {
+            $totalCost += $asset->amount; // total amount spent on the asset
+            $totalRevenue += $stock->price * $asset->quantity; // total value of asset at current price
+        }
 
         $ownAsset = auth()->user()->trades()->where('stock_id', $stock->id)->first();
+        $amount = $ownAsset ? ($ownAsset->amount * $ownAsset->quantity) : 0;
+        $quantity = $ownAsset ? $ownAsset->quantity : 0;
+        $profit = $ownAsset ? $ownAsset->amount : 0;
 
-        $amount = ($ownAsset->amount * $ownAsset->quantity);
-        $quantity = $ownAsset->quantity;
-        $profit = $ownAsset->amount;
+        // Calculate overall profit/loss
+        $overallProfitLoss = $totalRevenue - $totalCost;
+        $percentageOverallProfitLoss = $totalCost > 0 ? ($overallProfitLoss / $totalCost) * 100 : 0;
 
         return view('user_.trade.show-asset', [
-            'title' => 'My Asset', 
-            'asset' => $asset,
-            'stock' => $stock, 
-            'amount' => $amount, 
-            'quantity' => $quantity, 
-            'profit' => $profit, 
+            'title' => 'My Asset',
+            'asset' => $assets,
+            'stock' => $stock,
+            'amount' => $amount,
+            'quantity' => $quantity,
+            'profit' => $profit,
+            'overallProfitLoss' => $overallProfitLoss,
+            'percentageOverallProfitLoss' => $percentageOverallProfitLoss,
         ]);
     }
 
+    public function closeTrade(AssetTransaction $assetTransaction)
+    {
+        $stock = Stock::find($assetTransaction->stock_id);
+        if (!$stock) {
+            return redirect()->back()->with('error', 'Stock not found.');
+        }
 
+        $existingHolding = auth()->user()->trades()->where('stock_id', $assetTransaction['stock_id'])->first();
+
+        $stockAmount = $assetTransaction->quantity * $stock->price;
+
+        if ($existingHolding->quantity > 0) {
+
+            $existingHolding->decrement('quantity', $assetTransaction->quantity);
+
+            if ($existingHolding->quantity == 0) {
+                $existingHolding->delete();
+            }
+
+            auth()->user()->tradingWallet->increment('balance', $stockAmount);
+
+            $assetTransaction->update([
+                'type' => 'sell',
+                'updated_at' => now(), 
+            ]);
+
+            return redirect()->back()->with('success', 'Trade closed successfully.');
+        }
+
+        // Handle failure (e.g., no quantity left to close)
+        return redirect()->back()->with('error', 'Failed to close trade. Insufficient quantity.');
+    }
+
+    public function closeAllTrades(Stock $stock)
+    {
+        $openTrades = auth()->user()->assets()->where('type', 'buy')->where('stock_id', $stock->id)->get();
+
+        if ($openTrades->isEmpty()) {
+            return redirect()->back()->with('error', 'No open trades to close.');
+        }
+
+        foreach ($openTrades as $trade) {
+            $stock = Stock::find($trade->stock_id);
+
+            if (!$stock) {
+                return redirect()->back()->with('error', 'Stock not found for trade ID: ' . $trade->id);
+            }
+
+            $stockAmount = $trade->quantity * $stock->price;
+            
+            auth()->user()->tradingWallet->increment('balance', $stockAmount);
+
+            $trade->update([
+                'type' => 'sell',
+                'amount' => $stockAmount,
+                'updated_at' => now(),
+            ]);
+
+            if ($trade->quantity == 0) {
+                // $trade->delete();
+            }
+        }
+
+        // Return a success message
+        return redirect()->back()->with('success', 'All trades closed successfully.');
+    }
+   
 }

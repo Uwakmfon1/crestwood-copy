@@ -70,18 +70,36 @@
             <li class="slide__category"><span class="category-name">Trade</span></li>
              <!-- End::slide__category -->
 
-            <li class="slide @if(request()->routeIs(['tradings'])) active @endif">
-                <a href="{{ route('tradings') }}" class="side-menu__item">
-                    <i class="fe fe-tag mx-2"></i>
+            <li class="slide has-sub @if(request()->routeIs(['tradings', 'assets'])) active @endif">
+                <a href="javascript:void(0);" class="side-menu__item">
+                <i class="fe fe-tag mx-2"></i>
                     <span class="side-menu__label">Stocks</span>
+                    <i class="ri-arrow-right-s-line side-menu__angle"></i>
                 </a>
+                <ul class="slide-menu child1 pages-ul">
+                    <li class="slide">
+                        <a href="{{ route('tradings') }}" class="side-menu__item @if(request()->routeIs(['tradings'])) active @endif">Stocks</a>
+                    </li>
+                    <li class="slide">
+                        <a href="{{ route('assets') }}" class="side-menu__item @if(request()->routeIs(['assets'])) active @endif">Holdings</a>
+                    </li>
+                </ul>
             </li>
 
-            <li class="slide @if(request()->routeIs(['assets'])) active @endif">
-                <a href="{{ route('assets') }}" class="side-menu__item">
-                    <i class="fe fe-credit-card mx-2"></i>
-                    <span class="side-menu__label">Assets</span>
+            <li class="slide has-sub @if(request()->routeIs(['', ''])) active @endif">
+                <a href="javascript:void(0);" class="side-menu__item">
+                <i class="fe fe-dollar-sign mx-2"></i>
+                    <span class="side-menu__label">Crypto</span>
+                    <i class="ri-arrow-right-s-line side-menu__angle"></i>
                 </a>
+                <ul class="slide-menu child1 pages-ul">
+                    <li class="slide">
+                        <a href="{{ route('tradings') }}" class="side-menu__item @if(request()->routeIs(['tradings'])) active @endif">Crypto</a>
+                    </li>
+                    <li class="slide">
+                        <a href="{{ route('assets') }}" class="side-menu__item @if(request()->routeIs(['assets'])) active @endif">Assets</a>
+                    </li>
+                </ul>
             </li>
 
             <li class="slide @if(request()->routeIs(['asset'])) active @endif">

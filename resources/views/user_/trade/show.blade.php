@@ -39,43 +39,69 @@
         </div>
         <!-- TradingView Widget END -->
 
+        <div class="card custom-card p-3">
+            <div class="row">
+                <div class="col-lg-3 col-6">
+                    <p class="fw-medium text-muted mb-1">Amount: </p>
+                    <p class="fs-15 mb-1 fw-bold">${{ number_format($amount, 2) }}</p>
+                </div>
+                <div class="col-lg-3 col-6">
+                    <p class="fw-medium text-muted mb-1">Quantity: </p>
+                    <p class="fs-15 mb-1 fw-bold">${{ number_format($quantity, 3) }}</p>
+                </div>
+                <div class="col-lg-3 col-6">
+                    <p class="fw-medium text-muted mb-1">P/L: </p>
+                    <p class="fs-15 mb-1 fw-bold {{ $overallProfitLoss < 0 ? 'text-danger' : 'text-success' }}">
+                        {{ $overallProfitLoss <= 0 ? '' : '+' }}{{ number_format($overallProfitLoss, 2) }}USD
+                        <span class="mx-2 badge {{ $percentageOverallProfitLoss <= 0 ? 'bg-danger-transparent' : 'bg-success-transparent' }}">
+                            {{ $percentageOverallProfitLoss <= 0 ? '' : '+' }} {{ number_format($percentageOverallProfitLoss, 2) }}%
+                        </span>
+                    </p>
+                </div>
+                <div class="col-lg-3 col-6">
+                    <p class="fw-medium text-muted mb-1">Trades: </p>
+                    <p class="fs-15 mb-1 fw-bold">{{ $asset->count() }}</p>
+                </div>
+            </div>
+        </div>
+
         <div class="row">
             <div class="col-lg-8 col-md-12 mb-4">
                 <!-- TradingView Widget BEGIN -->
                 <div class="tradingview-widget-container">
                     <div class="tradingview-widget-container__widget"></div>
                     <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-symbol-overview.js" async>
-                    {
-                        "symbols": [
-                            ["{{ $stock->name }}", "{{ $stock->symbol }}|1M"]
-                        ],
-                        "chartOnly": true,
-                        "width": "100%",
-                        "height": "500",
-                        "locale": "en",
-                        "colorTheme": "light",
-                        "autosize": false,
-                        "showVolume": false,
-                        "showMA": false,
-                        "hideDateRanges": false,
-                        "hideMarketStatus": false,
-                        "hideSymbolLogo": false,
-                        "scalePosition": "right",
-                        "scaleMode": "Normal",
-                        "fontFamily": "-apple-system, BlinkMacSystemFont, Trebuchet MS, Roboto, Ubuntu, sans-serif",
-                        "fontSize": "10",
-                        "noTimeScale": false,
-                        "valuesTracking": "2",
-                        "changeMode": "price-and-percent",
-                        "chartType": "area",
-                        "maLineColor": "#2962FF",
-                        "maLineWidth": 1,
-                        "maLength": 9,
-                        "headerFontSize": "medium",
-                        "lineWidth": 2,
-                        "lineType": 0,
-                        "dateRanges": ["1d|1", "1m|30", "3m|60", "12m|1D", "60m|1W", "all|1M"]
-                    }
+                        {
+                            "symbols": [
+                                ["{{ $stock->name }}", "{{ $stock->symbol }}|1M"]
+                            ],
+                            "chartOnly": true,
+                            "width": "100%",
+                            "height": "500",
+                            "locale": "en",
+                            "colorTheme": "light",
+                            "autosize": false,
+                            "showVolume": false,
+                            "showMA": false,
+                            "hideDateRanges": false,
+                            "hideMarketStatus": false,
+                            "hideSymbolLogo": false,
+                            "scalePosition": "right",
+                            "scaleMode": "Normal",
+                            "fontFamily": "-apple-system, BlinkMacSystemFont, Trebuchet MS, Roboto, Ubuntu, sans-serif",
+                            "fontSize": "10",
+                            "noTimeScale": false,
+                            "valuesTracking": "2",
+                            "changeMode": "price-and-percent",
+                            "chartType": "area",
+                            "maLineColor": "#2962FF",
+                            "maLineWidth": 1,
+                            "maLength": 9,
+                            "headerFontSize": "medium",
+                            "lineWidth": 2,
+                            "lineType": 0,
+                            "dateRanges": ["1d|1", "1m|30", "3m|60", "12m|1D", "60m|1W", "all|1M"]
+                        }
                     </script>
                 </div>
                 <!-- TradingView Widget END -->
@@ -119,6 +145,81 @@
                     <!-- TradingView Financials Widget END -->
 
                 </div>
+            </div>
+        </div>
+
+        <div class="col-xl-12">
+            <div class="table-responsive" style="min-height: 300px;">
+                <table class="table nowrap text-nowrap mt-4">
+                    <thead>
+                        <tr>
+                            <th class="fw-bold">Amount</th>
+                            <th class="fw-bold">Quantity</th>
+                            <th class="fw-bold">Price</th>
+                            <th class="fw-bold">Profit</th>
+                            <th class="fw-bold">Type</th>
+                            <th class="fw-bold">Date</th>
+                            <th class="fw-bold">Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach($asset as $data)
+                            <tr>
+                                <td>
+                                    <div class="fw-medium">
+                                        ${{ number_format($data->amount, 2) }}
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="fw-medium">
+                                        {{ number_format($data->quantity, 4) }}
+                                    </div>
+                                </td>
+                                <td class="product-quantity-container">
+                                    ${{ number_format($data->price, 2) }}
+                                </td>
+                                <td>
+                                    ${{ number_format(($stock->price * $data->quantity) - ($data->amount), 3) }}
+                                    @php
+                                        $totalCost = $data->amount;
+                                        $totalRevenue = $stock->price * $data->quantity;
+                                        $profit = $totalRevenue - $totalCost;
+                                        $percentageProfit = $totalCost > 0 ? ($profit / $totalCost) * 100 : 0; // Avoid division by zero
+                                    @endphp
+
+                                    <span class="mx-2 badge {{ $percentageProfit < 0 ? 'bg-danger-transparent' : 'bg-success-transparent' }}">
+                                        {{ number_format($percentageProfit, 2) }}%
+                                    </span>
+                                </td>
+                                <td>
+                                    <span class="mx-2 badge {{ $data->type == 'sell' ? 'bg-danger-transparent' : 'bg-success-transparent' }}">
+                                        {{ $data->type }}
+                                    </span>
+                                </td>
+                                <td>
+                                    <div class="fw-medium">
+                                        {{ $data['created_at']->format('M d, Y \a\t h:i A') }}
+                                    </div>
+                                </td>
+                                <td>
+                                    @if($data->type == 'buy')
+                                        <form action="{{ route('trade.close', $data->id) }}" method="post">
+                                            @csrf
+                                            <button type="submit" class="btn bg-danger-transparent text-danger btn-wave waves-effect waves-light">
+                                                Close
+                                            </button>
+                                        </form>
+                                    @endif
+                                </td>
+                            </tr>
+                        @endforeach
+                    </tbody>
+                </table>
+                        @if($asset->count() <=0)
+                            <div class="bg-white p-4">
+                                <p class="text-center">No Trade</p>
+                            </td>
+                        @endif
             </div>
         </div>
     </div>

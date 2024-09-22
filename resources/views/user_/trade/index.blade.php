@@ -119,8 +119,8 @@
                                         </div>
                                     </div>
                                     <div class="flex-fill">
-                                        <span class="d-block fw-medium fs-14">Assets</span>
-                                        <span class="d-block text-muted fs-12">Wallet asset</span>
+                                        <span class="d-block fw-medium fs-14">Stocks</span>
+                                        <span class="d-block text-muted fs-12">Stock Holdings</span>
                                     </div>
                                     <div class="text-end">
                                         <span class="text-success fs-12 d-block">{{ $buyTrade }}</span>
@@ -135,7 +135,7 @@
                                     <!-- <div id="nvidia-stock"></div> -->
                                 </div>
                                 <div class="mt-1">
-                                    <a href="{{ route('assets') }}" class="py-2 fs-11 text-primary fw-semibold">View Assets<i class="fe fe-arrow-right me-2 align-middle d-inline-block"></i></a>
+                                    <a href="{{ route('assets') }}" class="py-2 fs-11 text-primary fw-semibold">View Holdings<i class="fe fe-arrow-right me-2 align-middle d-inline-block"></i></a>
                                 </div>
                             </div>
                         </div>
@@ -809,9 +809,12 @@
                                             <button class="btn bg-success-transparent text-success btn-wave waves-effect waves-light" data-bs-toggle="modal" data-bs-target="#exampleModal{{ $stock->id }}buy">
                                                 BUY
                                             </button>
-                                            <button class="btn bg-danger-transparent text-danger btn-wave waves-effect waves-light" data-bs-toggle="modal" data-bs-target="#exampleModal{{ $stock->id }}sell">
+                                            <!-- <button class="btn bg-danger-transparent text-danger btn-wave waves-effect waves-light" data-bs-toggle="modal" data-bs-target="#exampleModal{{ $stock->id }}sell">
                                                 SELL
-                                            </button>
+                                            </button> -->
+                                            <a href="{{ route('user.asset', $stock->id) }}" class="btn bg-danger-transparent text-danger btn-wave waves-effect waves-light">
+                                                SELL
+                                            </a>
                                         </td>
                                     </tr>
 
@@ -872,7 +875,7 @@
                                                                 <label class="text-muted fs-12" for="amount-input-{{ $key }}">Amount</label>
                                                                 <div class="input-group my-1">
                                                                     <button type="button" class="input-group-text btn btn-primary-light btn-wave" style="border-radius: 5px 0px 0px 5px;">$</button>
-                                                                    <input type="number" name="amountX" class="form-control text-center amount-input" id="amount-input-{{ $key }}" placeholder="0.0000" aria-label="Stock Amount" value="0.00" data-key="{{ $key }}" data-price="{{ $stock->price }}" min="0.0000" step="0.0001" required>
+                                                                    <input type="number" name="amountX" class="form-control text-center amount-input" id="amount-input-{{ $key }}" placeholder="0.0000" aria-label="Stock Amount" value="0.00" data-key="{{ $key }}" data-price="{{ $stock->price }}" min="0.0000000000" step="0.000000001" required>
                                                                     <!-- Optional button for amount -->
                                                                 </div>
                                                             </div>
@@ -1144,6 +1147,15 @@ $(document).ready(function() {
         $('#quantity-display-' + key).text(`${parseFloat(quantity).toFixed(4)} Unit${quantity <= 1 ? 's' : ''}`);
     }
 
+    function updateAmountInput(key) {
+        const $quantityInput = $('#quantity-input-' + key);
+        const pricePerUnit = parseFloat($quantityInput.data('price'));
+        const quantity = parseFloat($quantityInput.val()) || 0;
+        const totalPrice = pricePerUnit * quantity;
+
+        $('#amount-input-' + key).val(parseFloat(totalPrice.toFixed(4)));
+    }
+
     // Function to update quantity based on amount
     function updateQuantityFromAmount(key) {
         const $amountInput = $('#amount-input-' + key);
@@ -1165,6 +1177,7 @@ $(document).ready(function() {
     $('.quantity-input').on('input', function() {
         const key = $(this).data('key');
         updateWalletPriceAndQuantity(key);
+        updateAmountInput(key);
     });
 
     // Handle increment button click for quantity
@@ -1179,6 +1192,7 @@ $(document).ready(function() {
         updateWalletPriceAndQuantity(key);
         // Also update the amount field based on the new quantity
         updateWalletPriceAndQuantity(key); // Update amount
+        updateAmountInput(key);
     });
 
     // Handle decrement button click for quantity
@@ -1195,6 +1209,7 @@ $(document).ready(function() {
             updateWalletPriceAndQuantity(key);
             // Also update the amount field based on the new quantity
             updateWalletPriceAndQuantity(key); // Update amount
+            updateAmountInput(key);
         }
     });
 });
@@ -1209,6 +1224,15 @@ $(document).ready(function() {
 
         $('#sell-wallet-price-' + key).text(totalPrice.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 4 }));
         $('#sell-quantity-display-' + key).text(`${parseFloat(quantity).toFixed(4)} Unit${quantity <= 1 ? 's' : ''}`);
+    }
+
+    function updateAmountInput(key) {
+        const $quantityInput = $('#sell-quantity-input-' + key);
+        const pricePerUnit = parseFloat($quantityInput.data('price'));
+        const quantity = parseFloat($quantityInput.val()) || 0;
+        const totalPrice = pricePerUnit * quantity;
+
+        $('#sell-amount-input-' + key).val(parseFloat(totalPrice.toFixed(4)));
     }
 
     // Function to update quantity based on amount for sell trade
@@ -1232,6 +1256,7 @@ $(document).ready(function() {
     $('.sell-quantity-input').on('input', function() {
         const key = $(this).data('key');
         updateSellWalletPriceAndQuantity(key);
+        updateAmountInput(key);
     });
 
     // Handle increment button click for quantity in sell trade
@@ -1246,6 +1271,7 @@ $(document).ready(function() {
         updateSellWalletPriceAndQuantity(key);
         // Also update the amount field based on the new quantity
         updateSellWalletPriceAndQuantity(key); // Update amount
+        updateAmountInput(key);
     });
 
     // Handle decrement button click for quantity in sell trade
@@ -1262,6 +1288,7 @@ $(document).ready(function() {
             updateSellWalletPriceAndQuantity(key);
             // Also update the amount field based on the new quantity
             updateSellWalletPriceAndQuantity(key); // Update amount
+            updateAmountInput(key);
         }
     });
 });

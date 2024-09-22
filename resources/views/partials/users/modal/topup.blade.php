@@ -11,7 +11,7 @@
     </div>
     <div class="modal-body">
         <div class="form-group">
-            <label for="amountDeposit" class="form-label">Amount</label>
+            <label for="amountDeposit" class="form-label fw-semibold">Amount</label>
             <input type="number" value="{{ old('amount') }}" required step="any" class="form-control" name="amount" id="amountDeposit" placeholder="Enter amount">
             @error('amount')
                 <strong class="small text-danger">{{ $message }}</strong>
@@ -21,8 +21,8 @@
         <!-- From Account Dropdown -->
         <div class="form-group my-4">
             <div class="d-flex justify-content-between">
-                <label for="fromAccount" class="form-label">From Account</label>
-                <span id="fromAccountBalance" class="text-end text-primary fw-bold"></span>
+                <label for="fromAccount" class="form-label fw-semibold">From Account</label>
+                <span id="fromAccountBalance" class="text-end text-primary fw-semibold"></span>
             </div>
             <select name="from_account" class="form-control" required id="fromAccount">
                 <option value="wallet" selected>Portfolio Wallet</option>
@@ -37,7 +37,7 @@
 
         <!-- To Account (Static, to be set dynamically by page) -->
         <div class="form-group my-4">
-            <label for="toAccount" class="form-label">To Account</label>
+            <label for="toAccount" class="form-label fw-semibold">To Account</label>
             <input type="hidden" name="to_account" id="toAccountValue">
             <input type="text" disabled id="toAccountDisplay" class="form-control">
         </div>

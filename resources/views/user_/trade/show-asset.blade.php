@@ -58,10 +58,6 @@
                     </div>
                     <div class="card-body mx-3">
                         <div class="row gy-3">
-                            <div class="col-xl-12">
-                                <div class="row">
-                                </div>
-                            </div>
                             <div class="col-lg-3 col-6">
                                 <p class="fw-medium text-muted mb-1">Amount: </p>
                                 <p class="fs-15 mb-1 fw-bold">${{ number_format($amount, 2) }}</p>
@@ -72,7 +68,12 @@
                             </div>
                             <div class="col-lg-3 col-6">
                                 <p class="fw-medium text-muted mb-1">P/L: </p>
-                                <p class="fs-15 mb-1 fw-bold text-success {{ ($quantity * $stock->price) - ($amount) < 0 ? 'text-danger' : 'text-success' }}">{{ number_format(($quantity * $stock->price) - ($amount), 2) }}USD</p>
+                                <p class="fs-15 mb-1 fw-bold {{ $overallProfitLoss < 0 ? 'text-danger' : 'text-success' }}">
+                                    {{ $overallProfitLoss <= 0 ? '' : '+' }}{{ number_format($overallProfitLoss, 2) }}USD
+                                    <span class="mx-2 badge {{ $percentageOverallProfitLoss <= 0 ? 'bg-danger-transparent' : 'bg-success-transparent' }}">
+                                        {{ $percentageOverallProfitLoss <= 0 ? '' : '+' }} {{ number_format($percentageOverallProfitLoss, 2) }}%
+                                    </span>
+                                </p>
                             </div>
                             <div class="col-lg-3 col-6">
                                 <p class="fw-medium text-muted mb-1">Trades: </p>
@@ -89,6 +90,7 @@
                                                 <th class="fw-bold">Profit</th>
                                                 <th class="fw-bold">Type</th>
                                                 <th class="fw-bold">Date</th>
+                                                <th class="fw-bold">Action</th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -130,6 +132,16 @@
                                                             {{ $data['created_at']->format('M d, Y \a\t h:i A') }}
                                                         </div>
                                                     </td>
+                                                    <td>
+                                                        @if($data->type == 'buy')
+                                                            <form action="{{ route('trade.close', $data->id) }}" method="post">
+                                                                @csrf
+                                                                <button type="submit" class="btn bg-danger-transparent text-danger btn-wave waves-effect waves-light">
+                                                                    Close
+                                                                </button>
+                                                            </form>
+                                                        @endif
+                                                    </td>
                                                 </tr>
                                             @endforeach
                                         </tbody>
@@ -138,8 +150,18 @@
                             </div>
                         </div>
                     </div>
-                    <div class="card-footer text-start">
-                        <a href="{{ route('assets') }}" class="btn btn-primary-transparent"> <i class="fe fe-arrow-left me-2 align-middle d-inline-block"></i> Back to Assets</a>
+                    <div class="card-footer d-flex justify-content-between">
+                        <div class="">
+                            <a href="{{ route('assets') }}" class="btn btn-primary-transparent"> <i class="fe fe-arrow-left me-2 align-middle d-inline-block"></i> Back to Assets</a>
+                        </div>
+                        <div class="">
+                            <form action="{{ route('trade.close.all', $stock->id) }}" method="post">
+                                @csrf
+                                <button type="submit" class="btn bg-danger-transparent text-danger btn-wave waves-effect waves-light">
+                                    Close All Position
+                                </button>
+                            </form>
+                        </div>
                     </div>
                 </div>
             </div>
