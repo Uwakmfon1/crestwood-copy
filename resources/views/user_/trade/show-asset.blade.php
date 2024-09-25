@@ -152,7 +152,7 @@
                     </div>
                     <div class="card-footer d-flex justify-content-between">
                         <div class="">
-                            <a href="{{ route('assets') }}" class="btn btn-primary-transparent"> <i class="fe fe-arrow-left me-2 align-middle d-inline-block"></i> Back to Assets</a>
+                            <a href="{{ route('assets') }}" class="btn btn-primary-transparent"> <i class="fe fe-arrow-left me-2 align-middle d-inline-block"></i> Back to Holdings</a>
                         </div>
                         <div class="">
                             <form action="{{ route('trade.close.all', $stock->id) }}" method="post">

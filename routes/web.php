@@ -8,6 +8,7 @@ use App\Http\Controllers\WalletController;
 use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\TransactionController;
 use App\Http\Controllers\Auth\EmailverificationController;
+use App\Http\Controllers\FrontendController;
 use App\Http\Controllers\SavingsController;
 use App\Http\Controllers\TradeController as ControllersTradeController;
 use App\Http\Controllers\TradingController;
@@ -22,6 +23,8 @@ use App\Http\Controllers\TradingController;
 | contains the "web" middleware group. Now create something great!
 |
 */
+
+Route::get('/', [FrontendController::class, 'index']);
 
 Auth::routes(['verify' => true]);
 
@@ -50,7 +53,7 @@ Route::group(['middleware' => ['auth','verified', 'active_user', 'profile_comple
 
 
     // Route::group(['middleware' => ['profile_completed']], function (){
-        Route::get('/', [App\Http\Controllers\HomeController::class, 'index']);
+        // Route::get('/', [App\Http\Controllers\HomeController::class, 'index']);
         Route::get('/dashboard', [App\Http\Controllers\HomeController::class, 'index'])->name('dashboard');
         Route::get('/dashboard/investment', [App\Http\Controllers\HomeController::class, 'investmentDashboard'])->name('dashboard.investment');
         Route::get('/dashboard/trading', [App\Http\Controllers\HomeController::class, 'tradingDashboard'])->name('dashboard.trading');
@@ -103,9 +106,10 @@ Route::group(['middleware' => ['auth','verified', 'active_user', 'profile_comple
 
         Route::post('/trading/stock', [TradingController::class, 'store'])->name('trade.stock');
         Route::get('/trade', [TradingController::class, 'index'])->name('tradings');
+        Route::get('/user/crypto', [TradingController::class, 'crypto'])->name('crypto');
         Route::get('/trade/{stock}/{symbol}', [TradingController::class, 'show'])->name('trade.show');
 
-        Route::get('/user/asset', [TradingController::class, 'asset'])->name('assets');
+        Route::get('/user/stocks/holdings', [TradingController::class, 'asset'])->name('assets');
         Route::get('/wallet/history', [App\Http\Controllers\TransactionController::class, 'history'])->name('transactions.history');
         Route::post('/balance/topup', [WalletController::class, 'walletSwap'])->name('swap.balance');
 
@@ -114,5 +118,13 @@ Route::group(['middleware' => ['auth','verified', 'active_user', 'profile_comple
         
         Route::post('/trade/{assetTransaction}/close', [TradingController::class, 'closeTrade'])->name('trade.close');
         Route::post('/trade/{stock}/close/all', [TradingController::class, 'closeAllTrades'])->name('trade.close.all');
+
+        Route::post('/trading/crypto', [TradingController::class, 'storeCrypto'])->name('trade.crypto');
+        Route::get('/user/asset/holdings', [TradingController::class, 'cryptoAsset'])->name('crypto.assets');
+        Route::get('/crypto/{stock}/{symbol}', [TradingController::class, 'showCrypto'])->name('crypto.show');
+        Route::get('/user/crypto/view/{stock}', [TradingController::class, 'showCyptoTrade'])->name('asset.view');
+        Route::post('/asset/{stock}/close/all', [TradingController::class, 'closeAllAssets'])->name('asset.close.all');
+
+
     // });
 });

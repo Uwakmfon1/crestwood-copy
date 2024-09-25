@@ -7,15 +7,16 @@ use App\Models\User;
 use App\Models\State;
 use App\Models\Stock;
 use App\Models\Trade;
+use App\Models\Crypto;
 use App\Models\Country;
 use App\Models\Package;
 use App\Models\Investment;
 use App\Models\Transaction;
+use Faker\Factory as Faker;
 use Illuminate\Database\Seeder;
 use App\DataProviders\CityDataProvider;
 use App\DataProviders\StateDataProvider;
 use App\DataProviders\CountryDataProvider;
-use Faker\Factory as Faker;
 
 class DatabaseSeeder extends Seeder
 {
@@ -35,13 +36,13 @@ class DatabaseSeeder extends Seeder
         //      Transaction::factory()->create(['trade_id' => $trade['id']]);
         //  });
 
-        Country::insertOrIgnore(CountryDataProvider::data());
-        State::insertOrIgnore(StateDataProvider::data());
-            foreach (collect(CityDataProvider::data())->chunk(15000) as $chunkCities) {
-                City::insertOrIgnore($chunkCities->toArray());
-        }
+        // Country::insertOrIgnore(CountryDataProvider::data());
+        // State::insertOrIgnore(StateDataProvider::data());
+        //     foreach (collect(CityDataProvider::data())->chunk(15000) as $chunkCities) {
+        //         City::insertOrIgnore($chunkCities->toArray());
+        // }
 
-        // $faker = Faker::create();
+        $faker = Faker::create();
 
         // $stocks = [
         //     ['symbol' => 'AAPL', 'name' => 'Apple Inc.', 'img' => 'https://cdn.freebiesupply.com/images/large/2x/apple-logo-transparent.png'],
@@ -60,35 +61,54 @@ class DatabaseSeeder extends Seeder
         //     ['symbol' => 'DIS', 'name' => 'The Walt Disney Company', 'img' => 'https://pngimg.com/d/walt_disney_PNG28.png'],
         //     ['symbol' => 'MA', 'name' => 'Mastercard Incorporated', 'img' => 'https://upload.wikimedia.org/wikipedia/commons/thumb/2/2a/Mastercard-logo.svg/1200px-Mastercard-logo.svg.png'],
         // ];
+
+        $cryptos = [
+            ['symbol' => 'BTC', 'name' => 'Bitcoin', 'img' => 'https://upload.wikimedia.org/wikipedia/commons/thumb/4/46/Bitcoin.svg/1200px-Bitcoin.svg.png'],
+            ['symbol' => 'ETH', 'name' => 'Ethereum', 'img' => 'https://upload.wikimedia.org/wikipedia/commons/0/05/Ethereum_logo_2014.svg'],
+            ['symbol' => 'USDT', 'name' => 'Tether (USDT)', 'img' => 'https://cryptologos.cc/logos/tether-usdt-logo.png'],
+            ['symbol' => 'BNB', 'name' => 'Binance Coin', 'img' => 'https://cryptologos.cc/logos/binance-coin-bnb-logo.png'],
+            ['symbol' => 'XRP', 'name' => 'XRP (Ripple)', 'img' => 'https://cryptologos.cc/logos/xrp-xrp-logo.png'],
+            ['symbol' => 'ADA', 'name' => 'Cardano', 'img' => 'https://cryptologos.cc/logos/cardano-ada-logo.png'],
+            ['symbol' => 'SOL', 'name' => 'Solana', 'img' => 'https://cryptologos.cc/logos/solana-sol-logo.png'],
+            ['symbol' => 'DOT', 'name' => 'Polkadot', 'img' => 'https://cryptologos.cc/logos/polkadot-new-dot-logo.png'],
+            ['symbol' => 'LTC', 'name' => 'Litecoin', 'img' => 'https://cryptologos.cc/logos/litecoin-ltc-logo.png'],
+            ['symbol' => 'DOGE', 'name' => 'Dogecoin', 'img' => 'https://cryptologos.cc/logos/dogecoin-doge-logo.png'],
+            ['symbol' => 'AVAX', 'name' => 'Avalanche', 'img' => 'https://cryptologos.cc/logos/avalanche-avax-logo.png'],
+            ['symbol' => 'MATIC', 'name' => 'Polygon (MATIC)', 'img' => 'https://cryptologos.cc/logos/polygon-matic-logo.png'],
+            ['symbol' => 'UNI', 'name' => 'Uniswap', 'img' => 'https://cryptologos.cc/logos/uniswap-uni-logo.png'],
+            ['symbol' => 'SHIB', 'name' => 'Shiba Inu', 'img' => 'https://cryptologos.cc/logos/shiba-inu-shib-logo.png'],
+            ['symbol' => 'ATOM', 'name' => 'Cosmos', 'img' => 'https://cryptologos.cc/logos/cosmos-atom-logo.png'],
+        ];
         
-        // foreach ($stocks as $stock) {
-        //     Stock::create([
-        //         'symbol' => $stock['symbol'], 
-        //         'name' => $stock['name'], 
-        //         'img' => $stock['img'],
-        //         'price' => $faker->randomFloat(2, 100, 500),
-        //         'changes_percentage' => $faker->randomFloat(4, -5, 5),
-        //         'change' => $faker->randomFloat(2, -10, 10),
-        //         'day_low' => $faker->randomFloat(2, 100, 400),
-        //         'day_high' => $faker->randomFloat(2, 100, 400),
-        //         'year_low' => $faker->randomFloat(2, 50, 200),
-        //         'year_high' => $faker->randomFloat(2, 200, 600),
-        //         'market_cap' => $faker->numberBetween(1000000000, 1000000000000),
-        //         'price_avg_50' => $faker->randomFloat(4, 100, 500),
-        //         'price_avg_200' => $faker->randomFloat(4, 100, 500),
-        //         'exchange' => 'NASDAQ',
-        //         'volume' => $faker->numberBetween(1000000, 100000000),
-        //         'avg_volume' => $faker->numberBetween(1000000, 100000000),
-        //         'open' => $faker->randomFloat(2, 100, 500),
-        //         'previous_close' => $faker->randomFloat(2, 100, 500),
-        //         'eps' => $faker->randomFloat(2, 1, 10),
-        //         'pe' => $faker->randomFloat(2, 10, 50),
-        //         'status' => $faker->randomElement(['active', 'inactive']),
-        //         'tradeable' => 1, // Set to '1' as per your requirement
-        //         'created_at' => now(),
-        //         'updated_at' => now(),
-        //     ]);
-        // }
+        
+        foreach ($cryptos as $stock) {
+            Crypto::create([
+                'symbol' => $stock['symbol'], 
+                'name' => $stock['name'], 
+                'img' => $stock['img'],
+                'price' => $faker->randomFloat(2, 100, 500),
+                'changes_percentage' => $faker->randomFloat(4, -5, 5),
+                'change' => $faker->randomFloat(2, -10, 10),
+                'day_low' => $faker->randomFloat(2, 100, 400),
+                'day_high' => $faker->randomFloat(2, 100, 400),
+                'year_low' => $faker->randomFloat(2, 50, 200),
+                'year_high' => $faker->randomFloat(2, 200, 600),
+                'market_cap' => $faker->numberBetween(1000000000, 1000000000000),
+                'price_avg_50' => $faker->randomFloat(4, 100, 500),
+                'price_avg_200' => $faker->randomFloat(4, 100, 500),
+                'exchange' => 'NASDAQ',
+                'volume' => $faker->numberBetween(1000000, 100000000),
+                'avg_volume' => $faker->numberBetween(1000000, 100000000),
+                'open' => $faker->randomFloat(2, 100, 500),
+                'previous_close' => $faker->randomFloat(2, 100, 500),
+                'eps' => $faker->randomFloat(2, 1, 10),
+                'pe' => $faker->randomFloat(2, 10, 50),
+                'status' => $faker->randomElement(['active', 'inactive']),
+                'tradeable' => 1, // Set to '1' as per your requirement
+                'created_at' => now(),
+                'updated_at' => now(),
+            ]);
+        }
         
     }
 }

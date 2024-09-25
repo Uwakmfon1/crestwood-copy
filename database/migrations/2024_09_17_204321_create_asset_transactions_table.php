@@ -18,7 +18,7 @@ class CreateAssetTransactionsTable extends Migration
             $table->foreignId('user_id');
             $table->foreignId('stock_id');
             $table->decimal('price', 15, 2);
-            $table->decimal('quantity');
+            $table->decimal('quantity', 15, 8);
             $table->decimal('amount', 15, 2);
             $table->decimal('profit', 15, 2);
             $table->enum('type', ['buy', 'sell']);

@@ -86,7 +86,7 @@
                 </ul>
             </li>
 
-            <li class="slide has-sub @if(request()->routeIs(['', ''])) active @endif">
+            <li class="slide has-sub @if(request()->routeIs(['crypto', 'crypto.assets'])) active @endif">
                 <a href="javascript:void(0);" class="side-menu__item">
                 <i class="fe fe-dollar-sign mx-2"></i>
                     <span class="side-menu__label">Crypto</span>
@@ -94,10 +94,10 @@
                 </a>
                 <ul class="slide-menu child1 pages-ul">
                     <li class="slide">
-                        <a href="{{ route('tradings') }}" class="side-menu__item @if(request()->routeIs(['tradings'])) active @endif">Crypto</a>
+                        <a href="{{ route('crypto') }}" class="side-menu__item @if(request()->routeIs(['crypto'])) active @endif">Crypto</a>
                     </li>
                     <li class="slide">
-                        <a href="{{ route('assets') }}" class="side-menu__item @if(request()->routeIs(['assets'])) active @endif">Assets</a>
+                        <a href="{{ route('crypto.assets') }}" class="side-menu__item @if(request()->routeIs(['crypto.assets'])) active @endif">Assets</a>
                     </li>
                 </ul>
             </li>
