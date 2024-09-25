@@ -63,21 +63,21 @@ class DatabaseSeeder extends Seeder
         // ];
 
         $cryptos = [
-            ['symbol' => 'BTC', 'name' => 'Bitcoin', 'img' => 'https://upload.wikimedia.org/wikipedia/commons/thumb/4/46/Bitcoin.svg/1200px-Bitcoin.svg.png'],
-            ['symbol' => 'ETH', 'name' => 'Ethereum', 'img' => 'https://upload.wikimedia.org/wikipedia/commons/0/05/Ethereum_logo_2014.svg'],
-            ['symbol' => 'USDT', 'name' => 'Tether (USDT)', 'img' => 'https://cryptologos.cc/logos/tether-usdt-logo.png'],
-            ['symbol' => 'BNB', 'name' => 'Binance Coin', 'img' => 'https://cryptologos.cc/logos/binance-coin-bnb-logo.png'],
-            ['symbol' => 'XRP', 'name' => 'XRP (Ripple)', 'img' => 'https://cryptologos.cc/logos/xrp-xrp-logo.png'],
-            ['symbol' => 'ADA', 'name' => 'Cardano', 'img' => 'https://cryptologos.cc/logos/cardano-ada-logo.png'],
-            ['symbol' => 'SOL', 'name' => 'Solana', 'img' => 'https://cryptologos.cc/logos/solana-sol-logo.png'],
-            ['symbol' => 'DOT', 'name' => 'Polkadot', 'img' => 'https://cryptologos.cc/logos/polkadot-new-dot-logo.png'],
-            ['symbol' => 'LTC', 'name' => 'Litecoin', 'img' => 'https://cryptologos.cc/logos/litecoin-ltc-logo.png'],
-            ['symbol' => 'DOGE', 'name' => 'Dogecoin', 'img' => 'https://cryptologos.cc/logos/dogecoin-doge-logo.png'],
-            ['symbol' => 'AVAX', 'name' => 'Avalanche', 'img' => 'https://cryptologos.cc/logos/avalanche-avax-logo.png'],
-            ['symbol' => 'MATIC', 'name' => 'Polygon (MATIC)', 'img' => 'https://cryptologos.cc/logos/polygon-matic-logo.png'],
-            ['symbol' => 'UNI', 'name' => 'Uniswap', 'img' => 'https://cryptologos.cc/logos/uniswap-uni-logo.png'],
-            ['symbol' => 'SHIB', 'name' => 'Shiba Inu', 'img' => 'https://cryptologos.cc/logos/shiba-inu-shib-logo.png'],
-            ['symbol' => 'ATOM', 'name' => 'Cosmos', 'img' => 'https://cryptologos.cc/logos/cosmos-atom-logo.png'],
+            ['symbol' => 'BTCUSD', 'name' => 'Bitcoin', 'img' => 'https://upload.wikimedia.org/wikipedia/commons/thumb/4/46/Bitcoin.svg/1200px-Bitcoin.svg.png'],
+            ['symbol' => 'ETHUSD', 'name' => 'Ethereum', 'img' => 'https://upload.wikimedia.org/wikipedia/commons/0/05/Ethereum_logo_2014.svg'],
+            ['symbol' => 'USDTUSD', 'name' => 'Tether (USDT)', 'img' => 'https://cryptologos.cc/logos/tether-usdt-logo.png'],
+            ['symbol' => 'BNBUSD', 'name' => 'Binance Coin', 'img' => 'https://cryptologos.cc/logos/binance-coin-bnb-logo.png'],
+            ['symbol' => 'XRPUSD', 'name' => 'XRP (Ripple)', 'img' => 'https://cryptologos.cc/logos/xrp-xrp-logo.png'],
+            ['symbol' => 'ADAUSD', 'name' => 'Cardano', 'img' => 'https://cryptologos.cc/logos/cardano-ada-logo.png'],
+            ['symbol' => 'SOLUSD', 'name' => 'Solana', 'img' => 'https://cryptologos.cc/logos/solana-sol-logo.png'],
+            ['symbol' => 'DOTUSD', 'name' => 'Polkadot', 'img' => 'https://cryptologos.cc/logos/polkadot-new-dot-logo.png'],
+            ['symbol' => 'LTCUSD', 'name' => 'Litecoin', 'img' => 'https://cryptologos.cc/logos/litecoin-ltc-logo.png'],
+            ['symbol' => 'DOGEUSD', 'name' => 'Dogecoin', 'img' => 'https://cryptologos.cc/logos/dogecoin-doge-logo.png'],
+            ['symbol' => 'AVAXUSD', 'name' => 'Avalanche', 'img' => 'https://cryptologos.cc/logos/avalanche-avax-logo.png'],
+            ['symbol' => 'MATICUSD', 'name' => 'Polygon (MATIC)', 'img' => 'https://cryptologos.cc/logos/polygon-matic-logo.png'],
+            ['symbol' => 'UNIUSD', 'name' => 'Uniswap', 'img' => 'https://cryptologos.cc/logos/uniswap-uni-logo.png'],
+            ['symbol' => 'SHIBUSD', 'name' => 'Shiba Inu', 'img' => 'https://cryptologos.cc/logos/shiba-inu-shib-logo.png'],
+            ['symbol' => 'ATOMUSD', 'name' => 'Cosmos', 'img' => 'https://cryptologos.cc/logos/cosmos-atom-logo.png'],
         ];
         
         

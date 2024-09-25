@@ -792,7 +792,7 @@
                                                 </div>
                                             </div>
                                         </td>
-                                        <td onclick="window.location='{{ route('crypto.show', ['stock' => $stock['id'], 'symbol' => $stock['symbol']]) }}';">${{ $stock->price }}</td>
+                                        <td onclick="window.location='{{ route('crypto.show', ['stock' => $stock['id'], 'symbol' => $stock['symbol']]) }}';">${{ number_format($stock->price, 2) }}</td>
                                         <td onclick="window.location='{{ route('crypto.show', ['stock' => $stock['id'], 'symbol' => $stock['symbol']]) }}';">${{ formatMarketCap($stock->market_cap) }}</td>
                                         <td>
                                             <span class="badge {{ $stock->change < 0 ? 'bg-danger-transparent' : 'bg-success-transparent' }}">
