@@ -39,7 +39,7 @@
          <div class="bg-pebble text-eggplant">
             <section class="mx-auto max-w-[2024px] lg:px-11 xl:px-16 lg:py-6">
                <div class="p-2 lg:rounded-md lg:shadow-[-6px_8px_0.6px_0_#0000001A] bg-night-start lg:p-0">
-                  <a href="{{ url("automated-bond-ladder.html") }}" target="_blank">
+                  <a href="{{ route('home') }}" target="_blank">
                      <div class="text-white py-2 lg:flex lg:items-center lg:justify-between 2xl:gap-5">
                         <svg class="hidden xl:block" width="123" height="63" viewBox="0 0 123 63" fill="none" xmlns="http://www.w3.org/2000/svg">
                            <mask id="e732970f08bddfa0aa9d04c5c7df05db" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="-3" y="0" width="126" height="63">
@@ -69,31 +69,31 @@
                <div class="hidden lg:block">
                   <div class="mx-auto max-w-[2024px] px-0 md:px-12 lg:px-11 xl:px-16">
                      <div class="grid h-24 grid-cols-header items-center justify-between gap-3">
-                        <!-- <a class="z-10 relative font-medium underline text-eggplant" href="{{ asset("/index.html") }}"><img data-testid="logo-light-wordmark" class="text-3xl font-bold text-white md:text-eggplant" width="200" height="26" alt="Crestwood Logo" loading="eager" src="{{ asset("/next/contenthash/next/svg/optimized/wordmark-surface-light.contenthash.a8692bc90191152aab2540310597006576ffb65d.svg") }}"/></a> -->
+                        <a class="z-10 relative font-medium underline text-eggplant" href="{{ route('home') }}"><img data-testid="logo-light-wordmark" class="text-3xl font-bold text-white md:text-eggplant" width="200" height="26" alt="Crestwood Logo" loading="eager" src="{{ asset("/next/contenthash/next/svg/optimized/wordmark-surface-light.contenthash.a8692bc90191152aab2540310597006576ffb65d.svg") }}"/></a>
                         <nav class="flex items-center space-x-8 lg:space-x-5 xl:space-x-8 2xl:space-x-12" aria-label="Main">
-                           <a href="{{ url("cash.html") }}" class="group relative font-medium text-eggplant" data-testid="/cash">
+                           <a href="{{ route('cash') }}" class="group relative font-medium text-eggplant" data-testid="/cash">
                               Cash
                               <div class="absolute left-0 right-0 -bottom-0.5 h-0.5 w-0 transition-all group-hover:w-full bg-eggplant"></div>
                            </a>
-                           <a role="button" href="{{ url("#") }}" class="group relative font-medium text-eggplant">
-                              Bonds<!-- --> 
+                           <a style="display: none;" role="button" href="{{ url("#") }}" class="d-none group relative font-medium text-eggplant">
+                              Bonds
                               <svg fill="none" viewBox="0 0 9 6" xmlns="http://www.w3.org/2000/svg" data-testid="chevron-down" class="inline h-1.5">
                                  <path d="M.47 1.624A.754.754 0 111.58.602l2.552 2.772a.5.5 0 00.736 0L7.42.602a.754.754 0 111.11 1.022L5.236 5.201a1 1 0 01-1.472 0L.47 1.624z" fill="currentColor" fill-rule="evenodd"></path>
                               </svg>
                               <div class="absolute left-0 right-0 -bottom-0.5 h-0.5 w-0 transition-all group-hover:w-full bg-eggplant"></div>
                            </a>
-                           <a role="button" href="{{ url("#") }}" class="group relative font-medium text-eggplant">
+                           <a role="button" href="{{ route('investment') }}" class="group relative font-medium text-eggplant">
                               Automated Investing<!-- --> 
                               <svg fill="none" viewBox="0 0 9 6" xmlns="http://www.w3.org/2000/svg" data-testid="chevron-down" class="inline h-1.5">
                                  <path d="M.47 1.624A.754.754 0 111.58.602l2.552 2.772a.5.5 0 00.736 0L7.42.602a.754.754 0 111.11 1.022L5.236 5.201a1 1 0 01-1.472 0L.47 1.624z" fill="currentColor" fill-rule="evenodd"></path>
                               </svg>
                               <div class="absolute left-0 right-0 -bottom-0.5 h-0.5 w-0 transition-all group-hover:w-full bg-eggplant"></div>
                            </a>
-                           <a href="{{ url("stock-investing.html") }}" class="group relative font-medium text-eggplant" data-testid="/stock-investing">
+                           <a href="{{ route('stocks') }}" class="group relative font-medium text-eggplant" data-testid="/stock-investing">
                               Stocks
                               <div class="absolute left-0 right-0 -bottom-0.5 h-0.5 w-0 transition-all group-hover:w-full bg-eggplant"></div>
                            </a>
-                           <a role="button" href="{{ url("#") }}" class="group relative font-medium text-eggplant">
+                           <a role="button" href="{{ route('blog') }}" class="group relative font-medium text-eggplant">
                               Learn<!-- --> 
                               <svg fill="none" viewBox="0 0 9 6" xmlns="http://www.w3.org/2000/svg" data-testid="chevron-down" class="inline h-1.5">
                                  <path d="M.47 1.624A.754.754 0 111.58.602l2.552 2.772a.5.5 0 00.736 0L7.42.602a.754.754 0 111.11 1.022L5.236 5.201a1 1 0 01-1.472 0L.47 1.624z" fill="currentColor" fill-rule="evenodd"></path>
@@ -140,7 +140,7 @@
                                           , take advantage of today’s rates with a ladder of US Treasuries, invest for the long-term with award-winning automation, and more.
                                        </p>
                                     </div>
-                                    <div class="flex flex-row md:items-center lg:space-x-8"><a class="z-10 relative button_button__SRc2Y relative items-center justify-center rounded-md transition-all font-medium 2xl:px-6 2xl:py-3.5 px-5 py-3 copy-body button_primaryButton__ipohF bg-blurple text-white overflow-hidden inline-flex whitespace-nowrap" href="{{ url("start/account-type4fd8.html?intent=home") }}" data-testid="hero-module-cta">Get started</a></div>
+                                    <div class="flex flex-row md:items-center lg:space-x-8"><a class="z-10 relative button_button__SRc2Y relative items-center justify-center rounded-md transition-all font-medium 2xl:px-6 2xl:py-3.5 px-5 py-3 copy-body button_primaryButton__ipohF bg-blurple text-white overflow-hidden inline-flex whitespace-nowrap" href="{{ route('register') }}" data-testid="hero-module-cta">Get started</a></div>
                                  </div>
                                  <div data-testid="accolades-bar" class="text-sm opacity-60 text-eggplant grid auto-cols-auto grid-flow-col grid-rows-[auto,auto] items-center gap-x-6 gap-y-2 2xl:gap-x-10">
                                     <img width="133" height="21" alt="Nerdwallet logo" loading="lazy" src="{{ asset("/next/contenthash/next/svg/optimized/nerdwallet.contenthash.91486057718363f6a3d741326df4b30d418430e2.svg") }}"/>
@@ -707,7 +707,7 @@
                                     <div class="flex flex-row md:items-center lg:space-x-8">
                                        <div class="pt-px before:block before:-mt-[17px]">
                                           <div data-toolkit-component="Inline" class="flex flex-row flex-wrap -ml-medium justify-start items-start">
-                                             <div class="leading-[1em] min-w-0 pt-medium pl-medium"><a class="z-10 relative button_button__SRc2Y relative items-center justify-center rounded-md transition-all font-medium 2xl:px-6 2xl:py-3.5 px-5 py-3 copy-body button_primaryButton__ipohF bg-blurple text-white overflow-hidden inline-flex whitespace-nowrap" href="{{ url("start/bond-ladder-intro3554.html?from=landing") }}">Get started</a></div>
+                                             <div class="leading-[1em] min-w-0 pt-medium pl-medium"><a class="z-10 relative button_button__SRc2Y relative items-center justify-center rounded-md transition-all font-medium 2xl:px-6 2xl:py-3.5 px-5 py-3 copy-body button_primaryButton__ipohF bg-blurple text-white overflow-hidden inline-flex whitespace-nowrap" href="{{ route('register') }}">Get started</a></div>
                                              <div class="leading-[1em] min-w-0 pt-medium pl-medium"><a class="z-10 relative button_button__SRc2Y relative items-center justify-center rounded-md transition-all font-medium 2xl:px-6 2xl:py-3.5 px-5 py-3 copy-body button_secondaryButtonOnLight__tcBIH border border-blurple text-blurple inline-flex whitespace-nowrap" href="{{ url("automated-bond-ladder.html") }}">Learn more</a></div>
                                           </div>
                                        </div>
@@ -935,7 +935,7 @@
                                     <div class="flex flex-row md:items-center lg:space-x-8">
                                        <div class="pt-px before:block before:-mt-[17px]">
                                           <div data-toolkit-component="Inline" class="flex flex-row flex-wrap -ml-medium justify-start items-start">
-                                             <div class="leading-[1em] min-w-0 pt-medium pl-medium"><a class="z-10 relative button_button__SRc2Y relative items-center justify-center rounded-md transition-all font-medium 2xl:px-6 2xl:py-3.5 px-5 py-3 copy-body button_primaryButton__ipohF bg-blurple text-white overflow-hidden inline-flex whitespace-nowrap" href="{{ url("start/account-type/goalef30.html?intent=investing") }}">Get started</a></div>
+                                             <div class="leading-[1em] min-w-0 pt-medium pl-medium"><a class="z-10 relative button_button__SRc2Y relative items-center justify-center rounded-md transition-all font-medium 2xl:px-6 2xl:py-3.5 px-5 py-3 copy-body button_primaryButton__ipohF bg-blurple text-white overflow-hidden inline-flex whitespace-nowrap"  href="{{ route('register') }}">Get started</a></div>
                                              <div class="leading-[1em] min-w-0 pt-medium pl-medium"><a class="z-10 relative button_button__SRc2Y relative items-center justify-center rounded-md transition-all font-medium 2xl:px-6 2xl:py-3.5 px-5 py-3 copy-body button_secondaryButtonOnLight__tcBIH border border-blurple text-blurple inline-flex whitespace-nowrap" href="{{ url("investing.html") }}">Learn more</a></div>
                                           </div>
                                        </div>
@@ -1408,7 +1408,7 @@
                            <p class="copy-h3-alt">Google Play Store <sup>2</sup></p>
                         </div>
                      </div>
-                     <a class="z-10 relative button_button__SRc2Y relative items-center justify-center rounded-md transition-all font-medium 2xl:px-6 2xl:py-3.5 px-5 py-3 copy-body button_primaryButton__ipohF bg-blurple text-white overflow-hidden inline-flex whitespace-nowrap" href="{{ url("start/account-type4fd8.html?intent=home") }}">Get started</a>
+                     <a class="z-10 relative button_button__SRc2Y relative items-center justify-center rounded-md transition-all font-medium 2xl:px-6 2xl:py-3.5 px-5 py-3 copy-body button_primaryButton__ipohF bg-blurple text-white overflow-hidden inline-flex whitespace-nowrap" href="{{ route('register') }}">Get started</a>
                   </div>
                </div>
                <div data-testid="homepage-faq-module" class="flex justify-center border-t-[1px] border-eggplant border-opacity-40 bg-lilac">
