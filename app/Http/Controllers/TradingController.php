@@ -22,9 +22,21 @@ use App\Models\CryptoTrade;
 
 class TradingController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $stock = Stock::paginate(20);
+        // Start with a base query for the stocks (crypto assets)
+        $query = Stock::query();
+
+        // If a search term is present, adjust the query to filter by name or symbol
+        if ($request->filled('search')) {
+            $searchTerm = $request->input('search');
+            $query->where(function ($q) use ($searchTerm) {
+                $q->where('name', 'like', '%' . $searchTerm . '%')
+                ->orWhere('symbol', 'like', '%' . $searchTerm . '%');
+            });
+        }
+
+        $stock = $query->paginate(40);
         $balance = auth()->user()->tradingWalletBalance();
 
         $buy_asset = Trading::
@@ -65,41 +77,60 @@ class TradingController extends Controller
         ]);
     }
 
-    public function crypto()
+    public function crypto(Request $request)
     {
-        $stock = Crypto::paginate(20);
+        // Start with a base query for the stocks (crypto assets)
+        $query = Crypto::query();
+
+        // If a search term is present, adjust the query to filter by name or symbol
+        if ($request->filled('search')) {
+            $searchTerm = $request->input('search');
+            $query->where(function ($q) use ($searchTerm) {
+                $q->where('name', 'like', '%' . $searchTerm . '%')
+                ->orWhere('symbol', 'like', '%' . $searchTerm . '%');
+            });
+        }
+
+        // Paginate the query results
+        $stock = $query->paginate(40);
+
+        // Get the user's trading wallet balance
         $balance = auth()->user()->tradingWalletBalance();
 
-        $buy_asset = Trading::
+        // Retrieve and calculate buy trades
+        $buy_asset = CryptoTrade::
             where('user_id', auth()->id())->
             where('type', 'buy')->
             latest()->
             get();
 
-            $totalBuyAmount = $buy_asset->sum(function($asset) {
-                return $asset->amount * $asset->quantity;
-            });
+        $totalBuyAmount = $buy_asset->sum(function($asset) {
+            return $asset->amount * $asset->lots;
+        });
 
-            $buyTrade = $buy_asset->count();
+        $buyTrade = $buy_asset->count();
 
-        $sell_asset = Trading::
+        // Retrieve and calculate sell trades
+        $sell_asset = CryptoTrade::
             where('user_id', auth()->id())->
             where('type', 'sell')->
             latest()->
             get();
 
-            $totalSellAmount = $sell_asset->sum(function($asset) {
-                return $asset->amount * $asset->quantity;
-            });
+        $totalSellAmount = $sell_asset->sum(function($asset) {
+            return $asset->amount * $asset->lots;
+        });
 
-            $sellTrade = $sell_asset->count();
+        $sellTrade = $sell_asset->count();
 
+        // Example Naira conversion rate
         $naira = 1568.23;
 
+        // Return the view with relevant data, including search results
         return view('user_.crypto.index', [
-            'title' => 'Cryptocurrency', 
+            'title' => 'Cryptocurrency',
             'stocks' => $stock,
-            'balance' => $balance, 
+            'balance' => $balance,
             'naira' => $naira,
             'buyAmount' => $totalBuyAmount,
             'buyTrade' => $buyTrade,
@@ -536,7 +567,7 @@ class TradingController extends Controller
 
         // Calculate the total amount of all trades
         $totalAmount = $assets->sum(function($asset) {
-            return $asset->amount * $asset->quantity;
+            return $asset->amount * $asset->lots;
         });
 
         $naira = 1568.23;

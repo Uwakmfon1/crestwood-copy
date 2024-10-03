@@ -44,31 +44,61 @@
 <div class="main-content app-content">
 @include('partials.users.alert')
     <div class="container-fluid">
-
-        <!-- Start::page-header -->
-        {{-- <div
-            class="my-4 page-header-breadcrumb d-flex align-items-center justify-content-between flex-wrap gap-2">
-            <div>
-                <h1 class="page-title fw-medium fs-18 mb-2">Stocks</h1>
-                <ol class="breadcrumb mb-0">
-                    <li class="breadcrumb-item">
-                        <a href="javascript:void(0);">
-                            Dashboards
-                        </a>
-                    </li>
-                    <li class="breadcrumb-item active" aria-current="page">Stocks</li>
-                </ol>
+        <div class="mt-3">
+            <div class="tradingview-widget-container">
+                <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-ticker-tape.js" async>
+                    {
+                        "symbols": [
+                            {
+                            "description": "",
+                            "proName": "NASDAQ:NVDA"
+                            },
+                            {
+                            "description": "",
+                            "proName": "NASDAQ:TSLA"
+                            },
+                            {
+                            "description": "",
+                            "proName": "NASDAQ:AAPL"
+                            },
+                            {
+                            "description": "",
+                            "proName": "NASDAQ:AMZN"
+                            },
+                            {
+                            "description": "",
+                            "proName": "NASDAQ:META"
+                            },
+                            {
+                            "description": "",
+                            "proName": "NASDAQ:AMD"
+                            },
+                            {
+                            "description": "",
+                            "proName": "NASDAQ:MSFT"
+                            },
+                            {
+                            "description": "",
+                            "proName": "NYSE:BABA"
+                            },
+                            {
+                            "description": "",
+                            "proName": "NYSE:PLTR"
+                            },
+                            {
+                            "description": "",
+                            "proName": "NASDAQ:NFLX"
+                            }
+                        ],
+                        "showSymbolLogo": true,
+                        "isTransparent": false,
+                        "displayMode": "adaptive",
+                        "colorTheme": "light",
+                        "locale": "en"
+                    }
+                </script>
             </div>
-            <div class="d-flex gap-2">
-                <!-- <button class="btn btn-white btn-wave border-0 me-0 fw-normal waves-effect waves-light">
-                    <i class="ri-filter-3-fill me-2"></i>Filter
-                </button>
-                <button type="button" class="btn btn-primary btn-wave waves-effect waves-light">
-                    <i class="ri-upload-2-line me-2"></i> Export report
-                </button> -->
-            </div>
-        </div> --}}
-        <!-- End::page-header -->
+        </div>
 
         <!-- Start:: row-1 -->
         <div class="row">
@@ -173,23 +203,21 @@
                             <div class="swiper-slide">
                                 <div class="card custom-card">
                                     <div class="card-body">
-                                        <div class="d-flex gap-2 flex-wrap align-items-center justify-content-between p-3 bg-success-transparent border">
+                                        <div class="d-flex gap-2 flex-wrap align-items-center justify-content-between p-3 border rounded bg-primary-transparent">
                                             <div class="d-flex flex-fill align-items-center">
                                                 <div class="me-2">
-                                                    <span class="avatar avatar-sm bg-success p-2">
-                                                        <i class="bi bi-apple  fs-18"></i>
+                                                    <span class="avatar avatar-sm bg-primary p-2">
+                                                        <i class="bi bi-people fs-18"></i>
                                                     </span>
                                                 </div>
                                                 <div class="lh-1">
-                                                    <span
-                                                        class="d-block mb-2 text-default fw-medium">Apple</span>
-                                                    <span class="d-block fs-12">$12,289.44</span>
+                                                    <span class="d-block mb-2 text-default fw-medium">Microsoft</span>
+                                                    <span class="d-block fs-12">$304.25</span>
                                                 </div>
                                             </div>
                                             <div class="fs-12 text-end">
-                                                <span class="text-success d-block">0.14%<i
-                                                        class="ti ti-arrow-bear-right"></i></span>
-                                                <span class="d-block text-success">+$1,780.80</span>
+                                                <span class="text-success d-block">1.76%<i class="ti ti-arrow-bear-right"></i></span>
+                                                <span class="d-block text-success">+$5.25</span>
                                             </div>
                                         </div>
                                     </div>
@@ -198,23 +226,44 @@
                             <div class="swiper-slide">
                                 <div class="card custom-card">
                                     <div class="card-body">
-                                        <div class="d-flex gap-2 flex-wrap align-items-center justify-content-between p-3 border rounded bg-secondary-transparent">
+                                        <div class="d-flex gap-2 flex-wrap align-items-center justify-content-between p-3 border rounded bg-warning-transparent">
                                             <div class="d-flex flex-fill align-items-center">
                                                 <div class="me-2">
-                                                    <span class="avatar avatar-sm bg-secondary p-2">
-                                                        <i class="bi bi-currency-bitcoin  fs-18"></i>
+                                                    <span class="avatar avatar-sm bg-warning p-2">
+                                                        <i class="bi bi-bag fs-18"></i>
                                                     </span>
                                                 </div>
                                                 <div class="lh-1">
-                                                    <span
-                                                        class="d-block mb-2 text-default fw-medium">Bitcoin</span>
-                                                    <span class="d-block fs-12">$58,151.02</span>
+                                                    <span class="d-block mb-2 text-default fw-medium">NVIDIA</span>
+                                                    <span class="d-block fs-12">$219.87</span>
                                                 </div>
                                             </div>
-                                            <div class=" fs-12 text-end">
-                                                <span class="text-success d-block">2.14%<i
-                                                        class="ti ti-arrow-bear-right"></i></span>
-                                                <span class="text-secondary d-block">+$5,745.62</span>
+                                            <div class="fs-12 text-end">
+                                                <span class="text-danger d-block">2.45%<i class="ti ti-arrow-bear-right"></i></span>
+                                                <span class="d-block text-danger">-$5.56</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="swiper-slide">
+                                <div class="card custom-card">
+                                    <div class="card-body">
+                                        <div class="d-flex gap-2 flex-wrap align-items-center justify-content-between p-3 border rounded bg-danger-transparent">
+                                            <div class="d-flex flex-fill align-items-center">
+                                                <div class="me-2">
+                                                    <span class="avatar avatar-sm bg-danger p-2">
+                                                        <i class="bi bi-heart fs-18"></i>
+                                                    </span>
+                                                </div>
+                                                <div class="lh-1">
+                                                    <span class="d-block mb-2 text-default fw-medium">Pfizer</span>
+                                                    <span class="d-block fs-12">$43.25</span>
+                                                </div>
+                                            </div>
+                                            <div class="fs-12 text-end">
+                                                <span class="text-danger d-block">3.00%<i class="ti ti-arrow-bear-right"></i></span>
+                                                <span class="d-block text-danger">-$1.34</span>
                                             </div>
                                         </div>
                                     </div>
@@ -227,127 +276,63 @@
                                             <div class="d-flex flex-fill align-items-center">
                                                 <div class="me-2">
                                                     <span class="avatar avatar-sm bg-info p-2">
-                                                        <i class="bi bi-card-list  fs-18"></i>
+                                                        <i class="bi bi-geo-alt fs-18"></i>
                                                     </span>
                                                 </div>
                                                 <div class="lh-1">
-                                                    <span
-                                                        class="d-block mb-2 text-default fw-medium">Tesla</span>
-                                                    <span class="d-block fs-12">$14,452.36</span>
+                                                    <span class="d-block mb-2 text-default fw-medium">Walmart</span>
+                                                    <span class="d-block fs-12">$153.50</span>
                                                 </div>
                                             </div>
-                                            <div class=" fs-12 text-end">
-                                                <span class="text-danger d-block">4.02%<i
-                                                        class="ti ti-arrow-bear-right"></i></span>
-                                                <span class="d-block text-info">+$4,125.63</span>
+                                            <div class="fs-12 text-end">
+                                                <span class="text-success d-block">0.75%<i class="ti ti-arrow-bear-right"></i></span>
+                                                <span class="d-block text-success">+$1.15</span>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-
                             </div>
                             <div class="swiper-slide">
                                 <div class="card custom-card">
                                     <div class="card-body">
-                                        <div
-                                            class="d-flex gap-2 flex-wrap align-items-center justify-content-between p-3 border rounded bg-dark-transparent">
+                                        <div class="d-flex gap-2 flex-wrap align-items-center justify-content-between p-3 border rounded bg-secondary-transparent">
+                                            <div class="d-flex flex-fill align-items-center">
+                                                <div class="me-2">
+                                                    <span class="avatar avatar-sm bg-secondary p-2">
+                                                        <i class="bi bi-soundwave fs-18"></i>
+                                                    </span>
+                                                </div>
+                                                <div class="lh-1">
+                                                    <span class="d-block mb-2 text-default fw-medium">Intel</span>
+                                                    <span class="d-block fs-12">$30.18</span>
+                                                </div>
+                                            </div>
+                                            <div class="fs-12 text-end">
+                                                <span class="text-danger d-block">1.20%<i class="ti ti-arrow-bear-right"></i></span>
+                                                <span class="d-block text-danger">-$0.36</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="swiper-slide">
+                                <div class="card custom-card">
+                                    <div class="card-body">
+                                        <div class="d-flex gap-2 flex-wrap align-items-center justify-content-between p-3 border rounded bg-dark-transparent">
                                             <div class="d-flex flex-fill align-items-center">
                                                 <div class="me-2">
                                                     <span class="avatar avatar-sm bg-dark p-2">
-                                                        <i class="bi bi-gift  fs-18"></i>
+                                                        <i class="bi bi-mic fs-18"></i>
                                                     </span>
                                                 </div>
                                                 <div class="lh-1">
-                                                    <span
-                                                        class="d-block mb-2 text-default fw-medium">Amazon</span>
-                                                    <span class="d-block fs-12">$63,251.11</span>
+                                                    <span class="d-block mb-2 text-default fw-medium">Coca-Cola</span>
+                                                    <span class="d-block fs-12">$63.10</span>
                                                 </div>
                                             </div>
-                                            <div class=" fs-12 text-end">
-                                                <span class="text-success d-block">5.14%<i
-                                                        class="ti ti-arrow-bear-right"></i></span>
-                                                <span class="text-dark d-block">+$936.30</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                            </div>
-                            <div class="swiper-slide">
-                                <div class="card custom-card">
-                                    <div class="card-body">
-                                        <div
-                                            class="d-flex flex-wrap align-items-center justify-content-between p-3 border rounded bg-danger-transparent">
-                                            <div class="d-flex flex-fill align-items-center">
-                                                <div class="me-2">
-                                                    <span class="avatar avatar-sm bg-danger p-2">
-                                                        <i class="bi bi-truck  fs-18"></i>
-                                                    </span>
-                                                </div>
-                                                <div class="lh-1">
-                                                    <span
-                                                        class="d-block mb-2 text-default fw-medium">Aliexpress</span>
-                                                    <span class="d-block fs-12">$5,401.50</span>
-                                                </div>
-                                            </div>
-                                            <div class=" fs-12 text-end">
-                                                <span class="text-success d-block">3.32%<i
-                                                        class="ti ti-arrow-bear-right"></i></span>
-                                                <span class="d-block">+$4,360.65</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                            </div>
-                            <div class="swiper-slide">
-                                <div class="card custom-card">
-                                    <div class="card-body">
-                                        <div
-                                            class="d-flex flex-wrap align-items-center justify-content-between p-3 border rounded bg-warning-transparent">
-                                            <div class="d-flex flex-fill align-items-center">
-                                                <div class="me-2">
-                                                    <span class="avatar avatar-sm bg-warning p-2">
-                                                        <i class="bi bi-phone  fs-18"></i>
-                                                    </span>
-                                                </div>
-                                                <div class="lh-1">
-                                                    <span
-                                                        class="d-block mb-2 text-default fw-medium">Samsung</span>
-                                                    <span class="d-block fs-12">$10,732.12</span>
-                                                </div>
-                                            </div>
-                                            <div class=" fs-12 text-end">
-                                                <span class="text-danger d-block">1.24%<i
-                                                        class="ti ti-arrow-bear-right"></i></span>
-                                                <span class="text-warning d-block">+$3,221.29</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                            </div>
-                            <div class="swiper-slide">
-                                <div class="card custom-card">
-                                    <div class="card-body">
-                                        <div
-                                            class="d-flex gap-2 flex-wrap align-items-center justify-content-between p-3 border rounded bg-primary-transparent">
-                                            <div class="d-flex flex-fill align-items-center">
-                                                <div class="me-2">
-                                                    <span class="avatar avatar-sm bg-primary p-2">
-                                                        <i class="bi bi-nvidia  fs-18"></i>
-                                                    </span>
-                                                </div>
-                                                <div class="lh-1">
-                                                    <span
-                                                        class="d-block mb-2 text-default fw-medium">Nvidia</span>
-                                                    <span class="d-block fs-12">$23,235.25</span>
-                                                </div>
-                                            </div>
-                                            <div class=" fs-12 text-end">
-                                                <span class="text-success d-block">1.14%<i
-                                                        class="ti ti-arrow-bear-right"></i></span>
-                                                <span class="text-primary d-block">+$5,745.62</span>
+                                            <div class="fs-12 text-end">
+                                                <span class="text-success d-block">0.85%<i class="ti ti-arrow-bear-right"></i></span>
+                                                <span class="d-block text-success">+$0.53</span>
                                             </div>
                                         </div>
                                     </div>
@@ -745,22 +730,21 @@
                             Available Stock
                         </div>
                         <div class="d-flex flex-wrap gap-2">
-                            <div>
-                                <input class="form-control form-control-sm" type="text"
-                                    placeholder="Search Here" aria-label=".form-control-sm example">
-                            </div>
-                            <div class="dropdown">
-                                <a href="javascript:void(0);"
-                                    class="btn btn-primary btn-sm btn-wave waves-effect waves-light"
-                                    data-bs-toggle="dropdown" aria-expanded="false"> Sort By<i
-                                        class="ri-arrow-down-s-line align-middle ms-1 d-inline-block"></i>
-                                </a>
-                                <ul class="dropdown-menu" role="menu">
-                                    <li><a class="dropdown-item" href="javascript:void(0);">New</a></li>
-                                    <li><a class="dropdown-item" href="javascript:void(0);">Popular</a></li>
-                                    <li><a class="dropdown-item" href="javascript:void(0);">Relevant</a></li>
-                                </ul>
-                            </div>
+                            <form action="{{ route('tradings') }}" method="GET" class="d-flex align-items-center gap-2">
+                                <div class="input-group">
+                                    <!-- The search input will retain the previous search query if it exists -->
+                                    <input 
+                                        name="search" 
+                                        class="form-control form-control-sm" 
+                                        type="text" 
+                                        placeholder="Search Here" 
+                                        value="{{ request()->get('search') }}"
+                                        aria-label="Search"
+                                    >
+                                    <button type="submit" class="btn btn-primary btn-sm">Search</button>
+                                    <a href="{{ route('tradings') }}" class="btn btn-info-transparent btn-sm">Reset</a>
+                                </div>
+                            </form>
                         </div>
                     </div>
                     <div class="card-body p-0">
