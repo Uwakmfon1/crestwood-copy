@@ -46,13 +46,13 @@ class DatabaseSeeder extends Seeder
 
         $faker = Faker::create();
         
-        // $cryptos = CryptoDataProvider::data();
+        $cryptos = CryptoDataProvider::data();
 
-        $cryptos = StockDataProvider::data();
+        // $cryptos = StockDataProvider::data();
         
         foreach ($cryptos as $stock) {
-            // Crypto::insertOrIgnore([
-            Stock::insertOrIgnore([
+            Crypto::insertOrIgnore([
+            // Stock::insertOrIgnore([
                 'symbol' => $stock['symbol'],
                 'name' => $stock['name'],
                 'img' => $stock['img'],
