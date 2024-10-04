@@ -1,6 +1,13 @@
 @extends('layouts.user.index')
 
 @section('content')
+<style>
+    select {
+        appearance: auto !important;
+        -webkit-appearance: auto;
+        -moz-appearance: auto;
+    }
+</style>
 <!-- Start::app-content -->
 <div class="main-content app-content">
     <div class="container-fluid">
@@ -286,80 +293,112 @@
 <!-- End::app-content -->
 
 <div class="modal fade" id="nairaDepositModal" tabindex="-1" role="dialog" aria-labelledby="nairaDepositModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
+    <div class="modal-dialog" role="document" style="max-width: 700px;">
         <div class="modal-content">
             <form method="POST" action="{{ route('deposit') }}" id="depositForm">
                 @csrf
-                <div class="modal-header">
-                    <h5 class="modal-title" id="nairaDepositModalLabel">Deposit</h5>
+                <div class="my-4">
+                    <h5 class="modal-title text-center fw-bold" id="nairaDepositModalLabel">Make a Deposit</h5>
                 </div>
                 <div class="modal-body">
-                    <div class="form-group">
-                        <label for="amountDeposit" class="form-label">Amount</label>
-                        <input type="number" value="{{ old('amount') }}" required style="height: 45px; font-size: 14px" step="any" class="form-control" name="amount" id="amountDeposit" placeholder="Amount">
-                        @error('amount')
-                            <strong class="small text-danger">
-                                {{ $message }}
-                            </strong>
-                        @enderror
+                    <div class="row d-flex justify-content-center mx-auto" style="max-width: 600px;">
+                        <div class="col-xl-6">
+                            <label for="amountDeposit" class="form-label">Deposit Amount</label>
+                            <div class="input-group"> 
+                                <input type="number" value="{{ old('amount') }}" required style="font-size: 14px" step="any" class="form-control" name="amount" id="amountDeposit" placeholder="Amount">
+                                <button type="button" class="input-group-text btn btn-dark-light btn-wave text-dark fs-12 fw-bold">USD</button>
+                            </div>
+                            @error('amount')
+                                <strong class="small text-danger">
+                                    {{ $message }}
+                                </strong>
+                            @enderror
+                        </div>
+                        <div class="col-xl-6">
+                            <label class="form-label" for="duration-type">Choose deposit method</label>
+                            <div class="input-group"> 
+                                <select name="roi_duration" id="duration-type" class="form-control py-2">
+                                    <option value="">Select method</option>
+                                    <option value="coin">Cryptocurrency</option>
+                                    <option value="bank">Bank Account</option>
+                                </select>
+                            </div>
+                        </div>
                     </div>
-                    <input type="hidden" name="account_type" value="wallet">
-                    {{-- <div class="form-group">
-                        <label for="paymentDeposit">Payment Method</label>
-                        <select onchange="checkbutton()" name="payment" style="height: 45px; font-size: 14px" class="form-control" required id="paymentDeposit">
-                            <!-- <option value="card">Card</option> -->
-                            <option value="deposit">Bank Transfer / Deposit</option>
-                        </select>
-                        @error('payment')
-                            <strong class="small text-danger">
-                                {{ $message }}
-                            </strong>
-                        @enderror
-                    </div> --}}
-                    {{-- <div class="form-group my-4">
-                        <input type="hidden" name="type" value="deposit">
-                        <label for="paymentDeposit" class="form-label">Account Type</label>
-                        <select name="account_type" style="height: 45px; font-size: 14px" class="form-control text-dark" required id="paymentDeposit">
-                            <option value="">Select Account</option>
-                            <option value="savings">Savings</option>
-                            <option value="investment">Investments</option>
-                            <option value="trading">Trade</option>
-                        </select>
-                        @error('payment')
-                            <strong class="small text-danger">
-                                {{ $message }}
-                            </strong>
-                        @enderror
-                    </div> --}}
-                </div>
-                <div id="securedByPaystackLogo" style="display: none" class="mx-auto text-center">
-                    <img src="{{ asset('assets/images/paystack.png') }}" class="img-fluid mb-3" alt="Secured-by-paystack">
-                </div>
-                <div id="bankDetailsForDepositForm" class="alert mx-3 alert-primary">
-                    <table>
-                        <tr>
-                            <td>Bank Name:</td>
-                            <td><span class="ml-3"><strong>{{ \App\Models\Setting::all()->first()['bank_name'] }}</strong></span></td>
-                        </tr>
-                        <tr>
-                            <td>Account Name:</td>
-                            <td><span class="ml-3"><strong>{{ \App\Models\Setting::all()->first()['account_name'] }}</strong></span></td>
-                        </tr>
-                        <tr>
-                            <td>Account Number:</td>
-                            <td><span class="ml-3"><strong>{{ \App\Models\Setting::all()->first()['account_number'] }}</strong></span></td>
-                        </tr>
-                    </table>
 
-                    <div class="mt-4">
-                        <p class="text-muted"><strong>Note:</strong> Make sure to send the correct amount</p>
+                    <div class="my-4">
+                        <h4 class="text-center fs-13">You are about to make a deposit of <strong class="fw-bold text-primary amount-val">100USD</strong></h4>
+                        <p class="text-center text-muted fs-10">Exchange Rate: 1USD - 0.99928USDT</strong></p>
+                    </div>
+                    
+                    <div id="crypto" class="d-none">
+                        <div class="my-4">
+                            <p class="text-center fs-12 fw-medium">Carefully follow the procedures below for successful investment.</p>
+                            <div class="d-flex justify-content-center mx-auto my-2">
+                                <img width="130" height="130" src="https://upload.wikimedia.org/wikipedia/commons/5/5e/QR_Code_example.png" alt="...">
+                            </div>
+                            <p class="text-center fs-12 fw-medium">Scan the QR code above or copy and pay to this <span class="text-primary fw-bold">CRESTWOOD</span> address below:</p>
+                        </div>
+
+                        <div class="row d-flex justify-content-center mx-auto" style="max-width: 600px;">
+                            <div class="col-xl-12">
+                                <div class="input-group">
+                                    <button type="button" class="input-group-text btn btn-light-light btn-wave"><i class="ri-link me-2"></i></button>
+                                    <input type="text" name="roi_method" class="form-control text-center" placeholder="Enter Method..." aria-label="Stock Quantity" value="Wewrreik#$whhjzgehgnqkjskfpscnhsbfrghsxbdgnkdhjgh" disabled>
+                                    <button type="button" class="input-group-text btn btn-dark-light btn-wave copy-btn text-primary fs-13"><i class="ri-file-copy-fill text-primary me-2"></i> Copy</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <input type="hidden" name="account_type" value="wallet">
+
+                        <div id="" class="alert mx-3 alert-primary mt-2">
+                            <h4 class="text-danger fs-13">Please Note</h4>
+                            <div class="">
+                                    <p class="fs-12 text-muted"> <i class="fe fe-info text-primary fs-12 me-2"></i> Please ensure you deposit the exact amount of cryptocurrency before confirming your transaction</p>
+                            </div>
+                            <div class="">
+                                    <p class="fs-12 text-muted"> <i class="fe fe-info text-primary fs-12 me-2"></i> Incase the current session closed after you made payment, you can always start a new transaction with the exact amount you deposited.</p>
+                            </div>
+                            <div class="">
+                                    <p class="fs-12 text-muted"> <i class="fe fe-info text-primary fs-12 me-2"></i> Our customer care representatives are always available for support.</p>
+                            </div>
+                        </div>
+                        <p class="text-dark fs-13 text-center fw-medium">Already made payment of <span class="fw-bold text-primary amount-val">100USD</span> to the wallet address above® <br> Click the button below to confirm transaction.</p>
+                    </div>
+                    <div id="bank" class="">
+                        <div class="my-2">
+                            <p class="text-center fs-12 fw-medium">You are making a deposit into the following account detail</p>
+                        </div>
+                        <div class="row d-flex justify-content-center mx-auto">
+                            <div class="col-xl-12" style="max-width: 500px;">
+                                <div class="input-group my-3">
+                                    <button type="button" class="input-group-text btn btn-light-light btn-wave fs-10">Account Name</button>
+                                    <input type="text" name="roi_method" class="form-control fw-bold" placeholder="Enter Method..." aria-label="Stock Quantity" value="Crestwood Capital LTD" disabled>
+                                    <!-- <button type="button" class="input-group-text btn btn-dark-light btn-wave increment-btn-buy text-primary fs-13"><i class="ri-file-copy-fill text-primary me-2"></i> Copy</button> -->
+                                </div>
+                                <div class="input-group my-3">
+                                    <button type="button" class="input-group-text btn btn-light-light btn-wave fs-10">Account Number</button>
+                                    <input type="text" name="roi_method" class="form-control fw-bold" placeholder="Enter Method..." aria-label="Stock Quantity" value="0092431552" disabled>
+                                    <button type="button" class="input-group-text btn btn-dark-light btn-wave copy-btn text-primary fs-13"><i class="ri-file-copy-fill text-primary me-2"></i> Copy</button>
+                                </div>
+                                <div class="input-group my-3">
+                                    <button type="button" class="input-group-text btn btn-light-light btn-wave fs-10">Bank Name</button>
+                                    <input type="text" name="roi_method" class="form-control fw-bold" placeholder="Enter Method..." aria-label="Stock Quantity" value="Swiss Banks LTD" disabled>
+                                    <button type="button" class="input-group-text btn btn-dark-light btn-wave copy-btn text-primary fs-13"><i class="ri-file-copy-fill text-primary me-2"></i> Copy</button>
+                                </div>
+                                <div class="input-group my-3">
+                                    <button type="button" class="input-group-text btn btn-light-light btn-wave fs-10">SWISS Code</button>
+                                    <input type="text" name="roi_method" class="form-control fw-bold" placeholder="Enter Method..." aria-label="Stock Quantity" value="3352241" disabled>
+                                    <button type="button" class="input-group-text btn btn-dark-light btn-wave copy-btn text-primary fs-13"><i class="ri-file-copy-fill text-primary me-2"></i> Copy</button>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <!-- <button type="button" id="transfer" onclick="confirmFormSubmit('depositForm')" class="btn btn-primary" style="display: none;">Deposit</button> -->
-                    <button type="submit" id="card"  class="btn btn-success">Deposit</button>
-                    <!-- <button type="button" id="card" onclick="payWithMonnify()" class="btn btn-success">Deposit</button> -->
+                    <button type="submit" id="card"  class="btn btn-primary-transparent" style="width: 100%;" >Confirm Deposit</button>
+                    <button type="button" class="btn btn-secondary-transparent" style="width: 100%;" data-bs-dismiss="modal">Close</button>
                 </div>
             </form>
         </div>
@@ -436,6 +475,78 @@
 </div>
 
 <script src="{{ asset('asset/libs/apexcharts/apexcharts.min.js') }}"></script>
+<script>
+    $(document).ready(function() {
+    // 1. Set "Cryptocurrency" as the default option and the amount to 100
+    $('#duration-type').val('coin');
+    $('#amountDeposit').val(100);
+
+    // 2. Show/hide the correct div based on the selected deposit method
+    function toggleMethod() {
+        var method = $('#duration-type').val();
+        if (method === 'coin') {
+            $('#crypto').removeClass('d-none');
+            $('#bank').addClass('d-none');
+        } else if (method === 'bank') {
+            $('#bank').removeClass('d-none');
+            $('#crypto').addClass('d-none');
+        }
+    }
+
+    toggleMethod(); // Initial load check
+
+    $('#duration-type').on('change', function() {
+        toggleMethod();
+    });
+
+    // 3. Dynamically update the deposit amount in the summary text
+    $('#amountDeposit').on('input', function() {
+        var amount = $(this).val() || 0; // Set to 0 if the input is empty
+        $('.amount-val').text(amount + 'USD');
+    });
+
+    // Function to handle copy to clipboard
+    function copyToClipboard(text, button) {
+        // Use the modern clipboard API to copy text
+        if (navigator.clipboard) {
+            navigator.clipboard.writeText(text).then(function() {
+                // Change button text on successful copy
+                $(button).html('<i class="ri-check-fill text-success me-2"></i> Copied');
+                
+                // Revert button text after 3 seconds
+                setTimeout(function() {
+                    $(button).html('<i class="ri-file-copy-fill text-primary me-2"></i> Copy');
+                }, 3000);
+            }).catch(function(error) {
+                console.error('Failed to copy text: ', error);
+            });
+        } else {
+            // Fallback to older execCommand method (for older browsers)
+            var tempInput = $("<input>");
+            $("body").append(tempInput);
+            tempInput.val(text).select();
+            document.execCommand("copy");
+            tempInput.remove();
+
+            // Change button text on successful copy
+            $(button).html('<i class="ri-check-fill text-success me-2"></i> Copied');
+            
+            // Revert button text after 3 seconds
+            setTimeout(function() {
+                $(button).html('<i class="ri-file-copy-fill text-primary me-2"></i> Copy');
+            }, 3000);
+        }
+    }
+
+    // Attach click event for copy buttons
+    $('.copy-btn').on('click', function() {
+        // Find the input field next to the button and get its value
+        var textToCopy = $(this).closest('.input-group').find('input').val();
+        copyToClipboard(textToCopy, this);
+    });
+});
+
+</script>
 <script>
     var options = {
         series: [{
