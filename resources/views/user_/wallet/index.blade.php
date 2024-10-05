@@ -406,12 +406,73 @@
 </div>
 
 <div class="modal fade" id="nairaWithdrawalModal" tabindex="-1" role="dialog" aria-labelledby="nairaWithdrawalModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
+    <div class="modal-dialog" role="document" style="max-width: 700px;">
         <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="nairaWithdrawalModalLabel">Withdrawal</h5>
-            </div>
             <form method="POST" action="{{ route('withdraw') }}" id="withdrawalForm">
+                @csrf
+                <div class="my-4">
+                    <h5 class="modal-title text-center fw-bold" id="nairaDepositModalLabel">Withdrawal</h5>
+                </div>
+                <div class="modal-body">
+                    <div class="row d-flex justify-content-center mx-auto" style="max-width: 600px;">
+                        <div class="col-xl-6">
+                            <label for="amountDeposit" class="form-label">Deposit Amount</label>
+                            <div class="input-group"> 
+                                <input type="number" value="{{ old('amount') }}" required style="font-size: 14px" step="any" class="form-control" name="amount" id="amountDeposit" placeholder="Amount">
+                                <button type="button" class="input-group-text btn btn-dark-light btn-wave text-dark fs-12 fw-bold">USD</button>
+                            </div>
+                            @error('amount')
+                                <strong class="small text-danger">
+                                    {{ $message }}
+                                </strong>
+                            @enderror
+                        </div>
+                        <div class="col-xl-6">
+                            <label class="form-label" for="duration-type">Choose withdrawal method</label>
+                            <div class="input-group"> 
+                                <select name="roi_duration" id="duration-type" class="form-control py-2">
+                                    <option value="coin">Cryptocurrency</option>
+                                    <option value="bank">Bank Account</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="my-4">
+                        <h4 class="text-center fs-13">You are about to make a withdrawal of <strong class="fw-bold text-primary amount-val">100USD</strong></h4>
+                        <p class="text-center text-muted fs-10">Exchange Rate: 1USD - 0.99928USDT</strong></p>
+                    </div>
+                    <div id="bank" class="">
+                        <div class="my-2">
+                            <p class="text-center fs-12 fw-medium">Confirm you are making a withrawal to your account detail below</p>
+                        </div>
+                        <div class="row d-flex justify-content-center mx-auto">
+                            <div class="col-xl-12" style="max-width: 500px;">
+                                <div class="input-group my-3">
+                                    <button type="button" class="input-group-text btn btn-light-light btn-wave fs-10">Account Name</button>
+                                    <input type="text" name="roi_method" class="form-control fw-bold" placeholder="Enter Method..." aria-label="Stock Quantity" value="John Doe" disabled>
+                                    <!-- <button type="button" class="input-group-text btn btn-dark-light btn-wave increment-btn-buy text-primary fs-13"><i class="ri-file-copy-fill text-primary me-2"></i> Copy</button> -->
+                                </div>
+                                <div class="input-group my-3">
+                                    <button type="button" class="input-group-text btn btn-light-light btn-wave fs-10">Account Number</button>
+                                    <input type="text" name="roi_method" class="form-control fw-bold" placeholder="Enter Method..." aria-label="Stock Quantity" value="0092431552" disabled>
+                                    <button type="button" class="input-group-text btn btn-dark-light btn-wave copy-btn text-primary fs-13">
+                                </div>
+                                <div class="input-group my-3">
+                                    <button type="button" class="input-group-text btn btn-light-light btn-wave fs-10">Bank Name</button>
+                                    <input type="text" name="roi_method" class="form-control fw-bold" placeholder="Enter Method..." aria-label="Stock Quantity" value="Dukas Copy Swiss" disabled>
+                                    <button type="button" class="input-group-text btn btn-dark-light btn-wave copy-btn text-primary fs-13">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" id="card"  class="btn btn-primary-transparent" style="width: 100%;" >Confirm Withdrawal</button>
+                    <button type="button" class="btn btn-secondary-transparent" style="width: 100%;" data-bs-dismiss="modal">Close</button>
+                </div>
+            </form>
+            {{-- <form method="POST" action="{{ route('withdraw') }}" id="withdrawalForm">
                 <div class="modal-body">
                         @csrf
                         <div class="form-group">
@@ -469,7 +530,7 @@
                         <button type="button" disabled class="btn btn-secondary">Unavailable</button>
                     @endif
                 </div>
-            </form>
+            </form> --}}
         </div>
     </div>
 </div>
