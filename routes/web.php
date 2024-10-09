@@ -81,7 +81,7 @@ Route::group(['middleware' => ['auth','verified', 'active_user', 'profile_comple
         Route::post('/invest', [App\Http\Controllers\InvestmentController::class, 'store'])->name('invest.store');
         Route::post('/buy', [App\Http\Controllers\TradeController::class, 'buy'])->name('buy.store');
         Route::post('/sell', [App\Http\Controllers\TradeController::class, 'sell'])->name('sell.store');
-        Route::post('/deposit', [App\Http\Controllers\TransactionController::class, 'deposit'])->name('deposit');
+        Route::post('/deposit', [App\Http\Controllers\WalletController::class, 'deposit'])->name('deposit');
         Route::post('/withdraw', [App\Http\Controllers\TransactionController::class, 'withdraw'])->name('withdraw');
         Route::get('/notifications/read', [App\Http\Controllers\NotificationController::class, 'read'])->name('notifications.read');
         Route::post('/investments/rollover', [App\Http\Controllers\RolloverController::class, 'store'])->name('investments.rollover');
@@ -122,14 +122,14 @@ Route::group(['middleware' => ['auth','verified', 'active_user', 'profile_comple
         Route::get('/user/asset/view/{stock}', [TradingController::class, 'showAsset'])->name('user.asset');
         Route::get('/wallet-balance', [WalletController::class, 'getWalletBalance'])->name('wallet.balance');
         
-        Route::post('/trade/{assetTransaction}/close', [TradingController::class, 'closeTrade'])->name('trade.close');
-        Route::post('/trade/{stock}/close/all', [TradingController::class, 'closeAllTrades'])->name('trade.close.all');
+        Route::post('/trade/{tradeTransaction}/close', [TradingController::class, 'closeTrade'])->name('trade.close');
+        Route::post('/trade/{trade}/close/all', [TradingController::class, 'closeAllTrades'])->name('trade.close.all');
 
         Route::post('/trading/crypto', [TradingController::class, 'storeCrypto'])->name('trade.crypto');
         Route::get('/user/asset/holdings', [TradingController::class, 'cryptoAsset'])->name('crypto.assets');
         Route::get('/crypto/{stock}/{symbol}', [TradingController::class, 'showCrypto'])->name('crypto.show');
         Route::get('/user/crypto/view/{stock}', [TradingController::class, 'showCyptoTrade'])->name('asset.view');
-        Route::post('/asset/{stock}/close/all', [TradingController::class, 'closeAllAssets'])->name('asset.close.all');
+        Route::post('/asset/{trade}/close/all', [TradingController::class, 'closeAllAssets'])->name('asset.close.all');
 
 
     // });

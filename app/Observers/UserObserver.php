@@ -9,8 +9,6 @@ class UserObserver
     public function created(User $user)
     {
         $user->update(['ref_code' => $user->getRefCode()]);
-        $user->savingsWallet()->create();
-        $user->tradingWallet()->create();
-        $user->investmentWallet()->create();
+        $user->wallet()->create();
     }
 }

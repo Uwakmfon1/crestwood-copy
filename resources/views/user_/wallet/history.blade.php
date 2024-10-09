@@ -63,19 +63,21 @@
                                             <td>{{ $key + 1 }}</td>
                                             <td>${{ number_format($transaction['amount'], 2) }}</td>
                                             <td>
-                                                @if($transaction['account_type'] == 'trading')
-                                                    <span class="badge bg-dark-transparent">Trading</span>
-                                                @elseif($transaction['account_type'] == 'savings')
+                                                @if($transaction['type'] == 'trade')
+                                                    <span class="badge bg-pink-transparent">Trading</span>
+                                                @elseif($transaction['type'] == 'save')
                                                     <span class="badge bg-info-transparent">Savings</span>
-                                                @elseif($transaction['account_type'] == 'investment')
+                                                @elseif($transaction['type'] == 'invest')
                                                     <span class="badge bg-primary-transparent">Investment</span>
+                                                @elseif($transaction['type'] == 'wallet')
+                                                    <span class="badge bg-dark-transparent">Wallet</span>
                                                 @endif
                                             </td>
                                             <td>{{ $transaction['description'] }}</td>
                                             <td>
-                                                @if($transaction['type'] == 'deposit')
+                                                @if($transaction['method'] == 'credit')
                                                     <span class="badge bg-success-transparent"><i class="ri-check-fill align-middle me-1"></i>Credit</span>
-                                                @elseif($transaction['type'] == 'withdrawal')
+                                                @elseif($transaction['method'] == 'debit')
                                                     <span class="badge bg-danger-transparent"><i class="ri-info-fill align-middle me-1"></i>Debit</span>
                                                 @endif
                                             </td>

@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateWalletsTransactionsTable extends Migration
+class CreateTransactionsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,16 +13,14 @@ class CreateWalletsTransactionsTable extends Migration
      */
     public function up()
     {
-        Schema::create('wallets_transactions', function (Blueprint $table) {
+        Schema::create('transactions', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id');
+            $table->foreignId('user_id')->constrained('users')->onDelete('cascade');
+            $table->enum('type', ['invest', 'save', 'trade', 'wallet']);
+            $table->enum('method', ['debit', 'credit'])->default('debit');
+            $table->foreignId('data_id');
             $table->decimal('amount', 15, 2)->default(0);
-            $table->enum('type', ['deposit', 'withdrawal']);
-            $table->enum('account_type', ['savings', 'trading', 'investment', 'wallet']);
-            $table->morphs('transactable');
             $table->enum('status', ['approved', 'pending', 'declined']);
-            $table->enum('method', ['wallet', 'card', 'deposit'])->nullable();
-            $table->boolean('is_profit')->default(0);
             $table->string('description');
             $table->timestamps();
         });
@@ -35,6 +33,6 @@ class CreateWalletsTransactionsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('wallets_transactions');
+        Schema::dropIfExists('transactions');
     }
 }

@@ -35,18 +35,22 @@
                 </a>
             </li>
 
+            <li class="slide @if(request()->routeIs(['investments'])) active @endif">
+                <a href="{{ route('investments') }}" class="side-menu__item">
+                    <i class="fe fe-inbox mx-2"></i>
+                    <span class="side-menu__label">Investment</span>
+                </a>
+            </li>
+
              <!-- Start::slide -->
              <li class="slide has-sub @if(request()->routeIs(['savings', 'savings.create'])) active @endif">
                 <a href="javascript:void(0);" class="side-menu__item">
                     <i class="fe fe-dollar-sign mx-2"></i>
-                    <span class="side-menu__label">Savings</span>
+                    <span class="side-menu__label">Savings <span class="mx-2 badge bg-info-transparent">Coming soon</span> </span>
                     <i class="ri-arrow-right-s-line side-menu__angle"></i>
                 </a>
                 <ul class="slide-menu child1 pages-ul">
-                    <!-- <li class="slide side-menu__label1">
-                        <a href="javascript:void(0)">My Savings</a>
-                    </li> -->
-                    <li class="slide">
+                    <!-- <li class="slide">
                         <a href="{{ route('savings') }}" class="side-menu__item @if(request()->routeIs(['savings'])) active @endif">My Savings</a>
                     </li>
                     <li class="slide">
@@ -54,17 +58,10 @@
                     </li>
                     <li class="slide">
                         <a href="{{ route('savings.history') }}" class="side-menu__item @if(request()->routeIs(['savings.history'])) active @endif">History</a>
-                    </li>
+                    </li> -->
                 </ul>
             </li>
             <!-- End::slide -->
-
-            <li class="slide @if(request()->routeIs(['investments'])) active @endif">
-                <a href="{{ route('investments') }}" class="side-menu__item">
-                    <i class="fe fe-inbox mx-2"></i>
-                    <span class="side-menu__label">Investment</span>
-                </a>
-            </li>
 
             <!-- Start::slide__category -->
             <li class="slide__category"><span class="category-name">Trade</span></li>

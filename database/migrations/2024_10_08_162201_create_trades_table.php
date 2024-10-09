@@ -15,11 +15,13 @@ class CreateTradesTable extends Migration
     {
         Schema::create('trades', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id');
-            $table->foreignId('trading_id');
-            $table->string('amount');
-            $table->enum('type', ['buy', 'sell']);
-            $table->enum('status', ['success', 'pending', 'failed']);
+            $table->foreignId('user_id')->constrained('users')->onDelete('cascade');
+            $table->decimal('amount', 15, 5)->default(0);
+            $table->decimal('quantity', 15, 10);
+            $table->decimal('purchase_amount', 15, 5)->default(0);
+            $table->string('symbol');
+            $table->foreignId('data_id');
+            $table->enum('type', ['stocks', 'crypto']);
             $table->timestamps();
         });
     }

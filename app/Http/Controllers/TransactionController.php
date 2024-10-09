@@ -47,10 +47,10 @@ class TransactionController extends Controller
     {
         $user = auth()->user();
 
-        $query = $user->walletsTransactions(); 
+        $query = $user->transaction(); 
 
 
-        $transaction = $query->paginate(10);
+        $transaction = $query->paginate(40);
 
         // Search functionality
         if ($request->filled('search')) {

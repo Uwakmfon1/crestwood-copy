@@ -1,9 +1,9 @@
 @php
     $trxs = \App\Models\Transaction::query()->where('status', 'pending')->count();
     $invs = \App\Models\Investment::query()->where('status', 'pending')->count();
-    $save = \App\Models\Saving::query()->where('status', 'pending')->count();
-    $trds = \App\Models\Trade::query()->where('status', 'pending')->count();
-    $pyts = \App\Models\Payment::query()->where('status', 'pending')->count();
+
+    $trds = \App\Models\Trade::query()->where('type', 'pending')->count();
+    
 @endphp
 <nav class="sidebar">
     <div class="sidebar-header">
@@ -130,11 +130,11 @@
             @endcan
             @can('View Investments')
             <li class="nav-item @if(request()->is('admin/savings') || request()->routeIs(['admin.savings.show'])) active @endif">
-                <a class="nav-link" data-toggle="collapse" href="#saving" role="button" aria-expanded="false" aria-controls="investment">
+                {{-- <a class="nav-link" data-toggle="collapse" href="#saving" role="button" aria-expanded="false" aria-controls="investment">
                     <i class="link-icon" data-feather="layers"></i>
                     <span class="link-title">Savings @if($save > 0) <span class="badge badge-primary badge-pill px-2">{{ $save }}</span> @endif</span>
                     <i class="link-arrow" data-feather="chevron-down"></i>
-                </a>
+                </a> --}}
                 <div class="collapse" id="saving">
                     <ul class="nav sub-menu">
                         <li class="nav-item">

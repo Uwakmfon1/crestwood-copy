@@ -55,12 +55,10 @@ class RegisterController extends Controller
             'first_name' => ['required', 'string', 'max:255'],
             'last_name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-            // 'account_id' => ['required', 'exists:accounts,id'], // Assuming there is an `accounts` table
-            // 'wallet_id' => ['required', 'exists:wallets,id'], // Assuming there is a `wallets` table
-            'phone' => ['required', 'string', 'max:20'], // Adjust max length as needed
+            'phone' => ['required', 'string', 'max:20'],
             'state' => ['nullable', 'string', 'max:255'],
             'country' => ['nullable', 'string', 'max:255'],
-            'postal_code' => ['nullable', 'string', 'max:20'], // Adjust max length as needed
+            'postal_code' => ['nullable', 'string', 'max:20'],
             'location' => ['nullable', 'string', 'max:255'],
             'address' => ['nullable', 'string'],
             'bank_name' => ['nullable', 'string', 'max:255'],
@@ -73,14 +71,14 @@ class RegisterController extends Controller
             'identification' => ['nullable', 'string'],
             'avatar' => ['nullable', 'string'],
             'nk_name' => ['nullable', 'string', 'max:255'],
-            'nk_phone' => ['nullable', 'string', 'max:20'], // Adjust max length as needed
+            'nk_phone' => ['nullable', 'string', 'max:20'],
             'nk_relation' => ['nullable', 'string', 'max:255'],
-            'nk_postal' => ['nullable', 'string', 'max:20'], // Adjust max length as needed
+            'nk_postal' => ['nullable', 'string', 'max:20'],
             'nk_country' => ['nullable', 'string', 'max:255'],
             'nk_state' => ['nullable', 'string', 'max:255'],
             'nk_address' => ['nullable', 'string'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
-            'ref_code' => ['sometimes', 'nullable', 'string', 'exists:users,ref_code'], // Assuming ref_code exists in the users table
+            'ref_code' => ['sometimes', 'nullable', 'string', 'exists:users,ref_code'], 
         ]);
         
     }
@@ -102,27 +100,6 @@ class RegisterController extends Controller
             'account_id' => 1, //$data['account_id'],
             'wallet_id' => 1, //$data['wallet_id'],
             'phone' => $phone,
-            // 'state' => $data['state'],
-            // 'country' => $data['country'],
-            // 'postal_code' => $data['postal_code'],
-            // 'location' => $data['location'],
-            // 'address' => $data['address'],
-            // 'bank_name' => $data['bank_name'] ?? null,
-            // 'account_number' => $data['account_number'] ?? null,
-            // 'account_name' => $data['account_name'] ?? null,
-            // 'account_info' => $data['account_info'] ?? null,
-            // 'wallet_asset' => $data['wallet_asset'] ?? null,
-            // 'wallet_network' => $data['wallet_network'] ?? null,
-            // 'wallet_address' => $data['wallet_address'] ?? null,
-            // 'identification' => $data['identification'] ?? null,
-            // 'avatar' => $data['avatar'] ?? null,
-            // 'nk_name' => $data['nk_name'],
-            // 'nk_phone' => $data['nk_phone'],
-            // 'nk_relation' => $data['nk_relation'] ?? null,
-            // 'nk_postal' => $data['nk_postal'] ?? null,
-            // 'nk_country' => $data['nk_country'] ?? null,
-            // 'nk_state' => $data['nk_state'] ?? null,
-            // 'nk_address' => $data['nk_address'] ?? null,
             'password' => Hash::make($data['password']),
             'facebook_id' => $data['facebook_id'] ?? null,
             'google_id' => $data['google_id'] ?? null,

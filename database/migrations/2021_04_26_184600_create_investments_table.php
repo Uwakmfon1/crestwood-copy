@@ -15,8 +15,8 @@ class CreateInvestmentsTable extends Migration
     {
         Schema::create('investments', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id');
-            $table->foreignId('package_id');
+            $table->foreignId('user_id')->onDelete('cascade');
+            $table->foreignId('package_id')->constrained()->onDelete('cascade');
             $table->decimal('amount', 15, 2)->default(0);
             $table->string('roi_duration');
             $table->string('total_return');

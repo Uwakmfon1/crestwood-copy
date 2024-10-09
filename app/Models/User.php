@@ -295,6 +295,124 @@ class User extends Authenticatable implements MustVerifyEmail, JWTSubject
         'email_verified_at' => 'datetime',
     ];
 
+
+    // RECONSTRUCT 
+
+    public function wallet(): HasOne
+    {
+        return $this->hasOne(Wallet::class);
+    }
+
+    public function balance(): HasOne
+    {
+        return $this->hasOne(Wallet::class);
+    }
+
+    public function inSufficientBalance($amount, $type): bool
+    {
+        $balance = 0;
+
+        switch ($type) {
+            case 'savings':
+                $balance = $this->wallet->save;
+                break;
+            case 'trading':
+                $balance = $this->wallet->trade;
+                break;
+            case 'investment':
+                $balance = $this->wallet->invest;
+                break;
+            default:
+                throw new InvalidArgumentException('Invalid wallet type');
+        }
+
+        return $balance >= $amount;
+    }
+
+    public function updateWalletBalance(string $type, float $amount, string $operation = 'decrement'): void
+    {
+        // Determine which wallet field to update
+        $walletField = match ($type) {
+            'savings' => 'save',
+            'trading' => 'trade',
+            'investment' => 'invest',
+            'locked' => 'locked',
+            'balance' => 'balance',
+            default => throw new InvalidArgumentException('Invalid wallet type'),
+        };
+
+        // Perform the increment or decrement operation
+        if ($operation === 'increment') {
+            $this->wallet->increment($walletField, $amount);
+        } elseif ($operation === 'decrement') {
+            $this->wallet->decrement($walletField, $amount);
+        } else {
+            throw new InvalidArgumentException('Invalid operation');
+        }
+    }
+
+    public function lockedfunds(): int
+    {
+        if (!$this->wallet) {
+            $this->wallet()->create([ 'balance' => 0 ]);
+        }
+        return $this->wallet ? $this->wallet->balance : 0; 
+    }
+
+    public function investments(): HasMany
+    {
+        return $this->hasMany(Investment::class);
+    }
+
+    public function transaction($type = null): HasMany
+    {
+        $query = $this->hasMany(Transaction::class);
+
+        if ($type) {
+            $query->where('type', $type);
+        } elseif($type == null) {
+            $this->hasMany(Transaction::class);
+        } else {
+            throw new InvalidArgumentException('Unable to call transaction');
+        }
+
+        return $query;
+    }
+
+    public function trades($type = null): HasMany
+    {
+        $query = $this->hasMany(Trade::class);
+
+        if ($type) {
+            $query->where('type', $type);
+        } else {
+            throw new InvalidArgumentException('Unable to call trades');
+        }
+
+        return $query;
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     //Construct new wallet
 
         public function savingsWallet(): HasOne
@@ -312,10 +430,10 @@ class User extends Authenticatable implements MustVerifyEmail, JWTSubject
             return $this->hasOne(InvestmentWallet::class);
         }
 
-        public function wallet(): HasOne
-        {
-            return $this->hasOne(UserWallet::class);
-        }
+        // public function wallet(): HasOne
+        // {
+        //     return $this->hasOne(UserWallet::class);
+        // }
 
         public function walletBalance(): float
         {
@@ -391,15 +509,15 @@ class User extends Authenticatable implements MustVerifyEmail, JWTSubject
             return $this->hasMany(WalletsTransactions::class);
         }
 
-    public function investments(): HasMany
-    {
-        return $this->hasMany(Investment::class);
-    }
+    // public function investments(): HasMany
+    // {
+    //     return $this->hasMany(Investment::class);
+    // }
 
-    public function trades(): HasMany
-    {
-        return $this->hasMany(Trading::class);
-    }
+    // public function trades(): HasMany
+    // {
+    //     return $this->hasMany(Trading::class);
+    // }
 
     public function crypto(): HasMany
     {
@@ -411,10 +529,10 @@ class User extends Authenticatable implements MustVerifyEmail, JWTSubject
         return $this->hasMany(Saving::class);
     }
 
-    public function transactions(): HasMany
-    {
-        return $this->hasMany(Transaction::class);
-    }
+    // public function transactions(): HasMany
+    // {
+    //     return $this->hasMany(Transaction::class);
+    // }
 
     public function assets(): HasMany
     {
@@ -426,20 +544,20 @@ class User extends Authenticatable implements MustVerifyEmail, JWTSubject
         return $this->hasMany(CryptoTransaction::class);
     }
 
-    public function nairaWallet(): HasOne
-    {
-        return $this->hasOne(NairaWallet::class);
-    }
+    // public function nairaWallet(): HasOne
+    // {
+    //     return $this->hasOne(NairaWallet::class);
+    // }
 
-    public function goldWallet(): HasOne
-    {
-        return $this->hasOne(GoldWallet::class);
-    }
+    // public function goldWallet(): HasOne
+    // {
+    //     return $this->hasOne(GoldWallet::class);
+    // }
 
-    public function silverWallet(): HasOne
-    {
-        return $this->hasOne(SilverWallet::class);
-    }
+    // public function silverWallet(): HasOne
+    // {
+    //     return $this->hasOne(SilverWallet::class);
+    // }
 
     public function referrals(): HasMany
     {

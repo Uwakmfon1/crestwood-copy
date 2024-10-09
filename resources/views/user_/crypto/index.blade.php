@@ -165,14 +165,14 @@
                                         <span class="d-block text-muted fs-12">Asset Holdings</span>
                                     </div>
                                     <div class="text-end">
-                                        <span class="text-success fs-12 d-block">{{ $buyTrade }}</span>
+                                        <span class="text-success fs-12 d-block">{{ $tradeCount }}</span>
                                         <span class="fs-12 text-muted">Asset</span>
                                     </div>
                                 </div>
                                 <div class="d-flex align-items-center justify-content-between">
                                     <div>
                                         <span class="fs-11 text-muted">Amount</span>
-                                        <span class="fs-20 fw-semibold d-block">${{ number_format($buyAmount, 2) }}</span>
+                                        <span class="fs-20 fw-semibold d-block">${{ number_format($totalStocks, 2) }}</span>
                                     </div>
                                     <!-- <div id="nvidia-stock"></div> -->
                                 </div>

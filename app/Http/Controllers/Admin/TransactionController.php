@@ -146,67 +146,19 @@ class TransactionController extends Controller
         return redirect()->route('admin.users.show', $user['id'])->with('error', 'Error processing withdrawal');
     }
 
-    public function approve(WalletsTransactions $transaction): \Illuminate\Http\RedirectResponse
+    public function approve(Transaction $transaction): \Illuminate\Http\RedirectResponse
     {
-//        Check if transaction is pending
+        // Check if transaction is pending
         if (!$transaction['status'] == 'pending'){
             return back()->with('error', 'Transaction already processed');
         }
-//        Process transaction based on type
+
+        // Process transaction based on type
         $user = $transaction['user'];
-        
-        switch ($transaction['type']){
-            case 'deposit':
-                // Check Account
-                switch ($transaction['account_type']) {
-                    case 'savings':
-                        $user->savingsWallet->increment('balance', $transaction['amount']);
-                        break;
-                    case 'trading':
-                        $user->tradingWallet->increment('balance', $transaction['amount']);
-                        break;
-                    case 'investment':
-                        $user->investmentWallet->increment('balance', $transaction['amount']);
-                        break;
-                    case 'wallet':
-                        $user->wallet->increment('balance', $transaction['amount']);
-                        break;
-                    default:
-                        return back()->withInput()->with('error', 'Invalid account method');
-                }
-                // NotificationController::sendDepositSuccessfulNotification($transaction);
-                break;
-            case 'withdrawal':
-                NotificationController::sendWithdrawalSuccessfulNotification($transaction);
-                break;
-            case 'investment':
-                    $transaction->investment()->update([
-                        'investment_date' => now()->format('Y-m-d H:i:s'),
-                        'return_date' => now()->addMonths($transaction['investment']['investment_date']
-                                                ->diffInMonths($transaction['investment']['return_date']))
-                                                ->format('Y-m-d H:i:s'),
-                        'status' => 'active'
-                    ]);
-                    NotificationController::sendInvestmentCreatedNotification($transaction['investment']);
-                break;
-            case 'savings':
-                    $savings = Saving::find($transaction['saving_id']);
 
-                    if ($savings['package']['duration'] == 'monthly') {
-                        $returnDate = now()->addMonths($savings['package']['milestone'])->format('Y-m-d H:i:s');
-                    } elseif($savings['package']['duration'] == 'weekly') {
-                        $returnDate = now()->addWeeks($savings['package']['milestone'])->format('Y-m-d H:i:s');
-                    }
+        $user->updateWalletBalance('balance', $transaction->amount, 'increment');
 
-                    $savings->update([
-                        'savings_date' => now()->format('Y-m-d H:i:s'),
-                        'return_date' => $returnDate,
-                        'status' => 'active'
-                    ]);
-                    NotificationController::sendInvestmentCreatedNotification($savings);
-                break;
-        }
-//        Update transaction
+        // Update transaction
         if ($transaction->update(['status' => 'approved'])){
             return back()->with('success', 'Transaction approved successfully');
         }
@@ -257,19 +209,19 @@ class TransactionController extends Controller
 //        Find data based on page
         switch ($type){
             case 'pending':
-                $transactions = WalletsTransactions::query()->latest()->where('status', 'pending');
+                $transactions = Transaction::query()->latest()->where('status', 'pending');
                 break;
             case 'withdrawal':
-                $transactions = WalletsTransactions::query()->latest()->where('type', 'withdrawal');
+                $transactions = Transaction::query()->latest()->where('type', 'withdrawal');
                 break;
             case 'deposit':
-                $transactions = WalletsTransactions::query()->latest()->where('type', 'deposit');
+                $transactions = Transaction::query()->latest()->where('type', 'deposit');
                 break;
             case 'others':
-                $transactions = WalletsTransactions::query()->latest()->where('type', 'others');
+                $transactions = Transaction::query()->latest()->where('type', 'others');
                 break;
             default:
-                $transactions = WalletsTransactions::query()->latest();
+                $transactions = Transaction::query()->latest();
         }
 //        Set helper variables from request and DB
         $totalData = $totalFiltered = $transactions->count();

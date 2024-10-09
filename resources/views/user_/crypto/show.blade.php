@@ -167,17 +167,17 @@
                                 </td>
                                 <td>
                                     <div class="fw-medium">
-                                        {{ number_format($data->lots, 4) }}
+                                        {{ number_format($data->quantity, 4) }}
                                     </div>
                                 </td>
                                 <td class="product-quantity-container">
                                     ${{ number_format($data->price, 2) }}
                                 </td>
                                 <td>
-                                    ${{ number_format(($stock->price * $data->lots) - ($data->amount), 2) }}
+                                    ${{ number_format(($stock->price * $data->quantity) - ($data->amount), 2) }}
                                     @php
                                         $totalCost = $data->amount;
-                                        $totalRevenue = $stock->price * $data->lots;
+                                        $totalRevenue = $stock->price * $data->quantity;
                                         $profit = $totalRevenue - $totalCost;
                                         $percentageProfit = $totalCost > 0 ? ($profit / $totalCost) * 100 : 0; // Avoid division by zero
                                     @endphp
@@ -276,14 +276,14 @@
                 </div>
 
                 <!-- Form for Stock Purchase -->
-                <form action="{{ route('trade.stock') }}" method="post">
+                <form action="{{ route('trade.crypto') }}" method="post">
                     @csrf
                     <div class="row">
                         <div class="col-6 text-center">
                             <label class="text-muted fs-12" for="quantity-input-{{ $stock->id }}">Quantity</label>
                             <div class="input-group my-1">
                                 <button type="button" class="input-group-text btn btn-primary-light btn-wave decrement-btn" style="border-radius: 5px 0px 0px 5px;">-</button>
-                                <input type="number" name="quantity" class="form-control text-center quantity-input" id="quantity-input-{{ $stock->id }}" placeholder="0.00" aria-label="Stock Quantity" value="0.0000" data-key="{{ $stock->id }}" data-price="{{ $stock->price }}" min="0.0001" step="0.0001" required>
+                                <input type="number" name="lots" class="form-control text-center quantity-input" id="quantity-input-{{ $stock->id }}" placeholder="0.00" aria-label="Stock Quantity" value="0.0000" data-key="{{ $stock->id }}" data-price="{{ $stock->price }}" min="0.0001" step="0.0001" required>
                                 <button type="button" class="input-group-text btn btn-primary-light btn-wave increment-btn" style="border-radius: 0px 5px 5px 0px;">+</button>
                             </div>
                         </div>
@@ -300,8 +300,8 @@
 
                     <!-- Hidden Inputs -->
                     <div>
-                        <input type="hidden" name="stock_id" value="{{ $stock->id }}">
-                        <input type="hidden" name="stock_symbol" value="{{ $stock->symbol }}">
+                        <input type="hidden" name="crypto_id" value="{{ $stock->id }}">
+                        <input type="hidden" name="crypto_symbol" value="{{ $stock->symbol }}">
                         <input type="hidden" name="amount" value="{{ $stock->price }}">
                         <input type="hidden" name="type" value="buy">
                     </div>
@@ -371,7 +371,7 @@
                 </div>
 
                 <!-- Form for Stock Sale -->
-                <form action="{{ route('trade.stock') }}" method="post">
+                <form action="{{ route('trade.crypto') }}" method="post">
                     @csrf
                     <div class="row">
                         <div class="col-6 text-center">

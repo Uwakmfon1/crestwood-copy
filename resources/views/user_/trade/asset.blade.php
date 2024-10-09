@@ -135,7 +135,7 @@
                         <div class="col-xxl-12 col-xl-12">
                             <div class="card custom-card">
                                 <div class="card-body p-0">
-                                    <div class="table-responsive" style="min-height: 520px;">
+                                    <div class="table-responsive" style="min-height: 540px;">
                                         <table class="table text-nowrap">
                                             <thead>
                                                 <tr>
@@ -148,49 +148,45 @@
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                            @foreach($assets as  $key=>$asset)
-                                                @php
-                                                    // Calculate the amount the user has invested
-                                                    $investmentAmount = $asset->amount * $asset->quantity; // This is the total amount the user spent when buying the asset.
+                                                @foreach($assets as  $key=>$asset)
+                                                    @php
+                                                        $investmentAmount = $asset->purchase_amount * $asset->quantity; 
+                                                        
+                                                        $currentValue = $asset->stock['price'] * $asset->quantity;
 
-                                                    // Calculate the current value of the asset based on its current price
-                                                    $currentValue = $asset->stock['price'] * $asset->quantity;
+                                                        $profit = $currentValue - $investmentAmount;
 
-                                                    // Calculate the profit (current value - investment amount)
-                                                    $profit = $currentValue - $investmentAmount;
-
-                                                    // Calculate percentage difference (profit percentage)
-                                                    $percentageDifference = ($investmentAmount > 0) ? (($currentValue - $investmentAmount) / $investmentAmount) * 100 : 0;
-                                                @endphp
-                                                <tr>
-                                                    <td>
-                                                        <div class="d-flex align-items-start gap-3">
-                                                            <span class="avatar avatar-md p-1 avatar-rounded bg-light">
-                                                                <img src="{{ $asset->stock['img'] }}" alt="" class="invert-1">
-                                                            </span>
-                                                            <div class="flex-fill lh-1">
-                                                                <a href="javascript:void(0);" class="d-block mb-1 fs-14 fw-medium">{{ $asset->stock['name'] }}</a>
-                                                                <span class="d-block fs-12 text-muted">{{ $asset->stock['symbol'] }}</span>
+                                                        $percentageDifference = ($investmentAmount > 0) ? (($currentValue - $investmentAmount) / $investmentAmount) * 100 : 0;
+                                                    @endphp
+                                                    <tr>
+                                                        <td>
+                                                            <div class="d-flex align-items-start gap-3">
+                                                                <span class="avatar avatar-md p-1 avatar-rounded bg-light">
+                                                                    <img src="{{ $asset->stock['img'] }}" alt="" class="invert-1">
+                                                                </span>
+                                                                <div class="flex-fill lh-1">
+                                                                    <a href="javascript:void(0);" class="d-block mb-1 fs-14 fw-medium">{{ $asset->stock['name'] }}</a>
+                                                                    <span class="d-block fs-12 text-muted">{{ $asset->stock['symbol'] }}</span>
+                                                                </div>
                                                             </div>
-                                                        </div>
-                                                    </td>
-                                                    <td>${{ number_format($asset->stock['price'], 2) }}</td>
-                                                    <td>{{ number_format($asset->quantity, 3) }}</td>
-                                                    <td>
-                                                        <span class="badge bg-dark-transparent">${{ number_format($investmentAmount, 2) }}</span>
-                                                    </td>
-                                                    <td>
-                                                        ${{ number_format($profit, 2) }}
-                                                        <span class="mx-2 badge {{ $percentageDifference < 0 ? 'bg-danger-transparent' : 'bg-success-transparent' }}">
-                                                            {{ number_format($percentageDifference, 2) }}%
-                                                        </span>
-                                                    </td>
-                                                    <td>
-                                                        <a href="{{ route('user.asset', $asset->stock['id']) }}" class="btn bg-primary-transparent text-primary btn-wave waves-effect waves-light">
-                                                            View
-                                                        </a>
-                                                    </td>
-                                                </tr>
+                                                        </td>
+                                                        <td>${{ number_format($asset->stock['price'], 2) }}</td>
+                                                        <td>{{ number_format($asset->quantity, 3) }}</td>
+                                                        <td>
+                                                            <span class="badge bg-dark-transparent">${{ number_format($investmentAmount, 2) }}</span>
+                                                        </td>
+                                                        <td>
+                                                            ${{ number_format($profit, 2) }}
+                                                            <span class="mx-2 badge {{ $percentageDifference < 0 ? 'bg-danger-transparent' : 'bg-success-transparent' }}">
+                                                                {{ number_format($percentageDifference, 2) }}%
+                                                            </span>
+                                                        </td>
+                                                        <td>
+                                                            <a href="{{ route('user.asset', $asset->stock['id']) }}" class="btn bg-primary-transparent text-primary btn-wave waves-effect waves-light">
+                                                                View
+                                                            </a>
+                                                        </td>
+                                                    </tr>
 
                                                     <div class="modal fade" id="exampleModal{{ $asset->id }}sell" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                                         <div class="modal-dialog modal-lg">
@@ -479,7 +475,7 @@
                                 <div class="">
                                     <div class="text-fixed-dark mb-2">Equity Balance <span class="ms-2 d-inline-block text-success op-5"><i class="fe fe-arrow-up-right text-success"></i>0.25%</span>
                                     </div>
-                                    <h4 class="fw-semibold mb-0 text-fixed-dark">$3,065.50</h4>
+                                    <h4 class="fw-semibold mb-0 text-fixed-dark">${{ number_format($totalAmount, 2) }}</h4>
                                 </div>
                             </div>
                         <!-- </div> -->
@@ -496,10 +492,10 @@
                                     </div>
                                     <div class="flex-fill">
                                         <span class="fw-medium fs18">Profit/Loss</span>
-                                        <span class="text-success fs-11 d-block">+20.32%</span>
+                                        <span class="text-success fs-11 d-block">0.32%</span>
                                     </div>
                                     <div>
-                                        <span class="fw-medium text-muted mb-0 fs-12">$40.22</span>
+                                        <span class="fw-medium text-muted mb-0 fs-12">$0.22</span>
                                     </div>
                                 </div>
                             </li>
@@ -512,10 +508,10 @@
                                     </div>
                                     <div class="flex-fill">
                                         <span class="fw-medium">Balance</span>
-                                        <span class="text-danger fs-12 d-block">-20%</span>
+                                        <span class="text-success fs-12 d-block">+1.5%</span>
                                     </div>
                                     <div>
-                                        <span class="fw-medium text-muted mb-0 fs-14">$3,890.87</span>
+                                        <span class="fw-medium text-muted mb-0 fs-14">${{ number_format($totalAmount, 2) }}</span>
                                     </div>
                                 </div>
                             </li>
@@ -548,7 +544,7 @@
                                         <span class="text-success fs-12 d-block">-35%</span>
                                     </div>
                                     <div>
-                                        <span class="fw-medium text-muted mb-0 fs-14">$50.98</span>
+                                        <span class="fw-medium text-muted mb-0 fs-14">$0.98</span>
                                     </div>
                                 </div>
                             </li>
@@ -563,75 +559,32 @@
                     </div>
                     <div class="card-body">
                         <ul class="list-unstyled transactions-list mb-0">
-                            <li>
-                                <div class="d-flex align-items-center justify-content-between">
-                                    <div class="d-flex align-items-start flex-wrap gap-2">
-                                        <div>
-                                            <span class="avatar avatar-md bg-primary-transparent avatar-rounded p-2">
-                                                <span class="avatar avatar-sm bg-primary p-2 avatar-rounded">
-                                                    <i class="ri-bank-line fs-18"></i> 
-                                                </span>
-                                            </span> 
+                            @foreach($watchList as $data)
+                                <li>
+                                    <div onclick="window.location='{{ route('crypto.show', ['stock' => $data['id'], 'symbol' => $data['symbol']]) }}';" class="d-flex align-items-center justify-content-between">
+                                        <div class="d-flex align-items-start flex-wrap gap-2">
+                                            <div>
+                                                <span class="avatar avatar-md bg-primary-transparent avatar-rounded p-2">
+                                                    <!-- <span class="avatar avatar-sm bg-primary p-2 avatar-rounded">
+                                                        <i class="ri-bank-line fs-18"></i> 
+                                                    </span> -->
+                                                    <img src="{{ $data->img }}" class="avatar avatar-rounded" alt="">
+                                                </span> 
+                                            </div>
+                                            <div>
+                                                <a href="javascript:void(0);">
+                                                    <span class="d-block fw-medium mb-1">{{ $data->name }}</span>
+                                                </a>
+                                                <span class="d-block fs-11 text-muted">{{ $data->symbol }}</span>
+                                            </div>
                                         </div>
-                                        <div>
-                                            <a href="javascript:void(0);">
-                                                <span class="d-block fw-medium mb-1">Swiss Bank</span>
-                                            </a>
-                                            <span class="d-block fs-11 text-muted">30 trades</span>
-                                        </div>
-                                    </div>
-                                    <div class="text-end">
-                                        <span class="d-block fw-medium">$12,300</span>
-                                        <span class="text-success fs-12">+40.93%</span>
-                                    </div>
-                                </div>
-                            </li>
-                            <li>
-                                <div class="d-flex align-items-center justify-content-between">
-                                    <div class="d-flex align-items-start flex-wrap gap-2">
-                                        <div>
-                                            <span class="avatar avatar-md bg-secondary-transparent avatar-rounded">
-                                                <span class="avatar avatar-sm bg-secondary avatar-rounded">
-                                                    <i class="ri-wallet-3-line fs-18"></i>
-                                                </span>
-                                            </span> 
-                                        </div>
-                                        <div>
-                                            <a href="javascript:void(0);">
-                                                <span class="d-block fw-medium mb-1">Digital Wallet</span>
-                                            </a>    
-                                            <span class="d-block fs-11 text-muted">8 trades</span>
+                                        <div class="text-end">
+                                            <span class="d-block fw-medium">${{ $data->price }}</span>
+                                            <span class="text-success fs-12">{{ $data->change }}%</span>
                                         </div>
                                     </div>
-                                    <div class="text-end">
-                                        <span class="d-block fw-medium">$11,449</span>
-                                        <span class="text-danger fs-12">-30%</span>
-                                    </div>
-                                </div>
-                            </li>
-                            <li class="mb-0">
-                                <div class="d-flex align-items-center justify-content-between">
-                                    <div class="d-flex align-items-start flex-wrap gap-2">
-                                        <div>
-                                            <span class="avatar avatar-md bg-warning-transparent avatar-rounded">
-                                                <span class="avatar avatar-sm bg-warning avatar-rounded">
-                                                    <i class="ri-amazon-fill fs-18"></i>
-                                                </span>
-                                            </span> 
-                                        </div>
-                                        <div>
-                                            <a href="javascript:void(0);">
-                                                <span class="d-block fw-medium mb-1">Amazon pay</span>
-                                            </a>    
-                                            <span class="d-block fs-11 text-muted">2 trades</span>
-                                        </div>
-                                    </div>
-                                    <div class="text-end">
-                                        <span class="d-block fw-medium">$7,799</span>
-                                        <span class="text-muted fs-12">0.00%</span>
-                                    </div>
-                                </div>
-                            </li>
+                                </li>
+                            @endforeach
                         </ul>
                     </div>
                 </div>

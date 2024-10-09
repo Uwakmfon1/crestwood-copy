@@ -23,27 +23,62 @@ class HomeController extends Controller
 {
     public function index()
     {
+        $user = auth()->user();
 
-        $savings = auth()->user()->savingsWalletBalance();
-        $investment = auth()->user()->investmentWalletBalance();
-        $trading = auth()->user()->tradingWalletBalance();
+        $savings = $user->wallet->save;
+        $investment = $user->wallet->invest;
+        $trading = $user->wallet->trade;
+        $locked = $user->wallet->locked;
 
-        $assets = Trading::where('user_id', auth()->id())->latest()->get();
+        $transactions = $user->transaction()->latest()->get(); 
 
-        $transactions = auth()->user()->walletsTransactions()->latest()->paginate(6); 
+        $totalAmount = 0;
 
-        // Calculate the total amount of all trades
-        $totalAmount = $assets->sum(function($asset) {
-            return $asset->amount * $asset->quantity;
-        });
+        // Group transactions by type (save, invest, trade) and by date
+        $transact = $user->transaction()
+        ->select(
+            DB::raw('DATE(created_at) as date'),
+            'type',
+            DB::raw('SUM(amount) as total_amount')
+        )
+        ->groupBy('type', DB::raw('DATE(created_at)'))
+        ->orderBy(DB::raw('DATE(created_at)'), 'asc')
+        ->get();
+
+        // Prepare data for the chart
+        $alignedSavings = $transact->where('type', 'save')->pluck('total_amount');
+        $alignedInvestments = $transact->where('type', 'invest')->pluck('total_amount');
+        $alignedTrading = $transact->where('type', 'trade')->pluck('total_amount');
+        $dates = $transact->pluck('date')->unique()->values(); // Get unique dates
+
+        // Percentage data for the chart
+        $totalAmount = $transact->sum('total_amount');
+
+        $savingsTotal = $transact->where('type', 'save')->sum('total_amount');
+        $investmentTotal = $transact->where('type', 'invest')->sum('total_amount');
+        $tradingTotal = $transact->where('type', 'trade')->sum('total_amount');
+
+        $savingsPercentage = $totalAmount > 0 ? ($savingsTotal / $totalAmount) * 100 : 0;
+        $investmentPercentage = $totalAmount > 0 ? ($investmentTotal / $totalAmount) * 100 : 0;
+        $tradingPercentage = $totalAmount > 0 ? ($tradingTotal / $totalAmount) * 100 : 0;
 
         return view('user_.dashboard.index', [
             'title' => 'Dashboard', 
             'savings' => $savings,
             'trading' => $trading,
             'investment' => $investment,
+            'locked' => $locked,
             'assets' => $totalAmount,
             'transactions' => $transactions,
+
+            'dates' => $dates,
+            'alignedSavings' => $alignedSavings->values(),
+            'alignedInvestments' => $alignedInvestments->values(),
+            'alignedTrading' => $alignedTrading->values(),
+
+            'savingsPercentage' => $savingsPercentage,
+            'investmentPercentage' => $investmentPercentage,
+            'tradingPercentage' => $tradingPercentage,
         ]);
     }
 
@@ -66,11 +101,11 @@ class HomeController extends Controller
         }
 
         $user = auth()->user();
-        $balance = auth()->user()->walletBalance();
+        $balance = $user->wallet->balance;
 
-        $savings = auth()->user()->savings()->count();
-        $trading = auth()->user()->trades()->count();
-        $investment = auth()->user()->investments()->count();
+        $savings = $user->wallet->save;
+        $trading = $user->wallet->trade;
+        $investment = $user->wallet->invest;
         
         return view('user_.profile.index', [
             'banks' => $banks, 

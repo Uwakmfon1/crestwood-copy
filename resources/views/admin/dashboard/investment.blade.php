@@ -78,7 +78,7 @@
                             </div>
                             <div class="row">
                                 <div class="col-6 col-md-12 col-xl-5">
-                                    <h6 class="font-weight-light dashboard-cash-info mt-3" @if($setting['show_cash'] == 0)style="display: none;"@endif>₦ {{ number_format(\App\Models\NairaWallet::all()->sum('balance')) }}</h6>
+                                    <h6 class="font-weight-light dashboard-cash-info mt-3" @if($setting['show_cash'] == 0)style="display: none;"@endif>₦ {{ number_format(\App\Models\User::with('wallet')->get()->sum(function ($user) { return $user->wallet->balance;}), 2) }}</h6>
                                     <h6 class="font-weight-light mt-3" @if($setting['show_cash'] == 1)style="display: none;"@endif>₦ ---</h6>
                                 </div>
                             </div>

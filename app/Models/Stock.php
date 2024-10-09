@@ -17,4 +17,9 @@ class Stock extends Model
     {
         return $this->hasMany(Trading::class);
     }
+
+    public function trades(): HasMany
+    {
+        return $this->hasMany(Trade::class);
+    }
 }

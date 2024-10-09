@@ -86,7 +86,6 @@
                                             <tr>
                                                 <th class="fw-bold">Amount</th>
                                                 <th class="fw-bold">Lots</th>
-                                                <th class="fw-bold">Price</th>
                                                 <th class="fw-bold">Profit</th>
                                                 <th class="fw-bold">Type</th>
                                                 <th class="fw-bold">Date</th>
@@ -103,17 +102,14 @@
                                                     </td>
                                                     <td>
                                                         <div class="fw-medium">
-                                                            {{ number_format($data->lots, 4) }}
+                                                            {{ number_format($data->quantity, 4) }}
                                                         </div>
                                                     </td>
-                                                    <td class="product-quantity-container">
-                                                        ${{ number_format($data->price, 2) }}
-                                                    </td>
                                                     <td>
-                                                        ${{ number_format(($stock->price * $data->lots) - ($data->amount), 2) }}
+                                                        ${{ number_format(($data->amount) - ($stock->price * $data->quantity), 2) }}
                                                         @php
                                                             $totalCost = $data->amount;
-                                                            $totalRevenue = $stock->price * $data->lots;
+                                                            $totalRevenue = $stock->price * $data->quantity;
                                                             $profit = $totalRevenue - $totalCost;
                                                             $percentageProfit = $totalCost > 0 ? ($profit / $totalCost) * 100 : 0; // Avoid division by zero
                                                         @endphp
@@ -155,7 +151,7 @@
                                                                                                     <span class="d-block mb-1 fs-12 text-muted">Sale</span>
                                                                                                     <h5 class="fw-bold fs-24 mb-1">$<span id="sell-wallet-price-{{ $data->id }}">{{ $data->amount }}</span></h5>
                                                                                                     <span class="text-muted fs-12">
-                                                                                                        Lots: <span class="text-primary fs-15 fw-bold ms-1 d-inline-block" id="sell-quantity-display-{{ $data->id }}">{{ $data->lots }} Units</span>
+                                                                                                        Lots: <span class="text-primary fs-15 fw-bold ms-1 d-inline-block" id="sell-quantity-display-{{ $data->id }}">{{ $data->quantity }} Units</span>
                                                                                                     </span>
                                                                                                 </div>
                                                                                             </div> 
@@ -187,7 +183,7 @@
                                                                                 <label class="text-muted fs-12" for="sell-quantity-input-{{ $data->id }}">Lots</label>
                                                                                 <div class="input-group my-1">
                                                                                     <button type="button" class="input-group-text btn btn-primary-light btn-wave sell-decrement-btn" style="border-radius: 5px 0px 0px 5px;">-</button>
-                                                                                    <input type="number" name="lots" class="form-control text-center sell-quantity-input" id="sell-quantity-input-{{ $data->id }}" placeholder="0.00" aria-label="Stock Quantity" data-key="{{ $data->id }}" data-price="{{ $stock->price }}" min="0.0001" max="{{ $data->lots }}" value="{{ $data->lots }}" step="0.0001" required >
+                                                                                    <input type="number" name="lots" class="form-control text-center sell-quantity-input" id="sell-quantity-input-{{ $data->id }}" placeholder="0.00" aria-label="Stock Quantity" data-key="{{ $data->id }}" data-price="{{ $stock->price }}" min="0.0001" max="{{ $data->quantity }}" value="{{ $data->quantity }}" step="0.0001" required >
                                                                                     <button type="button" class="input-group-text btn btn-primary-light btn-wave sell-increment-btn" style="border-radius: 0px 5px 5px 0px;">+</button>
                                                                                 </div>
                                                                             </div>
@@ -233,7 +229,7 @@
                             <a href="{{ route('crypto.assets') }}" class="btn btn-primary-transparent"> <i class="fe fe-arrow-left me-2 align-middle d-inline-block"></i> Back to Assets</a>
                         </div>
                         <div class="">
-                            <form action="{{ route('asset.close.all', $stock->id) }}" method="post">
+                            <form action="{{ route('asset.close.all', $trade->id) }}" method="post">
                                 @csrf
                                 <button type="submit" class="btn bg-danger-transparent text-danger btn-wave waves-effect waves-light">
                                     Sell All
@@ -288,7 +284,7 @@
                 </div>
 
                 <!-- Form for Stock Sale -->
-                <form action="{{ route('trade.stock') }}" method="post">
+                <form action="{{ route('trade.crypto') }}" method="post">
                     @csrf
                     <div class="row">
                         <div class="col-6 text-center">

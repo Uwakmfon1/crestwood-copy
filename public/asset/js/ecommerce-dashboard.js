@@ -351,67 +351,67 @@ var options2 = {
 /* orders status */
 
 /* recent orders */
-var options = {
-  series: [185, 54, 68],
-  labels: ["Delivered", "Cancelled", "Pending"],
-  chart: {
-    height: 215,
-    type: 'donut',
-  },
-  dataLabels: {
-    enabled: false,
-  },
+// var options = {
+//   series: [185, 54, 68],
+//   labels: ["Delivered", "Cancelled", "Pending"],
+//   chart: {
+//     height: 215,
+//     type: 'donut',
+//   },
+//   dataLabels: {
+//     enabled: false,
+//   },
 
-  legend: {
-    show: false,
-  },
-  stroke: {
-    show: true,
-    curve: 'smooth',
-    lineCap: 'round',
-    colors: "#fff",
-    width: 0,
-    dashArray: 0,
-  },
-  plotOptions: {
-    pie: {
-      expandOnClick: false,
-      donut: {
-        size: '85%',
-        background: 'transparent',
-        labels: {
-          show: true,
-          name: {
-            show: true,
-            fontSize: '20px',
-            color: '#495057',
-            offsetY: -4
-          },
-          value: {
-            show: true,
-            fontSize: '18px',
-            color: undefined,
-            offsetY: 8,
-            formatter: function (val) {
-              return val + '%'
-            }
-          },
-          total: {
-            show: true,
-            showAlways: true,
-            label: 'Total',
-            fontSize: '22px',
-            fontWeight: 600,
-            color: '#495057',
-          }
+//   legend: {
+//     show: false,
+//   },
+//   stroke: {
+//     show: true,
+//     curve: 'smooth',
+//     lineCap: 'round',
+//     colors: "#fff",
+//     width: 0,
+//     dashArray: 0,
+//   },
+//   plotOptions: {
+//     pie: {
+//       expandOnClick: false,
+//       donut: {
+//         size: '85%',
+//         background: 'transparent',
+//         labels: {
+//           show: true,
+//           name: {
+//             show: true,
+//             fontSize: '20px',
+//             color: '#495057',
+//             offsetY: -4
+//           },
+//           value: {
+//             show: true,
+//             fontSize: '18px',
+//             color: undefined,
+//             offsetY: 8,
+//             formatter: function (val) {
+//               return val + '%'
+//             }
+//           },
+//           total: {
+//             show: true,
+//             showAlways: true,
+//             label: 'Total',
+//             fontSize: '22px',
+//             fontWeight: 600,
+//             color: '#495057',
+//           }
 
-        }
-      }
-    }
-  },
-  colors: ["var(--primary-color)","var(--primary03)", "var(--primary05)"],
-};
-var chart = new ApexCharts(document.querySelector("#recent-orders"), options);
-chart.render();
+//         }
+//       }
+//     }
+//   },
+//   colors: ["var(--primary-color)","var(--primary03)", "var(--primary05)"],
+// };
+// var chart = new ApexCharts(document.querySelector("#recent-orders"), options);
+// chart.render();
 /* recent orders */
 

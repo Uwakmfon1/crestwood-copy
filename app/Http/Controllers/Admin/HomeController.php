@@ -230,13 +230,11 @@ class HomeController extends Controller
                 ->whereDate('created_at', date('Y-m') . '-' . $day)
                 ->sum('amount'));
             $tradesBuyMonth[] = round(Trade::query()
-                ->where('status', 'success')
-                ->where('type', 'buy')
+                ->where(function ($q) { $q->where('type', 'stock')->orwhere('type', 'crypto'); })
                 ->whereDate('created_at', date('Y-m') . '-' . $day)
                 ->sum('amount'));
             $tradesSellMonth[] = round(Trade::query()
-                ->where('status', 'success')
-                ->where('type', 'sell')
+                ->where(function ($q) { $q->where('type', 'stock')->orwhere('type', 'crypto'); })
                 ->whereDate('created_at', date('Y-m') . '-' . $day)
                 ->sum('amount'));
         }
@@ -253,17 +251,13 @@ class HomeController extends Controller
                 ->whereYear('created_at', date('Y'))
                 ->sum('amount'));
             $tradesBuyYear[] = round(Trade::query()
-                ->where('status', 'success')
-                ->where('type', 'buy')
-                ->whereMonth('created_at', $month)
-                ->whereYear('created_at', date('Y'))
-                ->sum('amount'));
+            ->where(function ($q) { $q->where('type', 'stock')->orwhere('type', 'crypto'); })
+            ->whereDate('created_at', date('Y-m') . '-' . $day)
+            ->sum('amount'));
             $tradesSellYear[] = round(Trade::query()
-                ->where('status', 'success')
-                ->where('type', 'sell')
-                ->whereMonth('created_at', $month)
-                ->whereYear('created_at', date('Y'))
-                ->sum('amount'));
+            ->where(function ($q) { $q->where('type', 'stock')->orwhere('type', 'crypto'); })
+            ->whereDate('created_at', date('Y-m') . '-' . $day)
+            ->sum('amount'));
         }
 //       compute paid investment data
         $paidInvestment = Investment::query()

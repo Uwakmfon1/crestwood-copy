@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateTradingsTable extends Migration
+class CreateInvestTransactionsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,14 +13,12 @@ class CreateTradingsTable extends Migration
      */
     public function up()
     {
-        Schema::create('tradings', function (Blueprint $table) {
+        Schema::create('invest_transactions', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('stock_id');
-            $table->foreignId('user_id');
-            $table->string('stock_symbol', 10);
-            $table->string('quantity', 10, 8);
+            $table->foreignId('investment_id')->constrained()->onDelete('cascade');
             $table->decimal('amount', 15, 2)->default(0);
-            $table->enum('type', ['buy', 'sell']);
+            $table->enum('type', ['credit', 'debit']);
+            $table->enum('status', ['success', 'failed']);
             $table->timestamps();
         });
     }
@@ -32,6 +30,6 @@ class CreateTradingsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('tradings');
+        Schema::dropIfExists('invest_transactions');
     }
 }

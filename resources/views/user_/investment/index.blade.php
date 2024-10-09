@@ -300,17 +300,13 @@
     var options = {
         series: [{
             name: 'Invested',
-            data: [31, 40, 28, 51, 42, 109, 100]
-        }, {
-            name: 'Profit',
-            data: [11, 32, 45, 32, 34, 52, 41]
-        },
-        ],
+            data: @json($totals)  // Inject the total amounts here
+        }],
         chart: {
             height: 320,
             type: 'area'
         },
-        colors: ["#8274ff", "#58c437"],
+        colors: ["#8274ff"],
         dataLabels: {
             enabled: false
         },
@@ -322,7 +318,7 @@
         },
         xaxis: {
             type: 'datetime',
-            categories: ["2018-09-19T00:00:00.000Z", "2018-09-19T01:30:00.000Z", "2018-09-19T02:30:00.000Z", "2018-09-19T03:30:00.000Z", "2018-09-19T04:30:00.000Z", "2018-09-19T05:30:00.000Z", "2018-09-19T06:30:00.000Z"],
+            categories: @json($dates),  // Inject the dates here
             labels: {
                 show: true,
                 style: {
@@ -346,11 +342,13 @@
         },
         tooltip: {
             x: {
-                format: 'dd/MM/yy HH:mm'
+                format: 'dd/MM/yy'  // Format the date displayed in the tooltip
             },
         },
     };
+
     var chart = new ApexCharts(document.querySelector("#area-spline"), options);
     chart.render();
 </script>
+
 @endsection

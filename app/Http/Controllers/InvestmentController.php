@@ -12,38 +12,50 @@ class InvestmentController extends Controller
 {
     public function index()
     {
-        $investments = auth()->user()->investments()->latest();
-        switch (true){
-            case \request()->offsetExists('active'):
-                $investments = $investments->where('status', 'active');
-                break;
-            case \request()->offsetExists('pending'):
-                $investments = $investments->where('status', 'pending');
-                break;
-            case \request()->offsetExists('cancelled'):
-                $investments = $investments->where('status', 'cancelled');
-                break;
-            case \request()->offsetExists('settled'):
-                $investments = $investments->where('status', 'settled');
-                break;
-        }
+        $user = auth()->user();
+        $investments = $user->investments()->latest();
 
-        $balance = auth()->user()->investmentWalletBalance();
+        $balance = $user->wallet->invest;
         
         $active_savings = $investments->where('status', 'active')->count();
         $completed_savings = $investments->where('status', 'settled')->count();
 
-        $total_amount = auth()->user()->investments()->sum('amount');
-        $total_invest = auth()->user()->investments()->sum('total_return');
+        $total_amount = $user->investments()->sum('amount');
+        $total_invest = $user->investments()->sum('total_return');
+
+        $transactions = $user->transaction('invest')
+        ->selectRaw('DATE(created_at) as date, SUM(amount) as total_amount')
+        ->groupBy('date')
+        ->orderBy('date')
+        ->get();
+
+        $dates = $transactions->pluck('date')->toArray();  // Extract dates
+        $totals = $transactions->pluck('total_amount')->toArray(); 
+
+        // dd($transaction);
 
         return view('user_.investment.index', [
             'title' => 'Investments', 
-            'investments' => auth()->user()->investments()->latest()->get(), 
+            'investments' => $user->investments()->latest()->get(), 
             'balance' => $balance, 
             'asv' => $active_savings, 
             'csv' => $completed_savings,
             'total_amount' => $total_amount,
-            'total_invest' => $total_invest
+            'total_invest' => $total_invest,
+            'dates' => $dates,
+            'totals' => $totals
+        ]);
+    }
+
+    public function show(Investment $investment)
+    {
+        $transaction = $investment->investmentTransaction();
+
+        return view('user_.investment.show', [
+            'title' => 'Investment', 
+            'investment' => $investment, 
+            'packages' => Package::where('investment', 'enabled')->get(),
+            'transactions' => $transaction,
         ]);
     }
 
@@ -75,20 +87,6 @@ class InvestmentController extends Controller
         return view('user_.investment.history', ['title' => 'Investments History', 'investments' => $investments]);
     }
 
-    public function show(Investment $investment)
-    {
-        $user = auth()->user()->walletsTransactions();
-
-        $transaction = $user->where('is_profit', 1)->get();
-
-        return view('user_.investment.show', [
-            'title' => 'Investment', 
-            'investment' => $investment, 
-            'packages' => Package::where('investment', 'enabled')->get(),
-            'transactions' => $transaction,
-        ]);
-    }
-
     public function invest($packageName)
     {
         $package = Package::where('name', $packageName)->firstOrFail(); // Find the package by its name
@@ -110,6 +108,8 @@ class InvestmentController extends Controller
             'roi_duration' => ['required'],
         ]);
 
+        $user = auth()->user();
+
         if ($validator->fails()){
             return back()->withErrors($validator)->withInput()->with('error', 'Invalid input data');
         }
@@ -123,46 +123,50 @@ class InvestmentController extends Controller
             return back()->with('error', 'Can\'t process investment, package not found or disabled');
         }
 
-        if (!auth()->user()->hasSufficientBalance($request->amount, 'investment')){
+        if (!$user->inSufficientBalance($request->amount, 'investment')){
             return back()->withInput()->with('error', 'Insufficient investment balance!');
         }
 
-        auth()->user()->investmentWallet->decrement('balance', $request->amount);
+        // Start Investment
 
-        $status = 'active';
-        $msg = 'Investment created successfully';
+        $user->updateWalletBalance('investment', $request->amount, 'decrement'); // Debit Investment wallet
+
+        $user->updateWalletBalance('locked', $request->amount, 'increment'); // Credit Locked wallet
 
         // Create Investment
-        $investment = auth()->user()->investments()->create([
+        $investment = $user->investments()->create([
             'package_id'=>$package['id'], 
             'amount' => $request->amount,
             'roi_duration' => $request->roi_method . '_' . $request->roi_duration,
             'total_return' => (($package['roi'] * $request->amount) / 100) + $request->amount ,
             'return_date' => now()->addMonths($request->roi_method)->format('Y-m-d H:i:s'), 
-            'status' => $status
+            'status' => 'active'
         ]);
 
-        $investment->investmentTransactions()->create(
-            [
-                'user_id' => auth()->user()->id,
-                'amount' => $request->amount, 
-                'type' => 'withdrawal',
-                'account_type' => 'investment',
-                'description' => 'Invested into ' . $package['name'],
-                'method' => 'wallet',
-                'status' => 'approved'
-            ]
-        );
+        //Create Transaction
+        $transaction = $user->transaction('invest')->create([
+            'amount' => $request->amount,
+            'data_id' => $investment->id,
+            'status' => 'approved',
+            'description' => 'Investment...',
+            'method' => 'debit'
+        ]);
 
-        if ($investment) {
-            // TransactionController::storeInvestmentTransaction($investment, $request['payment'], 'investment');
+        //Create Investment Transaction
+        $transaction = $investment->investmentTransaction()->create([
+            'amount' => $request->amount,
+            'type' => 'credit',
+            'status' => 'success',
+        ]);
+
+        if($transaction) 
             // if ($investment['status'] == 'active'){
             //     NotificationController::sendInvestmentCreatedNotification($investment);
             // }else{
             //     NotificationController::sendInvestmentQueuedNotification($investment);
             // }
-            return redirect()->route('investments')->with('success', $msg);
-        }
+            return redirect()->route('investments')->with('success', 'Investment created successfully');
+
         return back()->withInput()->with('error', 'Error processing investment');
     }
 }

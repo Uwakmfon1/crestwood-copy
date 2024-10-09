@@ -64,7 +64,7 @@
                             </div>
                             <div class="col-lg-3 col-6">
                                 <p class="fw-medium text-muted mb-1">Quantity: </p>
-                                <p class="fs-15 mb-1 fw-bold">${{ number_format($quantity, 3) }}</p>
+                                <p class="fs-15 mb-1 fw-bold">{{ number_format($quantity, 3) }} Unit(s)</p>
                             </div>
                             <div class="col-lg-3 col-6">
                                 <p class="fw-medium text-muted mb-1">P/L: </p>
@@ -107,7 +107,7 @@
                                                         </div>
                                                     </td>
                                                     <td class="product-quantity-container">
-                                                        ${{ number_format($data->price, 2) }}
+                                                        ${{ number_format($data->purchase_amount, 2) }}
                                                     </td>
                                                     <td>
                                                         ${{ number_format(($stock->price * $data->quantity) - ($data->amount), 3) }}
@@ -155,7 +155,7 @@
                             <a href="{{ route('assets') }}" class="btn btn-primary-transparent"> <i class="fe fe-arrow-left me-2 align-middle d-inline-block"></i> Back to Holdings</a>
                         </div>
                         <div class="">
-                            <form action="{{ route('trade.close.all', $stock->id) }}" method="post">
+                            <form action="{{ route('trade.close.all', $trade->id) }}" method="post">
                                 @csrf
                                 <button type="submit" class="btn bg-danger-transparent text-danger btn-wave waves-effect waves-light">
                                     Close All Position

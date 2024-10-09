@@ -22,8 +22,8 @@
                 </ol>
             </div>
             <div class="d-flex gap-4">
-                <button type="button" class="btn btn-primary btn-wave waves-effect waves-light">
-                    <i class="ri-dollar-sign me-2"></i> Wallet
+                <button type="button" class="btn btn-primary-light btn-wave waves-effect waves-light">
+                    <i class="fe fe-dollar-sign me-2"></i> Wallet
                 </button>
             </div>
         </div>
@@ -32,44 +32,7 @@
         <!-- Start:: row-1 -->
         <div class="row">
             <div class="col-xxl-12 col-xl-12">
-                </div>
-                <!-- <div class="card custom-card nft-custom-card bg-primary border-0">
-                    <div class="card-body p-4">
-                        <div class="d-flex flex-wrap gap-5">
-                            <div class="">
-                                <div class="nft-bid-image">
-                                    <img src="../assets/images/nft-images/11.jpg" alt="">
-                                </div>
-                            </div>
-                            <div class="">
-                                <h4 class="text-fixed-white mb-2 lh-base">Visual Effects in the Metaverse</h4>
-                                <span class="text-fixed-white op-5">Product Id : #12355</span>
-                                <div class="d-flex gap-2 mt-2 mb-2">
-                                    <span class="avatar avatar-md p-1 bg-white-transparent avatar-rounded"><img
-                                            src="../assets/images/faces/6.jpg"></span>
-                                    <div>
-                                        <span class="d-block fw-medium text-fixed-white">EtherEden</span>
-                                        <span class="fs-12 text-muted text-fixed-white op-8">by @Eden
-                                            Pixelist</span>
-                                    </div>
-                                </div>
-                                <p class="mb-0 text-fixed-white nft-main-auction-time"> 04hrs : 24m : 38s </p>
-                                <div class="mt-5 d-flex flex-wrap gap-2">
-                                    <button class="btn btn-white-transparent  btn-wave me-2">Discover
-                                        Now</button>
-                                    <button
-                                        class="btn text-fixed-white border border-white border-opacity-25 btn-wave">View
-                                        ArtWork</button>
-                                </div>
-                            </div>
-                            <div class="d-xxl-block d-none">
-                                <div class="text-center nft-main-image">
-                                    <img src="../assets/images/nft-images/1.png" alt="">
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div> -->
+            </div>
             <div class="col-xxl-9">
                 <div class="row">
                     <div class="col-xxl-4 col-xl-4 col-lg-4 col-sm-6">
@@ -172,7 +135,7 @@
                                 </div>
                             </div>
                             <div class="card-body">
-                                <div id="order-status"></div>
+                                <div id="area-spline"></div>
                             </div>
                         </div>
                     </div>
@@ -184,7 +147,7 @@
                         <div class="card custom-card card-bg-success ecommerce-card">
                             <div class="card-header border-bottom-0">
                                 <div class="card-title text-fixed-white">
-                                    Activity Overview
+                                    Locked Funds
                                 </div>
                             </div>
                             <div class="card-body p-0">
@@ -205,13 +168,11 @@
                                         </div>
                                     </div>
                                     <div class="flex-fill">
-                                        <div class="mb-2">Total Assets</div>
-                                        <div class="text-muted mb-0 fs-12 d-flex align-items-center">
-                                            <h5 class="fs-4 mb-0 flex-fill fw-medium text-fixed-white">
-                                                &#36;{{ number_format($assets, 2) }}
+                                        <div class="mb-2">Total Amount</div>
+                                        <div class="text-muted mb-0 fs-18 d-flex align-items-center">
+                                            <h5 class="fs-26 fw-bold mb-0 flex-fill fw-medium text-fixed-white" style="margin-top: -8px;">
+                                                &#36;{{ number_format($locked, 2) }}
                                             </h5>
-                                            <a href="javascript:void(0)" class="text-white fw-semibold">View
-                                                All <i class="fe fe-arrow-right"></i></a>
                                         </div>
                                     </div>
                                 </div>
@@ -223,9 +184,9 @@
                         <div class="card custom-card overflow-hidden">
                             <div class="card-header justify-content-between">
                                 <div class="card-title">
-                                    Recent Orders
+                                    Accounts Transaction
                                 </div>
-                                <div class="dropdown">
+                                <!-- <div class="dropdown">
                                     <a href="javascript:void(0);" class="p-2 fs-12 text-muted" data-bs-toggle="dropdown"
                                         aria-expanded="true"> Sort By <i
                                             class="ri-arrow-down-s-line align-middle ms-1 d-inline-block"></i> </a>
@@ -236,7 +197,7 @@
                                         <li><a class="dropdown-item" href="javascript:void(0);">Last Week</a></li>
                                         <li><a class="dropdown-item" href="javascript:void(0);">This Month</a></li>
                                     </ul>
-                                </div>
+                                </div> -->
                             </div>
                             <div class="card-body">
                                 <div class="circle-container">
@@ -245,16 +206,16 @@
                                 </div>
                                 <div class="row mt-0">
                                     <div class="col-4 border-end border-inline-end-dashed text-center">
-                                        <p class="text-muted mb-1 fs-12">Delivered</p>
-                                        <h6 class="fw-semibold">65.7%</h6>
+                                        <p class="text-muted mb-1 fs-10">Savings</p>
+                                        <h6 class="fw-semibold fs-14">{{ number_format($savingsPercentage, 2) }}%</h6>
                                     </div>
                                     <div class="col-4 border-end border-inline-end-dashed text-center">
-                                        <p class="text-muted mb-1 fs-12">Cancelled</p>
-                                        <h6 class="fw-semibold">23.2%</h6>
+                                        <p class="text-muted mb-1 fs-10">Investment</p>
+                                        <h6 class="fw-semibold fs-14">{{ number_format($investmentPercentage, 2) }}%</h6>
                                     </div>
                                     <div class="col-4 text-center">
-                                        <p class="text-muted mb-1 fs-12">Pending</p>
-                                        <h6 class="fw-semibold">10.5%</h6>
+                                        <p class="text-muted mb-1 fs-10">Trading</p>
+                                        <h6 class="fw-semibold fs-14">{{ number_format($tradingPercentage, 2) }}%</h6>
                                     </div>
                                 </div>
                             </div>
@@ -555,7 +516,7 @@
                 <div class="col-xxl-12 col-xl-12">
                     <div class="card custom-card overflow-hidden">
                         <div class="card-header justify-content-between">
-                            <div class="card-title"> Trending Creators </div>
+                            <div class="card-title"> Popular Traders </div>
                         </div>
                         <div class="card-body p-0" id="top-collector">
                             <div class="table-responsive">
@@ -683,18 +644,12 @@
                     <div class="card-body">
                         <div class="swiper pagination-dynamic testimonialSwiperService swiper-initialized swiper-horizontal swiper-backface-hidden">
                             <div class="swiper-wrapper" id="swiper-wrapper-7e2c2dd51d54262a" aria-live="off" style="transition-duration: 0ms; transform: translate3d(-1146px, 0px, 0px); transition-delay: 0ms;">
-                                
-                                
-                                
-                                
-                                
-                                
-                            <div class="swiper-slide" role="group" aria-label="5 / 6" style="width: 352px; margin-right: 30px;" data-swiper-slide-index="4">
+                                <div class="swiper-slide" role="group" aria-label="5 / 6" style="width: 352px; margin-right: 30px;" data-swiper-slide-index="4">
                                     <div class="card text-fixed-white border-0">
                                         <div class="card-body">
                                             <div class="d-flex align-items-center mb-3">
                                                 <span class="avatar rounded-circle me-2">
-                                                    <img src="../assets/images/faces/1.jpg" alt="" class="img-fluid rounded-circle">
+                                                    <img src="https://img.freepik.com/premium-vector/bell-logo-icon-design-white-background-vector-illustration_1027544-49.jpg" alt="" class="img-fluid rounded-circle">
                                                 </span>
                                                 <div>
                                                     <p class="mb-0 fw-semibold fs-14">Ethan Brown</p>
@@ -726,12 +681,13 @@
                                             </div>
                                         </div>
                                     </div>
-                                </div><div class="swiper-slide" role="group" aria-label="6 / 6" style="width: 352px; margin-right: 30px;" data-swiper-slide-index="5">
+                                </div>
+                                <div class="swiper-slide" role="group" aria-label="6 / 6" style="width: 352px; margin-right: 30px;" data-swiper-slide-index="5">
                                     <div class="card text-fixed-white border-0">
                                         <div class="card-body">
                                             <div class="d-flex align-items-center mb-3">
                                                 <span class="avatar rounded-circle me-2">
-                                                    <img src="../assets/images/faces/5.jpg" alt="" class="img-fluid rounded-circle">
+                                                    <img src="https://img.freepik.com/premium-vector/bell-logo-icon-design-white-background-vector-illustration_1027544-49.jpg" alt="" class="img-fluid rounded-circle">
                                                 </span>
                                                 <div>
                                                     <p class="mb-0 fw-semibold fs-14">Lily Baker</p>
@@ -763,12 +719,13 @@
                                             </div>
                                         </div>
                                     </div>
-                                </div><div class="swiper-slide swiper-slide-prev" role="group" aria-label="1 / 6" style="width: 352px; margin-right: 30px;" data-swiper-slide-index="0">
+                                </div>
+                                <div class="swiper-slide swiper-slide-prev" role="group" aria-label="1 / 6" style="width: 352px; margin-right: 30px;" data-swiper-slide-index="0">
                                     <div class="card text-fixed-white border-0">
                                         <div class="card-body">
                                             <div class="d-flex align-items-center mb-3">
                                                 <span class="avatar rounded-circle me-2">
-                                                    <img src="../assets/images/faces/3.jpg" alt="" class="img-fluid rounded-circle">
+                                                    <img src="https://img.freepik.com/premium-vector/bell-logo-icon-design-white-background-vector-illustration_1027544-49.jpg" alt="" class="img-fluid rounded-circle">
                                                 </span>
                                                 <div>
                                                     <p class="mb-0 fw-semibold fs-14">Juniper Cruz</p>
@@ -800,12 +757,13 @@
                                             </div>
                                         </div>
                                     </div>
-                                </div><div class="swiper-slide swiper-slide-active" role="group" aria-label="2 / 6" style="width: 352px; margin-right: 30px;" data-swiper-slide-index="1">
+                                </div>
+                                <div class="swiper-slide swiper-slide-active" role="group" aria-label="2 / 6" style="width: 352px; margin-right: 30px;" data-swiper-slide-index="1">
                                     <div class="card text-fixed-white border-0">
                                         <div class="card-body">
                                             <div class="d-flex align-items-center mb-3">
                                                 <span class="avatar rounded-circle me-2">
-                                                    <img src="../assets/images/faces/9.jpg" alt="" class="img-fluid rounded-circle">
+                                                    <img src="https://img.freepik.com/premium-vector/bell-logo-icon-design-white-background-vector-illustration_1027544-49.jpg" alt="" class="img-fluid rounded-circle">
                                                 </span>
                                                 <div>
                                                     <p class="mb-0 fw-semibold fs-14">Caleb Brooks</p>
@@ -837,12 +795,13 @@
                                             </div>
                                         </div>
                                     </div>
-                                </div><div class="swiper-slide swiper-slide-next" role="group" aria-label="3 / 6" style="width: 352px; margin-right: 30px;" data-swiper-slide-index="2">
+                                </div>
+                                <div class="swiper-slide swiper-slide-next" role="group" aria-label="3 / 6" style="width: 352px; margin-right: 30px;" data-swiper-slide-index="2">
                                     <div class="card text-fixed-white border-0">
                                         <div class="card-body">
                                             <div class="d-flex align-items-center mb-3">
                                                 <span class="avatar rounded-circle me-2">
-                                                    <img src="../assets/images/faces/8.jpg" alt="" class="img-fluid rounded-circle">
+                                                    <img src="https://img.freepik.com/premium-vector/bell-logo-icon-design-white-background-vector-illustration_1027544-49.jpg" alt="" class="img-fluid rounded-circle">
                                                 </span>
                                                 <div>
                                                     <p class="mb-0 fw-semibold fs-14">Barina Silva</p>
@@ -874,12 +833,13 @@
                                             </div>
                                         </div>
                                     </div>
-                                </div><div class="swiper-slide" role="group" aria-label="4 / 6" style="width: 352px; margin-right: 30px;" data-swiper-slide-index="3">
+                                </div>
+                                <div class="swiper-slide" role="group" aria-label="4 / 6" style="width: 352px; margin-right: 30px;" data-swiper-slide-index="3">
                                     <div class="card text-fixed-white border-0">
                                         <div class="card-body">
                                             <div class="d-flex align-items-center mb-3">
                                                 <span class="avatar rounded-circle me-2">
-                                                    <img src="../assets/images/faces/10.jpg" alt="" class="img-fluid rounded-circle">
+                                                    <img src="https://img.freepik.com/premium-vector/bell-logo-icon-design-white-background-vector-illustration_1027544-49.jpg" alt="" class="img-fluid rounded-circle">
                                                 </span>
                                                 <div>
                                                     <p class="mb-0 fw-semibold fs-14">Lucas Tope</p>
@@ -911,7 +871,8 @@
                                             </div>
                                         </div>
                                     </div>
-                                </div></div>
+                                </div>
+                            </div>
                             <div class="swiper-pagination swiper-pagination-clickable swiper-pagination-bullets swiper-pagination-horizontal swiper-pagination-bullets-dynamic" style="width: 140px;"><span class="swiper-pagination-bullet swiper-pagination-bullet-active-prev" tabindex="0" role="button" aria-label="Go to slide 1" style="left: 28px;"></span><span class="swiper-pagination-bullet swiper-pagination-bullet-active swiper-pagination-bullet-active-main" tabindex="0" role="button" aria-label="Go to slide 2" aria-current="true" style="left: 28px;"></span><span class="swiper-pagination-bullet swiper-pagination-bullet-active-next" tabindex="0" role="button" aria-label="Go to slide 3" style="left: 28px;"></span><span class="swiper-pagination-bullet swiper-pagination-bullet-active-next-next" tabindex="0" role="button" aria-label="Go to slide 4" style="left: 28px;"></span><span class="swiper-pagination-bullet" tabindex="0" role="button" aria-label="Go to slide 5" style="left: 28px;"></span><span class="swiper-pagination-bullet" tabindex="0" role="button" aria-label="Go to slide 6" style="left: 28px;"></span></div>
                         <span class="swiper-notification" aria-live="assertive" aria-atomic="true"></span></div>
                     </div>
@@ -1054,7 +1015,8 @@
                                 <thead>
                                     <tr>
                                         <th>Account</th>
-                                        <th class="text-center">Price </th>
+                                        <th>Amount</th>
+                                        <th>Description</th>
                                         <th>Type</th>
                                         <th>Status</th>
                                         <th>Date</th>
@@ -1064,45 +1026,22 @@
                                     @foreach($transactions as $key=>$transaction)
                                         <tr>
                                             <td>
-                                                <div class="d-flex align-items-center">
-                                                    <div class="me-2 lh-1">
-                                                        <span class="avatar avatar-md bg-light p-1">
-                                                            <span class="avatar avatar-sm bg-secondary avatar-rounded svg-white p-1">
-                                                                @if($transaction['account_type'] == 'trading')
-                                                                    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="#000000" viewBox="0 0 256 256">
-                                                                        <path d="M176,80a48,48,0,0,0-94.87-11.45A8,8,0,0,0,90.37,77.3,32,32,0,1,1,56,112a32.15,32.15,0,0,1,6.44-.65,8,8,0,0,0,6.73-12.28A48,48,0,1,0,80,176H48a8,8,0,0,0,0,16H80a48,48,0,1,0,94.87,11.45,8,8,0,0,0-9.24-8.75,32,32,0,1,1,34.4-34.4,8,8,0,0,0,8.75,9.24A48,48,0,1,0,176,80Z" opacity="0.2"></path>
-                                                                        <path d="M176,72a8,8,0,0,0,0-16h-8V40a8,8,0,0,0-16,0V56H128V40a8,8,0,0,0-16,0V56H96a8,8,0,0,0,0,16h8V96H96a8,8,0,0,0,0,16h16v16a8,8,0,0,0,16,0V112h24v16a8,8,0,0,0,16,0V112h8a8,8,0,0,0,0-16h-8V72ZM128,104H112V72h16ZM224,160a8,8,0,0,0-8-8H192a48,48,0,0,0-47.13,39.45,8,8,0,0,0,9.24,8.75,32,32,0,1,1-34.4,34.4,8,8,0,0,0-8.75-9.24A48,48,0,1,0,176,160h24A8,8,0,0,0,224,160Zm-96,48a32.15,32.15,0,0,1-6.44.65,8,8,0,0,0-6.73,12.28A48,48,0,1,0,80,176H56a32,32,0,1,1,34.37-34.37,8,8,0,0,0,13.51-8.6A48,48,0,1,0,176,176H192A32,32,0,1,1,128,208Z"></path>
-                                                                    </svg>
-                                                                @elseif($transaction['account_type'] == 'savings')
-                                                                    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="#000000" viewBox="0 0 256 256">
-                                                                        <path d="M232,128a40,40,0,0,0-40-40H186.24A88.08,88.08,0,0,0,24,128c0,28.15,13.11,54.92,36.88,70.19L55.7,221.06A8,8,0,0,0,63.33,232H88a8,8,0,0,0,8-8V208h64v16a8,8,0,0,0,8,8h24.67a8,8,0,0,0,7.63-10.94l-5.64-15.05A88.52,88.52,0,0,0,208,168h24A40,40,0,0,0,232,128ZM104,88a8,8,0,1,1,8-8A8,8,0,0,1,104,88Z" opacity="0.2"></path>
-                                                                        <path d="M232,120H216a8,8,0,0,0-8,8,80,80,0,0,1-25.07,58.16,8,8,0,0,0-2.08,8.58l5.64,15.05H168V200a16,16,0,0,0-16-16H104a16,16,0,0,0-16,16v11.79H63.33l5.66-15.06a8,8,0,0,0-2.08-8.58A79.18,79.18,0,0,1,32,128,80.09,80.09,0,0,1,186.24,96H192a8,8,0,0,0,8-8V72.26l10.3,3.43a8,8,0,0,0,2.55.41h16a8,8,0,0,1,0,16H224a8,8,0,0,0-8,8v16A40,40,0,0,0,232,120Zm-128,8a16,16,0,1,0-16-16A16,16,0,0,0,104,128Zm0-32a8,8,0,1,1-8,8A8,8,0,0,1,104,96Z">
-                                                                        </path>
-                                                                    </svg>
-                                                                @elseif($transaction['account_type'] == 'investment')
-                                                                    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="#000000" viewBox="0 0 256 256">
-                                                                        <path d="M48,88H208a8,8,0,0,0,8-8V56a8,8,0,0,0-4.59-7.21l-80-40a8,8,0,0,0-7.18,0l-80,40A8,8,0,0,0,40,56V80A8,8,0,0,0,48,88Zm80,40a40,40,0,1,0,40,40A40,40,0,0,0,128,128Zm0,64a24,24,0,1,1,24-24A24,24,0,0,1,128,192Zm96-80H192a8,8,0,0,0-8,8v72H72V120a8,8,0,0,0-8-8H32a8,8,0,0,0,0,16H56v72H48a8,8,0,0,0,0,16H208a8,8,0,0,0,0-16h-8V128h24a8,8,0,0,0,0-16ZM200,224H56a8,8,0,0,0,0,16H200a8,8,0,0,0,0-16Z" opacity="0.2"></path>
-                                                                        <path d="M218.59,48.79l-80-40a16,16,0,0,0-14.18,0l-80,40A16,16,0,0,0,32,56V80a16,16,0,0,0,16,16H208a16,16,0,0,0,16-16V56A16,16,0,0,0,218.59,48.79ZM208,80H48V56l80-40,80,40ZM128,120a48,48,0,1,0,48,48A48,48,0,0,0,128,120Zm0,80a32,32,0,1,1,32-32A32,32,0,0,1,128,200Zm96-80H192a16,16,0,0,0-16,16v64H80V136a16,16,0,0,0-16-16H32a16,16,0,0,0,0,32H48v64a16,16,0,0,0,16,16H200a16,16,0,0,0,16-16V152h8a16,16,0,0,0,0-32Zm-8,96H56v-8H200Z">
-                                                                        </path>
-                                                                    </svg>
-                                                                @endif
-                                                            </span>
-                                                        </span>
-                                                    </div>
-                                                    <div>
-                                                        <a href="javascript:void(0)" class="fs-14 text-capitalize">{{$transaction['account_type']}}</a>
-                                                        <span
-                                                            class="d-block text-muted fs-12">{{ $transaction['description'] }}</span>
-                                                    </div>
-                                                </div>
+                                                @if($transaction['type'] == 'trade')
+                                                    <span class="badge bg-pink-transparent">Trading</span>
+                                                @elseif($transaction['type'] == 'save')
+                                                    <span class="badge bg-info-transparent">Savings</span>
+                                                @elseif($transaction['type'] == 'invest')
+                                                    <span class="badge bg-primary-transparent">Investment</span>
+                                                @elseif($transaction['type'] == 'wallet')
+                                                    <span class="badge bg-dark-transparent">Wallet</span>
+                                                @endif
                                             </td>
-                                            <td class="text-center">
-                                                <span class="fw-semibold fs-14">${{ number_format($transaction['amount'], 2) }}</span>
-                                            </td>
+                                            <td>${{ number_format($transaction['amount'], 2) }}</td>
+                                            <td>{{ $transaction['description'] }}</td>
                                             <td>
-                                                @if($transaction['type'] == 'deposit')
+                                                @if($transaction['method'] == 'credit')
                                                     <span class="badge bg-success-transparent"><i class="ri-check-fill align-middle me-1"></i>Credit</span>
-                                                @elseif($transaction['type'] == 'withdrawal')
+                                                @elseif($transaction['method'] == 'debit')
                                                     <span class="badge bg-danger-transparent"><i class="ri-info-fill align-middle me-1"></i>Debit</span>
                                                 @endif
                                             </td>
@@ -1115,20 +1054,18 @@
                                                     <span class="badge bg-danger-transparent"><i class="ri-close-fill align-middle me-1"></i>Decline</span>
                                                 @endif
                                             </td>
-                                            <td>
-                                                <span class="text-muted">{{ $transaction['created_at']->format('M d, Y \a\t h:i A') }}</span>
-                                            </td>
+                                            <td>{{ $transaction['created_at']->format('M d, Y \a\t h:i A') }}</td>
                                         </tr>
                                     @endforeach
                                 </tbody>
                             </table>
-                            @if($transactions->count() == 0)
+                            {{-- @if($transactions->count() == 0)
                                 <tr>
                                     <p class="py-4 text-center">
                                         No Transactions...
                                     </p>
                                 </tr>
-                            @endif
+                            @endif --}}
                         </div>
                     </div>
                     <div class="card-footer">
@@ -1146,6 +1083,7 @@
 </div>
 <!-- End::app-content -->
 
+
 <!-- Apex Charts JS -->
 <script src="{{ asset('asset/libs/apexcharts/apexcharts.min.js') }}"></script>
 
@@ -1157,5 +1095,144 @@
 
 <!-- Custom JS -->
 <script src="{{ asset('asset/js/custom.js') }}"></script>
+
+<script>
+    // Convert the PHP data into JavaScript arrays
+    var dates = @json($dates->toArray());
+    var alignedSavings = @json($alignedSavings->toArray());
+    var alignedInvestments = @json($alignedInvestments->toArray());
+    var alignedTrading = @json($alignedTrading->toArray());
+
+    var options = {
+        series: [{
+            name: 'Savings',
+            data: alignedSavings // Use the aligned savings data from the controller
+        }, {
+            name: 'Investments',
+            data: alignedInvestments // Use the aligned investments data
+        }, {
+            name: 'Trading',
+            data: alignedTrading // Use the aligned trading data
+        }],
+        chart: {
+            height: 320,
+            type: 'area'
+        },
+        colors: ["#8274ff", "#ff6937", "#58c437"],
+        dataLabels: {
+            enabled: false
+        },
+        stroke: {
+            curve: 'smooth'
+        },
+        grid: {
+            borderColor: '#f2f5f7',
+        },
+        xaxis: {
+            type: 'datetime',
+            categories: dates,
+            labels: {
+                show: true,
+                style: {
+                    colors: "#8c9097",
+                    fontSize: '11px',
+                    fontWeight: 600,
+                    cssClass: 'apexcharts-xaxis-label',
+                },
+            }
+        },
+        yaxis: {
+            labels: {
+                show: true,
+                style: {
+                    colors: "#8c9097",
+                    fontSize: '11px',
+                    fontWeight: 600,
+                    cssClass: 'apexcharts-yaxis-label',
+                },
+            }
+        },
+        tooltip: {
+            x: {
+                format: 'dd/MM/yy HH:mm'
+            },
+        },
+    };
+
+    var chart = new ApexCharts(document.querySelector("#area-spline"), options);
+    chart.render();
+</script>
+
+<script>
+    // Get the percentages from the backend
+    var savingsPercentage = {{ number_format($savingsPercentage, 2) }};
+    var investmentPercentage = {{ number_format($investmentPercentage, 2) }};
+    var tradingPercentage = {{ number_format($tradingPercentage, 2) }};
+    
+    /* recent orders */
+    var options = {
+    series: [savingsPercentage, investmentPercentage, tradingPercentage],
+    labels: ["Savings", "Investment", "Trading"],
+    chart: {
+        height: 215,
+        type: 'donut',
+    },
+    dataLabels: {
+        enabled: false,
+    },
+
+    legend: {
+        show: false,
+    },
+    stroke: {
+        show: true,
+        curve: 'smooth',
+        lineCap: 'round',
+        colors: "#fff",
+        width: 0,
+        dashArray: 0,
+    },
+    plotOptions: {
+        pie: {
+        expandOnClick: false,
+        donut: {
+            size: '85%',
+            background: 'transparent',
+            labels: {
+            show: true,
+            name: {
+                show: true,
+                fontSize: '20px',
+                color: '#495057',
+                offsetY: -4
+            },
+            value: {
+                show: true,
+                fontSize: '18px',
+                color: undefined,
+                offsetY: 8,
+                formatter: function (val) {
+                return val + '%'
+                }
+            },
+            total: {
+                show: true,
+                showAlways: true,
+                label: 'Value',
+                fontSize: '18px',
+                fontWeight: 600,
+                color: '#000000',
+            }
+
+            }
+        }
+        }
+    },
+    colors: ["var(--primary-color)","var(--primary03)", "var(--primary05)"],
+    };
+    var chart = new ApexCharts(document.querySelector("#recent-orders"), options);
+    chart.render();
+    /* recent orders */
+</script>
 
 @endsection

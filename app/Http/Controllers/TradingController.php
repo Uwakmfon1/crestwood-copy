@@ -9,21 +9,25 @@ use App\Models\Crypto;
 use App\Models\Saving;
 use App\Models\Setting;
 use App\Models\Trading;
+use App\Models\CryptoTrade;
 use Illuminate\Http\Request;
 use App\Models\SavingPackage;
 use App\Models\AssetTransaction;
+use App\Models\TradeTransaction;
 use App\Models\CryptoTransaction;
 use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\Validator;
 use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\TransactionController;
 use App\Http\Controllers\NotificationController;
-use App\Models\CryptoTrade;
 
 class TradingController extends Controller
 {
+    //:::: STOCKS CONTROLLER :::://
     public function index(Request $request)
     {
+        $user = auth()->user();
+
         // Start with a base query for the stocks (crypto assets)
         $query = Stock::query();
 
@@ -37,119 +41,25 @@ class TradingController extends Controller
         }
 
         $stock = $query->paginate(40);
-        $balance = auth()->user()->tradingWalletBalance();
+        $balance = auth()->user()->wallet->trade;
 
-        $buy_asset = Trading::
-            where('user_id', auth()->id())->
-            where('type', 'buy')->
-            latest()->
-            get();
+        $tradeCount = $user->trades('stocks')->count();
 
-            $totalBuyAmount = $buy_asset->sum(function($asset) {
-                return $asset->amount * $asset->quantity;
-            });
-
-            $buyTrade = $buy_asset->count();
-
-        $sell_asset = Trading::
-            where('user_id', auth()->id())->
-            where('type', 'sell')->
-            latest()->
-            get();
-
-            $totalSellAmount = $sell_asset->sum(function($asset) {
-                return $asset->amount * $asset->quantity;
-            });
-
-            $sellTrade = $sell_asset->count();
-
-        $naira = 1568.23;
+        $totalStocks = $user->trades('stocks')->sum('amount');
 
         return view('user_.trade.index', [
             'title' => 'Trading', 
             'stocks' => $stock, 
             'balance' => $balance, 
-            'naira' => $naira,
-            'buyAmount' => $totalBuyAmount,
-            'buyTrade' => $buyTrade,
-            'sellAmount' => $totalSellAmount,
-            'sellTrade' => $sellTrade,
+            'tradeCount' => $tradeCount,
+            'totalStocks' => $totalStocks,
+
+            'buyAmount' => 0,
+            'buyTrade' => 0,
+            'sellAmount' => 0,
+            'sellTrade' => 0,
         ]);
     }
-
-    public function crypto(Request $request)
-    {
-        // Start with a base query for the stocks (crypto assets)
-        $query = Crypto::query();
-
-        // If a search term is present, adjust the query to filter by name or symbol
-        if ($request->filled('search')) {
-            $searchTerm = $request->input('search');
-            $query->where(function ($q) use ($searchTerm) {
-                $q->where('name', 'like', '%' . $searchTerm . '%')
-                ->orWhere('symbol', 'like', '%' . $searchTerm . '%');
-            });
-        }
-
-        // Paginate the query results
-        $stock = $query->paginate(40);
-
-        // Get the user's trading wallet balance
-        $balance = auth()->user()->tradingWalletBalance();
-
-        // Retrieve and calculate buy trades
-        $buy_asset = CryptoTrade::
-            where('user_id', auth()->id())->
-            where('type', 'buy')->
-            latest()->
-            get();
-
-        $totalBuyAmount = $buy_asset->sum(function($asset) {
-            return $asset->amount * $asset->lots;
-        });
-
-        $buyTrade = $buy_asset->count();
-
-        // Retrieve and calculate sell trades
-        $sell_asset = CryptoTrade::
-            where('user_id', auth()->id())->
-            where('type', 'sell')->
-            latest()->
-            get();
-
-        $totalSellAmount = $sell_asset->sum(function($asset) {
-            return $asset->amount * $asset->lots;
-        });
-
-        $sellTrade = $sell_asset->count();
-
-        // Example Naira conversion rate
-        $naira = 1568.23;
-
-        // Return the view with relevant data, including search results
-        return view('user_.crypto.index', [
-            'title' => 'Cryptocurrency',
-            'stocks' => $stock,
-            'balance' => $balance,
-            'naira' => $naira,
-            'buyAmount' => $totalBuyAmount,
-            'buyTrade' => $buyTrade,
-            'sellAmount' => $totalSellAmount,
-            'sellTrade' => $sellTrade,
-        ]);
-    }
-
-    public function packages()
-    {
-        return view('user.savings.packages.index', ['title' => 'Packages', 'packages' => SavingPackage::all()]);
-    }
-
-    public function create()
-    {
-        return view('user.savings.create', ['title' => 'Save', 'setting' => Setting::all()->first(), 'packages' => SavingPackage::all()]);
-    }
-
-    //STORE STOCKS 
 
     public function store(Request $request): \Illuminate\Http\RedirectResponse
     {
@@ -167,6 +77,8 @@ class TradingController extends Controller
             return back()->withErrors($validator)->withInput()->with('error', 'Invalid input data');
         }
 
+        $user = auth()->user();
+
         // Retrieve the stock data
         $stock = Stock::all()->where('id', $request['stock_id'])->first();
 
@@ -183,13 +95,14 @@ class TradingController extends Controller
 
         // Process the trade based on the type (buy/sell)
         if ($request['type'] == 'buy') {
+
             // Check for sufficient balance
-            if (!auth()->user()->hasSufficientBalance($amount, 'trading')) {
+            if (!$user->inSufficientBalance($amount, 'trading')) {
                 return back()->withInput()->with('error', 'Insufficient trading balance');
             } else {
                 // Handle buy trade
                 $trade = $this->handleBuyTrade($request, $amount);
-                auth()->user()->tradingWallet->decrement('balance', $amount);
+                $user->updateWalletBalance('trading', $amount, 'decrement'); 
             }
                 
         } elseif ($request['type'] == 'sell') {
@@ -201,7 +114,13 @@ class TradingController extends Controller
         }
 
         // Create a trading transaction
-        $this->createTradingTransaction($trade, $amount, $request['type'], $stock['name']);
+        $transaction = $user->transaction('trade')->create([
+            'type' => 'trade',
+            'amount' => $request->amount,
+            'data_id' => $trade->id,
+            'status' => 'approved',
+            'description' => 'Stocks Trade...'
+        ]);
 
         // Set the success message
         if ($request['type'] == 'sell') {
@@ -211,8 +130,8 @@ class TradingController extends Controller
         }
     
         // Store the savings transaction and redirect
-        if ($trade) {
-            TransactionController::storeSavingTransaction($trade, $trade['amount'], $request['payment'], 'savings', 'Traded ' . $stock['name'], $trade['id']);
+        if ($transaction) {
+            // TransactionController::storeSavingTransaction($trade, $trade['amount'], $request['payment'], 'savings', 'Traded ' . $stock['name'], $trade['id']);
             return redirect()->route('assets')->with('success', $msg);
         }
 
@@ -222,33 +141,29 @@ class TradingController extends Controller
 
     private function handleBuyTrade($request, $amount)
     {
-        $existingTrade = auth()->user()->trades()->where('stock_id', $request['stock_id'])->first();
-        $stock = Stock::find($request['stock_id']); // Assuming you have stock data
+        $user = auth()->user();
+
+        $existingTrade = $user->trades('stocks')->where('data_id', $request['stock_id'])->first();
         
         if ($existingTrade) {
-            // Update the existing trade's quantity
             $existingTrade->increment('quantity', $request['quantity']);
         } else {
-            // Create a new trade if it doesn't exist
-            $existingTrade = auth()->user()->trades()->create([
-                'stock_id' => $request['stock_id'],
-                'type' => $request['type'],
-                'amount' => $request['amount'],
+            $existingTrade = $user->trades('stocks')->create([
+                'data_id' => $request['stock_id'],
+                'type' => 'stocks',
+                'amount' => ($request['quantity'] * $request['amount']),
                 'quantity' => $request['quantity'],
-                'stock_symbol' => $request['stock_symbol']
+                'symbol' => $request['stock_symbol'],
+                'purchase_amount' => $request['amount'],
             ]);
         }
 
-        // Create an asset transaction record for the buy trade
-        AssetTransaction::create([
-            'user_id' => auth()->id(),
-            'stock_id' => $request['stock_id'],
-            'price' => $stock->price, // Assuming you are storing the stock price
+        // Create trade transaction record for the buy trade
+        $existingTrade->tradeTransaction()->create([
             'quantity' => $request['quantity'],
             'amount' => $amount,
-            'profit' => 0, // Initial profit for buy trades would be 0
-            'status' => 'open',
             'type' => 'buy',
+            'profit' => 0,
         ]);
 
         return $existingTrade;
@@ -256,7 +171,9 @@ class TradingController extends Controller
 
     private function handleSellTrade($request, $stockAmount)
     {
-        $existingTrade = auth()->user()->trades()->where('stock_id', $request['stock_id'])->first();
+        $user = auth()->user();
+        $existingTrade = $user->trades('stocks')->where('data_id', $request['stock_id'])->first();
+
         $stock = Stock::find($request['stock_id']); // Fetch stock data
 
         if ($existingTrade) {
@@ -267,21 +184,17 @@ class TradingController extends Controller
                     $existingTrade->delete();
                 }
 
-                auth()->user()->tradingWallet->increment('balance', $stockAmount);
+                $user->updateWalletBalance('trading', $stockAmount, 'increment'); 
 
                 // Calculate profit for the sell trade
                 $profit = ($request['quantity'] * $stock->price) - ($existingTrade->amount); //this is wrong
 
                 // Create an asset transaction record for the sell trade
-                AssetTransaction::create([
-                    'user_id' => auth()->id(),
-                    'stock_id' => $request['stock_id'],
-                    'price' => $stock->price,
+                $existingTrade->tradeTransaction()->create([
                     'quantity' => $request['quantity'],
                     'amount' => $stockAmount,
-                    'profit' => $profit, // Calculate profit for sell trades
-                    'status' => 'closed',
                     'type' => 'sell',
+                    'profit' => $profit,
                 ]);
 
                 return $existingTrade;
@@ -292,27 +205,215 @@ class TradingController extends Controller
 
         return null; // No existing trade to sell
     }
-    
-    private function createTradingTransaction($trade, $amount, $type, $stockName)
+
+    public function asset()
     {
-        if ($type == 'buy') {
-            $tradeType = 'withdrawal';
+        $user = auth()->user();
+        $assets = $user->trades('stocks')->latest()->get();
+        $balance = $user->wallet->trade;
+
+        // Calculate the total amount of all trades
+        $totalStocks = $user->trades('stocks')->sum('amount');
+        $watchList = Stock::latest()->take(3)->get();
+
+        return view('user_.trade.asset', [
+            'title' => 'Trading',
+            'asset' => $assets->count(),
+            'assets' => $assets,
+            'balance' => $balance,
+            'totalAmount' => $totalStocks,
+            'watchList' => $watchList,
+        ]);
+    }
+    
+    public function show (Stock $stock)
+    {
+        $user = auth()->user();
+
+        $assets = $user->trades('stocks')->where('symbol', $stock->symbol)->get();
+
+        $transactions = $user->trades('stocks')->where('symbol', $stock->symbol)->first();
+
+        if($transactions) {
+            $transaction = $transactions->tradeTransaction()->get();
+
+            // Initialize variables for overall P/L
+            $totalCost = 0;
+            $totalRevenue = 0;
+
+            foreach ($transaction as $asset) {
+                $totalCost += $asset->amount; 
+                $totalRevenue += $stock->price * $asset->quantity;
+            }
+
+            $ownAsset = $transactions;
+            $amount = $transaction->where('type', 'buy')->sum('amount');
+            $quantity = $transaction->where('type', 'buy')->sum('quantity');
+            $profit = $ownAsset ? $ownAsset->amount : 0;
+
+            // Calculate overall profit/loss
+            $overallProfitLoss = ($transaction->where('type', 'buy')->sum('amount') - ($transaction->where('type', 'buy')->sum('quantity') * $stock->price));
+            $percentageOverallProfitLoss = $amount > 0 ? ($overallProfitLoss / $amount) * 100 : 0;
         } else {
-            $tradeType = 'deposit';
+            $ownAsset = $transactions;
+            $amount = 0;
+            $quantity = 0;
+            $profit = 0;
+
+            // Calculate overall profit/loss
+            $overallProfitLoss = 0;
+            $percentageOverallProfitLoss = 0;
         }
-        
-        $trade->tradingTransactions()->create([
-            'user_id' => auth()->user()->id,
+
+        return view('user_.trade.show', [
+            'title' => 'Trading', 
+            'stock' => $stock, 
+            'asset' => $assets,
             'amount' => $amount,
-            'type' => $tradeType,
-            'account_type' => 'trading',
-            'description' => $type . ' trade on ' . $stockName,
-            'method' => 'wallet',
-            'status' => 'approved'
+            'quantity' => $quantity,
+            'profit' => $profit,
+            'overallProfitLoss' => $overallProfitLoss,
+            'percentageOverallProfitLoss' => $percentageOverallProfitLoss,
         ]);
     }
 
-    // STORE CRYPTOCURRENCY
+    public function showAsset(Stock $stock)
+    {
+        $user = auth()->user();
+
+        $assets = $user->trades('stocks')->where('symbol', $stock->symbol)->get();
+
+        $transactions = $user->trades('stocks')->where('symbol', $stock->symbol)->first();
+
+        if ($assets->count() <= 0) {
+            return redirect()->route('assets')->with('info', "You don't have any holdings on " . $stock->name);
+        }
+
+        $transaction = $transactions->tradeTransaction()->get();
+
+        // Initialize variables for overall P/L
+        $totalCost = 0;
+        $totalRevenue = 0;
+
+        foreach ($transaction as $asset) {
+            $totalCost += $asset->amount; 
+            $totalRevenue += $stock->price * $asset->quantity;
+        }
+
+        $ownAsset = $transactions;
+        $amount = $transaction->where('type', 'buy')->sum('amount');
+        $quantity = $transaction->where('type', 'buy')->sum('quantity');
+        $profit = $ownAsset ? $ownAsset->amount : 0;
+
+        // Calculate overall profit/loss
+        $overallProfitLoss = ($transaction->where('type', 'buy')->sum('amount') - ($transaction->where('type', 'buy')->sum('quantity') * $stock->price));
+        $percentageOverallProfitLoss = $amount > 0 ? ($overallProfitLoss / $amount) * 100 : 0;
+
+        return view('user_.trade.show-asset', [
+            'title' => 'My Asset',
+            'asset' => $transaction,
+            'stock' => $stock,
+            'amount' => $amount,
+            'quantity' => $quantity,
+            'profit' => $profit,
+            'overallProfitLoss' => $overallProfitLoss,
+            'percentageOverallProfitLoss' => $percentageOverallProfitLoss,
+            'trade' => $transactions,
+        ]);
+    }
+
+    public function closeAllTrades(Trade $trade)
+    {
+        $user = auth()->user();
+
+        $stock = $trade->stock()->first();
+
+        $profitAmount = $stock->price * $trade->quantity;
+
+        $user->updateWalletBalance('trading', $profitAmount, 'increment');
+
+
+        $trade->delete();
+
+        return redirect()->route('assets')->with('success', "All trades closed successfully.");
+    }
+
+    public function closeTrade(TradeTransaction $tradeTransaction)
+    {
+        $user = auth()->user();
+
+        $trade = Trade::where('id', $tradeTransaction->trade_id)->first();
+
+        $stock = $trade->stock()->first();
+
+        $profitAmount = $stock->price * $tradeTransaction->quantity;
+
+
+        if($tradeTransaction->quantity <= $trade->quantity) {
+            $trade->decrement('quantity', $tradeTransaction->quantity);
+
+            if ($trade->quantity == 0) {
+                $trade->delete();
+            }
+
+            $user->updateWalletBalance('trading', $profitAmount, 'increment');
+
+            $tradeTransaction->update([
+                'type' => 'sell',
+                'updated_at' => now(), 
+            ]);
+
+            return redirect()->back()->with('success', 'Trade closed successfully.');
+        }
+
+        return redirect()->back()->with('error', 'Failed to close trade. Insufficient quantity.');
+    }
+    //:::: STOCKS CONTROLLER :::://
+
+
+
+
+
+
+
+
+    //:::: CRYPTO CONTROLLER :::://
+
+    public function crypto(Request $request)
+    {
+        $user = auth()->user();
+
+        // Start with a base query for the stocks (crypto assets)
+        $query = Crypto::query();
+
+        if ($request->filled('search')) {
+            $searchTerm = $request->input('search');
+            $query->where(function ($q) use ($searchTerm) {
+                $q->where('name', 'like', '%' . $searchTerm . '%')
+                ->orWhere('symbol', 'like', '%' . $searchTerm . '%');
+            });
+        }
+
+        $stock = $query->paginate(40);
+        $balance = auth()->user()->wallet->trade;
+
+        $tradeCount = $user->trades('crypto')->count();
+
+        $totalStocks = $user->trades('crypto')->sum('amount');
+
+        return view('user_.crypto.index', [
+            'title' => 'Trading', 
+            'stocks' => $stock, 
+            'balance' => $balance, 
+            'tradeCount' => $tradeCount,
+            'totalStocks' => $totalStocks,
+
+            'buyAmount' => 0,
+            'buyTrade' => 0,
+            'sellAmount' => 0,
+            'sellTrade' => 0,
+        ]);
+    }
 
     public function storeCrypto(Request $request): \Illuminate\Http\RedirectResponse
     {
@@ -330,15 +431,18 @@ class TradingController extends Controller
             return back()->withErrors($validator)->withInput()->with('error', 'Invalid input data');
         }
 
-        // Retrieve the crypto data
-        $crypto = Crypto::find($request['crypto_id']);
+        $user = auth()->user();
+
+        // Retrieve the stock data
+        $stock = Crypto::all()->where('id', $request['crypto_id'])->first();
 
         $amount = ($request['amount'] * $request['lots']);
-        $cryptoAmount = ($request['lots'] * $crypto->price);
 
-        // Check if the cryptocurrency is tradeable
-        if ($crypto->tradeable == 0) {
-            return back()->with('error', 'Trading ' . $crypto->name . ' is currently unavailable, check back later');
+        $stockAmount = ($request['lots'] * $stock->price);
+
+        // Check if the stock is tradeable
+        if ($stock->tradeable == 0) {
+            return back()->with('error', 'Trading ' . $stock->name . ' is currently unavailable, check back later');
         }
 
         $trade = null;
@@ -346,78 +450,78 @@ class TradingController extends Controller
         // Process the trade based on the type (buy/sell)
         if ($request['type'] == 'buy') {
             // Check for sufficient balance
-            if (!auth()->user()->hasSufficientBalance($amount, 'trading')) {
+            if (!$user->inSufficientBalance($amount, 'trading')) {
                 return back()->withInput()->with('error', 'Insufficient trading balance');
             } else {
                 // Handle buy trade
                 $trade = $this->handleBuyCrypto($request, $amount);
-                auth()->user()->tradingWallet->decrement('balance', $amount);
+                $user->updateWalletBalance('trading', $amount, 'decrement'); 
             }
-
         } elseif ($request['type'] == 'sell') {
             // Handle sell trade
-            $trade = $this->handleSellCrypto($request, $cryptoAmount);
+            $trade = $this->handleSellCrypto($request, $stockAmount);
             if (!$trade) {
                 return back()->with('error', 'Error processing sell trade');
             }
         }
 
-        // Create a crypto trading transaction
-        $this->createCryptoTransaction($trade, $amount, $request['type'], $crypto->name);
+        // Create a trading transaction
+        $transaction = $user->transaction('trade')->create([
+            'type' => 'trade',
+            'amount' => $request->amount,
+            'data_id' => $trade->id,
+            'status' => 'approved',
+            'description' => 'Stocks Trade...'
+        ]);
 
         // Set the success message
         if ($request['type'] == 'sell') {
-            $msg = 'Sold ' . $request['lots'] . ' of ' . $crypto->name . ' $' . ($request['amount'] * $request['lots']) . ' successfully';
+            $msg = 'Sold out ' . $request['quantity'] . ' of ' . $stock['name'] . ' $' . ($request['amount'] * $request['lots']) . 'successfully';
         } else {
-            $msg = 'Purchase of ' . $request['lots'] . ' ' . $crypto->name . ' $' . ($request['amount'] * $request['lots']) . ' was successful';
+            $msg = 'Purchase of ' . $request['quantity'] . ' ' . $stock['name'] . ' $' . ($request['amount'] * $request['lots']) . ' was successful';
         }
-
+    
         // Store the savings transaction and redirect
-        if ($trade) {
-            TransactionController::storeSavingTransaction($trade, $trade['amount'], $request['payment'], 'savings', 'Traded ' . $crypto->name, $trade['id']);
+        if ($transaction) {
+            // TransactionController::storeSavingTransaction($trade, $trade['amount'], $request['payment'], 'savings', 'Traded ' . $stock['name'], $trade['id']);
             return redirect()->route('crypto.assets')->with('success', $msg);
         }
 
         // Handle any other errors
-        return back()->withInput()->with('error', 'Error processing crypto trade');
+        return back()->withInput()->with('error', 'Error processing investment');
     }
 
     private function handleBuyCrypto($request, $amount)
     {
-        $existingTrade = auth()->user()->crypto()->where('crypto_id', $request['crypto_id'])->first();
-        $crypto = Crypto::find($request['crypto_id']);
+        $user = auth()->user();
 
+        $existingTrade = $user->trades('crypto')->where('data_id', $request['crypto_id'])->first();
+        
         if ($existingTrade) {
-            // Update the existing trade's lots
-            $existingTrade->increment('lots', $request['lots']);
+            $existingTrade->increment('quantity', $request['lots']);
         } else {
-            // Create a new trade if it doesn't exist
-            $existingTrade = auth()->user()->crypto()->create([
-                'crypto_id' => $request['crypto_id'],
-                'type' => $request['type'],
-                'amount' => $request['amount'],
-                'lots' => $request['lots'],
-                'crypto_symbol' => $request['crypto_symbol'],
-                'entry_price' => $crypto->price,
-                'status' => 'open'
+            $existingTrade = $user->trades('crypto')->create([
+                'data_id' => $request['crypto_id'],
+                'type' => 'crypto',
+                'amount' => ($request['lots'] * $request['amount']),
+                'quantity' => $request['lots'],
+                'symbol' => $request['crypto_symbol'],
+                'purchase_amount' => $request['amount'],
             ]);
         }
 
-        // Create an asset transaction record for the buy trade
-        CryptoTransaction::create([
-            'user_id' => auth()->id(),
-            'crypto_id' => $request['crypto_id'],
-            'price' => $crypto->price, // Assuming you are storing the crypto price
-            'lots' => $request['lots'],
+        // Create trade transaction record for the buy trade
+        $existingTrade->tradeTransaction()->create([
+            'quantity' => $request['lots'],
             'amount' => $amount,
-            'profit' => 0, // Initial profit for buy trades would be 0
-            'status' => 'open',
             'type' => 'buy',
+            'profit' => 0,
         ]);
 
         return $existingTrade;
     }
 
+    //Warning: FIX SELL
     private function handleSellCrypto($request, $cryptoAmount)
     {
         $validator = Validator::make($request->all(), [
@@ -440,56 +544,41 @@ class TradingController extends Controller
         $amount = ($request['amount'] * $request['lots']);
         $cryptoAmount = ($request['lots'] * $crypto->price);
 
+        $user = auth()->user();
+
         // Check if the cryptocurrency is tradeable
         if ($crypto->tradeable == 0) {
             return back()->with('error', 'Trading ' . $crypto->name . ' is currently unavailable, check back later');
         }
 
-        $existingTrade = auth()->user()->crypto()->where('crypto_id', $request['crypto_id'])->first();
-
-        $existingTransaction = auth()->user()->cryptoTransaction()->where('id', $request['trans_id'])->first();
+        $existingTrade = $user->trades('crypto')->where('data_id', $request['crypto_id'])->first();
         
         $crypto = Crypto::find($request['crypto_id']); // Fetch crypto data
 
+        // dd($existingTrade);
+
         if ($existingTrade) {
-            if ($existingTrade->lots >= $request['lots']) {
+            if ($existingTrade->quantity >= $request['lots']) {
+                $existingTrade->decrement('quantity', $request['lots']);
 
-                $existingTrade->decrement('lots', $request['lots']);
-                $existingTransaction->decrement('lots', $request['lots']);
-                $existingTransaction->decrement('amount', $request['lots'] * $crypto->price);
+                $transaction = TradeTransaction::find($request['trans_id']);
 
-                if ($existingTransaction->lots == 0) {
-                    $existingTransaction->delete();
-                    // CryptoTransaction::create([
-                    //     'user_id' => auth()->id(),
-                    //     'crypto_id' => $request['crypto_id'],
-                    //     'price' => $crypto->price,
-                    //     'lots' => $request['lots'],
-                    //     'amount' => $cryptoAmount,
-                    //     'profit' => $profit, // Calculate profit for sell trades
-                    //     'status' => 'closed',
-                    //     'type' => 'sell',
-                    // ]);
+                if($transaction->quantity == 0.00001) {
+                    $transaction->delete();
                 } else {
-
+                    if($transaction->quantity >= 0 & ($request['lots'] * $crypto->price) >= 0)
+                        $transaction->decrement('quantity', $request['lots']);
+                        $transaction->decrement('amount', ($request['lots'] * $crypto->price));
                 }
 
-                auth()->user()->tradingWallet->increment('balance', $cryptoAmount);
+                if($existingTrade->quantity == 0.1) {
+                    $transaction->delete();
+                }
+
+                $user->updateWalletBalance('trading', $cryptoAmount, 'increment'); 
 
                 // Calculate profit for the sell trade
-                $profit = ($request['lots'] * $crypto->price) - ($existingTrade->entry_price * $request['lots']);
-
-                // Create an asset transaction record for the sell trade
-                // CryptoTransaction::create([
-                //     'user_id' => auth()->id(),
-                //     'crypto_id' => $request['crypto_id'],
-                //     'price' => $crypto->price,
-                //     'lots' => $request['lots'],
-                //     'amount' => $cryptoAmount,
-                //     'profit' => $profit, // Calculate profit for sell trades
-                //     'status' => 'closed',
-                //     'type' => 'sell',
-                // ]);
+                // $profit = ($request['lots'] * $crypto->price) - ($existingTrade->entry_price * $request['lots']);
 
                 return $existingTrade;
             }
@@ -497,145 +586,148 @@ class TradingController extends Controller
             return null; // Insufficient lots to sell
         }
 
-        // Create a trading transaction
-        $this->createTradingTransaction($existingTransaction, $amount, $request['type'], $crypto['name']);
+        // // Create a trading transaction
+        // $this->createTradingTransaction($existingTransaction, $amount, $request['type'], $crypto['name']);
 
-        // Set the success message
-        if ($request['type'] == 'sell') {
-            $msg = 'Sold out ' . $request['quantity'] . ' of ' . $crypto['name'] . ' $' . ($request['amount'] * $request['quantity']) . 'successfully';
-        } else {
-            $msg = 'Purchase of ' . $request['quantity'] . ' ' . $crypto['name'] . ' $' . ($request['amount'] * $request['quantity']) . ' was successful';
-        }
+        // // Set the success message
+        // if ($request['type'] == 'sell') {
+        //     $msg = 'Sold out ' . $request['quantity'] . ' of ' . $crypto['name'] . ' $' . ($request['amount'] * $request['quantity']) . 'successfully';
+        // } else {
+        //     $msg = 'Purchase of ' . $request['quantity'] . ' ' . $crypto['name'] . ' $' . ($request['amount'] * $request['quantity']) . ' was successful';
+        // }
     
-        // Store the savings transaction and redirect
-        if ($existingTrade) {
-            return redirect()->route('assets')->with('success', $msg);
-        }
+        // // Store the savings transaction and redirect
+        // if ($existingTrade) {
+        //     return redirect()->route('assets')->with('success', $msg);
+        // }
 
-        // Handle any other errors
-        return back()->withInput()->with('error', 'Error processing investment');
+        // // Handle any other errors
+        // return back()->withInput()->with('error', 'Error processing investment');
 
-        return null; // No existing trade to sell
+        // return null; // No existing trade to sell
     }
-
-    private function createCryptoTransaction($trade, $amount, $type, $cryptoName)
-    {
-        if ($type == 'buy') {
-            $tradeType = 'withdrawal';
-        } else {
-            $tradeType = 'deposit';
-        }
-
-        $trade->cryptoTransactions()->create([
-            'user_id' => auth()->user()->id,
-            'amount' => $amount,
-            'type' => $tradeType,
-            'account_type' => 'trading',
-            'description' => $type . ' trade on ' . $cryptoName,
-            'method' => 'wallet',
-            'status' => 'approved'
-        ]);
-    }
-
-
-    public function asset()
-    {
-        $assets = Trading::where('user_id', auth()->id())->latest()->get();
-        $balance = auth()->user()->tradingWalletBalance();
-
-        // Calculate the total amount of all trades
-        $totalAmount = $assets->sum(function($asset) {
-            return $asset->amount * $asset->quantity;
-        });
-
-        $naira = 1568.23;
-
-        return view('user_.trade.asset', [
-            'title' => 'Trading',
-            'asset' => $assets->count(),
-            'assets' => $assets,
-            'balance' => $balance,
-            'naira' => $naira,
-            'totalAmount' => $totalAmount
-        ]);
-    }
+    //Warning: FIX SELL
 
     public function cryptoAsset()
     {
-        $assets = CryptoTrade::where('user_id', auth()->id())->latest()->get();
-        $balance = auth()->user()->tradingWalletBalance();
+        $user = auth()->user();
+        $assets = $user->trades('crypto')->latest()->get();
+        $balance = $user->wallet->trade;
 
         // Calculate the total amount of all trades
-        $totalAmount = $assets->sum(function($asset) {
-            return $asset->amount * $asset->lots;
-        });
+        $totalStocks = $user->trades('crypto')->sum('amount');
 
-        $naira = 1568.23;
+        $watchList = Crypto::latest()->take(3)->get();
 
         return view('user_.crypto.asset', [
             'title' => 'Trading',
             'asset' => $assets->count(),
             'assets' => $assets,
             'balance' => $balance,
-            'naira' => $naira,
-            'totalAmount' => $totalAmount
+            'totalAmount' => $totalStocks,
+            'watchList' => $watchList,
         ]);
     }
 
-    public function show (Stock $stock)
+    public function showCyptoTrade(Crypto $stock)
     {
-        $assets = auth()->user()->assets()->where('stock_id', $stock->id)->get();
+        $user = auth()->user();
+
+        $assets = $user->trades('crypto')->where('symbol', $stock->symbol)->get();
+
+        $transactions = $user->trades('crypto')->where('symbol', $stock->symbol)->first();
+
+        if ($assets->count() <= 0) {
+            return redirect()->route('assets')->with('info', "You don't have any holdings on " . $stock->name);
+        }
+
+        $transaction = $transactions->tradeTransaction()->get();
 
         // Initialize variables for overall P/L
         $totalCost = 0;
         $totalRevenue = 0;
 
-        foreach ($assets as $asset) {
-            $totalCost += $asset->amount; // total amount spent on the asset
-            $totalRevenue += $stock->price * $asset->quantity; // total value of asset at current price
+        foreach ($transaction as $asset) {
+            $totalCost += $asset->amount; 
+            $totalRevenue += $stock->price * $asset->quantity;
         }
 
-        $ownAsset = auth()->user()->trades()->where('stock_id', $stock->id)->first();
-        $amount = $ownAsset ? ($ownAsset->amount * $ownAsset->quantity) : 0;
-        $quantity = $ownAsset ? $ownAsset->quantity : 0;
+        $ownAsset = $transactions;
+        $amount = $transaction->where('type', 'buy')->sum('amount');
+        $quantity = $transaction->where('type', 'buy')->sum('quantity');
         $profit = $ownAsset ? $ownAsset->amount : 0;
 
         // Calculate overall profit/loss
-        $overallProfitLoss = $totalRevenue - $totalCost;
-        $percentageOverallProfitLoss = $totalCost > 0 ? ($overallProfitLoss / $totalCost) * 100 : 0;
+        $overallProfitLoss = ($transaction->where('type', 'buy')->sum('amount') - ($transaction->where('type', 'buy')->sum('quantity') * $stock->price));
+        $percentageOverallProfitLoss = $amount > 0 ? ($overallProfitLoss / $amount) * 100 : 0;
 
-        return view('user_.trade.show', [
-            'title' => 'Trading', 
-            'stock' => $stock, 
-            'asset' => $assets,
+        return view('user_.crypto.view', [
+            'title' => 'My Asset',
+            'asset' => $transaction,
+            'stock' => $stock,
             'amount' => $amount,
             'quantity' => $quantity,
             'profit' => $profit,
             'overallProfitLoss' => $overallProfitLoss,
             'percentageOverallProfitLoss' => $percentageOverallProfitLoss,
+            'trade' => $transactions,
         ]);
+    }
+
+    public function closeAllAssets(Trade $trade)
+    {
+        $user = auth()->user();
+
+        $stock = $trade->crypto()->first();
+
+        $profitAmount = $stock->price * $trade->quantity;
+
+        $user->updateWalletBalance('trading', $profitAmount, 'increment');
+
+        $trade->delete();
+
+        return redirect()->route('crypto.assets')->with('success', "All trades closed successfully.");
     }
 
     public function showCrypto (Crypto $stock)
     {
-        $assets = auth()->user()->cryptoTransaction()->where('crypto_id', $stock->id)->get();
+        $user = auth()->user();
 
+        $assets = $user->trades('crypto')->where('symbol', $stock->symbol)->get();
+
+        $transactions = $user->trades('crypto')->where('symbol', $stock->symbol)->first();
+
+        if($transactions)
+            $transaction = $transactions->tradeTransaction()->get();
+
+        // Initialize variables for overall P/L
         $totalCost = 0;
         $totalRevenue = 0;
+        
+        if($transactions)
+            foreach ($transaction as $asset) {
+                $totalCost += $asset->amount; 
+                $totalRevenue += $stock->price * $asset->quantity;
+            }
 
-        foreach ($assets as $asset) {
-            $totalCost += $asset->amount; // total amount spent on the asset
-            $totalRevenue += $stock->price * $asset->lots; // total value of asset at current price
+        if($transactions) {
+            $ownAsset = $transactions;
+            $amount = $transaction->where('type', 'buy')->sum('amount');
+            $quantity = $transaction->where('type', 'buy')->sum('quantity');
+            $profit = $ownAsset ? $ownAsset->amount : 0;
+
+            // Calculate overall profit/loss
+            $overallProfitLoss = ($transaction->where('type', 'buy')->sum('amount') - ($transaction->where('type', 'buy')->sum('quantity') * $stock->price));
+            $percentageOverallProfitLoss = $amount > 0 ? ($overallProfitLoss / $amount) * 100 : 0;
+        } else {
+            $amount = 0;
+            $quantity = 0;
+            $profit = 0;
+
+            // Calculate overall profit/loss
+            $overallProfitLoss = 0;
+            $percentageOverallProfitLoss = 0;
         }
-
-        $ownAsset = auth()->user()->crypto()->where('crypto_id', $stock->id)->first();
-        $amount = $ownAsset ? ($ownAsset->amount * $ownAsset->lots) : 0;
-        $quantity = $ownAsset ? $ownAsset->lots : 0;
-        $profit = $ownAsset ? $ownAsset->amount : 0;
-
-        // Calculate overall profit/loss
-        $overallProfitLoss = $totalRevenue - $totalCost;
-        $percentageOverallProfitLoss = $totalCost > 0 ? ($overallProfitLoss / $totalCost) * 100 : 0;
 
         return view('user_.crypto.show', [
             'title' => 'Trading', 
@@ -649,181 +741,4 @@ class TradingController extends Controller
         ]);
     }
 
-    public function showAsset(Stock $stock)
-    {
-        $assets = auth()->user()->assets()->where('stock_id', $stock->id)->get();
-
-        if ($assets->count() <= 0) {
-            return back()->with('info', "You don't have any holdings on " . $stock->name);
-        }
-
-        // Initialize variables for overall P/L
-        $totalCost = 0;
-        $totalRevenue = 0;
-
-        foreach ($assets as $asset) {
-            $totalCost += $asset->amount; // total amount spent on the asset
-            $totalRevenue += $stock->price * $asset->quantity; // total value of asset at current price
-        }
-
-        $ownAsset = auth()->user()->trades()->where('stock_id', $stock->id)->first();
-        $amount = $ownAsset ? ($ownAsset->amount * $ownAsset->quantity) : 0;
-        $quantity = $ownAsset ? $ownAsset->quantity : 0;
-        $profit = $ownAsset ? $ownAsset->amount : 0;
-
-        // Calculate overall profit/loss
-        $overallProfitLoss = $totalRevenue - $totalCost;
-        $percentageOverallProfitLoss = $totalCost > 0 ? ($overallProfitLoss / $totalCost) * 100 : 0;
-
-        return view('user_.trade.show-asset', [
-            'title' => 'My Asset',
-            'asset' => $assets,
-            'stock' => $stock,
-            'amount' => $amount,
-            'quantity' => $quantity,
-            'profit' => $profit,
-            'overallProfitLoss' => $overallProfitLoss,
-            'percentageOverallProfitLoss' => $percentageOverallProfitLoss,
-        ]);
-    }
-
-    public function showCyptoTrade(Crypto $stock)
-    {
-        $assets = auth()->user()->cryptoTransaction()->where('crypto_id', $stock->id)->get();
-
-        if ($assets->count() <= 0) {
-            return back()->with('info', "You don't have any holdings on " . $stock->name);
-        }
-
-        // Initialize variables for overall P/L
-        $totalCost = 0;
-        $totalRevenue = 0;
-
-        foreach ($assets as $asset) {
-            $totalCost += $asset->amount; // total amount spent on the asset
-            $totalRevenue += $stock->price * $asset->lots; // total value of asset at current price
-        }
-
-        $ownAsset = auth()->user()->crypto()->where('crypto_id', $stock->id)->first();
-        $amount = $ownAsset ? ($ownAsset->amount * $ownAsset->lots) : 0;
-        $quantity = $ownAsset ? $ownAsset->lots : 0;
-        $profit = $ownAsset ? $ownAsset->amount : 0;
-
-        // Calculate overall profit/loss
-        $overallProfitLoss = $totalRevenue - $totalCost;
-        $percentageOverallProfitLoss = $totalCost > 0 ? ($overallProfitLoss / $totalCost) * 100 : 0;
-
-        return view('user_.crypto.view', [
-            'title' => 'My Asset',
-            'asset' => $assets,
-            'stock' => $stock,
-            'amount' => $amount,
-            'quantity' => $quantity,
-            'profit' => $profit,
-            'overallProfitLoss' => $overallProfitLoss,
-            'percentageOverallProfitLoss' => $percentageOverallProfitLoss,
-        ]);
-    }
-
-    public function closeTrade(AssetTransaction $assetTransaction)
-    {
-        $stock = Stock::find($assetTransaction->stock_id);
-        if (!$stock) {
-            return redirect()->back()->with('error', 'Stock not found.');
-        }
-
-        $existingHolding = auth()->user()->trades()->where('stock_id', $assetTransaction['stock_id'])->first();
-
-        $stockAmount = $assetTransaction->quantity * $stock->price;
-
-        if ($existingHolding->quantity > 0) {
-
-            $existingHolding->decrement('quantity', $assetTransaction->quantity);
-
-            if ($existingHolding->quantity == 0) {
-                $existingHolding->delete();
-            }
-
-            auth()->user()->tradingWallet->increment('balance', $stockAmount);
-
-            $assetTransaction->update([
-                'type' => 'sell',
-                'updated_at' => now(), 
-            ]);
-
-            return redirect()->back()->with('success', 'Trade closed successfully.');
-        }
-
-        // Handle failure (e.g., no quantity left to close)
-        return redirect()->back()->with('error', 'Failed to close trade. Insufficient quantity.');
-    }
-
-    public function closeAllTrades(Stock $stock)
-    {
-        $openTrades = auth()->user()->assets()->where('type', 'buy')->where('stock_id', $stock->id)->get();
-
-        if ($openTrades->isEmpty()) {
-            return redirect()->back()->with('error', 'No open trades to close.');
-        }
-
-        foreach ($openTrades as $trade) {
-            $stock = Stock::find($trade->stock_id);
-
-            if (!$stock) {
-                return redirect()->back()->with('error', 'Stock not found for trade ID: ' . $trade->id);
-            }
-
-            $stockAmount = $trade->quantity * $stock->price;
-            
-            auth()->user()->tradingWallet->increment('balance', $stockAmount);
-
-            $trade->update([
-                'type' => 'sell',
-                'amount' => $stockAmount,
-                'updated_at' => now(),
-            ]);
-
-            if ($trade->quantity == 0) {
-                // $trade->delete();
-            }
-        }
-
-        // Return a success message
-        return redirect()->back()->with('success', 'All trades closed successfully.');
-    }
-
-    public function closeAllAssets(Crypto $stock)
-    {
-        $openTrades = auth()->user()->cryptoTransaction()->where('type', 'buy')->where('crypto_id', $stock->id)->get();
-
-        if ($openTrades->isEmpty()) {
-            return redirect()->back()->with('error', 'No open trades to close.');
-        }
-
-        foreach ($openTrades as $trade) {
-            $stock = Crypto::find($trade->crypto_id);
-
-            if (!$stock) {
-                return redirect()->back()->with('error', 'Stock not found for trade ID: ' . $trade->id);
-            }
-
-            $stockAmount = $trade->lots * $stock->price;
-            
-            auth()->user()->tradingWallet->increment('balance', $stockAmount);
-
-            $trade->update([
-                'type' => 'sell',
-                'amount' => $stockAmount,
-                'updated_at' => now(),
-            ]);
-
-            if ($trade->quantity == 0) {
-                // $trade->delete();
-            }
-        }
-
-        // Return a success message
-        return redirect()->back()->with('success', 'All trades closed successfully.');
-    }
-   
 }

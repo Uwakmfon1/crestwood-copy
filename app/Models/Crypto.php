@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\MorphMany;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -13,18 +14,13 @@ class Crypto extends Model
 
     protected $guarded = [];
 
-    public function user(): BelongsTo
+    public function trading(): HasMany
     {
-        return $this->belongsTo(User::class);
+        return $this->hasMany(Trading::class);
     }
 
-    public function cryptoTransactions(): MorphMany
+    public function trades(): HasMany
     {
-        return $this->morphMany(WalletsTransactions::class, 'transactable');
-    }
-
-    public function crypto(): BelongsTo
-    {
-        return $this->belongsTo(Crypto::class);
+        return $this->hasMany(Trade::class);
     }
 }
