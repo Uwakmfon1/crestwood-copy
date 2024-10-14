@@ -13,10 +13,49 @@
     </nav>
 @endsection
 
+@php 
+
+$networks = \App\Models\AccountNetwork::all();
+
+@endphp
+
 @section('content')
     <div class="row">
         <div class="col-md-6 grid-margin">
             <div class="card">
+            @extends('layouts.admin')
+
+            <div class="card-body">
+                    <div class="my-3">
+                        <form action="{{ route('admin.addresses.store') }}" method="POST">
+                            @csrf
+                            <h6 class="card-title">Crypto Network</h6>
+                            <div class="mb-3">
+                                <label for="network" class="form-label">Select Network</label>
+                                <select name="account_network_id" id="network" class="form-control">
+                                    <option value="">Select a Network</option>
+                                    @foreach($networks as $network)
+                                        <option value="{{ $network->id }}">{{ $network->name }} ({{ $network->symbol }})</option>
+                                    @endforeach
+                                </select>
+                                @error('account_network_id')
+                                    <small class="text-danger">{{ $message }}</small>
+                                @enderror
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="address" class="form-label">Wallet Address</label>
+                                <input type="text" name="address" id="address" class="form-control" placeholder="No address set" value="{{ old('address') }}">
+                                @error('address')
+                                    <small class="text-danger">{{ $message }}</small>
+                                @enderror
+                            </div>
+
+                            <button type="submit" class="btn btn-primary">Add Address</button>
+                        </form>
+                    </div>
+                </div>
+
                 <div class="card-body">
                     <h6 class="card-title">Bank Details</h6>
                     <form action="{{ route('admin.bank.update') }}" id="bankDetailsForm" method="POST">
@@ -421,6 +460,39 @@
                     verifyingDisplay.addClass('d-none');
                 }
             }
+        });
+    </script>
+
+    <script>
+        $(document).ready(function () {
+            // Trigger change event when network is selected
+            $('#network').on('change', function () {
+                var networkId = $(this).val(); // Get selected network id
+
+                if (networkId) {
+                    // Make an API request or use an AJAX call to get the address for the selected network
+                    $.ajax({
+                        url: '/api/deposit/address/' + networkId, // The API route to fetch address based on network
+                        type: 'GET',
+                        success: function (response) {
+                            if (response.data && response.data.address) {
+                                $('#address').val(response.data.address); 
+                            } else {
+                                $('#address').val(''); 
+                                $('#address').attr('placeholder', 'No address set'); 
+                            }
+                        },
+                        error: function () {
+                            $('#address').val(''); // Handle errors by clearing the field
+                            $('#address').attr('placeholder', 'No address set');
+                        }
+                    });
+                } else {
+                    // Reset if no network is selected
+                    $('#address').val('');
+                    $('#address').attr('placeholder', 'No address set');
+                }
+            });
         });
     </script>
 @endsection

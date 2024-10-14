@@ -37,10 +37,10 @@ class Investment extends Model
         return $this->hasMany(InvestTransaction::class);
     }
 
-    // public function transaction(): HasOne
-    // {
-    //     return $this->hasOne(Transaction::class);
-    // }
+    public function ledgerEntries(): MorphMany
+    {
+        return $this->morphMany(Ledger::class, 'ledgerable');
+    }
 
     public function canSettle(): bool
     {

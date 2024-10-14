@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers\API;
 
+use App\Models\AccountCoin;
 use Illuminate\Http\Request;
+use App\Models\AccountAddress;
+use App\Models\AccountNetwork;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Http;
 
@@ -56,4 +59,25 @@ class WalletController extends Controller
             return response()->json(['error' => $e->getMessage()], 500);
         }
     }
+
+    public function getCoin()
+    {
+        $coin = AccountCoin::latest()->get();
+
+        return response()->json(['data' => $coin]);
+    }
+
+    public function getNetworks($coinId)
+    {
+        $networks = AccountNetwork::where('account_coin_id', $coinId)->get();
+        return response()->json(['data' => $networks]);
+    }
+
+    public function getAddress($networkId)
+    {
+        $address = AccountAddress::where('account_network_id', $networkId)->first();
+        return response()->json(['data' => $address]);
+    }
+
+
 }

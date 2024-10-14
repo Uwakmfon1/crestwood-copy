@@ -3,14 +3,16 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Models\User;
+use App\Models\Ledger;
 use App\Models\Saving;
 use App\Models\Transaction;
 use Illuminate\Http\Request;
+use InvalidArgumentException;
+use App\Models\WalletTransaction;
+use App\Models\WalletsTransactions;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
 use App\Http\Controllers\NotificationController;
-use App\Models\WalletsTransactions;
-use App\Models\WalletTransaction;
 
 class TransactionController extends Controller
 {
@@ -156,7 +158,13 @@ class TransactionController extends Controller
         // Process transaction based on type
         $user = $transaction['user'];
 
-        $user->updateWalletBalance('balance', $transaction->amount, 'increment');
+        // $user->updateWalletBalance('balance', $transaction->amount, 'increment');
+
+        try {
+            Ledger::credit($user->wallet, $transaction->amount, 'wallet', null, 'Approved Deposit');
+        } catch (InvalidArgumentException $e) {
+            return back()->with('error', 'Error debiting wallet: ' . $e->getMessage());
+        }
 
         // Update transaction
         if ($transaction->update(['status' => 'approved'])){

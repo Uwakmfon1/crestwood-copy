@@ -2,16 +2,17 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Controllers\CommandController;
-use App\Http\Controllers\Controller;
-use App\Models\Setting;
 use Exception;
-use Illuminate\Http\RedirectResponse;
+use App\Models\Setting;
 use Illuminate\Http\Request;
+use App\Models\AccountAddress;
 use Illuminate\Support\Facades\App;
-use Illuminate\Support\Facades\Artisan;
+use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Http;
+use Illuminate\Http\RedirectResponse;
+use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Validator;
+use App\Http\Controllers\CommandController;
 
 class SettingController extends Controller
 {
@@ -23,6 +24,22 @@ class SettingController extends Controller
             $banks = [];
         }
         return view('admin.setting.index', ['banks' => $banks, 'setting' => Setting::all()->first()]);
+    }
+
+    // Store the new address
+    public function store(Request $request)
+    {
+        $request->validate([
+            'account_network_id' => 'required|exists:account_networks,id',
+            'address' => 'required|string|max:255',
+        ]);
+
+        AccountAddress::create([
+            'account_network_id' => $request->account_network_id,
+            'address' => $request->address,
+        ]);
+
+        return redirect()->back()->with('success', 'Address added successfully!');
     }
 
     public function updateBankDetails(Request $request): RedirectResponse

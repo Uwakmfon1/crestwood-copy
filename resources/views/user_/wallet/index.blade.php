@@ -7,6 +7,14 @@
         -webkit-appearance: auto;
         -moz-appearance: auto;
     }
+    .selectdepo:hover {
+        border: 1px solid rgb(130, 116, 255);
+        cursor: pointer;
+    }
+
+    .selectdepo .active {
+        border: 1px solid rgb(130, 116, 255);
+    }
 </style>
 <!-- Start::app-content -->
 <div class="main-content app-content">
@@ -306,96 +314,150 @@
                     <h5 class="modal-title text-center fw-bold" id="nairaDepositModalLabel">Make a Deposit</h5>
                 </div>
                 <div class="modal-body">
-                    <div class="row d-flex justify-content-center mx-auto" style="max-width: 600px;">
-                        <div class="col-xl-6">
-                            <label for="amountDeposit" class="form-label">Deposit Amount</label>
-                            <div class="input-group"> 
-                                <input type="number" value="{{ old('amount') }}" required style="font-size: 14px" step="any" class="form-control" name="amount" id="amountDeposit" placeholder="Amount">
-                                <button type="button" class="input-group-text btn btn-dark-light btn-wave text-dark fs-12 fw-bold">USD</button>
-                            </div>
-                            @error('amount')
-                                <strong class="small text-danger">
-                                    {{ $message }}
-                                </strong>
-                            @enderror
-                        </div>
-                        <div class="col-xl-6">
-                            <label class="form-label" for="duration-type">Choose deposit method</label>
-                            <div class="input-group"> 
-                                <select name="roi_duration" id="duration-type" class="form-control py-2">
-                                    <option value="">Select method</option>
-                                    <option value="coin">Cryptocurrency</option>
-                                    <option value="bank">Bank Account</option>
-                                </select>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="my-4">
-                        <h4 class="text-center fs-13">You are about to make a deposit of <strong class="fw-bold text-primary amount-val">100USD</strong></h4>
-                        <p class="text-center text-muted fs-10">Exchange Rate: 1USD - 0.99928USDT</strong></p>
-                    </div>
-                    
-                    <div id="crypto" class="d-none">
-                        <div class="my-4">
-                            <p class="text-center fs-12 fw-medium">Carefully follow the procedures below for successful investment.</p>
-                            <div class="d-flex justify-content-center mx-auto my-2">
-                                <img width="130" height="130" src="https://upload.wikimedia.org/wikipedia/commons/5/5e/QR_Code_example.png" alt="...">
-                            </div>
-                            <p class="text-center fs-12 fw-medium">Scan the QR code above or copy and pay to this <span class="text-primary fw-bold">CRESTWOOD</span> address below:</p>
-                        </div>
-
-                        <div class="row d-flex justify-content-center mx-auto" style="max-width: 600px;">
-                            <div class="col-xl-12">
-                                <div class="input-group">
-                                    <button type="button" class="input-group-text btn btn-light-light btn-wave"><i class="ri-link me-2"></i></button>
-                                    <input type="text" name="roi_method" class="form-control text-center" placeholder="Enter Method..." aria-label="Stock Quantity" value="Wewrreik#$whhjzgehgnqkjskfpscnhsbfrghsxbdgnkdhjgh" disabled>
-                                    <button type="button" class="input-group-text btn btn-dark-light btn-wave copy-btn text-primary fs-13"><i class="ri-file-copy-fill text-primary me-2"></i> Copy</button>
+                    <div class="row mx-auto" id="depoSelect" style="max-width: 600px;">
+                        <div class="col-md-6 col-sm-12">
+                            <div class="card text-center selectdepo" id="selectCrypto">
+                                <div class="card-body d-flex align-items-center rounded">
+                                    <span class="avatar avatar-sm bg-primary me-2 shadow-avatar">
+                                        <img class="p-1" src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/46/Bitcoin.svg/2048px-Bitcoin.svg.png" alt="">
+                                    </span>
+                                    <h5 class="fw-medium fs-13 mt-2 mx-2"> 
+                                        Cryptocurrency
+                                    </h5>
                                 </div>
                             </div>
                         </div>
-
-                        <input type="hidden" name="account_type" value="wallet">
-
-                        <div id="" class="alert mx-3 alert-primary mt-2">
-                            <h4 class="text-danger fs-13">Please Note</h4>
-                            <div class="">
-                                    <p class="fs-12 text-muted"> <i class="fe fe-info text-primary fs-12 me-2"></i> Please ensure you deposit the exact amount of cryptocurrency before confirming your transaction</p>
-                            </div>
-                            <div class="">
-                                    <p class="fs-12 text-muted"> <i class="fe fe-info text-primary fs-12 me-2"></i> Incase the current session closed after you made payment, you can always start a new transaction with the exact amount you deposited.</p>
-                            </div>
-                            <div class="">
-                                    <p class="fs-12 text-muted"> <i class="fe fe-info text-primary fs-12 me-2"></i> Our customer care representatives are always available for support.</p>
+                        <div class="col-md-6 col-sm-12">
+                            <div class="card text-center selectdepo" id="selectBank">
+                                <div class="card-body d-flex align-items-center rounded">
+                                    <span class="avatar avatar-sm bg-primary me-2 shadow-avatar">
+                                        <img class="p-1" src="https://pngimg.com/d/bank_PNG24.png" alt="">
+                                    </span>
+                                    <h5 class="fw-medium fs-13 mt-2 mx-2"> 
+                                        Bank
+                                    </h5>
+                                </div>
                             </div>
                         </div>
-                        <p class="text-dark fs-13 text-center fw-medium">Already made payment of <span class="fw-bold text-primary amount-val">100USD</span> to the wallet address above® <br> Click the button below to confirm transaction.</p>
+                    </div>
+
+                    <div id="crypto" class="">
+                        <div class="row d-flex justify-content-center mx-auto" style="max-width: 600px;">
+                            <div class="col-xl-6">
+                                <label class="form-label" for="coin-select">Select Coin</label>
+                                <div class="input-group"> 
+                                    <select name="coin" id="coin-select" class="form-control py-2">
+                                        <option value="">Select Coin</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-xl-6">
+                                <label class="form-label" for="network-select">Choose Network</label>
+                                <div class="input-group"> 
+                                    <select name="network" id="network-select" class="form-control py-2">
+                                        <option value="">Select Network</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-xl-12 my-2">
+                                <div class="input-group"> 
+                                    <input type="number" value="{{ old('amount') }}" required style="font-size: 14px; font-weight: 800;" step="any" class="form-control text-center" name="amount" id="amountDeposit" placeholder="Amount">
+                                    <button type="button" class="input-group-text btn btn-dark-light btn-wave text-dark fs-12 fw-bold">USD</button>
+                                </div>
+                                @error('amount')
+                                    <strong class="small text-danger">
+                                        {{ $message }}
+                                    </strong>
+                                @enderror
+                            </div>
+                        </div>
+
+                        <div class="my-1">
+                            <h4 class="text-center fs-13">You are about to make a deposit of <strong class="fw-bold text-primary amount-val">0 BTC</strong></h4>
+                            <p class="text-center text-muted fs-10">Exchange Rate: 1 <strong id="selected-coin-symbol"></strong>  - <span id="exchange-rate">0</span> USD</p>
+                        </div>
+                        <div>
+                            <div class="my-4">
+                                <p class="text-center fs-12 fw-medium">Carefully follow the procedures below for successful investment.</p>
+                                <div class="d-flex justify-content-center mx-auto my-2">
+                                    <img width="130" height="130" src="https://upload.wikimedia.org/wikipedia/commons/5/5e/QR_Code_example.png" alt="...">
+                                </div>
+                                <p class="text-center fs-12 fw-medium">Scan the QR code above or copy and pay to this <span class="text-primary fw-bold">CRESTWOOD</span> address below:</p>
+                            </div>
+
+                            <div class="row d-flex justify-content-center mx-auto" style="max-width: 600px;">
+                                <div class="col-xl-12">
+                                    <div class="input-group">
+                                        <button type="button" class="input-group-text btn btn-light-light btn-wave"><i class="ri-link me-2"></i></button>
+                                        <input type="text" id="address-display" name="address-display" class="form-control text-center" placeholder="Enter Method..." aria-label="Stock Quantity" value="-------" disabled>
+                                        <button type="button" class="input-group-text btn btn-dark-light btn-wave copy-btn text-primary fs-13"><i class="ri-file-copy-fill text-primary me-2"></i> Copy</button>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <input type="hidden" name="account_type" value="wallet">
+
+                            <div id="" class="alert mx-3 alert-primary mt-2">
+                                <h4 class="text-danger fs-13">Please Note</h4>
+                                <div class="">
+                                        <p class="fs-12 text-muted"> <i class="fe fe-info text-primary fs-12 me-2"></i> Please ensure you deposit the exact amount of cryptocurrency before confirming your transaction</p>
+                                </div>
+                                <div class="">
+                                        <p class="fs-12 text-muted"> <i class="fe fe-info text-primary fs-12 me-2"></i> Incase the current session closed after you made payment, you can always start a new transaction with the exact amount you deposited.</p>
+                                </div>
+                                <div class="">
+                                        <p class="fs-12 text-muted"> <i class="fe fe-info text-primary fs-12 me-2"></i> Our customer care representatives are always available for support.</p>
+                                </div>
+                            </div>
+                            <p class="text-dark fs-13 text-center fw-medium">Already made payment of <span class="fw-bold text-primary amount-val">100USD</span> to the wallet address above® <br> Click the button below to confirm transaction.</p>
+                        </div>
                     </div>
                     <div id="bank" class="">
-                        <div class="my-2">
-                            <p class="text-center fs-12 fw-medium">You are making a deposit into the following account detail</p>
+                        <div class="row d-flex justify-content-center mx-auto" style="max-width: 600px;">
+                            <div class="col-xl-12">
+                                <label for="amountDeposit" class="form-label">Deposit Amount</label>
+                                <div class="input-group"> 
+                                    <input type="number" value="{{ old('amount') }}" required style="font-size: 14px" step="any" class="form-control" name="amount" id="amountDeposit" placeholder="Amount">
+                                    <button type="button" class="input-group-text btn btn-dark-light btn-wave text-dark fs-12 fw-bold">USD</button>
+                                </div>
+                                @error('amount')
+                                    <strong class="small text-danger">
+                                        {{ $message }}
+                                    </strong>
+                                @enderror
+                            </div>
                         </div>
-                        <div class="row d-flex justify-content-center mx-auto">
-                            <div class="col-xl-12" style="max-width: 500px;">
-                                <div class="input-group my-3">
-                                    <button type="button" class="input-group-text btn btn-light-light btn-wave fs-10">Account Name</button>
-                                    <input type="text" name="roi_method" class="form-control fw-bold" placeholder="Enter Method..." aria-label="Stock Quantity" value="Crestwood Capital LTD" disabled>
-                                    <!-- <button type="button" class="input-group-text btn btn-dark-light btn-wave increment-btn-buy text-primary fs-13"><i class="ri-file-copy-fill text-primary me-2"></i> Copy</button> -->
-                                </div>
-                                <div class="input-group my-3">
-                                    <button type="button" class="input-group-text btn btn-light-light btn-wave fs-10">Account Number</button>
-                                    <input type="text" name="roi_method" class="form-control fw-bold" placeholder="Enter Method..." aria-label="Stock Quantity" value="0092431552" disabled>
-                                    <button type="button" class="input-group-text btn btn-dark-light btn-wave copy-btn text-primary fs-13"><i class="ri-file-copy-fill text-primary me-2"></i> Copy</button>
-                                </div>
-                                <div class="input-group my-3">
-                                    <button type="button" class="input-group-text btn btn-light-light btn-wave fs-10">Bank Name</button>
-                                    <input type="text" name="roi_method" class="form-control fw-bold" placeholder="Enter Method..." aria-label="Stock Quantity" value="Swiss Banks LTD" disabled>
-                                    <button type="button" class="input-group-text btn btn-dark-light btn-wave copy-btn text-primary fs-13"><i class="ri-file-copy-fill text-primary me-2"></i> Copy</button>
-                                </div>
-                                <div class="input-group my-3">
-                                    <button type="button" class="input-group-text btn btn-light-light btn-wave fs-10">SWISS Code</button>
-                                    <input type="text" name="roi_method" class="form-control fw-bold" placeholder="Enter Method..." aria-label="Stock Quantity" value="3352241" disabled>
-                                    <button type="button" class="input-group-text btn btn-dark-light btn-wave copy-btn text-primary fs-13"><i class="ri-file-copy-fill text-primary me-2"></i> Copy</button>
+
+                        <div class="my-4">
+                            <h4 class="text-center fs-13">You are about to make a deposit of <strong class="fw-bold text-primary amount-val">100USD</strong></h4>
+                            <p class="text-center text-muted fs-10">Exchange Rate: 1USD - 0.99928USDT</strong></p>
+                        </div>
+                        <div class="">
+                            <div class="my-2">
+                                <p class="text-center fs-12 fw-medium">You are making a deposit into the following account detail</p>
+                            </div>
+                            <div class="row d-flex justify-content-center mx-auto">
+                                <div class="col-xl-12" style="max-width: 500px;">
+                                    <div class="input-group my-3">
+                                        <button type="button" class="input-group-text btn btn-light-light btn-wave fs-10">Account Name</button>
+                                        <input type="text" name="roi_method" class="form-control fw-bold" placeholder="Enter Method..." aria-label="Stock Quantity" value="Crestwood Capital LTD" disabled>
+                                        <!-- <button type="button" class="input-group-text btn btn-dark-light btn-wave increment-btn-buy text-primary fs-13"><i class="ri-file-copy-fill text-primary me-2"></i> Copy</button> -->
+                                    </div>
+                                    <div class="input-group my-3">
+                                        <button type="button" class="input-group-text btn btn-light-light btn-wave fs-10">Account Number</button>
+                                        <input type="text" name="roi_method" class="form-control fw-bold" placeholder="Enter Method..." aria-label="Stock Quantity" value="0092431552" disabled>
+                                        <button type="button" class="input-group-text btn btn-dark-light btn-wave copy-btn text-primary fs-13"><i class="ri-file-copy-fill text-primary me-2"></i> Copy</button>
+                                    </div>
+                                    <div class="input-group my-3">
+                                        <button type="button" class="input-group-text btn btn-light-light btn-wave fs-10">Bank Name</button>
+                                        <input type="text" name="roi_method" class="form-control fw-bold" placeholder="Enter Method..." aria-label="Stock Quantity" value="Swiss Banks LTD" disabled>
+                                        <button type="button" class="input-group-text btn btn-dark-light btn-wave copy-btn text-primary fs-13"><i class="ri-file-copy-fill text-primary me-2"></i> Copy</button>
+                                    </div>
+                                    <div class="input-group my-3">
+                                        <button type="button" class="input-group-text btn btn-light-light btn-wave fs-10">SWISS Code</button>
+                                        <input type="text" name="roi_method" class="form-control fw-bold" placeholder="Enter Method..." aria-label="Stock Quantity" value="3352241" disabled>
+                                        <button type="button" class="input-group-text btn btn-dark-light btn-wave copy-btn text-primary fs-13"><i class="ri-file-copy-fill text-primary me-2"></i> Copy</button>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -542,35 +604,189 @@
 
 <script src="{{ asset('asset/libs/apexcharts/apexcharts.min.js') }}"></script>
 
+<script>
+    $(document).ready(function () {
+        // Fetch coins on page load
+        fetchCoins();
+
+        // Variables to hold selected coin rate and symbol
+        let selectedCoinRate = 0;
+        let selectedCoinSymbol = '';
+
+        // Trigger display update on input change for amount
+        $('#amountDeposit').on('input', function () {
+            updateDisplay();
+        });
+
+        // Fetch networks and update display based on coin selection
+        $('#coin-select').on('change', function () {
+            const coinId = $(this).val();
+            if (coinId) {
+                fetchNetworks(coinId);
+
+                // Retrieve selected coin data from response
+                const coin = coins.find(c => c.id == coinId);
+                selectedCoinRate = parseFloat(coin.rate); // Make sure rate is correctly parsed
+                selectedCoinSymbol = coin.symbol;
+
+                console.log(selectedCoinRate);
+                
+
+                // Update the exchange rate and symbol display
+                $('#exchange-rate').text(selectedCoinRate.toFixed(5)); // Display the rate with 5 decimal places
+                $('#selected-coin-symbol').text(selectedCoinSymbol); // Display selected coin symbol
+                updateDisplay();
+            } else {
+                // Reset if no coin is selected
+                $('#network-select').html('<option value="">Select Network</option>').prop('disabled', true);
+                $('#address-display').val('Select network first').prop('disabled', true);
+                resetDisplay();
+            }
+        });
+
+        // Fetch address based on network selection
+        $('#network-select').on('change', function () {
+            const networkId = $(this).val();
+            if (networkId) {
+                fetchAddress(networkId);
+            } else {
+                $('#address-display').val('Select network first').prop('disabled', true);
+            }
+        });
+
+        // Function to update the display with calculated coin amount
+        function updateDisplay() {
+            const usdAmount = parseFloat($('#amountDeposit').val()) || 0; // Get entered USD amount
+            const coinAmount = usdAmount / selectedCoinRate; // Calculate equivalent coin amount
+
+            console.log(selectedCoinRate);
+            
+            if (!isNaN(coinAmount) && selectedCoinRate > 0) {
+                // Update displayed amount in selected coin
+                $('.amount-val').text(coinAmount.toFixed(5) + ' ' + selectedCoinSymbol);
+            } else {
+                // Reset display if invalid input or no coin selected
+                $('.amount-val').text('0 ' + selectedCoinSymbol);
+            }
+        }
+
+        // Function to reset the display if no coin is selected
+        function resetDisplay() {
+            selectedCoinRate = 0;
+            selectedCoinSymbol = '';
+            $('#exchange-rate').text(0);
+            $('#selected-coin-symbol').text('');
+            $('.amount-val').text('0');
+        }
+
+        // Function to fetch coins (no change here)
+        function fetchCoins() {
+            $.ajax({
+                url: '/api/deposit/coin',
+                type: 'GET',
+                success: function (response) {
+                    coins = response.data;
+                    let options = '<option value="">Select Coin</option>';
+                    response.data.forEach(function (coin) {
+                        options += `<option value="${coin.id}">${coin.name} (${coin.symbol})</option>`;
+                    });
+                    $('#coin-select').html(options);
+                }
+            });
+        }
+
+        // Function to fetch networks (no change here)
+        function fetchNetworks(coinId) {
+            $.ajax({
+                url: `/api/deposit/networks/${coinId}`,
+                type: 'GET',
+                success: function (response) {
+                    let options = '<option value="">Select Network</option>';
+                    response.data.forEach(function (network) {
+                        options += `<option value="${network.id}">${network.name} </option>`;
+                    });
+                    $('#network-select').html(options).prop('disabled', false);
+                    $('#address-display').val('Select network first').prop('disabled', true);
+                }
+            });
+        }
+
+        // Function to fetch address (no change here)
+        function fetchAddress(networkId) {
+            $.ajax({
+                url: `/api/deposit/address/${networkId}`,
+                type: 'GET',
+                success: function (response) {
+                    $('#address-display').val(response.data.address).prop('disabled', true);
+                }
+            });
+        }
+    });
+</script>
+
 
 <script>
     $(document).ready(function() {
+
+        // Hide both the crypto and bank sections initially
+        $('#crypto').hide();
+        $('#bank').hide();
+
+        // Handle click event for selecting cryptocurrency
+        $('#selectCrypto').click(function() {
+            // Show the crypto section and hide the bank section
+            $('#crypto').show();
+            $('#bank').hide();
+
+            // Add active state to the selected option
+            $('#selectCrypto').addClass('active');
+            $('#selectBank').removeClass('active');
+        });
+
+        // Handle click event for selecting bank
+        $('#selectBank').click(function() {
+            // Show the bank section and hide the crypto section
+            $('#bank').show();
+            $('#crypto').hide();
+
+            // Add active state to the selected option
+            $('#selectBank').addClass('active');
+            $('#selectCrypto').removeClass('active');
+        });
+
+
+
     // 1. Set "Cryptocurrency" as the default option and the amount to 100
-    $('#duration-type').val('coin');
-    $('#amountDeposit').val(100);
+    // $('#duration-type').val('coin');
+    // $('#amountDeposit').val(100);
 
     // 2. Show/hide the correct div based on the selected deposit method
-    function toggleMethod() {
-        var method = $('#duration-type').val();
-        if (method === 'coin') {
-            $('#crypto').removeClass('d-none');
-            $('#bank').addClass('d-none');
-        } else if (method === 'bank') {
-            $('#bank').removeClass('d-none');
-            $('#crypto').addClass('d-none');
-        }
-    }
+    // function toggleMethod() {
+    //     var method = $('#duration-type').val();
+    //     if (method === 'coin') {
+    //         $('#crypto').removeClass('d-none');
+    //         $('#bank').addClass('d-none');
+    //     } else if (method === 'bank') {
+    //         $('#bank').removeClass('d-none');
+    //         $('#crypto').addClass('d-none');
+    //     }
+    // }
 
-    toggleMethod(); // Initial load check
+    // toggleMethod(); // Initial load check
 
-    $('#duration-type').on('change', function() {
-        toggleMethod();
-    });
+    $('selectCrypto').on('click', function() {
+        $('#crypto').removeClass('d-none');
+        $('#bank').addClass('d-none');
+    })
+
+    // $('#duration-type').on('change', function() {
+    //     toggleMethod();
+    // });
 
     // 3. Dynamically update the deposit amount in the summary text
     $('#amountDeposit').on('input', function() {
         var amount = $(this).val() || 0; // Set to 0 if the input is empty
-        $('.amount-val').text(amount + 'USD');
+        // $('.amount-val').text(amount + 'USD');
     });
 
     // Function to handle copy to clipboard

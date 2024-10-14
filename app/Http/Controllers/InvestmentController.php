@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Investment;
+use App\Models\Ledger;
 use App\Models\Package;
 use App\Models\Setting;
+use App\Models\Investment;
 use Illuminate\Http\Request;
+use InvalidArgumentException;
 use Illuminate\Support\Facades\Validator;
 
 class InvestmentController extends Controller
@@ -123,15 +125,13 @@ class InvestmentController extends Controller
             return back()->with('error', 'Can\'t process investment, package not found or disabled');
         }
 
-        if (!$user->inSufficientBalance($request->amount, 'investment')){
-            return back()->withInput()->with('error', 'Insufficient investment balance!');
-        }
+        // if (!$user->inSufficientBalance($request->amount, 'investment')){
+        //     return back()->withInput()->with('error', 'Insufficient investment balance!');
+        // }
 
         // Start Investment
-
-        $user->updateWalletBalance('investment', $request->amount, 'decrement'); // Debit Investment wallet
-
-        $user->updateWalletBalance('locked', $request->amount, 'increment'); // Credit Locked wallet
+        // $user->updateWalletBalance('investment', $request->amount, 'decrement'); // Debit Investment wallet
+        // $user->updateWalletBalance('locked', $request->amount, 'increment'); // Credit Locked wallet
 
         // Create Investment
         $investment = $user->investments()->create([
@@ -158,6 +158,14 @@ class InvestmentController extends Controller
             'type' => 'credit',
             'status' => 'success',
         ]);
+
+        // ::::: Store Ledger :::::: //
+        try {
+            Ledger::debit($user->wallet, $request->amount, 'invest', null, 'Investment in package');
+        } catch (InvalidArgumentException $e) {
+            return back()->with('error', 'Error debiting wallet: ' . $e->getMessage());
+        }
+        // ::::: Store Ledger :::::: //
 
         if($transaction) 
             // if ($investment['status'] == 'active'){

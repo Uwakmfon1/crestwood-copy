@@ -118,4 +118,6 @@ Route::group(['middleware' => ['auth:admin', 'active_admin']], function (){
     Route::get('/savings/{saving}/show', [App\Http\Controllers\Admin\SavingsController::class, 'show'])->name('savings.show');
     Route::get('/users/{user}/savings/{saving}/show', [App\Http\Controllers\Admin\SavingsController::class, 'showUserSavings'])->name('users.savings.show');
     Route::get('/savings', [App\Http\Controllers\Admin\SavingsController::class, 'all'])->name('savings')->middleware('permission:View Investments');
+
+    Route::post('/admin/addresses', [App\Http\Controllers\Admin\SettingController::class, 'store'])->name('addresses.store');
 });

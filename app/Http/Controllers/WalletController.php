@@ -222,8 +222,6 @@ class WalletController extends Controller
 
 
 
-
-
     public function login()
     {
         $API_Key = env('MONNIFY_API_KEY');

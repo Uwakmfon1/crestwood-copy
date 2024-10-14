@@ -80,4 +80,13 @@ Route::group(['middleware' => 'api'], function () {
     Route::get('/paystack/callback', [PaymentController::class, 'handleGatewayCallback'])->name('paystack.callback');
 
     Route::get('/info', [WalletController::class, 'getPrice']);
+
+    Route::get('/deposit/coin', [WalletController::class, 'getCoin']);
+
+    // Route to get networks based on coin
+    Route::get('/deposit/networks/{coinId}', [WalletController::class, 'getNetworks']);
+
+    // Route to get address based on network
+    Route::get('/deposit/address/{networkId}', [WalletController::class, 'getAddress']);
+
 });

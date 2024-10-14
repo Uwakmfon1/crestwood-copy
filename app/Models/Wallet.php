@@ -17,4 +17,24 @@ class Wallet extends Model
     {
         return $this->belongsTo(User::class);
     }
+
+    public function ledgerEntries(): MorphMany
+    {
+        return $this->morphMany(Ledger::class, 'ledgerable');
+    }
+
+    public function balance(): float
+    {
+        return Ledger::balance($this);
+    }
+
+    public function debits(): MorphMany
+    {
+        return $this->ledgerEntries()->where('type', 'debit');
+    }
+
+    public function credits(): MorphMany
+    {
+        return $this->ledgerEntries()->where('type', 'credit');
+    }
 }
