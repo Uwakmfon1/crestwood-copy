@@ -717,7 +717,11 @@
                 url: `/api/deposit/address/${networkId}`,
                 type: 'GET',
                 success: function (response) {
-                    $('#address-display').val(response.data.address).prop('disabled', true);
+                    if(response.data && response.data.address) {
+                        $('#address-display').val(response.data.address).prop('disabled', true);
+                    } else {
+                        $('#address-display').val('Address not available').prop('disabled', true);
+                    }
                 }
             });
         }
