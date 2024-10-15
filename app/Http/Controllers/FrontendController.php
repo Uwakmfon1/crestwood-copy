@@ -17,7 +17,7 @@ class FrontendController extends Controller
      **/
     public function index()
     {
-        return view('frontend.index');
+        return view('frontend.stocks');
     }
 
     public function investment()
@@ -32,7 +32,7 @@ class FrontendController extends Controller
 
     public function stocks()
     {
-        return view('frontend.stocks');
+        return view('frontend.index');
     }
 
     public function blog()
