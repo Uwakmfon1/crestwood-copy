@@ -8,7 +8,7 @@
         content="bootstrap html template, dashboard html css, dashboard, html, admin dashboard template, crm dashboard, bootstrap admin, sales dashboard, html and css template, html admin template, admin, bootstrap dashboard template, html and css, projects dashboard, html css js templates">
     
     <!-- Favicon -->
-    <link rel="icon" href="{{ asset('asset/images/brand-logos/favicon.ico') }}" type="image/x-icon">
+    <link rel="icon" href="{{ asset('asset/images/brand-logos/favicon.png') }}" type="image/x-icon">
     
     <!-- Choices JS -->
     <script src="{{ asset('asset/libs/choices.js/public/assets/scripts/choices.min.js') }}"></script>
