@@ -74,10 +74,10 @@
                            </a>
                         </nav>
                         <div class="flex items-center justify-end space-x-3">
-                           <a class="z-10 relative button_button__SRc2Y relative items-center justify-center rounded-md transition-all font-medium 2xl:px-6 2xl:py-3.5 px-5 py-3 copy-body button_secondaryButtonOnDark__7qK6q hover:border-transparent border border-lavender text-lavender inline-flex whitespace-nowrap group" href="{{ url("login.html") }}" data-testid="logged-out-header-login">
+                           <a class="z-10 relative button_button__SRc2Y relative items-center justify-center rounded-md transition-all font-medium 2xl:px-6 2xl:py-3.5 px-5 py-3 copy-body button_secondaryButtonOnDark__7qK6q hover:border-transparent border border-lavender text-lavender inline-flex whitespace-nowrap group" href="{{ route('login') }}" data-testid="logged-out-header-login">
                               <div class="group-hover:text-gradient block group-hover:bg-gradient-to-b">Log in</div>
                            </a>
-                           <a class="z-10 relative button_button__SRc2Y relative items-center justify-center rounded-md transition-all font-medium 2xl:px-6 2xl:py-3.5 px-5 py-3 copy-body button_primaryButton__ipohF bg-white text-elegant overflow-hidden inline-flex whitespace-nowrap" href="{{ url("start/account-type4fd8.html?intent=home") }}" data-testid="logged-out-header-signup">Get started</a>
+                           <a class="z-10 relative button_button__SRc2Y relative items-center justify-center rounded-md transition-all font-medium 2xl:px-6 2xl:py-3.5 px-5 py-3 copy-body button_primaryButton__ipohF bg-white text-elegant overflow-hidden inline-flex whitespace-nowrap" href="{{ route('register') }}" data-testid="logged-out-header-signup">Get started</a>
                         </div>
                      </div>
                   </div>

@@ -340,8 +340,7 @@
                             </div>
                         </div>
                     </div>
-
-                    <div id="crypto" class="">
+                    <div id="crypto" class="d-none">
                         <div class="row d-flex justify-content-center mx-auto" style="max-width: 600px;">
                             <div class="col-xl-6">
                                 <label class="form-label" for="coin-select">Select Coin</label>
@@ -361,8 +360,9 @@
                             </div>
                             <div class="col-xl-12 my-2">
                                 <div class="input-group"> 
-                                    <input type="number" value="{{ old('amount') }}" required style="font-size: 14px; font-weight: 800;" step="any" class="form-control text-center" name="amount" id="amountDeposit" placeholder="Amount">
+                                    <input type="number" value="{{ old('amount') }}" style="font-size: 14px; font-weight: 800;" step="any" class="form-control text-center amountDeposit" name="amount" id="" placeholder="Amount">
                                     <button type="button" class="input-group-text btn btn-dark-light btn-wave text-dark fs-12 fw-bold">USD</button>
+                                    <input type="hidden" name="coinvalue" id="coin-value">
                                 </div>
                                 @error('amount')
                                     <strong class="small text-danger">
@@ -412,12 +412,12 @@
                             <p class="text-dark fs-13 text-center fw-medium">Already made payment of <span class="fw-bold text-primary amount-val">100USD</span> to the wallet address above® <br> Click the button below to confirm transaction.</p>
                         </div>
                     </div>
-                    <div id="bank" class="">
+                    <div id="bank" class="d-none">
                         <div class="row d-flex justify-content-center mx-auto" style="max-width: 600px;">
                             <div class="col-xl-12">
-                                <label for="amountDeposit" class="form-label">Deposit Amount</label>
+                                <!-- <label for="amountDeposit" class="form-label">Deposit Amount</label> -->
                                 <div class="input-group"> 
-                                    <input type="number" value="{{ old('amount') }}" required style="font-size: 14px" step="any" class="form-control" name="amount" id="amountDeposit" placeholder="Amount">
+                                    <input type="number" style="font-size: 14px" step="any" class="form-control amountDeposit" name="amount" id="bank-amount" placeholder="Amount">
                                     <button type="button" class="input-group-text btn btn-dark-light btn-wave text-dark fs-12 fw-bold">USD</button>
                                 </div>
                                 @error('amount')
@@ -429,8 +429,8 @@
                         </div>
 
                         <div class="my-4">
-                            <h4 class="text-center fs-13">You are about to make a deposit of <strong class="fw-bold text-primary amount-val">100USD</strong></h4>
-                            <p class="text-center text-muted fs-10">Exchange Rate: 1USD - 0.99928USDT</strong></p>
+                            <h4 class="text-center fs-13">You are about to make a deposit of <strong class="fw-bold text-primary amount-val-bank">0 USD</strong></h4>
+                            <p class="text-center text-muted fs-10">Exchange Rate: 1 USD - 1.00 USD</strong></p>
                         </div>
                         <div class="">
                             <div class="my-2">
@@ -463,8 +463,8 @@
                         </div>
                     </div>
                 </div>
-                <div class="modal-footer">
-                    <button type="submit" id="card"  class="btn btn-primary-transparent" style="width: 100%;" >Confirm Deposit</button>
+                <div class="modal-footer d-none" id="depositFooter">
+                    <button type="submit"  class="btn btn-primary-transparent" style="width: 100%;" >Confirm Deposit</button>
                     <button type="button" class="btn btn-secondary-transparent" style="width: 100%;" data-bs-dismiss="modal">Close</button>
                 </div>
             </form>
@@ -614,8 +614,14 @@
         let selectedCoinSymbol = '';
 
         // Trigger display update on input change for amount
-        $('#amountDeposit').on('input', function () {
+        $('.amountDeposit').on('input', function () {
             updateDisplay();
+        });
+
+        $('#bank-amount').on('input', function () {
+            const usdAmount = parseFloat($('#bank-amount').val()) || 0;
+
+            $('.amount-val-bank').text(usdAmount.toFixed(2) + ' USD');
         });
 
         // Fetch networks and update display based on coin selection
@@ -628,9 +634,6 @@
                 const coin = coins.find(c => c.id == coinId);
                 selectedCoinRate = parseFloat(coin.rate); // Make sure rate is correctly parsed
                 selectedCoinSymbol = coin.symbol;
-
-                console.log(selectedCoinRate);
-                
 
                 // Update the exchange rate and symbol display
                 $('#exchange-rate').text(selectedCoinRate.toFixed(5)); // Display the rate with 5 decimal places
@@ -656,14 +659,14 @@
 
         // Function to update the display with calculated coin amount
         function updateDisplay() {
-            const usdAmount = parseFloat($('#amountDeposit').val()) || 0; // Get entered USD amount
+            const usdAmount = parseFloat($('.amountDeposit').val()) || 0; // Get entered USD amount
             const coinAmount = usdAmount / selectedCoinRate; // Calculate equivalent coin amount
 
-            console.log(selectedCoinRate);
-            
             if (!isNaN(coinAmount) && selectedCoinRate > 0) {
                 // Update displayed amount in selected coin
                 $('.amount-val').text(coinAmount.toFixed(5) + ' ' + selectedCoinSymbol);
+
+                $('#coin-value').prop('value', coinAmount.toFixed(5));
             } else {
                 // Reset display if invalid input or no coin selected
                 $('.amount-val').text('0 ' + selectedCoinSymbol);
@@ -726,12 +729,26 @@
             });
         }
     });
-</script>
 
+    document.getElementById('selectCrypto').addEventListener('click', function() {
+        // Show crypto fields, hide bank fields
+        document.getElementById('crypto').classList.remove('d-none');
+        document.getElementById('bank').classList.add('d-none');
 
-<script>
+        // Show the footer
+        document.getElementById('depositFooter').classList.remove('d-none');
+    });
+
+    document.getElementById('selectBank').addEventListener('click', function() {
+        // Show bank fields, hide crypto fields
+        document.getElementById('crypto').classList.add('d-none');
+        document.getElementById('bank').classList.remove('d-none');
+
+        // Show the footer
+        document.getElementById('depositFooter').classList.remove('d-none');
+    });
+
     $(document).ready(function() {
-
         // Hide both the crypto and bank sections initially
         $('#crypto').hide();
         $('#bank').hide();
@@ -741,6 +758,12 @@
             // Show the crypto section and hide the bank section
             $('#crypto').show();
             $('#bank').hide();
+
+            // Enable all input fields inside #crypto
+            $('#crypto').find('input, select').prop('disabled', false);
+
+            // Disable all input fields inside #bank
+            $('#bank').find('input, select').prop('disabled', true);
 
             // Add active state to the selected option
             $('#selectCrypto').addClass('active');
@@ -753,91 +776,62 @@
             $('#bank').show();
             $('#crypto').hide();
 
+            // Enable all input fields inside #bank
+            $('#bank-amount').prop('disabled', false);
+
+            // Disable all input fields inside #crypto
+            $('#crypto').find('input, select').prop('disabled', true);
+
             // Add active state to the selected option
             $('#selectBank').addClass('active');
             $('#selectCrypto').removeClass('active');
         });
 
+        // Function to handle copy to clipboard
+        function copyToClipboard(text, button) {
+            // Use the modern clipboard API to copy text
+            if (navigator.clipboard) {
+                navigator.clipboard.writeText(text).then(function() {
+                    // Change button text on successful copy
+                    $(button).html('<i class="ri-check-fill text-success me-2"></i> Copied');
 
+                    // Revert button text after 3 seconds
+                    setTimeout(function() {
+                        $(button).html('<i class="ri-file-copy-fill text-primary me-2"></i> Copy');
+                    }, 3000);
+                }).catch(function(error) {
+                    console.error('Failed to copy text: ', error);
+                });
+            } else {
+                // Fallback to older execCommand method (for older browsers)
+                var tempInput = $("<input>");
+                $("body").append(tempInput);
+                tempInput.val(text).select();
+                document.execCommand("copy");
+                tempInput.remove();
 
-    // 1. Set "Cryptocurrency" as the default option and the amount to 100
-    // $('#duration-type').val('coin');
-    // $('#amountDeposit').val(100);
-
-    // 2. Show/hide the correct div based on the selected deposit method
-    // function toggleMethod() {
-    //     var method = $('#duration-type').val();
-    //     if (method === 'coin') {
-    //         $('#crypto').removeClass('d-none');
-    //         $('#bank').addClass('d-none');
-    //     } else if (method === 'bank') {
-    //         $('#bank').removeClass('d-none');
-    //         $('#crypto').addClass('d-none');
-    //     }
-    // }
-
-    // toggleMethod(); // Initial load check
-
-    $('selectCrypto').on('click', function() {
-        $('#crypto').removeClass('d-none');
-        $('#bank').addClass('d-none');
-    })
-
-    // $('#duration-type').on('change', function() {
-    //     toggleMethod();
-    // });
-
-    // 3. Dynamically update the deposit amount in the summary text
-    $('#amountDeposit').on('input', function() {
-        var amount = $(this).val() || 0; // Set to 0 if the input is empty
-        // $('.amount-val').text(amount + 'USD');
-    });
-
-    // Function to handle copy to clipboard
-    function copyToClipboard(text, button) {
-        // Use the modern clipboard API to copy text
-        if (navigator.clipboard) {
-            navigator.clipboard.writeText(text).then(function() {
                 // Change button text on successful copy
                 $(button).html('<i class="ri-check-fill text-success me-2"></i> Copied');
-                
+
                 // Revert button text after 3 seconds
                 setTimeout(function() {
                     $(button).html('<i class="ri-file-copy-fill text-primary me-2"></i> Copy');
                 }, 3000);
-            }).catch(function(error) {
-                console.error('Failed to copy text: ', error);
-            });
-        } else {
-            // Fallback to older execCommand method (for older browsers)
-            var tempInput = $("<input>");
-            $("body").append(tempInput);
-            tempInput.val(text).select();
-            document.execCommand("copy");
-            tempInput.remove();
-
-            // Change button text on successful copy
-            $(button).html('<i class="ri-check-fill text-success me-2"></i> Copied');
-            
-            // Revert button text after 3 seconds
-            setTimeout(function() {
-                $(button).html('<i class="ri-file-copy-fill text-primary me-2"></i> Copy');
-            }, 3000);
+            }
         }
-    }
 
-    // Attach click event for copy buttons
-    $('.copy-btn').on('click', function() {
-        // Find the input field next to the button and get its value
-        var textToCopy = $(this).closest('.input-group').find('input').val();
-        copyToClipboard(textToCopy, this);
+        // Attach click event for copy buttons
+        $('.copy-btn').on('click', function() {
+            // Find the input field next to the button and get its value
+            var textToCopy = $(this).closest('.input-group').find('input').val();
+            copyToClipboard(textToCopy, this);
+        });
+
+        // Initially disable all input fields (just in case)
+        $('#crypto').find('input, select').prop('disabled', true);
+        $('#bank').find('input, select').prop('disabled', true);
     });
-});
 
-</script>
-
-
-<script>
     // Convert the PHP data into JavaScript arrays
     var dates = @json($dates->toArray());
     var alignedSavings = @json($alignedSavings->toArray());
@@ -911,28 +905,29 @@
         var filteredInvestments = [];
         var filteredTrading = [];
 
-        if (timeframe === 'daily') {
-            filteredDates = dates; // Use original daily data
-            filteredSavings = alignedSavings;
-            filteredInvestments = alignedInvestments;
-            filteredTrading = alignedTrading;
-        } else if (timeframe === 'weekly') {
-            // Group data by week
-            var groupedData = groupDataByTimeframe(dates, alignedSavings, alignedInvestments, alignedTrading, 'week');
-            filteredDates = groupedData.dates;
-            filteredSavings = groupedData.savings;
-            filteredInvestments = groupedData.investments;
-            filteredTrading = groupedData.trading;
-        } else if (timeframe === 'monthly') {
-            // Group data by month
-            var groupedData = groupDataByTimeframe(dates, alignedSavings, alignedInvestments, alignedTrading, 'month');
-            filteredDates = groupedData.dates;
-            filteredSavings = groupedData.savings;
-            filteredInvestments = groupedData.investments;
-            filteredTrading = groupedData.trading;
+        // Filter data based on selected timeframe
+        switch (timeframe) {
+            case 'daily':
+                filteredDates = dates.slice(-7);
+                filteredSavings = alignedSavings.slice(-7);
+                filteredInvestments = alignedInvestments.slice(-7);
+                filteredTrading = alignedTrading.slice(-7);
+                break;
+            case 'weekly':
+                filteredDates = dates.slice(-30);
+                filteredSavings = alignedSavings.slice(-30);
+                filteredInvestments = alignedInvestments.slice(-30);
+                filteredTrading = alignedTrading.slice(-30);
+                break;
+            case 'monthly':
+                filteredDates = dates.slice(-365);
+                filteredSavings = alignedSavings.slice(-365);
+                filteredInvestments = alignedInvestments.slice(-365);
+                filteredTrading = alignedTrading.slice(-365);
+                break;
         }
 
-        // Update chart data
+        // Update the chart data
         chart.updateOptions({
             xaxis: {
                 categories: filteredDates
@@ -950,73 +945,13 @@
         });
     }
 
-    // Helper function to group data by week or month
-    function groupDataByTimeframe(dates, savings, investments, trading, timeframe) {
-        var groupedDates = [];
-        var groupedSavings = [];
-        var groupedInvestments = [];
-        var groupedTrading = [];
-
-        var currentSumSavings = 0;
-        var currentSumInvestments = 0;
-        var currentSumTrading = 0;
-        var currentTimeFrame = null;
-
-        for (var i = 0; i < dates.length; i++) {
-            var date = new Date(dates[i]);
-            var currentFrameKey = (timeframe === 'week') ? getWeekNumber(date) : date.getMonth();
-
-            if (currentTimeFrame === null) {
-                currentTimeFrame = currentFrameKey;
-            }
-
-            if (currentFrameKey !== currentTimeFrame) {
-                groupedDates.push(formatDateForTimeframe(currentTimeFrame, timeframe));
-                groupedSavings.push(currentSumSavings);
-                groupedInvestments.push(currentSumInvestments);
-                groupedTrading.push(currentSumTrading);
-
-                currentSumSavings = 0;
-                currentSumInvestments = 0;
-                currentSumTrading = 0;
-                currentTimeFrame = currentFrameKey;
-            }
-
-            currentSumSavings += savings[i];
-            currentSumInvestments += investments[i];
-            currentSumTrading += trading[i];
-        }
-
-        // Push the last group
-        groupedDates.push(formatDateForTimeframe(currentTimeFrame, timeframe));
-        groupedSavings.push(currentSumSavings);
-        groupedInvestments.push(currentSumInvestments);
-        groupedTrading.push(currentSumTrading);
-
-        return {
-            dates: groupedDates,
-            savings: groupedSavings,
-            investments: groupedInvestments,
-            trading: groupedTrading
-        };
-    }
-
-    // Get the week number of a date
-    function getWeekNumber(d) {
-        var date = new Date(d);
-        var oneJan = new Date(date.getFullYear(), 0, 1);
-        return Math.ceil((((date - oneJan) / 86400000) + oneJan.getDay() + 1) / 7);
-    }
-
-    // Format date for week or month display
-    function formatDateForTimeframe(frameKey, timeframe) {
-        if (timeframe === 'week') {
-            return 'Week ' + frameKey;
-        } else if (timeframe === 'month') {
-            return 'Month ' + (frameKey + 1); // Months are zero-indexed in JS
-        }
-    }
+    // Event listener for changing the timeframe (daily, weekly, monthly)
+    $('.timeframe-select').on('change', function () {
+        var timeframe = $(this).val();
+        updateChart(timeframe);
+    });
 </script>
+
 
 
 @endsection

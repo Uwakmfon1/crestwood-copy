@@ -162,6 +162,13 @@ class TransactionController extends Controller
 
         try {
             Ledger::credit($user->wallet, $transaction->amount, 'wallet', null, 'Approved Deposit');
+
+            //::: Error: assign the particular deposit ::://
+            $user->wallet->deposit()->update([
+                'status' => 'approved',
+            ]);
+            //::: Error: assign the particular deposit ::://
+            
         } catch (InvalidArgumentException $e) {
             return back()->with('error', 'Error debiting wallet: ' . $e->getMessage());
         }

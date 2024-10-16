@@ -131,6 +131,8 @@ Route::group(['middleware' => ['auth','verified', 'active_user', 'profile_comple
         Route::get('/user/crypto/view/{stock}', [TradingController::class, 'showCyptoTrade'])->name('asset.view');
         Route::post('/asset/{trade}/close/all', [TradingController::class, 'closeAllAssets'])->name('asset.close.all');
 
+        //:: For Developmenent :://
+        // Route::get('/wallet-balance/reset', [WalletController::class, 'walletReset'])->name('wallet.reset');
 
     // });
 });

@@ -26,9 +26,9 @@
             </div>
             <select name="from_account" class="form-control" required id="fromAccount">
                 <option value="wallet" selected>Portfolio Wallet</option>
-                <option value="savings">Savings Wallet</option>
-                <option value="trading">Trading Wallet</option>
-                <option value="investment">Investment Wallet</option>
+                <option value="save">Savings Wallet</option>
+                <option value="trade">Trading Wallet</option>
+                <option value="invest">Investment Wallet</option>
             </select>
             @error('from_account')
                 <strong class="small text-danger">{{ $message }}</strong>
@@ -107,17 +107,17 @@ $(document).ready(function() {
 
     // Example: Trigger modal for investment page
     $('#openInvestmentModal').on('click', function() {
-        initModal('investment', 'Investment Wallet');
+        initModal('invest', 'Investment Wallet');
     });
 
     // Example: Trigger modal for savings page
     $('#openSavingsModal').on('click', function() {
-        initModal('savings', 'Savings Wallet');
+        initModal('save', 'Savings Wallet');
     });
 
     // Example: Trigger modal for trading page
     $('#openTradingModal').on('click', function() {
-        initModal('trading', 'Trading Wallet');
+        initModal('trade', 'Trading Wallet');
     });
 
     // Function to update summary based on input

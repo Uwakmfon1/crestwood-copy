@@ -106,7 +106,7 @@
                                                         </div>
                                                     </td>
                                                     <td>
-                                                        ${{ number_format(($data->amount) - ($stock->price * $data->quantity), 2) }}
+                                                        ${{ number_format(($stock->price * $data->quantity) - ($data->amount), 2) }}
                                                         @php
                                                             $totalCost = $data->amount;
                                                             $totalRevenue = $stock->price * $data->quantity;

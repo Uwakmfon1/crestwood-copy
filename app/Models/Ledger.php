@@ -36,7 +36,7 @@ class Ledger extends Model
         if ($amount <= 0) {
             throw new InvalidArgumentException('Invalid amount');
         }
-        if ($accountToDebit->balance() < $amount) {
+        if ($accountToDebit->getAccountBalance($accountToDebit, $account) < $amount) {
             throw new InvalidArgumentException('Insufficient wallet balance');
         }
 
@@ -48,6 +48,9 @@ class Ledger extends Model
             'amount' => $amount,
             'account' => $account,
         ]);
+
+        // Update wallet balance after the debit
+        self::updateWalletBalance($accountToDebit);
     }
 
     public static function credit(
@@ -56,7 +59,8 @@ class Ledger extends Model
         string $account,
         Wallet $accountToDebit = null,
         string $reason = null
-    ): void {
+    ): void 
+    {
         if ($amount <= 0) {
             throw new InvalidArgumentException('Invalid amount');
         }
@@ -68,6 +72,9 @@ class Ledger extends Model
             'amount' => $amount,
             'account' => $account,
         ]);
+
+        // Update wallet balance after the credit
+        self::updateWalletBalance($accountToCredit);
     }
 
     public static function balance(Wallet $ledgerable): float
@@ -76,5 +83,26 @@ class Ledger extends Model
         $debits = $ledgerable->debits()->sum('amount') ?? 0;
 
         return $credits - $debits;
+    }
+
+    public static function updateWalletBalance(Wallet $wallet): void
+    {
+        // Helper function to calculate balance for a given account
+        $calculateBalance = function ($account) use ($wallet) {
+            $credits = $wallet->ledgerEntries()->where('account', $account)->where('type', 'credit')->sum('amount') ?? 0;
+            $debits = $wallet->ledgerEntries()->where('account', $account)->where('type', 'debit')->sum('amount') ?? 0;
+            return $credits - $debits;
+        };
+
+        // Calculate balances for each account
+        $updateData = [
+            'balance' => $calculateBalance('balance'),
+            'invest'  => $calculateBalance('invest'),
+            'save'    => $calculateBalance('save'),
+            'trade'   => $calculateBalance('trade'),
+        ];
+
+        // Update the wallet
+        $wallet->update($updateData);
     }
 }

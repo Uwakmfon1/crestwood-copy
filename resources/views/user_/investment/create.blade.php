@@ -37,6 +37,8 @@
     }
 </style>
 
+@include('partials.users.alert') 
+
 <!-- Start::app-content -->
 <div class="main-content app-content">
     <div class="container-fluid">
@@ -56,15 +58,6 @@
                 </ol>
             </div>
         </div>
-        @if (session('error'))
-            <div class="row">
-                <div class="col-6 my-1">
-                    <div class="alert alert-danger">
-                        {{ session('error') }}
-                    </div>
-                </div>
-            </div>
-        @endif
 
         <!-- Start::row-1 -->
         <div class="row">

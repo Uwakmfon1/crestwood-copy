@@ -125,9 +125,9 @@ class InvestmentController extends Controller
             return back()->with('error', 'Can\'t process investment, package not found or disabled');
         }
 
-        // if (!$user->inSufficientBalance($request->amount, 'investment')){
-        //     return back()->withInput()->with('error', 'Insufficient investment balance!');
-        // }
+        if (!$user->wallet->sufficentAccountBalance($request->amount, 'invest')){
+            return back()->with('error', 'Insufficient investment balance!');
+        }
 
         // Start Investment
         // $user->updateWalletBalance('investment', $request->amount, 'decrement'); // Debit Investment wallet

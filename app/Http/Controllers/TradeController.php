@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Validator;
 
 class TradeController extends Controller
 {
+    //:::: DESTROY FILE - NOT NEEDED :::://
     public function index()
     {
         $trades = auth()->user()->trades()->latest();
