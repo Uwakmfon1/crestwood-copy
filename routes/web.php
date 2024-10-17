@@ -134,5 +134,7 @@ Route::group(['middleware' => ['auth','verified', 'active_user', 'profile_comple
         //:: For Developmenent :://
         // Route::get('/wallet-balance/reset', [WalletController::class, 'walletReset'])->name('wallet.reset');
 
+        Route::get('/wallet/deposit', [WalletController::class, 'depo'])->name('wallet.deposit');
+
     // });
 });

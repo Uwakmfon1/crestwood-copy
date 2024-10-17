@@ -37,9 +37,10 @@
                 </ol>
             </div>
             <div class="d-flex gap-2">
-                <button class="btn btn-white btn-wave border-0 me-0 fw-normal waves-effect waves-light" data-bs-toggle="modal" data-bs-target="#nairaDepositModal">
+                <!-- <a href="{{ route('wallet.deposit') }}" class="btn btn-white btn-wave border-0 me-0 fw-normal waves-effect waves-light" data-bs-toggle="modal" data-bs-target="#nairaDepositModal"> -->
+                <a href="{{ route('wallet.deposit') }}" class="btn btn-white btn-wave border-0 me-0 fw-normal waves-effect waves-light">
                     <i class="ri-filter-3-fill me-2"></i>Deposit
-                </button>
+                </a>
                 <button class="btn btn-primary btn-wave waves-effect waves-light" data-bs-toggle="modal" data-bs-target="#nairaWithdrawalModal">
                     <i class="ri-upload-2-line me-2"></i> Withdraw
                 </button>
@@ -951,7 +952,5 @@
         updateChart(timeframe);
     });
 </script>
-
-
 
 @endsection

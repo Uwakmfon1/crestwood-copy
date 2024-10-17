@@ -2,14 +2,16 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\AccountCoin;
 use App\Models\Ledger;
 use App\Models\Wallet;
 use App\Models\Setting;
+use App\Models\AccountCoin;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Http;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
 use Symfony\Component\HttpFoundation\Exception\BadRequestException;
 
@@ -69,8 +71,20 @@ class WalletController extends Controller
         ]);
     }
 
+    public function depo()
+    {
+        return view('user_.wallet.deposit');
+    }
+
     public function deposit(Request $request)
     {
+        // dd($request->all());
+
+        // Check logic
+        if($request->logic !== 'deposit') {
+            return back()->with('error', 'Wrong method initiated!');
+        }
+
         // Validate request
         $validator = Validator::make($request->all(), [
             'amount' => ['required', 'numeric', 'gt:0', 'min:10'],
@@ -79,35 +93,80 @@ class WalletController extends Controller
             return back()->withErrors($validator)->withInput()->with('error', 'Invalid input data');
         }
 
-        if($request->coinvalue) {
-            $coin = AccountCoin::find($request->coin);
+        $type = 'credit';
+        $user = auth()->user();
+        $status = 'pending';
+        $amount = $request->amount;
 
+        // Check method
+        if($request->method && $request->method == 'coin') {
+            //Crypto Variables
+            $coin = AccountCoin::find($request->coin);
             if ($coin) {
-                $method = 'coin';
-                $crypto = $coin->symbol ?? 'null';
+                $method = $request->method;
+                $currency = $coin->symbol ?? 'null';
+                $proof = null;
+                $swift = null;
+                $delivering = null;
+                $account = null;
+                $time = null;
                 $value = $request->coinvalue;
             } else {
-                return back()->withErrors($validator)->withInput()->with('error', 'Invalid Network');
+                return back()->withErrors($validator)->withInput()->with('error', 'Invalid Coin or Network, Try again later');
             }
-        } else {
-            $method = 'bank';
-            $crypto = 'USD';
-            $value = 0;
+        } elseif($request->method && $request->method == 'bank') {
+            $request->validate([
+                'filepond' => 'required',
+                'filepond.*' => 'file|mimes:jpeg,png,jpg,gif,svg|max:3072', // Max 3MB, adjust as needed
+            ]);
+
+            $proof = null;
+
+            if ($request->filepond) {
+                $fileData = $request->input('filepond'); // Retrieve the base64 data
+                $fileInfo = json_decode($fileData, true);
+                $imageData = $fileInfo['data']; // This contains the base64 image content
+                $imageContent = base64_decode($imageData);
+
+                $fileExtension = pathinfo($fileInfo['name'], PATHINFO_EXTENSION); // Extract extension
+                $fileName = time() . '-' . date('YmdHis') . '.' . $fileExtension; // Generate unique name
+                $path = 'uploads/' . $fileName;
+
+                if (!File::exists(public_path('uploads'))) {
+                    File::makeDirectory(public_path('uploads'), 0755, true);
+                }
+
+                file_put_contents(public_path($path), $imageContent);
+
+                $proof = $path;
+            }
+
+            //Bank Variables
+            $method = $request->method;
+            $currency = 'USD';
+            $swift = $request->swift;
+            $delivering = $request->delivering;
+            $account = $request->account;
+            $time = $request->time;
+            $value = 1;
         }
 
-        $type = 'credit';
-        
-        $user = auth()->user();
-
+        // Create deposit
         $user->wallet->deposit()->create([
-            'amount' => $request->amount,
+            'amount' => $amount,
             'type' => $type,
             'method' => $method,
-            'currency' => $crypto,
+            'currency' => $currency,
+            'proof' => $proof,
+            'swift' => $swift,
+            'delivering' => $delivering,
+            'account' => $account,
+            'time' => $time,
             'value' => $value,
-            'status' => 'pending',
+            'status' => $status,
         ]);
 
+        //Create Transaction
         $transaction = $user->transaction('invest')->create([
             'amount' => $request->amount,
             'data_id' => 0,
@@ -120,7 +179,7 @@ class WalletController extends Controller
         if ($transaction) {
             // NotificationController::sendDepositQueuedNotification($transaction);
             // return redirect()->route('wallet')->with('success', 'Deposit queued successfully');
-            return back()->withInput()->with('success', 'Deposit queued successfully');
+            return redirect()->route('wallet')->with('success', 'Deposit queued successfully');
         }
         return redirect()->route('wallet')->with('error', 'Error processing deposit');
     }

@@ -127,7 +127,7 @@
                                         <strong class="small text-danger">{{ $message }}</strong>
                                     @enderror
                                 </div>
-                                <div class="col-xl-6">
+                                {{-- <div class="col-xl-6">
                                     <label class="form-label" for="duration-type">ROI Method <a href="javascript:void(0);" data-bs-toggle="tooltip" data-bs-custom-class="tooltip-primary" title="Specify the frequency you want you ROI" class="text-primary mx-1"><i class="fe fe-info"></i></a></label>
                                     <div class="input-group">
                                         <button type="button" class="input-group-text btn btn-dark-light btn-wave decrement-btn-buy">-</button>
@@ -145,7 +145,11 @@
                                             <option value="years">Year(s)</option>
                                         </select>
                                     </div>
-                                </div>
+                                </div> --}}
+
+                                <input type="hidden" name="roi_method" value="1">
+                                <input type="hidden" name="roi_duration" value="days">
+
                                 <div class="col-xl-12">
                                     <strong id="roi-error" class="small text-danger my-1" style="display:none;"></strong>
                                 </div>
