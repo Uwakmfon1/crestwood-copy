@@ -73,7 +73,9 @@ class WalletController extends Controller
 
     public function depo()
     {
-        return view('user_.wallet.deposit');
+        $setting = Setting::all()->first();
+
+        return view('user_.wallet.deposit', ['setting' => $setting]);
     }
 
     public function deposit(Request $request)

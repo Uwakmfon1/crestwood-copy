@@ -138,7 +138,7 @@
                             <div id="" class="alert mx-auto alert-primary mt-2" style="max-width: 600px;">
                                 <h4 class="text-danger fs-13">Note</h4>
                                 <div class="">
-                                    <p class="fs-12 text-muted">Please ensure you deposit the exact amount of cryptocurrency before confirming your transaction</p>
+                                    <p class="fs-12 text-muted">{{ $setting->crypto_note }}</p>
                                 </div>
                             </div>
                             <p class="text-dark fs-13 text-center fw-medium">Already made payment of <span class="fw-bold text-primary amount-val">100USD</span> to the wallet address above® <br> Click the button below to confirm transaction.</p>
@@ -173,21 +173,21 @@
                                     <div class="col-xl-12" style="max-width: 500px;">
                                         <div class="input-group my-1">
                                             <button type="button" class="input-group-text btn btn-light-light btn-wave fs-10">Bank Adddress</button>
-                                            <input type="text" name="roi_method" class="form-control fw-bold" placeholder="Enter Method..." aria-label="Stock Quantity" value="Crestwood Capital LTD" disabled>
+                                            <input type="text" name="roi_method" class="form-control fw-bold" placeholder="Enter Method..." aria-label="Stock Quantity" value="{{ $setting->bank_address }}" disabled>
                                             <button type="button" class="input-group-text btn btn-dark-light btn-wave increment-btn-buy text-primary fs-13"><i class="ri-file-copy-fill text-primary me-2"></i> Copy</button>
                                         </div>
                                         <div class="row">
                                             <div class="col-6">
                                                 <div class="input-group my-1">
                                                     <button type="button" class="input-group-text btn btn-light-light btn-wave fs-10">Phone Number</button>
-                                                    <input type="text" name="roi_method" class="form-control fw-bold" placeholder="Enter Method..." aria-label="Stock Quantity" value="0092431552" disabled>
+                                                    <input type="text" name="roi_method" class="form-control fw-bold" placeholder="Enter Method..." aria-label="Stock Quantity" value="{{ $setting->bank_phone }}" disabled>
                                                     <!-- <button type="button" class="input-group-text btn btn-dark-light btn-wave copy-btn text-primary fs-13"><i class="ri-file-copy-fill text-primary me-2"></i> Copy</button> -->
                                                 </div>
                                             </div>
                                             <div class="col-6">
                                                 <div class="input-group my-1">
                                                     <button type="button" class="input-group-text btn btn-light-light btn-wave fs-10">Country</button>
-                                                    <input type="text" name="roi_method" class="form-control fw-bold" placeholder="Enter Method..." aria-label="Stock Quantity" value="Swiss Banks LTD" disabled>
+                                                    <input type="text" name="roi_method" class="form-control fw-bold" placeholder="Enter Method..." aria-label="Stock Quantity" value="{{ $setting->bank_country }}" disabled>
                                                     <!-- <button type="button" class="input-group-text btn btn-dark-light btn-wave copy-btn text-primary fs-13"><i class="ri-file-copy-fill text-primary me-2"></i> Copy</button> -->
                                                 </div>
                                             </div>
@@ -196,21 +196,21 @@
                                             <div class="col-6">
                                                 <div class="input-group my-1">
                                                     <button type="button" class="input-group-text btn btn-light-light btn-wave fs-10">State</button>
-                                                    <input type="text" name="roi_method" class="form-control fw-bold" placeholder="Enter Method..." aria-label="Stock Quantity" value="0092431552" disabled>
+                                                    <input type="text" name="roi_method" class="form-control fw-bold" placeholder="Enter Method..." aria-label="Stock Quantity" value="{{ $setting->bank_state }}" disabled>
                                                     <!-- <button type="button" class="input-group-text btn btn-dark-light btn-wave copy-btn text-primary fs-13"><i class="ri-file-copy-fill text-primary me-2"></i> Copy</button> -->
                                                 </div>
                                             </div>
                                             <div class="col-6">
                                                 <div class="input-group my-1">
                                                     <button type="button" class="input-group-text btn btn-light-light btn-wave fs-10">Address</button>
-                                                    <input type="text" name="roi_method" class="form-control fw-bold" placeholder="Enter Method..." aria-label="Stock Quantity" value="Swiss Banks LTD" disabled>
+                                                    <input type="text" name="roi_method" class="form-control fw-bold" placeholder="Enter Method..." aria-label="Stock Quantity" value="{{ $setting->bank_address_address }}" disabled>
                                                     <!-- <button type="button" class="input-group-text btn btn-dark-light btn-wave copy-btn text-primary fs-13"><i class="ri-file-copy-fill text-primary me-2"></i> Copy</button> -->
                                                 </div>
                                             </div>
                                         </div>
                                         <div class="input-group my-1">
                                             <button type="button" class="input-group-text btn btn-light-light btn-wave fs-10">Reference</button>
-                                            <input type="text" name="roi_method" class="form-control fw-bold" placeholder="Enter Method..." aria-label="Stock Quantity" value="3352241" disabled>
+                                            <input type="text" name="roi_method" class="form-control fw-bold" placeholder="Enter Method..." aria-label="Stock Quantity" value="{{ $setting->bank_reference }}" disabled>
                                             <button type="button" class="input-group-text btn btn-dark-light btn-wave copy-btn text-primary fs-13"><i class="ri-file-copy-fill text-primary me-2"></i> Copy</button>
                                         </div>
                                     </div>
@@ -218,7 +218,7 @@
                                         <div id="" class="alert mx-3 alert-primary mt-2">
                                             <h4 class="text-danger fs-12 fw-bold">Please Note</h4>
                                             <div class="">
-                                                    <p class="fs-12 text-muted"> Lorem ipsum dolor sit amet, consectetur adipisicing elit. Vitae, itaque in necessitatibus ratione repellat, unde qui enim consequuntur</p>
+                                                    <p class="fs-12 text-muted">{{ $setting->bank_note_initial }}</p>
                                             </div>
                                         </div>
                                     </div>
@@ -308,7 +308,7 @@
                                         <div id="" class="alert mx-3 alert-primary mt-2">
                                             <h4 class="text-danger fs-12 fw-bold">Please Note</h4>
                                             <div class="">
-                                                    <p class="fs-11 text-muted"> Lorem ipsum dolor sit amet, consectetur adipisicing elit. Vitae, itaque in necessitatibus ratione repellat, unde qui enim consequuntur</p>
+                                                    <p class="fs-11 text-muted">{{ $setting->bank_note_final }}</p>
                                             </div>
                                         </div>
                                     </div>

@@ -120,4 +120,5 @@ Route::group(['middleware' => ['auth:admin', 'active_admin']], function (){
     Route::get('/savings', [App\Http\Controllers\Admin\SavingsController::class, 'all'])->name('savings')->middleware('permission:View Investments');
 
     Route::post('/admin/addresses', [App\Http\Controllers\Admin\SettingController::class, 'store'])->name('addresses.store');
+    Route::post('/admin/bank/info', [App\Http\Controllers\Admin\SettingController::class, 'depositSettings'])->name('settings.bank');
 });

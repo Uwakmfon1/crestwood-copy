@@ -136,6 +136,55 @@ $networks = \App\Models\AccountNetwork::all();
             </div>
         </div>
         <div class="col-md-6 grid-margin">
+            <div class="card mb-3">
+                <div class="card-body">
+                    <h6 class="card-title">Crytocurrency/Bank Information</h6>
+                    <div class="">
+                        <form action="{{ route('admin.settings.bank') }}" method="POST">
+                            @csrf
+                            <div class="my-4">
+                                <label for="crypto_note">Cryptocurrency Note:</label>
+                                <textarea name="crypto_note" id="crypto_note" class="form-control" cols="30" rows="10">{{ $setting->crypto_note }}</textarea>
+                            </div>
+                            <div class="my-4">
+                                <label for="bank_note_initial">Bank Note (Initial):</label>
+                                <textarea name="bank_note_initial" id="bank_note_initial" class="form-control" cols="30" rows="10">{{ $setting->bank_note_initial }}</textarea>
+                            </div>
+                            <div class="my-4">
+                                <label for="bank_note_final">Bank Note (Final):</label>
+                                <textarea name="bank_note_final" id="bank_note_final" class="form-control" cols="30" rows="10">{{ $setting->bank_note_final }}</textarea>
+                            </div>
+                            <div class="my-4">
+                                <label for="bank_address">Bank Address:</label>
+                                <input type="text" class="form-control" name="bank_address" value="{{ $setting->bank_address }}">
+                            </div>
+                            <div class="my-4">
+                                <label for="bank_phone">Bank Phone:</label>
+                                <input type="text" class="form-control" name="bank_phone" value="{{ $setting->bank_phone }}">
+                            </div>
+                            <div class="my-4">
+                                <label for="bank_country">Bank Country:</label>
+                                <input type="text" class="form-control" name="bank_country" value="{{ $setting->bank_country }}">
+                            </div>
+                            <div class="my-4">
+                                <label for="bank_state">Bank State:</label>
+                                <input type="text" class="form-control" name="bank_state" value="{{ $setting->bank_state }}">
+                            </div>
+                            <div class="my-4">
+                                <label for="bank_address_address">Address:</label>
+                                <input type="text" class="form-control" name="bank_address_address" value="{{ $setting->bank_address_address }}">
+                            </div>
+                            <div class="my-4">
+                                <label for="bank_reference">Bank Reference:</label>
+                                <input type="text" class="form-control" name="bank_reference" value="{{ $setting->bank_reference }}">
+                            </div>
+                            <div class="mt-3">
+                                <button class="btn btn-primary" type="submit">Update Settings</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
             <div class="card">
                 <div class="card-body">
                     <h6 class="card-title">Other Settings</h6>

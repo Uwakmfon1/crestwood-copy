@@ -44,7 +44,7 @@ class SettingController extends Controller
 
     public function updateBankDetails(Request $request): RedirectResponse
     {
-//        Validate request
+        //        Validate request
         $validator = Validator::make($request->all(), [
             'bank_name' => ['required'],
             'account_name' => ['required'],
@@ -53,7 +53,7 @@ class SettingController extends Controller
         if ($validator->fails()){
             return back()->withErrors($validator)->withInput()->with('error', 'Invalid input data');
         }
-//        Update bank details
+        //        Update bank details
         if (Setting::all()->first()->update([
             'bank_name' => $request['bank_name'],
             'account_name' => $request['account_name'],
@@ -69,6 +69,35 @@ class SettingController extends Controller
         $settings = Setting::first();
         if ($settings) $settings->update($request->only(['ios_version', 'android_version']));
         return back()->with('success', 'Mobile app version updated successfully!');
+    }
+
+    public function depositSettings(Request $request): RedirectResponse 
+    {
+        $validator = Validator::make($request->all(), [
+            'crypto_note' => ['required'],
+            'bank_note_initial' => ['required'],
+            'bank_note_final' => ['required'],
+            'bank_address' => ['required'],
+            'bank_phone' => ['required'],
+            'bank_country' => ['required'],
+            'bank_state' => ['required'],
+            'bank_address_address' => ['required'],
+        ]);
+
+        if ($validator->fails()){
+            return back()->withErrors($validator)->withInput()->with('error', 'Invalid input data');
+        }
+
+        if (Setting::all()->first()->update([
+            'crypto_note' => $request['crypto_note'],
+            'bank_note_initial' => $request['bank_note_initial'],
+            'bank_note_final' => $request['bank_note_final'],
+            'bank_address' => $request['bank_address'],
+            'bank_phone' => $request['bank_phone'],
+            'bank_country' => $request['bank_country'],
+        ]))
+            return back()->with('success', 'Settings updated successfully');
+        return back()->with('error', 'Error updating settings');
     }
 
     public function saveSettings(Request $request): RedirectResponse
