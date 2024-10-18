@@ -360,7 +360,7 @@ class CommandController extends Controller
     public static function updateStocks($command) 
     {
         // Fetch stock data from an external API (replace with actual API)
-        $apiUrl = 'https://financialmodelingprep.com/api/v3/quote/AAPL,GOOGL,AMZN,MSFT,TSLA,FB,JPM,V,A,PG,JNJ,MA,NVDA,UNH,BRK.B,HD,DIS,INTC,VZ,PYPL,CMCSA,PFE,ADBE,CRM,XOM,CSCO,IBM,ABT,ACN,BAC,ORCL,COST,TMO,ABBV,NFLX,T,XEL,MDT,NKE,AMGN,CVS,TMUS,DHR,LMT,NEE,HON,BMY,COP?apikey=BxRzCvi46ZOnN32A2sIGuhGEsH9Mksw7'; // Replace with your real API
+        $apiUrl = 'https://financialmodelingprep.com/api/v3/quote/AAPL,GOOGL,AMZN,MSFT,TSLA,FB,JPM,V,A,PG,JNJ,MA,NVDA,UNH,BRK.B,HD,DIS,INTC,VZ,PYPL,CMCSA,PFE,ADBE,CRM,XOM,CSCO,IBM,ABT,ACN,BAC,ORCL,COST,TMO,ABBV,NFLX,T,XEL,MDT,NKE,AMGN,CVS,TMUS,DHR,LMT,NEE,HON,BMY,COP?apikey=ExYlr0LoPC6GqCmzuScjwq79Fn4Krx77'; // Replace with your real API
         $response = Http::get($apiUrl);
 
         // Check if API request was successful
