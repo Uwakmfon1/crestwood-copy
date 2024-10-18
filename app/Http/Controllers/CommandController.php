@@ -431,7 +431,7 @@ class CommandController extends Controller
         $cryptoSymbols = implode(',', array_column($cryptos, 'symbol'));
         
         // Fetch cryptocurrency data from financialmodelingprep.com
-        $cryptoApiUrl = "https://financialmodelingprep.com/api/v3/quote/{$cryptoSymbols}?apikey=BxRzCvi46ZOnN32A2sIGuhGEsH9Mksw7";
+        $cryptoApiUrl = "https://financialmodelingprep.com/api/v3/quote/{$cryptoSymbols}?apikey=ExYlr0LoPC6GqCmzuScjwq79Fn4Krx77";
 
         $cryptoResponse = Http::get($cryptoApiUrl);
 
