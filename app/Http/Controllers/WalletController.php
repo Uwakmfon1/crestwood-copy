@@ -179,7 +179,7 @@ class WalletController extends Controller
         ]);
 
         if ($transaction) {
-            // NotificationController::sendDepositQueuedNotification($transaction);
+            NotificationController::sendDepositQueuedNotification($transaction);
             // return redirect()->route('wallet')->with('success', 'Deposit queued successfully');
             return redirect()->route('wallet')->with('success', 'Deposit queued successfully');
         }

@@ -30,7 +30,7 @@
                 <div class="card-body p-5">
                     <div class="mb-3 d-flex justify-content-center"> 
                         <a href="index.html"> 
-                            <img src="https://www.designevo.com/res/templates/thumb_small/simple-black-and-white-font-style.webp" alt="logo" class="desktop-logo" > 
+                            <img width="80" src="{{ asset('asset/images/logo/logo-dark.png') }}" alt="logo" class="desktop-logo" > 
                             <img src=".https://www.designevo.com/res/templates/thumb_small/simple-black-and-white-font-style.webp" alt="logo" class="desktop-dark"> 
                         </a> 
                     </div>

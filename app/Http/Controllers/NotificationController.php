@@ -222,8 +222,8 @@ class NotificationController extends Controller
 
     public static function sendDepositQueuedNotification($transaction)
     {
-        $description = 'Your deposit of <b>₦ '.number_format($transaction['amount']).'</b> has been queued.';
-        $msg = 'Your deposit of <b>₦ '.number_format($transaction['amount']).'</b> has been queued.<br>
+        $description = 'Your deposit of <b> '.number_format($transaction['amount']).' USD</b> has been queued.';
+        $msg = 'Your deposit of <b> '.number_format($transaction['amount']).' USD</b> has been queued.<br>
                 Your wallet will be automatically credited once you payment has been approved.';
         try {
             $transaction->user->notify(new CustomNotification('pending', 'Deposit Queued', $msg, $description));

@@ -3,7 +3,7 @@
 
 <!-- Start::main-sidebar-header -->
 <div class="main-sidebar-header">
-    <a href="index.html" class="header-logo">
+    <a href="/" class="header-logo">
         <img src="{{ asset('asset/images/logo/logo-light.png') }}" alt="logo" class="desktop-logo">
         <img src="{{ asset('asset/images/logo/logo-light.png') }}" alt="logo" class="toggle-dark">
         <img src="{{ asset('asset/images/logo/logo-light.png') }}" alt="logo" class="desktop-dark">
