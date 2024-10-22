@@ -271,6 +271,14 @@
                 </a>
             </li>
             @endcan
+            @can('View Roles')
+            <li class="nav-item @if(request()->routeIs(['admin.support.all', 'admin.roles.create', 'admin.roles.edit'])) active @endif">
+                <a href="{{ route('admin.support.all') }}" class="nav-link">
+                    <i class="link-icon" data-feather="settings"></i>
+                    <span class="link-title">Support Tickets</span>
+                </a>
+            </li>
+            @endcan
             <li class="nav-item nav-category">Personal</li>
             <li class="nav-item @if(request()->routeIs(['admin.profile'])) active @endif">
                 <a href="{{ route('admin.profile') }}" class="nav-link">

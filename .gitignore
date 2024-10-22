@@ -4,6 +4,7 @@
 /public/assets/photos
 /public/assets/ids
 /public/assets/packages
+/public/uploads
 /storage/*.key
 /vendor
 .env

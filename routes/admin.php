@@ -121,4 +121,8 @@ Route::group(['middleware' => ['auth:admin', 'active_admin']], function (){
 
     Route::post('/admin/addresses', [App\Http\Controllers\Admin\SettingController::class, 'store'])->name('addresses.store');
     Route::post('/admin/bank/info', [App\Http\Controllers\Admin\SettingController::class, 'depositSettings'])->name('settings.bank');
+
+    Route::get('/support/tickets', [App\Http\Controllers\Admin\SupportController::class, 'index'])->name('support.all');
+    Route::get('/support/ticket/{support}', [App\Http\Controllers\Admin\SupportController::class, 'show'])->name('support.view');
+    Route::post('/support/ticket/{support}/reply', [App\Http\Controllers\Admin\SupportController::class, 'reply'])->name('support.reply');
 });

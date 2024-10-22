@@ -125,6 +125,13 @@
                 </a>
             </li>
 
+            <li class="slide @if(request()->routeIs(['support.index'])) active @endif">
+                <a href="{{ route('support.index') }}" class="side-menu__item">
+                    <i class="fe fe-user mx-2"></i>
+                    <span class="side-menu__label">Support</span>
+                </a>
+            </li>
+
             <!-- Start::slide__category -->
             <li class="slide__category"><span class="category-name">Account</span></li>
             <!-- End::slide__category -->
