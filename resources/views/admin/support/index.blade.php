@@ -29,7 +29,8 @@
                                 <th><i class="fas fa-list-ul"></i></th>
                                 <th>Name</th>
                                 <th>Subject</th>
-                                <th>Role</th>
+                                <th>Priority</th>
+                                <th>Team</th>
                                 <th>Status</th>
                                 <th>Date Created</th>
                                 <th>Action</th>
@@ -50,6 +51,7 @@
                                         <span class="badge badge-pill badge-danger">High</span>
                                     @endif
                                 </td>
+                                <td>{{ $ticket['department'] }}</td>
                                 <td>
                                     @if($ticket['status'] == 'pending')
                                         <span class="badge badge-pill badge-warning">Pending</span>

@@ -17,6 +17,7 @@ use Faker\Factory as Faker;
 use App\Models\AccountNetwork;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Http;
 use App\DataProviders\CityDataProvider;
 use App\DataProviders\StateDataProvider;
 use App\DataProviders\StockDataProvider;
@@ -84,58 +85,62 @@ class DatabaseSeeder extends Seeder
         // }
 
 
-        $coins = [
-            ['name' => 'Bitcoin', 'symbol' => 'BTC', 'rate' => 63200],
-            ['name' => 'Ethereum', 'symbol' => 'ETH', 'rate' => 2310],
-            ['name' => 'Tether', 'symbol' => 'USDT', 'rate' => 0.9933],
-            ['name' => 'Tron', 'symbol' => 'TRX', 'rate' => 0.00532],
-        ];
+        // $coins = [
+        //     ['name' => 'Bitcoin', 'symbol' => 'BTC', 'rate' => 63200],
+        //     ['name' => 'Ethereum', 'symbol' => 'ETH', 'rate' => 2310],
+        //     ['name' => 'Tether', 'symbol' => 'USDT', 'rate' => 0.9933],
+        //     ['name' => 'Tron', 'symbol' => 'TRX', 'rate' => 0.00532],
+        // ];
         
-        // Create coins
-        foreach ($coins as $coinData) {
-            AccountCoin::firstOrCreate(
-                ['symbol' => $coinData['symbol']], // Search by symbol
-                [
-                    'name' => $coinData['name'], // Set name if creating
-                    'rate' => $coinData['rate'], // Set rate if creating
-                ]
-            );
-        }        
+        // // Create coins
+        // foreach ($coins as $coinData) {
+        //     AccountCoin::firstOrCreate(
+        //         ['symbol' => $coinData['symbol']], // Search by symbol
+        //         [
+        //             'name' => $coinData['name'], // Set name if creating
+        //             'rate' => $coinData['rate'], // Set rate if creating
+        //         ]
+        //     );
+        // }        
         
 
-        // Array of networks with coin symbols
-        $networks = [
-            ['coin_symbol' => 'BTC', 'name' => 'Bitcoin Mainnet', 'symbol' => 'BTC'],
-            ['coin_symbol' => 'BTC', 'name' => 'Bitcoin Testnet', 'symbol' => 'BTC'],
-            ['coin_symbol' => 'BTC', 'name' => 'Lightning Network', 'symbol' => 'BTC'],
-            ['coin_symbol' => 'ETH', 'name' => 'Ethereum Mainnet', 'symbol' => 'ETH'],
-            ['coin_symbol' => 'ETH', 'name' => 'Ropsten Testnet', 'symbol' => 'ETH'],
-            ['coin_symbol' => 'ETH', 'name' => 'Rinkeby Testnet', 'symbol' => 'ETH'],
-            ['coin_symbol' => 'ETH', 'name' => 'Goerli Testnet', 'symbol' => 'ETH'],
-            ['coin_symbol' => 'ETH', 'name' => 'Polygon (Matic)', 'symbol' => 'MATIC'],
-            ['coin_symbol' => 'ETH', 'name' => 'Binance Smart Chain (BSC)', 'symbol' => 'BSC'],
-            ['coin_symbol' => 'USDT', 'name' => 'Ethereum (ERC-20)', 'symbol' => 'USDT'],
-            ['coin_symbol' => 'USDT', 'name' => 'Tron (TRC-20)', 'symbol' => 'USDT'],
-            ['coin_symbol' => 'USDT', 'name' => 'Solana (SPL)', 'symbol' => 'USDT'],
-            ['coin_symbol' => 'USDT', 'name' => 'Binance Smart Chain (BEP-20)', 'symbol' => 'USDT'],
-            ['coin_symbol' => 'USDT', 'name' => 'Algorand', 'symbol' => 'USDT'],
-            ['coin_symbol' => 'USDT', 'name' => 'Avalanche', 'symbol' => 'USDT'],
-            ['coin_symbol' => 'TRX', 'name' => 'Tron Mainnet (TRC-20)', 'symbol' => 'TRX'],
-            ['coin_symbol' => 'TRX', 'name' => 'Tron Testnet', 'symbol' => 'TRX'],
-        ];
+        // // Array of networks with coin symbols
+        // $networks = [
+        //     ['coin_symbol' => 'BTC', 'name' => 'Bitcoin Mainnet', 'symbol' => 'BTC'],
+        //     ['coin_symbol' => 'BTC', 'name' => 'Bitcoin Testnet', 'symbol' => 'BTC'],
+        //     ['coin_symbol' => 'BTC', 'name' => 'Lightning Network', 'symbol' => 'BTC'],
+        //     ['coin_symbol' => 'ETH', 'name' => 'Ethereum Mainnet', 'symbol' => 'ETH'],
+        //     ['coin_symbol' => 'ETH', 'name' => 'Ropsten Testnet', 'symbol' => 'ETH'],
+        //     ['coin_symbol' => 'ETH', 'name' => 'Rinkeby Testnet', 'symbol' => 'ETH'],
+        //     ['coin_symbol' => 'ETH', 'name' => 'Goerli Testnet', 'symbol' => 'ETH'],
+        //     ['coin_symbol' => 'ETH', 'name' => 'Polygon (Matic)', 'symbol' => 'MATIC'],
+        //     ['coin_symbol' => 'ETH', 'name' => 'Binance Smart Chain (BSC)', 'symbol' => 'BSC'],
+        //     ['coin_symbol' => 'USDT', 'name' => 'Ethereum (ERC-20)', 'symbol' => 'USDT'],
+        //     ['coin_symbol' => 'USDT', 'name' => 'Tron (TRC-20)', 'symbol' => 'USDT'],
+        //     ['coin_symbol' => 'USDT', 'name' => 'Solana (SPL)', 'symbol' => 'USDT'],
+        //     ['coin_symbol' => 'USDT', 'name' => 'Binance Smart Chain (BEP-20)', 'symbol' => 'USDT'],
+        //     ['coin_symbol' => 'USDT', 'name' => 'Algorand', 'symbol' => 'USDT'],
+        //     ['coin_symbol' => 'USDT', 'name' => 'Avalanche', 'symbol' => 'USDT'],
+        //     ['coin_symbol' => 'TRX', 'name' => 'Tron Mainnet (TRC-20)', 'symbol' => 'TRX'],
+        //     ['coin_symbol' => 'TRX', 'name' => 'Tron Testnet', 'symbol' => 'TRX'],
+        // ];
 
-        foreach ($networks as $networkData) {
-            // Find the coin based on its symbol
-            $coin = AccountCoin::where('symbol', $networkData['coin_symbol'])->first();
+        // foreach ($networks as $networkData) {
+        //     // Find the coin based on its symbol
+        //     $coin = AccountCoin::where('symbol', $networkData['coin_symbol'])->first();
 
-            if ($coin) {
-                // Create the network associated with the found coin
-                AccountNetwork::create([
-                    'account_coin_id' => $coin->id,
-                    'name' => $networkData['name'],
-                    'symbol' => $networkData['symbol'],
-                ]);
-            }
-        }
+        //     if ($coin) {
+        //         // Create the network associated with the found coin
+        //         AccountNetwork::create([
+        //             'account_coin_id' => $coin->id,
+        //             'name' => $networkData['name'],
+        //             'symbol' => $networkData['symbol'],
+        //         ]);
+        //     }
+        // }
+        $this->call([
+            CryptoSeeder::class,
+            // StocksSeeder::class,
+        ]);
     }
 }

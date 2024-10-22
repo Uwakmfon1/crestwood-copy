@@ -35,6 +35,16 @@
                             <div class="card custom-card">
                                 <div class="card-body">
                                     <div class="row gy-3">
+                                        <div class="col-md-12 my-2">
+                                            <label class="form-label mt-2 fs-12" for="department">Department</label>
+                                            <select class="form-select" name="department" id="department">
+                                                <option value="supprot">Support Team (Technical Support)</option>
+                                                <option value="billing">Billing Team (Deposit/Withdrwal/Transfer Support)</option>
+                                                <option value="trades">Trades Team (Trades Support)</option>
+                                                <option value="investment">Investment Team (Investment Support)</option>
+                                                <option value="wallet">Others</option>
+                                            </select>
+                                        </div>
                                         <div class="col-xl-12">
                                             <label for="subject" class="form-label">Subject</label>
                                             <input type="text" class="form-control" id="subject" name="subject" placeholder="Enter Subject...">
@@ -44,7 +54,7 @@
                                         </div>
                                         <div class="col-xl-12">
                                             <label for="priority" class="form-label">Priority</label>
-                                            <select class="form-control" name="urgency" id="priority">
+                                            <select class="form-select" name="urgency" id="priority">
                                                 <option value="low">Low</option>
                                                 <option value="medium">Medium</option>
                                                 <option value="high">High</option>

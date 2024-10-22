@@ -18,6 +18,7 @@ class CreateSupportsTable extends Migration
             $table->string('uuid');
             $table->foreignId('user_id')->constrained('users')->onDelete('cascade');
             $table->string('subject');
+            $table->string('department');
             $table->text('body');
             $table->enum('urgency', ['low', 'medium', 'high'])->default('low');
             $table->enum('status', ['pending', 'open', 'closed'])->default('open');

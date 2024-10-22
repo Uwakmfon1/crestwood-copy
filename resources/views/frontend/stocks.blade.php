@@ -138,12 +138,12 @@
                         </defs>
                      </svg>
                      <div class="absolute left-1/2 top-1/2 z-10 w-[450px] -translate-x-[52%] -translate-y-[50%] md:w-[662px]">
-                        <div style="transform:none">
-                           <picture>
-                              <source type="image/webp" srcSet="/next/contenthash/next/stock_investing/background-tokens.contenthash.94ae1d6b9e55a8f9c27ad2a3b623a2e19dd7b4bb.webp 1x, /next/contenthash/next/stock_investing/background-tokens@2x.contenthash.19134f9ca2615b7dfab722a70a97e54beba39dbb.webp 2x"/>
-                              <img width="1473" height="365" alt="Floating stock tokens" loading="eager" src="{{ asset("/next/contenthash/next/stock_investing/background-tokens.contenthash.557f4e8c552a4cfe51c55ece3b43c5516c43494c.png") }}"/>
-                           </picture>
-                        </div>
+                        <!-- <div style="transform:none"> -->
+                           <!-- <picture> -->
+                              <!-- <source type="image/webp" srcSet="/next/contenthash/next/stock_investing/background-tokens.contenthash.94ae1d6b9e55a8f9c27ad2a3b623a2e19dd7b4bb.webp 1x, /next/contenthash/next/stock_investing/background-tokens@2x.contenthash.19134f9ca2615b7dfab722a70a97e54beba39dbb.webp 2x"/> -->
+                              <img alt="Floating stock tokens" src="https://img.freepik.com/premium-photo/grainy-gradient-background-red-white-blue-colors-with-soft-faded-watercolor-border-texture_927344-24167.jpg?semt=ais_hybrid" />
+                           <!-- </picture> -->
+                        <!-- </div> -->
                      </div>
                      <div class="absolute right-1/2 top-[50px] z-10 w-full max-w-[345px] translate-x-1/2 px-2 text-center xs:px-0 md:top-[90px] md:-translate-x-20 xl:max-w-[400px]">
                         <div style="opacity:0;transform:translateY(50px) translateZ(0)">
@@ -157,7 +157,7 @@
                         <div style="opacity:0;transform:translateY(50px) translateZ(0)">
                            <picture>
                               <source type="image/webp" srcSet="/next/contenthash/next/stock_investing/headerphone_right.contenthash.07e51fe1d61dd3e39c1bdc4ff76cb871998a3d0e.webp 1x, /next/contenthash/next/stock_investing/headerphone_right@2x.contenthash.5f77f03281013cd33976ab9292b024469ebfe624.webp 2x"/>
-                              <img width="3096" height="6017" alt="Stocks on mobile phone" loading="eager" src="{{ asset("/next/contenthash/next/stock_investing/headerphone_right.contenthash.88c1a26205a588e60e64694715c20f5076322a46.png") }}"/>
+                              <img width="3096" height="6017" alt="Stocks on mobile phone" loading="eager" src="https://img.freepik.com/premium-photo/grainy-gradient-background-red-white-blue-colors-with-soft-faded-watercolor-border-texture_927344-24167.jpg?semt=ais_hybrid" />
                            </picture>
                         </div>
                      </div>

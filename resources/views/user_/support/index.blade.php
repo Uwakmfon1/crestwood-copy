@@ -41,7 +41,7 @@
                                 <div class="p-3 file-folders-container">
                                     <div class="d-flex mb-3 align-items-center justify-content-between">
                                         <p class="mb-0 fw-medium fs-14">Tickets</p>
-                                        <a href="javascript:void(0);" class="fs-12 text-muted fw-medium tag-link"> View All<i class="ti ti-arrow-narrow-right ms-1"></i> </a>
+                                        <!-- <a href="javascript:void(0);" class="fs-12 text-muted fw-medium tag-link"> View All<i class="ti ti-arrow-narrow-right ms-1"></i> </a> -->
                                     </div>
                                     <div class="row">
                                         <div class="col-xl-12">

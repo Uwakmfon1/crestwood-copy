@@ -46,6 +46,7 @@ class SupportController extends Controller
         $validator = Validator::make($request->all(), [
             'subject' => ['required'],
             'body' => ['required'],
+            'department' => ['required'],
             'urgency' => ['required', 'in:high,low,medium']
         ]);
 
@@ -58,6 +59,7 @@ class SupportController extends Controller
             'subject' => $request->subject,
             'body' => $request->body,
             'urgency' => $request->urgency,
+            'department' => $request->department,
             'status' => 'pending',
         ]);
 
