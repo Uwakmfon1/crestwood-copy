@@ -19,6 +19,10 @@ class CreateSettingsTable extends Migration
             $table->text('bank_note_initial')->nullable();
             $table->text('bank_note_final')->nullable();
             $table->string('bank_address')->nullable();
+            $table->string('account_name')->nullable();
+            $table->string('account_number')->nullable();
+            $table->string('bank_name')->nullable();
+            $table->string('swift_code')->nullable();
             $table->string('bank_phone')->nullable();
             $table->string('bank_country')->nullable();
             $table->string('bank_state')->nullable();
@@ -43,12 +47,16 @@ class CreateSettingsTable extends Migration
         });
 
         \App\Models\Setting::create([
-            'bank_address' => 'Crestwood Capital Management',
+            'bank_address' => 'Bell Str 1157 City',
             'bank_phone' => '0123456789',
             'bank_country' => 'United State',
             'bank_state' => 'Texas',
             'bank_address_address' => 'Houston',
             'bank_reference' => 'JUUTrRvXEKKBDXWQTIMO664NYVE33B',
+            'account_name' => 'Crestwood Capital Management',
+            'account_number' => '0123456789',
+            'bank_name' => 'Swiss Bank Finland',
+            'swift_code' => '0065587',
 
             'crypto_note' => 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Veniam facere et quaerat optio reprehenderit soluta deleniti magni sapiente, ipsam atque ea cum veritatis aut enim ipsum impedit explicabo ipsa. Tempora.',
             'bank_note_initial' => 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Veniam facere et quaerat optio reprehenderit soluta deleniti magni sapiente, ipsam atque ea cum veritatis aut enim ipsum impedit explicabo ipsa. Tempora.',

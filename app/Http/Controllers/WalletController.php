@@ -117,10 +117,13 @@ class WalletController extends Controller
                 return back()->withErrors($validator)->withInput()->with('error', 'Invalid Coin or Network, Try again later');
             }
         } elseif($request->method && $request->method == 'bank') {
-            $request->validate([
+            $validator = Validator::make($request->all(), [
                 'filepond' => 'required',
                 'filepond.*' => 'file|mimes:jpeg,png,jpg,gif,svg|max:3072', // Max 3MB, adjust as needed
             ]);
+            if ($validator->fails()){
+                return back()->withErrors($validator)->withInput()->with('error', 'Upload a bank transfer proof!');
+            }
 
             $proof = null;
 

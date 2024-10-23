@@ -82,6 +82,10 @@ class SettingController extends Controller
             'bank_country' => ['required'],
             'bank_state' => ['required'],
             'bank_address_address' => ['required'],
+            'account_name' => ['required'],
+            'account_number' => ['required'],
+            'bank_name' => ['required'],
+            'swift_code' => ['required'],
         ]);
 
         if ($validator->fails()){
@@ -95,6 +99,10 @@ class SettingController extends Controller
             'bank_address' => $request['bank_address'],
             'bank_phone' => $request['bank_phone'],
             'bank_country' => $request['bank_country'],
+            'account_name' => $request['account_name'],
+            'account_number' => $request['account_number'],
+            'bank_name' => $request['bank_name'],
+            'swift_code' => $request['swift_code'],
         ]))
             return back()->with('success', 'Settings updated successfully');
         return back()->with('error', 'Error updating settings');

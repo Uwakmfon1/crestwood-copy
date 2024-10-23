@@ -16,77 +16,101 @@ class CryptoSeeder extends Seeder
      * @return void
      */
     public function run()
-    {
-        $faker = Faker::create();
-        $apiKey = 'ExYlr0LoPC6GqCmzuScjwq79Fn4Krx77';
+{
+    $faker = Faker::create();
+    $apiKey = 'ExYlr0LoPC6GqCmzuScjwq79Fn4Krx77';
 
-        // Step 1: Fetch cryptocurrency data from Financial Modeling Prep API
-        $response = Http::get('https://financialmodelingprep.com/api/v3/symbol/available-cryptocurrencies?apikey=' . $apiKey);
+    // Step 1: Fetch stock data from API with retry logic
+    $maxRetries = 3; // Maximum number of retries
+    $attempt = 0;
+    $response = null;
 
-        if ($response->successful()) {
-            $cryptos = $response->json();
+    while ($attempt < $maxRetries) {
+        try {
+            $response = Http::timeout(30)->get('https://financialmodelingprep.com/api/v3/stock/list?apikey=' . $apiKey);
 
-            // Step 2: Loop through each cryptocurrency and seed the data
-            foreach ($cryptos as $crypto) {
-                // Extract symbol and remove the trailing "USD"
-                $fullSymbol = strtoupper($crypto['symbol']);
-                $symbol = str_replace('USD', '', $fullSymbol); // Remove "USD"
-
-                $name = $crypto['name'];
-
-                // Step 3: Fetch detailed cryptocurrency data
-                $cryptoDetailsResponse = Http::get("https://financialmodelingprep.com/api/v3/profile/{$symbol}?apikey=" . $apiKey);
-
-                // Initialize variables for the detailed data
-                $price = null;
-                $logoUrl = null;
-
-                // Check if the details response is successful
-                if ($cryptoDetailsResponse->successful()) {
-                    $cryptoDetails = $cryptoDetailsResponse->json();
-                    
-                    // Check if there's at least one item in the response
-                    if (isset($cryptoDetails[0])) {
-                        $price = $cryptoDetails[0]['price'];
-                        $logoUrl = $cryptoDetails[0]['image']; // Get the image URL from the response
-                    } else {
-                        Log::warning("No data found for symbol: {$symbol}");
-                    }
-                } else {
-                    // Log the unsuccessful API request
-                    Log::error("Failed to fetch details for symbol: {$symbol}. Response: " . $cryptoDetailsResponse->body());
-                }
-
-                // Insert the cryptocurrency data into the database
-                Crypto::insertOrIgnore([
-                    'symbol' => $symbol,
-                    'name' => $name,
-                    'img' => $logoUrl ?? $faker->imageUrl(), // Fallback to a random image if logo URL is not available
-                    'price' => $price ?? $faker->randomFloat(2, 100, 500), // Use fetched price or a random float if not available
-                    'changes_percentage' => $faker->randomFloat(4, -5, 5),
-                    'change' => $faker->randomFloat(2, -10, 10),
-                    'day_low' => $faker->randomFloat(2, 100, 400),
-                    'day_high' => $faker->randomFloat(2, 100, 400),
-                    'year_low' => $faker->randomFloat(2, 50, 200),
-                    'year_high' => $faker->randomFloat(2, 200, 600),
-                    'market_cap' => $faker->numberBetween(1000000000, 1000000000000),
-                    'price_avg_50' => $faker->randomFloat(4, 100, 500),
-                    'price_avg_200' => $faker->randomFloat(4, 100, 500),
-                    'exchange' => 'Crypto Exchange',
-                    'volume' => $faker->numberBetween(1000000, 100000000),
-                    'avg_volume' => $faker->numberBetween(1000000, 100000000),
-                    'open' => $faker->randomFloat(2, 100, 500),
-                    'previous_close' => $faker->randomFloat(2, 100, 500),
-                    'eps' => null,  // EPS doesn't apply to cryptocurrencies
-                    'pe' => null,   // P/E ratio doesn't apply to cryptocurrencies
-                    'status' => $faker->randomElement(['active', 'inactive']),
-                    'tradeable' => 1,
-                    'created_at' => now(),
-                    'updated_at' => now(),
-                ]);
+            if ($response->successful()) {
+                break; // Exit loop if request is successful
             }
-        } else {
-            Log::error("Failed to fetch available cryptocurrencies. Response: " . $response->body());
+        } catch (RequestException $e) {
+            Log::error("Request failed: " . $e->getMessage());
         }
+
+        $attempt++;
+        sleep(1); // Wait before retrying
     }
+
+    if (!$response || !$response->successful()) {
+        Log::error("Failed to fetch stock list after {$maxRetries} attempts. Response: " . ($response ? $response->body() : 'No response'));
+        return; // Exit if request failed
+    }
+
+    $stocks = $response->json();
+
+    // Prepare stocks data for fetching profiles
+    $stockData = [];
+    foreach ($stocks as $stock) {
+        $stockData[] = [
+            'symbol' => $stock['symbol'],
+            'name' => $stock['name'],
+            'exchange' => $stock['exchange'] ?? 'NASDAQ',
+        ];
+    }
+
+    // Step 2: Fetch company profiles for all stocks
+    $symbolsString = implode(',', array_column($stockData, 'symbol'));
+    $profileResponse = Http::timeout(30)->get("https://financialmodelingprep.com/api/v3/profile/{$symbolsString}?apikey={$apiKey}");
+
+    // Check if profile response is successful
+    if ($profileResponse->successful()) {
+        $profiles = $profileResponse->json();
+
+        // Step 3: Prepare data for bulk upsert
+        $upsertData = [];
+        foreach ($profiles as $profile) {
+            $symbol = strtoupper($profile['symbol']);
+            $upsertData[] = [
+                'symbol' => $symbol,
+                'name' => $profile['companyName'] ?? null,
+                'img' => $profile['image'] ?? null,
+                'price' => $faker->randomFloat(2, 100, 500),
+                'changes_percentage' => $faker->randomFloat(4, -5, 5),
+                'change' => $faker->randomFloat(2, -10, 10),
+                'day_low' => $faker->randomFloat(2, 100, 400),
+                'day_high' => $faker->randomFloat(2, 100, 400),
+                'year_low' => $faker->randomFloat(2, 50, 200),
+                'year_high' => $faker->randomFloat(2, 200, 600),
+                'market_cap' => $faker->numberBetween(1000000000, 1000000000000),
+                'price_avg_50' => $faker->randomFloat(4, 100, 500),
+                'price_avg_200' => $faker->randomFloat(4, 100, 500),
+                'exchange' => $stockData[array_search($symbol, array_column($stockData, 'symbol'))]['exchange'],
+                'volume' => $faker->numberBetween(1000000, 100000000),
+                'avg_volume' => $faker->numberBetween(1000000, 100000000),
+                'open' => $faker->randomFloat(2, 100, 500),
+                'previous_close' => $faker->randomFloat(2, 100, 500),
+                'eps' => $faker->randomFloat(2, 1, 10),
+                'pe' => $faker->randomFloat(2, 10, 50),
+                'status' => $faker->randomElement(['active', 'inactive']),
+                'tradeable' => 1,
+                'created_at' => now(),
+                'updated_at' => now(),
+            ];
+        }
+
+        // Step 4: Bulk upsert into the database
+        Stock::upsert($upsertData, ['symbol'], [
+            'name', 'img', 'price', 'changes_percentage', 'change', 
+            'day_low', 'day_high', 'year_low', 'year_high', 
+            'market_cap', 'price_avg_50', 'price_avg_200', 
+            'exchange', 'volume', 'avg_volume', 'open', 
+            'previous_close', 'eps', 'pe', 'status', 
+            'tradeable', 'updated_at'
+        ]);
+    } else {
+        Log::error("Failed to fetch profiles. Response: " . $profileResponse->body());
+    }
+}
+
+
+
 }

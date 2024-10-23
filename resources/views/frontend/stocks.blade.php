@@ -32,7 +32,29 @@
       <link rel="preload" href="{{ asset("/_next/static/css/4d3eaab52db86a87.css") }}" as="style"/>
       <link rel="stylesheet" href="{{ asset("/_next/static/css/4d3eaab52db86a87.css") }}" data-n-p=""/>
       <noscript data-n-css=""></noscript>
-      <script defer="" nomodule="" src="{{ asset("/_next/static/chunks/polyfills-c67a75d1b6f99dc8.js") }}"></script><script src="{{ asset("/_next/static/chunks/webpack-cb48a1050c34a496.js") }}" defer=""></script><script src="{{ asset("/_next/static/chunks/framework-91fae60a610506ed.js") }}" defer=""></script><script src="{{ asset("/_next/static/chunks/main-341fc34665c03a00.js") }}" defer=""></script><script src="{{ asset("/_next/static/chunks/pages/_app-e7cb7e375c42976a.js") }}" defer=""></script><script src="{{ asset("/_next/static/chunks/985eee6f-4eade319fa83b8f8.js") }}" defer=""></script><script src="{{ asset("/_next/static/chunks/4416ab45-0bd66739bd1fac0c.js") }}" defer=""></script><script src="{{ asset("/_next/static/chunks/9dcfa821-3173cdb160c1f514.js") }}" defer=""></script><script src="{{ asset("/_next/static/chunks/4301-11d6b4bfa69bf324.js") }}" defer=""></script><script src="{{ asset("/_next/static/chunks/9668-42113f1acf143b83.js") }}" defer=""></script><script src="{{ asset("/_next/static/chunks/736-bdf6bc89af83707e.js") }}" defer=""></script><script src="{{ asset("/_next/static/chunks/5408-94d00f5c5966f9f0.js") }}" defer=""></script><script src="{{ asset("/_next/static/chunks/6203-5ba58ab38ed4d1cc.js") }}" defer=""></script><script src="{{ asset("/_next/static/chunks/7923-71f1fc0e6acb2798.js") }}" defer=""></script><script src="{{ asset("/_next/static/chunks/4809-8322de3862af0018.js") }}" defer=""></script><script src="{{ asset("/_next/static/chunks/7821-1f4f8b01cdb18209.js") }}" defer=""></script><script src="{{ asset("/_next/static/chunks/6554-815002549a0ef881.js") }}" defer=""></script><script src="{{ asset("/_next/static/chunks/9691-83f5d7e4f010b041.js") }}" defer=""></script><script src="{{ asset("/_next/static/chunks/7819-dcc5444db2e5fd8d.js") }}" defer=""></script><script src="{{ asset("/_next/static/chunks/2170-8793667b8ffa6f8c.js") }}" defer=""></script><script src="{{ asset("/_next/static/chunks/pages/stock-investing-15239b59bc1f877a.js") }}" defer=""></script><script src="{{ asset("/_next/static/749324e8ecf8e90bae5ed04749785378e8720038/_buildManifest.js") }}" defer=""></script><script src="{{ asset("/_next/static/749324e8ecf8e90bae5ed04749785378e8720038/_ssgManifest.js") }}" defer=""></script>
+      <script defer="" nomodule="" src="{{ asset("/_next/static/chunks/polyfills-c67a75d1b6f99dc8.js") }}"></script>
+      <script src="{{ asset("/_next/static/chunks/webpack-cb48a1050c34a496.js") }}" defer=""></script>
+      <script src="{{ asset("/_next/static/chunks/framework-91fae60a610506ed.js") }}" defer=""></script>
+      <script src="{{ asset("/_next/static/chunks/main-341fc34665c03a00.js") }}" defer=""></script>
+      <script src="{{ asset("/_next/static/chunks/pages/_app-e7cb7e375c42976a.js") }}" defer=""></script>
+      <script src="{{ asset("/_next/static/chunks/985eee6f-4eade319fa83b8f8.js") }}" defer=""></script>
+      <script src="{{ asset("/_next/static/chunks/4416ab45-0bd66739bd1fac0c.js") }}" defer=""></script>
+      <script src="{{ asset("/_next/static/chunks/9dcfa821-3173cdb160c1f514.js") }}" defer=""></script>
+      <script src="{{ asset("/_next/static/chunks/4301-11d6b4bfa69bf324.js") }}" defer=""></script>
+      <script src="{{ asset("/_next/static/chunks/9668-42113f1acf143b83.js") }}" defer=""></script>
+      <script src="{{ asset("/_next/static/chunks/736-bdf6bc89af83707e.js") }}" defer=""></script>
+      <script src="{{ asset("/_next/static/chunks/5408-94d00f5c5966f9f0.js") }}" defer=""></script>
+      <script src="{{ asset("/_next/static/chunks/6203-5ba58ab38ed4d1cc.js") }}" defer=""></script>
+      <script src="{{ asset("/_next/static/chunks/7923-71f1fc0e6acb2798.js") }}" defer=""></script>
+      <script src="{{ asset("/_next/static/chunks/4809-8322de3862af0018.js") }}" defer=""></script>
+      <script src="{{ asset("/_next/static/chunks/7821-1f4f8b01cdb18209.js") }}" defer=""></script>
+      <script src="{{ asset("/_next/static/chunks/6554-815002549a0ef881.js") }}" defer=""></script>
+      <script src="{{ asset("/_next/static/chunks/9691-83f5d7e4f010b041.js") }}" defer=""></script>
+      <script src="{{ asset("/_next/static/chunks/7819-dcc5444db2e5fd8d.js") }}" defer=""></script>
+      <script src="{{ asset("/_next/static/chunks/2170-8793667b8ffa6f8c.js") }}" defer=""></script>
+      <script src="{{ asset("/_next/static/chunks/pages/stock-investing-15239b59bc1f877a.js") }}" defer=""></script>
+      <script src="{{ asset("/_next/static/749324e8ecf8e90bae5ed04749785378e8720038/_buildManifest.js") }}" defer=""></script>
+      <script src="{{ asset("/_next/static/749324e8ecf8e90bae5ed04749785378e8720038/_ssgManifest.js") }}" defer=""></script>
    </head>
    <body class="group/body">
       <div id="__next" data-reactroot="">
@@ -109,7 +131,7 @@
                      <div class="relative flex flex-col justify-items-center px-8 pb-16 pt-8 text-center md:pb-32 md:pt-24">
                         <div class="space-y-4 md:space-y-6 m-auto">
                            <div class="space-y-4">
-                              <h1 class="gradient-text copy-h1 overflow-visible bg-[linear-gradient(326.03deg,#bdc6f5_31.67%,#f4b896_87.99%)] py-1"><span class="copy-h2-alt block italic text-lavender2">Introducing</span><span class="whitespace-nowrap">Your shortcut to</span><br/>smarter stock investing.</h1>
+                              <h1 class="gradient-text copy-h1 overflow-visible bg-[linear-gradient(326.03deg,#bdc6f5_31.67%,#f4b896_87.99%)] py-1"><span class="copy-h2-alt block italic text-lavender2">Introducing</span><span class="whitespace-nowrap">#####Your shortcut to</span><br/>smarter stock investing.</h1>
                            </div>
                            <div class="space-y-4">
                               <p class="copy-body m-auto max-w-[550px] text-lavender2">Invest in individual stocks. Skip the endless hours of research to find companies not on your radar and see stocks in a whole new light — with fractional shares and no commissions.</p>
@@ -764,7 +786,80 @@
            cookie_domain: 'wealthfront.com',
            groups: 'marketing_rebrand_page',
          });
-      </script><script id="__NEXT_DATA__" type="application/json">{"props":{"pageProps":{"googleAnalyticsClientKey":"UA-1329988-4","title":"Your shortcut to smarter stock investing | Wealthfront","pathname":"/stock-investing","description":"Explore stocks through thoughtfully-crafted collections and build a more informed portfolio, with no commissions. Buy fractional shares and get started with $1.","openGraph":{"title":"Your shortcut to smarter stock investing | Wealthfront","image":{"url":"/next/og/stock_investing.png","width":1200,"height":628}},"urlForPrimaryCtas":"/start/account-type?intent=home","twitter":{"imageUrl":"/next/og/stock_investing.png"},"dehydratedState":{"mutations":[],"queries":[{"state":{"data":{"aumInBillions":70,"numClients":1000000},"dataUpdateCount":1,"dataUpdatedAt":1725782741999,"error":null,"errorUpdateCount":0,"errorUpdatedAt":0,"fetchFailureCount":0,"fetchFailureReason":null,"fetchMeta":null,"isInvalidated":false,"status":"success","fetchStatus":"idle"},"queryKey":["getClientGrowthMetrics"],"queryHash":"[\"getClientGrowthMetrics\"]"},{"state":{"data":{"currentRate":0.05},"dataUpdateCount":1,"dataUpdatedAt":1725782742120,"error":null,"errorUpdateCount":0,"errorUpdatedAt":0,"fetchFailureCount":0,"fetchFailureReason":null,"fetchMeta":null,"isInvalidated":false,"status":"success","fetchStatus":"idle"},"queryKey":["getLatestInterestRate"],"queryHash":"[\"getLatestInterestRate\"]"}]}},"__N_SSG":true},"page":"/stock-investing","query":{},"buildId":"749324e8ecf8e90bae5ed04749785378e8720038","isFallback":false,"gsp":true,"scriptLoader":[]}</script>
+      </script>
+      <script id = "__NEXT_DATA__" type = "application/json"> 
+         {
+            "props": {
+               "pageProps": {
+                  "title": "Your shortcut to smarter stock investing | Wealthfront",
+                  "pathname": "/stock-investing",
+                  "description": "Explore stocks through thoughtfully-crafted collections and build a more informed portfolio, with no commissions. Buy fractional shares and get started with $1.",
+                  "openGraph": {
+                     "title": "Your shortcut to smarter stock investing | Wealthfront",
+                     "image": {
+                        "url": "/next/og/stock_investing.png",
+                        "width": 1200,
+                        "height": 628
+                     }
+                  },
+                  "urlForPrimaryCtas": "/start/account-type?intent=home",
+                  "twitter": {
+                     "imageUrl": "/next/og/stock_investing.png"
+                  },
+                  "dehydratedState": {
+                     "mutations": [],
+                     "queries": [{
+                        "state": {
+                           "data": {
+                              "aumInBillions": 70,
+                              "numClients": 1000000
+                           },
+                           "dataUpdateCount": 1,
+                           "dataUpdatedAt": 1725782741999,
+                           "error": null,
+                           "errorUpdateCount": 0,
+                           "errorUpdatedAt": 0,
+                           "fetchFailureCount": 0,
+                           "fetchFailureReason": null,
+                           "fetchMeta": null,
+                           "isInvalidated": false,
+                           "status": "success",
+                           "fetchStatus": "idle"
+                        },
+                        "queryKey": ["getClientGrowthMetrics"],
+                        "queryHash": "[\"getClientGrowthMetrics\"]"
+                     }, {
+                        "state": {
+                           "data": {
+                              "currentRate": 0.05
+                           },
+                           "dataUpdateCount": 1,
+                           "dataUpdatedAt": 1725782742120,
+                           "error": null,
+                           "errorUpdateCount": 0,
+                           "errorUpdatedAt": 0,
+                           "fetchFailureCount": 0,
+                           "fetchFailureReason": null,
+                           "fetchMeta": null,
+                           "isInvalidated": false,
+                           "status": "success",
+                           "fetchStatus": "idle"
+                        },
+                        "queryKey": ["getLatestInterestRate"],
+                        "queryHash": "[\"getLatestInterestRate\"]"
+                     }]
+                  }
+               },
+               "__N_SSG": true
+            },
+            "page": "/stock-investing",
+            "query": {},
+            "buildId": "749324e8ecf8e90bae5ed04749785378e8720038",
+            "isFallback": false,
+            "gsp": true,
+            "scriptLoader": []
+         } 
+      </script>
    </body>
-   <!-- Mirrored from www.wealthfront.com/stock-investing by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 08 Sep 2024 20:12:59 GMT -->
+   
 </html>

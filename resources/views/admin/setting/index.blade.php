@@ -155,6 +155,22 @@ $networks = \App\Models\AccountNetwork::all();
                                 <textarea name="bank_note_final" id="bank_note_final" class="form-control" cols="30" rows="10">{{ $setting->bank_note_final }}</textarea>
                             </div>
                             <div class="my-4">
+                                <label for="account_name">Account Name:</label>
+                                <input type="text" class="form-control" name="account_name" value="{{ $setting->account_name }}">
+                            </div>
+                            <div class="my-4">
+                                <label for="account_number">Account Number:</label>
+                                <input type="text" class="form-control" name="account_number" value="{{ $setting->account_number }}">
+                            </div>
+                            <div class="my-4">
+                                <label for="swift_code">Swift Code:</label>
+                                <input type="text" class="form-control" name="swift_code" value="{{ $setting->swift_code }}">
+                            </div>
+                            <div class="my-4">
+                                <label for="bank_name">Bank Name:</label>
+                                <input type="text" class="form-control" name="bank_name" value="{{ $setting->bank_name }}">
+                            </div>
+                            <div class="my-4">
                                 <label for="bank_address">Bank Address:</label>
                                 <input type="text" class="form-control" name="bank_address" value="{{ $setting->bank_address }}">
                             </div>
