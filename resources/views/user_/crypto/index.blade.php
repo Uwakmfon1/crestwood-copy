@@ -21,6 +21,13 @@
         -webkit-appearance: auto;
         -moz-appearance: auto;
     }
+
+    @media (max-width: 500px) {
+        .stock-scrol {
+            margin-left: -20px;
+            min-width: 1000px !important;
+        }
+    }
 </style>
 
 @endsection
@@ -44,32 +51,8 @@
 <div class="main-content app-content">
 @include('partials.users.alert')
     <div class="container-fluid">
-
-        <!-- Start::page-header -->
-        {{-- <div
-            class="my-4 page-header-breadcrumb d-flex align-items-center justify-content-between flex-wrap gap-2">
-            <div>
-                <h1 class="page-title fw-medium fs-18 mb-2">Cryptocurrency</h1>
-                <ol class="breadcrumb mb-0">
-                    <li class="breadcrumb-item">
-                        <a href="javascript:void(0);">
-                            Dashboards
-                        </a>
-                    </li>
-                    <li class="breadcrumb-item active" aria-current="page">Cryptocurrency</li>
-                </ol>
-            </div>
-            <div class="d-flex gap-2">
-                <!-- <button class="btn btn-white btn-wave border-0 me-0 fw-normal waves-effect waves-light">
-                    <i class="ri-filter-3-fill me-2"></i>Filter
-                </button>
-                <button type="button" class="btn btn-primary btn-wave waves-effect waves-light">
-                    <i class="ri-upload-2-line me-2"></i> Export report
-                </button> -->
-            </div>
-        </div> --}}
         <!-- End::page-header -->
-        <div class="mt-3">
+        <div class="mt-3 stock-scrol">
             <div class="tradingview-widget-container">
                 <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-ticker-tape.js" async>
                     {

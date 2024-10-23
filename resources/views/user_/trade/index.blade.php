@@ -21,6 +21,12 @@
         -webkit-appearance: auto;
         -moz-appearance: auto;
     }
+    @media (max-width: 500px) {
+        .stock-scrol {
+            margin-left: -20px;
+            min-width: 1000px !important;
+        }
+    }
 </style>
 
 @endsection
@@ -44,7 +50,7 @@
 <div class="main-content app-content">
 @include('partials.users.alert')
     <div class="container-fluid">
-        <div class="mt-3">
+        <div class="mt-3 stock-scrol">
             <div class="tradingview-widget-container">
                 <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-ticker-tape.js" async>
                     {
