@@ -21,9 +21,11 @@ class StocksSeeder extends Seeder
         $apiKey = 'ExYlr0LoPC6GqCmzuScjwq79Fn4Krx77';
 
         // Step 1: Fetch stock data from API
-        $response = Http::get('https://financialmodelingprep.com/api/v3/stock/list?apikey=' . $apiKey);
+        // $response = Http::get('https://financialmodelingprep.com/api/v3/stock/list?apikey=' . $apiKey);
+        $response = Http::get('https://financialmodelingprep.com/api/v3/symbol/NASDAQ?apikey=' . $apiKey);
 
         if ($response->successful()) {
+            Log::info("Data Fetched✅");
             $stocks = $response->json();
 
             // Prepare stocks data for fetching profiles
