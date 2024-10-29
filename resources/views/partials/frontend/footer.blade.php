@@ -32,7 +32,7 @@
                                     <a class="footer__menu__item" href="{{ route('checking') }}" target="" data-track-event="ElementClicked" data-track-name="Checking" data-track-module="Footer" data-interaction-listener-registered="true">Checking</a>
                                  </li>
                                  <li>
-                                    <a class="footer__menu__item" href="{{ route('trust') }}" target="" data-track-event="ElementClicked" data-track-name="Trusts" data-track-module="Footer" data-interaction-listener-registered="true">Trusts</a>
+                                    <a class="footer__menu__item" href="{{ route('reserve') }}" target="" data-track-event="ElementClicked" data-track-name="Trusts" data-track-module="Footer" data-interaction-listener-registered="true">Trusts</a>
                                  </li>
                               </ul>
                            </li>
