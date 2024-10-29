@@ -14,7 +14,7 @@
                               <div class="footer-menu-title">Accounts</div>
                               <ul>
                                  <li>
-                                    <a class="footer__menu__item" href="{{ route('#') }}" target="" data-track-event="ElementClicked" data-track-name="Investing" data-track-module="Footer" data-interaction-listener-registered="true">Investing</a>
+                                    <a class="footer__menu__item" href="#" target="" data-track-event="ElementClicked" data-track-name="Investing" data-track-module="Footer" data-interaction-listener-registered="true">Investing</a>
                                  </li>
                                  <li>
                                     <a class="footer__menu__item" href="{{ route('cryptoinvest') }}" target="" data-track-event="ElementClicked" data-track-name="Crypto investing" data-track-module="Footer" data-interaction-listener-registered="true">Crypto investing</a>
