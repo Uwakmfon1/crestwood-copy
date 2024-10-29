@@ -26,6 +26,31 @@ use App\Http\Controllers\TradingController;
 */
 
 Route::get('/', [FrontendController::class, 'index'])->name('home');
+Route::get('/bonds', [FrontendController::class, 'bonds'])->name('bonds');
+Route::get('/ira', [FrontendController::class, 'ira'])->name('ira');
+Route::get('/portfolio', [FrontendController::class, 'portfolio'])->name('portfolio');
+Route::get('/socially', [FrontendController::class, 'socially'])->name('socially');
+Route::get('/crypto', [FrontendController::class, 'crypto'])->name('cryptoinvest');
+Route::get('/performance', [FrontendController::class, 'performance'])->name('performance');
+Route::get('/reserve', [FrontendController::class, 'reserve'])->name('reserve');
+Route::get('/checking', [FrontendController::class, 'checking'])->name('checking');
+Route::get('/rewards', [FrontendController::class, 'rewards'])->name('rewards');
+Route::get('/expert', [FrontendController::class, 'expert'])->name('expert');
+Route::get('/retirement', [FrontendController::class, 'retirement'])->name('retirement');
+Route::get('/goals', [FrontendController::class, 'goals'])->name('goals');
+Route::get('/dash', [FrontendController::class, 'dash'])->name('dash');
+Route::get('/about', [FrontendController::class, 'about'])->name('about');
+Route::get('/review', [FrontendController::class, 'review'])->name('review');
+Route::get('/philosophy', [FrontendController::class, 'philosophy'])->name('philosophy');
+Route::get('/pricing', [FrontendController::class, 'pricing'])->name('pricing');
+Route::get('/press', [FrontendController::class, 'press'])->name('press');
+Route::get('/article', [FrontendController::class, 'article'])->name('article');
+Route::get('/video', [FrontendController::class, 'video'])->name('video');
+Route::get('/employee', [FrontendController::class, 'employee'])->name('employee');
+Route::get('/help', [FrontendController::class, 'help'])->name('help');
+Route::get('/faq', [FrontendController::class, 'faq'])->name('faq');
+
+
 Route::get('/investing', [FrontendController::class, 'investment'])->name('investment');
 Route::get('/cash', [FrontendController::class, 'cash'])->name('cash');
 Route::get('/stocks', [FrontendController::class, 'stocks'])->name('stocks');

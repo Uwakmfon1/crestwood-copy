@@ -14,6 +14,7 @@ use App\Models\Referral;
 use App\Models\Investment;
 use App\Models\Transaction;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Notification;
@@ -359,56 +360,107 @@ class CommandController extends Controller
 
     public static function updateStocks($command) 
     {
-        // Fetch stock data from an external API (replace with actual API)
-        $apiUrl = 'https://financialmodelingprep.com/api/v3/quote/AAPL,GOOGL,AMZN,MSFT,TSLA,FB,JPM,V,A,PG,JNJ,MA,NVDA,UNH,BRK.B,HD,DIS,INTC,VZ,PYPL,CMCSA,PFE,ADBE,CRM,XOM,CSCO,IBM,ABT,ACN,BAC,ORCL,COST,TMO,ABBV,NFLX,T,XEL,MDT,NKE,AMGN,CVS,TMUS,DHR,LMT,NEE,HON,BMY,COP?apikey=ExYlr0LoPC6GqCmzuScjwq79Fn4Krx77'; // Replace with your real API
-        $response = Http::get($apiUrl);
+        // // Fetch stock data from an external API (replace with actual API)
+        // $apiUrl = 'https://financialmodelingprep.com/api/v3/quote/AAPL,GOOGL,AMZN,MSFT,TSLA,FB,JPM,V,A,PG,JNJ,MA,NVDA,UNH,BRK.B,HD,DIS,INTC,VZ,PYPL,CMCSA,PFE,ADBE,CRM,XOM,CSCO,IBM,ABT,ACN,BAC,ORCL,COST,TMO,ABBV,NFLX,T,XEL,MDT,NKE,AMGN,CVS,TMUS,DHR,LMT,NEE,HON,BMY,COP?apikey=ExYlr0LoPC6GqCmzuScjwq79Fn4Krx77'; // Replace with your real API
+        // $response = Http::get($apiUrl);
 
-        // Check if API request was successful
-        if ($response->successful()) {
-            $stocksData = $response->json(); // Assuming this returns a list of stocks data
+        // // Check if API request was successful
+        // if ($response->successful()) {
+        //     $stocksData = $response->json(); // Assuming this returns a list of stocks data
 
-            // Iterate through the stocks returned from the API
-            foreach ($stocksData as $stockData) {
-                try {
-                    // Attempt to find the stock by symbol in the database
-                    $stock = Stock::where('symbol', $stockData['symbol'])->first();
+        //     // Iterate through the stocks returned from the API
+        //     foreach ($stocksData as $stockData) {
+        //         try {
+        //             // Attempt to find the stock by symbol in the database
+        //             $stock = Stock::where('symbol', $stockData['symbol'])->first();
 
-                    // Only update if the stock exists in the database
-                    if ($stock) {
-                        // Update only the price and related fields
-                        $stock->update([
-                            'price' => $stockData['price'],
-                            'changes_percentage' => $stockData['changesPercentage'], // Changed key to match API
-                            'change' => $stockData['change'],
-                            'day_low' => $stockData['dayLow'], // Changed key to match API
-                            'day_high' => $stockData['dayHigh'], // Changed key to match API
-                            'year_low' => $stockData['yearLow'], // Changed key to match API
-                            'year_high' => $stockData['yearHigh'], // Changed key to match API
-                            'market_cap' => $stockData['marketCap'], // Changed key to match API
-                            'price_avg_50' => $stockData['priceAvg50'], // Changed key to match API
-                            'price_avg_200' => $stockData['priceAvg200'], // Changed key to match API
-                            'volume' => $stockData['volume'],
-                            'avg_volume' => $stockData['avgVolume'], // Changed key to match API
-                            'open' => $stockData['open'],
-                            'previous_close' => $stockData['previousClose'], // Changed key to match API
-                            'eps' => $stockData['eps'],
-                            'pe' => $stockData['pe'],
-                        ]);
-                        $command->info("Updated stock: {$stock->symbol}");
-                    } else {
-                        $command->warn("Stock with symbol {$stockData['symbol']} not found.");
-                    }
-                } catch (\Exception $e) {
-                    // Log any errors encountered while processing a stock
-                    Log::error("Error updating stock {$stockData['symbol']}: " . $e->getMessage());
+        //             // Only update if the stock exists in the database
+        //             if ($stock) {
+        //                 // Update only the price and related fields
+        //                 $stock->update([
+        //                     'price' => $stockData['price'],
+        //                     'changes_percentage' => $stockData['changesPercentage'], // Changed key to match API
+        //                     'change' => $stockData['change'],
+        //                     'day_low' => $stockData['dayLow'], // Changed key to match API
+        //                     'day_high' => $stockData['dayHigh'], // Changed key to match API
+        //                     'year_low' => $stockData['yearLow'], // Changed key to match API
+        //                     'year_high' => $stockData['yearHigh'], // Changed key to match API
+        //                     'market_cap' => $stockData['marketCap'], // Changed key to match API
+        //                     'price_avg_50' => $stockData['priceAvg50'], // Changed key to match API
+        //                     'price_avg_200' => $stockData['priceAvg200'], // Changed key to match API
+        //                     'volume' => $stockData['volume'],
+        //                     'avg_volume' => $stockData['avgVolume'], // Changed key to match API
+        //                     'open' => $stockData['open'],
+        //                     'previous_close' => $stockData['previousClose'], // Changed key to match API
+        //                     'eps' => $stockData['eps'],
+        //                     'pe' => $stockData['pe'],
+        //                 ]);
+        //                 $command->info("Updated stock: {$stock->symbol}");
+        //             } else {
+        //                 $command->warn("Stock with symbol {$stockData['symbol']} not found.");
+        //             }
+        //         } catch (\Exception $e) {
+        //             // Log any errors encountered while processing a stock
+        //             Log::error("Error updating stock {$stockData['symbol']}: " . $e->getMessage());
+        //         }
+        //     }
+        // } else {
+        //     // Log if the API request fails
+        //     Log::error("Failed to fetch stock data. Status: " . $response->status());
+        //     $command->error('Failed to fetch stock data.');
+        // }
+
+        //::::::: STOCK DATA  ::::::://
+        $stockSymbols = DB::table('stocks')->pluck('symbol')->chunk(100); // Chunk to handle large data sets
+        $command->info("Starting stock updates...");
+
+        foreach ($stockSymbols as $chunk) {
+            $symbolString = implode(',', $chunk->toArray());
+            $apiUrl = "https://financialmodelingprep.com/api/v3/quote/{$symbolString}?apikey=ExYlr0LoPC6GqCmzuScjwq79Fn4Krx77";
+
+            $response = Http::get($apiUrl);
+
+            if ($response->successful()) {
+                foreach ($response->json() as $data) {
+                    DB::table('stocks')->updateOrInsert(
+                        ['symbol' => $data['symbol']],
+                        [
+                            'price' => $data['price'],
+                            'changes_percentage' => $data['changesPercentage'],
+                            'change' => $data['change'],
+                            'day_low' => $data['dayLow'],
+                            'day_high' => $data['dayHigh'],
+                            'year_low' => $data['yearLow'],
+                            'year_high' => $data['yearHigh'],
+                            'market_cap' => $data['marketCap'],
+                            'price_avg_50' => $data['priceAvg50'],
+                            'price_avg_200' => $data['priceAvg200'],
+                            'volume' => $data['volume'],
+                            'avg_volume' => $data['avgVolume'],
+                            'open' => $data['open'],
+                            'previous_close' => $data['previousClose'],
+                            'eps' => $data['eps'],
+                            'pe' => $data['pe'],
+                        ]
+                    );
+                    $command->info("Updated stock: {$data['symbol']}");
                 }
+            } else {
+                Log::error("Failed to fetch stock data. Status: " . $response->status());
+                $command->error("Failed to fetch stock data for chunk: " . $symbolString);
             }
-        } else {
-            // Log if the API request fails
-            Log::error("Failed to fetch stock data. Status: " . $response->status());
-            $command->error('Failed to fetch stock data.');
         }
+        $command->info("Stock updates completed.");
 
+
+
+
+
+
+
+
+
+        //::::::: CRYPTO DATA  ::::::://
         $cryptos = [
             ['symbol' => 'BTCUSD', 'name' => 'Bitcoin', 'img' => 'https://upload.wikimedia.org/wikipedia/commons/thumb/4/46/Bitcoin.svg/1200px-Bitcoin.svg.png'],
             ['symbol' => 'ETHUSD', 'name' => 'Ethereum', 'img' => 'https://upload.wikimedia.org/wikipedia/commons/0/05/Ethereum_logo_2014.svg'],

@@ -1,0 +1,1 @@
+var module_1634056485=void(()=>{"use strict";document.querySelectorAll(".table-comparison").forEach((e=>{e.querySelector(".col-1").addEventListener("scroll",(e=>{var t=e.target,l=t.clientWidth;t.querySelector("table").getBoundingClientRect().right>=l+5?t.closest(".bt-row").classList.remove("scroll-end"):t.closest(".bt-row").classList.add("scroll-end")}))}))})();

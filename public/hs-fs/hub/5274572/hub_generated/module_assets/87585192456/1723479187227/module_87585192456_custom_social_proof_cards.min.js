@@ -1,0 +1,1 @@
+var module_87585192456=void(()=>{"use strict";const e=document.querySelectorAll(".social-proof-cards");e.length>0&&e.forEach((e=>{e.closest(".dnd-module").style.minHeight=0}))})();
