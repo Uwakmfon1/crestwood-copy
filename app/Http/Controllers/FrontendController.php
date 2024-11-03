@@ -134,6 +134,31 @@ class FrontendController extends Controller
     {
         return view('frontend.faq');
     }
+
+    public function career()
+    {
+        return view('frontend.career');
+    }
+
+    public function charitable()
+    {
+        return view('frontend.charitable');
+    }
+
+    public function howitworks()
+    {
+        return view('frontend.howitworks');
+    }
+
+    public function referal()
+    {
+        return view('frontend.referal');
+    }
+
+    public function tax()
+    {
+        return view('frontend.tax');
+    }
     
 
 

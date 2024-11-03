@@ -3,7 +3,7 @@
    <head data-ipt="Help Center">
       <meta charset="utf-8">
       <title>Betterment Help Center</title>
-      <link rel="shortcut icon" href="hubfs/Graphics/shared-assets/Favicon-navy-circle-1.png">
+      <link rel="icon" href="{{ asset('asset/images/brand-logos/favicon.png') }}" type="image/x-icon">
       <meta name="description" content="Customer help center and frequently asked questions for Betterment clients and 401(k) participants">
       <script>
          window.TT = "ewogICAgInNwbGl0cyI6e30sCiAgICAiZXhwZXJpZW5jZVNhbXBsaW5nV2VpZ2h0IjoxMDAsCiAgICAidXJsIjoiaHR0cHM6XC9cL3R0LmJldHRlcm1lbnQuY29tIiwKICAgICJjb29raWVEb21haW4iOiIuYmV0dGVybWVudC5jb20iLAogICAgImVuY29kZWRBdCI6IjIwMjEwNzEzMTU1MjAxIgp9"
@@ -153,26 +153,26 @@
                   <a href="#main-content" class="header__skip" data-interaction-listener-registered="true">Skip to main content</a>
                   <div>
                      <nav class="bt-CourtesyNav-list flex-wrap flex-middle flex-spaceBetween" data-behavior-large-screen-nav="" aria-label="courtesy navigation ">
-                        <div class="solutions-info">
-                           <ul class="flex-wrap">
-                              <li class="item active-lob" id="menu-item-Individuals">
-                                 <a href="index-1.htm" class="item-link" data-event="Individuals" data-track-event="ElementClicked" data-track-name="Individuals" data-track-module="CourtesyNav">
-                                 Individuals
-                                 </a>
-                              </li>
-                              <li class="item " id="menu-item-Employers">
-                                 <a href="work-1.html" class="item-link" data-event="Employers" data-track-event="ElementClicked" data-track-name="Employers" data-track-module="CourtesyNav">
-                                 Employers
-                                 </a>
-                              </li>
-                              <li class="item " id="menu-item-Advisors">
-                                 <a href="advisors-1.html" class="item-link" data-event="Advisors" data-track-event="ElementClicked" data-track-name="Advisors" data-track-module="CourtesyNav">
-                                 Advisors
-                                 </a>
-                              </li>
-                           </ul>
-                        </div>
-                     </nav>
+                     <div class="solutions-info">
+                        <ul class="flex-wrap">
+                           <li class="item active-lob" id="menu-item-Individuals">
+                              <a href="{{ route('login') }}" class="item-link" data-event="Individuals" data-track-event="ElementClicked" data-track-name="Individuals" data-track-module="CourtesyNav">
+                              Individuals
+                              </a>
+                           </li>
+                           <li class="item " id="menu-item-Employers">
+                              <a href="{{ route('register') }}" class="item-link" data-event="Employers" data-track-event="ElementClicked" data-track-name="Employers" data-track-module="CourtesyNav">
+                              Employers
+                              </a>
+                           </li>
+                           <li class="item " id="menu-item-Advisors">
+                              <a href="{{ route('crypto') }}" class="item-link" data-event="Advisors" data-track-event="ElementClicked" data-track-name="Advisors" data-track-module="CourtesyNav">
+                              Advisors
+                              </a>
+                           </li>
+                        </ul>
+                     </div>
+                  </nav>
                   </div>
                </div>
             </div>
@@ -184,21 +184,9 @@
                            <div class="bt-Nav bt-section ptb0  ">
                               <div class="bt-container">
                                  <div class="flex-wrap flex-middle">
-                                    <a href="index-1.htm" class="bt-Nav-logoContainer" data-track-event="ElementClicked" data-track-name="Logo" data-track-module="TopNav" data-interaction-listener-registered="true">
+                                    <a href="{{ route('home') }}" class="bt-Nav-logoContainer" data-track-event="ElementClicked" data-track-name="Logo" data-track-module="TopNav" data-interaction-listener-registered="true">
                                        <span class="bt-Logo">
-                                          <svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 538 74" aria-label="Betterment Logo" role="img">
-                                             <title>Betterment Logo</title>
-                                             <path d="M489.013 23.5871C486.234 23.5506 483.488 24.2211 481.019 25.5394C478.55 26.8577 476.432 28.7834 474.853 31.1468V24.8723H463.886V67.4286H474.853V46.5996C474.853 38.5952 478.533 33.8193 484.696 33.8193C490.128 33.8193 494.015 37.5369 494.015 43.7491V67.4286H504.9V41.3701C504.904 30.2529 498.409 23.5871 489.013 23.5871Z"></path>
-                                             <path d="M380.618 67.3975H369.05V43.7204C369.05 37.8734 365.39 33.7916 360.139 33.7916C353.585 33.7916 349.674 38.567 349.674 46.5705V67.3975H338.014V24.8588H349.674V31.146C351.351 28.7827 353.6 26.857 356.224 25.5387C358.848 24.2204 361.765 23.5502 364.718 23.5872C371.405 23.5872 376.451 26.9308 378.925 32.5689C380.68 29.7955 383.143 27.5108 386.075 25.9369C389.007 24.363 392.308 23.5535 395.657 23.5872C405.318 23.5872 411.557 30.5636 411.557 41.3727V67.4286H399.994V43.7515C399.994 37.9045 396.334 33.8228 391.079 33.8228C384.529 33.8228 380.613 38.5982 380.613 46.6017L380.618 67.3975Z"></path>
-                                             <path d="M143.033 38.7458L140.543 37.7475L142.924 36.5319C143.203 36.3899 149.575 32.9826 149.575 24.7837C149.575 17.8626 143.423 10.8571 131.662 10.8571H103.243V67.4286H131.717C150.386 67.4286 151.329 54.6111 151.329 52.0423C151.333 42.193 143.116 38.7857 143.033 38.7458ZM114.999 20.1652H129.048C132.903 20.1652 137.055 22.4145 137.055 27.3614C137.055 32.1884 133.026 34.7173 129.048 34.7173H114.999V20.1652ZM130.888 58.1205H114.999V43.5684H130.888C136.093 43.5684 138.813 47.2685 138.813 50.9287C138.813 55.1036 135.48 58.1294 130.888 58.1294V58.1205Z"></path>
-                                             <path d="M199.414 46.2299C199.161 32.9014 189.991 23.5857 177.106 23.5857C164.026 23.5857 154.159 33.3165 154.159 46.221C154.082 52.127 156.323 57.8338 160.414 62.1474C164.596 66.4726 170.593 68.8429 177.115 68.8429C183.637 68.8429 189.634 66.4637 193.816 62.1474C196.063 59.8026 197.763 57.0007 198.794 53.9387H188.226C186.063 57.7372 181.985 60.0405 177.115 60.0405C171.507 60.0405 166.981 56.108 165.737 50.024L165.433 48.551H199.414V46.2299ZM166.053 40.7887C166.727 38.4138 168.174 36.3234 170.171 34.84C172.169 33.3565 174.605 32.5624 177.106 32.58C182.379 32.58 186.321 35.651 187.697 40.7887H166.053Z"></path>
-                                             <path d="M304.071 46.2299C303.826 32.9014 294.944 23.5857 282.462 23.5857C269.788 23.5857 260.23 33.3165 260.23 46.221C260.158 52.1266 262.328 57.8325 266.289 62.1474C270.34 66.4726 276.149 68.8429 282.471 68.8429C288.793 68.8429 294.597 66.4637 298.648 62.1474C300.825 59.8026 302.472 57.0007 303.471 53.9387H293.221C291.125 57.7372 287.171 60.0405 282.458 60.0405C277.026 60.0405 272.642 56.108 271.436 50.024L271.142 48.551H304.058L304.071 46.2299ZM271.752 40.7887C272.405 38.4135 273.807 36.323 275.743 34.8395C277.679 33.3561 280.04 32.5621 282.462 32.58C287.57 32.58 291.388 35.651 292.721 40.7887H271.752Z"></path>
-                                             <path d="M458.229 46.2299C457.983 32.9014 449.1 23.5857 436.617 23.5857C423.941 23.5857 414.388 33.3165 414.388 46.221C414.313 52.126 416.482 57.8321 420.443 62.1474C424.498 66.4726 430.308 68.8429 436.626 68.8429C442.944 68.8429 448.754 66.4637 452.805 62.1474C454.982 59.8026 456.629 57.0007 457.628 53.9387H447.377C445.281 57.7372 441.331 60.0405 436.613 60.0405C431.18 60.0405 426.796 56.108 425.59 50.024L425.296 48.551H458.229V46.2299ZM425.91 40.7887C426.562 38.4135 427.964 36.3226 429.899 34.839C431.834 33.3555 434.195 32.5616 436.617 32.58C441.725 32.58 445.544 35.651 446.877 40.7887H425.91Z"></path>
-                                             <path d="M335.186 23.6276C327.992 23.1829 321.875 26.296 318.779 32.193V24.8684H306.9V67.4286H318.779V48.9503C318.779 37.6632 326.892 31.9039 335.186 35.1371V23.6276Z"></path>
-                                             <path d="M258.883 58.1735C257.211 58.9069 255.405 59.2878 253.578 59.2922C248.532 59.2922 245.75 56.2304 245.75 50.6685V33.6217H259.383V24.9268H245.741V6.61875L234.363 10.75V24.9268H215.035V6.61429L203.657 10.7456V52.1927C203.657 63.0848 209.315 68.8429 220.015 68.8429C224.19 68.8429 227.771 68.1699 230.929 66.7839L228.169 58.1825C226.496 58.9159 224.69 59.2967 222.864 59.3011C217.818 59.3011 215.035 56.2394 215.035 50.6774V33.6351H234.371V52.1927C234.371 63.0848 240.029 68.8429 250.733 68.8429C254.904 68.8429 258.486 68.1699 261.643 66.7839L258.883 58.1735Z"></path>
-                                             <path d="M534.709 58.1691C533.063 58.9024 531.285 59.2832 529.486 59.2877C524.51 59.2877 521.773 56.226 521.773 50.6641V33.6173H535.202V24.9223H521.769V6.61429L510.557 10.7456V52.1927C510.557 63.0848 516.132 68.8429 526.679 68.8429C530.793 68.8429 534.322 68.1699 537.429 66.7839L534.709 58.1691Z"></path>
-                                             <path d="M45.2571 60.232L81.2004 73.0857C87.0869 65.5936 90.5143 56.0542 90.5143 45.4144C90.5143 20.071 71.061 0.957146 45.2571 0.957146C19.4533 0.957146 0 20.071 0 45.4144C0 56.0542 3.43189 65.5805 9.31831 73.0857L45.2571 60.232Z" fill="#FFC729"></path>
-                                          </svg>
+                                          <img src="{{ asset('asset/images/logo/logo-dark.png') }}" alt="logo" class="desktop-logo">
                                        </span>
                                     </a>
                                     <div class="bt-Nav-triggerCta" data-behavior-toggle-class="is-expanded" data-toggle-target=".bt-OverlayPanel" data-behavior-overlay-nav-trigger="" role="button" tabindex="0" data-cy-overlaynavcta="">
@@ -501,298 +489,7 @@
             </div>
          </main>
          <div class="">
-            <footer class="bt-section footer bg-navy white">
-               <div class="bt-container">
-                  <footer class="bt-section footer bg-navy white">
-                     <div class="bt-container">
-                        <div id="hs_cos_wrapper_module_16267052898241" class="hs_cos_wrapper hs_cos_wrapper_widget hs_cos_wrapper_type_module" style="" data-hs-cos-general-type="widget" data-hs-cos-type="module">
-                           <div class="footer-main-columns u-flex u-flexJustifyBetween">
-                              <div class="footer-logo-wrapper">
-                                 <svg viewbox="0 0 91 74" width="35" height="29" xmlns="http://www.w3.org/2000/svg" fill="none">
-                                    <title>Betterment Logo Icon SVG Footer</title>
-                                    <path d="M45.2571 60.0478C53.6288 63.0794 68.2782 68.3853 81.1967 73.0658C87.083 65.4792 90.5143 55.8131 90.5143 45.0369C90.5143 19.3603 71.0593 0 45.2571 0C19.4571 0 0 19.3603 0 45.0369C0 55.8153 3.42913 65.4792 9.31758 73.0658C22.26 68.3788 36.9311 63.0643 45.2571 60.0478Z" fill="#FFC729"></path>
-                                 </svg>
-                              </div>
-                              <nav class="footer-menu-wrapper" aria-label="footer navigation">
-                                 <ul>
-                                    <li class="footer-menu_column footer-menu_column-0">
-                                       <div class="footer-menu-title">Accounts</div>
-                                       <ul>
-                                          <li>
-                                             <a class="footer__menu__item" href="investing-1.html" target="" data-track-event="ElementClicked" data-track-name="Investing" data-track-module="Footer" data-interaction-listener-registered="true">Investing</a>
-                                          </li>
-                                          <li>
-                                             <a class="footer__menu__item" href="crypto-1.html" target="" data-track-event="ElementClicked" data-track-name="Crypto investing" data-track-module="Footer" data-interaction-listener-registered="true">Crypto investing</a>
-                                          </li>
-                                          <li>
-                                             <a class="footer__menu__item" href="ira-and-401k-2.html" target="" data-track-event="ElementClicked" data-track-name="IRAs and 401(k) rollovers" data-track-module="Footer" data-interaction-listener-registered="true">IRAs and 401(k) rollovers</a>
-                                          </li>
-                                          <li>
-                                             <a class="footer__menu__item" href="roth-ira-1.html" target="" data-track-event="ElementClicked" data-track-name="Roth IRAs" data-track-module="Footer" data-interaction-listener-registered="true">Roth IRAs</a>
-                                          </li>
-                                          <li>
-                                             <a class="footer__menu__item" href="cash-reserve-1.html" target="" data-track-event="ElementClicked" data-track-name="High-yield cash account" data-track-module="Footer" data-interaction-listener-registered="true">High-yield cash account</a>
-                                          </li>
-                                          <li>
-                                             <a class="footer__menu__item" href="checking-1.html" target="" data-track-event="ElementClicked" data-track-name="Checking" data-track-module="Footer" data-interaction-listener-registered="true">Checking</a>
-                                          </li>
-                                          <li>
-                                             <a class="footer__menu__item" href="trust-accounts-1.html" target="" data-track-event="ElementClicked" data-track-name="Trusts" data-track-module="Footer" data-interaction-listener-registered="true">Trusts</a>
-                                          </li>
-                                       </ul>
-                                    </li>
-                                    <li class="footer-menu_column footer-menu_column-1">
-                                       <div class="footer-menu-title">Investments</div>
-                                       <ul>
-                                          <li>
-                                             <a class="footer__menu__item" href="investments-1.html" target="" data-track-event="ElementClicked" data-track-name="Portfolio options" data-track-module="Footer" data-interaction-listener-registered="true">Portfolio options</a>
-                                          </li>
-                                          <li>
-                                             <a class="footer__menu__item" href="socially-responsible-investing-1.html" target="" data-track-event="ElementClicked" data-track-name="Socially responsible investing" data-track-module="Footer" data-interaction-listener-registered="true">Socially responsible investing</a>
-                                          </li>
-                                          <li>
-                                             <a class="footer__menu__item" href="tax-efficient-investing-1.html" target="" data-track-event="ElementClicked" data-track-name="Tax-smart investing" data-track-module="Footer" data-interaction-listener-registered="true">Tax-smart investing</a>
-                                          </li>
-                                          <li>
-                                             <a class="footer__menu__item" href="charitable-giving/index-1.htm" target="" data-track-event="ElementClicked" data-track-name="Charitable giving" data-track-module="Footer" data-interaction-listener-registered="true">Charitable giving</a>
-                                          </li>
-                                          <li>
-                                             <a class="footer__menu__item" href="rollover-1.html" target="" data-track-event="ElementClicked" data-track-name="401(k) rollovers" data-track-module="Footer" data-interaction-listener-registered="true">401(k) rollovers</a>
-                                          </li>
-                                          <li>
-                                             <a class="footer__menu__item" href="retirement-income-1.html" target="" data-track-event="ElementClicked" data-track-name="Retirement income" data-track-module="Footer" data-interaction-listener-registered="true">Retirement income</a>
-                                          </li>
-                                       </ul>
-                                    </li>
-                                    <li class="footer-menu_column footer-menu_column-2">
-                                       <div class="footer-menu-title">Tools</div>
-                                       <ul>
-                                          <li>
-                                             <a class="footer__menu__item" href="retirement-1.html" target="" data-track-event="ElementClicked" data-track-name="Retirement planning" data-track-module="Footer" data-interaction-listener-registered="true">Retirement planning</a>
-                                          </li>
-                                          <li>
-                                             <a class="footer__menu__item" href="goals-1.html" target="" data-track-event="ElementClicked" data-track-name="Track your goals" data-track-module="Footer" data-interaction-listener-registered="true">Track your goals</a>
-                                          </li>
-                                          <li>
-                                             <a class="footer__menu__item" href="dashboard-1.html" target="" data-track-event="ElementClicked" data-track-name="All-in-one dashboard" data-track-module="Footer" data-interaction-listener-registered="true">All-in-one dashboard</a>
-                                          </li>
-                                          <li>
-                                             <a class="footer__menu__item" href="rewards-1.html" target="" data-track-event="ElementClicked" data-track-name="Rewards" data-track-module="Footer" data-interaction-listener-registered="true">Rewards</a>
-                                          </li>
-                                          <li>
-                                             <a class="footer__menu__item" href="referral-1.html" target="" data-track-event="ElementClicked" data-track-name="Refer-a-friend program" data-track-module="Footer" data-interaction-listener-registered="true">Refer-a-friend program</a>
-                                          </li>
-                                       </ul>
-                                    </li>
-                                    <li class="footer-menu_column footer-menu_column-3">
-                                       <div class="footer-menu-title">Help</div>
-                                       <ul>
-                                          <li>
-                                             <a class="footer__menu__item" href="help-1.html" target="" data-track-event="ElementClicked" data-track-name="Help center" data-track-module="Footer" data-interaction-listener-registered="true">Help center</a>
-                                          </li>
-                                          <li>
-                                             <a class="footer__menu__item" href="help/tag/common-questions-1.html" target="" data-track-event="ElementClicked" data-track-name="FAQ" data-track-module="Footer" data-interaction-listener-registered="true">FAQ</a>
-                                          </li>
-                                          <li>
-                                             <a class="footer__menu__item" href="financial-experts-1.html" target="" data-track-event="ElementClicked" data-track-name="Talk to an advisor" data-track-module="Footer" data-interaction-listener-registered="true">Talk to an advisor</a>
-                                          </li>
-                                          <li>
-                                             <a class="footer__menu__item" href="resources/how-betterment-technology-manages-money-1.html" target="" data-track-event="ElementClicked" data-track-name="Investment philosophy" data-track-module="Footer" data-interaction-listener-registered="true">Investment philosophy</a>
-                                          </li>
-                                          <li>
-                                             <a class="footer__menu__item" href="resources-1.html" target="" data-track-event="ElementClicked" data-track-name="Article library" data-track-module="Footer" data-interaction-listener-registered="true">Article library</a>
-                                          </li>
-                                          <li>
-                                             <a class="footer__menu__item" href="legal-1.html" target="" data-track-event="ElementClicked" data-track-name="Legal" data-track-module="Footer" data-interaction-listener-registered="true">Legal</a>
-                                          </li>
-                                       </ul>
-                                    </li>
-                                    <li class="footer-menu_column footer-menu_column-4">
-                                       <div class="footer-menu-title">Company</div>
-                                       <ul>
-                                          <li>
-                                             <a class="footer__menu__item" href="pricing-1.html" target="" data-track-event="ElementClicked" data-track-name="Pricing" data-track-module="Footer" data-interaction-listener-registered="true">Pricing</a>
-                                          </li>
-                                          <li>
-                                             <a class="footer__menu__item" href="about-1.html" target="" data-track-event="ElementClicked" data-track-name="About us" data-track-module="Footer" data-interaction-listener-registered="true">About us</a>
-                                          </li>
-                                          <li>
-                                             <a class="footer__menu__item" href="mobile-app-1.html" target="" data-track-event="ElementClicked" data-track-name="Mobile app" data-track-module="Footer" data-interaction-listener-registered="true">Mobile app</a>
-                                          </li>
-                                          <li>
-                                             <a class="footer__menu__item" href="how-it-works-1.html" target="" data-track-event="ElementClicked" data-track-name="How Betterment works" data-track-module="Footer" data-interaction-listener-registered="true">How Betterment works</a>
-                                          </li>
-                                          <li>
-                                             <a class="footer__menu__item" href="press-1.html" target="" data-track-event="ElementClicked" data-track-name="Press" data-track-module="Footer" data-interaction-listener-registered="true">Press</a>
-                                          </li>
-                                          <li>
-                                             <a class="footer__menu__item" href="https://shop.betterment.com" target="" data-track-event="ElementClicked" data-track-name="Betterment shop" data-track-module="Footer" data-interaction-listener-registered="true">Betterment shop</a>
-                                          </li>
-                                          <li>
-                                             <a class="footer__menu__item" href="careers-1.html" target="" data-track-event="ElementClicked" data-track-name="Careers" data-track-module="Footer" data-interaction-listener-registered="true">Careers</a>
-                                          </li>
-                                       </ul>
-                                    </li>
-                                 </ul>
-                              </nav>
-                           </div>
-                           <div class="footer-bottom-menu">
-                              <div class="footer-social-icons">
-                                 <ul class="flex">
-                                    <li>
-                                       <a href="https://www.instagram.com/betterment/" target="_blank" rel="noopener noreferrer">
-                                          <svg aria-label="Betterment on Instagram" width="24" height="24" viewbox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                                             <title>Betterment on Instagram</title>
-                                             <path d="M12 2.163C15.204 2.163 15.584 2.175 16.85 2.233C20.102 2.381 21.621 3.924 21.769 7.152C21.827 8.417 21.838 8.797 21.838 12.001C21.838 15.206 21.826 15.585 21.769 16.85C21.62 20.075 20.105 21.621 16.85 21.769C15.584 21.827 15.206 21.839 12 21.839C8.796 21.839 8.416 21.827 7.151 21.769C3.891 21.62 2.38 20.07 2.232 16.849C2.174 15.584 2.162 15.205 2.162 12C2.162 8.796 2.175 8.417 2.232 7.151C2.381 3.924 3.896 2.38 7.151 2.232C8.417 2.175 8.796 2.163 12 2.163ZM12 0C8.741 0 8.333 0.014 7.053 0.072C2.695 0.272 0.273 2.69 0.073 7.052C0.014 8.333 0 8.741 0 12C0 15.259 0.014 15.668 0.072 16.948C0.272 21.306 2.69 23.728 7.052 23.928C8.333 23.986 8.741 24 12 24C15.259 24 15.668 23.986 16.948 23.928C21.302 23.728 23.73 21.31 23.927 16.948C23.986 15.668 24 15.259 24 12C24 8.741 23.986 8.333 23.928 7.053C23.732 2.699 21.311 0.273 16.949 0.073C15.668 0.014 15.259 0 12 0V0ZM12 5.838C8.597 5.838 5.838 8.597 5.838 12C5.838 15.403 8.597 18.163 12 18.163C15.403 18.163 18.162 15.404 18.162 12C18.162 8.597 15.403 5.838 12 5.838ZM12 16C9.791 16 8 14.21 8 12C8 9.791 9.791 8 12 8C14.209 8 16 9.791 16 12C16 14.21 14.209 16 12 16ZM18.406 4.155C17.61 4.155 16.965 4.8 16.965 5.595C16.965 6.39 17.61 7.035 18.406 7.035C19.201 7.035 19.845 6.39 19.845 5.595C19.845 4.8 19.201 4.155 18.406 4.155Z" fill="currentColor"></path>
-                                          </svg>
-                                       </a>
-                                    </li>
-                                    <li>
-                                       <a href="http://facebook.com/betterment" target="_blank" rel="noopener noreferrer">
-                                          <svg fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewbox="0 0 16 16" aria-label="Betterment on Facebook" role="img">
-                                             <title>Betterment on Facebook</title>
-                                             <path d="M9.5 3H12V0H9.5C7.5 0 6 1.6 6 3.5V5H4v3h2v8h3V8h2.5l.5-3H9V3.5c0-.3.2-.5.5-.5"></path>
-                                          </svg>
-                                       </a>
-                                    </li>
-                                    <li>
-                                       <a href="http://twitter.com/betterment" target="_blank" rel="noopener noreferrer">
-                                          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewbox="0 0 1200 1227" aria-label="Betterment on X">
-                                             <title>Betterment on X</title>
-                                             <path fill="currentColor" d="M714.163 519.284 1160.89 0h-105.86L667.137 450.887 357.328 0H0l468.492 681.821L0 1226.37h105.866l409.625-476.152 327.181 476.152H1200L714.137 519.284h.026ZM569.165 687.828l-47.468-67.894-377.686-540.24h162.604l304.797 435.991 47.468 67.894 396.2 566.721H892.476L569.165 687.854v-.026Z"></path>
-                                          </svg>
-                                       </a>
-                                    </li>
-                                    <li>
-                                       <a href="http://www.linkedin.com/company/betterment" target="_blank" rel="noopener noreferrer">
-                                          <svg fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewbox="0 0 16 16" aria-label="Betterment on LinkedIn" role="img">
-                                             <title>Betterment on LinkedIn</title>
-                                             <path d="M.2 15.2h3.4V4.9H.2v10.3zM1.9 0C.8 0 0 .8 0 1.8s.7 1.8 1.9 1.8 2-.8 2-1.8S3 0 1.9 0zM16 9.3v5.9h-3.4V9.7c0-1.4-.5-2.3-1.8-2.3-1 0-1.5.6-1.7 1.2l-.1.9v5.7H5.5V4.9H9v1.5c.4-.7 1.2-1.7 3-1.7 2.3 0 4 1.5 4 4.6z"></path>
-                                          </svg>
-                                       </a>
-                                    </li>
-                                 </ul>
-                              </div>
-                              <div class="footer-apps-icons">
-                                 <ul class="flex">
-                                    <li>
-                                       <a class="track-ios-click" href="https://apps.apple.com/us/app/betterment-money-management/id393156562" target="_blank" rel="noopener noreferrer" data-behavior-app-store-link="" data-cy-apple-store-link="" data-appsflyer-source="retailBrochureFooter" data-track-event="AppStoreSelected" data-track-name="DownloadIOSAppStore" data-track-module="Footer">
-                                       <img class="lazy" data-src="https://www.betterment.com/hubfs/Graphics/shared-assets/app-store-badge_wht-bdr.svg" alt="apple-app-store">
-                                       </a>
-                                    </li>
-                                    <li>
-                                       <a class="track-google-play-click" href="https://play.google.com/store/apps/details?id=com.betterment" target="_blank" rel="noopener noreferrer" data-behavior-app-store-link="" data-cy-android-store-link="" data-android-store-link="" data-appsflyer-source="retailBrochureFooter" data-track-event="AppStoreSelected" data-track-name="DownloadGooglePlay" data-track-module="Footer">
-                                       <img class="lazy" data-src="https://www.betterment.com/hubfs/Graphics/shared-assets/google-play-badge-wht-bdr.svg" alt="google-play-store">
-                                       </a>
-                                    </li>
-                                 </ul>
-                              </div>
-                              <div class="footer-bottom-links">
-                                 <ul class="flex">
-                                    <li>
-                                       <a href="contact-1.html" data-track-event="ElementClicked" data-track-name="Contact us" data-track-module="Footer" data-interaction-listener-registered="true">Contact us</a>
-                                    </li>
-                                    <li>
-                                       <a href="work-1.html" data-track-event="ElementClicked" data-track-name="Betterment 401(k)" data-track-module="Footer" data-interaction-listener-registered="true">Betterment 401(k)</a>
-                                    </li>
-                                    <li>
-                                       <a href="advisors-1.html" data-track-event="ElementClicked" data-track-name="Betterment Advisors Solutions" data-track-module="Footer" data-interaction-listener-registered="true">Betterment Advisors Solutions</a>
-                                    </li>
-                                 </ul>
-                              </div>
-                           </div>
-                        </div>
-                        <div id="hs_cos_wrapper_footer_disclosures_set" class="hs_cos_wrapper hs_cos_wrapper_widget hs_cos_wrapper_type_module" style="" data-hs-cos-general-type="widget" data-hs-cos-type="module">
-                           <div class="footer-disclosure-wrap">
-                              <div class="footer-disclosure-rows optional-disclosure flex">
-                                 <span><sup>*</sup></span>
-                                 <div><span>The annual percentage yield ("APY") on the deposit balances in Betterment Cash Reserve ("Cash Reserve") is 4.50% and represents the weighted average of the APY on deposit balances at the banks participating in Cash Reserve (the "</span><a href="cash-portfolio-1.html"></a><span><a href="cash-portfolio-1.html">Program Banks</a></span><span>") and is current as of September 20, 2024. This APY is variable and subject to change daily. Deposit balances are not allocated equally among the participating Program Banks. A minimum deposit of $10 is required, but there is no minimum balance required to be maintained. The APY available to a customer may be lower if that customer designates a bank or banks as ineligible to receive deposits. APY applies only to Cash Reserve and does not apply to checking accounts held through Betterment Checking. Cash Reserve and Betterment Checking are separate offerings and are not linked accounts.</span><br><span><br>See Betterment's&nbsp;</span><a href="legal/form-adv-part-2-1.html"></a><span><a href="legal/form-adv-part-2-1.html">Form ADV Part II</a>&nbsp;</span><span>and&nbsp;</span><a href="legal/terms-1.html"></a><span><a href="legal/terms-1.html">Terms and Conditions</a></span><span>&nbsp;for additional information, including details on the deposit allocation methodology.</span></div>
-                              </div>
-                              <div class="footer-disclosure-rows optional-disclosure flex">
-                                 <span><sup>†</sup></span>
-                                 <div>
-                                    <p>Betterment Cash Reserve ("Cash Reserve") is offered by Betterment LLC. Clients of Betterment LLC participate in Cash Reserve through their brokerage account held at Betterment Securities. Neither Betterment LLC nor any of its affiliates is a bank. Through Cash Reserve, clients' funds are deposited into one or more banks ("<a href="cash-portfolio-1.html">Program Banks</a>") where the funds earn a variable interest rate and are eligible for FDIC insurance. Cash Reserve provides Betterment clients with the opportunity to earn interest on cash intended to purchase securities through Betterment LLC and Betterment Securities. Cash Reserve should not be viewed as a long-term investment option.</p>
-                                    <p>Funds held in your brokerage accounts are not FDIC-insured but are protected by SIPC. Funds in transit to or from Program Banks are generally not FDIC-insured but are protected by SIPC, except when those funds are held in a sweep account following a deposit or prior to a withdrawal, at which time funds are eligible for FDIC insurance but are not protected by SIPC. See <a href="legal-1.html">Betterment Client Agreements</a> for further details. If you participate in Cash Reserve, you authorize Betterment, on a discretionary basis, to direct Betterment Securities as to the allocation of your funds among one or more Program Banks. Deposits at each Program Bank are insured by the FDIC up to $250,000 for each insurable capacity (e.g. individual or joint). In aggregate, funds deposited into Cash Reserve are eligible for up to $2,000,000 (or $4,000,000 for joint accounts) of FDIC insurance once the funds reach one or more Program Banks (up to $250,000 for each insurable capacity—e.g., individual or joint—at up to eight Program Banks). Even if there are more than eight Program Banks, clients will not necessarily have deposits allocated in a manner that will provide FDIC insurance above $2,000,000 (or $4,000,000 for joint accounts). The FDIC calculates the insurance limits based on all accounts held in the same insurable capacity at a bank, not just cash in Cash Reserve. Although certain types of accounts, such as trust accounts may be eligible for additional FDIC insurance based on the number of beneficiaries, funds will be allocated to each Program Bank in such a way that provides up to $250,000 of FDIC insurance for individual accounts, $500,000 of FDIC insurance for joint accounts, and $250,000 of FDIC insurance for trust and other corporate account types, in each case per Program Bank. In the event you maintain an individual or joint Cash Reserve account and are a beneficiary of a Cash Reserve trust account, Betterment does not provide FDIC insurance based on your status as a beneficiary. If clients elect to exclude one or more Program Banks from receiving deposits the amount of FDIC insurance available through Cash Reserve may be lower. Clients are responsible for monitoring their total assets at each Program Bank, including existing deposits held at Program Banks outside of Cash Reserve, to ensure FDIC insurance limits are not exceeded, which could result in some funds being uninsured. For more information on FDIC insurance please visit www.FDIC.gov. Deposits held in Program Banks are not protected by SIPC. For more information see the full <a href="legal/cash-reserve-1.html">terms and conditions</a> and <a href="agreements/Betterment_LLC_ADV%20PART%202_2024_10_01-1.pdf">Betterment LLC's Form ADV Part 2</a>.</p>
-                                 </div>
-                              </div>
-                              <div class="footer-disclosure-rows optional-disclosure flex">
-                                 <span><sup>‡</sup></span>
-                                 <div>
-                                    <p>Checking accounts and the Betterment Visa Debit Card provided by and issued by nbkc bank, Member FDIC. Funds deposited into Checking are FDIC-insured up to $250k for individual accounts and up to $250k per depositor for joint accounts. Betterment Checking made available through Betterment Financial LLC. Neither Betterment Financial LLC, nor any of their affiliates, is a bank. Betterment Financial LLC reimburses ATM fees and the Visa® 1% foreign transaction fee worldwide, everywhere Visa is accepted. Checking accounts do not earn APY (annual percentage yield). Betterment Cash Reserve and Betterment Checking are separate offerings and are not linked accounts.</p>
-                                    <p>Any balances you hold with nbkc bank, including but not limited to those balances held in Betterment Checking accounts are added together and are insured up to $250,000 per depositor through nbkc bank, Member FDIC. If you have funds jointly owned, these funds would be separately insured for up to $250,000 for each joint account owner. nbkc bank utilizes a deposit network service, which means that at any given time, all, none, or a portion of the funds in your Betterment Checking accounts may be placed into and held beneficially in your name at other depository institutions which are insured by the Federal Deposit Insurance Corporation (FDIC). For a complete list of other depository institutions where funds may be placed, please visit <a href="https://www.cambr.com/bank-list">https://www.cambr.com/bank-list</a>. Balances moved to network banks are eligible for FDIC insurance once the funds arrive at a network bank. To learn more about pass-through deposit insurance applicable to your account, please see the Account Documentation. Additional information on FDIC insurance can be found at <a href="https://www.fdic.gov/resources/deposit-insurance/">https://www.fdic.gov/resources/deposit-insurance/</a>.</p>
-                                 </div>
-                              </div>
-                              <div class="footer-disclosure-rows optional-disclosure flex">
-                                 <div>
-                                    <p>Investment Advice:&nbsp; Advisory services for traditional investments (e.g., ETFs) and digital assets are provided by Betterment LLC, an SEC-registered investment adviser. Betterment LLC does not require clients to maintain a minimum investment account balance. However, accounts below a certain balance may have certain restrictions. For more information, please see <a href="legal/portfolio-minimum-1.html"><span>additional disclosure</span></a>.&nbsp;</p>
-                                    <p>Traditional Investment Brokerage Services &amp; Custody:&nbsp; Brokerage services are provided to clients of Betterment LLC by Betterment Securities, an SEC-registered broker-dealer and member of FINRA /SIPC, and Apex Clearing Corporation, a third-party SEC registered broker-dealer and member FINRA/SIPC.</p>
-                                    <p>Digital Asset Trading Services &amp; Custody:&nbsp; Digital asset trading services and custody are provided by Gemini Trust Company, LLC.&nbsp; <span>For further details regarding the custody of assets, including cash, held at Gemini Trust Company, please see your Gemini </span><a href="https://www.gemini.com/legal/user-agreement#section-welcome-to-gemini"><span>user agreement</span></a><span>.</span></p>
-                                 </div>
-                              </div>
-                              <div class="footer-disclosure-rows entity-disclosure flex">
-                                 <div>
-                                    <p>We want you to know a few things:&nbsp;&nbsp;</p>
-                                    <ul>
-                                       <li>If not otherwise specified above, this page contains original content by Betterment LLC (as opposed to its other affiliates).</li>
-                                       <li>The information provided is for general informational purposes only and should not be considered a recommendation or personal financial planning, tax, rollover, or financial advice.&nbsp; The information provided should be used at your own risk.</li>
-                                       <li>There are tax implications when investing and some materials may discuss tax impact.&nbsp; Betterment does not provide tax advice.&nbsp; Articles or FAQs do not constitute a tax opinion and should not be used for the purpose of avoiding tax penalties.&nbsp;&nbsp;</li>
-                                       <li>Betterment assumes no responsibility or liability whatsoever for the content, accuracy, reliability or opinions expressed in a third-party website, to which a published article links (a “linked website”) and such linked websites are not monitored, investigated, or checked for accuracy or completeness by Betterment. It is your responsibility to evaluate the accuracy, reliability, timeliness and completeness of any information available on a linked website. All products, services and content obtained from a linked website are provided “as is” without warranty of any kind, express or implied, including, but not limited to, implied warranties of merchantability, fitness for a particular purpose, title, non-infringement, security, or accuracy. If Betterment has a relationship or affiliation with the author or content, it will note this in additional disclosure.&nbsp;</li>
-                                       <li>Betterment may publish content that has been created by affiliated or unaffiliated contributors, which may include employees, other financial service providers, third-party authors who are paid a fee by Betterment, or other parties. Unless otherwise noted, the content of such posts does not necessarily represent the actual views or opinions of Betterment or any of its officers, directors, or employees. The opinions expressed by guest writers and/or article sources/interviewees are strictly their own and do not necessarily represent those of Betterment.</li>
-                                       <li>You may see the CFP® certification mark.&nbsp; The Certified Financial Planner Board of Standards, Inc. (CFP Board) owns the CERTIFIED FINANCIAL PLANNER™ certification mark, and the CFP® certification mark (with plaque design) logo in the United States, which it authorizes use of by individuals who successfully complete CFP Board’s initial and ongoing certification requirements.&nbsp;</li>
-                                    </ul>
-                                    <p><strong>Let’s Talk about Risk</strong></p>
-                                    <p>Investing involves risk and there is the potential of losing money when you invest in securities and digital assets. Past performance does not guarantee future results and the likelihood of investment outcomes are hypothetical in nature.&nbsp;&nbsp;</p>
-                                    <p>Investments in securities and digital assets are: Not FDIC Insured • Not Bank Guaranteed • May Lose Value.&nbsp;</p>
-                                    <p>Furthermore, investing in digital assets is highly speculative and volatile, and only suitable for investors who are able to bear the risk of potential loss and experience sharp drawdowns.<em>&nbsp; </em><span>Digital assets are not legal tender and are not backed by the U.S. government. </span>Digital assets are not subject to SIPC protections.&nbsp;&nbsp;</p>
-                                    <p>Before investing, consider your investment objectives and Betterment LLC's fees and expenses. Betterment LLC's internet-based advisory services are designed to assist clients in achieving discrete financial goals. They are not intended to provide comprehensive tax advice or financial planning with respect to every aspect of a client's financial situation and do not incorporate specific investments that clients hold elsewhere. For more details, see Betterment’s <a href="agreements/Betterment_LLC_Form_CRS_04_25_2024%20%28FINAL%29-1.pdf"><span>Form CRS</span></a>, <a href="agreements/Betterment_LLC_ADV%20PART%202_2024_10_01-1.pdf"><span>Form ADV Part II</span></a> and <a href="legal-1.html"><span>other disclosures</span></a>.&nbsp;</p>
-                                    <p>Not an offer, solicitation of an offer, or advice to buy or sell securities in jurisdictions where Betterment LLC is not registered.</p>
-                                    <p><strong>Who Provides the Market Data?</strong></p>
-                                    <p><a href="http://www.xignite.com/"><span>Market Data</span></a> by Xignite. Fund data © 2022 Morningstar.&nbsp; All Rights Reserved.&nbsp; The information contained herein:&nbsp; (1) is proprietary to Morningstar and/or its content providers; (2) may not be copied or distributed; and&nbsp; (3) is not warranted to be accurate, complete or timely.&nbsp; Neither Morningstar nor its content providers are responsible for any damages or losses arising from any use of this information.&nbsp;&nbsp;</p>
-                                 </div>
-                              </div>
-                              <div class="footer-disclosure-rows">
-                                 <div>
-                                    <p> You are viewing a web property located at Betterment.com. Different properties may be provided by a different entity with different marketing standards. </p>
-                                    <ul class="flex-wrap list-links">
-                                       <li>
-                                          <a href="sitemap-1.html">Site Map</a>
-                                       </li>
-                                       <li>
-                                          <a href="legal/terms-1.html">Terms of Use</a>
-                                       </li>
-                                       <li>
-                                          <a href="legal/privacy-policy-1.html">Privacy Policy</a>
-                                       </li>
-                                       <li>
-                                          <a href="legal/copyright-intellectual-property-1.html">Trademark</a>
-                                       </li>
-                                       <li>
-                                          <a href="legal-1.html">Legal Directory</a>
-                                       </li>
-                                       <li>
-                                          <button class="button-reset flex-wrap u-flexAlignItemsCenter privacy-banner-trigger" data-track-event="ElementClicked" data-track-name="Privacy controls" data-track-module="Footer" data-interaction-listener-registered="true">
-                                          <span>Privacy controls</span>
-                                          <span>
-                                          <img src="hubfs/Graphics/webpage-graphics/privacy-controls-logo-1.png" alt="Privacy controls icon">
-                                          </span>
-                                          </button>
-                                       </li>
-                                    </ul>
-                                    <p>Google Play and the Google Play logo are trademarks of Google, Inc.</p>
-                                    <p>Apple, the Apple logo, and iPhone are trademarks of Apple, Inc., registered in the U.S.</p>
-                                    <p>Betterment assumes no responsibility or liability whatsoever for the content, accuracy, reliability or opinions expressed in a third-party website, to which a published article links (a “linked website”). Such linked websites are not monitored, investigated, or checked for accuracy or completeness by Betterment. It is your responsibility to evaluate the accuracy, reliability, timeliness and completeness of any information available on a linked website. All products, services, and content obtained from a linked website are provided “as is” without warranty of any kind, express or implied, including, but not limited to, implied warranties of merchantability, fitness for a particular purpose, title, non-infringement, security, or accuracy. If Betterment has a relationship or affiliation with the author or content, it will note this in additional disclosure.</p>
-                                    <p>© Betterment. All rights reserved</p>
-                                 </div>
-                              </div>
-                           </div>
-                        </div>
-                     </div>
-                  </footer>
-                  <div id="hs_cos_wrapper_module_chatbot" class="hs_cos_wrapper hs_cos_wrapper_widget hs_cos_wrapper_type_module" style="" data-hs-cos-general-type="widget" data-hs-cos-type="module">
-                     <div id="chatbot-module" data-chatbot="ada"></div>
-                  </div>
-               </div>
-            </footer>
+         @include('partials.frontend.footer')
             <div id="hs_cos_wrapper_post_classification_16739651532502" class="hs_cos_wrapper hs_cos_wrapper_widget hs_cos_wrapper_type_module" style="" data-hs-cos-general-type="widget" data-hs-cos-type="module">
                <script id="user-intent-script-data" type="application/json">
                   {"account_interest":{"associated_page_type":null,"key":"null","motivation":null},"page_type":"b4c-site","portfolio_interest":{"associated_page_type":null,"key":"null","motivation":null},"product_category":{"associated_page_type":["b4c-site"],"key":null,"motivation":null},"template_type":"blog_listing","url":"/help","visited_order":1}

@@ -50,13 +50,23 @@ Route::get('/employee', [FrontendController::class, 'employee'])->name('employee
 Route::get('/help', [FrontendController::class, 'help'])->name('help');
 Route::get('/faq', [FrontendController::class, 'faq'])->name('faq');
 
-
 Route::get('/investing', [FrontendController::class, 'investment'])->name('investment');
 Route::get('/cash', [FrontendController::class, 'cash'])->name('cash');
 Route::get('/stocks', [FrontendController::class, 'stocks'])->name('stocks');
 Route::get('/blog', [FrontendController::class, 'blog'])->name('blog');
 Route::get('/retirement', [FrontendController::class, 'retirement'])->name('retirement');
 Route::get('/college', [FrontendController::class, 'college'])->name('college');
+
+Route::get('/career', [FrontendController::class, 'career'])->name('career');
+Route::get('/charitable', [FrontendController::class, 'charitable'])->name('charitable');
+Route::get('/howitworks', [FrontendController::class, 'howitworks'])->name('howitworks');
+Route::get('/referral', [FrontendController::class, 'referal'])->name('referal');
+Route::get('/tax', [FrontendController::class, 'tax'])->name('tax');
+Route::get('/legal', [FrontendController::class, 'tax'])->name('legal');
+Route::get('/resources', [FrontendController::class, 'review'])->name('resources');
+
+
+
 
 Auth::routes(['verify' => true]);
 

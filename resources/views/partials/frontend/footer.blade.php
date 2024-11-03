@@ -3,19 +3,20 @@
         <div id="hs_cos_wrapper_module_16267052898241" class="hs_cos_wrapper hs_cos_wrapper_widget hs_cos_wrapper_type_module" style="" data-hs-cos-general-type="widget" data-hs-cos-type="module">
             <div class="footer-main-columns u-flex u-flexJustifyBetween">
                 <div class="footer-logo-wrapper">
-                <svg viewbox="0 0 91 74" width="35" height="29" xmlns="http://www.w3.org/2000/svg" fill="none">
+                <img src="{{ asset('asset/images/logo/logo-light.png') }}" alt="logo" class="desktop-logo">
+                <!-- <svg viewbox="0 0 91 74" width="35" height="29" xmlns="http://www.w3.org/2000/svg" fill="none">
                     <title>Betterment Logo Icon SVG Footer</title>
                     <path d="M45.2571 60.0478C53.6288 63.0794 68.2782 68.3853 81.1967 73.0658C87.083 65.4792 90.5143 55.8131 90.5143 45.0369C90.5143 19.3603 71.0593 0 45.2571 0C19.4571 0 0 19.3603 0 45.0369C0 55.8153 3.42913 65.4792 9.31758 73.0658C22.26 68.3788 36.9311 63.0643 45.2571 60.0478Z" fill="#FFC729"></path>
-                </svg>
+                </svg> -->
                 </div>
                 <nav class="footer-menu-wrapper" aria-label="footer navigation">
                 <ul>
                     <li class="footer-menu_column footer-menu_column-0">
                         <div class="footer-menu-title">Accounts</div>
                         <ul>
-                            <li>
+                            <!-- <li>
                             <a class="footer__menu__item" href="#" target="" data-track-event="ElementClicked" data-track-name="Investing" data-track-module="Footer" data-interaction-listener-registered="true">Investing</a>
-                            </li>
+                            </li> -->
                             <li>
                             <a class="footer__menu__item" href="{{ route('cryptoinvest') }}" target="" data-track-event="ElementClicked" data-track-name="Crypto investing" data-track-module="Footer" data-interaction-listener-registered="true">Crypto investing</a>
                             </li>
@@ -46,16 +47,16 @@
                             <a class="footer__menu__item" href="{{ route('socially') }}" target="" data-track-event="ElementClicked" data-track-name="Socially responsible investing" data-track-module="Footer" data-interaction-listener-registered="true">Socially responsible investing</a>
                             </li>
                             <li>
-                            <a class="footer__menu__item" href="#" target="" data-track-event="ElementClicked" data-track-name="Tax-smart investing" data-track-module="Footer" data-interaction-listener-registered="true">Tax-smart investing</a>
+                            <a class="footer__menu__item" href="{{ route('tax') }}" target="" data-track-event="ElementClicked" data-track-name="Tax-smart investing" data-track-module="Footer" data-interaction-listener-registered="true">Tax-smart investing</a>
                             </li>
                             <li>
-                            <a class="footer__menu__item" href="{{ route('ira') }}" target="" data-track-event="ElementClicked" data-track-name="Charitable giving" data-track-module="Footer" data-interaction-listener-registered="true">Charitable giving</a>
+                            <a class="footer__menu__item" href="{{ route('charitable') }}" target="" data-track-event="ElementClicked" data-track-name="Charitable giving" data-track-module="Footer" data-interaction-listener-registered="true">Charitable giving</a>
                             </li>
                             <li>
                             <a class="footer__menu__item" href="{{ route('ira') }}" target="" data-track-event="ElementClicked" data-track-name="401(k) rollovers" data-track-module="Footer" data-interaction-listener-registered="true">401(k) rollovers</a>
                             </li>
                             <li>
-                            <a class="footer__menu__item" href="{{ route('ira') }}" target="" data-track-event="ElementClicked" data-track-name="Retirement income" data-track-module="Footer" data-interaction-listener-registered="true">Retirement income</a>
+                            <a class="footer__menu__item" href="{{ route('retirement') }}" target="" data-track-event="ElementClicked" data-track-name="Retirement income" data-track-module="Footer" data-interaction-listener-registered="true">Retirement income</a>
                             </li>
                         </ul>
                     </li>
@@ -63,19 +64,19 @@
                         <div class="footer-menu-title">Tools</div>
                         <ul>
                             <li>
-                            <a class="footer__menu__item" href="retirement-1.html" target="" data-track-event="ElementClicked" data-track-name="Retirement planning" data-track-module="Footer" data-interaction-listener-registered="true">Retirement planning</a>
+                            <a class="footer__menu__item" href="{{ route('retirement') }}" target="" data-track-event="ElementClicked" data-track-name="Retirement planning" data-track-module="Footer" data-interaction-listener-registered="true">Retirement planning</a>
                             </li>
                             <li>
-                            <a class="footer__menu__item" href="goals-1.html" target="" data-track-event="ElementClicked" data-track-name="Track your goals" data-track-module="Footer" data-interaction-listener-registered="true">Track your goals</a>
+                            <a class="footer__menu__item" href="{{ route('goals') }}" target="" data-track-event="ElementClicked" data-track-name="Track your goals" data-track-module="Footer" data-interaction-listener-registered="true">Track your goals</a>
                             </li>
                             <li>
-                            <a class="footer__menu__item" href="dashboard-1.html" target="" data-track-event="ElementClicked" data-track-name="All-in-one dashboard" data-track-module="Footer" data-interaction-listener-registered="true">All-in-one dashboard</a>
+                            <a class="footer__menu__item" href="{{ route('dash') }}" target="" data-track-event="ElementClicked" data-track-name="All-in-one dashboard" data-track-module="Footer" data-interaction-listener-registered="true">All-in-one dashboard</a>
                             </li>
                             <li>
-                            <a class="footer__menu__item" href="rewards-1.html" target="" data-track-event="ElementClicked" data-track-name="Rewards" data-track-module="Footer" data-interaction-listener-registered="true">Rewards</a>
+                            <a class="footer__menu__item" href="{{ route('rewards') }}" target="" data-track-event="ElementClicked" data-track-name="Rewards" data-track-module="Footer" data-interaction-listener-registered="true">Rewards</a>
                             </li>
                             <li>
-                            <a class="footer__menu__item" href="referral-1.html" target="" data-track-event="ElementClicked" data-track-name="Refer-a-friend program" data-track-module="Footer" data-interaction-listener-registered="true">Refer-a-friend program</a>
+                            <a class="footer__menu__item" href="{{ route('referal') }}" target="" data-track-event="ElementClicked" data-track-name="Refer-a-friend program" data-track-module="Footer" data-interaction-listener-registered="true">Refer-a-friend program</a>
                             </li>
                         </ul>
                     </li>
@@ -83,22 +84,22 @@
                         <div class="footer-menu-title">Help</div>
                         <ul>
                             <li>
-                            <a class="footer__menu__item" href="help-1.html" target="" data-track-event="ElementClicked" data-track-name="Help center" data-track-module="Footer" data-interaction-listener-registered="true">Help center</a>
+                            <a class="footer__menu__item" href="{{ route('help') }}" target="" data-track-event="ElementClicked" data-track-name="Help center" data-track-module="Footer" data-interaction-listener-registered="true">Help center</a>
                             </li>
                             <li>
-                            <a class="footer__menu__item" href="help/tag/common-questions-1.html" target="" data-track-event="ElementClicked" data-track-name="FAQ" data-track-module="Footer" data-interaction-listener-registered="true">FAQ</a>
+                            <a class="footer__menu__item" href="{{ route('faq') }}" target="" data-track-event="ElementClicked" data-track-name="FAQ" data-track-module="Footer" data-interaction-listener-registered="true">FAQ</a>
                             </li>
                             <li>
-                            <a class="footer__menu__item" href="financial-experts-1.html" target="" data-track-event="ElementClicked" data-track-name="Talk to an advisor" data-track-module="Footer" data-interaction-listener-registered="true">Talk to an advisor</a>
+                            <a class="footer__menu__item" href="{{ route('login') }}" target="" data-track-event="ElementClicked" data-track-name="Talk to an advisor" data-track-module="Footer" data-interaction-listener-registered="true">Talk to an advisor</a>
                             </li>
                             <li>
-                            <a class="footer__menu__item" href="resources/how-betterment-technology-manages-money-1.html" target="" data-track-event="ElementClicked" data-track-name="Investment philosophy" data-track-module="Footer" data-interaction-listener-registered="true">Investment philosophy</a>
+                            <a class="footer__menu__item" href="{{ route('philosophy') }}" target="" data-track-event="ElementClicked" data-track-name="Investment philosophy" data-track-module="Footer" data-interaction-listener-registered="true">Investment philosophy</a>
                             </li>
                             <li>
-                            <a class="footer__menu__item" href="resources-1.html" target="" data-track-event="ElementClicked" data-track-name="Article library" data-track-module="Footer" data-interaction-listener-registered="true">Article library</a>
+                            <a class="footer__menu__item" href="{{ route('resources') }}" target="" data-track-event="ElementClicked" data-track-name="Article library" data-track-module="Footer" data-interaction-listener-registered="true">Article library</a>
                             </li>
                             <li>
-                            <a class="footer__menu__item" href="legal-1.html" target="" data-track-event="ElementClicked" data-track-name="Legal" data-track-module="Footer" data-interaction-listener-registered="true">Legal</a>
+                            <a class="footer__menu__item" href="{{ route('legal') }}" target="" data-track-event="ElementClicked" data-track-name="Legal" data-track-module="Footer" data-interaction-listener-registered="true">Legal</a>
                             </li>
                         </ul>
                     </li>
@@ -106,25 +107,25 @@
                         <div class="footer-menu-title">Company</div>
                         <ul>
                             <li>
-                            <a class="footer__menu__item" href="pricing-1.html" target="" data-track-event="ElementClicked" data-track-name="Pricing" data-track-module="Footer" data-interaction-listener-registered="true">Pricing</a>
+                            <a class="footer__menu__item" href="{{ route('pricing') }}" target="" data-track-event="ElementClicked" data-track-name="Pricing" data-track-module="Footer" data-interaction-listener-registered="true">Pricing</a>
                             </li>
                             <li>
-                            <a class="footer__menu__item" href="about-1.html" target="" data-track-event="ElementClicked" data-track-name="About us" data-track-module="Footer" data-interaction-listener-registered="true">About us</a>
+                            <a class="footer__menu__item" href="{{ route('about') }}" target="" data-track-event="ElementClicked" data-track-name="About us" data-track-module="Footer" data-interaction-listener-registered="true">About us</a>
+                            </li>
+                            <!-- <li>
+                                <a class="footer__menu__item" href="mobile-app-1.html" target="" data-track-event="ElementClicked" data-track-name="Mobile app" data-track-module="Footer" data-interaction-listener-registered="true">Mobile app</a>
+                            </li> -->
+                            <li>
+                            <a class="footer__menu__item" href="{{ route('howitworks') }}" target="" data-track-event="ElementClicked" data-track-name="How Betterment works" data-track-module="Footer" data-interaction-listener-registered="true">How Betterment works</a>
                             </li>
                             <li>
-                            <a class="footer__menu__item" href="mobile-app-1.html" target="" data-track-event="ElementClicked" data-track-name="Mobile app" data-track-module="Footer" data-interaction-listener-registered="true">Mobile app</a>
+                            <a class="footer__menu__item" href="{{ route('press') }}" target="" data-track-event="ElementClicked" data-track-name="Press" data-track-module="Footer" data-interaction-listener-registered="true">Press</a>
                             </li>
-                            <li>
-                            <a class="footer__menu__item" href="how-it-works-1.html" target="" data-track-event="ElementClicked" data-track-name="How Betterment works" data-track-module="Footer" data-interaction-listener-registered="true">How Betterment works</a>
-                            </li>
-                            <li>
-                            <a class="footer__menu__item" href="press-1.html" target="" data-track-event="ElementClicked" data-track-name="Press" data-track-module="Footer" data-interaction-listener-registered="true">Press</a>
-                            </li>
-                            <li>
+                            <!-- <li>
                             <a class="footer__menu__item" href="https://shop.betterment.com" target="" data-track-event="ElementClicked" data-track-name="Betterment shop" data-track-module="Footer" data-interaction-listener-registered="true">Betterment shop</a>
-                            </li>
+                            </li> -->
                             <li>
-                            <a class="footer__menu__item" href="careers-1.html" target="" data-track-event="ElementClicked" data-track-name="Careers" data-track-module="Footer" data-interaction-listener-registered="true">Careers</a>
+                            <a class="footer__menu__item" href="{{ route('career') }}" target="" data-track-event="ElementClicked" data-track-name="Careers" data-track-module="Footer" data-interaction-listener-registered="true">Careers</a>
                             </li>
                         </ul>
                     </li>
@@ -135,25 +136,25 @@
                 <div class="footer-social-icons">
                 <ul class="flex">
                     <li>
-                        <a href="https://www.instagram.com/betterment/" target="_blank" rel="noopener noreferrer">
+                        <a href="https://www.instagram.com/cresteoodbbersbd/" target="_blank" rel="noopener noreferrer">
                             <svg aria-label="Betterment on Instagram" width="24" height="24" viewbox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                            <title>Betterment on Instagram</title>
+                            <title>CrestwoodCapital on Instagram</title>
                             <path d="M12 2.163C15.204 2.163 15.584 2.175 16.85 2.233C20.102 2.381 21.621 3.924 21.769 7.152C21.827 8.417 21.838 8.797 21.838 12.001C21.838 15.206 21.826 15.585 21.769 16.85C21.62 20.075 20.105 21.621 16.85 21.769C15.584 21.827 15.206 21.839 12 21.839C8.796 21.839 8.416 21.827 7.151 21.769C3.891 21.62 2.38 20.07 2.232 16.849C2.174 15.584 2.162 15.205 2.162 12C2.162 8.796 2.175 8.417 2.232 7.151C2.381 3.924 3.896 2.38 7.151 2.232C8.417 2.175 8.796 2.163 12 2.163ZM12 0C8.741 0 8.333 0.014 7.053 0.072C2.695 0.272 0.273 2.69 0.073 7.052C0.014 8.333 0 8.741 0 12C0 15.259 0.014 15.668 0.072 16.948C0.272 21.306 2.69 23.728 7.052 23.928C8.333 23.986 8.741 24 12 24C15.259 24 15.668 23.986 16.948 23.928C21.302 23.728 23.73 21.31 23.927 16.948C23.986 15.668 24 15.259 24 12C24 8.741 23.986 8.333 23.928 7.053C23.732 2.699 21.311 0.273 16.949 0.073C15.668 0.014 15.259 0 12 0V0ZM12 5.838C8.597 5.838 5.838 8.597 5.838 12C5.838 15.403 8.597 18.163 12 18.163C15.403 18.163 18.162 15.404 18.162 12C18.162 8.597 15.403 5.838 12 5.838ZM12 16C9.791 16 8 14.21 8 12C8 9.791 9.791 8 12 8C14.209 8 16 9.791 16 12C16 14.21 14.209 16 12 16ZM18.406 4.155C17.61 4.155 16.965 4.8 16.965 5.595C16.965 6.39 17.61 7.035 18.406 7.035C19.201 7.035 19.845 6.39 19.845 5.595C19.845 4.8 19.201 4.155 18.406 4.155Z" fill="currentColor"></path>
                             </svg>
                         </a>
                     </li>
                     <li>
-                        <a href="http://facebook.com/betterment" target="_blank" rel="noopener noreferrer">
+                        <a href="http://facebook.com/cresteoodbbersbd" target="_blank" rel="noopener noreferrer">
                             <svg fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewbox="0 0 16 16" aria-label="Betterment on Facebook" role="img">
-                            <title>Betterment on Facebook</title>
+                            <title>CrestwoodCapital on Facebook</title>
                             <path d="M9.5 3H12V0H9.5C7.5 0 6 1.6 6 3.5V5H4v3h2v8h3V8h2.5l.5-3H9V3.5c0-.3.2-.5.5-.5"></path>
                             </svg>
                         </a>
                     </li>
                     <li>
-                        <a href="http://twitter.com/betterment" target="_blank" rel="noopener noreferrer">
+                        <a href="http://twitter.com/cresteoodbbersbd" target="_blank" rel="noopener noreferrer">
                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewbox="0 0 1200 1227" aria-label="Betterment on X">
-                            <title>Betterment on X</title>
+                            <title>CrestwoodCapital on X</title>
                             <path fill="currentColor" d="M714.163 519.284 1160.89 0h-105.86L667.137 450.887 357.328 0H0l468.492 681.821L0 1226.37h105.866l409.625-476.152 327.181 476.152H1200L714.137 519.284h.026ZM569.165 687.828l-47.468-67.894-377.686-540.24h162.604l304.797 435.991 47.468 67.894 396.2 566.721H892.476L569.165 687.854v-.026Z"></path>
                             </svg>
                         </a>

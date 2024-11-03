@@ -1,28 +1,98 @@
 <!doctype html>
 <html lang="en">
-   <head data-ipt="B4C Goal-based Investing">
+   <head data-ipt="Tax Smart Investing with Betterment">
       <meta charset="utf-8">
-      <title>Goal-based Investing | Savings Buckets</title>
+      <title>Tax Smart Investing with Betterment</title>
       <link rel="icon" href="{{ asset('asset/images/brand-logos/favicon.png') }}" type="image/x-icon">
-      <meta name="description" content="Whatever your dreams are, you can save and invest your way to making them a reality with Betterment. Use our savings tools to plan your goals, invest toward them, and track your progress.">
+      <meta name="description" content="We offer customized tax-efficient investing strategies focused on 
+         securities, asset location, and smart rebalancing to help achieve optimal 
+         returns.">
       <script>
          window.TT = "ewogICAgInNwbGl0cyI6e30sCiAgICAiZXhwZXJpZW5jZVNhbXBsaW5nV2VpZ2h0IjoxMDAsCiAgICAidXJsIjoiaHR0cHM6XC9cL3R0LmJldHRlcm1lbnQuY29tIiwKICAgICJjb29raWVEb21haW4iOiIuYmV0dGVybWVudC5jb20iLAogICAgImVuY29kZWRBdCI6IjIwMjEwNzEzMTU1MjAxIgp9"
       </script>
       <script>!function(){window.semaphore=window.semaphore||[],window.ketch=function(){window.semaphore.push(arguments)};var e=new URLSearchParams(document.location.search),o=e.has("property")?e.get("property"):"betterment_com",n=document.createElement("script");n.type="text/javascript",n.src="https://global.ketchcdn.com/web/v2/config/betterment/".concat(o,"/boot.js"),n.defer=n.async=!0,document.getElementsByTagName("head")[0].appendChild(n)}();</script>
       <meta name="viewport" content="width=device-width, initial-scale=1">
-      <meta property="og:description" content="Whatever your dreams are, you can save and invest your way to making them a reality with Betterment. Use our savings tools to plan your goals, invest toward them, and track your progress.">
-      <meta property="og:title" content="Goal-based Investing | Savings Buckets">
-      <meta name="twitter:description" content="Whatever your dreams are, you can save and invest your way to making them a reality with Betterment. Use our savings tools to plan your goals, invest toward them, and track your progress.">
-      <meta name="twitter:title" content="Goal-based Investing | Savings Buckets">
+      <meta property="og:description" content="We offer customized tax-efficient investing strategies focused on 
+         securities, asset location, and smart rebalancing to help achieve optimal 
+         returns.">
+      <meta property="og:title" content="Tax Smart Investing with Betterment">
+      <meta name="twitter:description" content="We offer customized tax-efficient investing strategies focused on 
+         securities, asset location, and smart rebalancing to help achieve optimal 
+         returns.">
+      <meta name="twitter:title" content="Tax Smart Investing with Betterment">
+      <script type="application/ld+json">
+         {
+            "@context": "https://schema.org",
+            "@type": "FAQPage",
+            "mainEntity": [
+            
+                 {
+                  "@type": "Question",
+                  "name": "When you choose what type of account to invest in",
+                  "acceptedAnswer": {
+                     "@type": "Answer",
+                     "text": "We focus on taxes. Learn which combination of traditional, Roth, and taxable accounts—which are all taxed differently—may be right for you."
+                  }
+                 },
+            
+                 {
+                  "@type": "Question",
+                  "name": "When we build your portfolio",
+                  "acceptedAnswer": {
+                     "@type": "Answer",
+                     "text": "We use ETFs. Exchange-traded funds are generally more tax-efficient and lower-cost than mutual funds, which is why we have an all-ETF portfolio. We organize assets based on taxes. Municipal bonds (which provide tax-exempt income) go into your taxable accounts, and core bonds (which do not) go into your tax-advantaged IRAs. High-tax assets belong in IRAs and low-tax assets belong in taxable accounts. For customers who use our Tax-Coordinated Portfolio™ feature, we automate this strategy, which could help increase your portfolio value."
+                  }
+                 },
+            
+                 {
+                  "@type": "Question",
+                  "name": "When you make a deposit or receive dividends",
+                  "acceptedAnswer": {
+                     "@type": "Answer",
+                     "text": "We rebalance. Rebalancing can help protect your portfolio from market volatility, but doing it by selling securities can cost you in taxes. To help avoid this, we rebalance using deposits and dividends."
+                  }
+                 },
+            
+                 {
+                  "@type": "Question",
+                  "name": "When you make a withdrawal or change your allocation",
+                  "acceptedAnswer": {
+                     "@type": "Answer",
+                     "text": "We show you the possible tax consequences. We'll help you to see the potential tax implications before you make a transaction. We work to minimize transaction taxes. To help lower transaction taxes, we sell your assets in a specific order—the ones with the lowest tax burden go first."
+                  }
+                 },
+            
+                 {
+                  "@type": "Question",
+                  "name": "When a fund gains value",
+                  "acceptedAnswer": {
+                     "@type": "Answer",
+                     "text": "We help you maximize the benefits of charitable giving. To help you make the most of your charitable gifts, we enable you to donate your most appreciated shares directly through our platform. This helps reduce your portfolio's tax liability."
+                  }
+                 },
+            
+                 {
+                  "@type": "Question",
+                  "name": "When a fund loses value",
+                  "acceptedAnswer": {
+                     "@type": "Answer",
+                     "text": "We tax loss harvest. When investments lose value, you can sell them to help offset the taxes that come with income and capital gains. For customers who use our Tax-Loss Harvesting+ feature, we look for these opportunities regularly, which seeks to help increase your after-tax returns."
+                  }
+                 }
+            
+            ]
+         }
+      </script>
       <style>
          a.cta_button{-moz-box-sizing:content-box !important;-webkit-box-sizing:content-box !important;box-sizing:content-box !important;vertical-align:middle}.hs-breadcrumb-menu{list-style-type:none;margin:0px 0px 0px 0px;padding:0px 0px 0px 0px}.hs-breadcrumb-menu-item{float:left;padding:10px 0px 10px 10px}.hs-breadcrumb-menu-divider:before{content:'›';padding-left:10px}.hs-featured-image-link{border:0}.hs-featured-image{float:right;margin:0 0 20px 20px;max-width:50%}@media (max-width: 568px){.hs-featured-image{float:none;margin:0;width:100%;max-width:100%}}.hs-screen-reader-text{clip:rect(1px, 1px, 1px, 1px);height:1px;overflow:hidden;position:absolute !important;width:1px}
       </style>
       <link rel="stylesheet" href="hs-fs/hub/5274572/hub_generated/template_assets/49667076004/1730079086928/betterment-theme/css/main.min-1.css">
       <link rel="stylesheet" href="hs-fs/hub/5274572/hub_generated/template_assets/54140855578/1729616073741/betterment-theme/js/custom-scripts/navigation.min-1.css">
       <link rel="stylesheet" href="hs-fs/hub/5274572/hub_generated/module_assets/64614019605/1730079074669/module_64614019605_toast_banner_global.min-1.css">
-      <link rel="stylesheet" href="hs-fs/hub/5274572/hub_generated/module_assets/56171597718/1728488261254/module_56171597718_hero_text_image.min-1.css">
+      <link rel="stylesheet" href="hs-fs/hub/5274572/hub_generated/module_assets/55497907859/1730079066809/module_55497907859_hero.min-1.css">
       <link rel="stylesheet" href="hs-fs/hub/5274572/hub_generated/module_assets/56818392846/1730079074535/module_56818392846_transition_arch.min-1.css">
       <link rel="stylesheet" href="hs-fs/hub/5274572/hub_generated/module_assets/56155603474/1728488271345/module_56155603474_text_image_section.min-1.css">
+      <link rel="stylesheet" href="hs-fs/hub/5274572/hub_generated/module_assets/55925583661/1730079052616/module_55925583661_accordion_set.min-1.css">
       <link rel="stylesheet" href="hs-fs/hub/5274572/hub_generated/module_assets/56500219199/1730079075657/module_56500219199_transition_triangle.min-1.css">
       <link rel="stylesheet" href="hs-fs/hub/5274572/hub_generated/module_assets/56881549621/1730079061493/module_56881549621_bottom_cta_landscape.min-1.css">
       <link rel="stylesheet" href="hs-fs/hub/5274572/hub_generated/module_assets/87640144244/1725556676081/module_87640144244_get_started_mobile_popup.min-1.css">
@@ -40,7 +110,7 @@
          padding-left: 0px !important;
          padding-right: 0px !important;
          }
-         .cell_16336650048022-padding {
+         .cell_16336181899302-padding {
          padding-top: 0px !important;
          padding-bottom: 0px !important;
          padding-left: 0px !important;
@@ -152,23 +222,23 @@
          
       </script>
       <!-- /Added by GoogleTagManager integration -->
-      <link rel="canonical" href="goals-1.html">
+      <link rel="canonical" href="tax-efficient-investing-1.html">
       <meta property="og:image" content="https://www.betterment.com/hubfs/Graphics/Featured-images/b2c_default.png">
       <meta property="og:image:width" content="1200">
       <meta property="og:image:height" content="628">
-      <meta property="og:image:alt" content="Betterment">
+      <meta property="og:image:alt" content="Betterment logo">
       <meta name="twitter:image" content="https://www.betterment.com/hubfs/Graphics/Featured-images/b2c_default.png">
-      <meta name="twitter:image:alt" content="Betterment">
-      <meta property="og:url" content="https://www.betterment.com/goals">
+      <meta name="twitter:image:alt" content="Betterment logo">
+      <meta property="og:url" content="https://www.betterment.com/tax-efficient-investing">
       <meta name="twitter:card" content="summary_large_image">
       <meta http-equiv="content-language" content="en">
       <meta name="generator" content="HubSpot">
    </head>
-   <body class=" DND-template" data-contentid="58577741077" data-splitname="" data-contentmstamp="1701102689309" data-contentisab="false" data-contentabmaster="" data-pagename="B4C Goal-based Investing" data-localenv="false">
+   <body class=" DND-template" data-contentid="57008151461" data-splitname="" data-contentmstamp="1714513031359" data-contentisab="false" data-contentabmaster="" data-pagename="Tax Smart Investing with Betterment" data-localenv="false">
       <!--  Added by GoogleTagManager integration -->
       <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5RSQL7" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <!-- /Added by GoogleTagManager integration -->
-      <div class="body-wrapper   hs-content-id-58577741077 hs-site-page page ">
+      <div class="body-wrapper   hs-content-id-57008151461 hs-site-page page ">
          <script id="script-retail-content-var" type="application/json">
             {"black_rock_high_sec_yield":"5.64%","black_rock_low_sec_yield":"4.34%","current_date":"10-28-2024","goldman_sachs_bonds_high_sec_yield":"4.30%","goldman_sachs_bonds_low_sec_yield":"3.61%","highlighted_goldman_sachs_bonds_after_tax_yield":"2.57%","highlighted_goldman_sachs_bonds_sec_yield":"4.20%","highlighted_goldman_sachs_bonds_take_home":"$2588","yesterday_date":"10-27-2024"}
          </script>
@@ -183,17 +253,17 @@
                      <div class="solutions-info">
                         <ul class="flex-wrap">
                            <li class="item active-lob" id="menu-item-Individuals">
-                              <a href="{{ route('login') }}" class="item-link" data-event="Individuals" data-track-event="ElementClicked" data-track-name="Individuals" data-track-module="CourtesyNav">
+                              <a href="index-1.htm" class="item-link" data-event="Individuals" data-track-event="ElementClicked" data-track-name="Individuals" data-track-module="CourtesyNav">
                               Individuals
                               </a>
                            </li>
                            <li class="item " id="menu-item-Employers">
-                              <a href="{{ route('register') }}" class="item-link" data-event="Employers" data-track-event="ElementClicked" data-track-name="Employers" data-track-module="CourtesyNav">
+                              <a href="work-1.html" class="item-link" data-event="Employers" data-track-event="ElementClicked" data-track-name="Employers" data-track-module="CourtesyNav">
                               Employers
                               </a>
                            </li>
                            <li class="item " id="menu-item-Advisors">
-                              <a href="{{ route('crypto') }}" class="item-link" data-event="Advisors" data-track-event="ElementClicked" data-track-name="Advisors" data-track-module="CourtesyNav">
+                              <a href="advisors-1.html" class="item-link" data-event="Advisors" data-track-event="ElementClicked" data-track-name="Advisors" data-track-module="CourtesyNav">
                               Advisors
                               </a>
                            </li>
@@ -208,12 +278,12 @@
                <div id="hs_cos_wrapper_module_16273343477845" class="hs_cos_wrapper hs_cos_wrapper_widget hs_cos_wrapper_type_module" style="" data-hs-cos-general-type="widget" data-hs-cos-type="module">
                   <div class="bt-Nav-wrap b4c-nav-site">
                      <header>
-                        <div class="bt-Nav bt-section ptb0 menu-color_default nav-bg_transparent">
+                        <div class="bt-Nav bt-section ptb0 menu-color_white nav-bg_transparent">
                            <div class="bt-container">
                               <div class="flex-wrap flex-middle">
-                                 <a href="{{ route('home') }}" class="bt-Nav-logoContainer" data-track-event="ElementClicked" data-track-name="Logo" data-track-module="TopNav" data-interaction-listener-registered="true">
+                                 <a href="index-1.htm" class="bt-Nav-logoContainer" data-track-event="ElementClicked" data-track-name="Logo" data-track-module="TopNav" data-interaction-listener-registered="true">
                                     <span class="bt-Logo">
-                                       <img src="{{ asset('asset/images/logo/logo-dark.png') }}" alt="logo" class="desktop-logo">
+                                        <img src="{{ asset('asset/images/logo/logo-dark.png') }}" alt="logo" class="desktop-logo">
                                     </span>
                                  </a>
                                  <div class="bt-Nav-triggerCta" data-behavior-toggle-class="is-expanded" data-toggle-target=".bt-OverlayPanel" data-behavior-overlay-nav-trigger="" role="button" tabindex="0" data-cy-overlaynavcta="">
@@ -245,44 +315,23 @@
                      <div class="span12 widget-span widget-type-cell " style="" data-widget-type="cell" data-x="0" data-w="12">
                         <div class="row-fluid-wrapper row-depth-1 row-number-1 dnd_area-row-0-force-full-width-section dnd-section dnd_area-row-0-padding">
                            <div class="row-fluid ">
-                              <div class="span12 widget-span widget-type-cell dnd-column cell_16336650048022-padding" style="" data-widget-type="cell" data-x="0" data-w="12">
+                              <div class="span12 widget-span widget-type-cell dnd-column cell_16336181899302-padding" style="" data-widget-type="cell" data-x="0" data-w="12">
                                  <div class="row-fluid-wrapper row-depth-1 row-number-2 dnd-row">
                                     <div class="row-fluid ">
                                        <div class="span12 widget-span widget-type-custom_widget dnd-module" style="" data-widget-type="custom_widget" data-x="0" data-w="12">
-                                          <div id="hs_cos_wrapper_widget_1633665004677" class="hs_cos_wrapper hs_cos_wrapper_widget hs_cos_wrapper_type_module" style="" data-hs-cos-general-type="widget" data-hs-cos-type="module">
-                                             <section class="bt-section hero-text-image bg-blue10 
-                                                bt-section-padding-15212010496">
+                                          <div id="hs_cos_wrapper_widget_1633618189720" class="hs_cos_wrapper hs_cos_wrapper_widget hs_cos_wrapper_type_module" style="" data-hs-cos-general-type="widget" data-hs-cos-type="module">
+                                             <section class="bt-section hero-section bg-navy mobile-image-bottom 
+                                                bt-section-padding-1526410496">
                                                 <div class="bt-container">
-                                                   <div class="flex-wrap bt-row flex-spaceBetween 
-                                                      flex-middle mobile-image-bottom
-                                                      mobile-center dark">
-                                                      <div class="bt-ContentGrid-item u-col-12 u-col-6@md cols col-1">
-                                                         <div>
-                                                            <h1 class="item-title ">  Turn life goals into money goals</h1>
-                                                            <div class="bt-body200 fancy-bullet fancy-bullet_dot_blue bullets-divider-dash-none">
-                                                               <p>Save for your dream home. Pay for that exercise bike. Plan next year’s vacation. Whatever your dreams are, you can save and invest to make them a reality.</p>
+                                                   <div class="flex-wrap bt-row center flex-center">
+                                                      <div class="bt-ContentGrid-item u-col-12 u-col-offset-0@lg cols col-1 white ">
+                                                         <div class="flex-wrap bt-row center flex-center">
+                                                            <h1 class="bt-ContentGrid-item u-col-12 item-title u-col-10@md">  Our goal is to save you more on taxes</h1>
+                                                            <div class="u-col-12"></div>
+                                                            <div class="bt-ContentGrid-item u-col-12 item-body bt-body200 u-col-8@md">
+                                                               <p>We're always thinking about ways to lower your taxes. Unlike many investment managers, we automate advanced tax-efficient strategies, like <a href="help/tag/tax-coordination-1.html" rel="noopener">tax coordination</a> and <a href="tax-loss-harvesting-1.html" rel="noopener">Tax Loss Harvesting+</a> so you can save more throughout the year.</p>
+                                                               <div>&nbsp;</div>
                                                             </div>
-                                                            <div class="hs-cta flex flex-column-sm  align-center mt28">
-                                                               <span>
-                                                                  <span id="hs_cos_wrapper_widget_1633665004677_" class="hs_cos_wrapper hs_cos_wrapper_widget hs_cos_wrapper_type_cta" style="" data-hs-cos-general-type="widget" data-hs-cos-type="cta">
-                                                                     <!--HubSpot Call-to-Action Code -->
-                                                                     <span class="hs-cta-wrapper" id="hs-cta-wrapper-4effd7d2-e029-4b8e-a60a-54cebca19abe">
-                                                                        <span class="hs-cta-node hs-cta-4effd7d2-e029-4b8e-a60a-54cebca19abe" id="hs-cta-4effd7d2-e029-4b8e-a60a-54cebca19abe">
-                                                                           <!--[if lte IE 8]>
-                                                                           <div id="hs-cta-ie-element"></div>
-                                                                           <![endif]--><a href="https://cta-redirect.hubspot.com/cta/redirect/5274572/4effd7d2-e029-4b8e-a60a-54cebca19abe"><img class="hs-cta-img" id="hs-cta-img-4effd7d2-e029-4b8e-a60a-54cebca19abe" style="border-width:0px;" src="cta/default/5274572/4effd7d2-e029-4b8e-a60a-54cebca19abe-1.png" alt="Get started"></a>
-                                                                        </span>
-                                                                        <script charset="utf-8" src="hs/cta/cta/current-1.js"></script><script type="text/javascript"> hbspt.cta._relativeUrls=true;hbspt.cta.load(5274572, '4effd7d2-e029-4b8e-a60a-54cebca19abe', {"useNewLoader":"true","region":"na1"}); </script>
-                                                                     </span>
-                                                                     <!-- end HubSpot Call-to-Action Code -->
-                                                                  </span>
-                                                               </span>
-                                                            </div>
-                                                         </div>
-                                                      </div>
-                                                      <div class="bt-ContentGrid-item u-col-12 u-col-5@md cols col-2">
-                                                         <div>
-                                                            <img src="hs-fs/hubfs/Graphics/webpage-graphics/lisas-college-fund-greece-getaway-6.png?width=917&amp;name=lisas-college-fund-greece-getaway.png" alt="Two goals that are on track. One for Lisa's college fund, and another for a Greece getaway." width="917" srcset="hs-fs/hubfs/Graphics/webpage-graphics/lisas-college-fund-greece-getaway-7.png 459w?width=459&amp;name=lisas-college-fund-greece-getaway.png 459w, hs-fs/hubfs/Graphics/webpage-graphics/lisas-college-fund-greece-getaway-6.png 917wg?width=917&amp;name=lisas-college-fund-greece-getaway.png 917w, hs-fs/hubfs/Graphics/webpage-graphics/lisas-college-fund-greece-getaway-8.png 1376wg?width=1376&amp;name=lisas-college-fund-greece-getaway.png 1376w, hs-fs/hubfs/Graphics/webpage-graphics/lisas-college-fund-greece-getaway-9.png 1834wg?width=1834&amp;name=lisas-college-fund-greece-getaway.png 1834w, hs-fs/hubfs/Graphics/webpage-graphics/lisas-college-fund-greece-getaway-10.png 2293wg?width=2293&amp;name=lisas-college-fund-greece-getaway.png 2293w, hs-fs/hubfs/Graphics/webpage-graphics/lisas-college-fund-greece-getaway-11.png 2751wg?width=2751&amp;name=lisas-college-fund-greece-getaway.png 2751w" sizes="(max-width: 917px) 100vw, 917px">
                                                          </div>
                                                       </div>
                                                    </div>
@@ -290,12 +339,12 @@
                                              </section>
                                              <script class="section-spacing-script" type="application/json">{"pt_lg":152,"pt_sm":104}</script>
                                              <style>
-                                                .bt-section-padding-15212010496{
+                                                .bt-section-padding-1526410496{
                                                 padding-top: 152px;
-                                                padding-bottom: 120px;
+                                                padding-bottom: 64px;
                                                 }
                                                 @media(max-width:699px){
-                                                .bt-section-padding-15212010496{
+                                                .bt-section-padding-1526410496{
                                                 padding-top: 104px;
                                                 padding-bottom: 96px;
                                                 }
@@ -311,9 +360,9 @@
                                  <div class="row-fluid-wrapper row-depth-1 row-number-3 dnd-row">
                                     <div class="row-fluid ">
                                        <div class="span12 widget-span widget-type-custom_widget dnd-module" style="" data-widget-type="custom_widget" data-x="0" data-w="12">
-                                          <div id="hs_cos_wrapper_widget_1635218732693" class="hs_cos_wrapper hs_cos_wrapper_widget hs_cos_wrapper_type_module" style="" data-hs-cos-general-type="widget" data-hs-cos-type="module">
-                                             <section class="bt-section transition-arch bg-blue10 " aria-hidden="true">
-                                                <div class="arch-circle white">
+                                          <div id="hs_cos_wrapper_widget_1633663841793" class="hs_cos_wrapper hs_cos_wrapper_widget hs_cos_wrapper_type_module" style="" data-hs-cos-general-type="widget" data-hs-cos-type="module">
+                                             <section class="bt-section transition-arch bg-navy " aria-hidden="true">
+                                                <div class="arch-circle blue10">
                                                    <svg class="arch-circle_desktop" width="2000" height="186" viewbox="0 0 2000 186" fill="none" xmlns="http://www.w3.org/2000/svg">
                                                       <title>Arch illustration - desktop </title>
                                                       <path fill-rule="evenodd" clip-rule="evenodd" d="M2000 157.654C1731.94 59.4275 1382.37 0 1000 0C617.634 0 268.057 59.4275 0 157.654V186H2000V157.654Z" fill="currentColor"></path>
@@ -334,25 +383,25 @@
                                  <div class="row-fluid-wrapper row-depth-1 row-number-4 dnd-row">
                                     <div class="row-fluid ">
                                        <div class="span12 widget-span widget-type-custom_widget dnd-module" style="" data-widget-type="custom_widget" data-x="0" data-w="12">
-                                          <div id="hs_cos_wrapper_widget_1633665643225" class="hs_cos_wrapper hs_cos_wrapper_widget hs_cos_wrapper_type_module" style="" data-hs-cos-general-type="widget" data-hs-cos-type="module">
-                                             <section class="bt-section image-content bg-white  
-                                                bt-section-padding-32963264">
+                                          <div id="hs_cos_wrapper_widget_1633645979508" class="hs_cos_wrapper hs_cos_wrapper_widget hs_cos_wrapper_type_module" style="" data-hs-cos-general-type="widget" data-hs-cos-type="module">
+                                             <section class="bt-section image-content bg-blue10  
+                                                bt-section-padding-32966464">
                                                 <div class="bt-container">
-                                                   <div class="flex-wrap bt-row dark flex-spaceAround flex-middle 
-                                                      image-right mobile-image-bottom mobile-text-align-left">
+                                                   <div class="flex-wrap bt-row dark flex-spaceEvenly flex-middle 
+                                                      image-left mobile-image-bottom mobile-text-align-left">
                                                       <div class="bt-ContentGrid-item u-col-12 u-col-5@md cols col-1">
                                                          <div>
                                                             <h2 class="item-title h2-title bt-title2"> 
-                                                               Start by setting your goals.
+                                                               Your after-tax return is what matters.
                                                             </h2>
                                                             <div class="item-body fancy-bullet fancy-bullet_check_blue ">
-                                                               <p>Everyone’s financial goals look different. No matter your starting point, set up a plan that’s right for you, whether that’s saving for a specific purchase or simply building wealth.</p>
+                                                               <p><span>Other investment managers may estimate your long-term returns, but they might not be factoring in a key element that could lower what you take home: taxes.</span></p>
                                                             </div>
                                                          </div>
                                                       </div>
                                                       <div class="bt-ContentGrid-item u-col-12 u-col-5@md cols col-2 ">
                                                          <div>
-                                                            <img src="hs-fs/hubfs/Graphics/webpage-graphics/house-blueprint-6.png?width=839&amp;name=house-blueprint.png" alt="A house with a blueprint outlining half of the house.." width="839" srcset="hs-fs/hubfs/Graphics/webpage-graphics/house-blueprint-7.png 420w?width=420&amp;name=house-blueprint.png 420w, hs-fs/hubfs/Graphics/webpage-graphics/house-blueprint-6.png 839wg?width=839&amp;name=house-blueprint.png 839w, hs-fs/hubfs/Graphics/webpage-graphics/house-blueprint-8.png 1259wg?width=1259&amp;name=house-blueprint.png 1259w, hs-fs/hubfs/Graphics/webpage-graphics/house-blueprint-9.png 1678wg?width=1678&amp;name=house-blueprint.png 1678w, hs-fs/hubfs/Graphics/webpage-graphics/house-blueprint-10.png 2098wg?width=2098&amp;name=house-blueprint.png 2098w, hs-fs/hubfs/Graphics/webpage-graphics/house-blueprint-11.png 2517wg?width=2517&amp;name=house-blueprint.png 2517w" sizes="(max-width: 839px) 100vw, 839px">
+                                                            <img src="hs-fs/hubfs/Graphics/featured-images/tax-calculator-6.png?width=1100&amp;name=tax-calculator.png" alt="A calculator showing tax on the screen and a confirmed document nearby." width="1100" srcset="hs-fs/hubfs/Graphics/featured-images/tax-calculator-7.png 550w?width=550&amp;name=tax-calculator.png 550w, hs-fs/hubfs/Graphics/featured-images/tax-calculator-6.png 1100wg?width=1100&amp;name=tax-calculator.png 1100w, hs-fs/hubfs/Graphics/featured-images/tax-calculator-8.png 1650wg?width=1650&amp;name=tax-calculator.png 1650w, hs-fs/hubfs/Graphics/featured-images/tax-calculator-9.png 2200wg?width=2200&amp;name=tax-calculator.png 2200w, hs-fs/hubfs/Graphics/featured-images/tax-calculator-10.png 2750wg?width=2750&amp;name=tax-calculator.png 2750w, hs-fs/hubfs/Graphics/featured-images/tax-calculator-11.png 3300wg?width=3300&amp;name=tax-calculator.png 3300w" sizes="(max-width: 1100px) 100vw, 1100px">
                                                          </div>
                                                       </div>
                                                    </div>
@@ -362,15 +411,15 @@
                                                 @media(min-width:963px){
                                                 }
                                              </style>
-                                             <script class="section-spacing-script" type="application/json">{"pt_lg":32,"pt_sm":32}</script>
+                                             <script class="section-spacing-script" type="application/json">{"pt_lg":32,"pt_sm":64}</script>
                                              <style>
-                                                .bt-section-padding-32963264{
+                                                .bt-section-padding-32966464{
                                                 padding-top: 32px;
                                                 padding-bottom: 96px;
                                                 }
                                                 @media(max-width:699px){
-                                                .bt-section-padding-32963264{
-                                                padding-top: 32px;
+                                                .bt-section-padding-32966464{
+                                                padding-top: 64px;
                                                 padding-bottom: 64px;
                                                 }
                                                 }
@@ -385,91 +434,93 @@
                                  <div class="row-fluid-wrapper row-depth-1 row-number-5 dnd-row">
                                     <div class="row-fluid ">
                                        <div class="span12 widget-span widget-type-custom_widget dnd-module" style="" data-widget-type="custom_widget" data-x="0" data-w="12">
-                                          <div id="hs_cos_wrapper_widget_1633665850012" class="hs_cos_wrapper hs_cos_wrapper_widget hs_cos_wrapper_type_module" style="" data-hs-cos-general-type="widget" data-hs-cos-type="module">
-                                             <section class="bt-section image-content bg-grey10  
-                                                bt-section-padding-1201209696">
-                                                <div class="bt-container">
-                                                   <div class="flex-wrap bt-row dark flex-spaceAround flex-middle 
-                                                      image-left mobile-image-bottom mobile-text-align-left">
-                                                      <div class="bt-ContentGrid-item u-col-12 u-col-5@md cols col-1">
-                                                         <div>
-                                                            <h2 class="item-title h2-title bt-title2"> 
-                                                               Bring your goals to life.
-                                                            </h2>
-                                                            <div class="item-body fancy-bullet fancy-bullet_check_blue ">
-                                                               <p>Let us know things like how much you want to save and by when, and we’ll help you set up a portfolio of stocks, bonds, or cash. Play around with our projections tool to see how changes affect your goal.</p>
-                                                            </div>
-                                                         </div>
-                                                      </div>
-                                                      <div class="bt-ContentGrid-item u-col-12 u-col-6@md cols col-2 ">
-                                                         <div>
-                                                            <img src="hs-fs/hubfs/Graphics/webpage-graphics/dream-home-on-track-6.png?width=921&amp;name=dream-home-on-track.png" alt="A Dream Home set up as an on track Betterment goal, with a target amount of $55,000 and date of May 2024." width="921" srcset="hs-fs/hubfs/Graphics/webpage-graphics/dream-home-on-track-7.png 461w?width=461&amp;name=dream-home-on-track.png 461w, hs-fs/hubfs/Graphics/webpage-graphics/dream-home-on-track-6.png 921wg?width=921&amp;name=dream-home-on-track.png 921w, hs-fs/hubfs/Graphics/webpage-graphics/dream-home-on-track-8.png 1382wg?width=1382&amp;name=dream-home-on-track.png 1382w, hs-fs/hubfs/Graphics/webpage-graphics/dream-home-on-track-9.png 1842wg?width=1842&amp;name=dream-home-on-track.png 1842w, hs-fs/hubfs/Graphics/webpage-graphics/dream-home-on-track-10.png 2303wg?width=2303&amp;name=dream-home-on-track.png 2303w, hs-fs/hubfs/Graphics/webpage-graphics/dream-home-on-track-11.png 2763wg?width=2763&amp;name=dream-home-on-track.png 2763w" sizes="(max-width: 921px) 100vw, 921px">
-                                                         </div>
-                                                      </div>
-                                                   </div>
-                                                </div>
-                                             </section>
-                                             <style>
-                                                @media(min-width:963px){
-                                                }
-                                             </style>
-                                             <script class="section-spacing-script" type="application/json">{"pt_lg":120,"pt_sm":96}</script>
-                                             <style>
-                                                .bt-section-padding-1201209696{
-                                                padding-top: 120px;
-                                                padding-bottom: 120px;
-                                                }
-                                                @media(max-width:699px){
-                                                .bt-section-padding-1201209696{
-                                                padding-top: 96px;
-                                                padding-bottom: 96px;
-                                                }
-                                                }
-                                             </style>
-                                          </div>
-                                       </div>
-                                       <!--end widget-span -->
-                                    </div>
-                                    <!--end row-->
-                                 </div>
-                                 <!--end row-wrapper -->
-                                 <div class="row-fluid-wrapper row-depth-1 row-number-6 dnd-row">
-                                    <div class="row-fluid ">
-                                       <div class="span12 widget-span widget-type-custom_widget dnd-module" style="" data-widget-type="custom_widget" data-x="0" data-w="12">
-                                          <div id="hs_cos_wrapper_module_1633918292163" class="hs_cos_wrapper hs_cos_wrapper_widget hs_cos_wrapper_type_module" style="" data-hs-cos-general-type="widget" data-hs-cos-type="module">
-                                             <section class="bt-section image-content bg-white  
+                                          <div id="hs_cos_wrapper_widget_1633646341229" class="hs_cos_wrapper hs_cos_wrapper_widget hs_cos_wrapper_type_module" style="" data-hs-cos-general-type="widget" data-hs-cos-type="module">
+                                             <section class="bt-section accordion-set column-count-2 bg-white 
                                                 bt-section-padding-96966464">
                                                 <div class="bt-container">
-                                                   <div class="flex-wrap bt-row dark flex-spaceAround flex-middle 
-                                                      image-right mobile-image-bottom mobile-text-align-left">
-                                                      <div class="bt-ContentGrid-item u-col-12 u-col-6@md cols col-1">
-                                                         <div>
-                                                            <h2 class="item-title h2-title bt-title2"> 
-                                                               Use our savings tools to help you reach your goals.
-                                                            </h2>
-                                                            <div class="item-body fancy-bullet fancy-bullet_check_blue ">
-                                                               <ul>
-                                                                  <li><strong>Connect outside accounts</strong> to plan holistically.</li>
-                                                                  <li><strong>Get advice</strong> on how to save: stock, bonds, or cash.</li>
-                                                                  <li><strong>Calculate how to reach your target</strong> with our goal forecaster.</li>
-                                                                  <li><strong>Schedule deposits</strong> with one-time or automatic deposits.</li>
-                                                                  <li><strong>Track your progress</strong> and make adjustments along the way.</li>
-                                                               </ul>
-                                                            </div>
-                                                         </div>
+                                                   <div class="flex-wrap bt-row dark flex-spaceBetween ">
+                                                      <div class="bt-ContentGrid-item u-col-12 u-col-5@md cols col-1 ">
+                                                         <h2 class="bt-title2 ">  Every account at Betterment can utilize tax-smart features.</h2>
                                                       </div>
-                                                      <div class="bt-ContentGrid-item u-col-12 u-col-5@md cols col-2 ">
-                                                         <div>
-                                                            <img src="hs-fs/hubfs/Graphics/webpage-graphics/dream-home-achieved-6.png?width=1044&amp;name=dream-home-achieved.png" alt="Two people celebrating in their newly purchased home next to a card showing our dream home goal achieved." width="1044" srcset="hs-fs/hubfs/Graphics/webpage-graphics/dream-home-achieved-7.png 522w?width=522&amp;name=dream-home-achieved.png 522w, hs-fs/hubfs/Graphics/webpage-graphics/dream-home-achieved-6.png 1044wg?width=1044&amp;name=dream-home-achieved.png 1044w, hs-fs/hubfs/Graphics/webpage-graphics/dream-home-achieved-8.png 1566wg?width=1566&amp;name=dream-home-achieved.png 1566w, hs-fs/hubfs/Graphics/webpage-graphics/dream-home-achieved-9.png 2088wg?width=2088&amp;name=dream-home-achieved.png 2088w, hs-fs/hubfs/Graphics/webpage-graphics/dream-home-achieved-10.png 2610wg?width=2610&amp;name=dream-home-achieved.png 2610w, hs-fs/hubfs/Graphics/webpage-graphics/dream-home-achieved-11.png 3132wg?width=3132&amp;name=dream-home-achieved.png 3132w" sizes="(max-width: 1044px) 100vw, 1044px">
-                                                         </div>
+                                                      <div class="bt-ContentGrid-item u-col-12 u-col-6@md cols col-2 ">
+                                                         <ul class="accordion-controls" aria-label="Accordion Control Group Buttons">
+                                                            <li class="item border-btGrey30">
+                                                               <button class="accordion-trigger bt-body1" aria-controls="content-when-you-choose-what-type-of-account-to-invest-in" aria-expanded="false">
+                                                                  When you choose what type of account to invest in 
+                                                                  <svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 24 24" aria-hidden="true" aria-label="Caret Down" class="display-block width100">
+                                                                     <title>Caret Down Icon</title>
+                                                                     <path d="M18.3536 9.70709L12 16.0606L5.64648 9.70708L6.70714 8.64642L12 13.9393L17.2929 8.64643L18.3536 9.70709Z" fill="currentColor"></path>
+                                                                  </svg>
+                                                               </button>
+                                                               <div class="accordion-body" aria-hidden="true" id="content-when-you-choose-what-type-of-account-to-invest-in" style="display:none;">
+                                                                  <p><strong>We focus on taxes.</strong> Learn which combination of traditional, <a href="retirement-1.html" rel="noopener">Roth, and taxable accounts</a>—which are all taxed differently—may be right for you.</p>
+                                                               </div>
+                                                            </li>
+                                                            <li class="item border-btGrey30">
+                                                               <button class="accordion-trigger bt-body1" aria-controls="content-when-we-build-your-portfolio" aria-expanded="false">
+                                                                  When we build your portfolio 
+                                                                  <svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 24 24" aria-hidden="true" aria-label="Caret Down" class="display-block width100">
+                                                                     <title>Caret Down Icon</title>
+                                                                     <path d="M18.3536 9.70709L12 16.0606L5.64648 9.70708L6.70714 8.64642L12 13.9393L17.2929 8.64643L18.3536 9.70709Z" fill="currentColor"></path>
+                                                                  </svg>
+                                                               </button>
+                                                               <div class="accordion-body" aria-hidden="true" id="content-when-we-build-your-portfolio" style="display:none;">
+                                                                  <p><strong>We use ETFs.</strong> <a href="resources/betterment-portfolio-strategy-1.html" rel="noopener">Exchange-traded funds</a> are generally more tax-efficient and lower-cost than mutual funds, which is why we have an all-ETF portfolio.<br><br><strong>We organize assets based on taxes.</strong> <a href="resources/are-bonds-right-for-you-1.html" rel="noopener">Municipal bonds</a> (which provide tax-exempt income) go into your taxable accounts, and core bonds (which do not) go into your tax-advantaged IRAs.<br><br>High-tax assets belong in IRAs and low-tax assets belong in taxable accounts. For customers who use our Tax-Coordinated Portfolio™ feature, we automate this strategy, which could help increase your portfolio value.</p>
+                                                               </div>
+                                                            </li>
+                                                            <li class="item border-btGrey30">
+                                                               <button class="accordion-trigger bt-body1" aria-controls="content-when-you-make-a-deposit-or-receive-dividends" aria-expanded="false">
+                                                                  When you make a deposit or receive dividends 
+                                                                  <svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 24 24" aria-hidden="true" aria-label="Caret Down" class="display-block width100">
+                                                                     <title>Caret Down Icon</title>
+                                                                     <path d="M18.3536 9.70709L12 16.0606L5.64648 9.70708L6.70714 8.64642L12 13.9393L17.2929 8.64643L18.3536 9.70709Z" fill="currentColor"></path>
+                                                                  </svg>
+                                                               </button>
+                                                               <div class="accordion-body" aria-hidden="true" id="content-when-you-make-a-deposit-or-receive-dividends" style="display:none;">
+                                                                  <p><strong>We rebalance.</strong> Rebalancing can help protect your portfolio from market volatility, but doing it by selling securities can cost you in taxes. To help avoid this, we rebalance using deposits and dividends.</p>
+                                                               </div>
+                                                            </li>
+                                                            <li class="item border-btGrey30">
+                                                               <button class="accordion-trigger bt-body1" aria-controls="content-when-you-make-a-withdrawal-or-change-your-allocation" aria-expanded="false">
+                                                                  When you make a withdrawal or change your allocation 
+                                                                  <svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 24 24" aria-hidden="true" aria-label="Caret Down" class="display-block width100">
+                                                                     <title>Caret Down Icon</title>
+                                                                     <path d="M18.3536 9.70709L12 16.0606L5.64648 9.70708L6.70714 8.64642L12 13.9393L17.2929 8.64643L18.3536 9.70709Z" fill="currentColor"></path>
+                                                                  </svg>
+                                                               </button>
+                                                               <div class="accordion-body" aria-hidden="true" id="content-when-you-make-a-withdrawal-or-change-your-allocation" style="display:none;">
+                                                                  <p><strong>We show you the possible tax consequences.</strong> We'll help you to see the <a href="resources/tax-impact-preview-1.html" rel="noopener">potential tax implications</a> before you make a transaction.<br><br><strong>We work to minimize transaction taxes.</strong> To help <a href="resources/lowering-your-tax-bill-by-improving-our-cost-basis-accounting-methods.html" rel="noopener">lower transaction taxes</a>, we sell your assets in a specific order—the ones with the lowest tax burden go first.</p>
+                                                               </div>
+                                                            </li>
+                                                            <li class="item border-btGrey30">
+                                                               <button class="accordion-trigger bt-body1" aria-controls="content-when-a-fund-gains-value" aria-expanded="false">
+                                                                  When a fund gains value 
+                                                                  <svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 24 24" aria-hidden="true" aria-label="Caret Down" class="display-block width100">
+                                                                     <title>Caret Down Icon</title>
+                                                                     <path d="M18.3536 9.70709L12 16.0606L5.64648 9.70708L6.70714 8.64642L12 13.9393L17.2929 8.64643L18.3536 9.70709Z" fill="currentColor"></path>
+                                                                  </svg>
+                                                               </button>
+                                                               <div class="accordion-body" aria-hidden="true" id="content-when-a-fund-gains-value" style="display:none;">
+                                                                  <p><strong>We help you maximize the benefits of charitable giving.</strong> To help you make the most of your charitable gifts, we enable you to <a href="charitable-giving/index-1.htm" rel="noopener">donate your most appreciated shares</a> directly through our platform. This helps reduce your portfolio's tax liability.</p>
+                                                               </div>
+                                                            </li>
+                                                            <li class="item border-btGrey30">
+                                                               <button class="accordion-trigger bt-body1" aria-controls="content-when-a-fund-loses-value" aria-expanded="false">
+                                                                  When a fund loses value 
+                                                                  <svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 24 24" aria-hidden="true" aria-label="Caret Down" class="display-block width100">
+                                                                     <title>Caret Down Icon</title>
+                                                                     <path d="M18.3536 9.70709L12 16.0606L5.64648 9.70708L6.70714 8.64642L12 13.9393L17.2929 8.64643L18.3536 9.70709Z" fill="currentColor"></path>
+                                                                  </svg>
+                                                               </button>
+                                                               <div class="accordion-body" aria-hidden="true" id="content-when-a-fund-loses-value" style="display:none;">
+                                                                  <p><strong>We tax loss harvest.</strong> When investments lose value, you can sell them to help offset the taxes that come with income and capital gains. For customers who use our Tax-Loss Harvesting+ feature, we look for these opportunities regularly, which seeks to help increase your after-tax returns.</p>
+                                                               </div>
+                                                            </li>
+                                                         </ul>
                                                       </div>
                                                    </div>
                                                 </div>
                                              </section>
-                                             <style>
-                                                @media(min-width:963px){
-                                                }
-                                             </style>
                                              <script class="section-spacing-script" type="application/json">{"pt_lg":96,"pt_sm":64}</script>
                                              <style>
                                                 .bt-section-padding-96966464{
@@ -490,10 +541,10 @@
                                     <!--end row-->
                                  </div>
                                  <!--end row-wrapper -->
-                                 <div class="row-fluid-wrapper row-depth-1 row-number-7 dnd-row">
+                                 <div class="row-fluid-wrapper row-depth-1 row-number-6 dnd-row">
                                     <div class="row-fluid ">
                                        <div class="span12 widget-span widget-type-custom_widget dnd-module" style="" data-widget-type="custom_widget" data-x="0" data-w="12">
-                                          <div id="hs_cos_wrapper_widget_1633666220364" class="hs_cos_wrapper hs_cos_wrapper_widget hs_cos_wrapper_type_module" style="" data-hs-cos-general-type="widget" data-hs-cos-type="module">
+                                          <div id="hs_cos_wrapper_widget_1633646306893" class="hs_cos_wrapper hs_cos_wrapper_widget hs_cos_wrapper_type_module" style="" data-hs-cos-general-type="widget" data-hs-cos-type="module">
                                              <section class="bt-section transition-triangle bg-white " aria-hidden="true">
                                                 <div class="triangle-shape blue10">
                                                    <svg width="2000" height="150" viewbox="0 0 2000 150" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -509,22 +560,22 @@
                                     <!--end row-->
                                  </div>
                                  <!--end row-wrapper -->
-                                 <div class="row-fluid-wrapper row-depth-1 row-number-8 dnd-row">
+                                 <div class="row-fluid-wrapper row-depth-1 row-number-7 dnd-row">
                                     <div class="row-fluid ">
                                        <div class="span12 widget-span widget-type-custom_widget dnd-module" style="" data-widget-type="custom_widget" data-x="0" data-w="12">
-                                          <div id="hs_cos_wrapper_widget_1633666165947" class="hs_cos_wrapper hs_cos_wrapper_widget hs_cos_wrapper_type_module" style="" data-hs-cos-general-type="widget" data-hs-cos-type="module">
+                                          <div id="hs_cos_wrapper_widget_1633663911686" class="hs_cos_wrapper hs_cos_wrapper_widget hs_cos_wrapper_type_module" style="" data-hs-cos-general-type="widget" data-hs-cos-type="module">
                                              <section class="bt-section bottom-cta-landscape 
                                                 bt-section-padding-138300138300">
                                                 <div class="bt-container">
                                                    <div class="flex-wrap bt-row">
                                                       <div class="bt-ContentGrid-item  u-col-12 dark ">
                                                          <div class="flex-wrap bt-row center flex-center">
-                                                            <h2 class="bt-ContentGrid-item u-col-12 u-col-6@lg">Turn life goals into money goals.</h2>
+                                                            <h2 class="bt-ContentGrid-item u-col-12 u-col-4@lg">Start investing today.</h2>
                                                             <div class="u-col-12"></div>
                                                             <div class="u-col-12"></div>
                                                             <div class="hs-cta ">
                                                                <span>
-                                                                  <span id="hs_cos_wrapper_widget_1633666165947_" class="hs_cos_wrapper hs_cos_wrapper_widget hs_cos_wrapper_type_cta" style="" data-hs-cos-general-type="widget" data-hs-cos-type="cta">
+                                                                  <span id="hs_cos_wrapper_widget_1633663911686_" class="hs_cos_wrapper hs_cos_wrapper_widget hs_cos_wrapper_type_cta" style="" data-hs-cos-general-type="widget" data-hs-cos-type="cta">
                                                                      <!--HubSpot Call-to-Action Code -->
                                                                      <span class="hs-cta-wrapper" id="hs-cta-wrapper-4effd7d2-e029-4b8e-a60a-54cebca19abe">
                                                                         <span class="hs-cta-node hs-cta-4effd7d2-e029-4b8e-a60a-54cebca19abe" id="hs-cta-4effd7d2-e029-4b8e-a60a-54cebca19abe">
@@ -579,7 +630,7 @@
          </main>
          <div id="hs_cos_wrapper_page_classification_16736192423171" class="hs_cos_wrapper hs_cos_wrapper_widget hs_cos_wrapper_type_module" style="" data-hs-cos-general-type="widget" data-hs-cos-type="module">
             <script id="user-intent-script-data" type="application/json">
-               {"account_interest":{"associated_page_type":null,"key":"null","motivation":null},"page_type":"b4c-site","portfolio_interest":{"associated_page_type":null,"key":"null","motivation":null},"product_category":{"associated_page_type":["b4c-site"],"key":"goals","motivation":"investing"},"template_type":"page","url":"/goals","visited_order":1}
+               {"account_interest":{"associated_page_type":null,"key":"tax-loss-havesting","motivation":null},"page_type":"b4c-site","portfolio_interest":{"associated_page_type":null,"key":"null","motivation":null},"product_category":{"associated_page_type":["b4c-site"],"key":"investing","motivation":"general-investing"},"template_type":"page","url":"/tax-efficient-investing","visited_order":1}
             </script>
          </div>
          <div id="hs_cos_wrapper_get_started_mobile_popup_1665176274" class="hs_cos_wrapper hs_cos_wrapper_widget hs_cos_wrapper_type_module" style="" data-hs-cos-general-type="widget" data-hs-cos-type="module">
@@ -601,7 +652,6 @@
       <script src="hs/hsstatic/cos-i18n/static-1.53/bundles/project-1.js"></script>
       <script src="hs-fs/hub/5274572/hub_generated/template_assets/54140855575/1666904644659/betterment-theme/js/custom-scripts/navigation.min-1.js"></script>
       <script src="hs-fs/hub/5274572/hub_generated/module_assets/64614019605/1730079073936/module_64614019605_toast_banner_global.min-1.js"></script>
-      <script src="hs-fs/hub/5274572/hub_generated/module_assets/56171597718/1728488260527/module_56171597718_hero_text_image.min-1.js"></script>
       <script src="hs-fs/hub/5274572/hub_generated/module_assets/56155603474/1728488270544/module_56155603474_text_image_section.min-1.js"></script>
       <script src="hs-fs/hub/5274572/hub_generated/module_assets/87640144244/1725556675401/module_87640144244_get_started_mobile_popup.min-1.js"></script>
       <script src="hs-fs/hub/5274572/hub_generated/module_assets/55748752406/1725556670961/module_55748752406_chatbot.min-1.js"></script>
@@ -609,15 +659,15 @@
       <script type="text/javascript">
          var _hsq = _hsq || [];
          _hsq.push(["setContentType", "standard-page"]);
-         _hsq.push(["setCanonicalUrl", "https:\/\/www.betterment.com\/goals"]);
-         _hsq.push(["setPageId", "58577741077"]);
+         _hsq.push(["setCanonicalUrl", "https:\/\/www.betterment.com\/tax-efficient-investing"]);
+         _hsq.push(["setPageId", "57008151461"]);
          _hsq.push(["setContentMetadata", {
-             "contentPageId": 58577741077,
-             "legacyPageId": "58577741077",
+             "contentPageId": 57008151461,
+             "legacyPageId": "57008151461",
              "contentFolderId": null,
              "contentGroupId": null,
              "abTestId": null,
-             "languageVariantId": 58577741077,
+             "languageVariantId": 57008151461,
              "languageCode": "en",
              
              
@@ -627,9 +677,9 @@
       <!-- End of HubSpot Analytics Code -->
       <script type="text/javascript">
          var hsVars = {
-             render_id: "eb4d81ac-6c52-41ac-b516-5820f2986470",
-             ticks: 1730128107545,
-             page_id: 58577741077,
+             render_id: "d5748f96-ad87-440a-b76a-7e6ad54bf5f8",
+             ticks: 1730128499639,
+             page_id: 57008151461,
              
              content_group_id: 0,
              portal_id: 5274572,
@@ -638,7 +688,7 @@
              language: "en",
              analytics_page_type: "standard-page",
              scp_content_type: "",
-             analytics_page_id: "58577741077",
+             analytics_page_id: "57008151461",
              category_id: 1,
              folder_id: 0,
              is_hubspot_user: false

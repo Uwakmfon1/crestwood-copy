@@ -6,10 +6,10 @@
                 <a data-event="Investing" data-track-event="ElementClicked" data-track-name="Investing
                     " data-track-module="TopNav" role="button" tabindex="0" aria-controls="menu-control-0" aria-expanded="false">Investing</a>
                 <ul class="sub-menu" id="menu-control-0">
-                    <li id="menu-item-208986cdbf8b72cc8b46161b4affbe8b" class="menu-item menu-item_depth-2  menu-item-208986cdbf8b72cc8b46161b4affbe8b">
+                    <!-- <li id="menu-item-208986cdbf8b72cc8b46161b4affbe8b" class="menu-item menu-item_depth-2  menu-item-208986cdbf8b72cc8b46161b4affbe8b">
                         <a href="#" data-event="Automated investing" data-track-event="ElementClicked" data-track-name="AutomatedInvesting
                             " data-track-module="TopNav" data-itemindex="0">Automated investing</a>
-                    </li>
+                    </li> -->
                     <li id="menu-item-56dcec3fae614dd5ed990fb7c700fd2a" class="menu-item menu-item_depth-2  menu-item-56dcec3fae614dd5ed990fb7c700fd2a">
                         <a href="{{ route('bonds') }}" data-event="Bonds investing" data-track-event="ElementClicked" data-track-name="BondsInvesting
                             " data-track-module="TopNav" data-itemindex="1">Bonds investing</a>
@@ -119,7 +119,7 @@
                             " data-track-module="TopNav" data-itemindex="2">Employee resources</a>
                     </li>
                     <li id="menu-item-3d3d0e1cf8a4804562a5f3b14a93218a" class="menu-item menu-item_depth-2  menu-item-3d3d0e1cf8a4804562a5f3b14a93218a">
-                        <a href="{{ route('help') }}l" data-event="Help center" data-track-event="ElementClicked" data-track-name="HelpCenter
+                        <a href="{{ route('help') }}" data-event="Help center" data-track-event="ElementClicked" data-track-name="HelpCenter
                             " data-track-module="TopNav" data-itemindex="3">Help center</a>
                     </li>
                     <li id="menu-item-1fe917b01f9a3f87fa2d7d3b7643fac1" class="menu-item menu-item_depth-2  menu-item-1fe917b01f9a3f87fa2d7d3b7643fac1">
@@ -136,7 +136,7 @@
             <div class="headline">See solutions for</div>
             <ul class="flex-wrap">
                 <li class="item active-lob" id="menu-item-Individuals">
-                <a href="index-1.htm" class="item-link" data-event="Individuals" data-track-event="ElementClicked" data-track-name="Individuals" data-track-module="CourtesyNav">
+                <a href="{{ route('home') }}" class="item-link" data-event="Individuals" data-track-event="ElementClicked" data-track-name="Individuals" data-track-module="CourtesyNav">
                 Individuals
                 </a>
                 </li>
