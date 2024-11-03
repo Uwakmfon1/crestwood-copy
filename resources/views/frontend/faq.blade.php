@@ -283,7 +283,7 @@
                         <div class="solutions-info">
                            <ul class="flex-wrap">
                               <li class="item active-lob" id="menu-item-Individuals">
-                                 <a href="../../{{ route('home') }}" class="item-link" data-event="Individuals" data-track-event="ElementClicked" data-track-name="Individuals" data-track-module="CourtesyNav">
+                                 <a href="../{{ route('home') }}" class="item-link" data-event="Individuals" data-track-event="ElementClicked" data-track-name="Individuals" data-track-module="CourtesyNav">
                                  Individuals
                                  </a>
                               </li>

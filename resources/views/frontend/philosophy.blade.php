@@ -208,7 +208,7 @@
                         <div class="solutions-info">
                            <ul class="flex-wrap">
                               <li class="item active-lob" id="menu-item-Individuals">
-                                 <a href="../{{ route('home') }}" class="item-link" data-event="Individuals" data-track-event="ElementClicked" data-track-name="Individuals" data-track-module="CourtesyNav">
+                                 <a href="{{ route('home') }}" class="item-link" data-event="Individuals" data-track-event="ElementClicked" data-track-name="Individuals" data-track-module="CourtesyNav">
                                  Individuals
                                  </a>
                               </li>
@@ -236,7 +236,7 @@
                            <div class="bt-Nav bt-section ptb0  ">
                               <div class="bt-container">
                                  <div class="flex-wrap flex-middle">
-                                    <a href="../{{ route('home') }}" class="bt-Nav-logoContainer" data-track-event="ElementClicked" data-track-name="Logo" data-track-module="TopNav" data-interaction-listener-registered="true">
+                                    <a href="{{ route('home') }}" class="bt-Nav-logoContainer" data-track-event="ElementClicked" data-track-name="Logo" data-track-module="TopNav" data-interaction-listener-registered="true">
                                        <span class="bt-Logo">
                                           <img src="{{ asset('asset/images/logo/logo-dark.png') }}" alt="logo" class="desktop-logo">
                                        </span>
