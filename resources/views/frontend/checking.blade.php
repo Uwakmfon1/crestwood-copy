@@ -2,7 +2,7 @@
 <html lang="en">
    <head data-ipt="B4C Checking">
       <meta charset="utf-8">
-      <title>Betterment Checking</title>
+      <title>Crestwood Capital Management  Checking</title>
       <link rel="icon" href="{{ asset('asset/images/brand-logos/favicon.png') }}" type="image/x-icon">
       <meta name="description" content="Betterment Checking is a mobile-first checking account and debit card for 
          your daily spending. Now featuring cash back rewards.">

@@ -2,7 +2,7 @@
 <html lang="en">
    <head data-ipt="B4C Consumer Blog">
       <meta charset="utf-8">
-      <title>Betterment Resources | Original Content by Financial Experts</title>
+      <title>Crestwood Capital Management  Resources | Original Content by Financial Experts</title>
       <link rel="icon" href="{{ asset('asset/images/brand-logos/favicon.png') }}" type="image/x-icon">
       <meta name="description" content="Explore key investing basics, expert-led insights, and deep dives into the Betterment product.">
       <script>

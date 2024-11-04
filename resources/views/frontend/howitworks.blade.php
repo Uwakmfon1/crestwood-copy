@@ -2,7 +2,7 @@
 <html lang="en">
    <head data-ipt="B4C How It Works">
       <meta charset="utf-8">
-      <title>Betterment: How It Works | Save for the Life You Want</title>
+      <title>Crestwood Capital Management : How It Works | Save for the Life You Want</title>
       <link rel="icon" href="{{ asset('asset/images/brand-logos/favicon.png') }}" type="image/x-icon">
       <meta name="description" content="Tell us what you want to do with your money, and we'll build your account. Then, our technology gets to work! Save. Withdraw. Spend. Cheers!">
       <script>
