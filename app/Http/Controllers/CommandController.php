@@ -361,8 +361,6 @@ class CommandController extends Controller
 
     public static function updateStocks($command) 
     {
-
-        //::::::: STOCK DATA  ::::::://
         $stockSymbols = DB::table('stocks')->pluck('symbol')->chunk(100); // Chunk to handle large data sets
         $command->info("Starting stock updates...");
 
@@ -403,70 +401,50 @@ class CommandController extends Controller
             }
         }
         $command->info("Stock updates completed.");
+    }
 
+    public static function updateCrypto($command)
+    {
+        $stockSymbols = DB::table('cryptos')->pluck('symbol')->chunk(100); // Chunk to handle large data sets
+        $command->info("Starting crypto updates...");
 
+        foreach ($stockSymbols as $chunk) {
+            $symbolString = implode(',', $chunk->toArray());
+            $apiUrl = "https://financialmodelingprep.com/api/v3/quote/{$symbolString}?apikey=ExYlr0LoPC6GqCmzuScjwq79Fn4Krx77";
 
+            $response = Http::get($apiUrl);
 
-
-
-
-
-
-        //::::::: CRYPTO DATA  ::::::://
-        $cryptos = [
-            ['symbol' => 'BTCUSD', 'name' => 'Bitcoin', 'img' => 'https://upload.wikimedia.org/wikipedia/commons/thumb/4/46/Bitcoin.svg/1200px-Bitcoin.svg.png'],
-            ['symbol' => 'ETHUSD', 'name' => 'Ethereum', 'img' => 'https://upload.wikimedia.org/wikipedia/commons/0/05/Ethereum_logo_2014.svg'],
-            ['symbol' => 'USDTUSD', 'name' => 'Tether (USDT)', 'img' => 'https://cryptologos.cc/logos/tether-usdt-logo.png'],
-            ['symbol' => 'BNBUSD', 'name' => 'Binance Coin', 'img' => 'https://cryptologos.cc/logos/binance-coin-bnb-logo.png'],
-            ['symbol' => 'XRPUSD', 'name' => 'XRP (Ripple)', 'img' => 'https://cryptologos.cc/logos/xrp-xrp-logo.png'],
-            ['symbol' => 'ADAUSD', 'name' => 'Cardano', 'img' => 'https://cryptologos.cc/logos/cardano-ada-logo.png'],
-            ['symbol' => 'SOLUSD', 'name' => 'Solana', 'img' => 'https://cryptologos.cc/logos/solana-sol-logo.png'],
-            ['symbol' => 'DOTUSD', 'name' => 'Polkadot', 'img' => 'https://cryptologos.cc/logos/polkadot-new-dot-logo.png'],
-            ['symbol' => 'LTCUSD', 'name' => 'Litecoin', 'img' => 'https://cryptologos.cc/logos/litecoin-ltc-logo.png'],
-            ['symbol' => 'DOGEUSD', 'name' => 'Dogecoin', 'img' => 'https://cryptologos.cc/logos/dogecoin-doge-logo.png'],
-            ['symbol' => 'AVAXUSD', 'name' => 'Avalanche', 'img' => 'https://cryptologos.cc/logos/avalanche-avax-logo.png'],
-            ['symbol' => 'MATICUSD', 'name' => 'Polygon (MATIC)', 'img' => 'https://cryptologos.cc/logos/polygon-matic-logo.png'],
-            ['symbol' => 'UNIUSD', 'name' => 'Uniswap', 'img' => 'https://cryptologos.cc/logos/uniswap-uni-logo.png'],
-            ['symbol' => 'SHIBUSD', 'name' => 'Shiba Inu', 'img' => 'https://cryptologos.cc/logos/shiba-inu-shib-logo.png'],
-            ['symbol' => 'ATOMUSD', 'name' => 'Cosmos', 'img' => 'https://cryptologos.cc/logos/cosmos-atom-logo.png'],
-        ];
-        
-        // Create a comma-separated string of all cryptocurrency symbols
-        $cryptoSymbols = implode(',', array_column($cryptos, 'symbol'));
-        
-        // Fetch cryptocurrency data from financialmodelingprep.com
-        $cryptoApiUrl = "https://financialmodelingprep.com/api/v3/quote/{$cryptoSymbols}?apikey=ExYlr0LoPC6GqCmzuScjwq79Fn4Krx77";
-
-        $cryptoResponse = Http::get($cryptoApiUrl);
-
-        // Check if API request for cryptocurrencies was successful
-        if ($cryptoResponse->successful()) {
-            $cryptosData = $cryptoResponse->json(); // Assuming this returns a list of cryptocurrency data
-
-            // Iterate through the cryptocurrencies returned from the API
-            foreach ($cryptosData as $cryptoData) {
-                try {
-                    $crypto = Crypto::where('symbol', $cryptoData['symbol'])->first();
-                    if ($crypto) {
-                        $crypto->update([
-                            'price' => $cryptoData['price'],
-                            'market_cap' => $cryptoData['marketCap'], // Ensure this field is available in the response
-                            'volume' => $cryptoData['volume'], // Ensure this field is available in the response
-                            'changes_percentage' => $cryptoData['changesPercentage'], // Assuming it exists in the response
-                            // Add other fields as needed
-                        ]);
-                        $command->info("Updated cryptocurrency: {$crypto->symbol}");
-                    } else {
-                        $command->warn("Cryptocurrency with symbol {$cryptoData['symbol']} not found.");
-                    }
-                } catch (\Exception $e) {
-                    Log::error("Error updating cryptocurrency {$cryptoData['symbol']}: " . $e->getMessage());
+            if ($response->successful()) {
+                foreach ($response->json() as $data) {
+                    DB::table('cryptos')->updateOrInsert(
+                        ['symbol' => $data['symbol']],
+                        [
+                            'price' => $data['price'],
+                            'changes_percentage' => $data['changesPercentage'],
+                            'change' => $data['change'],
+                            'day_low' => $data['dayLow'],
+                            'day_high' => $data['dayHigh'],
+                            'year_low' => $data['yearLow'],
+                            'year_high' => $data['yearHigh'],
+                            'market_cap' => $data['marketCap'],
+                            'price_avg_50' => $data['priceAvg50'],
+                            'price_avg_200' => $data['priceAvg200'],
+                            'volume' => $data['volume'] ? $data['volume'] : 0,
+                            'avg_volume' => $data['avgVolume'] ? $data['avgVolume'] : 0,
+                            'open' => $data['open'],
+                            'previous_close' => $data['previousClose'],
+                            'eps' => 0,
+                            'pe' => 0,
+                        ]
+                    );
+                    $command->info("Updated stock: {$data['symbol']}");
                 }
+            } else {
+                Log::error("Failed to fetch stock data. Status: " . $response->status());
+                $command->error("Failed to fetch stock data for chunk: " . $symbolString);
             }
-        } else {
-            Log::error("Failed to fetch cryptocurrency data. Status: " . $cryptoResponse->status());
-            $command->error('Failed to fetch cryptocurrency data.');
         }
+        $command->info("Stock updates completed.");
     }
 
     public static function distributeProfit($command)
