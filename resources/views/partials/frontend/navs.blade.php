@@ -170,7 +170,10 @@
                 <span class="hs-cta-node hs-cta-4effd7d2-e029-4b8e-a60a-54cebca19abe" id="hs-cta-4effd7d2-e029-4b8e-a60a-54cebca19abe">
                     <!--[if lte IE 8]>
                     <div id="hs-cta-ie-element"></div>
-                    <![endif]--><a href="{{ route('register') }}" style="border-width:0px;" src="cta/default/5274572/4effd7d2-e029-4b8e-a60a-54cebca19abe-1.png" alt="Get started"></a>
+                    <![endif]-->
+                    <a href="{{ route('register') }}">
+                        <img class="hs-cta-img" id="hs-cta-img-4effd7d2-e029-4b8e-a60a-54cebca19abe" style="border-width:0px;" src="cta/default/5274572/4effd7d2-e029-4b8e-a60a-54cebca19abe-1.png" alt="Get started">
+                    </a>
                 </span>
                 <script charset="utf-8" src="hs/cta/cta/current-1.js"></script><script type="text/javascript"> hbspt.cta._relativeUrls=true;hbspt.cta.load(5274572, '4effd7d2-e029-4b8e-a60a-54cebca19abe', {"useNewLoader":"true","region":"na1"}); </script>
                 </span>
