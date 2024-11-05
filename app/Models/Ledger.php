@@ -96,7 +96,7 @@ class Ledger extends Model
 
         // Calculate balances for each account
         $updateData = [
-            'balance' => $calculateBalance('balance'),
+            'balance' => $calculateBalance('wallet'),
             'invest'  => $calculateBalance('invest'),
             'save'    => $calculateBalance('save'),
             'trade'   => $calculateBalance('trade'),
