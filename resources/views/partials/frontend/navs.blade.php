@@ -163,22 +163,10 @@
         </div>
     </div>
     <div class="u-displayNone--until-lg bt-nav-cta-2">
-        <div>
-            <span id="hs_cos_wrapper_module_16273343477845_" class="hs_cos_wrapper hs_cos_wrapper_widget hs_cos_wrapper_type_cta" style="" data-hs-cos-general-type="widget" data-hs-cos-type="cta">
-                <!--HubSpot Call-to-Action Code -->
-                <span class="hs-cta-wrapper" id="hs-cta-wrapper-4effd7d2-e029-4b8e-a60a-54cebca19abe">
-                <span class="hs-cta-node hs-cta-4effd7d2-e029-4b8e-a60a-54cebca19abe" id="hs-cta-4effd7d2-e029-4b8e-a60a-54cebca19abe">
-                    <!--[if lte IE 8]>
-                    <div id="hs-cta-ie-element"></div>
-                    <![endif]-->
-                    <a href="{{ route('register') }}">
-                        <img class="hs-cta-img" id="hs-cta-img-4effd7d2-e029-4b8e-a60a-54cebca19abe" style="border-width:0px;" src="cta/default/5274572/4effd7d2-e029-4b8e-a60a-54cebca19abe-1.png" alt="Get started">
-                    </a>
-                </span>
-                <script charset="utf-8" src="hs/cta/cta/current-1.js"></script><script type="text/javascript"> hbspt.cta._relativeUrls=true;hbspt.cta.load(5274572, '4effd7d2-e029-4b8e-a60a-54cebca19abe', {"useNewLoader":"true","region":"na1"}); </script>
-                </span>
-                <!-- end HubSpot Call-to-Action Code -->
-            </span>
+        <div class="">
+            <div>
+                <a href="{{ route('register') }}" style="background: #1d6ae5; color: white; padding: 14px 30px; border-radius: 5px; text-align: center; text-decoration: none; font-weight: 500;">Get Stated</a>
+            </div>
         </div>
     </div>
 </div>

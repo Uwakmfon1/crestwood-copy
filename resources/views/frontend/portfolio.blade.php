@@ -327,20 +327,13 @@
                                                             <h1 class="item-title ">  Expert-built,<br>curated portfolios</h1>
                                                             <div class="bt-body200 fancy-bullet fancy-bullet_dot_blue">Our portfolios are the easy way to invest like a pro. Choose from our selection to help you build wealth over the long term.</div>
                                                             <div class="hs-cta flex flex-column-sm  align-center mt28">
-                                                               <span>
-                                                                  <span id="hs_cos_wrapper_widget_1676655078649_" class="hs_cos_wrapper hs_cos_wrapper_widget hs_cos_wrapper_type_cta" style="" data-hs-cos-general-type="widget" data-hs-cos-type="cta">
-                                                                     <!--HubSpot Call-to-Action Code -->
-                                                                     <span class="hs-cta-wrapper" id="hs-cta-wrapper-4effd7d2-e029-4b8e-a60a-54cebca19abe">
-                                                                        <span class="hs-cta-node hs-cta-4effd7d2-e029-4b8e-a60a-54cebca19abe" id="hs-cta-4effd7d2-e029-4b8e-a60a-54cebca19abe">
-                                                                           <!--[if lte IE 8]>
-                                                                           <div id="hs-cta-ie-element"></div>
-                                                                           <![endif]--><a href="https://cta-redirect.hubspot.com/cta/redirect/5274572/4effd7d2-e029-4b8e-a60a-54cebca19abe"><img class="hs-cta-img" id="hs-cta-img-4effd7d2-e029-4b8e-a60a-54cebca19abe" style="border-width:0px;" src="cta/default/5274572/4effd7d2-e029-4b8e-a60a-54cebca19abe-1.png" alt="Get started"></a>
-                                                                        </span>
-                                                                        <script charset="utf-8" src="hs/cta/cta/current-1.js"></script><script type="text/javascript"> hbspt.cta._relativeUrls=true;hbspt.cta.load(5274572, '4effd7d2-e029-4b8e-a60a-54cebca19abe', {"useNewLoader":"true","region":"na1"}); </script>
-                                                                     </span>
-                                                                     <!-- end HubSpot Call-to-Action Code -->
-                                                                  </span>
-                                                               </span>
+                                                            
+                                                               <div class=" mt28">
+                                                                     <div>
+                                                                        <a href="{{ route('login') }}" style="background: #1d6ae5; color: white; padding: 14px 30px; border-radius: 5px; text-align: center; text-decoration: none; font-weight: 500;">Get Started</a>
+                                                                     </div>
+                                                               </div>
+                                                            </div>
                                                             </div>
                                                          </div>
                                                       </div>
@@ -951,22 +944,13 @@
                                                             <h2 class="bt-ContentGrid-item u-col-12 u-col-6@lg">Be invested.</h2>
                                                             <div class="u-col-12"></div>
                                                             <div class="u-col-12"></div>
-                                                            <div class="hs-cta ">
-                                                               <span>
-                                                                  <span id="hs_cos_wrapper_widget_1633666165947_" class="hs_cos_wrapper hs_cos_wrapper_widget hs_cos_wrapper_type_cta" style="" data-hs-cos-general-type="widget" data-hs-cos-type="cta">
-                                                                     <!--HubSpot Call-to-Action Code -->
-                                                                     <span class="hs-cta-wrapper" id="hs-cta-wrapper-4effd7d2-e029-4b8e-a60a-54cebca19abe">
-                                                                        <span class="hs-cta-node hs-cta-4effd7d2-e029-4b8e-a60a-54cebca19abe" id="hs-cta-4effd7d2-e029-4b8e-a60a-54cebca19abe">
-                                                                           <!--[if lte IE 8]>
-                                                                           <div id="hs-cta-ie-element"></div>
-                                                                           <![endif]--><a href="https://cta-redirect.hubspot.com/cta/redirect/5274572/4effd7d2-e029-4b8e-a60a-54cebca19abe"><img class="hs-cta-img" id="hs-cta-img-4effd7d2-e029-4b8e-a60a-54cebca19abe" style="border-width:0px;" src="cta/default/5274572/4effd7d2-e029-4b8e-a60a-54cebca19abe-1.png" alt="Get started"></a>
-                                                                        </span>
-                                                                        <script charset="utf-8" src="hs/cta/cta/current-1.js"></script><script type="text/javascript"> hbspt.cta._relativeUrls=true;hbspt.cta.load(5274572, '4effd7d2-e029-4b8e-a60a-54cebca19abe', {"useNewLoader":"true","region":"na1"}); </script>
-                                                                     </span>
-                                                                     <!-- end HubSpot Call-to-Action Code -->
-                                                                  </span>
-                                                               </span>
-                                                            </div>
+                                                            <div class="hs-cta "><div class="u-displayNone--until-lg bt-nav-cta-2">
+                                                               <div class="">
+                                                                     <div>
+                                                                        <a href="{{ route('login') }}" style="background: #1d6ae5; color: white; padding: 14px 30px; border-radius: 5px; text-align: center; text-decoration: none; font-weight: 500;">Get Started</a>
+                                                                     </div>
+                                                               </div>
+                                                            </div></div>
                                                          </div>
                                                       </div>
                                                    </div>

@@ -419,22 +419,22 @@ class CommandController extends Controller
                     DB::table('cryptos')->updateOrInsert(
                         ['symbol' => $data['symbol']],
                         [
-                            'price' => $data['price'],
-                            'changes_percentage' => $data['changesPercentage'],
-                            'change' => $data['change'],
-                            'day_low' => $data['dayLow'],
-                            'day_high' => $data['dayHigh'],
-                            'year_low' => $data['yearLow'],
-                            'year_high' => $data['yearHigh'],
-                            'market_cap' => $data['marketCap'],
-                            'price_avg_50' => $data['priceAvg50'],
-                            'price_avg_200' => $data['priceAvg200'],
-                            'volume' => $data['volume'] ? $data['volume'] : 0,
-                            'avg_volume' => $data['avgVolume'] ? $data['avgVolume'] : 0,
-                            'open' => $data['open'],
-                            'previous_close' => $data['previousClose'],
-                            'eps' => 0,
-                            'pe' => 0,
+                            'price' => $data['price'] ?? 0,
+                            'changes_percentage' => $data['changesPercentage'] ?? 0,
+                            'change' => $data['change'] ?? 0,
+                            'day_low' => $data['dayLow'] ?? 0,
+                            'day_high' => $data['dayHigh'] ?? 0,
+                            'year_low' => $data['yearLow'] ?? 0,
+                            'year_high' => $data['yearHigh'] ?? 0,
+                            'market_cap' => $data['marketCap'] ?? 0,
+                            'price_avg_50' => $data['priceAvg50'] ?? 0,
+                            'price_avg_200' => $data['priceAvg200'] ?? 0,
+                            'volume' => $data['volume'] ?? 0,
+                            'avg_volume' => $data['avgVolume'] ?? 0,
+                            'open' => $data['open'] ?? 0,
+                            'previous_close' => $data['previousClose'] ?? 0,
+                            'eps' => $data['eps'] ?? 0, // Assuming 'eps' might be included in the response, if not it defaults to 0
+                            'pe' => $data['pe'] ?? 0,   // Assuming 'pe' might be included in the response, if not it defaults to 0
                         ]
                     );
                     $command->info("Updated stock: {$data['symbol']}");

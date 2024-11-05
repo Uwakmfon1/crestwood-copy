@@ -377,32 +377,22 @@
                                                             </div>
                                                             <div class="hs-cta flex flex-column-sm  align-center mt28">
                                                                <span>
-                                                                  <span id="hs_cos_wrapper_widget_1708031463261_" class="hs_cos_wrapper hs_cos_wrapper_widget hs_cos_wrapper_type_cta" style="" data-hs-cos-general-type="widget" data-hs-cos-type="cta">
-                                                                     <!--HubSpot Call-to-Action Code -->
-                                                                     <span class="hs-cta-wrapper" id="hs-cta-wrapper-4effd7d2-e029-4b8e-a60a-54cebca19abe">
-                                                                        <span class="hs-cta-node hs-cta-4effd7d2-e029-4b8e-a60a-54cebca19abe" id="hs-cta-4effd7d2-e029-4b8e-a60a-54cebca19abe">
-                                                                           <!--[if lte IE 8]>
-                                                                           <div id="hs-cta-ie-element"></div>
-                                                                           <![endif]--><a href="https://cta-redirect.hubspot.com/cta/redirect/5274572/4effd7d2-e029-4b8e-a60a-54cebca19abe"><img class="hs-cta-img" id="hs-cta-img-4effd7d2-e029-4b8e-a60a-54cebca19abe" style="border-width:0px;" src="cta/default/5274572/4effd7d2-e029-4b8e-a60a-54cebca19abe-1.png" alt="Get started"></a>
-                                                                        </span>
-                                                                        <script charset="utf-8" src="hs/cta/cta/current-1.js"></script><script type="text/javascript"> hbspt.cta._relativeUrls=true;hbspt.cta.load(5274572, '4effd7d2-e029-4b8e-a60a-54cebca19abe', {"useNewLoader":"true","region":"na1"}); </script>
-                                                                     </span>
-                                                                     <!-- end HubSpot Call-to-Action Code -->
-                                                                  </span>
+                                                                  <div class="u-displayNone--until-lg bt-nav-cta-2">
+                                                                     <div class="">
+                                                                           <div>
+                                                                              <a href="{{ route('register') }}" style="background: #1d6ae5; color: white; padding: 14px 30px; border-radius: 5px; text-align: center; text-decoration: none; font-weight: 500;">Get Stated</a>
+                                                                           </div>
+                                                                     </div>
+                                                                  </div>
                                                                </span>
                                                                <span>
-                                                                  <span id="hs_cos_wrapper_widget_1708031463261_" class="hs_cos_wrapper hs_cos_wrapper_widget hs_cos_wrapper_type_cta" style="" data-hs-cos-general-type="widget" data-hs-cos-type="cta">
-                                                                     <!--HubSpot Call-to-Action Code -->
-                                                                     <span class="hs-cta-wrapper" id="hs-cta-wrapper-c2c61ea1-50f8-4d28-899b-89b9d085f088">
-                                                                        <span class="hs-cta-node hs-cta-c2c61ea1-50f8-4d28-899b-89b9d085f088" id="hs-cta-c2c61ea1-50f8-4d28-899b-89b9d085f088">
-                                                                           <!--[if lte IE 8]>
-                                                                           <div id="hs-cta-ie-element"></div>
-                                                                           <![endif]--><a href="https://cta-redirect.hubspot.com/cta/redirect/5274572/c2c61ea1-50f8-4d28-899b-89b9d085f088"><img class="hs-cta-img" id="hs-cta-img-c2c61ea1-50f8-4d28-899b-89b9d085f088" style="border-width:0px;" src="cta/default/5274572/c2c61ea1-50f8-4d28-899b-89b9d085f088-1.png" alt="Log in"></a>
-                                                                        </span>
-                                                                        <script charset="utf-8" src="hs/cta/cta/current-1.js"></script><script type="text/javascript"> hbspt.cta._relativeUrls=true;hbspt.cta.load(5274572, 'c2c61ea1-50f8-4d28-899b-89b9d085f088', {"useNewLoader":"true","region":"na1"}); </script>
-                                                                     </span>
-                                                                     <!-- end HubSpot Call-to-Action Code -->
-                                                                  </span>
+                                                                  <div class="u-displayNone--until-lg bt-nav-cta-2">
+                                                                     <div class="">
+                                                                           <div>
+                                                                              <a href="{{ route('login') }}" style="color: white; padding: 14px 30px; border-radius: 5px; text-align: center; font-weight: 500;">Login</a>
+                                                                           </div>
+                                                                     </div>
+                                                                  </div>
                                                                </span>
                                                             </div>
                                                             <div class="awards bt-row flex-wrap mt28 justify-content-center-md">
@@ -675,34 +665,25 @@
                                                                   <li>Recurring deposits can help keep your money on track</li>
                                                                </ul>
                                                             </div>
-                                                            <div class="hs-cta mt16">
+
+                                                            <div class="hs-cta flex flex-column-sm  align-center mt28">
                                                                <span>
-                                                                  <span id="hs_cos_wrapper_widget_1670358960944_" class="hs_cos_wrapper hs_cos_wrapper_widget hs_cos_wrapper_type_cta" style="" data-hs-cos-general-type="widget" data-hs-cos-type="cta">
-                                                                     <!--HubSpot Call-to-Action Code -->
-                                                                     <span class="hs-cta-wrapper" id="hs-cta-wrapper-dd4d1ac8-beab-4e80-bba5-28ce409896e5">
-                                                                        <span class="hs-cta-node hs-cta-dd4d1ac8-beab-4e80-bba5-28ce409896e5" id="hs-cta-dd4d1ac8-beab-4e80-bba5-28ce409896e5">
-                                                                           <!--[if lte IE 8]>
-                                                                           <div id="hs-cta-ie-element"></div>
-                                                                           <![endif]--><a href="https://cta-redirect.hubspot.com/cta/redirect/5274572/dd4d1ac8-beab-4e80-bba5-28ce409896e5"><img class="hs-cta-img" id="hs-cta-img-dd4d1ac8-beab-4e80-bba5-28ce409896e5" style="border-width:0px;" src="cta/default/5274572/dd4d1ac8-beab-4e80-bba5-28ce409896e5-1.png" alt="Start investing"></a>
-                                                                        </span>
-                                                                        <script charset="utf-8" src="hs/cta/cta/current-1.js"></script><script type="text/javascript"> hbspt.cta._relativeUrls=true;hbspt.cta.load(5274572, 'dd4d1ac8-beab-4e80-bba5-28ce409896e5', {"useNewLoader":"true","region":"na1"}); </script>
-                                                                     </span>
-                                                                     <!-- end HubSpot Call-to-Action Code -->
-                                                                  </span>
+                                                                  <div class="u-displayNone--until-lg bt-nav-cta-2">
+                                                                     <div class="">
+                                                                           <div>
+                                                                              <a href="{{ route('investment') }}" style="background: #1d6ae5; color: white; padding: 14px 30px; border-radius: 5px; text-align: center; text-decoration: none; font-weight: 500;">Start investing</a>
+                                                                           </div>
+                                                                     </div>
+                                                                  </div>
                                                                </span>
                                                                <span>
-                                                                  <span id="hs_cos_wrapper_widget_1670358960944_" class="hs_cos_wrapper hs_cos_wrapper_widget hs_cos_wrapper_type_cta" style="" data-hs-cos-general-type="widget" data-hs-cos-type="cta">
-                                                                     <!--HubSpot Call-to-Action Code -->
-                                                                     <span class="hs-cta-wrapper" id="hs-cta-wrapper-88444564-fdbe-4f35-a5a3-97d208c9b4a0">
-                                                                        <span class="hs-cta-node hs-cta-88444564-fdbe-4f35-a5a3-97d208c9b4a0" id="hs-cta-88444564-fdbe-4f35-a5a3-97d208c9b4a0">
-                                                                           <!--[if lte IE 8]>
-                                                                           <div id="hs-cta-ie-element"></div>
-                                                                           <![endif]--><a href="https://cta-redirect.hubspot.com/cta/redirect/5274572/88444564-fdbe-4f35-a5a3-97d208c9b4a0"><img class="hs-cta-img" id="hs-cta-img-88444564-fdbe-4f35-a5a3-97d208c9b4a0" style="border-width:0px;" src="cta/default/5274572/88444564-fdbe-4f35-a5a3-97d208c9b4a0-1.png" alt="Learn more"></a>
-                                                                        </span>
-                                                                        <script charset="utf-8" src="hs/cta/cta/current-1.js"></script><script type="text/javascript"> hbspt.cta._relativeUrls=true;hbspt.cta.load(5274572, '88444564-fdbe-4f35-a5a3-97d208c9b4a0', {"useNewLoader":"true","region":"na1"}); </script>
-                                                                     </span>
-                                                                     <!-- end HubSpot Call-to-Action Code -->
-                                                                  </span>
+                                                                  <div class="u-displayNone--until-lg bt-nav-cta-2">
+                                                                     <div class="">
+                                                                           <div>
+                                                                              <a href="{{ route('login') }}" style="color: #1d6ae5; padding: 14px 30px; border-radius: 5px; text-align: center; font-weight: 500;">Learn More</a>
+                                                                           </div>
+                                                                     </div>
+                                                                  </div>
                                                                </span>
                                                             </div>
                                                             <div class="awards bt-row flex-wrap mt28 ">
@@ -860,34 +841,24 @@
                                                                   <li>Transfer cash to investing accounts seamlessly</li>
                                                                </ul>
                                                             </div>
-                                                            <div class="hs-cta mt16">
+                                                            <div class="hs-cta flex flex-column-sm  align-center mt28">
                                                                <span>
-                                                                  <span id="hs_cos_wrapper_module_1670359637540_" class="hs_cos_wrapper hs_cos_wrapper_widget hs_cos_wrapper_type_cta" style="" data-hs-cos-general-type="widget" data-hs-cos-type="cta">
-                                                                     <!--HubSpot Call-to-Action Code -->
-                                                                     <span class="hs-cta-wrapper" id="hs-cta-wrapper-c2736150-9d5a-4600-b54d-c962c18e21ea">
-                                                                        <span class="hs-cta-node hs-cta-c2736150-9d5a-4600-b54d-c962c18e21ea" id="hs-cta-c2736150-9d5a-4600-b54d-c962c18e21ea">
-                                                                           <!--[if lte IE 8]>
-                                                                           <div id="hs-cta-ie-element"></div>
-                                                                           <![endif]--><a href="https://cta-redirect.hubspot.com/cta/redirect/5274572/c2736150-9d5a-4600-b54d-c962c18e21ea"><img class="hs-cta-img" id="hs-cta-img-c2736150-9d5a-4600-b54d-c962c18e21ea" style="border-width:0px;" src="cta/default/5274572/c2736150-9d5a-4600-b54d-c962c18e21ea-1.png" alt="Start saving"></a>
-                                                                        </span>
-                                                                        <script charset="utf-8" src="hs/cta/cta/current-1.js"></script><script type="text/javascript"> hbspt.cta._relativeUrls=true;hbspt.cta.load(5274572, 'c2736150-9d5a-4600-b54d-c962c18e21ea', {"useNewLoader":"true","region":"na1"}); </script>
-                                                                     </span>
-                                                                     <!-- end HubSpot Call-to-Action Code -->
-                                                                  </span>
+                                                                  <div class="u-displayNone--until-lg bt-nav-cta-2">
+                                                                     <div class="">
+                                                                           <div>
+                                                                              <a href="{{ route('investment') }}" style="background: #1d6ae5; color: white; padding: 14px 30px; border-radius: 5px; text-align: center; text-decoration: none; font-weight: 500;">Start Saving</a>
+                                                                           </div>
+                                                                     </div>
+                                                                  </div>
                                                                </span>
                                                                <span>
-                                                                  <span id="hs_cos_wrapper_module_1670359637540_" class="hs_cos_wrapper hs_cos_wrapper_widget hs_cos_wrapper_type_cta" style="" data-hs-cos-general-type="widget" data-hs-cos-type="cta">
-                                                                     <!--HubSpot Call-to-Action Code -->
-                                                                     <span class="hs-cta-wrapper" id="hs-cta-wrapper-58f38844-a2cf-43a1-a9f7-6986b5dbe38b">
-                                                                        <span class="hs-cta-node hs-cta-58f38844-a2cf-43a1-a9f7-6986b5dbe38b" id="hs-cta-58f38844-a2cf-43a1-a9f7-6986b5dbe38b">
-                                                                           <!--[if lte IE 8]>
-                                                                           <div id="hs-cta-ie-element"></div>
-                                                                           <![endif]--><a href="https://cta-redirect.hubspot.com/cta/redirect/5274572/58f38844-a2cf-43a1-a9f7-6986b5dbe38b"><img class="hs-cta-img" id="hs-cta-img-58f38844-a2cf-43a1-a9f7-6986b5dbe38b" style="border-width:0px;" src="cta/default/5274572/58f38844-a2cf-43a1-a9f7-6986b5dbe38b-1.png" alt="Learn more"></a>
-                                                                        </span>
-                                                                        <script charset="utf-8" src="hs/cta/cta/current-1.js"></script><script type="text/javascript"> hbspt.cta._relativeUrls=true;hbspt.cta.load(5274572, '58f38844-a2cf-43a1-a9f7-6986b5dbe38b', {"useNewLoader":"true","region":"na1"}); </script>
-                                                                     </span>
-                                                                     <!-- end HubSpot Call-to-Action Code -->
-                                                                  </span>
+                                                                  <div class="u-displayNone--until-lg bt-nav-cta-2">
+                                                                     <div class="">
+                                                                           <div>
+                                                                              <a href="{{ route('login') }}" style="color: #1d6ae5; padding: 14px 30px; border-radius: 5px; text-align: center; font-weight: 500;">Learn More</a>
+                                                                           </div>
+                                                                     </div>
+                                                                  </div>
                                                                </span>
                                                             </div>
                                                             <div class="awards bt-row flex-wrap mt28 ">
@@ -973,34 +944,24 @@
                                                                   </div>
                                                                </div>
                                                             </div>
-                                                            <div class="hs-cta mt16">
+                                                            <div class="hs-cta flex flex-column-sm  align-center mt28">
                                                                <span>
-                                                                  <span id="hs_cos_wrapper_module_1670372642931_" class="hs_cos_wrapper hs_cos_wrapper_widget hs_cos_wrapper_type_cta" style="" data-hs-cos-general-type="widget" data-hs-cos-type="cta">
-                                                                     <!--HubSpot Call-to-Action Code -->
-                                                                     <span class="hs-cta-wrapper" id="hs-cta-wrapper-b04a972e-c871-4083-bc38-00139f7b36e4">
-                                                                        <span class="hs-cta-node hs-cta-b04a972e-c871-4083-bc38-00139f7b36e4" id="hs-cta-b04a972e-c871-4083-bc38-00139f7b36e4">
-                                                                           <!--[if lte IE 8]>
-                                                                           <div id="hs-cta-ie-element"></div>
-                                                                           <![endif]--><a href="https://cta-redirect.hubspot.com/cta/redirect/5274572/b04a972e-c871-4083-bc38-00139f7b36e4"><img class="hs-cta-img" id="hs-cta-img-b04a972e-c871-4083-bc38-00139f7b36e4" style="border-width:0px;" src="cta/default/5274572/b04a972e-c871-4083-bc38-00139f7b36e4-1.png" alt="Open an IRA"></a>
-                                                                        </span>
-                                                                        <script charset="utf-8" src="hs/cta/cta/current-1.js"></script><script type="text/javascript"> hbspt.cta._relativeUrls=true;hbspt.cta.load(5274572, 'b04a972e-c871-4083-bc38-00139f7b36e4', {"useNewLoader":"true","region":"na1"}); </script>
-                                                                     </span>
-                                                                     <!-- end HubSpot Call-to-Action Code -->
-                                                                  </span>
+                                                                  <div class="u-displayNone--until-lg bt-nav-cta-2">
+                                                                     <div class="">
+                                                                           <div>
+                                                                              <a href="{{ route('investment') }}" style="background: #1d6ae5; color: white; padding: 14px 30px; border-radius: 5px; text-align: center; text-decoration: none; font-weight: 500;">Open an IRA</a>
+                                                                           </div>
+                                                                     </div>
+                                                                  </div>
                                                                </span>
                                                                <span>
-                                                                  <span id="hs_cos_wrapper_module_1670372642931_" class="hs_cos_wrapper hs_cos_wrapper_widget hs_cos_wrapper_type_cta" style="" data-hs-cos-general-type="widget" data-hs-cos-type="cta">
-                                                                     <!--HubSpot Call-to-Action Code -->
-                                                                     <span class="hs-cta-wrapper" id="hs-cta-wrapper-0b9407f6-801f-40be-861e-4c6e082e98ef">
-                                                                        <span class="hs-cta-node hs-cta-0b9407f6-801f-40be-861e-4c6e082e98ef" id="hs-cta-0b9407f6-801f-40be-861e-4c6e082e98ef">
-                                                                           <!--[if lte IE 8]>
-                                                                           <div id="hs-cta-ie-element"></div>
-                                                                           <![endif]--><a href="https://cta-redirect.hubspot.com/cta/redirect/5274572/0b9407f6-801f-40be-861e-4c6e082e98ef"><img class="hs-cta-img" id="hs-cta-img-0b9407f6-801f-40be-861e-4c6e082e98ef" style="border-width:0px;" src="cta/default/5274572/0b9407f6-801f-40be-861e-4c6e082e98ef-1.png" alt="Learn more"></a>
-                                                                        </span>
-                                                                        <script charset="utf-8" src="hs/cta/cta/current-1.js"></script><script type="text/javascript"> hbspt.cta._relativeUrls=true;hbspt.cta.load(5274572, '0b9407f6-801f-40be-861e-4c6e082e98ef', {"useNewLoader":"true","region":"na1"}); </script>
-                                                                     </span>
-                                                                     <!-- end HubSpot Call-to-Action Code -->
-                                                                  </span>
+                                                                  <div class="u-displayNone--until-lg bt-nav-cta-2">
+                                                                     <div class="">
+                                                                           <div>
+                                                                              <a href="{{ route('login') }}" style="color: #1d6ae5; padding: 14px 30px; border-radius: 5px; text-align: center; font-weight: 500;">Learn More</a>
+                                                                           </div>
+                                                                     </div>
+                                                                  </div>
                                                                </span>
                                                             </div>
                                                             <div class="awards bt-row flex-wrap mt28 ">
@@ -1819,19 +1780,13 @@
                                                          <h2 class="bt-title2 ">  Make your money hustle.</h2>
                                                       </div>
                                                       <div class="bt-ContentGrid-item u-col-12 hs-cta ">
-                                                         <span>
-                                                            <span id="hs_cos_wrapper_widget_1708454412000_" class="hs_cos_wrapper hs_cos_wrapper_widget hs_cos_wrapper_type_cta" style="" data-hs-cos-general-type="widget" data-hs-cos-type="cta">
-                                                               <!--HubSpot Call-to-Action Code -->
-                                                               <span class="hs-cta-wrapper" id="hs-cta-wrapper-e6dec5df-d43d-4f84-a54b-56d5f6a90445">
-                                                                  <span class="hs-cta-node hs-cta-e6dec5df-d43d-4f84-a54b-56d5f6a90445" id="hs-cta-e6dec5df-d43d-4f84-a54b-56d5f6a90445">
-                                                                     <!--[if lte IE 8]>
-                                                                     <div id="hs-cta-ie-element"></div>
-                                                                     <![endif]--><a href="https://cta-redirect.hubspot.com/cta/redirect/5274572/e6dec5df-d43d-4f84-a54b-56d5f6a90445"><img class="hs-cta-img" id="hs-cta-img-e6dec5df-d43d-4f84-a54b-56d5f6a90445" style="border-width:0px;" src="cta/default/5274572/e6dec5df-d43d-4f84-a54b-56d5f6a90445-1.png" alt="Get Started"></a>
-                                                                  </span>
-                                                                  <script charset="utf-8" src="hs/cta/cta/current-1.js"></script><script type="text/javascript"> hbspt.cta._relativeUrls=true;hbspt.cta.load(5274572, 'e6dec5df-d43d-4f84-a54b-56d5f6a90445', {"useNewLoader":"true","region":"na1"}); </script>
-                                                               </span>
-                                                               <!-- end HubSpot Call-to-Action Code -->
-                                                            </span>
+                                                            <div class="u-displayNone--until-lg bt-nav-cta-2">
+                                                               <div class="">
+                                                                     <div>
+                                                                        <a href="{{ route('login') }}" style="background: #1d6ae5; color: white; padding: 14px 30px; border-radius: 5px; text-align: center; text-decoration: none; font-weight: 500;">Get Started</a>
+                                                                     </div>
+                                                               </div>
+                                                            </div>
                                                          </span>
                                                       </div>
                                                    </div>
