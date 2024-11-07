@@ -4,15 +4,15 @@
       <meta charset="utf-8">
       <title>Testimonials</title>
       <link rel="icon" href="{{ asset('asset/images/brand-logos/favicon.png') }}" type="image/x-icon">
-      <meta name="description" content="Thousands of people trust Betterment to put their money to work. Here’s what they have to say about us.">
+      <meta name="description" content="Thousands of people trust Crestwood Capital Management to put their money to work. Here’s what they have to say about us.">
       <script>
          window.TT = "ewogICAgInNwbGl0cyI6e30sCiAgICAiZXhwZXJpZW5jZVNhbXBsaW5nV2VpZ2h0IjoxMDAsCiAgICAidXJsIjoiaHR0cHM6XC9cL3R0LmJldHRlcm1lbnQuY29tIiwKICAgICJjb29raWVEb21haW4iOiIuYmV0dGVybWVudC5jb20iLAogICAgImVuY29kZWRBdCI6IjIwMjEwNzEzMTU1MjAxIgp9"
       </script>
       <script>!function(){window.semaphore=window.semaphore||[],window.ketch=function(){window.semaphore.push(arguments)};var e=new URLSearchParams(document.location.search),o=e.has("property")?e.get("property"):"betterment_com",n=document.createElement("script");n.type="text/javascript",n.src="https://global.ketchcdn.com/web/v2/config/betterment/".concat(o,"/boot.js"),n.defer=n.async=!0,document.getElementsByTagName("head")[0].appendChild(n)}();</script>
       <meta name="viewport" content="width=device-width, initial-scale=1">
-      <meta property="og:description" content="Thousands of people trust Betterment to put their money to work. Here’s what they have to say about us.">
+      <meta property="og:description" content="Thousands of people trust Crestwood Capital Management to put their money to work. Here’s what they have to say about us.">
       <meta property="og:title" content="Testimonials">
-      <meta name="twitter:description" content="Thousands of people trust Betterment to put their money to work. Here’s what they have to say about us.">
+      <meta name="twitter:description" content="Thousands of people trust Crestwood Capital Management to put their money to work. Here’s what they have to say about us.">
       <meta name="twitter:title" content="Testimonials">
       <style>
          a.cta_button{-moz-box-sizing:content-box !important;-webkit-box-sizing:content-box !important;box-sizing:content-box !important;vertical-align:middle}.hs-breadcrumb-menu{list-style-type:none;margin:0px 0px 0px 0px;padding:0px 0px 0px 0px}.hs-breadcrumb-menu-item{float:left;padding:10px 0px 10px 10px}.hs-breadcrumb-menu-divider:before{content:'›';padding-left:10px}.hs-featured-image-link{border:0}.hs-featured-image{float:right;margin:0 0 20px 20px;max-width:50%}@media (max-width: 568px){.hs-featured-image{float:none;margin:0;width:100%;max-width:100%}}.hs-screen-reader-text{clip:rect(1px, 1px, 1px, 1px);height:1px;overflow:hidden;position:absolute !important;width:1px}
@@ -152,7 +152,7 @@
       </script>
       <!-- /Added by GoogleTagManager integration -->
       <link rel="canonical" href="testimonials-1.html">
-      <meta property="og:url" content="https://www.betterment.com/testimonials">
+      <meta property="og:url" content="https://www.Crestwood Capital Management.com/testimonials">
       <meta name="twitter:card" content="summary">
       <meta http-equiv="content-language" content="en">
       <style>
@@ -266,18 +266,15 @@
                                                       <div class="bt-ContentGrid-item u-col-12 u-col-7@md cols col-1">
                                                          <div>
                                                             <h1 class="item-title ">  Our customers love how we make investing better</h1>
-                                                            <div class="bt-body200 fancy-bullet fancy-bullet_dot_blue bullets-divider-dash-none"><span>Thousands of people trust Betterment to put their money to work. Here’s what they have to say about us.</span></div>
+                                                            <div class="bt-body200 fancy-bullet fancy-bullet_dot_blue bullets-divider-dash-none"><span>Thousands of people trust Crestwood Capital Management to put their money to work. Here’s what they have to say about us.</span></div>
                                                             <div class="hs-cta flex flex-column-sm  align-center mt28">
                                                                <span>
                                                                   <span id="hs_cos_wrapper_widget_1721916194210_" class="hs_cos_wrapper hs_cos_wrapper_widget hs_cos_wrapper_type_cta" style="" data-hs-cos-general-type="widget" data-hs-cos-type="cta">
                                                                      <!--HubSpot Call-to-Action Code -->
                                                                      <span class="hs-cta-wrapper" id="hs-cta-wrapper-264c4217-8981-4ad2-bcab-8cddd4e20b76">
-                                                                        <span class="hs-cta-node hs-cta-264c4217-8981-4ad2-bcab-8cddd4e20b76" id="hs-cta-264c4217-8981-4ad2-bcab-8cddd4e20b76">
-                                                                           <!--[if lte IE 8]>
-                                                                           <div id="hs-cta-ie-element"></div>
-                                                                           <![endif]--><a href="https://cta-redirect.hubspot.com/cta/redirect/5274572/264c4217-8981-4ad2-bcab-8cddd4e20b76"><img class="hs-cta-img" id="hs-cta-img-264c4217-8981-4ad2-bcab-8cddd4e20b76" style="border-width:0px;" src="cta/default/5274572/264c4217-8981-4ad2-bcab-8cddd4e20b76-1.png" alt="Get started"></a>
-                                                                        </span>
-                                                                        <script charset="utf-8" src="hs/cta/cta/current-1.js"></script><script type="text/javascript"> hbspt.cta._relativeUrls=true;hbspt.cta.load(5274572, '264c4217-8981-4ad2-bcab-8cddd4e20b76', {"useNewLoader":"true","region":"na1"}); </script>
+                                                                     <div>
+                                                                           <a href="{{ route('register') }}" style="background: #1d6ae5; color: white; padding: 14px 30px; border-radius: 5px; text-align: center; text-decoration: none; font-weight: 500;">Get Stated</a>
+                                                                        </div>
                                                                      </span>
                                                                      <!-- end HubSpot Call-to-Action Code -->
                                                                   </span>
@@ -287,7 +284,7 @@
                                                       </div>
                                                       <div class="bt-ContentGrid-item u-col-12 u-col-5@md cols col-2">
                                                          <div>
-                                                            <img src="hs-fs/hubfs/herotestiomnial%20updated-6.png?width=1204&amp;name=herotestiomnial%20updated.png" alt="herotestiomnial updated" width="1204" srcset="hs-fs/hubfs/herotestiomnial%20updated-7.png 602w?width=602&amp;name=herotestiomnial%20updated.png 602w, hs-fs/hubfs/herotestiomnial%20updated-6.png 1204wg?width=1204&amp;name=herotestiomnial%20updated.png 1204w, hs-fs/hubfs/herotestiomnial%20updated-8.png 1806wg?width=1806&amp;name=herotestiomnial%20updated.png 1806w, hs-fs/hubfs/herotestiomnial%20updated-9.png 2408wg?width=2408&amp;name=herotestiomnial%20updated.png 2408w, hs-fs/hubfs/herotestiomnial%20updated-10.png 3010wg?width=3010&amp;name=herotestiomnial%20updated.png 3010w,https://www.betterment.com/hs-fs/hubfs/herotestiomnial%20updated.png?width=3612&name=herotestiomnial%20updated.png" sizes="(max-width: 1204px) 100vw, 1204px">
+                                                            <img src="hs-fs/hubfs/herotestiomnial%20updated-6.png?width=1204&amp;name=herotestiomnial%20updated.png" alt="herotestiomnial updated" width="1204" srcset="hs-fs/hubfs/herotestiomnial%20updated-7.png 602w?width=602&amp;name=herotestiomnial%20updated.png 602w, hs-fs/hubfs/herotestiomnial%20updated-6.png 1204wg?width=1204&amp;name=herotestiomnial%20updated.png 1204w, hs-fs/hubfs/herotestiomnial%20updated-8.png 1806wg?width=1806&amp;name=herotestiomnial%20updated.png 1806w, hs-fs/hubfs/herotestiomnial%20updated-9.png 2408wg?width=2408&amp;name=herotestiomnial%20updated.png 2408w, hs-fs/hubfs/herotestiomnial%20updated-10.png 3010wg?width=3010&amp;name=herotestiomnial%20updated.png 3010w,https://www.Crestwood Capital Management.com/hs-fs/hubfs/herotestiomnial%20updated.png?width=3612&name=herotestiomnial%20updated.png" sizes="(max-width: 1204px) 100vw, 1204px">
                                                          </div>
                                                       </div>
                                                    </div>
@@ -323,13 +320,13 @@
                                                    <div class="flex-wrap bt-row center flex-center flex-middle">
                                                       <div class="bt-ContentGrid-item u-col-12 u-col-4@md cols col-1">
                                                          <div>
-                                                            <img src="hubfs/Phonescreenwithaccounts-1-1.png" alt="Phone with betterment account home screen showing total net worth, balance fir cash reserve, general investing, and retirement accounts">
+                                                            <img src="hubfs/Phonescreenwithaccounts-1-1.png" alt="Phone with Crestwood Capital Management account home screen showing total net worth, balance fir cash reserve, general investing, and retirement accounts">
                                                          </div>
                                                       </div>
                                                       <div class="bt-ContentGrid-item u-col-12 cols col-2 dark u-col-6@md">
-                                                         <img src="hubfs/Phonescreenwithaccounts-1-1.png" alt="Phone with betterment account home screen showing total net worth, balance fir cash reserve, general investing, and retirement accounts">
+                                                         <img src="hubfs/Phonescreenwithaccounts-1-1.png" alt="Phone with Crestwood Capital Management account home screen showing total net worth, balance fir cash reserve, general investing, and retirement accounts">
                                                          <blockquote class="bt-title3">Hands-off investing that's approachable and easy, but still robust and customizable if you want to make some tweaks.</blockquote>
-                                                         <div><span><strong>Preston M.</strong>, Betterment customer<br></span></div>
+                                                         <div><span><strong>Preston M.</strong>, Crestwood Capital Management customer<br></span></div>
                                                       </div>
                                                    </div>
                                                 </div>
@@ -379,7 +376,7 @@
                                                                            </g>
                                                                         </svg>
                                                                      </div>
-                                                                     <div class="bt-body1 mt24"><span>"Betterment makes investing simple, with a nice interface, several choices of portfolios, automated deposits, and a bird's-eye view of all of your finances."</span></div>
+                                                                     <div class="bt-body1 mt24"><span>"Crestwood Capital Management makes investing simple, with a nice interface, several choices of portfolios, automated deposits, and a bird's-eye view of all of your finances."</span></div>
                                                                   </div>
                                                                   <div class="align-self-end mt16">
                                                                      <p class="bt-body2 mb0">
@@ -425,7 +422,7 @@
                                                                            </g>
                                                                         </svg>
                                                                      </div>
-                                                                     <div class="bt-body1 mt24"><span>"Betterment makes it easy to invest, save, view your different holdings, and see past performance."<br></span></div>
+                                                                     <div class="bt-body1 mt24"><span>"Crestwood Capital Management makes it easy to invest, save, view your different holdings, and see past performance."<br></span></div>
                                                                   </div>
                                                                   <div class="align-self-end mt16">
                                                                      <p class="bt-body2 mb0">
@@ -472,7 +469,7 @@
                                                             <div class="bt-ContentGrid-item u-col-12 u-col-12@lg">
                                                                <div class="flex center justify-content-center">
                                                                   <div>
-                                                                     <p>Non-paid client of Betterment. Views may not be representative, see more reviews at the&nbsp;<a href="https://www.google.com/url?q=https://apps.apple.com/us/app/betterment-investing-saving/id393156562&sa=D&source=docs&ust=1667424287234673&usg=AOvVaw1_Nu-qbIyIAbmRz3RpMn-3">App Store</a>&nbsp;and&nbsp;<a href="https://www.google.com/url?q=https://play.google.com/store/apps/details?id%3Dcom.betterment%26hl%3Den_US%26gl%3DUS&sa=D&source=docs&ust=1667424287234806&usg=AOvVaw1CLoECluYFoz5dzO500PNd">Google Play Store</a>.</p>
+                                                                     <p>Non-paid client of Crestwood Capital Management. Views may not be representative, see more reviews at the&nbsp;<a href="https://www.google.com/url?q=https://apps.apple.com/us/app/betterment-investing-saving/id393156562&sa=D&source=docs&ust=1667424287234673&usg=AOvVaw1_Nu-qbIyIAbmRz3RpMn-3">App Store</a>&nbsp;and&nbsp;<a href="https://www.google.com/url?q=https://play.google.com/store/apps/details?id%3Dcom.betterment%26hl%3Den_US%26gl%3DUS&sa=D&source=docs&ust=1667424287234806&usg=AOvVaw1CLoECluYFoz5dzO500PNd">Google Play Store</a>.</p>
                                                                   </div>
                                                                </div>
                                                             </div>
@@ -517,7 +514,7 @@
                                                       <div class="bt-ContentGrid-item u-col-12 cols col-2 dark u-col-6@md">
                                                          <img src="hubfs/person-quotation-recurring-1.png" alt="Person on a phone next to a user interface card showing recurring transaction of $500 to emergency fund toggled on.">
                                                          <blockquote class="bt-title3">Excellent place to make your money work for you.</blockquote>
-                                                         <div><span><strong> Kathryn H.</strong>, Betterment customer</span></div>
+                                                         <div><span><strong> Kathryn H.</strong>, Crestwood Capital Management customer</span></div>
                                                       </div>
                                                    </div>
                                                 </div>
@@ -590,7 +587,7 @@
                                                                            </g>
                                                                         </svg>
                                                                      </div>
-                                                                     <div class="bt-body1 mt24"><span>"Betterment is very simple and user-friendly. It’s a great way to invest in the market with little to no experience."<br></span></div>
+                                                                     <div class="bt-body1 mt24"><span>"Crestwood Capital Management is very simple and user-friendly. It’s a great way to invest in the market with little to no experience."<br></span></div>
                                                                   </div>
                                                                   <div class="align-self-end mt16">
                                                                      <p class="bt-body2 mb0">
@@ -660,7 +657,7 @@
                                                             <div class="bt-ContentGrid-item u-col-12 u-col-12@lg">
                                                                <div class="flex center justify-content-center">
                                                                   <div>
-                                                                     <p>Non-paid client of Betterment. Views may not be representative, see more reviews at the&nbsp;<a href="https://www.google.com/url?q=https://apps.apple.com/us/app/betterment-investing-saving/id393156562&sa=D&source=docs&ust=1667424287234673&usg=AOvVaw1_Nu-qbIyIAbmRz3RpMn-3">App Store</a>&nbsp;and&nbsp;<a href="https://www.google.com/url?q=https://play.google.com/store/apps/details?id%3Dcom.betterment%26hl%3Den_US%26gl%3DUS&sa=D&source=docs&ust=1667424287234806&usg=AOvVaw1CLoECluYFoz5dzO500PNd">Google Play Store</a>.</p>
+                                                                     <p>Non-paid client of Crestwood Capital Management. Views may not be representative, see more reviews at the&nbsp;<a href="https://www.google.com/url?q=https://apps.apple.com/us/app/betterment-investing-saving/id393156562&sa=D&source=docs&ust=1667424287234673&usg=AOvVaw1_Nu-qbIyIAbmRz3RpMn-3">App Store</a>&nbsp;and&nbsp;<a href="https://www.google.com/url?q=https://play.google.com/store/apps/details?id%3Dcom.betterment%26hl%3Den_US%26gl%3DUS&sa=D&source=docs&ust=1667424287234806&usg=AOvVaw1CLoECluYFoz5dzO500PNd">Google Play Store</a>.</p>
                                                                   </div>
                                                                </div>
                                                             </div>
@@ -699,13 +696,13 @@
                                                    <div class="flex-wrap bt-row center flex-center flex-middle">
                                                       <div class="bt-ContentGrid-item u-col-12 u-col-4@md cols col-1">
                                                          <div>
-                                                            <img src="https://www.betterment.com/hubfs/person-quotation-activity.png" alt="Person on a laptop next a user interface card showing dividend reinvestment and advisory fee.">
+                                                            <img src="https://www.Crestwood Capital Management.com/hubfs/person-quotation-activity.png" alt="Person on a laptop next a user interface card showing dividend reinvestment and advisory fee.">
                                                          </div>
                                                       </div>
                                                       <div class="bt-ContentGrid-item u-col-12 cols col-2 dark u-col-6@md">
-                                                         <img src="https://www.betterment.com/hubfs/person-quotation-activity.png" alt="Person on a laptop next a user interface card showing dividend reinvestment and advisory fee.">
+                                                         <img src="https://www.Crestwood Capital Management.com/hubfs/person-quotation-activity.png" alt="Person on a laptop next a user interface card showing dividend reinvestment and advisory fee.">
                                                          <blockquote class="bt-title3">A great way to invest with super reasonable fees.</blockquote>
-                                                         <div><span><strong>Jesse M.</strong>, Betterment customer</span></div>
+                                                         <div><span><strong>Jesse M.</strong>, Crestwood Capital Management customer</span></div>
                                                       </div>
                                                    </div>
                                                 </div>
@@ -778,7 +775,7 @@
                                                                            </g>
                                                                         </svg>
                                                                      </div>
-                                                                     <div class="bt-body1 mt24"><span>"Betterment takes the guesswork out of investing. It is low-fee and builds a balanced portfolio for anyone, regardless of initial investment amount."</span></div>
+                                                                     <div class="bt-body1 mt24"><span>"Crestwood Capital Management takes the guesswork out of investing. It is low-fee and builds a balanced portfolio for anyone, regardless of initial investment amount."</span></div>
                                                                   </div>
                                                                   <div class="align-self-end mt16">
                                                                      <p class="bt-body2 mb0">
@@ -846,7 +843,7 @@
                                                       <div class="bt-ContentGrid-item u-col-12">
                                                          <div class="flex-wrap bt-row center justify-content-center bt-body50 footnote">
                                                             <div class="bt-ContentGrid-item u-col-12 u-col-12@lg">
-                                                               <p><span>Non-paid client of Betterment. Views may not be representative, see more reviews at the <a href="https://apps.apple.com/us/app/betterment-invest-save-money/id393156562" rel="noopener">App Store</a> and <a href="https://play.google.com/store/apps/details?id=com.betterment" rel="noopener">Google Play Store</a>. </span>Annual percentage yield (variable) is as of September 20, 2024. Cash Reserve is only available to clients of Betterment LLC, which is not a bank, and cash transfers to <a href="cash-portfolio-1.html">Program Banks</a> are conducted through the clients’ brokerage accounts at Betterment Securities.</p>
+                                                               <p><span>Non-paid client of Crestwood Capital Management. Views may not be representative, see more reviews at the <a href="https://apps.apple.com/us/app/betterment-invest-save-money/id393156562" rel="noopener">App Store</a> and <a href="https://play.google.com/store/apps/details?id=com.betterment" rel="noopener">Google Play Store</a>. </span>Annual percentage yield (variable) is as of September 20, 2024. Cash Reserve is only available to clients of Crestwood Capital Management LLC, which is not a bank, and cash transfers to <a href="{{ route('cash') }}">Program Banks</a> are conducted through the clients’ brokerage accounts at Crestwood Capital Management Securities.</p>
                                                             </div>
                                                          </div>
                                                       </div>
@@ -888,8 +885,8 @@
                                                       </div>
                                                       <div class="bt-ContentGrid-item u-col-12 cols col-2 dark u-col-6@md">
                                                          <img src="hubfs/person-quotation-automation-1.png" alt="Person on the phone next to a user interface card showing automated rebalancing, dividends reinvestment, and tax losses harvested.">
-                                                         <blockquote class="bt-title3">Betterment helps you save for retirement with a 'new age' smartness.</blockquote>
-                                                         <div><span><strong>Jesse M.</strong>, Betterment customer</span></div>
+                                                         <blockquote class="bt-title3">Crestwood Capital Management helps you save for retirement with a 'new age' smartness.</blockquote>
+                                                         <div><span><strong>Jesse M.</strong>, Crestwood Capital Management customer</span></div>
                                                       </div>
                                                    </div>
                                                 </div>
@@ -939,7 +936,7 @@
                                                                            </g>
                                                                         </svg>
                                                                      </div>
-                                                                     <div class="bt-body1 mt24"><span>"Betterment allows me to passively invest. I can track the market across a number of ETFs automatically without having to pick the right funds myself. Tax loss harvesting helps reduce my taxes."</span></div>
+                                                                     <div class="bt-body1 mt24"><span>"Crestwood Capital Management allows me to passively invest. I can track the market across a number of ETFs automatically without having to pick the right funds myself. Tax loss harvesting helps reduce my taxes."</span></div>
                                                                   </div>
                                                                   <div class="align-self-end mt16">
                                                                      <p class="bt-body2 mb0">
@@ -985,7 +982,7 @@
                                                                            </g>
                                                                         </svg>
                                                                      </div>
-                                                                     <div class="bt-body1 mt24"><span>"I like how easy Betterment is to use and access. I can see what all of my money is doing in one easy snapshot. I really like Betterment's Cash Reserve accounts."<br></span></div>
+                                                                     <div class="bt-body1 mt24"><span>"I like how easy Crestwood Capital Management is to use and access. I can see what all of my money is doing in one easy snapshot. I really like Betterment's Cash Reserve accounts."<br></span></div>
                                                                   </div>
                                                                   <div class="align-self-end mt16">
                                                                      <p class="bt-body2 mb0">
@@ -1030,7 +1027,7 @@
                                                       <div class="bt-ContentGrid-item u-col-12">
                                                          <div class="flex-wrap bt-row center justify-content-center bt-body50 footnote">
                                                             <div class="bt-ContentGrid-item u-col-12 u-col-12@lg">
-                                                               <p><span>Non-paid client of Betterment. Views may not be representative, see more reviews at the <a href="https://apps.apple.com/us/app/betterment-invest-save-money/id393156562" rel="noopener">App Store</a> and <a href="https://play.google.com/store/apps/details?id=com.betterment" rel="noopener">Google Play Store</a>. Tax Loss Harvesting+ (TLH+) is not suitable for all investors. Consider your personal circumstances before deciding whether to utilize Betterment’s TLH+ feature. </span>Annual percentage yield (variable) is as of September 20, 2024. Cash Reserve is only available to clients of Betterment LLC, which is not a bank, and cash transfers to <a href="cash-portfolio-1.html">Program Banks</a> are conducted through the clients’ brokerage accounts at Betterment Securities.</p>
+                                                               <p><span>Non-paid client of Crestwood Capital Management. Views may not be representative, see more reviews at the <a href="https://apps.apple.com/us/app/betterment-invest-save-money/id393156562" rel="noopener">App Store</a> and <a href="https://play.google.com/store/apps/details?id=com.betterment" rel="noopener">Google Play Store</a>. Tax Loss Harvesting+ (TLH+) is not suitable for all investors. Consider your personal circumstances before deciding whether to utilize Crestwood Capital Management's TLH+ feature. </span>Annual percentage yield (variable) is as of September 20, 2024. Cash Reserve is only available to clients of Crestwood Capital Management LLC, which is not a bank, and cash transfers to <a href="{{ route('cash') }}">Program Banks</a> are conducted through the clients’ brokerage accounts at Crestwood Capital Management Securities.</p>
                                                             </div>
                                                          </div>
                                                       </div>
@@ -1078,7 +1075,7 @@
                                                                <div class="">
                                                                   <div class="media-wrap ">
                                                                      <div class="item-image-wrap">
-                                                                        <img class="item-image" src="hs-fs/hubfs/buyside-2024-6.png?width=210&amp;name=buyside-2024.png" alt="Best Overall Robo Advisor 2024" width="210" srcset="https://www.betterment.com/hs-fs/hubfs/buyside-2024.png?width=105&name=buyside-2024.png, hs-fs/hubfs/buyside-2024-6.png 210wg?width=210&amp;name=buyside-2024.png 210w, hs-fs/hubfs/buyside-2024-7.png 315wg?width=315&amp;name=buyside-2024.png 315w, hs-fs/hubfs/buyside-2024-8.png 420wg?width=420&amp;name=buyside-2024.png 420w, hs-fs/hubfs/buyside-2024-9.png 525wg?width=525&amp;name=buyside-2024.png 525w, hs-fs/hubfs/buyside-2024-10.png 630wg?width=630&amp;name=buyside-2024.png 630w" sizes="(max-width: 210px) 100vw, 210px">
+                                                                        <img class="item-image" src="hs-fs/hubfs/buyside-2024-6.png?width=210&amp;name=buyside-2024.png" alt="Best Overall Robo Advisor 2024" width="210" srcset="https://www.Crestwood Capital Management.com/hs-fs/hubfs/buyside-2024.png?width=105&name=buyside-2024.png, hs-fs/hubfs/buyside-2024-6.png 210wg?width=210&amp;name=buyside-2024.png 210w, hs-fs/hubfs/buyside-2024-7.png 315wg?width=315&amp;name=buyside-2024.png 315w, hs-fs/hubfs/buyside-2024-8.png 420wg?width=420&amp;name=buyside-2024.png 420w, hs-fs/hubfs/buyside-2024-9.png 525wg?width=525&amp;name=buyside-2024.png 525w, hs-fs/hubfs/buyside-2024-10.png 630wg?width=630&amp;name=buyside-2024.png 630w" sizes="(max-width: 210px) 100vw, 210px">
                                                                      </div>
                                                                   </div>
                                                                   <div class=" item-content-area dark">
@@ -1499,10 +1496,24 @@
                                                    <div class="flex-wrap bt-row">
                                                       <div class="bt-ContentGrid-item  u-col-12 dark ">
                                                          <div class="flex-wrap bt-row center flex-center">
-                                                            <h2 class="bt-ContentGrid-item u-col-12 u-col-8@lg">Join the +900,000 people using Betterment to be invested.</h2>
+                                                            <h2 class="bt-ContentGrid-item u-col-12 u-col-8@lg">Join the +900,000 people using Crestwood Capital Management to be invested.</h2>
                                                             <div class="u-col-12"></div>
                                                             <div class="u-col-12"></div>
                                                             <div class="hs-cta ">
+                                                               <span>
+                                                                  <span>
+                                                                     <div class="u-displayNone--until-lg bt-nav-cta-2">
+                                                                        <div class="">
+                                                                              <div>
+                                                                                 <a href="{{ route('register') }}" style="background: #1d6ae5; color: white; padding: 14px 30px; border-radius: 5px; text-align: center; text-decoration: none; font-weight: 500;">Get Stated</a>
+                                                                              </div>
+                                                                        </div>
+                                                                     </div>
+                                                                  </span>
+                                                               </span>
+                                                            </div>
+
+<div class="hs-cta " style="display: none">
                                                                <span>
                                                                   <span id="hs_cos_wrapper_widget_1721919672602_" class="hs_cos_wrapper hs_cos_wrapper_widget hs_cos_wrapper_type_cta" style="" data-hs-cos-general-type="widget" data-hs-cos-type="cta">
                                                                      <!--HubSpot Call-to-Action Code -->
@@ -1522,8 +1533,8 @@
                                                       </div>
                                                    </div>
                                                 </div>
-                                                <div class="background-absolute bg-image bg-image_desktop lazy" data-bg="https://resources.betterment.com/hubfs/Graphics/webpage-graphics/Landscapes/Landscape-Lake-Sunrise-Gold50_desktop.svg"></div>
-                                                <div class="background-absolute bg-image bg-image_mobile lazy" data-bg="https://resources.betterment.com/hubfs/Graphics/webpage-graphics/Landscapes/Landscape-Lake-Sunrise-Gold50_mobile.svg"></div>
+                                                <div class="background-absolute bg-image bg-image_desktop lazy" data-bg="https://resources.Crestwood Capital Management.com/hubfs/Graphics/webpage-graphics/Landscapes/Landscape-Lake-Sunrise-Gold50_desktop.svg"></div>
+                                                <div class="background-absolute bg-image bg-image_mobile lazy" data-bg="https://resources.Crestwood Capital Management.com/hubfs/Graphics/webpage-graphics/Landscapes/Landscape-Lake-Sunrise-Gold50_mobile.svg"></div>
                                              </section>
                                              <script class="section-spacing-script" type="application/json">{"pt_lg":138,"pt_sm":138}</script>
                                              <style>
@@ -1572,7 +1583,7 @@
       <script defer="" src="content-cwv-embed/static-1.1293/embed-1.js"></script>
       <script src="ajax/libs/jquery/3.5.1/jquery.min-1.js"></script>
       <script src="ajax/libs/jquery-migrate/3.3.1/jquery-migrate.min-1.js"></script>
-      <script id="__ada" data-handle="betterment-cx" src="https://static.ada.support/embed2.js" data-lazy=""></script>
+      
       <script src="hs-fs/hub/5274572/hub_generated/template_assets/57001203564/1728423001638/betterment-theme/resources/btTrackingInit.min-1.js"></script>
       <script src="hs-fs/hub/5274572/hub_generated/template_assets/49666399874/1728423002407/betterment-theme/js/main.min-1.js"></script>
       <script>
@@ -1588,7 +1599,7 @@
       <script type="text/javascript">
          var _hsq = _hsq || [];
          _hsq.push(["setContentType", "standard-page"]);
-         _hsq.push(["setCanonicalUrl", "https:\/\/www.betterment.com\/testimonials"]);
+         _hsq.push(["setCanonicalUrl", "https:\/\/www.Crestwood Capital Management.com\/testimonials"]);
          _hsq.push(["setPageId", "173983457633"]);
          _hsq.push(["setContentMetadata", {
              "contentPageId": 173983457633,

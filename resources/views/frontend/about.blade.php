@@ -2,7 +2,7 @@
 <html lang="en">
    <head data-ipt="B4C About Page">
       <meta charset="utf-8">
-      <title>About Betterment | Making people's lives better</title>
+      <title>About Crestwood Capital Management| Making people's lives better</title>
       <link rel="icon" href="{{ asset('asset/images/brand-logos/favicon.png') }}" type="image/x-icon">
       <meta name="description" content="Since 2010, Betterment's mission has been making people's lives better. We're here to help people turn everyday investments, no matter how small, into their dreams, no matter how big.">
       <script>
@@ -11,9 +11,9 @@
       <script>!function(){window.semaphore=window.semaphore||[],window.ketch=function(){window.semaphore.push(arguments)};var e=new URLSearchParams(document.location.search),o=e.has("property")?e.get("property"):"betterment_com",n=document.createElement("script");n.type="text/javascript",n.src="https://global.ketchcdn.com/web/v2/config/betterment/".concat(o,"/boot.js"),n.defer=n.async=!0,document.getElementsByTagName("head")[0].appendChild(n)}();</script>
       <meta name="viewport" content="width=device-width, initial-scale=1">
       <meta property="og:description" content="Since 2010, Betterment's mission has been making people's lives better. We're here to help people turn everyday investments, no matter how small, into their dreams, no matter how big.">
-      <meta property="og:title" content="About Betterment | Making people's lives better">
+      <meta property="og:title" content="About Crestwood Capital Management| Making people's lives better">
       <meta name="twitter:description" content="Since 2010, Betterment's mission has been making people's lives better. We're here to help people turn everyday investments, no matter how small, into their dreams, no matter how big.">
-      <meta name="twitter:title" content="About Betterment | Making people's lives better">
+      <meta name="twitter:title" content="About Crestwood Capital Management| Making people's lives better">
       <style>
          a.cta_button{-moz-box-sizing:content-box !important;-webkit-box-sizing:content-box !important;box-sizing:content-box !important;vertical-align:middle}.hs-breadcrumb-menu{list-style-type:none;margin:0px 0px 0px 0px;padding:0px 0px 0px 0px}.hs-breadcrumb-menu-item{float:left;padding:10px 0px 10px 10px}.hs-breadcrumb-menu-divider:before{content:'›';padding-left:10px}.hs-featured-image-link{border:0}.hs-featured-image{float:right;margin:0 0 20px 20px;max-width:50%}@media (max-width: 568px){.hs-featured-image{float:none;margin:0;width:100%;max-width:100%}}.hs-screen-reader-text{clip:rect(1px, 1px, 1px, 1px);height:1px;overflow:hidden;position:absolute !important;width:1px}
       </style>
@@ -212,13 +212,13 @@
       </script>
       <!-- /Added by GoogleTagManager integration -->
       <link rel="canonical" href="about-1.html">
-      <meta property="og:image" content="https://www.betterment.com/hubfs/Graphics/Featured-images/b2c_default.png">
+      <meta property="og:image" content="https://www.Crestwood Capital Management.com/hubfs/Graphics/Featured-images/b2c_default.png">
       <meta property="og:image:width" content="1200">
       <meta property="og:image:height" content="628">
       <meta property="og:image:alt" content="Betterment">
-      <meta name="twitter:image" content="https://www.betterment.com/hubfs/Graphics/Featured-images/b2c_default.png">
+      <meta name="twitter:image" content="https://www.Crestwood Capital Management.com/hubfs/Graphics/Featured-images/b2c_default.png">
       <meta name="twitter:image:alt" content="Betterment">
-      <meta property="og:url" content="https://www.betterment.com/about">
+      <meta property="og:url" content="https://www.Crestwood Capital Management.com/about">
       <meta name="twitter:card" content="summary_large_image">
       <meta http-equiv="content-language" content="en">
       <meta name="generator" content="HubSpot">
@@ -588,7 +588,7 @@
                                                 <div class="bt-container center dark">
                                                    <div class="flex-wrap bt-row flex-center">
                                                       <div class="bt-ContentGrid-item u-col-12 u-col-6@md ">
-                                                         <h2 class="bt-title2 ">  The Betterment Leadership Team</h2>
+                                                         <h2 class="bt-title2 ">  The Crestwood Capital Management Leadership Team</h2>
                                                       </div>
                                                    </div>
                                                 </div>
@@ -974,6 +974,20 @@
                                                             <div class="u-col-12"></div>
                                                             <div class="hs-cta ">
                                                                <span>
+                                                                  <span>
+                                                                     <div class="u-displayNone--until-lg bt-nav-cta-2">
+                                                                        <div class="">
+                                                                              <div>
+                                                                                 <a href="{{ route('register') }}" style="background: #1d6ae5; color: white; padding: 14px 30px; border-radius: 5px; text-align: center; text-decoration: none; font-weight: 500;">Get Stated</a>
+                                                                              </div>
+                                                                        </div>
+                                                                     </div>
+                                                                  </span>
+                                                               </span>
+                                                            </div>
+
+<div class="hs-cta " style="display: none">
+                                                               <span>
                                                                   <span id="hs_cos_wrapper_widget_1634085141154_" class="hs_cos_wrapper hs_cos_wrapper_widget hs_cos_wrapper_type_cta" style="" data-hs-cos-general-type="widget" data-hs-cos-type="cta">
                                                                      <!--HubSpot Call-to-Action Code -->
                                                                      <span class="hs-cta-wrapper" id="hs-cta-wrapper-4effd7d2-e029-4b8e-a60a-54cebca19abe">
@@ -992,8 +1006,8 @@
                                                       </div>
                                                    </div>
                                                 </div>
-                                                <div class="background-absolute bg-image bg-image_desktop lazy" data-bg="https://resources.betterment.com/hubfs/Graphics/webpage-graphics/Landscapes/Landscape-Lake-Day-Blue10_destkop.svg"></div>
-                                                <div class="background-absolute bg-image bg-image_mobile lazy" data-bg="https://resources.betterment.com/hubfs/Graphics/webpage-graphics/Landscapes/Landscape-Lake-Day-Blue10_mobile.svg"></div>
+                                                <div class="background-absolute bg-image bg-image_desktop lazy" data-bg="https://resources.Crestwood Capital Management.com/hubfs/Graphics/webpage-graphics/Landscapes/Landscape-Lake-Day-Blue10_destkop.svg"></div>
+                                                <div class="background-absolute bg-image bg-image_mobile lazy" data-bg="https://resources.Crestwood Capital Management.com/hubfs/Graphics/webpage-graphics/Landscapes/Landscape-Lake-Day-Blue10_mobile.svg"></div>
                                              </section>
                                              <script class="section-spacing-script" type="application/json">{"pt_lg":138,"pt_sm":138}</script>
                                              <style>
@@ -1042,7 +1056,7 @@
       <script defer="" src="content-cwv-embed/static-1.1293/embed-1.js"></script>
       <script src="ajax/libs/jquery/3.5.1/jquery.min-1.js"></script>
       <script src="ajax/libs/jquery-migrate/3.3.1/jquery-migrate.min-1.js"></script>
-      <script id="__ada" data-handle="betterment-cx" src="https://static.ada.support/embed2.js" data-lazy=""></script>
+      
       <script src="hs-fs/hub/5274572/hub_generated/template_assets/57001203564/1728423001638/betterment-theme/resources/btTrackingInit.min-1.js"></script>
       <script src="hs-fs/hub/5274572/hub_generated/template_assets/49666399874/1728423002407/betterment-theme/js/main.min-1.js"></script>
       <script>
@@ -1059,7 +1073,7 @@
       <script type="text/javascript">
          var _hsq = _hsq || [];
          _hsq.push(["setContentType", "standard-page"]);
-         _hsq.push(["setCanonicalUrl", "https:\/\/www.betterment.com\/about"]);
+         _hsq.push(["setCanonicalUrl", "https:\/\/www.Crestwood Capital Management.com\/about"]);
          _hsq.push(["setPageId", "57381131113"]);
          _hsq.push(["setContentMetadata", {
              "contentPageId": 57381131113,

@@ -2,24 +2,24 @@
 <html lang="en">
    <head data-ipt="B4C Cash Reserve">
       <meta charset="utf-8">
-      <title>Crestwood Capital Management  Cash Reserve | High-yield cash account</title>
+      <title>Crestwood Capital Management   Cash Reserve | High-yield cash account</title>
       <link rel="icon" href="{{ asset('asset/images/brand-logos/favicon.png') }}" type="image/x-icon">
-      <meta name="description" content="Cash Reserve is provided by Betterment LLC, which is not a bank, and cash 
-         transfers to program banks are facilitated by Betterment Securities.
+      <meta name="description" content="Cash Reserve is provided by Crestwood Capital Management LLC, which is not a bank, and cash 
+         transfers to program banks are facilitated by Crestwood Capital Management Securities.
          ">
       <script>
          window.TT = "ewogICAgInNwbGl0cyI6e30sCiAgICAiZXhwZXJpZW5jZVNhbXBsaW5nV2VpZ2h0IjoxMDAsCiAgICAidXJsIjoiaHR0cHM6XC9cL3R0LmJldHRlcm1lbnQuY29tIiwKICAgICJjb29raWVEb21haW4iOiIuYmV0dGVybWVudC5jb20iLAogICAgImVuY29kZWRBdCI6IjIwMjEwNzEzMTU1MjAxIgp9"
       </script>
       <script>!function(){window.semaphore=window.semaphore||[],window.ketch=function(){window.semaphore.push(arguments)};var e=new URLSearchParams(document.location.search),o=e.has("property")?e.get("property"):"betterment_com",n=document.createElement("script");n.type="text/javascript",n.src="https://global.ketchcdn.com/web/v2/config/betterment/".concat(o,"/boot.js"),n.defer=n.async=!0,document.getElementsByTagName("head")[0].appendChild(n)}();</script>
       <meta name="viewport" content="width=device-width, initial-scale=1">
-      <meta property="og:description" content="Cash Reserve is provided by Betterment LLC, which is not a bank, and cash 
-         transfers to program banks are facilitated by Betterment Securities.
+      <meta property="og:description" content="Cash Reserve is provided by Crestwood Capital Management LLC, which is not a bank, and cash 
+         transfers to program banks are facilitated by Crestwood Capital Management Securities.
          ">
-      <meta property="og:title" content="Betterment Cash Reserve | High-yield cash account">
-      <meta name="twitter:description" content="Cash Reserve is provided by Betterment LLC, which is not a bank, and cash 
-         transfers to program banks are facilitated by Betterment Securities.
+      <meta property="og:title" content="Crestwood Capital Management Cash Reserve | High-yield cash account">
+      <meta name="twitter:description" content="Cash Reserve is provided by Crestwood Capital Management LLC, which is not a bank, and cash 
+         transfers to program banks are facilitated by Crestwood Capital Management Securities.
          ">
-      <meta name="twitter:title" content="Betterment Cash Reserve | High-yield cash account">
+      <meta name="twitter:title" content="Crestwood Capital Management Cash Reserve | High-yield cash account">
       <style>
          a.cta_button{-moz-box-sizing:content-box !important;-webkit-box-sizing:content-box !important;box-sizing:content-box !important;vertical-align:middle}.hs-breadcrumb-menu{list-style-type:none;margin:0px 0px 0px 0px;padding:0px 0px 0px 0px}.hs-breadcrumb-menu-item{float:left;padding:10px 0px 10px 10px}.hs-breadcrumb-menu-divider:before{content:'›';padding-left:10px}.hs-featured-image-link{border:0}.hs-featured-image{float:right;margin:0 0 20px 20px;max-width:50%}@media (max-width: 568px){.hs-featured-image{float:none;margin:0;width:100%;max-width:100%}}.hs-screen-reader-text{clip:rect(1px, 1px, 1px, 1px);height:1px;overflow:hidden;position:absolute !important;width:1px}
       </style>
@@ -162,13 +162,13 @@
       </script>
       <!-- /Added by GoogleTagManager integration -->
       <link rel="canonical" href="cash-reserve-1.html">
-      <meta property="og:image" content="https://www.betterment.com/hubfs/Graphics/Featured-images/b2c_default.png">
+      <meta property="og:image" content="https://www.Crestwood Capital Management.com/hubfs/Graphics/Featured-images/b2c_default.png">
       <meta property="og:image:width" content="1200">
       <meta property="og:image:height" content="628">
-      <meta property="og:image:alt" content="Betterment logo">
-      <meta name="twitter:image" content="https://www.betterment.com/hubfs/Graphics/Featured-images/b2c_default.png">
-      <meta name="twitter:image:alt" content="Betterment logo">
-      <meta property="og:url" content="https://www.betterment.com/cash-reserve">
+      <meta property="og:image:alt" content="Crestwood Capital Management logo">
+      <meta name="twitter:image" content="https://www.Crestwood Capital Management.com/hubfs/Graphics/Featured-images/b2c_default.png">
+      <meta name="twitter:image:alt" content="Crestwood Capital Management logo">
+      <meta property="og:url" content="https://www.Crestwood Capital Management.com/cash-reserve">
       <meta name="twitter:card" content="summary_large_image">
       <meta http-equiv="content-language" content="en">
       <meta name="generator" content="HubSpot">
@@ -268,9 +268,23 @@
                                                             <h1 class="item-title ">  Save and earn more with 4.50% APY<sup>*</sup></h1>
                                                             <div class="bt-body200">
                                                                <p><strong>APY is variable.</strong></p>
-                                                               <p>Grow your savings with a high-yield cash account. Betterment’s Cash Reserve secures your money during volatile times while earning nearly 10x the national average.**</p>
+                                                               <p>Grow your savings with a high-yield cash account. Crestwood Capital Management's Cash Reserve secures your money during volatile times while earning nearly 10x the national average.**</p>
                                                             </div>
                                                             <div class="hs-cta ">
+                                                               <span>
+                                                                  <span>
+                                                                     <div class="u-displayNone--until-lg bt-nav-cta-2">
+                                                                        <div class="">
+                                                                              <div>
+                                                                                 <a href="{{ route('register') }}" style="background: #1d6ae5; color: white; padding: 14px 30px; border-radius: 5px; text-align: center; text-decoration: none; font-weight: 500;">Get Stated</a>
+                                                                              </div>
+                                                                        </div>
+                                                                     </div>
+                                                                  </span>
+                                                               </span>
+                                                            </div>
+
+<div class="hs-cta " style="display: none">
                                                                <span>
                                                                   <span id="hs_cos_wrapper_widget_1668537999305_" class="hs_cos_wrapper hs_cos_wrapper_widget hs_cos_wrapper_type_cta" style="" data-hs-cos-general-type="widget" data-hs-cos-type="cta">
                                                                      <!--HubSpot Call-to-Action Code -->
@@ -289,7 +303,7 @@
                                                          </div>
                                                       </div>
                                                       <div class="bt-ContentGrid-item u-col-12 u-col-6@md cols col-2">
-                                                         <div id="bt-cash-reserved-graph" aria-label="graph illustration showing Betterment Cash Reserve at 4.50% APY, while the National average is 0.46% APY. Earn nearly 10x the national average**." data-national_average_apy_comparison="nearly 10x" data-bt_cash_reserve_value="4.50" data-national_average_value="0.46">
+                                                         <div id="bt-cash-reserved-graph" aria-label="graph illustration showing Crestwood Capital Management Cash Reserve at 4.50% APY, while the National average is 0.46% APY. Earn nearly 10x the national average**." data-national_average_apy_comparison="nearly 10x" data-bt_cash_reserve_value="4.50" data-national_average_value="0.46">
                                                             <div class="app-loading loading-spinner">
                                                                <span class="flex flex-middle">
                                                                   <svg width="4.8rem" height="4.8rem" viewbox="25 25 50 50">
@@ -337,7 +351,7 @@
                                                          <div class="flex-wrap bt-row  bt-body50 footnote">
                                                             <div class="bt-ContentGrid-item u-col-12 u-col-12@lg">
                                                                <hr class="bg-grey30 mt0 mb16">
-                                                               Cash Reserve is only available to clients of Betterment LLC, which is not a bank, and cash transfers to program banks are conducted through the clients’ brokerage accounts at Betterment Securities. For Cash Reserve (“CR”), Betterment LLC only receives compensation from our <a href="cash-portfolio-1.html" rel="noopener" target="_blank">program banks</a>; Betterment LLC and Betterment Securities do not charge fees on your CR balance.
+                                                               Cash Reserve is only available to clients of Crestwood Capital Management LLC, which is not a bank, and cash transfers to program banks are conducted through the clients’ brokerage accounts at Crestwood Capital Management Securities. For Cash Reserve (“CR”), Crestwood Capital Management LLC only receives compensation from our <a href="{{ route('portfolio') }}" rel="noopener" target="_blank">program banks</a>; Crestwood Capital Management LLC and Crestwood Capital Management Securities do not charge fees on your CR balance.
                                                             </div>
                                                          </div>
                                                       </div>
@@ -373,7 +387,7 @@
                                                 <div class="bt-container center dark">
                                                    <div class="flex-wrap bt-row flex-center">
                                                       <div class="bt-ContentGrid-item u-col-12 u-col-6@md ">
-                                                         <h2 class="bt-title2 ">  What makes Betterment’s Cash Reserve better? </h2>
+                                                         <h2 class="bt-title2 ">  What makes Crestwood Capital Management's Cash Reserve better? </h2>
                                                       </div>
                                                    </div>
                                                 </div>
@@ -446,7 +460,7 @@
                                                                      <div>
                                                                         <h2 class="item-headline bt-title3 ">$2 million insured.<sup>†</sup></h2>
                                                                      </div>
-                                                                     <div class="bt-body2">Rest easy with FDIC insurance up to $2 million ($4 million for joint accounts) with our <a href="cash-portfolio-1.html" rel="noopener" target="_blank">program banks</a>. That's 8X the standard.</div>
+                                                                     <div class="bt-body2">Rest easy with FDIC insurance up to $2 million ($4 million for joint accounts) with our <a href="{{ route('portfolio') }}" rel="noopener" target="_blank">program banks</a>. That's 8X the standard.</div>
                                                                   </div>
                                                                </div>
                                                             </div>
@@ -567,12 +581,9 @@
                                                                   <span id="hs_cos_wrapper_widget_1668544770709_" class="hs_cos_wrapper hs_cos_wrapper_widget hs_cos_wrapper_type_cta" style="" data-hs-cos-general-type="widget" data-hs-cos-type="cta">
                                                                      <!--HubSpot Call-to-Action Code -->
                                                                      <span class="hs-cta-wrapper" id="hs-cta-wrapper-3546155c-7101-4b51-8324-5fc18d692a96">
-                                                                        <span class="hs-cta-node hs-cta-3546155c-7101-4b51-8324-5fc18d692a96" id="hs-cta-3546155c-7101-4b51-8324-5fc18d692a96">
-                                                                           <!--[if lte IE 8]>
-                                                                           <div id="hs-cta-ie-element"></div>
-                                                                           <![endif]--><a href="https://cta-redirect.hubspot.com/cta/redirect/5274572/3546155c-7101-4b51-8324-5fc18d692a96"><img class="hs-cta-img" id="hs-cta-img-3546155c-7101-4b51-8324-5fc18d692a96" style="border-width:0px;" src="cta/default/5274572/3546155c-7101-4b51-8324-5fc18d692a96-1.png" alt="Get started"></a>
-                                                                        </span>
-                                                                        <script charset="utf-8" src="hs/cta/cta/current-1.js"></script><script type="text/javascript"> hbspt.cta._relativeUrls=true;hbspt.cta.load(5274572, '3546155c-7101-4b51-8324-5fc18d692a96', {"useNewLoader":"true","region":"na1"}); </script>
+                                                                        <div>
+                                                                           <a href="{{ route('register') }}" style="background: #1d6ae5; color: white; padding: 14px 30px; border-radius: 5px; text-align: center; text-decoration: none; font-weight: 500;">Get Stated</a>
+                                                                        </div>
                                                                      </span>
                                                                      <!-- end HubSpot Call-to-Action Code -->
                                                                   </span>
@@ -646,12 +657,11 @@
                                                                   <span id="hs_cos_wrapper_widget_1668543624768_" class="hs_cos_wrapper hs_cos_wrapper_widget hs_cos_wrapper_type_cta" style="" data-hs-cos-general-type="widget" data-hs-cos-type="cta">
                                                                      <!--HubSpot Call-to-Action Code -->
                                                                      <span class="hs-cta-wrapper" id="hs-cta-wrapper-3546155c-7101-4b51-8324-5fc18d692a96">
-                                                                        <span class="hs-cta-node hs-cta-3546155c-7101-4b51-8324-5fc18d692a96" id="hs-cta-3546155c-7101-4b51-8324-5fc18d692a96">
-                                                                           <!--[if lte IE 8]>
-                                                                           <div id="hs-cta-ie-element"></div>
-                                                                           <![endif]--><a href="https://cta-redirect.hubspot.com/cta/redirect/5274572/3546155c-7101-4b51-8324-5fc18d692a96"><img class="hs-cta-img" id="hs-cta-img-3546155c-7101-4b51-8324-5fc18d692a96" style="border-width:0px;" src="cta/default/5274572/3546155c-7101-4b51-8324-5fc18d692a96-1.png" alt="Get started"></a>
-                                                                        </span>
-                                                                        <script charset="utf-8" src="hs/cta/cta/current-1.js"></script><script type="text/javascript"> hbspt.cta._relativeUrls=true;hbspt.cta.load(5274572, '3546155c-7101-4b51-8324-5fc18d692a96', {"useNewLoader":"true","region":"na1"}); </script>
+                                                                        <!-- <span class="hs-cta-node hs-cta-3546155c-7101-4b51-8324-5fc18d692a96" id="hs-cta-3546155c-7101-4b51-8324-5fc18d692a96"> -->
+                                                                           <div>
+                                                                              <a href="{{ route('register') }}" style="background: #1d6ae5; color: white; padding: 14px 30px; border-radius: 5px; text-align: center; text-decoration: none; font-weight: 500;">Get Stated</a>
+                                                                           </div>
+                                                                        <!-- </span> -->
                                                                      </span>
                                                                      <!-- end HubSpot Call-to-Action Code -->
                                                                   </span>
@@ -708,7 +718,7 @@
                                                             <h2 class="item-title h2-title bt-title2"> 
                                                                Keep your money safe as it grows.
                                                             </h2>
-                                                            <div class="item-body fancy-bullet fancy-bullet_check_blue "><span>Cash Reserve lets you earn interest even during volatile times. FDIC insurance covers your money up to</span> $2 million ($4 million for joint accounts) <span>at our <a href="cash-portfolio-1.html" rel="noopener" target="_blank">program banks</a>, meaning you won’t have to sacrifice security for growth.</span></div>
+                                                            <div class="item-body fancy-bullet fancy-bullet_check_blue "><span>Cash Reserve lets you earn interest even during volatile times. FDIC insurance covers your money up to</span> $2 million ($4 million for joint accounts) <span>at our <a href="{{ route('cash') }}" rel="noopener" target="_blank">program banks</a>, meaning you won’t have to sacrifice security for growth.</span></div>
                                                          </div>
                                                       </div>
                                                       <div class="bt-ContentGrid-item u-col-12 u-col-5@md cols col-2 ">
@@ -822,7 +832,7 @@
                                                          <div class="flex-wrap bt-row center justify-content-center bt-body50 footnote">
                                                             <div class="bt-ContentGrid-item u-col-12 u-col-10@lg">
                                                                <hr class="bg-grey30 mt0 mb16">
-                                                               <div><a href="legal/cash-reserve-1.html">Cash Reserve Terms and Conditions</a></div>
+                                                               <div><a href="{{ route('cash') }}">Cash Reserve Terms and Conditions</a></div>
                                                                <div><span>Program bank list last updated as of September 16, 2024. Up to $250,000 of coverage for each insurable capacity—e.g., individual or joint—at up to eight Program Banks. Electing to exclude one or more Program Banks from receiving deposits may lower the amount of FDIC insurance available through Cash Reserve. <br></span><span aria-label="" data-stringify-type="paragraph-break"></span><span>Cash Reserve is for cash you intend to purchase securities with and should not be viewed as a long-term investment option.</span></div>
                                                             </div>
                                                          </div>
@@ -884,6 +894,20 @@
                                                             <div class="u-col-12"></div>
                                                             <div class="hs-cta ">
                                                                <span>
+                                                                  <span>
+                                                                     <div class="u-displayNone--until-lg bt-nav-cta-2">
+                                                                        <div class="">
+                                                                              <div>
+                                                                                 <a href="{{ route('register') }}" style="background: #1d6ae5; color: white; padding: 14px 30px; border-radius: 5px; text-align: center; text-decoration: none; font-weight: 500;">Get Stated</a>
+                                                                              </div>
+                                                                        </div>
+                                                                     </div>
+                                                                  </span>
+                                                               </span>
+                                                            </div>
+
+<div class="hs-cta " style="display: none">
+                                                               <span>
                                                                   <span id="hs_cos_wrapper_widget_1668537360629_" class="hs_cos_wrapper hs_cos_wrapper_widget hs_cos_wrapper_type_cta" style="" data-hs-cos-general-type="widget" data-hs-cos-type="cta">
                                                                      <!--HubSpot Call-to-Action Code -->
                                                                      <span class="hs-cta-wrapper" id="hs-cta-wrapper-3546155c-7101-4b51-8324-5fc18d692a96">
@@ -902,8 +926,8 @@
                                                       </div>
                                                    </div>
                                                 </div>
-                                                <div class="background-absolute bg-image bg-image_desktop lazy" data-bg="https://resources.betterment.com/hubfs/Graphics/webpage-graphics/Landscapes/Landscape-Lake-Sunrise-Gold50_desktop.svg"></div>
-                                                <div class="background-absolute bg-image bg-image_mobile lazy" data-bg="https://resources.betterment.com/hubfs/Graphics/webpage-graphics/Landscapes/Landscape-Lake-Sunrise-Gold50_mobile.svg"></div>
+                                                <div class="background-absolute bg-image bg-image_desktop lazy" data-bg="https://resources.Crestwood Capital Management.com/hubfs/Graphics/webpage-graphics/Landscapes/Landscape-Lake-Sunrise-Gold50_desktop.svg"></div>
+                                                <div class="background-absolute bg-image bg-image_mobile lazy" data-bg="https://resources.Crestwood Capital Management.com/hubfs/Graphics/webpage-graphics/Landscapes/Landscape-Lake-Sunrise-Gold50_mobile.svg"></div>
                                              </section>
                                              <script class="section-spacing-script" type="application/json">{"pt_lg":138,"pt_sm":138}</script>
                                              <style>
@@ -952,7 +976,7 @@
       <script defer="" src="content-cwv-embed/static-1.1293/embed-1.js"></script>
       <script src="ajax/libs/jquery/3.5.1/jquery.min-1.js"></script>
       <script src="ajax/libs/jquery-migrate/3.3.1/jquery-migrate.min-1.js"></script>
-      <script id="__ada" data-handle="betterment-cx" src="https://static.ada.support/embed2.js" data-lazy=""></script>
+      
       <script src="hs-fs/hub/5274572/hub_generated/template_assets/57001203564/1728423001638/betterment-theme/resources/btTrackingInit.min-1.js"></script>
       <script src="hs-fs/hub/5274572/hub_generated/template_assets/49666399874/1728423002407/betterment-theme/js/main.min-1.js"></script>
       <script>
@@ -969,7 +993,7 @@
       <script type="text/javascript">
          var _hsq = _hsq || [];
          _hsq.push(["setContentType", "standard-page"]);
-         _hsq.push(["setCanonicalUrl", "https:\/\/www.betterment.com\/cash-reserve"]);
+         _hsq.push(["setCanonicalUrl", "https:\/\/www.Crestwood Capital Management.com\/cash-reserve"]);
          _hsq.push(["setPageId", "76301549726"]);
          _hsq.push(["setContentMetadata", {
              "contentPageId": 76301549726,

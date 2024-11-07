@@ -2,19 +2,19 @@
 <html lang="en">
    <head data-ipt="B4C Pricing">
       <meta charset="utf-8">
-      <title>Crestwood Capital Management 's Pricing</title>
+      <title>Crestwood Capital Management  's Pricing</title>
       <link rel="icon" href="{{ asset('asset/images/brand-logos/favicon.png') }}" type="image/x-icon">
-      <meta name="description" content="Understand how much it costs to save, spend, and invest with Betterment. We keep our pricing and terms easy and straightforward.
+      <meta name="description" content="Understand how much it costs to save, spend, and invest with Crestwood Capital Management. We keep our pricing and terms easy and straightforward.
          ">
       <script>
          window.TT = "ewogICAgInNwbGl0cyI6e30sCiAgICAiZXhwZXJpZW5jZVNhbXBsaW5nV2VpZ2h0IjoxMDAsCiAgICAidXJsIjoiaHR0cHM6XC9cL3R0LmJldHRlcm1lbnQuY29tIiwKICAgICJjb29raWVEb21haW4iOiIuYmV0dGVybWVudC5jb20iLAogICAgImVuY29kZWRBdCI6IjIwMjEwNzEzMTU1MjAxIgp9"
       </script>
       <script>!function(){window.semaphore=window.semaphore||[],window.ketch=function(){window.semaphore.push(arguments)};var e=new URLSearchParams(document.location.search),o=e.has("property")?e.get("property"):"betterment_com",n=document.createElement("script");n.type="text/javascript",n.src="https://global.ketchcdn.com/web/v2/config/betterment/".concat(o,"/boot.js"),n.defer=n.async=!0,document.getElementsByTagName("head")[0].appendChild(n)}();</script>
       <meta name="viewport" content="width=device-width, initial-scale=1">
-      <meta property="og:description" content="Understand how much it costs to save, spend, and invest with Betterment. We keep our pricing and terms easy and straightforward.
+      <meta property="og:description" content="Understand how much it costs to save, spend, and invest with Crestwood Capital Management. We keep our pricing and terms easy and straightforward.
          ">
       <meta property="og:title" content="Betterment's Pricing">
-      <meta name="twitter:description" content="Understand how much it costs to save, spend, and invest with Betterment. We keep our pricing and terms easy and straightforward.
+      <meta name="twitter:description" content="Understand how much it costs to save, spend, and invest with Crestwood Capital Management. We keep our pricing and terms easy and straightforward.
          ">
       <meta name="twitter:title" content="Betterment's Pricing">
       <script type="application/ld+json">
@@ -28,7 +28,7 @@
                   "name": "How are the fees taken from my account?",
                   "acceptedAnswer": {
                      "@type": "Answer",
-                     "text": "Fees are taken right from your Betterment Investing account at the end of each month. No action is required on your part, and we'll never charge fees if you don't have a balance. Our fees are calculated based on your daily balance of assets under management and assessed monthly, and add up to $4/month or 0.25% annually for investing accounts, 1% for crypto investing accounts, and 0.65% for our Premium plan. If a client’s account exclusively consists of mutual funds, due to small price fluctuations in mutual funds that may occur on the transaction date, Betterment will accrue any fees over- or under-assessed and apply the difference to adjust the following period’s fee."
+                     "text": "Fees are taken right from your Crestwood Capital Management Investing account at the end of each month. No action is required on your part, and we'll never charge fees if you don't have a balance. Our fees are calculated based on your daily balance of assets under management and assessed monthly, and add up to $4/month or 0.25% annually for investing accounts, 1% for crypto investing accounts, and 0.65% for our Premium plan. If a client’s account exclusively consists of mutual funds, due to small price fluctuations in mutual funds that may occur on the transaction date, Crestwood Capital Management will accrue any fees over- or under-assessed and apply the difference to adjust the following period’s fee."
                   }
                  },
             
@@ -37,7 +37,7 @@
                   "name": "Are there discounts if I hold a high balance?",
                   "acceptedAnswer": {
                      "@type": "Answer",
-                     "text": "Yes. For the portion of your household balance above $2M, you'll receive a 0.10% discount on Betterment’s management fee, including funds held in your crypto account. For Digital investing, you'll pay just 0.15% for the portion of your balance above $2M. For Premium investing, you'll pay 0.30% for the portion of your balance above $2M. For Crypto Investing, you'll pay 0.90% for the portion of your balance in crypto assets above $2M. Note that HSA, 401(k), Cash Reserve, and Checking balances are excluded from the $2M total balance discount."
+                     "text": "Yes. For the portion of your household balance above $2M, you'll receive a 0.10% discount on Crestwood Capital Management's management fee, including funds held in your crypto account. For Digital investing, you'll pay just 0.15% for the portion of your balance above $2M. For Premium investing, you'll pay 0.30% for the portion of your balance above $2M. For Crypto Investing, you'll pay 0.90% for the portion of your balance in crypto assets above $2M. Note that HSA, 401(k), Cash Reserve, and Checking balances are excluded from the $2M total balance discount."
                   }
                  },
             
@@ -46,7 +46,7 @@
                   "name": "What counts toward the minimum balance for Premium?",
                   "acceptedAnswer": {
                      "@type": "Answer",
-                     "text": "The minimum balance requirement for the Premium plan is based on your combined balance across taxable, Crypto, IRA, and HSA assets. If you have a 401(k) through an employer plan with Betterment for Business, an account with a third-party advisor through our Betterment for Advisors platform, a Cash Reserve, or checking account those accounts are also not included in your minimum balance requirement and are subject to separate fee schedules."
+                     "text": "The minimum balance requirement for the Premium plan is based on your combined balance across taxable, Crypto, IRA, and HSA assets. If you have a 401(k) through an employer plan with Crestwood Capital Management for Business, an account with a third-party advisor through our Crestwood Capital Management for Advisors platform, a Cash Reserve, or checking account those accounts are also not included in your minimum balance requirement and are subject to separate fee schedules."
                   }
                  },
             
@@ -55,7 +55,7 @@
                   "name": "Are there fees on deposits, withdrawals, or ETFs?",
                   "acceptedAnswer": {
                      "@type": "Answer",
-                     "text": "Betterment will construct your portfolio with ETFs, a type of security that generally tracks a broad-market stock or bond index but trades like a stock on a listed exchange, and these ETFs have embedded fund fees. Betterment's fund selection methodology aims to keep these costs as low as possible, and the dividends paid and reflected in your account's statement already take into account the deduction of these fees by the fund. Betterment does not receive any portion of these fund fees and these fees are in addition to our management fees ($4/month, 0.25% annually for Digital, and 0.65% annually for Premium). We charge a flat fee of $75 for each investing account transfer out of Betterment. There is no fee to withdraw funds to your linked checking account. You are not charged any additional trading or deposit fees."
+                     "text": "Crestwood Capital Management will construct your portfolio with ETFs, a type of security that generally tracks a broad-market stock or bond index but trades like a stock on a listed exchange, and these ETFs have embedded fund fees. Betterment's fund selection methodology aims to keep these costs as low as possible, and the dividends paid and reflected in your account's statement already take into account the deduction of these fees by the fund. Crestwood Capital Management does not receive any portion of these fund fees and these fees are in addition to our management fees ($4/month, 0.25% annually for Digital, and 0.65% annually for Premium). We charge a flat fee of $75 for each investing account transfer out of Crestwood Capital Management. There is no fee to withdraw funds to your linked checking account. You are not charged any additional trading or deposit fees."
                   }
                  },
             
@@ -64,7 +64,7 @@
                   "name": "Does it cost more to get additional help if I need it?",
                   "acceptedAnswer": {
                      "@type": "Answer",
-                     "text": "Our Customer Support Team is available at no additional cost to help you with any technical or account management questions. Members of our Customer Support Team are not investment adviser representatives and are not licensed to give financial advice. Customers looking to transfer investments to Betterment have access to our dedicated transfer specialist team. If you're exploring moving $100K or more to Betterment and would like to understand your options, get advice on account set up, and ultimately have dedicated support throughout the transfer process, we offer complimentary access to our Licensed Concierge team. For more in-depth financial advice, you can purchase flat-fee advice packages with our team of CFP® professionals, for a one-time fee of $299-$399. An advice package can be especially useful if you're looking to build a financial plan but do not have the $100K minimum balance for our Premium Plan. Each advice package includes a tailored call and a personalized action plan and educational content."
+                     "text": "Our Customer Support Team is available at no additional cost to help you with any technical or account management questions. Members of our Customer Support Team are not investment adviser representatives and are not licensed to give financial advice. Customers looking to transfer investments to Crestwood Capital Management have access to our dedicated transfer specialist team. If you're exploring moving $100K or more to Crestwood Capital Management and would like to understand your options, get advice on account set up, and ultimately have dedicated support throughout the transfer process, we offer complimentary access to our Licensed Concierge team. For more in-depth financial advice, you can purchase flat-fee advice packages with our team of CFP® professionals, for a one-time fee of $299-$399. An advice package can be especially useful if you're looking to build a financial plan but do not have the $100K minimum balance for our Premium Plan. Each advice package includes a tailored call and a personalized action plan and educational content."
                   }
                  }
             
@@ -234,13 +234,13 @@
       </script>
       <!-- /Added by GoogleTagManager integration -->
       <link rel="canonical" href="pricing-1.html">
-      <meta property="og:image" content="https://www.betterment.com/hubfs/Graphics/Featured-images/b2c_default.png">
+      <meta property="og:image" content="https://www.Crestwood Capital Management.com/hubfs/Graphics/Featured-images/b2c_default.png">
       <meta property="og:image:width" content="1200">
       <meta property="og:image:height" content="628">
-      <meta property="og:image:alt" content="Betterment logo">
-      <meta name="twitter:image" content="https://www.betterment.com/hubfs/Graphics/Featured-images/b2c_default.png">
-      <meta name="twitter:image:alt" content="Betterment logo">
-      <meta property="og:url" content="https://www.betterment.com/pricing">
+      <meta property="og:image:alt" content="Crestwood Capital Management logo">
+      <meta name="twitter:image" content="https://www.Crestwood Capital Management.com/hubfs/Graphics/Featured-images/b2c_default.png">
+      <meta name="twitter:image:alt" content="Crestwood Capital Management logo">
+      <meta property="og:url" content="https://www.Crestwood Capital Management.com/pricing">
       <meta name="twitter:card" content="summary_large_image">
       <meta http-equiv="content-language" content="en">
       <meta name="generator" content="HubSpot">
@@ -340,13 +340,13 @@
                                                             <h1 class="bt-ContentGrid-item u-col-12 item-title u-col-10@md">  Designed to help your money grow</h1>
                                                             <div class="u-col-12"></div>
                                                             <div class="bt-ContentGrid-item u-col-12 item-body bt-body200 u-col-7@md">
-                                                               <p>Understand how much it costs to save, spend, and invest with Betterment.</p>
+                                                               <p>Understand how much it costs to save, spend, and invest with Crestwood Capital Management.</p>
                                                             </div>
                                                          </div>
                                                       </div>
                                                    </div>
                                                 </div>
-                                                <div class="background-absolute bg-image bg-position-center-bottom background-size_cover  lazy" data-bg="https://www.betterment.com/hubfs/Graphics/webpage-graphics/landscapes/landscape-daytime-clouds-clear-desktop.svg"></div>
+                                                <div class="background-absolute bg-image bg-position-center-bottom background-size_cover  lazy" data-bg="https://www.Crestwood Capital Management.com/hubfs/Graphics/webpage-graphics/landscapes/landscape-daytime-clouds-clear-desktop.svg"></div>
                                              </section>
                                              <script class="section-spacing-script" type="application/json">{"pt_lg":152,"pt_sm":104}</script>
                                              <style>
@@ -377,7 +377,7 @@
                                                 <div class="bt-container center dark">
                                                    <div class="flex-wrap bt-row flex-center">
                                                       <div class="bt-ContentGrid-item u-col-12 u-col-6@md ">
-                                                         <h2 class="bt-title2 ">  Pricing at Betterment.</h2>
+                                                         <h2 class="bt-title2 ">  Pricing at Crestwood Capital Management.</h2>
                                                       </div>
                                                    </div>
                                                 </div>
@@ -447,12 +447,7 @@
                                                                   <span id="hs_cos_wrapper_widget_1665415255983_" class="hs_cos_wrapper hs_cos_wrapper_widget hs_cos_wrapper_type_cta" style="" data-hs-cos-general-type="widget" data-hs-cos-type="cta">
                                                                      <!--HubSpot Call-to-Action Code -->
                                                                      <span class="hs-cta-wrapper" id="hs-cta-wrapper-1df1227a-01b9-4621-88f0-97b8db2155df">
-                                                                        <span class="hs-cta-node hs-cta-1df1227a-01b9-4621-88f0-97b8db2155df" id="hs-cta-1df1227a-01b9-4621-88f0-97b8db2155df">
-                                                                           <!--[if lte IE 8]>
-                                                                           <div id="hs-cta-ie-element"></div>
-                                                                           <![endif]--><a href="https://cta-redirect.hubspot.com/cta/redirect/5274572/1df1227a-01b9-4621-88f0-97b8db2155df"><img class="hs-cta-img" id="hs-cta-img-1df1227a-01b9-4621-88f0-97b8db2155df" style="border-width:0px;" src="cta/default/5274572/1df1227a-01b9-4621-88f0-97b8db2155df-1.png" alt="Start investing"></a>
-                                                                        </span>
-                                                                        <script charset="utf-8" src="hs/cta/cta/current-1.js"></script><script type="text/javascript"> hbspt.cta._relativeUrls=true;hbspt.cta.load(5274572, '1df1227a-01b9-4621-88f0-97b8db2155df', {"useNewLoader":"true","region":"na1"}); </script>
+                                                                        <a class="bt-PrimaryButton" href="{{ route('investment') }}">Start Investing</a>
                                                                      </span>
                                                                      <!-- end HubSpot Call-to-Action Code -->
                                                                   </span>
@@ -478,7 +473,7 @@
                                                                            <li>Traditional and Roth IRAs</li>
                                                                         </ul>
                                                                      </div>
-                                                                     <div class="bt-body50 footnote mt8"><sup>1</sup> <span>1 The base price for investing accounts is $4/month. You automatically switch to an annual price of 0.25% on your investing account balance by setting up recurring monthly deposits or transfers totaling $250 or more or reaching a balance of $20,000 or more across your Betterment investing accounts—including Cash Reserve, and Crypto.&nbsp;</span>&nbsp;<a href="help/tag/fees-1.html" rel="noopener">Learn more</a></div>
+                                                                     <div class="bt-body50 footnote mt8"><sup>1</sup> <span>1 The base price for investing accounts is $4/month. You automatically switch to an annual price of 0.25% on your investing account balance by setting up recurring monthly deposits or transfers totaling $250 or more or reaching a balance of $20,000 or more across your Crestwood Capital Management investing accounts—including Cash Reserve, and Crypto.&nbsp;</span>&nbsp;<a href="{{ route('help') }}" rel="noopener">Learn more</a></div>
                                                                   </div>
                                                                </div>
                                                             </div>
@@ -510,12 +505,7 @@
                                                                   <span id="hs_cos_wrapper_widget_1665415255983_" class="hs_cos_wrapper hs_cos_wrapper_widget hs_cos_wrapper_type_cta" style="" data-hs-cos-general-type="widget" data-hs-cos-type="cta">
                                                                      <!--HubSpot Call-to-Action Code -->
                                                                      <span class="hs-cta-wrapper" id="hs-cta-wrapper-8c8fb19e-6e1f-459c-8a81-ca8af5cd7659">
-                                                                        <span class="hs-cta-node hs-cta-8c8fb19e-6e1f-459c-8a81-ca8af5cd7659" id="hs-cta-8c8fb19e-6e1f-459c-8a81-ca8af5cd7659">
-                                                                           <!--[if lte IE 8]>
-                                                                           <div id="hs-cta-ie-element"></div>
-                                                                           <![endif]--><a href="https://cta-redirect.hubspot.com/cta/redirect/5274572/8c8fb19e-6e1f-459c-8a81-ca8af5cd7659"><img class="hs-cta-img" id="hs-cta-img-8c8fb19e-6e1f-459c-8a81-ca8af5cd7659" style="border-width:0px;" src="cta/default/5274572/8c8fb19e-6e1f-459c-8a81-ca8af5cd7659-1.png" alt="Grow your savings"></a>
-                                                                        </span>
-                                                                        <script charset="utf-8" src="hs/cta/cta/current-1.js"></script><script type="text/javascript"> hbspt.cta._relativeUrls=true;hbspt.cta.load(5274572, '8c8fb19e-6e1f-459c-8a81-ca8af5cd7659', {"useNewLoader":"true","region":"na1"}); </script>
+                                                                     <a class="bt-PrimaryButton" href="{{ route('cash') }}">Grow your savings</a>
                                                                      </span>
                                                                      <!-- end HubSpot Call-to-Action Code -->
                                                                   </span>
@@ -540,7 +530,7 @@
                                                                            <li>Unlimited transfers</li>
                                                                         </ul>
                                                                      </div>
-                                                                     <div class="bt-body50 footnote mt8">Cash Reserve is only available to clients of Betterment LLC, which is not a bank, and cash transfers to <a href="cash-portfolio-1.html" rel="noopener" target="_blank">program banks</a> are conducted through the clients' brokerage accounts at Betterment Securities. For Cash Reserve ("CR"), Betterment LLC only receives compensation from our program banks; Betterment LLC and Betterment Securities do not charge fees on your CR balance. <a href="cash-reserve-1.html" rel="noopener">Learn more</a></div>
+                                                                     <div class="bt-body50 footnote mt8">Cash Reserve is only available to clients of Crestwood Capital Management LLC, which is not a bank, and cash transfers to <a href="{{ route('cash') }}" rel="noopener" target="_blank">program banks</a> are conducted through the clients' brokerage accounts at Crestwood Capital Management Securities. For Cash Reserve ("CR"), Crestwood Capital Management LLC only receives compensation from our program banks; Crestwood Capital Management LLC and Crestwood Capital Management Securities do not charge fees on your CR balance. <a href="{{ route('reserve') }}" rel="noopener">Learn more</a></div>
                                                                   </div>
                                                                </div>
                                                             </div>
@@ -572,12 +562,7 @@
                                                                   <span id="hs_cos_wrapper_widget_1665415255983_" class="hs_cos_wrapper hs_cos_wrapper_widget hs_cos_wrapper_type_cta" style="" data-hs-cos-general-type="widget" data-hs-cos-type="cta">
                                                                      <!--HubSpot Call-to-Action Code -->
                                                                      <span class="hs-cta-wrapper" id="hs-cta-wrapper-37649850-bebb-4fe2-8ee9-61971b2605ff">
-                                                                        <span class="hs-cta-node hs-cta-37649850-bebb-4fe2-8ee9-61971b2605ff" id="hs-cta-37649850-bebb-4fe2-8ee9-61971b2605ff">
-                                                                           <!--[if lte IE 8]>
-                                                                           <div id="hs-cta-ie-element"></div>
-                                                                           <![endif]--><a href="https://cta-redirect.hubspot.com/cta/redirect/5274572/37649850-bebb-4fe2-8ee9-61971b2605ff"><img class="hs-cta-img" id="hs-cta-img-37649850-bebb-4fe2-8ee9-61971b2605ff" style="border-width:0px;" src="cta/default/5274572/37649850-bebb-4fe2-8ee9-61971b2605ff-1.png" alt="Start spending"></a>
-                                                                        </span>
-                                                                        <script charset="utf-8" src="hs/cta/cta/current-1.js"></script><script type="text/javascript"> hbspt.cta._relativeUrls=true;hbspt.cta.load(5274572, '37649850-bebb-4fe2-8ee9-61971b2605ff', {"useNewLoader":"true","region":"na1"}); </script>
+                                                                     <a class="bt-PrimaryButton" href="{{ route('cash') }}">Start Spending</a>
                                                                      </span>
                                                                      <!-- end HubSpot Call-to-Action Code -->
                                                                   </span>
@@ -602,7 +587,7 @@
                                                                            <li>Earn cash back rewards</li>
                                                                         </ul>
                                                                      </div>
-                                                                     <div class="bt-body50 footnote mt8">Checking accounts and the Betterment Visa Debit Card provided and issued by nbkc bank, Member FDIC. Checking made available through Betterment Financial LLC. Neither Betterment Financial LLC, nor any of their affiliates, is a bank. <a href="checking-1.html" rel="noopener">Learn more</a></div>
+                                                                     <div class="bt-body50 footnote mt8">Checking accounts and the Crestwood Capital Management Visa Debit Card provided and issued by nbkc bank, Member FDIC. Checking made available through Crestwood Capital Management Financial LLC. Neither Crestwood Capital Management Financial LLC, nor any of their affiliates, is a bank. <a href="{{ route('checking') }}" rel="noopener">Learn more</a></div>
                                                                   </div>
                                                                </div>
                                                             </div>
@@ -645,12 +630,7 @@
                                                                   <span id="hs_cos_wrapper_widget_1665415255983_" class="hs_cos_wrapper hs_cos_wrapper_widget hs_cos_wrapper_type_cta" style="" data-hs-cos-general-type="widget" data-hs-cos-type="cta">
                                                                      <!--HubSpot Call-to-Action Code -->
                                                                      <span class="hs-cta-wrapper" id="hs-cta-wrapper-35b7a389-2873-4bf1-9118-35d27189a435">
-                                                                        <span class="hs-cta-node hs-cta-35b7a389-2873-4bf1-9118-35d27189a435" id="hs-cta-35b7a389-2873-4bf1-9118-35d27189a435">
-                                                                           <!--[if lte IE 8]>
-                                                                           <div id="hs-cta-ie-element"></div>
-                                                                           <![endif]--><a href="https://cta-redirect.hubspot.com/cta/redirect/5274572/35b7a389-2873-4bf1-9118-35d27189a435"><img class="hs-cta-img" id="hs-cta-img-35b7a389-2873-4bf1-9118-35d27189a435" style="border-width:0px;" src="cta/default/5274572/35b7a389-2873-4bf1-9118-35d27189a435-1.png" alt="Talk to an advisor"></a>
-                                                                        </span>
-                                                                        <script charset="utf-8" src="hs/cta/cta/current-1.js"></script><script type="text/javascript"> hbspt.cta._relativeUrls=true;hbspt.cta.load(5274572, '35b7a389-2873-4bf1-9118-35d27189a435', {"useNewLoader":"true","region":"na1"}); </script>
+                                                                        <a class="bt-PrimaryButton" href="{{ route('contact') }}">Grow your savings</a>
                                                                      </span>
                                                                      <!-- end HubSpot Call-to-Action Code -->
                                                                   </span>
@@ -675,7 +655,7 @@
                                                                            <li>20% off estate planning with Trust &amp; Will</li>
                                                                         </ul>
                                                                      </div>
-                                                                     <div class="bt-body50 footnote mt8"><span>Premium requires a minimum of $100,000 in assets with Betterment to upgrade and maintain eligibility in the plan. Assets can be in your IRA, HSA and Investing accounts (Taxable and Crypto).</span></div>
+                                                                     <div class="bt-body50 footnote mt8"><span>Premium requires a minimum of $100,000 in assets with Crestwood Capital Management to upgrade and maintain eligibility in the plan. Assets can be in your IRA, HSA and Investing accounts (Taxable and Crypto).</span></div>
                                                                   </div>
                                                                </div>
                                                             </div>
@@ -814,12 +794,7 @@
                                                                   <span id="hs_cos_wrapper_widget_1670956447234_" class="hs_cos_wrapper hs_cos_wrapper_widget hs_cos_wrapper_type_cta" style="" data-hs-cos-general-type="widget" data-hs-cos-type="cta">
                                                                      <!--HubSpot Call-to-Action Code -->
                                                                      <span class="hs-cta-wrapper" id="hs-cta-wrapper-4effd7d2-e029-4b8e-a60a-54cebca19abe">
-                                                                        <span class="hs-cta-node hs-cta-4effd7d2-e029-4b8e-a60a-54cebca19abe" id="hs-cta-4effd7d2-e029-4b8e-a60a-54cebca19abe">
-                                                                           <!--[if lte IE 8]>
-                                                                           <div id="hs-cta-ie-element"></div>
-                                                                           <![endif]--><a href="https://cta-redirect.hubspot.com/cta/redirect/5274572/4effd7d2-e029-4b8e-a60a-54cebca19abe"><img class="hs-cta-img" id="hs-cta-img-4effd7d2-e029-4b8e-a60a-54cebca19abe" style="border-width:0px;" src="cta/default/5274572/4effd7d2-e029-4b8e-a60a-54cebca19abe-1.png" alt="Get started"></a>
-                                                                        </span>
-                                                                        <script charset="utf-8" src="hs/cta/cta/current-1.js"></script><script type="text/javascript"> hbspt.cta._relativeUrls=true;hbspt.cta.load(5274572, '4effd7d2-e029-4b8e-a60a-54cebca19abe', {"useNewLoader":"true","region":"na1"}); </script>
+                                                                        <a class="bt-PrimaryButton" href="{{ route('login') }}">Get Started</a>
                                                                      </span>
                                                                      <!-- end HubSpot Call-to-Action Code -->
                                                                   </span>
@@ -829,7 +804,7 @@
                                                                <div>
                                                                   <p>The base price for investing accounts is $4/month. This automatically switches to an annual price of 0.25% on your investing account balance when you either:</p>
                                                                   <ul>
-                                                                     <li aria-level="1">Have a total Betterment balance of $20,000 or more across any investing accounts, crypto accounts, Cash Reserve, and cash goals you hold at Betterment, or</li>
+                                                                     <li aria-level="1">Have a total Crestwood Capital Management balance of $20,000 or more across any investing accounts, crypto accounts, Cash Reserve, and cash goals you hold at Betterment, or</li>
                                                                      <li aria-level="1">Set up a recurring deposit(s) or transfer(s) of $250/month or more into any account.</li>
                                                                   </ul>
                                                                </div>
@@ -997,7 +972,7 @@
                                                                <div class="">
                                                                   <div class="media-wrap ">
                                                                      <div class="item-image-wrap">
-                                                                        <img class="item-image" src="hs-fs/hubfs/Graphics/webpage-graphics/get-in-touch-app-6.png?width=230&amp;name=get-in-touch-app.png" alt="an illustration of someone using the Betterment app to speak with a financial advisor" width="230" srcset="hs-fs/hubfs/Graphics/webpage-graphics/get-in-touch-app-7.png 115w?width=115&amp;name=get-in-touch-app.png 115w, hs-fs/hubfs/Graphics/webpage-graphics/get-in-touch-app-6.png 230wg?width=230&amp;name=get-in-touch-app.png 230w, hs-fs/hubfs/Graphics/webpage-graphics/get-in-touch-app-8.png 345wg?width=345&amp;name=get-in-touch-app.png 345w, hs-fs/hubfs/Graphics/webpage-graphics/get-in-touch-app-9.png 460wg?width=460&amp;name=get-in-touch-app.png 460w, hs-fs/hubfs/Graphics/webpage-graphics/get-in-touch-app-10.png 575wg?width=575&amp;name=get-in-touch-app.png 575w, hs-fs/hubfs/Graphics/webpage-graphics/get-in-touch-app-11.png 690wg?width=690&amp;name=get-in-touch-app.png 690w" sizes="(max-width: 230px) 100vw, 230px">
+                                                                        <img class="item-image" src="hs-fs/hubfs/Graphics/webpage-graphics/get-in-touch-app-6.png?width=230&amp;name=get-in-touch-app.png" alt="an illustration of someone using the Crestwood Capital Management app to speak with a financial advisor" width="230" srcset="hs-fs/hubfs/Graphics/webpage-graphics/get-in-touch-app-7.png 115w?width=115&amp;name=get-in-touch-app.png 115w, hs-fs/hubfs/Graphics/webpage-graphics/get-in-touch-app-6.png 230wg?width=230&amp;name=get-in-touch-app.png 230w, hs-fs/hubfs/Graphics/webpage-graphics/get-in-touch-app-8.png 345wg?width=345&amp;name=get-in-touch-app.png 345w, hs-fs/hubfs/Graphics/webpage-graphics/get-in-touch-app-9.png 460wg?width=460&amp;name=get-in-touch-app.png 460w, hs-fs/hubfs/Graphics/webpage-graphics/get-in-touch-app-10.png 575wg?width=575&amp;name=get-in-touch-app.png 575w, hs-fs/hubfs/Graphics/webpage-graphics/get-in-touch-app-11.png 690wg?width=690&amp;name=get-in-touch-app.png 690w" sizes="(max-width: 230px) 100vw, 230px">
                                                                      </div>
                                                                   </div>
                                                                   <div class=" item-content-area dark">
@@ -1150,7 +1125,7 @@
                                                                   <div class=" item-content-area white">
                                                                      <div>
                                                                      </div>
-                                                                     <div class="bt-body2"><strong>For Checking,</strong> Betterment Financial LLC does not charge fees on your account. We make money from merchants when you use your Visa debit card.</div>
+                                                                     <div class="bt-body2"><strong>For Checking,</strong> Crestwood Capital Management Financial LLC does not charge fees on your account. We make money from merchants when you use your Visa debit card.</div>
                                                                   </div>
                                                                </div>
                                                             </div>
@@ -1164,7 +1139,7 @@
                                                                   <div class=" item-content-area white">
                                                                      <div>
                                                                      </div>
-                                                                     <div class="bt-body2"><strong>For Cash Reserve ("CR"),</strong> Betterment LLC only receives compensation from our program banks, and Betterment LLC and Betterment Securities do not charge fees on your CR balance.</div>
+                                                                     <div class="bt-body2"><strong>For Cash Reserve ("CR"),</strong> Crestwood Capital Management LLC only receives compensation from our program banks, and Crestwood Capital Management LLC and Crestwood Capital Management Securities do not charge fees on your CR balance.</div>
                                                                   </div>
                                                                </div>
                                                             </div>
@@ -1178,7 +1153,7 @@
                                                                   <div class=" item-content-area white">
                                                                      <div>
                                                                      </div>
-                                                                     <div class="bt-body2"><strong>For Investing and retirement accounts,</strong> <span id="isPasted"><span>Betterment LLC&nbsp;charges an annualized asset-based fee (or minimum monthly fee) which covers&nbsp;all of our trading and management costs.</span></span></div>
+                                                                     <div class="bt-body2"><strong>For Investing and retirement accounts,</strong> <span id="isPasted"><span>Crestwood Capital Management LLC&nbsp;charges an annualized asset-based fee (or minimum monthly fee) which covers&nbsp;all of our trading and management costs.</span></span></div>
                                                                   </div>
                                                                </div>
                                                             </div>
@@ -1261,7 +1236,7 @@
                                                                         <p class="mb7 bt-title3">Tax savings can pay your fee.</p>
                                                                         <div>78% of customers using our tax-loss harvesting feature had their taxable advisory fee covered by likely tax savings (in 2022).</div>
                                                                      </div>
-                                                                     <div class="bt-body3 mt16 align-self-end"><span>Fee coverage and estimated tax savings based on Betterment internal calculations.&nbsp;</span><a href="{{ route('home') }}#percentageclaims" rel="noopener">See more in disclosures.</a></div>
+                                                                     <div class="bt-body3 mt16 align-self-end"><span>Fee coverage and estimated tax savings based on Crestwood Capital Management internal calculations.&nbsp;</span><a href="{{ route('home') }}#percentageclaims" rel="noopener">See more in disclosures.</a></div>
                                                                   </div>
                                                                </li>
                                                                <li class="flex-wrap bt-ContentGrid-item item u-col-12 u-col-6@md " data-viewthreshold="50">
@@ -1273,7 +1248,7 @@
                                                                         <p class="mb7 bt-title3">Recurring deposits can help you earn even more.</p>
                                                                         <div>Over the last decade, customers who automated their deposits earned 6% higher annual returns than those who did not.</div>
                                                                      </div>
-                                                                     <div class="bt-body3 mt16 align-self-end"><span>10-year annualized return based on Betterment internal calculations for the Core portfolio.&nbsp;</span><a href="{{ route('home') }}#percentageclaims" rel="noopener">See more in disclosures.</a></div>
+                                                                     <div class="bt-body3 mt16 align-self-end"><span>10-year annualized return based on Crestwood Capital Management internal calculations for the Core portfolio.&nbsp;</span><a href="{{ route('home') }}#percentageclaims" rel="noopener">See more in disclosures.</a></div>
                                                                   </div>
                                                                </li>
                                                             </ul>
@@ -1324,7 +1299,7 @@
                                                                   </svg>
                                                                </button>
                                                                <div class="accordion-body" aria-hidden="true" id="content-how-are-the-fees-taken-from-my-account" style="display:none;">
-                                                                  <p>Fees are taken right from your Betterment Investing account at the end of each month. No action is required on your part, and we'll never charge fees if you don't have a balance. Our fees are calculated based on your daily balance of assets under management and assessed monthly, and add up to $4/month or 0.25% annually for investing accounts, 1% for crypto investing accounts, and 0.65% for our Premium plan. &nbsp;<br>&nbsp;<br>If a client’s account exclusively consists of mutual funds, due to small price fluctuations in mutual funds that may occur on the transaction date, Betterment will accrue any fees over- or under-assessed and apply the difference to adjust the following period’s fee.</p>
+                                                                  <p>Fees are taken right from your Crestwood Capital Management Investing account at the end of each month. No action is required on your part, and we'll never charge fees if you don't have a balance. Our fees are calculated based on your daily balance of assets under management and assessed monthly, and add up to $4/month or 0.25% annually for investing accounts, 1% for crypto investing accounts, and 0.65% for our Premium plan. &nbsp;<br>&nbsp;<br>If a client’s account exclusively consists of mutual funds, due to small price fluctuations in mutual funds that may occur on the transaction date, Crestwood Capital Management will accrue any fees over- or under-assessed and apply the difference to adjust the following period’s fee.</p>
                                                                </div>
                                                             </li>
                                                             <li class="item border-btGrey30">
@@ -1336,7 +1311,7 @@
                                                                   </svg>
                                                                </button>
                                                                <div class="accordion-body" aria-hidden="true" id="content-are-there-discounts-if-i-hold-a-high-balance" style="display:none;">
-                                                                  <p>Yes. For the portion of your household balance above $2M, you'll receive a 0.10% discount on Betterment’s management fee, including funds held in your crypto account. For Digital investing, you'll pay just 0.15% for the portion of your balance above $2M. For Premium investing, you'll pay 0.30% for the portion of your balance above $2M. For Crypto Investing, you'll pay 0.90% for the portion of your balance in crypto assets above $2M. Note that HSA, 401(k), Cash Reserve, and Checking balances are excluded from the $2M total balance discount.&nbsp;</p>
+                                                                  <p>Yes. For the portion of your household balance above $2M, you'll receive a 0.10% discount on Crestwood Capital Management's management fee, including funds held in your crypto account. For Digital investing, you'll pay just 0.15% for the portion of your balance above $2M. For Premium investing, you'll pay 0.30% for the portion of your balance above $2M. For Crypto Investing, you'll pay 0.90% for the portion of your balance in crypto assets above $2M. Note that HSA, 401(k), Cash Reserve, and Checking balances are excluded from the $2M total balance discount.&nbsp;</p>
                                                                </div>
                                                             </li>
                                                             <li class="item border-btGrey30">
@@ -1349,7 +1324,7 @@
                                                                </button>
                                                                <div class="accordion-body" aria-hidden="true" id="content-what-counts-toward-the-minimum-balance-for-premium" style="display:none;">
                                                                   <p><span dir="ltr" role="presentation">The minimum balance requirement for the Premium plan is based on </span><span dir="ltr" role="presentation">your combined balance across taxable</span><span dir="ltr" role="presentation">,</span><span dir="ltr" role="presentation"> Crypto</span><span dir="ltr" role="presentation">,</span><span dir="ltr" role="presentation"> IRA</span><span dir="ltr" role="presentation">,</span><span dir="ltr" role="presentation"> and HSA assets</span><span dir="ltr" role="presentation">.</span></p>
-                                                                  <p><span dir="ltr" role="presentation">If you have a </span><span dir="ltr" role="presentation">401(</span><span dir="ltr" role="presentation">k</span><span dir="ltr" role="presentation">)</span><span dir="ltr" role="presentation"> through an employer plan with Betterment for </span><span dir="ltr" role="presentation">Business</span><span dir="ltr" role="presentation">,</span><span dir="ltr" role="presentation"> an account with a third</span><span dir="ltr" role="presentation">-</span><span dir="ltr" role="presentation">party advisor through our </span><span dir="ltr" role="presentation">Betterment for Advisors platform</span><span dir="ltr" role="presentation">,</span><span dir="ltr" role="presentation"> a Cash Reserve</span><span dir="ltr" role="presentation">,</span><span dir="ltr" role="presentation"> or checking</span><br role="presentation"><span dir="ltr" role="presentation">account those accounts are also not included in your minimum </span><span dir="ltr" role="presentation">balance requirement and are subject to separate fee schedules</span><span dir="ltr" role="presentation">.</span></p>
+                                                                  <p><span dir="ltr" role="presentation">If you have a </span><span dir="ltr" role="presentation">401(</span><span dir="ltr" role="presentation">k</span><span dir="ltr" role="presentation">)</span><span dir="ltr" role="presentation"> through an employer plan with Crestwood Capital Management for </span><span dir="ltr" role="presentation">Business</span><span dir="ltr" role="presentation">,</span><span dir="ltr" role="presentation"> an account with a third</span><span dir="ltr" role="presentation">-</span><span dir="ltr" role="presentation">party advisor through our </span><span dir="ltr" role="presentation">Crestwood Capital Management for Advisors platform</span><span dir="ltr" role="presentation">,</span><span dir="ltr" role="presentation"> a Cash Reserve</span><span dir="ltr" role="presentation">,</span><span dir="ltr" role="presentation"> or checking</span><br role="presentation"><span dir="ltr" role="presentation">account those accounts are also not included in your minimum </span><span dir="ltr" role="presentation">balance requirement and are subject to separate fee schedules</span><span dir="ltr" role="presentation">.</span></p>
                                                                </div>
                                                             </li>
                                                             <li class="item border-btGrey30">
@@ -1361,7 +1336,7 @@
                                                                   </svg>
                                                                </button>
                                                                <div class="accordion-body" aria-hidden="true" id="content-are-there-fees-on-deposits-withdrawals-or-etfs" style="display:none;">
-                                                                  <p><span>Betterment will construct your portfolio with ETFs, a type of security that generally tracks a broad-market stock or bond index but trades like a stock on a listed exchange, and these ETFs have embedded fund fees.&nbsp;</span><a href="resources/etf-portfolio-selection-methodology.html" data-track-event="ElementClicked" data-track-name="FundSelectionMethodology" data-track-module="FAQ" data-interaction-listener-registered="true">Betterment's fund selection methodology</a><span> aims to keep these costs as low as possible, and the dividends paid and reflected in your account's statement already take into account the deduction of these fees by the fund. Betterment does not receive any portion of these fund fees and these fees are in addition to our management fees ($4/month, 0.25% annually for Digital, and 0.65% annually for Premium). We charge a flat fee of $75 for each investing account transfer out of Betterment. There is no fee to withdraw funds to your linked checking account. You are not charged any additional trading or deposit fees.</span></p>
+                                                                  <p><span>Crestwood Capital Management will construct your portfolio with ETFs, a type of security that generally tracks a broad-market stock or bond index but trades like a stock on a listed exchange, and these ETFs have embedded fund fees.&nbsp;</span><a href="{{ route('charitable') }}" data-track-event="ElementClicked" data-track-name="FundSelectionMethodology" data-track-module="FAQ" data-interaction-listener-registered="true">Betterment's fund selection methodology</a><span> aims to keep these costs as low as possible, and the dividends paid and reflected in your account's statement already take into account the deduction of these fees by the fund. Crestwood Capital Management does not receive any portion of these fund fees and these fees are in addition to our management fees ($4/month, 0.25% annually for Digital, and 0.65% annually for Premium). We charge a flat fee of $75 for each investing account transfer out of Crestwood Capital Management. There is no fee to withdraw funds to your linked checking account. You are not charged any additional trading or deposit fees.</span></p>
                                                                </div>
                                                             </li>
                                                             <li class="item border-btGrey30">
@@ -1373,8 +1348,8 @@
                                                                   </svg>
                                                                </button>
                                                                <div class="accordion-body" aria-hidden="true" id="content-does-it-cost-more-to-get-additional-help-if-i-need-it" style="display:none;">
-                                                                  <p>Our Customer Support Team is available at no additional cost to help you with any technical or account management questions. Members of our Customer Support Team are not investment adviser representatives and are not licensed to give financial advice. Customers looking to transfer investments to Betterment have access to our dedicated transfer specialist team. If you're exploring moving $100K or more to Betterment and would like to understand your options, get advice on account set up, and ultimately have dedicated support throughout the transfer process, we offer complimentary access to our Licensed Concierge team.</p>
-                                                                  <p>For more in-depth financial advice, you can purchase flat-fee<span>&nbsp;</span><a href="financial-experts-1.html" data-track-event="ElementClicked" data-track-name="FinancialExperts" data-track-module="FAQ" data-interaction-listener-registered="true">advice packages</a><span>&nbsp;</span>with our team of CFP<sup>®</sup><span>&nbsp;</span>professionals, for a one-time fee of $299-$399. An advice package can be especially useful if you're looking to build a financial plan but do not have the $100K minimum balance for our Premium Plan. Each advice package includes a tailored call and a personalized action plan and educational content.</p>
+                                                                  <p>Our Customer Support Team is available at no additional cost to help you with any technical or account management questions. Members of our Customer Support Team are not investment adviser representatives and are not licensed to give financial advice. Customers looking to transfer investments to Crestwood Capital Management have access to our dedicated transfer specialist team. If you're exploring moving $100K or more to Crestwood Capital Management and would like to understand your options, get advice on account set up, and ultimately have dedicated support throughout the transfer process, we offer complimentary access to our Licensed Concierge team.</p>
+                                                                  <p>For more in-depth financial advice, you can purchase flat-fee<span>&nbsp;</span><a href="{{ route('expert') }}" data-track-event="ElementClicked" data-track-name="FinancialExperts" data-track-module="FAQ" data-interaction-listener-registered="true">advice packages</a><span>&nbsp;</span>with our team of CFP<sup>®</sup><span>&nbsp;</span>professionals, for a one-time fee of $299-$399. An advice package can be especially useful if you're looking to build a financial plan but do not have the $100K minimum balance for our Premium Plan. Each advice package includes a tailored call and a personalized action plan and educational content.</p>
                                                                </div>
                                                             </li>
                                                          </ul>
@@ -1436,6 +1411,20 @@
                                                             <div class="u-col-12"></div>
                                                             <div class="hs-cta ">
                                                                <span>
+                                                                  <span>
+                                                                     <div class="u-displayNone--until-lg bt-nav-cta-2">
+                                                                        <div class="">
+                                                                              <div>
+                                                                                 <a href="{{ route('register') }}" style="background: #1d6ae5; color: white; padding: 14px 30px; border-radius: 5px; text-align: center; text-decoration: none; font-weight: 500;">Get Stated</a>
+                                                                              </div>
+                                                                        </div>
+                                                                     </div>
+                                                                  </span>
+                                                               </span>
+                                                            </div>
+
+<div class="hs-cta " style="display: none">
+                                                               <span>
                                                                   <span id="hs_cos_wrapper_widget_1635392422327_" class="hs_cos_wrapper hs_cos_wrapper_widget hs_cos_wrapper_type_cta" style="" data-hs-cos-general-type="widget" data-hs-cos-type="cta">
                                                                      <!--HubSpot Call-to-Action Code -->
                                                                      <span class="hs-cta-wrapper" id="hs-cta-wrapper-4effd7d2-e029-4b8e-a60a-54cebca19abe">
@@ -1454,8 +1443,8 @@
                                                       </div>
                                                    </div>
                                                 </div>
-                                                <div class="background-absolute bg-image bg-image_desktop lazy" data-bg="https://resources.betterment.com/hubfs/Graphics/webpage-graphics/Landscapes/Landscape-Lake-Sunrise-Gold50_desktop.svg"></div>
-                                                <div class="background-absolute bg-image bg-image_mobile lazy" data-bg="https://resources.betterment.com/hubfs/Graphics/webpage-graphics/Landscapes/Landscape-Lake-Sunrise-Gold50_mobile.svg"></div>
+                                                <div class="background-absolute bg-image bg-image_desktop lazy" data-bg="https://resources.Crestwood Capital Management.com/hubfs/Graphics/webpage-graphics/Landscapes/Landscape-Lake-Sunrise-Gold50_desktop.svg"></div>
+                                                <div class="background-absolute bg-image bg-image_mobile lazy" data-bg="https://resources.Crestwood Capital Management.com/hubfs/Graphics/webpage-graphics/Landscapes/Landscape-Lake-Sunrise-Gold50_mobile.svg"></div>
                                              </section>
                                              <script class="section-spacing-script" type="application/json">{"pt_lg":138,"pt_sm":138}</script>
                                              <style>
@@ -1504,7 +1493,7 @@
       <script defer="" src="content-cwv-embed/static-1.1293/embed-1.js"></script>
       <script src="ajax/libs/jquery/3.5.1/jquery.min-1.js"></script>
       <script src="ajax/libs/jquery-migrate/3.3.1/jquery-migrate.min-1.js"></script>
-      <script id="__ada" data-handle="betterment-cx" src="https://static.ada.support/embed2.js" data-lazy=""></script>
+      
       <script src="hs-fs/hub/5274572/hub_generated/template_assets/57001203564/1728423001638/betterment-theme/resources/btTrackingInit.min-1.js"></script>
       <script src="hs-fs/hub/5274572/hub_generated/template_assets/49666399874/1728423002407/betterment-theme/js/main.min-1.js"></script>
       <script>
@@ -1522,7 +1511,7 @@
       <script type="text/javascript">
          var _hsq = _hsq || [];
          _hsq.push(["setContentType", "standard-page"]);
-         _hsq.push(["setCanonicalUrl", "https:\/\/www.betterment.com\/pricing"]);
+         _hsq.push(["setCanonicalUrl", "https:\/\/www.Crestwood Capital Management.com\/pricing"]);
          _hsq.push(["setPageId", "58503911455"]);
          _hsq.push(["setContentMetadata", {
              "contentPageId": 58503911455,

@@ -4,15 +4,15 @@
       <meta charset="utf-8">
       <title>Goal-based Investing | Savings Buckets</title>
       <link rel="icon" href="{{ asset('asset/images/brand-logos/favicon.png') }}" type="image/x-icon">
-      <meta name="description" content="Whatever your dreams are, you can save and invest your way to making them a reality with Betterment. Use our savings tools to plan your goals, invest toward them, and track your progress.">
+      <meta name="description" content="Whatever your dreams are, you can save and invest your way to making them a reality with Crestwood Capital Management. Use our savings tools to plan your goals, invest toward them, and track your progress.">
       <script>
          window.TT = "ewogICAgInNwbGl0cyI6e30sCiAgICAiZXhwZXJpZW5jZVNhbXBsaW5nV2VpZ2h0IjoxMDAsCiAgICAidXJsIjoiaHR0cHM6XC9cL3R0LmJldHRlcm1lbnQuY29tIiwKICAgICJjb29raWVEb21haW4iOiIuYmV0dGVybWVudC5jb20iLAogICAgImVuY29kZWRBdCI6IjIwMjEwNzEzMTU1MjAxIgp9"
       </script>
       <script>!function(){window.semaphore=window.semaphore||[],window.ketch=function(){window.semaphore.push(arguments)};var e=new URLSearchParams(document.location.search),o=e.has("property")?e.get("property"):"betterment_com",n=document.createElement("script");n.type="text/javascript",n.src="https://global.ketchcdn.com/web/v2/config/betterment/".concat(o,"/boot.js"),n.defer=n.async=!0,document.getElementsByTagName("head")[0].appendChild(n)}();</script>
       <meta name="viewport" content="width=device-width, initial-scale=1">
-      <meta property="og:description" content="Whatever your dreams are, you can save and invest your way to making them a reality with Betterment. Use our savings tools to plan your goals, invest toward them, and track your progress.">
+      <meta property="og:description" content="Whatever your dreams are, you can save and invest your way to making them a reality with Crestwood Capital Management. Use our savings tools to plan your goals, invest toward them, and track your progress.">
       <meta property="og:title" content="Goal-based Investing | Savings Buckets">
-      <meta name="twitter:description" content="Whatever your dreams are, you can save and invest your way to making them a reality with Betterment. Use our savings tools to plan your goals, invest toward them, and track your progress.">
+      <meta name="twitter:description" content="Whatever your dreams are, you can save and invest your way to making them a reality with Crestwood Capital Management. Use our savings tools to plan your goals, invest toward them, and track your progress.">
       <meta name="twitter:title" content="Goal-based Investing | Savings Buckets">
       <style>
          a.cta_button{-moz-box-sizing:content-box !important;-webkit-box-sizing:content-box !important;box-sizing:content-box !important;vertical-align:middle}.hs-breadcrumb-menu{list-style-type:none;margin:0px 0px 0px 0px;padding:0px 0px 0px 0px}.hs-breadcrumb-menu-item{float:left;padding:10px 0px 10px 10px}.hs-breadcrumb-menu-divider:before{content:'›';padding-left:10px}.hs-featured-image-link{border:0}.hs-featured-image{float:right;margin:0 0 20px 20px;max-width:50%}@media (max-width: 568px){.hs-featured-image{float:none;margin:0;width:100%;max-width:100%}}.hs-screen-reader-text{clip:rect(1px, 1px, 1px, 1px);height:1px;overflow:hidden;position:absolute !important;width:1px}
@@ -153,13 +153,13 @@
       </script>
       <!-- /Added by GoogleTagManager integration -->
       <link rel="canonical" href="goals-1.html">
-      <meta property="og:image" content="https://www.betterment.com/hubfs/Graphics/Featured-images/b2c_default.png">
+      <meta property="og:image" content="https://www.Crestwood Capital Management.com/hubfs/Graphics/Featured-images/b2c_default.png">
       <meta property="og:image:width" content="1200">
       <meta property="og:image:height" content="628">
       <meta property="og:image:alt" content="Betterment">
-      <meta name="twitter:image" content="https://www.betterment.com/hubfs/Graphics/Featured-images/b2c_default.png">
+      <meta name="twitter:image" content="https://www.Crestwood Capital Management.com/hubfs/Graphics/Featured-images/b2c_default.png">
       <meta name="twitter:image:alt" content="Betterment">
-      <meta property="og:url" content="https://www.betterment.com/goals">
+      <meta property="og:url" content="https://www.Crestwood Capital Management.com/goals">
       <meta name="twitter:card" content="summary_large_image">
       <meta http-equiv="content-language" content="en">
       <meta name="generator" content="HubSpot">
@@ -267,12 +267,9 @@
                                                                   <span id="hs_cos_wrapper_widget_1633665004677_" class="hs_cos_wrapper hs_cos_wrapper_widget hs_cos_wrapper_type_cta" style="" data-hs-cos-general-type="widget" data-hs-cos-type="cta">
                                                                      <!--HubSpot Call-to-Action Code -->
                                                                      <span class="hs-cta-wrapper" id="hs-cta-wrapper-4effd7d2-e029-4b8e-a60a-54cebca19abe">
-                                                                        <span class="hs-cta-node hs-cta-4effd7d2-e029-4b8e-a60a-54cebca19abe" id="hs-cta-4effd7d2-e029-4b8e-a60a-54cebca19abe">
-                                                                           <!--[if lte IE 8]>
-                                                                           <div id="hs-cta-ie-element"></div>
-                                                                           <![endif]--><a href="https://cta-redirect.hubspot.com/cta/redirect/5274572/4effd7d2-e029-4b8e-a60a-54cebca19abe"><img class="hs-cta-img" id="hs-cta-img-4effd7d2-e029-4b8e-a60a-54cebca19abe" style="border-width:0px;" src="cta/default/5274572/4effd7d2-e029-4b8e-a60a-54cebca19abe-1.png" alt="Get started"></a>
-                                                                        </span>
-                                                                        <script charset="utf-8" src="hs/cta/cta/current-1.js"></script><script type="text/javascript"> hbspt.cta._relativeUrls=true;hbspt.cta.load(5274572, '4effd7d2-e029-4b8e-a60a-54cebca19abe', {"useNewLoader":"true","region":"na1"}); </script>
+                                                                        <div>
+                                                                           <a href="{{ route('register') }}" style="background: #1d6ae5; color: white; padding: 14px 30px; border-radius: 5px; text-align: center; text-decoration: none; font-weight: 500;">Get Started</a>
+                                                                        </div>
                                                                      </span>
                                                                      <!-- end HubSpot Call-to-Action Code -->
                                                                   </span>
@@ -403,7 +400,7 @@
                                                       </div>
                                                       <div class="bt-ContentGrid-item u-col-12 u-col-6@md cols col-2 ">
                                                          <div>
-                                                            <img src="hs-fs/hubfs/Graphics/webpage-graphics/dream-home-on-track-6.png?width=921&amp;name=dream-home-on-track.png" alt="A Dream Home set up as an on track Betterment goal, with a target amount of $55,000 and date of May 2024." width="921" srcset="hs-fs/hubfs/Graphics/webpage-graphics/dream-home-on-track-7.png 461w?width=461&amp;name=dream-home-on-track.png 461w, hs-fs/hubfs/Graphics/webpage-graphics/dream-home-on-track-6.png 921wg?width=921&amp;name=dream-home-on-track.png 921w, hs-fs/hubfs/Graphics/webpage-graphics/dream-home-on-track-8.png 1382wg?width=1382&amp;name=dream-home-on-track.png 1382w, hs-fs/hubfs/Graphics/webpage-graphics/dream-home-on-track-9.png 1842wg?width=1842&amp;name=dream-home-on-track.png 1842w, hs-fs/hubfs/Graphics/webpage-graphics/dream-home-on-track-10.png 2303wg?width=2303&amp;name=dream-home-on-track.png 2303w, hs-fs/hubfs/Graphics/webpage-graphics/dream-home-on-track-11.png 2763wg?width=2763&amp;name=dream-home-on-track.png 2763w" sizes="(max-width: 921px) 100vw, 921px">
+                                                            <img src="hs-fs/hubfs/Graphics/webpage-graphics/dream-home-on-track-6.png?width=921&amp;name=dream-home-on-track.png" alt="A Dream Home set up as an on track Crestwood Capital Management goal, with a target amount of $55,000 and date of May 2024." width="921" srcset="hs-fs/hubfs/Graphics/webpage-graphics/dream-home-on-track-7.png 461w?width=461&amp;name=dream-home-on-track.png 461w, hs-fs/hubfs/Graphics/webpage-graphics/dream-home-on-track-6.png 921wg?width=921&amp;name=dream-home-on-track.png 921w, hs-fs/hubfs/Graphics/webpage-graphics/dream-home-on-track-8.png 1382wg?width=1382&amp;name=dream-home-on-track.png 1382w, hs-fs/hubfs/Graphics/webpage-graphics/dream-home-on-track-9.png 1842wg?width=1842&amp;name=dream-home-on-track.png 1842w, hs-fs/hubfs/Graphics/webpage-graphics/dream-home-on-track-10.png 2303wg?width=2303&amp;name=dream-home-on-track.png 2303w, hs-fs/hubfs/Graphics/webpage-graphics/dream-home-on-track-11.png 2763wg?width=2763&amp;name=dream-home-on-track.png 2763w" sizes="(max-width: 921px) 100vw, 921px">
                                                          </div>
                                                       </div>
                                                    </div>
@@ -522,7 +519,21 @@
                                                             <h2 class="bt-ContentGrid-item u-col-12 u-col-6@lg">Turn life goals into money goals.</h2>
                                                             <div class="u-col-12"></div>
                                                             <div class="u-col-12"></div>
-                                                            <div class="hs-cta "><div class="u-displayNone--until-lg bt-nav-cta-2">
+                                                            <div class="hs-cta ">
+                                                               <span>
+                                                                  <span>
+                                                                     <div class="u-displayNone--until-lg bt-nav-cta-2">
+                                                                        <div class="">
+                                                                              <div>
+                                                                                 <a href="{{ route('register') }}" style="background: #1d6ae5; color: white; padding: 14px 30px; border-radius: 5px; text-align: center; text-decoration: none; font-weight: 500;">Get Stated</a>
+                                                                              </div>
+                                                                        </div>
+                                                                     </div>
+                                                                  </span>
+                                                               </span>
+                                                            </div>
+
+<div class="hs-cta " style="display: none"><div class="u-displayNone--until-lg bt-nav-cta-2">
                                                                <div class="">
                                                                      <div>
                                                                         <a href="{{ route('login') }}" style="background: #1d6ae5; color: white; padding: 14px 30px; border-radius: 5px; text-align: center; text-decoration: none; font-weight: 500;">Get Started</a>
@@ -533,8 +544,8 @@
                                                       </div>
                                                    </div>
                                                 </div>
-                                                <div class="background-absolute bg-image bg-image_desktop lazy" data-bg="https://resources.betterment.com/hubfs/Graphics/webpage-graphics/Landscapes/Landscape-Lake-Day-Blue10_destkop.svg"></div>
-                                                <div class="background-absolute bg-image bg-image_mobile lazy" data-bg="https://resources.betterment.com/hubfs/Graphics/webpage-graphics/Landscapes/Landscape-Lake-Day-Blue10_mobile.svg"></div>
+                                                <div class="background-absolute bg-image bg-image_desktop lazy" data-bg="https://resources.Crestwood Capital Management.com/hubfs/Graphics/webpage-graphics/Landscapes/Landscape-Lake-Day-Blue10_destkop.svg"></div>
+                                                <div class="background-absolute bg-image bg-image_mobile lazy" data-bg="https://resources.Crestwood Capital Management.com/hubfs/Graphics/webpage-graphics/Landscapes/Landscape-Lake-Day-Blue10_mobile.svg"></div>
                                              </section>
                                              <script class="section-spacing-script" type="application/json">{"pt_lg":138,"pt_sm":138}</script>
                                              <style>
@@ -583,7 +594,7 @@
       <script defer="" src="content-cwv-embed/static-1.1293/embed-1.js"></script>
       <script src="ajax/libs/jquery/3.5.1/jquery.min-1.js"></script>
       <script src="ajax/libs/jquery-migrate/3.3.1/jquery-migrate.min-1.js"></script>
-      <script id="__ada" data-handle="betterment-cx" src="https://static.ada.support/embed2.js" data-lazy=""></script>
+      
       <script src="hs-fs/hub/5274572/hub_generated/template_assets/57001203564/1728423001638/betterment-theme/resources/btTrackingInit.min-1.js"></script>
       <script src="hs-fs/hub/5274572/hub_generated/template_assets/49666399874/1728423002407/betterment-theme/js/main.min-1.js"></script>
       <script>
@@ -600,7 +611,7 @@
       <script type="text/javascript">
          var _hsq = _hsq || [];
          _hsq.push(["setContentType", "standard-page"]);
-         _hsq.push(["setCanonicalUrl", "https:\/\/www.betterment.com\/goals"]);
+         _hsq.push(["setCanonicalUrl", "https:\/\/www.Crestwood Capital Management.com\/goals"]);
          _hsq.push(["setPageId", "58577741077"]);
          _hsq.push(["setContentMetadata", {
              "contentPageId": 58577741077,

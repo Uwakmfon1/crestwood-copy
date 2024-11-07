@@ -5,17 +5,17 @@
       <title>Rewards</title>
       <link rel="icon" href="{{ asset('asset/images/brand-logos/favicon.png') }}" type="image/x-icon">
       <meta name="description" content="Get automatic cash back from thousands of your favorite brands when you 
-         spend in-store and online with Betterment Checking.">
+         spend in-store and online with Crestwood Capital Management Checking.">
       <script>
          window.TT = "ewogICAgInNwbGl0cyI6e30sCiAgICAiZXhwZXJpZW5jZVNhbXBsaW5nV2VpZ2h0IjoxMDAsCiAgICAidXJsIjoiaHR0cHM6XC9cL3R0LmJldHRlcm1lbnQuY29tIiwKICAgICJjb29raWVEb21haW4iOiIuYmV0dGVybWVudC5jb20iLAogICAgImVuY29kZWRBdCI6IjIwMjEwNzEzMTU1MjAxIgp9"
       </script>
       <script>!function(){window.semaphore=window.semaphore||[],window.ketch=function(){window.semaphore.push(arguments)};var e=new URLSearchParams(document.location.search),o=e.has("property")?e.get("property"):"betterment_com",n=document.createElement("script");n.type="text/javascript",n.src="https://global.ketchcdn.com/web/v2/config/betterment/".concat(o,"/boot.js"),n.defer=n.async=!0,document.getElementsByTagName("head")[0].appendChild(n)}();</script>
       <meta name="viewport" content="width=device-width, initial-scale=1">
       <meta property="og:description" content="Get automatic cash back from thousands of your favorite brands when you 
-         spend in-store and online with Betterment Checking.">
+         spend in-store and online with Crestwood Capital Management Checking.">
       <meta property="og:title" content="Rewards">
       <meta name="twitter:description" content="Get automatic cash back from thousands of your favorite brands when you 
-         spend in-store and online with Betterment Checking.">
+         spend in-store and online with Crestwood Capital Management Checking.">
       <meta name="twitter:title" content="Rewards">
       <style>
          a.cta_button{-moz-box-sizing:content-box !important;-webkit-box-sizing:content-box !important;box-sizing:content-box !important;vertical-align:middle}.hs-breadcrumb-menu{list-style-type:none;margin:0px 0px 0px 0px;padding:0px 0px 0px 0px}.hs-breadcrumb-menu-item{float:left;padding:10px 0px 10px 10px}.hs-breadcrumb-menu-divider:before{content:'›';padding-left:10px}.hs-featured-image-link{border:0}.hs-featured-image{float:right;margin:0 0 20px 20px;max-width:50%}@media (max-width: 568px){.hs-featured-image{float:none;margin:0;width:100%;max-width:100%}}.hs-screen-reader-text{clip:rect(1px, 1px, 1px, 1px);height:1px;overflow:hidden;position:absolute !important;width:1px}
@@ -157,13 +157,13 @@
       </script>
       <!-- /Added by GoogleTagManager integration -->
       <link rel="canonical" href="rewards-1.html">
-      <meta property="og:image" content="https://www.betterment.com/hubfs/Graphics/Featured-images/b2c_default.png">
+      <meta property="og:image" content="https://www.Crestwood Capital Management.com/hubfs/Graphics/Featured-images/b2c_default.png">
       <meta property="og:image:width" content="1200">
       <meta property="og:image:height" content="628">
       <meta property="og:image:alt" content="Betterment">
-      <meta name="twitter:image" content="https://www.betterment.com/hubfs/Graphics/Featured-images/b2c_default.png">
+      <meta name="twitter:image" content="https://www.Crestwood Capital Management.com/hubfs/Graphics/Featured-images/b2c_default.png">
       <meta name="twitter:image:alt" content="Betterment">
-      <meta property="og:url" content="https://www.betterment.com/rewards">
+      <meta property="og:url" content="https://www.Crestwood Capital Management.com/rewards">
       <meta name="twitter:card" content="summary_large_image">
       <meta http-equiv="content-language" content="en">
       <meta name="generator" content="HubSpot">
@@ -264,19 +264,16 @@
                                                          <div>
                                                             <h1 class="item-title ">  Save when you spend</h1>
                                                             <div class="bt-body200 fancy-bullet fancy-bullet_dot_blue bullets-divider-dash-none">
-                                                               <p>Get automatic cash back from thousands of your favorite brands when you spend with Betterment Checking and the Betterment Visa Debit Card.<sup>1</sup></p>
+                                                               <p>Get automatic cash back from thousands of your favorite brands when you spend with Crestwood Capital Management Checking and the Crestwood Capital Management Visa Debit Card.<sup>1</sup></p>
                                                             </div>
                                                             <div class="hs-cta flex flex-column-sm  align-center mt28">
                                                                <span>
                                                                   <span id="hs_cos_wrapper_widget_1633665004677_" class="hs_cos_wrapper hs_cos_wrapper_widget hs_cos_wrapper_type_cta" style="" data-hs-cos-general-type="widget" data-hs-cos-type="cta">
                                                                      <!--HubSpot Call-to-Action Code -->
                                                                      <span class="hs-cta-wrapper" id="hs-cta-wrapper-b686f90d-bc69-4bf0-a97b-64a7d3f863c8">
-                                                                        <span class="hs-cta-node hs-cta-b686f90d-bc69-4bf0-a97b-64a7d3f863c8" id="hs-cta-b686f90d-bc69-4bf0-a97b-64a7d3f863c8">
-                                                                           <!--[if lte IE 8]>
-                                                                           <div id="hs-cta-ie-element"></div>
-                                                                           <![endif]--><a href="https://cta-redirect.hubspot.com/cta/redirect/5274572/b686f90d-bc69-4bf0-a97b-64a7d3f863c8"><img class="hs-cta-img" id="hs-cta-img-b686f90d-bc69-4bf0-a97b-64a7d3f863c8" style="border-width:0px;" src="cta/default/5274572/b686f90d-bc69-4bf0-a97b-64a7d3f863c8-1.png" alt="Get started"></a>
-                                                                        </span>
-                                                                        <script charset="utf-8" src="hs/cta/cta/current-1.js"></script><script type="text/javascript"> hbspt.cta._relativeUrls=true;hbspt.cta.load(5274572, 'b686f90d-bc69-4bf0-a97b-64a7d3f863c8', {"useNewLoader":"true","region":"na1"}); </script>
+                                                                        <div>
+                                                                           <a href="{{ route('register') }}" style="background: #1d6ae5; color: white; padding: 14px 30px; border-radius: 5px; text-align: center; text-decoration: none; font-weight: 500;">Get Stated</a>
+                                                                        </div>
                                                                      </span>
                                                                      <!-- end HubSpot Call-to-Action Code -->
                                                                   </span>
@@ -324,7 +321,7 @@
                                                          <div class="flex-wrap bt-row  bt-body50 footnote">
                                                             <div class="bt-ContentGrid-item u-col-12 u-col-12@lg">
                                                                <hr class="bg-grey30 mt0 mb16">
-                                                               <p><span>Checking accounts and the Betterment Visa® Debit Card provided and issued by nbkc bank, Member FDIC. Checking made available through Betterment Financial LLC. Neither Betterment Financial LLC, nor any of their affiliates, is a bank.</span></p>
+                                                               <p><span>Checking accounts and the Crestwood Capital Management Visa® Debit Card provided and issued by nbkc bank, Member FDIC. Checking made available through Crestwood Capital Management Financial LLC. Neither Crestwood Capital Management Financial LLC, nor any of their affiliates, is a bank.</span></p>
                                                             </div>
                                                          </div>
                                                       </div>
@@ -550,7 +547,7 @@
                                                                Keeping your money safe and secure.
                                                             </h2>
                                                             <div class="item-body fancy-bullet fancy-bullet_check_blue ">
-                                                               <p><span>Your Checking account is FDIC-insured up to $250K by nbkc bank, Member FDIC. What’s more, you can lock your card, change your PIN, and more all from the Betterment app. No need to call or go into a branch to maintain control.</span></p>
+                                                               <p><span>Your Checking account is FDIC-insured up to $250K by nbkc bank, Member FDIC. What’s more, you can lock your card, change your PIN, and more all from the Crestwood Capital Management app. No need to call or go into a branch to maintain control.</span></p>
                                                             </div>
                                                          </div>
                                                       </div>
@@ -607,7 +604,7 @@
                                                       </div>
                                                       <div class="bt-ContentGrid-item u-col-12 u-col-6@md cols col-2 ">
                                                          <div>
-                                                            <img src="hs-fs/hubfs/Graphics/webpage-graphics/man-phone-atm-fees-reimbursed-6.png?width=1110&amp;name=man-phone-atm-fees-reimbursed.png" alt="Man getting a notification from the Betterment app on his phone that his ATM fee has been reimbursed." width="1110" srcset="hs-fs/hubfs/Graphics/webpage-graphics/man-phone-atm-fees-reimbursed-7.png 555w?width=555&amp;name=man-phone-atm-fees-reimbursed.png 555w, hs-fs/hubfs/Graphics/webpage-graphics/man-phone-atm-fees-reimbursed-6.png 1110wg?width=1110&amp;name=man-phone-atm-fees-reimbursed.png 1110w, hs-fs/hubfs/Graphics/webpage-graphics/man-phone-atm-fees-reimbursed-8.png 1665wg?width=1665&amp;name=man-phone-atm-fees-reimbursed.png 1665w, hs-fs/hubfs/Graphics/webpage-graphics/man-phone-atm-fees-reimbursed-9.png 2220wg?width=2220&amp;name=man-phone-atm-fees-reimbursed.png 2220w, hs-fs/hubfs/Graphics/webpage-graphics/man-phone-atm-fees-reimbursed-10.png 2775wg?width=2775&amp;name=man-phone-atm-fees-reimbursed.png 2775w, hs-fs/hubfs/Graphics/webpage-graphics/man-phone-atm-fees-reimbursed-11.png 3330wg?width=3330&amp;name=man-phone-atm-fees-reimbursed.png 3330w" sizes="(max-width: 1110px) 100vw, 1110px">
+                                                            <img src="hs-fs/hubfs/Graphics/webpage-graphics/man-phone-atm-fees-reimbursed-6.png?width=1110&amp;name=man-phone-atm-fees-reimbursed.png" alt="Man getting a notification from the Crestwood Capital Management app on his phone that his ATM fee has been reimbursed." width="1110" srcset="hs-fs/hubfs/Graphics/webpage-graphics/man-phone-atm-fees-reimbursed-7.png 555w?width=555&amp;name=man-phone-atm-fees-reimbursed.png 555w, hs-fs/hubfs/Graphics/webpage-graphics/man-phone-atm-fees-reimbursed-6.png 1110wg?width=1110&amp;name=man-phone-atm-fees-reimbursed.png 1110w, hs-fs/hubfs/Graphics/webpage-graphics/man-phone-atm-fees-reimbursed-8.png 1665wg?width=1665&amp;name=man-phone-atm-fees-reimbursed.png 1665w, hs-fs/hubfs/Graphics/webpage-graphics/man-phone-atm-fees-reimbursed-9.png 2220wg?width=2220&amp;name=man-phone-atm-fees-reimbursed.png 2220w, hs-fs/hubfs/Graphics/webpage-graphics/man-phone-atm-fees-reimbursed-10.png 2775wg?width=2775&amp;name=man-phone-atm-fees-reimbursed.png 2775w, hs-fs/hubfs/Graphics/webpage-graphics/man-phone-atm-fees-reimbursed-11.png 3330wg?width=3330&amp;name=man-phone-atm-fees-reimbursed.png 3330w" sizes="(max-width: 1110px) 100vw, 1110px">
                                                          </div>
                                                       </div>
                                                    </div>
@@ -722,6 +719,20 @@
                                                             <div class="u-col-12"></div>
                                                             <div class="hs-cta ">
                                                                <span>
+                                                                  <span>
+                                                                     <div class="u-displayNone--until-lg bt-nav-cta-2">
+                                                                        <div class="">
+                                                                              <div>
+                                                                                 <a href="{{ route('register') }}" style="background: #1d6ae5; color: white; padding: 14px 30px; border-radius: 5px; text-align: center; text-decoration: none; font-weight: 500;">Get Stated</a>
+                                                                              </div>
+                                                                        </div>
+                                                                     </div>
+                                                                  </span>
+                                                               </span>
+                                                            </div>
+
+<div class="hs-cta " style="display: none">
+                                                               <span>
                                                                   <span id="hs_cos_wrapper_widget_1633666165947_" class="hs_cos_wrapper hs_cos_wrapper_widget hs_cos_wrapper_type_cta" style="" data-hs-cos-general-type="widget" data-hs-cos-type="cta">
                                                                      <!--HubSpot Call-to-Action Code -->
                                                                      <span class="hs-cta-wrapper" id="hs-cta-wrapper-b686f90d-bc69-4bf0-a97b-64a7d3f863c8">
@@ -740,8 +751,8 @@
                                                       </div>
                                                    </div>
                                                 </div>
-                                                <div class="background-absolute bg-image bg-image_desktop lazy" data-bg="https://resources.betterment.com/hubfs/Graphics/webpage-graphics/Landscapes/Landscape-Lake-Sunrise-Gold50_desktop.svg"></div>
-                                                <div class="background-absolute bg-image bg-image_mobile lazy" data-bg="https://resources.betterment.com/hubfs/Graphics/webpage-graphics/Landscapes/Landscape-Lake-Sunrise-Gold50_mobile.svg"></div>
+                                                <div class="background-absolute bg-image bg-image_desktop lazy" data-bg="https://resources.Crestwood Capital Management.com/hubfs/Graphics/webpage-graphics/Landscapes/Landscape-Lake-Sunrise-Gold50_desktop.svg"></div>
+                                                <div class="background-absolute bg-image bg-image_mobile lazy" data-bg="https://resources.Crestwood Capital Management.com/hubfs/Graphics/webpage-graphics/Landscapes/Landscape-Lake-Sunrise-Gold50_mobile.svg"></div>
                                              </section>
                                              <script class="section-spacing-script" type="application/json">{"pt_lg":138,"pt_sm":138}</script>
                                              <style>
@@ -790,7 +801,7 @@
       <script defer="" src="content-cwv-embed/static-1.1293/embed-1.js"></script>
       <script src="ajax/libs/jquery/3.5.1/jquery.min-1.js"></script>
       <script src="ajax/libs/jquery-migrate/3.3.1/jquery-migrate.min-1.js"></script>
-      <script id="__ada" data-handle="betterment-cx" src="https://static.ada.support/embed2.js" data-lazy=""></script>
+      
       <script src="hs-fs/hub/5274572/hub_generated/template_assets/57001203564/1728423001638/betterment-theme/resources/btTrackingInit.min-1.js"></script>
       <script src="hs-fs/hub/5274572/hub_generated/template_assets/49666399874/1728423002407/betterment-theme/js/main.min-1.js"></script>
       <script>
@@ -807,7 +818,7 @@
       <script type="text/javascript">
          var _hsq = _hsq || [];
          _hsq.push(["setContentType", "standard-page"]);
-         _hsq.push(["setCanonicalUrl", "https:\/\/www.betterment.com\/rewards"]);
+         _hsq.push(["setCanonicalUrl", "https:\/\/www.Crestwood Capital Management.com\/rewards"]);
          _hsq.push(["setPageId", "57651475492"]);
          _hsq.push(["setContentMetadata", {
              "contentPageId": 57651475492,

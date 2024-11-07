@@ -154,13 +154,13 @@
       </script>
       <!-- /Added by GoogleTagManager integration -->
       <link rel="canonical" href="financial-experts-1.html">
-      <meta property="og:image" content="https://www.betterment.com/hubfs/Graphics/Featured-images/b2c_default.png">
+      <meta property="og:image" content="https://www.Crestwood Capital Management.com/hubfs/Graphics/Featured-images/b2c_default.png">
       <meta property="og:image:width" content="1200">
       <meta property="og:image:height" content="628">
-      <meta property="og:image:alt" content="Betterment logo">
-      <meta name="twitter:image" content="https://www.betterment.com/hubfs/Graphics/Featured-images/b2c_default.png">
-      <meta name="twitter:image:alt" content="Betterment logo">
-      <meta property="og:url" content="https://www.betterment.com/financial-experts">
+      <meta property="og:image:alt" content="Crestwood Capital Management logo">
+      <meta name="twitter:image" content="https://www.Crestwood Capital Management.com/hubfs/Graphics/Featured-images/b2c_default.png">
+      <meta name="twitter:image:alt" content="Crestwood Capital Management logo">
+      <meta property="og:url" content="https://www.Crestwood Capital Management.com/financial-experts">
       <meta name="twitter:card" content="summary_large_image">
       <meta http-equiv="content-language" content="en">
       <meta name="generator" content="HubSpot">
@@ -260,13 +260,13 @@
                                                             <h1 class="bt-ContentGrid-item u-col-12 item-title u-col-12@md">  Connect with a financial advisor to support your needs</h1>
                                                             <div class="u-col-12"></div>
                                                             <div class="bt-ContentGrid-item u-col-12 item-body bt-body200 u-col-8@md">
-                                                               <p>Partner with our team of experts for hands-on guidance backed by Betterment’s technology. With our advice options, you can bring clarity and confidence to your financial life.</p>
+                                                               <p>Partner with our team of experts for hands-on guidance backed by Crestwood Capital Management's technology. With our advice options, you can bring clarity and confidence to your financial life.</p>
                                                             </div>
                                                          </div>
                                                       </div>
                                                    </div>
                                                 </div>
-                                                <div class="background-absolute bg-image bg-position-center-bottom background-size_contain  lazy" data-bg="https://www.betterment.com/hubfs/Graphics/webpage-graphics/clouds-sun.png"></div>
+                                                <div class="background-absolute bg-image bg-position-center-bottom background-size_contain  lazy" data-bg="https://www.Crestwood Capital Management.com/hubfs/Graphics/webpage-graphics/clouds-sun.png"></div>
                                              </section>
                                              <script class="section-spacing-script" type="application/json">{"pt_lg":152,"pt_sm":104}</script>
                                              <style>
@@ -341,12 +341,9 @@
                                                                   <span id="hs_cos_wrapper_module_1682525715957_" class="hs_cos_wrapper hs_cos_wrapper_widget hs_cos_wrapper_type_cta" style="" data-hs-cos-general-type="widget" data-hs-cos-type="cta">
                                                                      <!--HubSpot Call-to-Action Code -->
                                                                      <span class="hs-cta-wrapper" id="hs-cta-wrapper-bff614d8-9613-49ef-afd5-db5ad0726199">
-                                                                        <span class="hs-cta-node hs-cta-bff614d8-9613-49ef-afd5-db5ad0726199" id="hs-cta-bff614d8-9613-49ef-afd5-db5ad0726199">
-                                                                           <!--[if lte IE 8]>
-                                                                           <div id="hs-cta-ie-element"></div>
-                                                                           <![endif]--><a href="https://cta-redirect.hubspot.com/cta/redirect/5274572/bff614d8-9613-49ef-afd5-db5ad0726199"><img class="hs-cta-img" id="hs-cta-img-bff614d8-9613-49ef-afd5-db5ad0726199" style="border-width:0px;" src="cta/default/5274572/bff614d8-9613-49ef-afd5-db5ad0726199-1.png" alt="Schedule a call"></a>
-                                                                        </span>
-                                                                        <script charset="utf-8" src="hs/cta/cta/current-1.js"></script><script type="text/javascript"> hbspt.cta._relativeUrls=true;hbspt.cta.load(5274572, 'bff614d8-9613-49ef-afd5-db5ad0726199', {"useNewLoader":"true","region":"na1"}); </script>
+                                                                        <div>
+                                                                           <a href="{{ route('register') }}" style="background: #1d6ae5; color: white; padding: 14px 30px; border-radius: 5px; text-align: center; text-decoration: none; font-weight: 500;">Schedule a call</a>
+                                                                        </div>
                                                                      </span>
                                                                      <!-- end HubSpot Call-to-Action Code -->
                                                                   </span>
@@ -355,12 +352,9 @@
                                                                   <span id="hs_cos_wrapper_module_1682525715957_" class="hs_cos_wrapper hs_cos_wrapper_widget hs_cos_wrapper_type_cta" style="" data-hs-cos-general-type="widget" data-hs-cos-type="cta">
                                                                      <!--HubSpot Call-to-Action Code -->
                                                                      <span class="hs-cta-wrapper" id="hs-cta-wrapper-01c18463-22ad-42c8-826e-97e0edc4eed6">
-                                                                        <span class="hs-cta-node hs-cta-01c18463-22ad-42c8-826e-97e0edc4eed6" id="hs-cta-01c18463-22ad-42c8-826e-97e0edc4eed6">
-                                                                           <!--[if lte IE 8]>
-                                                                           <div id="hs-cta-ie-element"></div>
-                                                                           <![endif]--><a href="https://cta-redirect.hubspot.com/cta/redirect/5274572/01c18463-22ad-42c8-826e-97e0edc4eed6" target="_blank" rel="noopener"><img class="hs-cta-img" id="hs-cta-img-01c18463-22ad-42c8-826e-97e0edc4eed6" style="border-width:0px;" src="cta/default/5274572/01c18463-22ad-42c8-826e-97e0edc4eed6-1.png" alt="Learn more"></a>
-                                                                        </span>
-                                                                        <script charset="utf-8" src="hs/cta/cta/current-1.js"></script><script type="text/javascript"> hbspt.cta._relativeUrls=true;hbspt.cta.load(5274572, '01c18463-22ad-42c8-826e-97e0edc4eed6', {"useNewLoader":"true","region":"na1"}); </script>
+                                                                        <div>
+                                                                           <a href="{{ route('pricing') }}" style="background: #1d6ae5; color: white; padding: 14px 30px; border-radius: 5px; text-align: center; text-decoration: none; font-weight: 500;">Pricing</a>
+                                                                        </div>
                                                                      </span>
                                                                      <!-- end HubSpot Call-to-Action Code -->
                                                                   </span>
@@ -418,7 +412,7 @@
                                                                <p><strong>No fee </strong>l<strong> $20,000</strong> minimum amount eligible for transfer</p>
                                                                <p>With this option, you’ll receive:</p>
                                                                <ul>
-                                                                  <li aria-level="1"><span style="color: #212121;">A conversation with a financial advisor from our team dedicated* to helping you set up your goals and see if Betterment is right for you</span></li>
+                                                                  <li aria-level="1"><span style="color: #212121;">A conversation with a financial advisor from our team dedicated* to helping you set up your goals and see if Crestwood Capital Management is right for you</span></li>
                                                                   <li aria-level="1"><span style="color: #212121;">Help with setting up your account to meet your financial goals</span></li>
                                                                   <li>Guidance on easily transferring money to Betterment</li>
                                                                </ul>
@@ -429,12 +423,9 @@
                                                                   <span id="hs_cos_wrapper_module_1682621355575_" class="hs_cos_wrapper hs_cos_wrapper_widget hs_cos_wrapper_type_cta" style="" data-hs-cos-general-type="widget" data-hs-cos-type="cta">
                                                                      <!--HubSpot Call-to-Action Code -->
                                                                      <span class="hs-cta-wrapper" id="hs-cta-wrapper-78902f73-3b75-4de9-8167-2b4824f362c7">
-                                                                        <span class="hs-cta-node hs-cta-78902f73-3b75-4de9-8167-2b4824f362c7" id="hs-cta-78902f73-3b75-4de9-8167-2b4824f362c7">
-                                                                           <!--[if lte IE 8]>
-                                                                           <div id="hs-cta-ie-element"></div>
-                                                                           <![endif]--><a href="https://cta-redirect.hubspot.com/cta/redirect/5274572/78902f73-3b75-4de9-8167-2b4824f362c7"><img class="hs-cta-img" id="hs-cta-img-78902f73-3b75-4de9-8167-2b4824f362c7" style="border-width:0px;" src="cta/default/5274572/78902f73-3b75-4de9-8167-2b4824f362c7-1.png" alt="Schedule a call"></a>
-                                                                        </span>
-                                                                        <script charset="utf-8" src="hs/cta/cta/current-1.js"></script><script type="text/javascript"> hbspt.cta._relativeUrls=true;hbspt.cta.load(5274572, '78902f73-3b75-4de9-8167-2b4824f362c7', {"useNewLoader":"true","region":"na1"}); </script>
+                                                                     <div>
+                                                                           <a href="{{ route('register') }}" style="background: #1d6ae5; color: white; padding: 14px 30px; border-radius: 5px; text-align: center; text-decoration: none; font-weight: 500;">Schedule a call</a>
+                                                                        </div>
                                                                      </span>
                                                                      <!-- end HubSpot Call-to-Action Code -->
                                                                   </span>
@@ -443,12 +434,7 @@
                                                                   <span id="hs_cos_wrapper_module_1682621355575_" class="hs_cos_wrapper hs_cos_wrapper_widget hs_cos_wrapper_type_cta" style="" data-hs-cos-general-type="widget" data-hs-cos-type="cta">
                                                                      <!--HubSpot Call-to-Action Code -->
                                                                      <span class="hs-cta-wrapper" id="hs-cta-wrapper-0248036b-2042-4bb2-991e-8f80a9bca8a1">
-                                                                        <span class="hs-cta-node hs-cta-0248036b-2042-4bb2-991e-8f80a9bca8a1" id="hs-cta-0248036b-2042-4bb2-991e-8f80a9bca8a1">
-                                                                           <!--[if lte IE 8]>
-                                                                           <div id="hs-cta-ie-element"></div>
-                                                                           <![endif]--><a href="https://cta-redirect.hubspot.com/cta/redirect/5274572/0248036b-2042-4bb2-991e-8f80a9bca8a1"><img class="hs-cta-img" id="hs-cta-img-0248036b-2042-4bb2-991e-8f80a9bca8a1" style="border-width:0px;" src="cta/default/5274572/0248036b-2042-4bb2-991e-8f80a9bca8a1-1.png" alt="Learn more"></a>
-                                                                        </span>
-                                                                        <script charset="utf-8" src="hs/cta/cta/current-1.js"></script><script type="text/javascript"> hbspt.cta._relativeUrls=true;hbspt.cta.load(5274572, '0248036b-2042-4bb2-991e-8f80a9bca8a1', {"useNewLoader":"true","region":"na1"}); </script>
+                                                                        <a href="{{ route('expert') }}" rel="noopener" aria-label="Learn about premium pricing">Learn more ➔</a>
                                                                      </span>
                                                                      <!-- end HubSpot Call-to-Action Code -->
                                                                   </span>
@@ -458,7 +444,7 @@
                                                       </div>
                                                       <div class="bt-ContentGrid-item u-col-12 u-col-5@md cols col-2 ">
                                                          <div>
-                                                            <img src="hs-fs/hubfs/Graphics/webpage-graphics/laptop-dashboard-concierge-setup-6.png?width=1024&amp;name=laptop-dashboard-concierge-setup.png" alt="A laptop with Betterment dashboard on the screen, next to a floating headshot of a financial advisor who is saying let’s get your account set up. " width="1024" srcset="hs-fs/hubfs/Graphics/webpage-graphics/laptop-dashboard-concierge-setup-7.png 512w?width=512&amp;name=laptop-dashboard-concierge-setup.png 512w, hs-fs/hubfs/Graphics/webpage-graphics/laptop-dashboard-concierge-setup-6.png 1024wg?width=1024&amp;name=laptop-dashboard-concierge-setup.png 1024w, hs-fs/hubfs/Graphics/webpage-graphics/laptop-dashboard-concierge-setup-8.png 1536wg?width=1536&amp;name=laptop-dashboard-concierge-setup.png 1536w, hs-fs/hubfs/Graphics/webpage-graphics/laptop-dashboard-concierge-setup-9.png 2048wg?width=2048&amp;name=laptop-dashboard-concierge-setup.png 2048w, hs-fs/hubfs/Graphics/webpage-graphics/laptop-dashboard-concierge-setup-10.png 2560wg?width=2560&amp;name=laptop-dashboard-concierge-setup.png 2560w, hs-fs/hubfs/Graphics/webpage-graphics/laptop-dashboard-concierge-setup-11.png 3072wg?width=3072&amp;name=laptop-dashboard-concierge-setup.png 3072w" sizes="(max-width: 1024px) 100vw, 1024px">
+                                                            <img src="hs-fs/hubfs/Graphics/webpage-graphics/laptop-dashboard-concierge-setup-6.png?width=1024&amp;name=laptop-dashboard-concierge-setup.png" alt="A laptop with Crestwood Capital Management dashboard on the screen, next to a floating headshot of a financial advisor who is saying let’s get your account set up. " width="1024" srcset="hs-fs/hubfs/Graphics/webpage-graphics/laptop-dashboard-concierge-setup-7.png 512w?width=512&amp;name=laptop-dashboard-concierge-setup.png 512w, hs-fs/hubfs/Graphics/webpage-graphics/laptop-dashboard-concierge-setup-6.png 1024wg?width=1024&amp;name=laptop-dashboard-concierge-setup.png 1024w, hs-fs/hubfs/Graphics/webpage-graphics/laptop-dashboard-concierge-setup-8.png 1536wg?width=1536&amp;name=laptop-dashboard-concierge-setup.png 1536w, hs-fs/hubfs/Graphics/webpage-graphics/laptop-dashboard-concierge-setup-9.png 2048wg?width=2048&amp;name=laptop-dashboard-concierge-setup.png 2048w, hs-fs/hubfs/Graphics/webpage-graphics/laptop-dashboard-concierge-setup-10.png 2560wg?width=2560&amp;name=laptop-dashboard-concierge-setup.png 2560w, hs-fs/hubfs/Graphics/webpage-graphics/laptop-dashboard-concierge-setup-11.png 3072wg?width=3072&amp;name=laptop-dashboard-concierge-setup.png 3072w" sizes="(max-width: 1024px) 100vw, 1024px">
                                                          </div>
                                                       </div>
                                                    </div>
@@ -500,7 +486,7 @@
                                                          <div class="flex-wrap bt-row  bt-body50 footnote">
                                                             <div class="bt-ContentGrid-item u-col-12 u-col-12@lg">
                                                                <hr class="bg-grey30 mt0 mb16">
-                                                               *Betterment’s Licensed Concierge Team offers support for individuals transferring assets to Betterment of $20,000 or more, and receives incentive compensation based on assets brought to or invested with Betterment. Betterment’s revenue varies for different offerings (e.g., Betterment Digital and Premium, Cash Reserve) and consequently Team members have an incentive to recommend the offering which results in the greatest revenue for Betterment. The marketing and solicitation activities of these individuals are supervised by Betterment to help ensure that these individuals act in the client’s best interest.
+                                                               *Crestwood Capital Management's Licensed Concierge Team offers support for individuals transferring assets to Crestwood Capital Management of $20,000 or more, and receives incentive compensation based on assets brought to or invested with Crestwood Capital Management. Crestwood Capital Management's revenue varies for different offerings (e.g., Crestwood Capital Management Digital and Premium, Cash Reserve) and consequently Team members have an incentive to recommend the offering which results in the greatest revenue for Crestwood Capital Management. The marketing and solicitation activities of these individuals are supervised by Crestwood Capital Management to help ensure that these individuals act in the client’s best interest.
                                                             </div>
                                                          </div>
                                                       </div>
@@ -576,7 +562,7 @@
                                                                Financial expertise you can trust.
                                                             </h2>
                                                             <div class="item-body fancy-bullet fancy-bullet_check_blue ">
-                                                               <p>As a fiduciary, Betterment is required to focus on your best interests. That extends to our financial advice. We offer guidance to help you make the most of your money and build a better life.</p>
+                                                               <p>As a fiduciary, Crestwood Capital Management is required to focus on your best interests. That extends to our financial advice. We offer guidance to help you make the most of your money and build a better life.</p>
                                                             </div>
                                                          </div>
                                                       </div>
@@ -646,15 +632,26 @@
                                                             <div class="u-col-12"></div>
                                                             <div class="hs-cta ">
                                                                <span>
+                                                                  <span>
+                                                                     <div class="u-displayNone--until-lg bt-nav-cta-2">
+                                                                        <div class="">
+                                                                              <div>
+                                                                                 <a href="{{ route('register') }}" style="background: #1d6ae5; color: white; padding: 14px 30px; border-radius: 5px; text-align: center; text-decoration: none; font-weight: 500;">Get Stated</a>
+                                                                              </div>
+                                                                        </div>
+                                                                     </div>
+                                                                  </span>
+                                                               </span>
+                                                            </div>
+
+<div class="hs-cta " style="display: none">
+                                                               <span>
                                                                   <span id="hs_cos_wrapper_widget_1634588576197_" class="hs_cos_wrapper hs_cos_wrapper_widget hs_cos_wrapper_type_cta" style="" data-hs-cos-general-type="widget" data-hs-cos-type="cta">
                                                                      <!--HubSpot Call-to-Action Code -->
                                                                      <span class="hs-cta-wrapper" id="hs-cta-wrapper-78902f73-3b75-4de9-8167-2b4824f362c7">
-                                                                        <span class="hs-cta-node hs-cta-78902f73-3b75-4de9-8167-2b4824f362c7" id="hs-cta-78902f73-3b75-4de9-8167-2b4824f362c7">
-                                                                           <!--[if lte IE 8]>
-                                                                           <div id="hs-cta-ie-element"></div>
-                                                                           <![endif]--><a href="https://cta-redirect.hubspot.com/cta/redirect/5274572/78902f73-3b75-4de9-8167-2b4824f362c7"><img class="hs-cta-img" id="hs-cta-img-78902f73-3b75-4de9-8167-2b4824f362c7" style="border-width:0px;" src="cta/default/5274572/78902f73-3b75-4de9-8167-2b4824f362c7-1.png" alt="Schedule a call"></a>
-                                                                        </span>
-                                                                        <script charset="utf-8" src="hs/cta/cta/current-1.js"></script><script type="text/javascript"> hbspt.cta._relativeUrls=true;hbspt.cta.load(5274572, '78902f73-3b75-4de9-8167-2b4824f362c7', {"useNewLoader":"true","region":"na1"}); </script>
+                                                                        <div>
+                                                                           <a href="{{ route('login') }}" style="background: #1d6ae5; color: white; padding: 14px 30px; border-radius: 5px; text-align: center; text-decoration: none; font-weight: 500;">Schedule a call</a>
+                                                                        </div>
                                                                      </span>
                                                                      <!-- end HubSpot Call-to-Action Code -->
                                                                   </span>
@@ -664,8 +661,8 @@
                                                       </div>
                                                    </div>
                                                 </div>
-                                                <div class="background-absolute bg-image bg-image_desktop lazy" data-bg="https://www.betterment.com/hubfs/Graphics/webpage-graphics/landscapes/Landscape-Window-Gold50_desktop.svg"></div>
-                                                <div class="background-absolute bg-image bg-image_mobile lazy" data-bg="https://www.betterment.com/hubfs/Graphics/webpage-graphics/landscapes/Landscape-Window-Gold50_mobile.svg"></div>
+                                                <div class="background-absolute bg-image bg-image_desktop lazy" data-bg="https://www.Crestwood Capital Management.com/hubfs/Graphics/webpage-graphics/landscapes/Landscape-Window-Gold50_desktop.svg"></div>
+                                                <div class="background-absolute bg-image bg-image_mobile lazy" data-bg="https://www.Crestwood Capital Management.com/hubfs/Graphics/webpage-graphics/landscapes/Landscape-Window-Gold50_mobile.svg"></div>
                                              </section>
                                              <script class="section-spacing-script" type="application/json">{"pt_lg":86,"pt_sm":48}</script>
                                              <style>
@@ -714,7 +711,7 @@
       <script defer="" src="content-cwv-embed/static-1.1293/embed-1.js"></script>
       <script src="ajax/libs/jquery/3.5.1/jquery.min-1.js"></script>
       <script src="ajax/libs/jquery-migrate/3.3.1/jquery-migrate.min-1.js"></script>
-      <script id="__ada" data-handle="betterment-cx" src="https://static.ada.support/embed2.js" data-lazy=""></script>
+      
       <script src="hs-fs/hub/5274572/hub_generated/template_assets/57001203564/1728423001638/betterment-theme/resources/btTrackingInit.min-1.js"></script>
       <script src="hs-fs/hub/5274572/hub_generated/template_assets/49666399874/1728423002407/betterment-theme/js/main.min-1.js"></script>
       <script>
@@ -730,7 +727,7 @@
       <script type="text/javascript">
          var _hsq = _hsq || [];
          _hsq.push(["setContentType", "standard-page"]);
-         _hsq.push(["setCanonicalUrl", "https:\/\/www.betterment.com\/financial-experts"]);
+         _hsq.push(["setCanonicalUrl", "https:\/\/www.Crestwood Capital Management.com\/financial-experts"]);
          _hsq.push(["setPageId", "57824855375"]);
          _hsq.push(["setContentMetadata", {
              "contentPageId": 57824855375,

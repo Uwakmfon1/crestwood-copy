@@ -1,8 +1,8 @@
 <!doctype html>
 <html lang="en">
-   <head data-ipt="B4C | Portfolio Details: Betterment SRI Broad Impact Portfolio">
+   <head data-ipt="B4C | Portfolio Details: Crestwood Capital Management SRI Broad Impact Portfolio">
       <meta charset="utf-8">
-      <title>Crestwood Capital Management  Broad Impact Portfolio | Socially Responsible Investing</title>
+      <title>Crestwood Capital Management   Broad Impact Portfolio | Socially Responsible Investing</title>
       <link rel="icon" href="{{ asset('asset/images/brand-logos/favicon.png') }}" type="image/x-icon">
       <meta name="description" content="The Broad Impact portfolio seeks to provide greater exposure to all dimensions of social responsibility. Explore the funds included.
          ">
@@ -13,10 +13,10 @@
       <meta name="viewport" content="width=device-width, initial-scale=1">
       <meta property="og:description" content="The Broad Impact portfolio seeks to provide greater exposure to all dimensions of social responsibility. Explore the funds included.
          ">
-      <meta property="og:title" content="Betterment Broad Impact Portfolio | Socially Responsible Investing">
+      <meta property="og:title" content="Crestwood Capital Management Broad Impact Portfolio | Socially Responsible Investing">
       <meta name="twitter:description" content="The Broad Impact portfolio seeks to provide greater exposure to all dimensions of social responsibility. Explore the funds included.
          ">
-      <meta name="twitter:title" content="Betterment Broad Impact Portfolio | Socially Responsible Investing">
+      <meta name="twitter:title" content="Crestwood Capital Management Broad Impact Portfolio | Socially Responsible Investing">
       <style>
          a.cta_button{-moz-box-sizing:content-box !important;-webkit-box-sizing:content-box !important;box-sizing:content-box !important;vertical-align:middle}.hs-breadcrumb-menu{list-style-type:none;margin:0px 0px 0px 0px;padding:0px 0px 0px 0px}.hs-breadcrumb-menu-item{float:left;padding:10px 0px 10px 10px}.hs-breadcrumb-menu-divider:before{content:'›';padding-left:10px}.hs-featured-image-link{border:0}.hs-featured-image{float:right;margin:0 0 20px 20px;max-width:50%}@media (max-width: 568px){.hs-featured-image{float:none;margin:0;width:100%;max-width:100%}}.hs-screen-reader-text{clip:rect(1px, 1px, 1px, 1px);height:1px;overflow:hidden;position:absolute !important;width:1px}
       </style>
@@ -177,18 +177,18 @@
       </script>
       <!-- /Added by GoogleTagManager integration -->
       <link rel="canonical" href="socially-responsible-broad-impact-portfolio-1.html">
-      <meta property="og:image" content="https://www.betterment.com/hubfs/Graphics/Featured-images/b2c_default.png">
+      <meta property="og:image" content="https://www.Crestwood Capital Management.com/hubfs/Graphics/Featured-images/b2c_default.png">
       <meta property="og:image:width" content="1200">
       <meta property="og:image:height" content="628">
-      <meta property="og:image:alt" content="Betterment logo">
-      <meta name="twitter:image" content="https://www.betterment.com/hubfs/Graphics/Featured-images/b2c_default.png">
-      <meta name="twitter:image:alt" content="Betterment logo">
-      <meta property="og:url" content="https://www.betterment.com/socially-responsible-broad-impact-portfolio">
+      <meta property="og:image:alt" content="Crestwood Capital Management logo">
+      <meta name="twitter:image" content="https://www.Crestwood Capital Management.com/hubfs/Graphics/Featured-images/b2c_default.png">
+      <meta name="twitter:image:alt" content="Crestwood Capital Management logo">
+      <meta property="og:url" content="https://www.Crestwood Capital Management.com/socially-responsible-broad-impact-portfolio">
       <meta name="twitter:card" content="summary_large_image">
       <meta http-equiv="content-language" content="en">
       <meta name="generator" content="HubSpot">
    </head>
-   <body class=" DND-template" data-contentid="73661701791" data-splitname="" data-contentmstamp="1713814435914" data-contentisab="false" data-contentabmaster="" data-pagename="B4C | Portfolio Details: Betterment SRI Broad Impact Portfolio" data-localenv="false">
+   <body class=" DND-template" data-contentid="73661701791" data-splitname="" data-contentmstamp="1713814435914" data-contentisab="false" data-contentabmaster="" data-pagename="B4C | Portfolio Details: Crestwood Capital Management SRI Broad Impact Portfolio" data-localenv="false">
       <!--  Added by GoogleTagManager integration -->
       <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5RSQL7" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <!-- /Added by GoogleTagManager integration -->
@@ -280,7 +280,7 @@
                                                 <div class="portfolio-details-top bg-blue10 has-backlink">
                                                    <div class="see-all-portfolios dark">
                                                       <div class="bt-container">
-                                                         <a href="investments-1.html" class="bt-TertiaryButton bt-TertiaryButton_reverse">See all portfolios</a>
+                                                         <a href="{{ route('investment') }}" class="bt-TertiaryButton bt-TertiaryButton_reverse">See all portfolios</a>
                                                       </div>
                                                    </div>
                                                    <div class="bt-container portfolio-details-media">
@@ -301,7 +301,7 @@
                                                       <div class="portfolio-analysis-tool-container react-app" id="broad-impact-portfolio-details">
                                                          <div id="App-broad-impact-portfolio-details" data-react-app="broad-impact-portfolio-details">
                                                             <script data-initial-props="broad-impact-portfolio-details" type="application/json">
-                                                               {"background":{"color":"bg-blue10"},"contactRecords":[],"inputs":{"back_link_color":"dark","back_link_destination":{"no_follow":false,"open_in_new_tab":false,"rel":"","sponsored":false,"url":{"content_id":58655254607,"href":"https://www.betterment.com/investments","href_with_scheme":null,"type":"CONTENT"},"user_generated_content":false},"black_rock_sec_yield_eyebrow":"","customize_default_values":true,"defaultPortfolio":{"defaultAccountType":"tax-deferred","defaultFederalTaxRate":null,"defaultRiskLevel":"90","defaultStateTaxRate":null,"defaultTime":"all","disclosure":"<p>The default state for the Betterment Broad Impact Portfolio is an allocation of 90% stocks / 10% bonds in a tax-deferred portfolio, representing a moderate state for a long-term investment in an IRA or 401(k) plan. 11 other allocations can be selected in the tool, representing a sample of the full range of allocations available. The taxable version of the portfolio has different bond asset classes. The portfolio performance display includes historical performance from the portfolio inception date of June 7, 2017, and historical performance includes all portfolio model changes and fund selection decisions since that date.</p>\n<p>No default state in the tool should be taken as a recommendation; Betterment’s investment advice is made available to clients through its application.</p>","graphCsvId":"betterment_sri_broad","initialDepositAmount":"50000","name":"Broad Impact","pageUrl":"socially-responsible-broad-impact-portfolio","quickCompareSummary":null},"default_risk_level":"90","dynamic_holdings":true,"goldman_after_tax_yield_eyebrow":"","goldman_sec_yield_eyebrow":"","goldman_take_home_eyebrow":"","hero_type":"image","portfolio":{"columns":{"additional_resources":"<a href=\"https://www.betterment.com/legal/socially-responsible-investing-portfolio-strategy\">Socially Responsible Investing Portfolios Disclosure</a>","default_account_type":{"createdAt":1710864647979,"createdByUserId":0,"id":2,"isHubspotDefined":false,"label":"Tax-deferred","labelTranslations":{},"name":"Tax-deferred","order":1,"type":"option","updatedAt":1710864647979,"updatedByUserId":0},"default_risk_level":{"createdAt":1710864647979,"createdByUserId":0,"id":10,"isHubspotDefined":false,"label":"90","labelTranslations":{},"name":"90","order":9,"type":"option","updatedAt":1710864647979,"updatedByUserId":0},"expense_ratio":"0.12% - 0.18%","full_description":"The Broad Impact portfolio seeks to provide greater exposure to all of the different dimensions of social responsibility, such as lower carbon emissions, ethical labor management, or greater board diversity. It maintains a diversified, relatively low-cost approach to help customers investing for the long-term save towards their goals while expressing their values.","graph_csv_id":"betterment_sri_broad","header_image_desktop":{"altText":"","height":963,"type":"image","url":"https://www.betterment.com/hubfs/Graphics/webpage-graphics/portfolio_graphics/broad-impact-hero.png","width":2250},"header_image_mobile":{"altText":"","height":600,"type":"image","url":"https://www.betterment.com/hubfs/Graphics/webpage-graphics/portfolio_graphics/broad-impact-hero-mobile.png","width":1050},"holdings_disclosures":"<p>Allocations as of April 22, 2024</p>\n<p>As the bond exposure increases relative to stocks within this portfolio, the exposure to SRI focused ETFs will decline. This portfolio strategy has 101 different allocation options, from 0% bonds to 100% stocks. The 90% stock, 10% bond portfolio has been selected to display holdings. Different allocations will have different weights of each asset class. Betterment may recommend a different allocation based on various goal inputs tailored to each client, including the time horizon for your goal with the longest period starting at 90% stocks. The holdings shown reflect the portfolio model for tax-deferred accounts, like IRAs or 401(k)s. Expect differences in taxable accounts.</p>","holdings_intro":"Based on an allocation of 90% stocks, 10% bonds","holdings_table_id":"5413493","hs_child_table_id":0,"hs_created_at":1652498784927,"hs_deleted_at":0,"hs_id":73566912278,"hs_initial_published_at":1721241594387,"hs_is_edited":false,"hs_name":"Betterment SRI Broad Impact Portfolio","hs_path":"socially-responsible-broad-impact-portfolio","hs_published_at":1729101051573,"hs_updated_at":1713817665888,"hs_updated_by_user_id":62884969,"initial_deposit_amount":{"createdAt":1710864647979,"createdByUserId":0,"id":2,"isHubspotDefined":false,"label":"50000","labelTranslations":{},"name":"50000","order":1,"type":"option","updatedAt":1710864647979,"updatedByUserId":0},"name":"Broad Impact","performance_disclosure":"<p>The default state for the Betterment Broad Impact Portfolio is an allocation of 90% stocks / 10% bonds in a tax-deferred portfolio, representing a moderate state for a long-term investment in an IRA or 401(k) plan. 11 other allocations can be selected in the tool, representing a sample of the full range of allocations available. The taxable version of the portfolio has different bond asset classes. The portfolio performance display includes historical performance from the portfolio inception date of June 7, 2017, and historical performance includes all portfolio model changes and fund selection decisions since that date.</p>\n<p>No default state in the tool should be taken as a recommendation; Betterment’s investment advice is made available to clients through its application.</p>","who_its_for":"Investors looking to make an impact"},"id":73566912278,"table_id":5410958,"table_name":"portfolios"},"show_back_link":true,"show_black_rock_sec_yield":false,"show_goldman_sachs_bond_sec_yield":false,"show_performance":true},"portalData":{"formId":null,"pageName":"Betterment Broad Impact Portfolio | Socially Responsible Investing","portalId":5274572},"section_settings":{"section_id":"broad-impact-portfolio-details","z_index":""},"type":"module","vertical_paddings":{"bottom_padding_desktop":96,"bottom_padding_mobile":64,"top_padding_desktop":0,"top_padding_mobile":0}}
+                                                               {"background":{"color":"bg-blue10"},"contactRecords":[],"inputs":{"back_link_color":"dark","back_link_destination":{"no_follow":false,"open_in_new_tab":false,"rel":"","sponsored":false,"url":{"content_id":58655254607,"href":"https://www.Crestwood Capital Management.com/investments","href_with_scheme":null,"type":"CONTENT"},"user_generated_content":false},"black_rock_sec_yield_eyebrow":"","customize_default_values":true,"defaultPortfolio":{"defaultAccountType":"tax-deferred","defaultFederalTaxRate":null,"defaultRiskLevel":"90","defaultStateTaxRate":null,"defaultTime":"all","disclosure":"<p>The default state for the Crestwood Capital Management Broad Impact Portfolio is an allocation of 90% stocks / 10% bonds in a tax-deferred portfolio, representing a moderate state for a long-term investment in an IRA or 401(k) plan. 11 other allocations can be selected in the tool, representing a sample of the full range of allocations available. The taxable version of the portfolio has different bond asset classes. The portfolio performance display includes historical performance from the portfolio inception date of June 7, 2017, and historical performance includes all portfolio model changes and fund selection decisions since that date.</p>\n<p>No default state in the tool should be taken as a recommendation; Crestwood Capital Management's investment advice is made available to clients through its application.</p>","graphCsvId":"betterment_sri_broad","initialDepositAmount":"50000","name":"Broad Impact","pageUrl":"socially-responsible-broad-impact-portfolio","quickCompareSummary":null},"default_risk_level":"90","dynamic_holdings":true,"goldman_after_tax_yield_eyebrow":"","goldman_sec_yield_eyebrow":"","goldman_take_home_eyebrow":"","hero_type":"image","portfolio":{"columns":{"additional_resources":"<a href=\"https://www.Crestwood Capital Management.com/legal/socially-responsible-investing-portfolio-strategy\">Socially Responsible Investing Portfolios Disclosure</a>","default_account_type":{"createdAt":1710864647979,"createdByUserId":0,"id":2,"isHubspotDefined":false,"label":"Tax-deferred","labelTranslations":{},"name":"Tax-deferred","order":1,"type":"option","updatedAt":1710864647979,"updatedByUserId":0},"default_risk_level":{"createdAt":1710864647979,"createdByUserId":0,"id":10,"isHubspotDefined":false,"label":"90","labelTranslations":{},"name":"90","order":9,"type":"option","updatedAt":1710864647979,"updatedByUserId":0},"expense_ratio":"0.12% - 0.18%","full_description":"The Broad Impact portfolio seeks to provide greater exposure to all of the different dimensions of social responsibility, such as lower carbon emissions, ethical labor management, or greater board diversity. It maintains a diversified, relatively low-cost approach to help customers investing for the long-term save towards their goals while expressing their values.","graph_csv_id":"betterment_sri_broad","header_image_desktop":{"altText":"","height":963,"type":"image","url":"https://www.Crestwood Capital Management.com/hubfs/Graphics/webpage-graphics/portfolio_graphics/broad-impact-hero.png","width":2250},"header_image_mobile":{"altText":"","height":600,"type":"image","url":"https://www.Crestwood Capital Management.com/hubfs/Graphics/webpage-graphics/portfolio_graphics/broad-impact-hero-mobile.png","width":1050},"holdings_disclosures":"<p>Allocations as of April 22, 2024</p>\n<p>As the bond exposure increases relative to stocks within this portfolio, the exposure to SRI focused ETFs will decline. This portfolio strategy has 101 different allocation options, from 0% bonds to 100% stocks. The 90% stock, 10% bond portfolio has been selected to display holdings. Different allocations will have different weights of each asset class. Crestwood Capital Management may recommend a different allocation based on various goal inputs tailored to each client, including the time horizon for your goal with the longest period starting at 90% stocks. The holdings shown reflect the portfolio model for tax-deferred accounts, like IRAs or 401(k)s. Expect differences in taxable accounts.</p>","holdings_intro":"Based on an allocation of 90% stocks, 10% bonds","holdings_table_id":"5413493","hs_child_table_id":0,"hs_created_at":1652498784927,"hs_deleted_at":0,"hs_id":73566912278,"hs_initial_published_at":1721241594387,"hs_is_edited":false,"hs_name":"Crestwood Capital Management SRI Broad Impact Portfolio","hs_path":"socially-responsible-broad-impact-portfolio","hs_published_at":1729101051573,"hs_updated_at":1713817665888,"hs_updated_by_user_id":62884969,"initial_deposit_amount":{"createdAt":1710864647979,"createdByUserId":0,"id":2,"isHubspotDefined":false,"label":"50000","labelTranslations":{},"name":"50000","order":1,"type":"option","updatedAt":1710864647979,"updatedByUserId":0},"name":"Broad Impact","performance_disclosure":"<p>The default state for the Crestwood Capital Management Broad Impact Portfolio is an allocation of 90% stocks / 10% bonds in a tax-deferred portfolio, representing a moderate state for a long-term investment in an IRA or 401(k) plan. 11 other allocations can be selected in the tool, representing a sample of the full range of allocations available. The taxable version of the portfolio has different bond asset classes. The portfolio performance display includes historical performance from the portfolio inception date of June 7, 2017, and historical performance includes all portfolio model changes and fund selection decisions since that date.</p>\n<p>No default state in the tool should be taken as a recommendation; Crestwood Capital Management's investment advice is made available to clients through its application.</p>","who_its_for":"Investors looking to make an impact"},"id":73566912278,"table_id":5410958,"table_name":"portfolios"},"show_back_link":true,"show_black_rock_sec_yield":false,"show_goldman_sachs_bond_sec_yield":false,"show_performance":true},"portalData":{"formId":null,"pageName":"Crestwood Capital Management Broad Impact Portfolio | Socially Responsible Investing","portalId":5274572},"section_settings":{"section_id":"broad-impact-portfolio-details","z_index":""},"type":"module","vertical_paddings":{"bottom_padding_desktop":96,"bottom_padding_mobile":64,"top_padding_desktop":0,"top_padding_mobile":0}}
                                                             </script>
                                                             <div class="app-loading loading-spinner">
                                                                <span class="flex flex-middle">
@@ -331,11 +331,11 @@
                                                       </div>
                                                       <div class="portfolio-details-additional-resources">
                                                          <h2 class="bt-title3">Additional Resources</h2>
-                                                         <a href="legal/socially-responsible-investing-portfolio-strategy-1.html">Socially Responsible Investing Portfolios Disclosure</a>
+                                                         <a href="{{ route('tax') }}">Socially Responsible Investing Portfolios Disclosure</a>
                                                       </div>
                                                       <div class="portfolio-details-holdings-disclosures bt-body3">
                                                          <p>Allocations as of April 22, 2024</p>
-                                                         <p>As the bond exposure increases relative to stocks within this portfolio, the exposure to SRI focused ETFs will decline. This portfolio strategy has 101 different allocation options, from 0% bonds to 100% stocks. The 90% stock, 10% bond portfolio has been selected to display holdings. Different allocations will have different weights of each asset class. Betterment may recommend a different allocation based on various goal inputs tailored to each client, including the time horizon for your goal with the longest period starting at 90% stocks. The holdings shown reflect the portfolio model for tax-deferred accounts, like IRAs or 401(k)s. Expect differences in taxable accounts.</p>
+                                                         <p>As the bond exposure increases relative to stocks within this portfolio, the exposure to SRI focused ETFs will decline. This portfolio strategy has 101 different allocation options, from 0% bonds to 100% stocks. The 90% stock, 10% bond portfolio has been selected to display holdings. Different allocations will have different weights of each asset class. Crestwood Capital Management may recommend a different allocation based on various goal inputs tailored to each client, including the time horizon for your goal with the longest period starting at 90% stocks. The holdings shown reflect the portfolio model for tax-deferred accounts, like IRAs or 401(k)s. Expect differences in taxable accounts.</p>
                                                       </div>
                                                    </div>
                                                 </div>
@@ -438,7 +438,7 @@
                                                                         <div class="item-content-area dark">
                                                                            <h3 class="item-headline bt-title3">Lower costs.</h3>
                                                                            <div class="item-body bt-body2">
-                                                                              <p>Keep more money in your portfolio with low-cost exchange-traded funds (ETFs) and <a href="pricing-1.html"></a><a href="pricing-1.html">our transparent pricing</a>.</p>
+                                                                              <p>Keep more money in your portfolio with low-cost exchange-traded funds (ETFs) and <a href="{{ route('pricing') }}"></a><a href="{{ route('pricing') }}">our transparent pricing</a>.</p>
                                                                            </div>
                                                                         </div>
                                                                      </div>
@@ -536,6 +536,20 @@
                                                             <div class="u-col-12"></div>
                                                             <div class="hs-cta ">
                                                                <span>
+                                                                  <span>
+                                                                     <div class="u-displayNone--until-lg bt-nav-cta-2">
+                                                                        <div class="">
+                                                                              <div>
+                                                                                 <a href="{{ route('register') }}" style="background: #1d6ae5; color: white; padding: 14px 30px; border-radius: 5px; text-align: center; text-decoration: none; font-weight: 500;">Get Stated</a>
+                                                                              </div>
+                                                                        </div>
+                                                                     </div>
+                                                                  </span>
+                                                               </span>
+                                                            </div>
+
+<div class="hs-cta " style="display: none">
+                                                               <span>
                                                                   <span id="hs_cos_wrapper_widget_1635392422327_" class="hs_cos_wrapper hs_cos_wrapper_widget hs_cos_wrapper_type_cta" style="" data-hs-cos-general-type="widget" data-hs-cos-type="cta">
                                                                      <!--HubSpot Call-to-Action Code -->
                                                                      <span class="hs-cta-wrapper" id="hs-cta-wrapper-4effd7d2-e029-4b8e-a60a-54cebca19abe">
@@ -554,8 +568,8 @@
                                                       </div>
                                                    </div>
                                                 </div>
-                                                <div class="background-absolute bg-image bg-image_desktop lazy" data-bg="https://resources.betterment.com/hubfs/Graphics/webpage-graphics/Landscapes/Landscape-Lake-Sunrise-Gold50_desktop.svg"></div>
-                                                <div class="background-absolute bg-image bg-image_mobile lazy" data-bg="https://resources.betterment.com/hubfs/Graphics/webpage-graphics/Landscapes/Landscape-Lake-Sunrise-Gold50_mobile.svg"></div>
+                                                <div class="background-absolute bg-image bg-image_desktop lazy" data-bg="https://resources.Crestwood Capital Management.com/hubfs/Graphics/webpage-graphics/Landscapes/Landscape-Lake-Sunrise-Gold50_desktop.svg"></div>
+                                                <div class="background-absolute bg-image bg-image_mobile lazy" data-bg="https://resources.Crestwood Capital Management.com/hubfs/Graphics/webpage-graphics/Landscapes/Landscape-Lake-Sunrise-Gold50_mobile.svg"></div>
                                              </section>
                                              <script class="section-spacing-script" type="application/json">{"pt_lg":138,"pt_sm":138}</script>
                                              <style>
@@ -604,7 +618,7 @@
       <script defer="" src="content-cwv-embed/static-1.1293/embed-1.js"></script>
       <script src="ajax/libs/jquery/3.5.1/jquery.min-1.js"></script>
       <script src="ajax/libs/jquery-migrate/3.3.1/jquery-migrate.min-1.js"></script>
-      <script id="__ada" data-handle="betterment-cx" src="https://static.ada.support/embed2.js" data-lazy=""></script>
+      
       <script src="hs-fs/hub/5274572/hub_generated/template_assets/57001203564/1728423001638/betterment-theme/resources/btTrackingInit.min-1.js"></script>
       <script src="hs-fs/hub/5274572/hub_generated/template_assets/49666399874/1728423002407/betterment-theme/js/main.min-1.js"></script>
       <script>
@@ -620,7 +634,7 @@
       <script type="text/javascript">
          var _hsq = _hsq || [];
          _hsq.push(["setContentType", "standard-page"]);
-         _hsq.push(["setCanonicalUrl", "https:\/\/www.betterment.com\/socially-responsible-broad-impact-portfolio"]);
+         _hsq.push(["setCanonicalUrl", "https:\/\/www.Crestwood Capital Management.com\/socially-responsible-broad-impact-portfolio"]);
          _hsq.push(["setPageId", "73661701791"]);
          _hsq.push(["setContentMetadata", {
              "contentPageId": 73661701791,

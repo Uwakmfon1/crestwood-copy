@@ -2,7 +2,7 @@
 <html lang="en">
    <head data-ipt="B4C How It Works">
       <meta charset="utf-8">
-      <title>Crestwood Capital Management : How It Works | Save for the Life You Want</title>
+      <title>Crestwood Capital Management  : How It Works | Save for the Life You Want</title>
       <link rel="icon" href="{{ asset('asset/images/brand-logos/favicon.png') }}" type="image/x-icon">
       <meta name="description" content="Tell us what you want to do with your money, and we'll build your account. Then, our technology gets to work! Save. Withdraw. Spend. Cheers!">
       <script>
@@ -171,13 +171,13 @@
       </script>
       <!-- /Added by GoogleTagManager integration -->
       <link rel="canonical" href="how-it-works-1.html">
-      <meta property="og:image" content="https://www.betterment.com/hubfs/Graphics/Featured-images/b2c_default.png">
+      <meta property="og:image" content="https://www.Crestwood Capital Management.com/hubfs/Graphics/Featured-images/b2c_default.png">
       <meta property="og:image:width" content="1200">
       <meta property="og:image:height" content="628">
       <meta property="og:image:alt" content="Betterment">
-      <meta name="twitter:image" content="https://www.betterment.com/hubfs/Graphics/Featured-images/b2c_default.png">
+      <meta name="twitter:image" content="https://www.Crestwood Capital Management.com/hubfs/Graphics/Featured-images/b2c_default.png">
       <meta name="twitter:image:alt" content="Betterment">
-      <meta property="og:url" content="https://www.betterment.com/how-it-works">
+      <meta property="og:url" content="https://www.Crestwood Capital Management.com/how-it-works">
       <meta name="twitter:card" content="summary_large_image">
       <meta http-equiv="content-language" content="en">
       <meta name="generator" content="HubSpot">
@@ -201,17 +201,17 @@
                      <div class="solutions-info">
                         <ul class="flex-wrap">
                            <li class="item active-lob" id="menu-item-Individuals">
-                              <a href="index-1.htm" class="item-link" data-event="Individuals" data-track-event="ElementClicked" data-track-name="Individuals" data-track-module="CourtesyNav">
+                              <a href="{{ route('home') }}" class="item-link" data-event="Individuals" data-track-event="ElementClicked" data-track-name="Individuals" data-track-module="CourtesyNav">
                               Individuals
                               </a>
                            </li>
                            <li class="item " id="menu-item-Employers">
-                              <a href="work-1.html" class="item-link" data-event="Employers" data-track-event="ElementClicked" data-track-name="Employers" data-track-module="CourtesyNav">
+                              <a href="{{ route('home') }}" class="item-link" data-event="Employers" data-track-event="ElementClicked" data-track-name="Employers" data-track-module="CourtesyNav">
                               Employers
                               </a>
                            </li>
                            <li class="item " id="menu-item-Advisors">
-                              <a href="advisors-1.html" class="item-link" data-event="Advisors" data-track-event="ElementClicked" data-track-name="Advisors" data-track-module="CourtesyNav">
+                              <a href="{{ route('home') }}" class="item-link" data-event="Advisors" data-track-event="ElementClicked" data-track-name="Advisors" data-track-module="CourtesyNav">
                               Advisors
                               </a>
                            </li>
@@ -284,12 +284,7 @@
                                                                   <span id="hs_cos_wrapper_widget_1635447419876_" class="hs_cos_wrapper hs_cos_wrapper_widget hs_cos_wrapper_type_cta" style="" data-hs-cos-general-type="widget" data-hs-cos-type="cta">
                                                                      <!--HubSpot Call-to-Action Code -->
                                                                      <span class="hs-cta-wrapper" id="hs-cta-wrapper-4effd7d2-e029-4b8e-a60a-54cebca19abe">
-                                                                        <span class="hs-cta-node hs-cta-4effd7d2-e029-4b8e-a60a-54cebca19abe" id="hs-cta-4effd7d2-e029-4b8e-a60a-54cebca19abe">
-                                                                           <!--[if lte IE 8]>
-                                                                           <div id="hs-cta-ie-element"></div>
-                                                                           <![endif]--><a href="https://cta-redirect.hubspot.com/cta/redirect/5274572/4effd7d2-e029-4b8e-a60a-54cebca19abe"><img class="hs-cta-img" id="hs-cta-img-4effd7d2-e029-4b8e-a60a-54cebca19abe" style="border-width:0px;" src="cta/default/5274572/4effd7d2-e029-4b8e-a60a-54cebca19abe-1.png" alt="Get started"></a>
-                                                                        </span>
-                                                                        <script charset="utf-8" src="hs/cta/cta/current-1.js"></script><script type="text/javascript"> hbspt.cta._relativeUrls=true;hbspt.cta.load(5274572, '4effd7d2-e029-4b8e-a60a-54cebca19abe', {"useNewLoader":"true","region":"na1"}); </script>
+                                                                        <a class="bt-PrimaryButton" href="{{ route('login') }}">Get Started</a>
                                                                      </span>
                                                                      <!-- end HubSpot Call-to-Action Code -->
                                                                   </span>
@@ -422,12 +417,7 @@
                                                                            <span id="hs_cos_wrapper_widget_1634346965947_" class="hs_cos_wrapper hs_cos_wrapper_widget hs_cos_wrapper_type_cta" style="" data-hs-cos-general-type="widget" data-hs-cos-type="cta">
                                                                               <!--HubSpot Call-to-Action Code -->
                                                                               <span class="hs-cta-wrapper" id="hs-cta-wrapper-512b2b1d-bbf9-4faf-8193-64b63ed7e58b">
-                                                                                 <span class="hs-cta-node hs-cta-512b2b1d-bbf9-4faf-8193-64b63ed7e58b" id="hs-cta-512b2b1d-bbf9-4faf-8193-64b63ed7e58b">
-                                                                                    <!--[if lte IE 8]>
-                                                                                    <div id="hs-cta-ie-element"></div>
-                                                                                    <![endif]--><a href="https://cta-redirect.hubspot.com/cta/redirect/5274572/512b2b1d-bbf9-4faf-8193-64b63ed7e58b"><img class="hs-cta-img" id="hs-cta-img-512b2b1d-bbf9-4faf-8193-64b63ed7e58b" style="border-width:0px;" src="cta/default/5274572/512b2b1d-bbf9-4faf-8193-64b63ed7e58b-1.png" alt="Learn more"></a>
-                                                                                 </span>
-                                                                                 <script charset="utf-8" src="hs/cta/cta/current-1.js"></script><script type="text/javascript"> hbspt.cta._relativeUrls=true;hbspt.cta.load(5274572, '512b2b1d-bbf9-4faf-8193-64b63ed7e58b', {"useNewLoader":"true","region":"na1"}); </script>
+                                                                                 <p><a href="{{ route('investment') }}" rel="noopener" aria-label="Learn about premium pricing">Learn more ➔</a></p>
                                                                               </span>
                                                                               <!-- end HubSpot Call-to-Action Code -->
                                                                            </span>
@@ -460,12 +450,7 @@
                                                                            <span id="hs_cos_wrapper_widget_1634346965947_" class="hs_cos_wrapper hs_cos_wrapper_widget hs_cos_wrapper_type_cta" style="" data-hs-cos-general-type="widget" data-hs-cos-type="cta">
                                                                               <!--HubSpot Call-to-Action Code -->
                                                                               <span class="hs-cta-wrapper" id="hs-cta-wrapper-f6bba990-8efa-4854-b56a-1ca1e9237769">
-                                                                                 <span class="hs-cta-node hs-cta-f6bba990-8efa-4854-b56a-1ca1e9237769" id="hs-cta-f6bba990-8efa-4854-b56a-1ca1e9237769">
-                                                                                    <!--[if lte IE 8]>
-                                                                                    <div id="hs-cta-ie-element"></div>
-                                                                                    <![endif]--><a href="https://cta-redirect.hubspot.com/cta/redirect/5274572/f6bba990-8efa-4854-b56a-1ca1e9237769"><img class="hs-cta-img" id="hs-cta-img-f6bba990-8efa-4854-b56a-1ca1e9237769" style="border-width:0px;" src="cta/default/5274572/f6bba990-8efa-4854-b56a-1ca1e9237769.png" alt="Learn more"></a>
-                                                                                 </span>
-                                                                                 <script charset="utf-8" src="hs/cta/cta/current-1.js"></script><script type="text/javascript"> hbspt.cta._relativeUrls=true;hbspt.cta.load(5274572, 'f6bba990-8efa-4854-b56a-1ca1e9237769', {"useNewLoader":"true","region":"na1"}); </script>
+                                                                              <p><a href="{{ route('retirement') }}" rel="noopener" aria-label="Learn about premium pricing">Learn more ➔</a></p>
                                                                               </span>
                                                                               <!-- end HubSpot Call-to-Action Code -->
                                                                            </span>
@@ -498,12 +483,7 @@
                                                                            <span id="hs_cos_wrapper_widget_1634346965947_" class="hs_cos_wrapper hs_cos_wrapper_widget hs_cos_wrapper_type_cta" style="" data-hs-cos-general-type="widget" data-hs-cos-type="cta">
                                                                               <!--HubSpot Call-to-Action Code -->
                                                                               <span class="hs-cta-wrapper" id="hs-cta-wrapper-21da2164-2507-411c-8979-193ffaf4d0e4">
-                                                                                 <span class="hs-cta-node hs-cta-21da2164-2507-411c-8979-193ffaf4d0e4" id="hs-cta-21da2164-2507-411c-8979-193ffaf4d0e4">
-                                                                                    <!--[if lte IE 8]>
-                                                                                    <div id="hs-cta-ie-element"></div>
-                                                                                    <![endif]--><a href="https://cta-redirect.hubspot.com/cta/redirect/5274572/21da2164-2507-411c-8979-193ffaf4d0e4"><img class="hs-cta-img" id="hs-cta-img-21da2164-2507-411c-8979-193ffaf4d0e4" style="border-width:0px;" src="cta/default/5274572/21da2164-2507-411c-8979-193ffaf4d0e4.png" alt="Learn more"></a>
-                                                                                 </span>
-                                                                                 <script charset="utf-8" src="hs/cta/cta/current-1.js"></script><script type="text/javascript"> hbspt.cta._relativeUrls=true;hbspt.cta.load(5274572, '21da2164-2507-411c-8979-193ffaf4d0e4', {"useNewLoader":"true","region":"na1"}); </script>
+                                                                                 <p><a href="{{ route('checking') }}" rel="noopener" aria-label="Learn about premium pricing">Learn more ➔</a></p>
                                                                               </span>
                                                                               <!-- end HubSpot Call-to-Action Code -->
                                                                            </span>
@@ -536,12 +516,7 @@
                                                                            <span id="hs_cos_wrapper_widget_1634346965947_" class="hs_cos_wrapper hs_cos_wrapper_widget hs_cos_wrapper_type_cta" style="" data-hs-cos-general-type="widget" data-hs-cos-type="cta">
                                                                               <!--HubSpot Call-to-Action Code -->
                                                                               <span class="hs-cta-wrapper" id="hs-cta-wrapper-85906cf8-1948-469a-b9ae-aafc43ffdca7">
-                                                                                 <span class="hs-cta-node hs-cta-85906cf8-1948-469a-b9ae-aafc43ffdca7" id="hs-cta-85906cf8-1948-469a-b9ae-aafc43ffdca7">
-                                                                                    <!--[if lte IE 8]>
-                                                                                    <div id="hs-cta-ie-element"></div>
-                                                                                    <![endif]--><a href="https://cta-redirect.hubspot.com/cta/redirect/5274572/85906cf8-1948-469a-b9ae-aafc43ffdca7"><img class="hs-cta-img" id="hs-cta-img-85906cf8-1948-469a-b9ae-aafc43ffdca7" style="border-width:0px;" src="cta/default/5274572/85906cf8-1948-469a-b9ae-aafc43ffdca7-1.png" alt="Learn more"></a>
-                                                                                 </span>
-                                                                                 <script charset="utf-8" src="hs/cta/cta/current-1.js"></script><script type="text/javascript"> hbspt.cta._relativeUrls=true;hbspt.cta.load(5274572, '85906cf8-1948-469a-b9ae-aafc43ffdca7', {"useNewLoader":"true","region":"na1"}); </script>
+                                                                                 <p><a href="{{ route('cash') }}" rel="noopener" aria-label="Learn about premium pricing">Learn more ➔</a></p>
                                                                               </span>
                                                                               <!-- end HubSpot Call-to-Action Code -->
                                                                            </span>
@@ -643,7 +618,7 @@
                                                                Tell us what you want to do with your money.
                                                             </h2>
                                                             <div class="item-body fancy-bullet fancy-bullet_check_blue ">
-                                                               <p><span>Open a no-fee checking account? Save for your weekly groceries? Invest for a&nbsp;</span><a href="retirement-1.html">dream retirement</a><span>&nbsp;with your partner or spouse? No matter what you have in mind, from practical spending to big investing dreams, we’re here to help you make it real.</span></p>
+                                                               <p><span>Open a no-fee checking account? Save for your weekly groceries? Invest for a&nbsp;</span><a href="{{ route('retirement') }}">dream retirement</a><span>&nbsp;with your partner or spouse? No matter what you have in mind, from practical spending to big investing dreams, we’re here to help you make it real.</span></p>
                                                             </div>
                                                          </div>
                                                       </div>
@@ -697,7 +672,7 @@
                                                                We’ll build your account.
                                                             </h2>
                                                             <div class="item-body fancy-bullet fancy-bullet_check_blue ">
-                                                               <p><span>Based on what you tell us, we’ll provide some recommendations and&nbsp;</span><a href="help/investment-portfolio-setup.html">set up</a><span>&nbsp;your ideal account. You can start with one product (like Checking), or go all in. Whatever you choose, it’s easy to add more and customize your account in the future.</span></p>
+                                                               <p><span>Based on what you tell us, we’ll provide some recommendations and&nbsp;</span><a href="{{ route('portfolio') }}">set up</a><span>&nbsp;your ideal account. You can start with one product (like Checking), or go all in. Whatever you choose, it’s easy to add more and customize your account in the future.</span></p>
                                                             </div>
                                                          </div>
                                                       </div>
@@ -751,7 +726,7 @@
                                                                Our technology gets to work.
                                                             </h2>
                                                             <div class="item-body fancy-bullet fancy-bullet_check_blue ">
-                                                               <p><span>We strive to optimize every dollar you spend, save, and invest with us. Our technology manages your money and aims to </span><a href="investing-1.html">helps you earn more</a><span>. As your money grows and your priorities change, we evolve with&nbsp;</span><a href="financial-experts-1.html">ongoing advice</a><span>&nbsp;and updates to help you stay on track.</span></p>
+                                                               <p><span>We strive to optimize every dollar you spend, save, and invest with us. Our technology manages your money and aims to </span><a href="{{ route('investment') }}">helps you earn more</a><span>. As your money grows and your priorities change, we evolve with&nbsp;</span><a href="{{ route('expert') }}">ongoing advice</a><span>&nbsp;and updates to help you stay on track.</span></p>
                                                             </div>
                                                          </div>
                                                       </div>
@@ -809,7 +784,7 @@
                                                                   <div>
                                                                      <div>
                                                                         <div>
-                                                                           <div>We’re excited to see you <a href="resources/recommended-allocation-methodology.html">achieve your goals</a>, withdraw, and use your money! After all, you’re saving and investing for the things you need and the life you want. The best part: We get to do it again with your next goal.</div>
+                                                                           <div>We’re excited to see you <a href="{{ route('retirement') }}">achieve your goals</a>, withdraw, and use your money! After all, you’re saving and investing for the things you need and the life you want. The best part: We get to do it again with your next goal.</div>
                                                                         </div>
                                                                      </div>
                                                                   </div>
@@ -913,7 +888,7 @@
                                                                <div class="item-content-area dark">
                                                                   <h3 class="item-headline bt-title4">Socially Responsible Investing</h3>
                                                                   <div class="item-body bt-body2">
-                                                                     <p>Our <a href="socially-responsible-investing-1.html" rel="noopener">Socially Responsible Investing</a> can help you invest to make an impact and grow your savings.</p>
+                                                                     <p>Our <a href="{{ route('socially') }}" rel="noopener">Socially Responsible Investing</a> can help you invest to make an impact and grow your savings.</p>
                                                                   </div>
                                                                </div>
                                                             </div>
@@ -934,7 +909,7 @@
                                                                <div class="item-content-area dark">
                                                                   <h3 class="item-headline bt-title4">Recurring deposits.</h3>
                                                                   <div class="item-body bt-body2">
-                                                                     <p><span>A very popular feature. You can set up separate </span><a href="resources/optimize-your-deposits.html" rel="noopener">recurring deposits</a><span>&nbsp;for each goal or account.</span></p>
+                                                                     <p><span>A very popular feature. You can set up separate </span><a href="{{ route('home') }}" rel="noopener">recurring deposits</a><span>&nbsp;for each goal or account.</span></p>
                                                                   </div>
                                                                </div>
                                                             </div>
@@ -963,7 +938,7 @@
                                                                <div class="item-content-area dark">
                                                                   <h3 class="item-headline bt-title4">Tax-Loss Harvesting+.</h3>
                                                                   <div class="item-body bt-body2">
-                                                                     <p><span>This tax-smart tool can automatically helps you </span><a href="tax-loss-harvesting-1.html">offset losses</a><span>&nbsp;when the market drops once you turn it on.</span></p>
+                                                                     <p><span>This tax-smart tool can automatically helps you </span><a href="{{ route('tax') }}">offset losses</a><span>&nbsp;when the market drops once you turn it on.</span></p>
                                                                   </div>
                                                                </div>
                                                             </div>
@@ -1026,6 +1001,20 @@
                                                             <div class="u-col-12"></div>
                                                             <div class="hs-cta ">
                                                                <span>
+                                                                  <span>
+                                                                     <div class="u-displayNone--until-lg bt-nav-cta-2">
+                                                                        <div class="">
+                                                                              <div>
+                                                                                 <a href="{{ route('register') }}" style="background: #1d6ae5; color: white; padding: 14px 30px; border-radius: 5px; text-align: center; text-decoration: none; font-weight: 500;">Get Stated</a>
+                                                                              </div>
+                                                                        </div>
+                                                                     </div>
+                                                                  </span>
+                                                               </span>
+                                                            </div>
+
+<div class="hs-cta " style="display: none">
+                                                               <span>
                                                                   <span id="hs_cos_wrapper_widget_1634352811580_" class="hs_cos_wrapper hs_cos_wrapper_widget hs_cos_wrapper_type_cta" style="" data-hs-cos-general-type="widget" data-hs-cos-type="cta">
                                                                      <!--HubSpot Call-to-Action Code -->
                                                                      <span class="hs-cta-wrapper" id="hs-cta-wrapper-dadc6dd3-11b8-44c9-8356-b32424b96161">
@@ -1044,8 +1033,8 @@
                                                       </div>
                                                    </div>
                                                 </div>
-                                                <div class="background-absolute bg-image bg-image_desktop lazy" data-bg="https://resources.betterment.com/hubfs/Graphics/webpage-graphics/Landscapes/Landscape-Lake-Night_desktop.svg"></div>
-                                                <div class="background-absolute bg-image bg-image_mobile lazy" data-bg="https://resources.betterment.com/hubfs/Graphics/webpage-graphics/Landscapes/Landscape-Lake-Night_mobile.svg"></div>
+                                                <div class="background-absolute bg-image bg-image_desktop lazy" data-bg="https://resources.Crestwood Capital Management.com/hubfs/Graphics/webpage-graphics/Landscapes/Landscape-Lake-Night_desktop.svg"></div>
+                                                <div class="background-absolute bg-image bg-image_mobile lazy" data-bg="https://resources.Crestwood Capital Management.com/hubfs/Graphics/webpage-graphics/Landscapes/Landscape-Lake-Night_mobile.svg"></div>
                                              </section>
                                              <script class="section-spacing-script" type="application/json">{"pt_lg":138,"pt_sm":138}</script>
                                              <style>
@@ -1094,7 +1083,7 @@
       <script defer="" src="content-cwv-embed/static-1.1293/embed-1.js"></script>
       <script src="ajax/libs/jquery/3.5.1/jquery.min-1.js"></script>
       <script src="ajax/libs/jquery-migrate/3.3.1/jquery-migrate.min-1.js"></script>
-      <script id="__ada" data-handle="betterment-cx" src="https://static.ada.support/embed2.js" data-lazy=""></script>
+      
       <script src="hs-fs/hub/5274572/hub_generated/template_assets/57001203564/1728423001638/betterment-theme/resources/btTrackingInit.min-1.js"></script>
       <script src="hs-fs/hub/5274572/hub_generated/template_assets/49666399874/1728423002407/betterment-theme/js/main.min-1.js"></script>
       <script>
@@ -1110,7 +1099,7 @@
       <script type="text/javascript">
          var _hsq = _hsq || [];
          _hsq.push(["setContentType", "standard-page"]);
-         _hsq.push(["setCanonicalUrl", "https:\/\/www.betterment.com\/how-it-works"]);
+         _hsq.push(["setCanonicalUrl", "https:\/\/www.Crestwood Capital Management.com\/how-it-works"]);
          _hsq.push(["setPageId", "58578857336"]);
          _hsq.push(["setContentMetadata", {
              "contentPageId": 58578857336,

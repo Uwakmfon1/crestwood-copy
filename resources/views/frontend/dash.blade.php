@@ -5,7 +5,7 @@
       <title>All-in-one dashboard | Your finances in one place.</title>
       <link rel="icon" href="{{ asset('asset/images/brand-logos/favicon.png') }}" type="image/x-icon">
       <meta name="description" content="Make financial planning, tracking progress, and viewing performance easier 
-         with Betterment’s all-in-one financial dashboard. See your net worth, 
+         with Crestwood Capital Management's all-in-one financial dashboard. See your net worth, 
          connect outside accounts, and more.
          ">
       <script>
@@ -14,12 +14,12 @@
       <script>!function(){window.semaphore=window.semaphore||[],window.ketch=function(){window.semaphore.push(arguments)};var e=new URLSearchParams(document.location.search),o=e.has("property")?e.get("property"):"betterment_com",n=document.createElement("script");n.type="text/javascript",n.src="https://global.ketchcdn.com/web/v2/config/betterment/".concat(o,"/boot.js"),n.defer=n.async=!0,document.getElementsByTagName("head")[0].appendChild(n)}();</script>
       <meta name="viewport" content="width=device-width, initial-scale=1">
       <meta property="og:description" content="Make financial planning, tracking progress, and viewing performance easier 
-         with Betterment’s all-in-one financial dashboard. See your net worth, 
+         with Crestwood Capital Management's all-in-one financial dashboard. See your net worth, 
          connect outside accounts, and more.
          ">
       <meta property="og:title" content="All-in-one dashboard | Your finances in one place.">
       <meta name="twitter:description" content="Make financial planning, tracking progress, and viewing performance easier 
-         with Betterment’s all-in-one financial dashboard. See your net worth, 
+         with Crestwood Capital Management's all-in-one financial dashboard. See your net worth, 
          connect outside accounts, and more.
          ">
       <meta name="twitter:title" content="All-in-one dashboard | Your finances in one place.">
@@ -164,13 +164,13 @@
       </script>
       <!-- /Added by GoogleTagManager integration -->
       <link rel="canonical" href="dashboard-1.html">
-      <meta property="og:image" content="https://www.betterment.com/hubfs/Graphics/Featured-images/b2c_default.png">
+      <meta property="og:image" content="https://www.Crestwood Capital Management.com/hubfs/Graphics/Featured-images/b2c_default.png">
       <meta property="og:image:width" content="1200">
       <meta property="og:image:height" content="628">
-      <meta property="og:image:alt" content="Betterment logo">
-      <meta name="twitter:image" content="https://www.betterment.com/hubfs/Graphics/Featured-images/b2c_default.png">
-      <meta name="twitter:image:alt" content="Betterment logo">
-      <meta property="og:url" content="https://www.betterment.com/dashboard">
+      <meta property="og:image:alt" content="Crestwood Capital Management logo">
+      <meta name="twitter:image" content="https://www.Crestwood Capital Management.com/hubfs/Graphics/Featured-images/b2c_default.png">
+      <meta name="twitter:image:alt" content="Crestwood Capital Management logo">
+      <meta property="og:url" content="https://www.Crestwood Capital Management.com/dashboard">
       <meta name="twitter:card" content="summary_large_image">
       <meta http-equiv="content-language" content="en">
       <meta name="generator" content="HubSpot">
@@ -305,7 +305,7 @@
                                                       <img src="hubfs/Graphics/webpage-graphics/mobile-and-desktop-summary-1-1.png" alt="Betterment's web desktop and native mobile dashboard screens.">
                                                    </div>
                                                 </div>
-                                                <div class="background-absolute bg-image bg-position-center-top background-size_cover lazy" data-bg="https://resources.betterment.com/hubfs/Graphics/webpage-graphics/clouds-sun-all-in-one-bg.png"></div>
+                                                <div class="background-absolute bg-image bg-position-center-top background-size_cover lazy" data-bg="https://resources.Crestwood Capital Management.com/hubfs/Graphics/webpage-graphics/clouds-sun-all-in-one-bg.png"></div>
                                              </section>
                                              <script class="section-spacing-script" type="application/json">{"pt_lg":0,"pt_sm":0}</script>
                                              <style>
@@ -510,7 +510,7 @@
                                                       </div>
                                                       <div class="bt-ContentGrid-item u-col-12 u-col-6@md cols col-2 ">
                                                          <div>
-                                                            <img src="hs-fs/hubfs/Graphics/webpage-graphics/performance-tax-details-6.png?width=1066&amp;name=performance-tax-details.png" alt="An example of a performance graph in the Betterment app, with total earnings, dividends, and tax losses harvested highlighted." width="1066" srcset="hs-fs/hubfs/Graphics/webpage-graphics/performance-tax-details-7.png 533w?width=533&amp;name=performance-tax-details.png 533w, hs-fs/hubfs/Graphics/webpage-graphics/performance-tax-details-6.png 1066wg?width=1066&amp;name=performance-tax-details.png 1066w, hs-fs/hubfs/Graphics/webpage-graphics/performance-tax-details-8.png 1599wg?width=1599&amp;name=performance-tax-details.png 1599w, hs-fs/hubfs/Graphics/webpage-graphics/performance-tax-details-9.png 2132wg?width=2132&amp;name=performance-tax-details.png 2132w, hs-fs/hubfs/Graphics/webpage-graphics/performance-tax-details-10.png 2665wg?width=2665&amp;name=performance-tax-details.png 2665w, hs-fs/hubfs/Graphics/webpage-graphics/performance-tax-details-11.png 3198wg?width=3198&amp;name=performance-tax-details.png 3198w" sizes="(max-width: 1066px) 100vw, 1066px">
+                                                            <img src="hs-fs/hubfs/Graphics/webpage-graphics/performance-tax-details-6.png?width=1066&amp;name=performance-tax-details.png" alt="An example of a performance graph in the Crestwood Capital Management app, with total earnings, dividends, and tax losses harvested highlighted." width="1066" srcset="hs-fs/hubfs/Graphics/webpage-graphics/performance-tax-details-7.png 533w?width=533&amp;name=performance-tax-details.png 533w, hs-fs/hubfs/Graphics/webpage-graphics/performance-tax-details-6.png 1066wg?width=1066&amp;name=performance-tax-details.png 1066w, hs-fs/hubfs/Graphics/webpage-graphics/performance-tax-details-8.png 1599wg?width=1599&amp;name=performance-tax-details.png 1599w, hs-fs/hubfs/Graphics/webpage-graphics/performance-tax-details-9.png 2132wg?width=2132&amp;name=performance-tax-details.png 2132w, hs-fs/hubfs/Graphics/webpage-graphics/performance-tax-details-10.png 2665wg?width=2665&amp;name=performance-tax-details.png 2665w, hs-fs/hubfs/Graphics/webpage-graphics/performance-tax-details-11.png 3198wg?width=3198&amp;name=performance-tax-details.png 3198w" sizes="(max-width: 1066px) 100vw, 1066px">
                                                          </div>
                                                       </div>
                                                    </div>
@@ -561,7 +561,7 @@
                                                       </div>
                                                       <div class="bt-ContentGrid-item u-col-12 u-col-6@md cols col-2 ">
                                                          <div>
-                                                            <img src="hs-fs/hubfs/Graphics/webpage-graphics/scheduled-deposits-6.png?width=907&amp;name=scheduled-deposits.png" alt="An example of a Betterment user that has three upcoming deposits set up, one which is a one-time deposit, and the other two, which are recurring deposits." width="907" srcset="hs-fs/hubfs/Graphics/webpage-graphics/scheduled-deposits-7.png 454w?width=454&amp;name=scheduled-deposits.png 454w, hs-fs/hubfs/Graphics/webpage-graphics/scheduled-deposits-6.png 907wg?width=907&amp;name=scheduled-deposits.png 907w, hs-fs/hubfs/Graphics/webpage-graphics/scheduled-deposits-8.png 1361wg?width=1361&amp;name=scheduled-deposits.png 1361w, hs-fs/hubfs/Graphics/webpage-graphics/scheduled-deposits-9.png 1814wg?width=1814&amp;name=scheduled-deposits.png 1814w, hs-fs/hubfs/Graphics/webpage-graphics/scheduled-deposits-10.png 2268wg?width=2268&amp;name=scheduled-deposits.png 2268w, hs-fs/hubfs/Graphics/webpage-graphics/scheduled-deposits-11.png 2721wg?width=2721&amp;name=scheduled-deposits.png 2721w" sizes="(max-width: 907px) 100vw, 907px">
+                                                            <img src="hs-fs/hubfs/Graphics/webpage-graphics/scheduled-deposits-6.png?width=907&amp;name=scheduled-deposits.png" alt="An example of a Crestwood Capital Management user that has three upcoming deposits set up, one which is a one-time deposit, and the other two, which are recurring deposits." width="907" srcset="hs-fs/hubfs/Graphics/webpage-graphics/scheduled-deposits-7.png 454w?width=454&amp;name=scheduled-deposits.png 454w, hs-fs/hubfs/Graphics/webpage-graphics/scheduled-deposits-6.png 907wg?width=907&amp;name=scheduled-deposits.png 907w, hs-fs/hubfs/Graphics/webpage-graphics/scheduled-deposits-8.png 1361wg?width=1361&amp;name=scheduled-deposits.png 1361w, hs-fs/hubfs/Graphics/webpage-graphics/scheduled-deposits-9.png 1814wg?width=1814&amp;name=scheduled-deposits.png 1814w, hs-fs/hubfs/Graphics/webpage-graphics/scheduled-deposits-10.png 2268wg?width=2268&amp;name=scheduled-deposits.png 2268w, hs-fs/hubfs/Graphics/webpage-graphics/scheduled-deposits-11.png 2721wg?width=2721&amp;name=scheduled-deposits.png 2721w" sizes="(max-width: 907px) 100vw, 907px">
                                                          </div>
                                                       </div>
                                                    </div>
@@ -625,6 +625,20 @@
                                                             <div class="u-col-12"></div>
                                                             <div class="hs-cta ">
                                                                <span>
+                                                                  <span>
+                                                                     <div class="u-displayNone--until-lg bt-nav-cta-2">
+                                                                        <div class="">
+                                                                              <div>
+                                                                                 <a href="{{ route('register') }}" style="background: #1d6ae5; color: white; padding: 14px 30px; border-radius: 5px; text-align: center; text-decoration: none; font-weight: 500;">Get Stated</a>
+                                                                              </div>
+                                                                        </div>
+                                                                     </div>
+                                                                  </span>
+                                                               </span>
+                                                            </div>
+
+<div class="hs-cta " style="display: none">
+                                                               <span>
                                                                   <span id="hs_cos_wrapper_widget_1633928257198_" class="hs_cos_wrapper hs_cos_wrapper_widget hs_cos_wrapper_type_cta" style="" data-hs-cos-general-type="widget" data-hs-cos-type="cta">
                                                                      <!--HubSpot Call-to-Action Code -->
                                                                      <span class="hs-cta-wrapper" id="hs-cta-wrapper-4effd7d2-e029-4b8e-a60a-54cebca19abe">
@@ -643,8 +657,8 @@
                                                       </div>
                                                    </div>
                                                 </div>
-                                                <div class="background-absolute bg-image bg-image_desktop lazy" data-bg="https://resources.betterment.com/hubfs/Graphics/webpage-graphics/Landscapes/Landscape-Lake-Sunrise-Gold50_desktop.svg"></div>
-                                                <div class="background-absolute bg-image bg-image_mobile lazy" data-bg="https://resources.betterment.com/hubfs/Graphics/webpage-graphics/Landscapes/Landscape-Lake-Sunrise-Gold50_mobile.svg"></div>
+                                                <div class="background-absolute bg-image bg-image_desktop lazy" data-bg="https://resources.Crestwood Capital Management.com/hubfs/Graphics/webpage-graphics/Landscapes/Landscape-Lake-Sunrise-Gold50_desktop.svg"></div>
+                                                <div class="background-absolute bg-image bg-image_mobile lazy" data-bg="https://resources.Crestwood Capital Management.com/hubfs/Graphics/webpage-graphics/Landscapes/Landscape-Lake-Sunrise-Gold50_mobile.svg"></div>
                                              </section>
                                              <script class="section-spacing-script" type="application/json">{"pt_lg":138,"pt_sm":138}</script>
                                              <style>
@@ -693,7 +707,7 @@
       <script defer="" src="content-cwv-embed/static-1.1293/embed-1.js"></script>
       <script src="ajax/libs/jquery/3.5.1/jquery.min-1.js"></script>
       <script src="ajax/libs/jquery-migrate/3.3.1/jquery-migrate.min-1.js"></script>
-      <script id="__ada" data-handle="betterment-cx" src="https://static.ada.support/embed2.js" data-lazy=""></script>
+      
       <script src="hs-fs/hub/5274572/hub_generated/template_assets/57001203564/1728423001638/betterment-theme/resources/btTrackingInit.min-1.js"></script>
       <script src="hs-fs/hub/5274572/hub_generated/template_assets/49666399874/1728423002407/betterment-theme/js/main.min-1.js"></script>
       <script>
@@ -709,7 +723,7 @@
       <script type="text/javascript">
          var _hsq = _hsq || [];
          _hsq.push(["setContentType", "standard-page"]);
-         _hsq.push(["setCanonicalUrl", "https:\/\/www.betterment.com\/dashboard"]);
+         _hsq.push(["setCanonicalUrl", "https:\/\/www.Crestwood Capital Management.com\/dashboard"]);
          _hsq.push(["setPageId", "57398364197"]);
          _hsq.push(["setContentMetadata", {
              "contentPageId": 57398364197,

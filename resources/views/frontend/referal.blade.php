@@ -154,13 +154,13 @@
       </script>
       <!-- /Added by GoogleTagManager integration -->
       <link rel="canonical" href="referral-1.html">
-      <meta property="og:image" content="https://www.betterment.com/hubfs/Graphics/Featured-images/b2c_default.png">
+      <meta property="og:image" content="https://www.Crestwood Capital Management.com/hubfs/Graphics/Featured-images/b2c_default.png">
       <meta property="og:image:width" content="1200">
       <meta property="og:image:height" content="628">
-      <meta property="og:image:alt" content="Betterment logo">
-      <meta name="twitter:image" content="https://www.betterment.com/hubfs/Graphics/Featured-images/b2c_default.png">
-      <meta name="twitter:image:alt" content="Betterment logo">
-      <meta property="og:url" content="https://www.betterment.com/referral">
+      <meta property="og:image:alt" content="Crestwood Capital Management logo">
+      <meta name="twitter:image" content="https://www.Crestwood Capital Management.com/hubfs/Graphics/Featured-images/b2c_default.png">
+      <meta name="twitter:image:alt" content="Crestwood Capital Management logo">
+      <meta property="og:url" content="https://www.Crestwood Capital Management.com/referral">
       <meta name="twitter:card" content="summary_large_image">
       <meta http-equiv="content-language" content="en">
       <meta name="generator" content="HubSpot">
@@ -184,17 +184,17 @@
                      <div class="solutions-info">
                         <ul class="flex-wrap">
                            <li class="item active-lob" id="menu-item-Individuals">
-                              <a href="index-1.htm" class="item-link" data-event="Individuals" data-track-event="ElementClicked" data-track-name="Individuals" data-track-module="CourtesyNav">
+                              <a href="{{ route('login') }}" class="item-link" data-event="Individuals" data-track-event="ElementClicked" data-track-name="Individuals" data-track-module="CourtesyNav">
                               Individuals
                               </a>
                            </li>
                            <li class="item " id="menu-item-Employers">
-                              <a href="work-1.html" class="item-link" data-event="Employers" data-track-event="ElementClicked" data-track-name="Employers" data-track-module="CourtesyNav">
+                              <a href="{{ route('register') }}" class="item-link" data-event="Employers" data-track-event="ElementClicked" data-track-name="Employers" data-track-module="CourtesyNav">
                               Employers
                               </a>
                            </li>
                            <li class="item " id="menu-item-Advisors">
-                              <a href="advisors-1.html" class="item-link" data-event="Advisors" data-track-event="ElementClicked" data-track-name="Advisors" data-track-module="CourtesyNav">
+                              <a href="{{ route('home') }}" class="item-link" data-event="Advisors" data-track-event="ElementClicked" data-track-name="Advisors" data-track-module="CourtesyNav">
                               Advisors
                               </a>
                            </li>
@@ -327,7 +327,7 @@
                                                       </div>
                                                       <div class="bt-ContentGrid-item u-col-12 u-col-6@md cols col-2 ">
                                                          <div>
-                                                            <img src="hs-fs/hubfs/Graphics/webpage-graphics/man-phone-referral-bonus-received-5.png?width=1146&amp;name=man-phone-referral-bonus-received.png" alt="A man is notified by his Betterment app on his phone that he has received a referral bonus." width="1146" srcset="hs-fs/hubfs/Graphics/webpage-graphics/man-phone-referral-bonus-received-6.png 573w?width=573&amp;name=man-phone-referral-bonus-received.png 573w, hs-fs/hubfs/Graphics/webpage-graphics/man-phone-referral-bonus-received-5.png 1146wg?width=1146&amp;name=man-phone-referral-bonus-received.png 1146w, hs-fs/hubfs/Graphics/webpage-graphics/man-phone-referral-bonus-received-7.png 1719wg?width=1719&amp;name=man-phone-referral-bonus-received.png 1719w, hs-fs/hubfs/Graphics/webpage-graphics/man-phone-referral-bonus-received-8.png 2292wg?width=2292&amp;name=man-phone-referral-bonus-received.png 2292w, hs-fs/hubfs/Graphics/webpage-graphics/man-phone-referral-bonus-received-9.png 2865wg?width=2865&amp;name=man-phone-referral-bonus-received.png 2865w, hs-fs/hubfs/Graphics/webpage-graphics/man-phone-referral-bonus-received-10.png 3438wg?width=3438&amp;name=man-phone-referral-bonus-received.png 3438w" sizes="(max-width: 1146px) 100vw, 1146px">
+                                                            <img src="hs-fs/hubfs/Graphics/webpage-graphics/man-phone-referral-bonus-received-5.png?width=1146&amp;name=man-phone-referral-bonus-received.png" alt="A man is notified by his Crestwood Capital Management app on his phone that he has received a referral bonus." width="1146" srcset="hs-fs/hubfs/Graphics/webpage-graphics/man-phone-referral-bonus-received-6.png 573w?width=573&amp;name=man-phone-referral-bonus-received.png 573w, hs-fs/hubfs/Graphics/webpage-graphics/man-phone-referral-bonus-received-5.png 1146wg?width=1146&amp;name=man-phone-referral-bonus-received.png 1146w, hs-fs/hubfs/Graphics/webpage-graphics/man-phone-referral-bonus-received-7.png 1719wg?width=1719&amp;name=man-phone-referral-bonus-received.png 1719w, hs-fs/hubfs/Graphics/webpage-graphics/man-phone-referral-bonus-received-8.png 2292wg?width=2292&amp;name=man-phone-referral-bonus-received.png 2292w, hs-fs/hubfs/Graphics/webpage-graphics/man-phone-referral-bonus-received-9.png 2865wg?width=2865&amp;name=man-phone-referral-bonus-received.png 2865w, hs-fs/hubfs/Graphics/webpage-graphics/man-phone-referral-bonus-received-10.png 3438wg?width=3438&amp;name=man-phone-referral-bonus-received.png 3438w" sizes="(max-width: 1146px) 100vw, 1146px">
                                                          </div>
                                                       </div>
                                                    </div>
@@ -366,7 +366,7 @@
                                                 <div class="bt-container center dark">
                                                    <div class="flex-wrap bt-row flex-center">
                                                       <div class="bt-ContentGrid-item u-col-12 u-col-8@md ">
-                                                         <h2 class="bt-title2 ">  What can Betterment give your friends?</h2>
+                                                         <h2 class="bt-title2 ">  What can Crestwood Capital Management give your friends?</h2>
                                                       </div>
                                                    </div>
                                                 </div>
@@ -413,7 +413,7 @@
                                                                <div class="item-content-area dark">
                                                                   <h3 class="item-headline bt-title4">Low costs.</h3>
                                                                   <div class="item-body bt-body2">
-                                                                     <p>Our low-fee <a href="pricing-1.html" rel="noopener">pricing plans</a> and low-cost ETFs in our portfolios limit the impact of fees on returns</p>
+                                                                     <p>Our low-fee <a href="{{ route('pricing') }}" rel="noopener">pricing plans</a> and low-cost ETFs in our portfolios limit the impact of fees on returns</p>
                                                                   </div>
                                                                </div>
                                                             </div>
@@ -430,7 +430,7 @@
                                                                <div class="item-content-area dark">
                                                                   <h3 class="item-headline bt-title4">Personalized advice.</h3>
                                                                   <div class="item-body bt-body2">
-                                                                     <p><span>Betterment will recommend a&nbsp;</span><a href="goals-1.html">personalized strategy</a><span>&nbsp;for their financial goals. Create goals to save for retirement, a house, to build wealth, or all of the above.</span></p>
+                                                                     <p><span>Crestwood Capital Management will recommend a&nbsp;</span><a href="{{ route('goals') }}">personalized strategy</a><span>&nbsp;for their financial goals. Create goals to save for retirement, a house, to build wealth, or all of the above.</span></p>
                                                                   </div>
                                                                </div>
                                                             </div>
@@ -449,7 +449,7 @@
                                                                <div class="item-content-area dark">
                                                                   <h3 class="item-headline bt-title4">Tax-efficient investing.</h3>
                                                                   <div class="item-body bt-body2">
-                                                                     <p><span>Automatic investment of deposits and dividends keep their&nbsp;</span><a href="tax-efficient-investing-1.html">portfolio balanced</a><span>, reducing the need to trigger gains through rebalancing.</span></p>
+                                                                     <p><span>Automatic investment of deposits and dividends keep their&nbsp;</span><a href="{{ route('tax') }}">portfolio balanced</a><span>, reducing the need to trigger gains through rebalancing.</span></p>
                                                                   </div>
                                                                </div>
                                                             </div>
@@ -493,6 +493,20 @@
                                                             <div class="u-col-12"></div>
                                                             <div class="hs-cta ">
                                                                <span>
+                                                                  <span>
+                                                                     <div class="u-displayNone--until-lg bt-nav-cta-2">
+                                                                        <div class="">
+                                                                              <div>
+                                                                                 <a href="{{ route('register') }}" style="background: #1d6ae5; color: white; padding: 14px 30px; border-radius: 5px; text-align: center; text-decoration: none; font-weight: 500;">Get Stated</a>
+                                                                              </div>
+                                                                        </div>
+                                                                     </div>
+                                                                  </span>
+                                                               </span>
+                                                            </div>
+
+<div class="hs-cta " style="display: none">
+                                                               <span>
                                                                   <span id="hs_cos_wrapper_widget_1633928257198_" class="hs_cos_wrapper hs_cos_wrapper_widget hs_cos_wrapper_type_cta" style="" data-hs-cos-general-type="widget" data-hs-cos-type="cta">
                                                                      <!--HubSpot Call-to-Action Code -->
                                                                      <span class="hs-cta-wrapper" id="hs-cta-wrapper-4effd7d2-e029-4b8e-a60a-54cebca19abe">
@@ -511,8 +525,8 @@
                                                       </div>
                                                    </div>
                                                 </div>
-                                                <div class="background-absolute bg-image bg-image_desktop lazy" data-bg="https://resources.betterment.com/hubfs/Graphics/webpage-graphics/Landscapes/Landscape-Lake-Sunrise-Gold50_desktop.svg"></div>
-                                                <div class="background-absolute bg-image bg-image_mobile lazy" data-bg="https://resources.betterment.com/hubfs/Graphics/webpage-graphics/Landscapes/Landscape-Lake-Sunrise-Gold50_mobile.svg"></div>
+                                                <div class="background-absolute bg-image bg-image_desktop lazy" data-bg="https://resources.Crestwood Capital Management.com/hubfs/Graphics/webpage-graphics/Landscapes/Landscape-Lake-Sunrise-Gold50_desktop.svg"></div>
+                                                <div class="background-absolute bg-image bg-image_mobile lazy" data-bg="https://resources.Crestwood Capital Management.com/hubfs/Graphics/webpage-graphics/Landscapes/Landscape-Lake-Sunrise-Gold50_mobile.svg"></div>
                                              </section>
                                              <script class="section-spacing-script" type="application/json">{"pt_lg":138,"pt_sm":138}</script>
                                              <style>
@@ -561,7 +575,7 @@
       <script defer="" src="content-cwv-embed/static-1.1293/embed-1.js"></script>
       <script src="ajax/libs/jquery/3.5.1/jquery.min-1.js"></script>
       <script src="ajax/libs/jquery-migrate/3.3.1/jquery-migrate.min-1.js"></script>
-      <script id="__ada" data-handle="betterment-cx" src="https://static.ada.support/embed2.js" data-lazy=""></script>
+      
       <script src="hs-fs/hub/5274572/hub_generated/template_assets/57001203564/1728423001638/betterment-theme/resources/btTrackingInit.min-1.js"></script>
       <script src="hs-fs/hub/5274572/hub_generated/template_assets/49666399874/1728423002407/betterment-theme/js/main.min-1.js"></script>
       <script>
@@ -577,7 +591,7 @@
       <script type="text/javascript">
          var _hsq = _hsq || [];
          _hsq.push(["setContentType", "standard-page"]);
-         _hsq.push(["setCanonicalUrl", "https:\/\/www.betterment.com\/referral"]);
+         _hsq.push(["setCanonicalUrl", "https:\/\/www.Crestwood Capital Management.com\/referral"]);
          _hsq.push(["setPageId", "57199620011"]);
          _hsq.push(["setContentMetadata", {
              "contentPageId": 57199620011,

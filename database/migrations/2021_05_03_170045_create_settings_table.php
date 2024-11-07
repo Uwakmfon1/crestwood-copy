@@ -53,7 +53,7 @@ class CreateSettingsTable extends Migration
             'bank_state' => 'Texas',
             'bank_address_address' => 'Houston',
             'bank_reference' => 'JUUTrRvXEKKBDXWQTIMO664NYVE33B',
-            'account_name' => 'Crestwood Capital Management',
+            'account_name' => 'Crestwood Capital Management ',
             'account_number' => '0123456789',
             'bank_name' => 'Swiss Bank Finland',
             'swift_code' => '0065587',

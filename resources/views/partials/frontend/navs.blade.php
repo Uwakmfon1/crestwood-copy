@@ -106,10 +106,10 @@
                 <a data-event="Education" data-track-event="ElementClicked" data-track-name="Education
                     " data-track-module="TopNav" role="button" tabindex="0" aria-controls="menu-control-4" aria-expanded="false">Education</a>
                 <ul class="sub-menu" id="menu-control-4">
-                    <li id="menu-item-7978b606e7f71e42ee8f9c1b3326fe58" class="menu-item menu-item_depth-2  menu-item-7978b606e7f71e42ee8f9c1b3326fe58">
+                    <!-- <li id="menu-item-7978b606e7f71e42ee8f9c1b3326fe58" class="menu-item menu-item_depth-2  menu-item-7978b606e7f71e42ee8f9c1b3326fe58">
                         <a href="{{ route('article') }}" data-event="Articles" data-track-event="ElementClicked" data-track-name="Articles
                             " data-track-module="TopNav" data-itemindex="0">Articles</a>
-                    </li>
+                    </li> -->
                     <li id="menu-item-554cfab3938e21d9270bd6b75931f96f" class="menu-item menu-item_depth-2  menu-item-554cfab3938e21d9270bd6b75931f96f">
                         <a href="{{ route('video') }}" data-event="Videos" data-track-event="ElementClicked" data-track-name="Videos
                             " data-track-module="TopNav" data-itemindex="1">Videos</a>
@@ -170,3 +170,13 @@
         </div>
     </div>
 </div>
+
+
+
+
+
+<!-- BLUE BTN
+<a class="bt-PrimaryButton" href="{{ route('video') }}">See all videos</a>
+
+BLUE TEXT
+<p><a href="{{ route('expert') }}" rel="noopener" aria-label="Learn about premium pricing">Learn more ➔</a></p> -->

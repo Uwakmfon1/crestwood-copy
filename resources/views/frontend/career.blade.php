@@ -2,21 +2,21 @@
 <html lang="en">
    <head data-ipt="Careers">
       <meta charset="utf-8">
-      <title>Careers at Betterment | Help build a new way of investing.</title>
+      <title>Careers at Crestwood Capital Management | Help build a new way of investing.</title>
       <link rel="icon" href="{{ asset('asset/images/brand-logos/favicon.png') }}" type="image/x-icon">
       <meta name="description"
-         content="Come work for Betterment. We aim to empower people to do what’s best for their money, so they can live better. Explore open positions at Betterment.">
+         content="Come work for Crestwood Capital Management. We aim to empower people to do what’s best for their money, so they can live better. Explore open positions at Crestwood Capital Management.">
       <script>
          window.TT = "ewogICAgInNwbGl0cyI6e30sCiAgICAiZXhwZXJpZW5jZVNhbXBsaW5nV2VpZ2h0IjoxMDAsCiAgICAidXJsIjoiaHR0cHM6XC9cL3R0LmJldHRlcm1lbnQuY29tIiwKICAgICJjb29raWVEb21haW4iOiIuYmV0dGVybWVudC5jb20iLAogICAgImVuY29kZWRBdCI6IjIwMjEwNzEzMTU1MjAxIgp9"
       </script>
       <script>!function () { window.semaphore = window.semaphore || [], window.ketch = function () { window.semaphore.push(arguments) }; var e = new URLSearchParams(document.location.search), o = e.has("property") ? e.get("property") : "betterment_com", n = document.createElement("script"); n.type = "text/javascript", n.src = "https://global.ketchcdn.com/web/v2/config/betterment/".concat(o, "/boot.js"), n.defer = n.async = !0, document.getElementsByTagName("head")[0].appendChild(n) }();</script>
       <meta name="viewport" content="width=device-width, initial-scale=1">
       <meta property="og:description"
-         content="Come work for Betterment. We aim to empower people to do what’s best for their money, so they can live better. Explore open positions at Betterment.">
-      <meta property="og:title" content="Careers at Betterment | Help build a new way of investing.">
+         content="Come work for Crestwood Capital Management. We aim to empower people to do what’s best for their money, so they can live better. Explore open positions at Crestwood Capital Management.">
+      <meta property="og:title" content="Careers at Crestwood Capital Management | Help build a new way of investing.">
       <meta name="twitter:description"
-         content="Come work for Betterment. We aim to empower people to do what’s best for their money, so they can live better. Explore open positions at Betterment.">
-      <meta name="twitter:title" content="Careers at Betterment | Help build a new way of investing.">
+         content="Come work for Crestwood Capital Management. We aim to empower people to do what’s best for their money, so they can live better. Explore open positions at Crestwood Capital Management.">
+      <meta name="twitter:title" content="Careers at Crestwood Capital Management | Help build a new way of investing.">
       <style>
          a.cta_button {
          -moz-box-sizing: content-box !important;
@@ -227,13 +227,13 @@
       </script>
       <!-- /Added by GoogleTagManager integration -->
       <link rel="canonical" href="careers-1.html">
-      <meta property="og:image" content="https://www.betterment.com/hubfs/Graphics/Featured-images/b2c_default.png">
+      <meta property="og:image" content="https://www.Crestwood Capital Management.com/hubfs/Graphics/Featured-images/b2c_default.png">
       <meta property="og:image:width" content="1200">
       <meta property="og:image:height" content="628">
-      <meta property="og:image:alt" content="Betterment logo">
-      <meta name="twitter:image" content="https://www.betterment.com/hubfs/Graphics/Featured-images/b2c_default.png">
-      <meta name="twitter:image:alt" content="Betterment logo">
-      <meta property="og:url" content="https://www.betterment.com/careers">
+      <meta property="og:image:alt" content="Crestwood Capital Management logo">
+      <meta name="twitter:image" content="https://www.Crestwood Capital Management.com/hubfs/Graphics/Featured-images/b2c_default.png">
+      <meta name="twitter:image:alt" content="Crestwood Capital Management logo">
+      <meta property="og:url" content="https://www.Crestwood Capital Management.com/careers">
       <meta name="twitter:card" content="summary_large_image">
       <meta http-equiv="content-language" content="en">
       <meta name="generator" content="HubSpot">
@@ -261,19 +261,19 @@
                      <div class="solutions-info">
                         <ul class="flex-wrap">
                            <li class="item " id="menu-item-Individuals">
-                              <a href="index-1.htm" class="item-link" data-event="Individuals" data-track-event="ElementClicked"
+                              <a href="{{ route('home') }}" class="item-link" data-event="Individuals" data-track-event="ElementClicked"
                                  data-track-name="Individuals" data-track-module="CourtesyNav">
                               Individuals
                               </a>
                            </li>
                            <li class="item " id="menu-item-Employers">
-                              <a href="work-1.html" class="item-link" data-event="Employers" data-track-event="ElementClicked"
+                              <a href="{{ route('login') }}" class="item-link" data-event="Employers" data-track-event="ElementClicked"
                                  data-track-name="Employers" data-track-module="CourtesyNav">
                               Employers
                               </a>
                            </li>
                            <li class="item " id="menu-item-Advisors">
-                              <a href="advisors-1.html" class="item-link" data-event="Advisors" data-track-event="ElementClicked"
+                              <a href="{{ route('register') }}" class="item-link" data-event="Advisors" data-track-event="ElementClicked"
                                  data-track-name="Advisors" data-track-module="CourtesyNav">
                               Advisors
                               </a>
@@ -294,7 +294,7 @@
                         <div class="bt-Nav bt-section ptb0 menu-color_default nav-bg_transparent">
                            <div class="bt-container">
                               <div class="flex-wrap flex-middle">
-                                 <a href="index-1.htm" class="bt-Nav-logoContainer" data-track-event="ElementClicked"
+                                 <a href="{{ route('home') }}" class="bt-Nav-logoContainer" data-track-event="ElementClicked"
                                     data-track-name="Logo" data-track-module="TopNav" data-interaction-listener-registered="true">
                                     <span class="bt-Logo">
                                         <img src="{{ asset('asset/images/logo/logo-dark.png') }}" alt="logo" class="desktop-logo">
@@ -357,7 +357,7 @@
                                                             <div
                                                                class="bt-body200 fancy-bullet fancy-bullet_dot_blue bullets-divider-dash-none">
                                                                <div>
-                                                                  <p>Working at Betterment is more than just a job, it’s an investment in your
+                                                                  <p>Working at Crestwood Capital Management is more than just a job, it’s an investment in your
                                                                      career. We’re committed to helping people make big dreams come
                                                                      true—including yours.&nbsp;
                                                                   </p>
@@ -374,22 +374,7 @@
                                                                      <span
                                                                         class="hs-cta-wrapper"
                                                                         id="hs-cta-wrapper-4c4ba664-a1f6-44b8-af75-b78f3995731a">
-                                                                        <span
-                                                                           class="hs-cta-node hs-cta-4c4ba664-a1f6-44b8-af75-b78f3995731a"
-                                                                           id="hs-cta-4c4ba664-a1f6-44b8-af75-b78f3995731a">
-                                                                           <!--[if lte IE 8]>
-                                                                           <div id="hs-cta-ie-element"></div>
-                                                                           <![endif]--><a
-                                                                              href="https://cta-redirect.hubspot.com/cta/redirect/5274572/4c4ba664-a1f6-44b8-af75-b78f3995731a"><img
-                                                                              class="hs-cta-img"
-                                                                              id="hs-cta-img-4c4ba664-a1f6-44b8-af75-b78f3995731a"
-                                                                              style="border-width:0px;"
-                                                                              src="cta/default/5274572/4c4ba664-a1f6-44b8-af75-b78f3995731a.png"
-                                                                              alt="Explore open roles"></a>
-                                                                        </span>
-                                                                        <script charset="utf-8" src="hs/cta/cta/current-1.js"></script>
-                                                                        <script
-                                                                           type="text/javascript"> hbspt.cta._relativeUrls = true; hbspt.cta.load(5274572, '4c4ba664-a1f6-44b8-af75-b78f3995731a', { "useNewLoader": "true", "region": "na1" }); </script>
+                                                                        <a class="bt-PrimaryButton" href="{{ route('login') }}">Explore open roles</a>
                                                                      </span>
                                                                      <!-- end HubSpot Call-to-Action Code -->
                                                                   </span>
@@ -497,7 +482,7 @@
                                                          <div>
                                                             <h2 class="item-title h2-title">
                                                                <span class="item-eyebrow bt-eyebrow">Who we are</span>
-                                                               What is Betterment?
+                                                               What is Crestwood Capital Management?
                                                             </h2>
                                                             <div class="item-body fancy-bullet fancy-bullet_check_blue">Our mission: Making
                                                                people’s lives better. We work together so people can achieve what they want
@@ -722,7 +707,7 @@
                                                                <div class="item-content-area dark">
                                                                   <h3 class="item-headline bt-title4">Equity.</h3>
                                                                   <div class="item-body bt-body2">
-                                                                     <p><span>Gain stake in Betterment’s success with company equity
+                                                                     <p><span>Gain stake in Crestwood Capital Management's success with company equity
                                                                         grants.</span>
                                                                      </p>
                                                                   </div>
@@ -1433,6 +1418,20 @@
                                                             <div class="u-col-12"></div>
                                                             <div class="hs-cta ">
                                                                <span>
+                                                                  <span>
+                                                                     <div class="u-displayNone--until-lg bt-nav-cta-2">
+                                                                        <div class="">
+                                                                              <div>
+                                                                                 <a href="{{ route('register') }}" style="background: #1d6ae5; color: white; padding: 14px 30px; border-radius: 5px; text-align: center; text-decoration: none; font-weight: 500;">Get Stated</a>
+                                                                              </div>
+                                                                        </div>
+                                                                     </div>
+                                                                  </span>
+                                                               </span>
+                                                            </div>
+
+<div class="hs-cta " style="display: none">
+                                                               <span>
                                                                   <span id="hs_cos_wrapper_widget_1633618346573_"
                                                                      class="hs_cos_wrapper hs_cos_wrapper_widget hs_cos_wrapper_type_cta"
                                                                      style="" data-hs-cos-general-type="widget"
@@ -1467,10 +1466,10 @@
                                                    </div>
                                                 </div>
                                                 <div class="background-absolute bg-image bg-image_desktop lazy"
-                                                   data-bg="https://resources.betterment.com/hubfs/Graphics/webpage-graphics/Landscapes/Landscape-Lake-Night_desktop.svg">
+                                                   data-bg="https://resources.Crestwood Capital Management.com/hubfs/Graphics/webpage-graphics/Landscapes/Landscape-Lake-Night_desktop.svg">
                                                 </div>
                                                 <div class="background-absolute bg-image bg-image_mobile lazy"
-                                                   data-bg="https://resources.betterment.com/hubfs/Graphics/webpage-graphics/Landscapes/Landscape-Lake-Night_mobile.svg">
+                                                   data-bg="https://resources.Crestwood Capital Management.com/hubfs/Graphics/webpage-graphics/Landscapes/Landscape-Lake-Night_mobile.svg">
                                                 </div>
                                              </section>
                                              <script class="section-spacing-script"
@@ -1526,7 +1525,7 @@
       <script defer="" src="content-cwv-embed/static-1.1293/embed-1.js"></script>
       <script src="ajax/libs/jquery/3.5.1/jquery.min-1.js"></script>
       <script src="ajax/libs/jquery-migrate/3.3.1/jquery-migrate.min-1.js"></script>
-      <script id="__ada" data-handle="betterment-cx" src="https://static.ada.support/embed2.js" data-lazy=""></script>
+      
       <script
          src="hs-fs/hub/5274572/hub_generated/template_assets/57001203564/1728423001638/betterment-theme/resources/btTrackingInit.min-1.js"></script>
       <script
@@ -1557,7 +1556,7 @@
       <script type="text/javascript">
          var _hsq = _hsq || [];
          _hsq.push(["setContentType", "standard-page"]);
-         _hsq.push(["setCanonicalUrl", "https:\/\/www.betterment.com\/careers"]);
+         _hsq.push(["setCanonicalUrl", "https:\/\/www.Crestwood Capital Management.com\/careers"]);
          _hsq.push(["setPageId", "57936518825"]);
          _hsq.push(["setContentMetadata", {
            "contentPageId": 57936518825,
