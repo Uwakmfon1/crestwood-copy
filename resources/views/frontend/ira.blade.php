@@ -642,7 +642,11 @@
                                                                </span>
                                                             </div>
                                                             <div class="bt-body3 mt8">
+<<<<<<< HEAD
                                                                <div>Premium requires a minimum of $100,000 in assets with Crestwood Capital Management to upgrade and maintain eligibility in the plan. Assets can be in your IRA, HSA and Investing accounts (Taxable and Crypto).</div>
+=======
+                                                               <div>Premium requires a minimum of $100,000 in assets with Betterment to upgrade and maintain eligibility in the plan. Assets can be in your IRA, HSA and Investing accounts (Taxable and Crypto).</div>
+>>>>>>> 916f914e2ca3c85d9b056ecb2f9891d7648bb078
                                                             </div>
                                                          </div>
                                                       </div>
@@ -927,7 +931,11 @@
                                                                Have an old 401(k) or IRA? We can help roll them over easily.
                                                             </h2>
                                                             <div class="item-body fancy-bullet fancy-bullet_check_blue ">
+<<<<<<< HEAD
                                                                Moving your retirement accounts into a Crestwood Capital Management IRA allows you to manage your money in one place and can save you on high fees. If you’re looking to roll over at least $20k, you can talk with an advisor about it for free.<br><br>
+=======
+                                                               Moving your retirement accounts into a Betterment IRA allows you to manage your money in one place and can save you on high fees. If you’re looking to roll over at least $20k, you can talk with an advisor about it for free.<br><br>
+>>>>>>> 916f914e2ca3c85d9b056ecb2f9891d7648bb078
                                                                <p>
                                                                   <a href="{{ route('login') }}" rel="noopener" aria-label="Learn about rollover">
                                                                      <span style="color: #1d6ae5;">Learn more ➔</span>

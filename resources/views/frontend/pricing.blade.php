@@ -473,7 +473,11 @@
                                                                            <li>Traditional and Roth IRAs</li>
                                                                         </ul>
                                                                      </div>
+<<<<<<< HEAD
                                                                      <div class="bt-body50 footnote mt8"><sup>1</sup> <span>1 The base price for investing accounts is $4/month. You automatically switch to an annual price of 0.25% on your investing account balance by setting up recurring monthly deposits or transfers totaling $250 or more or reaching a balance of $20,000 or more across your Crestwood Capital Management investing accounts—including Cash Reserve, and Crypto.&nbsp;</span>&nbsp;<a href="{{ route('help') }}" rel="noopener">Learn more</a></div>
+=======
+                                                                     <div class="bt-body50 footnote mt8"><sup>1</sup> <span>1 The base price for investing accounts is $4/month. You automatically switch to an annual price of 0.25% on your investing account balance by setting up recurring monthly deposits or transfers totaling $250 or more or reaching a balance of $20,000 or more across your Betterment investing accounts—including Cash Reserve, and Crypto.&nbsp;</span>&nbsp;<a href="{{ route('help') }}" rel="noopener">Learn more</a></div>
+>>>>>>> 916f914e2ca3c85d9b056ecb2f9891d7648bb078
                                                                   </div>
                                                                </div>
                                                             </div>
@@ -530,7 +534,11 @@
                                                                            <li>Unlimited transfers</li>
                                                                         </ul>
                                                                      </div>
+<<<<<<< HEAD
                                                                      <div class="bt-body50 footnote mt8">Cash Reserve is only available to clients of Crestwood Capital Management LLC, which is not a bank, and cash transfers to <a href="{{ route('cash') }}" rel="noopener" target="_blank">program banks</a> are conducted through the clients' brokerage accounts at Crestwood Capital Management Securities. For Cash Reserve ("CR"), Crestwood Capital Management LLC only receives compensation from our program banks; Crestwood Capital Management LLC and Crestwood Capital Management Securities do not charge fees on your CR balance. <a href="{{ route('reserve') }}" rel="noopener">Learn more</a></div>
+=======
+                                                                     <div class="bt-body50 footnote mt8">Cash Reserve is only available to clients of Betterment LLC, which is not a bank, and cash transfers to <a href="{{ route('cash') }}" rel="noopener" target="_blank">program banks</a> are conducted through the clients' brokerage accounts at Betterment Securities. For Cash Reserve ("CR"), Betterment LLC only receives compensation from our program banks; Betterment LLC and Betterment Securities do not charge fees on your CR balance. <a href="{{ route('reserve') }}" rel="noopener">Learn more</a></div>
+>>>>>>> 916f914e2ca3c85d9b056ecb2f9891d7648bb078
                                                                   </div>
                                                                </div>
                                                             </div>
@@ -587,7 +595,11 @@
                                                                            <li>Earn cash back rewards</li>
                                                                         </ul>
                                                                      </div>
+<<<<<<< HEAD
                                                                      <div class="bt-body50 footnote mt8">Checking accounts and the Crestwood Capital Management Visa Debit Card provided and issued by nbkc bank, Member FDIC. Checking made available through Crestwood Capital Management Financial LLC. Neither Crestwood Capital Management Financial LLC, nor any of their affiliates, is a bank. <a href="{{ route('checking') }}" rel="noopener">Learn more</a></div>
+=======
+                                                                     <div class="bt-body50 footnote mt8">Checking accounts and the Betterment Visa Debit Card provided and issued by nbkc bank, Member FDIC. Checking made available through Betterment Financial LLC. Neither Betterment Financial LLC, nor any of their affiliates, is a bank. <a href="{{ route('checking') }}" rel="noopener">Learn more</a></div>
+>>>>>>> 916f914e2ca3c85d9b056ecb2f9891d7648bb078
                                                                   </div>
                                                                </div>
                                                             </div>
@@ -1336,7 +1348,11 @@
                                                                   </svg>
                                                                </button>
                                                                <div class="accordion-body" aria-hidden="true" id="content-are-there-fees-on-deposits-withdrawals-or-etfs" style="display:none;">
+<<<<<<< HEAD
                                                                   <p><span>Crestwood Capital Management will construct your portfolio with ETFs, a type of security that generally tracks a broad-market stock or bond index but trades like a stock on a listed exchange, and these ETFs have embedded fund fees.&nbsp;</span><a href="{{ route('charitable') }}" data-track-event="ElementClicked" data-track-name="FundSelectionMethodology" data-track-module="FAQ" data-interaction-listener-registered="true">Betterment's fund selection methodology</a><span> aims to keep these costs as low as possible, and the dividends paid and reflected in your account's statement already take into account the deduction of these fees by the fund. Crestwood Capital Management does not receive any portion of these fund fees and these fees are in addition to our management fees ($4/month, 0.25% annually for Digital, and 0.65% annually for Premium). We charge a flat fee of $75 for each investing account transfer out of Crestwood Capital Management. There is no fee to withdraw funds to your linked checking account. You are not charged any additional trading or deposit fees.</span></p>
+=======
+                                                                  <p><span>Betterment will construct your portfolio with ETFs, a type of security that generally tracks a broad-market stock or bond index but trades like a stock on a listed exchange, and these ETFs have embedded fund fees.&nbsp;</span><a href="{{ route('charitable') }}" data-track-event="ElementClicked" data-track-name="FundSelectionMethodology" data-track-module="FAQ" data-interaction-listener-registered="true">Betterment's fund selection methodology</a><span> aims to keep these costs as low as possible, and the dividends paid and reflected in your account's statement already take into account the deduction of these fees by the fund. Betterment does not receive any portion of these fund fees and these fees are in addition to our management fees ($4/month, 0.25% annually for Digital, and 0.65% annually for Premium). We charge a flat fee of $75 for each investing account transfer out of Betterment. There is no fee to withdraw funds to your linked checking account. You are not charged any additional trading or deposit fees.</span></p>
+>>>>>>> 916f914e2ca3c85d9b056ecb2f9891d7648bb078
                                                                </div>
                                                             </li>
                                                             <li class="item border-btGrey30">
@@ -1348,7 +1364,11 @@
                                                                   </svg>
                                                                </button>
                                                                <div class="accordion-body" aria-hidden="true" id="content-does-it-cost-more-to-get-additional-help-if-i-need-it" style="display:none;">
+<<<<<<< HEAD
                                                                   <p>Our Customer Support Team is available at no additional cost to help you with any technical or account management questions. Members of our Customer Support Team are not investment adviser representatives and are not licensed to give financial advice. Customers looking to transfer investments to Crestwood Capital Management have access to our dedicated transfer specialist team. If you're exploring moving $100K or more to Crestwood Capital Management and would like to understand your options, get advice on account set up, and ultimately have dedicated support throughout the transfer process, we offer complimentary access to our Licensed Concierge team.</p>
+=======
+                                                                  <p>Our Customer Support Team is available at no additional cost to help you with any technical or account management questions. Members of our Customer Support Team are not investment adviser representatives and are not licensed to give financial advice. Customers looking to transfer investments to Betterment have access to our dedicated transfer specialist team. If you're exploring moving $100K or more to Betterment and would like to understand your options, get advice on account set up, and ultimately have dedicated support throughout the transfer process, we offer complimentary access to our Licensed Concierge team.</p>
+>>>>>>> 916f914e2ca3c85d9b056ecb2f9891d7648bb078
                                                                   <p>For more in-depth financial advice, you can purchase flat-fee<span>&nbsp;</span><a href="{{ route('expert') }}" data-track-event="ElementClicked" data-track-name="FinancialExperts" data-track-module="FAQ" data-interaction-listener-registered="true">advice packages</a><span>&nbsp;</span>with our team of CFP<sup>®</sup><span>&nbsp;</span>professionals, for a one-time fee of $299-$399. An advice package can be especially useful if you're looking to build a financial plan but do not have the $100K minimum balance for our Premium Plan. Each advice package includes a tailored call and a personalized action plan and educational content.</p>
                                                                </div>
                                                             </li>
