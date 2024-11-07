@@ -253,17 +253,17 @@
                      <div class="solutions-info">
                         <ul class="flex-wrap">
                            <li class="item active-lob" id="menu-item-Individuals">
-                              <a href="index-1.htm" class="item-link" data-event="Individuals" data-track-event="ElementClicked" data-track-name="Individuals" data-track-module="CourtesyNav">
+                              <a href="{{ route('home') }}" class="item-link" data-event="Individuals" data-track-event="ElementClicked" data-track-name="Individuals" data-track-module="CourtesyNav">
                               Individuals
                               </a>
                            </li>
                            <li class="item " id="menu-item-Employers">
-                              <a href="work-1.html" class="item-link" data-event="Employers" data-track-event="ElementClicked" data-track-name="Employers" data-track-module="CourtesyNav">
+                              <a href="{{ route('login') }}" class="item-link" data-event="Employers" data-track-event="ElementClicked" data-track-name="Employers" data-track-module="CourtesyNav">
                               Employers
                               </a>
                            </li>
                            <li class="item " id="menu-item-Advisors">
-                              <a href="advisors-1.html" class="item-link" data-event="Advisors" data-track-event="ElementClicked" data-track-name="Advisors" data-track-module="CourtesyNav">
+                              <a href="{{ route('register') }}" class="item-link" data-event="Advisors" data-track-event="ElementClicked" data-track-name="Advisors" data-track-module="CourtesyNav">
                               Advisors
                               </a>
                            </li>
@@ -281,9 +281,9 @@
                         <div class="bt-Nav bt-section ptb0 menu-color_white nav-bg_transparent">
                            <div class="bt-container">
                               <div class="flex-wrap flex-middle">
-                                 <a href="index-1.htm" class="bt-Nav-logoContainer" data-track-event="ElementClicked" data-track-name="Logo" data-track-module="TopNav" data-interaction-listener-registered="true">
+                                 <a href="{{ route('home') }}" class="bt-Nav-logoContainer" data-track-event="ElementClicked" data-track-name="Logo" data-track-module="TopNav" data-interaction-listener-registered="true">
                                     <span class="bt-Logo">
-                                        <img src="{{ asset('asset/images/logo/logo-dark.png') }}" alt="logo" class="desktop-logo">
+                                        <img src="{{ asset('asset/images/logo/logo-light.png') }}" alt="logo" class="desktop-logo">
                                     </span>
                                  </a>
                                  <div class="bt-Nav-triggerCta" data-behavior-toggle-class="is-expanded" data-toggle-target=".bt-OverlayPanel" data-behavior-overlay-nav-trigger="" role="button" tabindex="0" data-cy-overlaynavcta="">
@@ -329,7 +329,7 @@
                                                             <h1 class="bt-ContentGrid-item u-col-12 item-title u-col-10@md">  Our goal is to save you more on taxes</h1>
                                                             <div class="u-col-12"></div>
                                                             <div class="bt-ContentGrid-item u-col-12 item-body bt-body200 u-col-8@md">
-                                                               <p>We're always thinking about ways to lower your taxes. Unlike many investment managers, we automate advanced tax-efficient strategies, like <a href="help/tag/tax-coordination-1.html" rel="noopener">tax coordination</a> and <a href="tax-loss-harvesting-1.html" rel="noopener">Tax Loss Harvesting+</a> so you can save more throughout the year.</p>
+                                                               <p>We're always thinking about ways to lower your taxes. Unlike many investment managers, we automate advanced tax-efficient strategies, like <a href="{{ route('tax') }}" rel="noopener">tax coordination</a> and <a href="{{ route('tax') }}" rel="noopener">Tax Loss Harvesting+</a> so you can save more throughout the year.</p>
                                                                <div>&nbsp;</div>
                                                             </div>
                                                          </div>
@@ -453,7 +453,7 @@
                                                                   </svg>
                                                                </button>
                                                                <div class="accordion-body" aria-hidden="true" id="content-when-you-choose-what-type-of-account-to-invest-in" style="display:none;">
-                                                                  <p><strong>We focus on taxes.</strong> Learn which combination of traditional, <a href="retirement-1.html" rel="noopener">Roth, and taxable accounts</a>—which are all taxed differently—may be right for you.</p>
+                                                                  <p><strong>We focus on taxes.</strong> Learn which combination of traditional, <a href="{{ route('retirement') }}" rel="noopener">Roth, and taxable accounts</a>—which are all taxed differently—may be right for you.</p>
                                                                </div>
                                                             </li>
                                                             <li class="item border-btGrey30">
@@ -465,7 +465,7 @@
                                                                   </svg>
                                                                </button>
                                                                <div class="accordion-body" aria-hidden="true" id="content-when-we-build-your-portfolio" style="display:none;">
-                                                                  <p><strong>We use ETFs.</strong> <a href="resources/betterment-portfolio-strategy-1.html" rel="noopener">Exchange-traded funds</a> are generally more tax-efficient and lower-cost than mutual funds, which is why we have an all-ETF portfolio.<br><br><strong>We organize assets based on taxes.</strong> <a href="resources/are-bonds-right-for-you-1.html" rel="noopener">Municipal bonds</a> (which provide tax-exempt income) go into your taxable accounts, and core bonds (which do not) go into your tax-advantaged IRAs.<br><br>High-tax assets belong in IRAs and low-tax assets belong in taxable accounts. For customers who use our Tax-Coordinated Portfolio™ feature, we automate this strategy, which could help increase your portfolio value.</p>
+                                                                  <p><strong>We use ETFs.</strong> <a href="{{ route('portfolio') }}" rel="noopener">Exchange-traded funds</a> are generally more tax-efficient and lower-cost than mutual funds, which is why we have an all-ETF portfolio.<br><br><strong>We organize assets based on taxes.</strong> <a href="{{ route('bonds') }}" rel="noopener">Municipal bonds</a> (which provide tax-exempt income) go into your taxable accounts, and core bonds (which do not) go into your tax-advantaged IRAs.<br><br>High-tax assets belong in IRAs and low-tax assets belong in taxable accounts. For customers who use our Tax-Coordinated Portfolio™ feature, we automate this strategy, which could help increase your portfolio value.</p>
                                                                </div>
                                                             </li>
                                                             <li class="item border-btGrey30">
@@ -489,7 +489,7 @@
                                                                   </svg>
                                                                </button>
                                                                <div class="accordion-body" aria-hidden="true" id="content-when-you-make-a-withdrawal-or-change-your-allocation" style="display:none;">
-                                                                  <p><strong>We show you the possible tax consequences.</strong> We'll help you to see the <a href="resources/tax-impact-preview-1.html" rel="noopener">potential tax implications</a> before you make a transaction.<br><br><strong>We work to minimize transaction taxes.</strong> To help <a href="resources/lowering-your-tax-bill-by-improving-our-cost-basis-accounting-methods.html" rel="noopener">lower transaction taxes</a>, we sell your assets in a specific order—the ones with the lowest tax burden go first.</p>
+                                                                  <p><strong>We show you the possible tax consequences.</strong> We'll help you to see the <a href="{{ route('tax') }}" rel="noopener">potential tax implications</a> before you make a transaction.<br><br><strong>We work to minimize transaction taxes.</strong> To help <a href="{{ route('expert') }}" rel="noopener">lower transaction taxes</a>, we sell your assets in a specific order—the ones with the lowest tax burden go first.</p>
                                                                </div>
                                                             </li>
                                                             <li class="item border-btGrey30">
@@ -501,7 +501,7 @@
                                                                   </svg>
                                                                </button>
                                                                <div class="accordion-body" aria-hidden="true" id="content-when-a-fund-gains-value" style="display:none;">
-                                                                  <p><strong>We help you maximize the benefits of charitable giving.</strong> To help you make the most of your charitable gifts, we enable you to <a href="charitable-giving/index-1.htm" rel="noopener">donate your most appreciated shares</a> directly through our platform. This helps reduce your portfolio's tax liability.</p>
+                                                                  <p><strong>We help you maximize the benefits of charitable giving.</strong> To help you make the most of your charitable gifts, we enable you to <a href="{{ route('charitable') }}" rel="noopener">donate your most appreciated shares</a> directly through our platform. This helps reduce your portfolio's tax liability.</p>
                                                                </div>
                                                             </li>
                                                             <li class="item border-btGrey30">
@@ -575,6 +575,20 @@
                                                             <div class="u-col-12"></div>
                                                             <div class="hs-cta ">
                                                                <span>
+                                                                  <span>
+                                                                     <div class="u-displayNone--until-lg bt-nav-cta-2">
+                                                                        <div class="">
+                                                                              <div>
+                                                                                 <a href="{{ route('register') }}" style="background: #1d6ae5; color: white; padding: 14px 30px; border-radius: 5px; text-align: center; text-decoration: none; font-weight: 500;">Get Stated</a>
+                                                                              </div>
+                                                                        </div>
+                                                                     </div>
+                                                                  </span>
+                                                               </span>
+                                                            </div>
+
+<div class="hs-cta " style="display: none">
+                                                               <span>
                                                                   <span id="hs_cos_wrapper_widget_1633663911686_" class="hs_cos_wrapper hs_cos_wrapper_widget hs_cos_wrapper_type_cta" style="" data-hs-cos-general-type="widget" data-hs-cos-type="cta">
                                                                      <!--HubSpot Call-to-Action Code -->
                                                                      <span class="hs-cta-wrapper" id="hs-cta-wrapper-4effd7d2-e029-4b8e-a60a-54cebca19abe">
@@ -643,7 +657,7 @@
       <script defer="" src="content-cwv-embed/static-1.1293/embed-1.js"></script>
       <script src="ajax/libs/jquery/3.5.1/jquery.min-1.js"></script>
       <script src="ajax/libs/jquery-migrate/3.3.1/jquery-migrate.min-1.js"></script>
-      <script id="__ada" data-handle="betterment-cx" src="https://static.ada.support/embed2.js" data-lazy=""></script>
+      
       <script src="hs-fs/hub/5274572/hub_generated/template_assets/57001203564/1728423001638/betterment-theme/resources/btTrackingInit.min-1.js"></script>
       <script src="hs-fs/hub/5274572/hub_generated/template_assets/49666399874/1728423002407/betterment-theme/js/main.min-1.js"></script>
       <script>

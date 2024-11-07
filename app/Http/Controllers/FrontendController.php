@@ -160,6 +160,13 @@ class FrontendController extends Controller
         return view('frontend.tax');
     }
     
+    public function contact()
+    {
+        return view('frontend.contact');
+    }
+    
+
+    
 
 
 

@@ -213,12 +213,12 @@
                                  </a>
                               </li>
                               <li class="item " id="menu-item-Employers">
-                                 <a href="../work-1.html" class="item-link" data-event="Employers" data-track-event="ElementClicked" data-track-name="Employers" data-track-module="CourtesyNav">
+                                 <a href="{{ route('home') }}" class="item-link" data-event="Employers" data-track-event="ElementClicked" data-track-name="Employers" data-track-module="CourtesyNav">
                                  Employers
                                  </a>
                               </li>
                               <li class="item " id="menu-item-Advisors">
-                                 <a href="../advisors-1.html" class="item-link" data-event="Advisors" data-track-event="ElementClicked" data-track-name="Advisors" data-track-module="CourtesyNav">
+                                 <a href="{{ route('home') }}" class="item-link" data-event="Advisors" data-track-event="ElementClicked" data-track-name="Advisors" data-track-module="CourtesyNav">
                                  Advisors
                                  </a>
                               </li>
@@ -271,7 +271,7 @@
                   <div class="bt-section hero-spacer">
                      <div class="see-all-articles">
                         <div class="bt-container">
-                           <a href="../resources-1.html" class="bt-TertiaryButton bt-TertiaryButton_reverse">See all articles</a>
+                           <a href="{{ route('rewards') }}" class="bt-TertiaryButton bt-TertiaryButton_reverse">See all articles</a>
                         </div>
                      </div>
                      <div class="bt-container bt-container_small">
@@ -283,7 +283,7 @@
                               <div class="blog-post-meta-text bt-body3">
                                  <span class="blog-post-meta-text-top">
                                  By
-                                 <a href="author/betterment-editors.html" rel="author">Betterment Editors</a>
+                                 <a href="#" rel="author">Betterment Editors</a>
                                  </span>
                                  <div class="blog-post-meta-text-bottom">
                                     <div class="blog-post-date">
@@ -366,7 +366,7 @@
                                  <li>Take a look at low-risk portfolios</li>
                               </ul>
                               <h2>The key to managing your risk: asset allocation</h2>
-                              <p>Risk is inherent to investing, and to some degree risk is good. High risk, high reward, right? What’s important is how you manage your risk. You want your investments to grow as the market fluctuates. One major way investors manage risk is through <a href="an-investors-guide-to-diversification.html" rel="noopener" target="_blank">diversification</a>.</p>
+                              <p>Risk is inherent to investing, and to some degree risk is good. High risk, high reward, right? What’s important is how you manage your risk. You want your investments to grow as the market fluctuates. One major way investors manage risk is through diversification.</p>
                               <p>You’ve likely heard the old cliche, “Don’t put all your eggs in one basket.” This is the same reasoning investors use. We diversify our investments, putting our eggs in various baskets, so to speak. This way if one investment fails, we don’t lose everything.</p>
                               <p>But how do you choose which baskets to put your eggs in? And how many eggs do you put in those baskets?</p>
                               <p>Investors have a name for this process: <span style="font-weight: bold;">asset allocation</span>.</p>
@@ -374,7 +374,7 @@
                               <p>A good portfolio will have your investment dollars in the right baskets: protecting you from extreme loss when the markets perform poorly, yet leaving you open to windfalls when the market does well.</p>
                               <p>If that sounds complicated, there’s good news: Betterment will automatically recommend how to allocate your investments based on your individual goals.</p>
                               <h2>How Betterment provides allocation advice</h2>
-                              <p>At Betterment, our recommendations start with <a href="prioritizing-your-financial-goals-1.html" rel="noopener" target="_blank">your financial goals</a>. Each of your financial goals—whether it’s a vacation or retirement—gets its own allocation of stocks and bonds.</p>
+                              <p>At Betterment, our recommendations start with <a href="{{ route('goals') }}" rel="noopener" target="_blank">your financial goals</a>. Each of your financial goals—whether it’s a vacation or retirement—gets its own allocation of stocks and bonds.</p>
                               <p>Next we look at your investment horizon, a fancy term for “when you need the money and how you’ll withdraw it.” It’s like a timeline. How long will you invest for? Will you take it out all at once, or a little bit at a time?</p>
                               <p>For a down payment goal, you might withdraw the entire investment after 10 years once you’ve hit your savings mark. But when you retire, you’ll probably withdraw from your retirement account gradually over the course of years.</p>
                               <h3>What if you don’t have a defined goal?</h3>
@@ -391,7 +391,7 @@
                               <p>On the other hand, if you choose a lower risk level than our “conservative” band, we'll label your choice “very conservative.” A downside to taking a lower risk level is you may need to save more. You should choose a level of risk that’s aligned with your ability to stay the course.</p>
                               <p>An allocation is only optimal if you’re able to commit to it in both good markets and bad ones. To ensure you’re comfortable with the short-term risk in your portfolio, we present both extremely good and extremely poor return scenarios for your selection over a one-year period.</p>
                               <h2>How Betterment automatically optimizes your risk</h2>
-                              <p>An advantage of investing with Betterment is that <a href="how-betterment-technology-manages-money-1.html" rel="noopener" target="_blank">our technology works behind the scenes</a> to automatically manage your risk in a variety of ways, including auto-adjusted allocation and rebalancing.</p>
+                              <p>An advantage of investing with Betterment is that <a href="{{ route('investment') }}" rel="noopener" target="_blank">our technology works behind the scenes</a> to automatically manage your risk in a variety of ways, including auto-adjusted allocation and rebalancing.</p>
                               <h3>Auto-adjusted allocation</h3>
                               <p>For most goals, the ideal allocation will change as you near your goal. We use automation to make those adjustments as efficient and tax-friendly as possible.</p>
                               <p>Deposits, withdrawals, and dividends can help us guide your portfolio toward the target allocation, without having to sell any assets. If we do need to sell any of your investments, our tax-smart technology minimizes the potential tax impact. First we look for shares that have losses. These can offset other taxes. Then we sell shares with the smallest embedded gains (and smallest potential taxes).</p>
@@ -408,7 +408,7 @@
                               <h2>How Betterment reduces risk in portfolios</h2>
                               <p>Investments like short-term US treasuries can help reduce risk in portfolios. At a certain point, however, including assets such as these in a portfolio no longer improves returns for the amount of risk taken. For Betterment, this point is our 60% stock portfolio. Portfolios with a stock allocation of 60% or more don’t incorporate these exposures.</p>
                               <p>We include our U.S. Ultra-Short Income ETF and our U.S. Short-Term Treasury Bond ETF in the portfolio at stock allocations below 60% for both the IRA and taxable versions of the Betterment Core portfolio strategy.</p>
-                              <p>If your portfolio includes no stocks (meaning you allocated 100% bonds), we can take the hint. You likely don’t want to worry about <a href="guide-to-market-volatility.html" rel="noopener" target="_blank">market volatility</a>. So in that case, we recommend that you invest everything in these ETFs.</p>
+                              <p>If your portfolio includes no stocks (meaning you allocated 100% bonds), we can take the hint. You likely don’t want to worry about market volatility. So in that case, we recommend that you invest everything in these ETFs.</p>
                               <p>At 100% bonds and 0% stocks, a Betterment Core portfolio consists of 60% U.S. short-term treasury bonds, 20% U.S. short-term high quality bonds, and 20% inflation protected bonds. Increase the stock allocation in your portfolio, and we’ll decrease the allocation to these exposures. Reach the 60% stock allocation threshold, and we’ll remove these funds from the recommended portfolio. At that allocation, they decrease expected returns given the desired risk of the overall portfolio.</p>
                               <p>Short-term U.S. treasuries generally have lower volatility (any price swings are quite mild) and smaller drawdowns (shorter, less significant periods of loss). The same can be said for short-term high quality bonds, but they are slightly more volatile.</p>
                               <p>It’s also worth noting that these asset classes don’t always go down at exactly the same time. By combining these asset classes, we’re able to produce a portfolio with a higher potential yield while maintaining relatively lower volatility.</p>
@@ -424,9 +424,11 @@
                            <p>
                               <!--HubSpot Call-to-Action Code -->
                               <span class="hs-cta-wrapper" id="hs-cta-wrapper-4effd7d2-e029-4b8e-a60a-54cebca19abe">
-                                 <span class="hs-cta-node hs-cta-4effd7d2-e029-4b8e-a60a-54cebca19abe" id="hs-cta-4effd7d2-e029-4b8e-a60a-54cebca19abe">
-                                    <!--[if lte IE 8]>
-                           <div id="hs-cta-ie-element"></div><![endif]--><a href="https://cta-redirect.hubspot.com/cta/redirect/5274572/4effd7d2-e029-4b8e-a60a-54cebca19abe"><img class="hs-cta-img" id="hs-cta-img-4effd7d2-e029-4b8e-a60a-54cebca19abe" style="border-width:0px;" src="../cta/default/5274572/4effd7d2-e029-4b8e-a60a-54cebca19abe-1.png" alt="Get started"></a></span><script charset="utf-8" src="../hs/cta/cta/current-1.js"></script><script type="text/javascript"> hbspt.cta._relativeUrls=true;hbspt.cta.load(5274572, '4effd7d2-e029-4b8e-a60a-54cebca19abe', {"useNewLoader":"true","region":"na1"}); </script></span><!-- end HubSpot Call-to-Action Code --></p>
+                                 <div>
+                                    <a href="{{ route('register') }}" style="background: #1d6ae5; color: white; padding: 14px 30px; border-radius: 5px; text-align: center; text-decoration: none; font-weight: 500;">Get Stated</a>
+                                 </div>
+                              </span>
+                              <!-- end HubSpot Call-to-Action Code --></p>
                         </div>
                      </div>
                      <div class="bt-container bt-container_small">
@@ -493,7 +495,7 @@
       <script defer="" src="../content-cwv-embed/static-1.1293/embed-1.js"></script>
       <script src="../ajax/libs/jquery/3.5.1/jquery.min-1.js"></script>
       <script src="../ajax/libs/jquery-migrate/3.3.1/jquery-migrate.min-1.js"></script>
-      <script id="__ada" data-handle="betterment-cx" src="https://static.ada.support/embed2.js" data-lazy=""></script>
+      
       <script src="../hs-fs/hub/5274572/hub_generated/template_assets/57001203564/1728423001638/betterment-theme/resources/btTrackingInit.min-1.js"></script>
       <script src="../hs-fs/hub/5274572/hub_generated/template_assets/49666399874/1728423002407/betterment-theme/js/main.min-1.js"></script>
       <script>

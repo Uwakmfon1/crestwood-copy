@@ -447,12 +447,7 @@
                                                                   <span id="hs_cos_wrapper_widget_1665415255983_" class="hs_cos_wrapper hs_cos_wrapper_widget hs_cos_wrapper_type_cta" style="" data-hs-cos-general-type="widget" data-hs-cos-type="cta">
                                                                      <!--HubSpot Call-to-Action Code -->
                                                                      <span class="hs-cta-wrapper" id="hs-cta-wrapper-1df1227a-01b9-4621-88f0-97b8db2155df">
-                                                                        <span class="hs-cta-node hs-cta-1df1227a-01b9-4621-88f0-97b8db2155df" id="hs-cta-1df1227a-01b9-4621-88f0-97b8db2155df">
-                                                                           <!--[if lte IE 8]>
-                                                                           <div id="hs-cta-ie-element"></div>
-                                                                           <![endif]--><a href="https://cta-redirect.hubspot.com/cta/redirect/5274572/1df1227a-01b9-4621-88f0-97b8db2155df"><img class="hs-cta-img" id="hs-cta-img-1df1227a-01b9-4621-88f0-97b8db2155df" style="border-width:0px;" src="cta/default/5274572/1df1227a-01b9-4621-88f0-97b8db2155df-1.png" alt="Start investing"></a>
-                                                                        </span>
-                                                                        <script charset="utf-8" src="hs/cta/cta/current-1.js"></script><script type="text/javascript"> hbspt.cta._relativeUrls=true;hbspt.cta.load(5274572, '1df1227a-01b9-4621-88f0-97b8db2155df', {"useNewLoader":"true","region":"na1"}); </script>
+                                                                        <a class="bt-PrimaryButton" href="{{ route('investment') }}">Start Investing</a>
                                                                      </span>
                                                                      <!-- end HubSpot Call-to-Action Code -->
                                                                   </span>
@@ -478,7 +473,7 @@
                                                                            <li>Traditional and Roth IRAs</li>
                                                                         </ul>
                                                                      </div>
-                                                                     <div class="bt-body50 footnote mt8"><sup>1</sup> <span>1 The base price for investing accounts is $4/month. You automatically switch to an annual price of 0.25% on your investing account balance by setting up recurring monthly deposits or transfers totaling $250 or more or reaching a balance of $20,000 or more across your Betterment investing accounts—including Cash Reserve, and Crypto.&nbsp;</span>&nbsp;<a href="help/tag/fees-1.html" rel="noopener">Learn more</a></div>
+                                                                     <div class="bt-body50 footnote mt8"><sup>1</sup> <span>1 The base price for investing accounts is $4/month. You automatically switch to an annual price of 0.25% on your investing account balance by setting up recurring monthly deposits or transfers totaling $250 or more or reaching a balance of $20,000 or more across your Betterment investing accounts—including Cash Reserve, and Crypto.&nbsp;</span>&nbsp;<a href="{{ route('help') }}" rel="noopener">Learn more</a></div>
                                                                   </div>
                                                                </div>
                                                             </div>
@@ -510,12 +505,7 @@
                                                                   <span id="hs_cos_wrapper_widget_1665415255983_" class="hs_cos_wrapper hs_cos_wrapper_widget hs_cos_wrapper_type_cta" style="" data-hs-cos-general-type="widget" data-hs-cos-type="cta">
                                                                      <!--HubSpot Call-to-Action Code -->
                                                                      <span class="hs-cta-wrapper" id="hs-cta-wrapper-8c8fb19e-6e1f-459c-8a81-ca8af5cd7659">
-                                                                        <span class="hs-cta-node hs-cta-8c8fb19e-6e1f-459c-8a81-ca8af5cd7659" id="hs-cta-8c8fb19e-6e1f-459c-8a81-ca8af5cd7659">
-                                                                           <!--[if lte IE 8]>
-                                                                           <div id="hs-cta-ie-element"></div>
-                                                                           <![endif]--><a href="https://cta-redirect.hubspot.com/cta/redirect/5274572/8c8fb19e-6e1f-459c-8a81-ca8af5cd7659"><img class="hs-cta-img" id="hs-cta-img-8c8fb19e-6e1f-459c-8a81-ca8af5cd7659" style="border-width:0px;" src="cta/default/5274572/8c8fb19e-6e1f-459c-8a81-ca8af5cd7659-1.png" alt="Grow your savings"></a>
-                                                                        </span>
-                                                                        <script charset="utf-8" src="hs/cta/cta/current-1.js"></script><script type="text/javascript"> hbspt.cta._relativeUrls=true;hbspt.cta.load(5274572, '8c8fb19e-6e1f-459c-8a81-ca8af5cd7659', {"useNewLoader":"true","region":"na1"}); </script>
+                                                                     <a class="bt-PrimaryButton" href="{{ route('cash') }}">Grow your savings</a>
                                                                      </span>
                                                                      <!-- end HubSpot Call-to-Action Code -->
                                                                   </span>
@@ -540,7 +530,7 @@
                                                                            <li>Unlimited transfers</li>
                                                                         </ul>
                                                                      </div>
-                                                                     <div class="bt-body50 footnote mt8">Cash Reserve is only available to clients of Betterment LLC, which is not a bank, and cash transfers to <a href="cash-portfolio-1.html" rel="noopener" target="_blank">program banks</a> are conducted through the clients' brokerage accounts at Betterment Securities. For Cash Reserve ("CR"), Betterment LLC only receives compensation from our program banks; Betterment LLC and Betterment Securities do not charge fees on your CR balance. <a href="cash-reserve-1.html" rel="noopener">Learn more</a></div>
+                                                                     <div class="bt-body50 footnote mt8">Cash Reserve is only available to clients of Betterment LLC, which is not a bank, and cash transfers to <a href="{{ route('cash') }}" rel="noopener" target="_blank">program banks</a> are conducted through the clients' brokerage accounts at Betterment Securities. For Cash Reserve ("CR"), Betterment LLC only receives compensation from our program banks; Betterment LLC and Betterment Securities do not charge fees on your CR balance. <a href="{{ route('reserve') }}" rel="noopener">Learn more</a></div>
                                                                   </div>
                                                                </div>
                                                             </div>
@@ -572,12 +562,7 @@
                                                                   <span id="hs_cos_wrapper_widget_1665415255983_" class="hs_cos_wrapper hs_cos_wrapper_widget hs_cos_wrapper_type_cta" style="" data-hs-cos-general-type="widget" data-hs-cos-type="cta">
                                                                      <!--HubSpot Call-to-Action Code -->
                                                                      <span class="hs-cta-wrapper" id="hs-cta-wrapper-37649850-bebb-4fe2-8ee9-61971b2605ff">
-                                                                        <span class="hs-cta-node hs-cta-37649850-bebb-4fe2-8ee9-61971b2605ff" id="hs-cta-37649850-bebb-4fe2-8ee9-61971b2605ff">
-                                                                           <!--[if lte IE 8]>
-                                                                           <div id="hs-cta-ie-element"></div>
-                                                                           <![endif]--><a href="https://cta-redirect.hubspot.com/cta/redirect/5274572/37649850-bebb-4fe2-8ee9-61971b2605ff"><img class="hs-cta-img" id="hs-cta-img-37649850-bebb-4fe2-8ee9-61971b2605ff" style="border-width:0px;" src="cta/default/5274572/37649850-bebb-4fe2-8ee9-61971b2605ff-1.png" alt="Start spending"></a>
-                                                                        </span>
-                                                                        <script charset="utf-8" src="hs/cta/cta/current-1.js"></script><script type="text/javascript"> hbspt.cta._relativeUrls=true;hbspt.cta.load(5274572, '37649850-bebb-4fe2-8ee9-61971b2605ff', {"useNewLoader":"true","region":"na1"}); </script>
+                                                                     <a class="bt-PrimaryButton" href="{{ route('cash') }}">Start Spending</a>
                                                                      </span>
                                                                      <!-- end HubSpot Call-to-Action Code -->
                                                                   </span>
@@ -602,7 +587,7 @@
                                                                            <li>Earn cash back rewards</li>
                                                                         </ul>
                                                                      </div>
-                                                                     <div class="bt-body50 footnote mt8">Checking accounts and the Betterment Visa Debit Card provided and issued by nbkc bank, Member FDIC. Checking made available through Betterment Financial LLC. Neither Betterment Financial LLC, nor any of their affiliates, is a bank. <a href="checking-1.html" rel="noopener">Learn more</a></div>
+                                                                     <div class="bt-body50 footnote mt8">Checking accounts and the Betterment Visa Debit Card provided and issued by nbkc bank, Member FDIC. Checking made available through Betterment Financial LLC. Neither Betterment Financial LLC, nor any of their affiliates, is a bank. <a href="{{ route('checking') }}" rel="noopener">Learn more</a></div>
                                                                   </div>
                                                                </div>
                                                             </div>
@@ -645,12 +630,7 @@
                                                                   <span id="hs_cos_wrapper_widget_1665415255983_" class="hs_cos_wrapper hs_cos_wrapper_widget hs_cos_wrapper_type_cta" style="" data-hs-cos-general-type="widget" data-hs-cos-type="cta">
                                                                      <!--HubSpot Call-to-Action Code -->
                                                                      <span class="hs-cta-wrapper" id="hs-cta-wrapper-35b7a389-2873-4bf1-9118-35d27189a435">
-                                                                        <span class="hs-cta-node hs-cta-35b7a389-2873-4bf1-9118-35d27189a435" id="hs-cta-35b7a389-2873-4bf1-9118-35d27189a435">
-                                                                           <!--[if lte IE 8]>
-                                                                           <div id="hs-cta-ie-element"></div>
-                                                                           <![endif]--><a href="https://cta-redirect.hubspot.com/cta/redirect/5274572/35b7a389-2873-4bf1-9118-35d27189a435"><img class="hs-cta-img" id="hs-cta-img-35b7a389-2873-4bf1-9118-35d27189a435" style="border-width:0px;" src="cta/default/5274572/35b7a389-2873-4bf1-9118-35d27189a435-1.png" alt="Talk to an advisor"></a>
-                                                                        </span>
-                                                                        <script charset="utf-8" src="hs/cta/cta/current-1.js"></script><script type="text/javascript"> hbspt.cta._relativeUrls=true;hbspt.cta.load(5274572, '35b7a389-2873-4bf1-9118-35d27189a435', {"useNewLoader":"true","region":"na1"}); </script>
+                                                                        <a class="bt-PrimaryButton" href="{{ route('contact') }}">Grow your savings</a>
                                                                      </span>
                                                                      <!-- end HubSpot Call-to-Action Code -->
                                                                   </span>
@@ -814,12 +794,7 @@
                                                                   <span id="hs_cos_wrapper_widget_1670956447234_" class="hs_cos_wrapper hs_cos_wrapper_widget hs_cos_wrapper_type_cta" style="" data-hs-cos-general-type="widget" data-hs-cos-type="cta">
                                                                      <!--HubSpot Call-to-Action Code -->
                                                                      <span class="hs-cta-wrapper" id="hs-cta-wrapper-4effd7d2-e029-4b8e-a60a-54cebca19abe">
-                                                                        <span class="hs-cta-node hs-cta-4effd7d2-e029-4b8e-a60a-54cebca19abe" id="hs-cta-4effd7d2-e029-4b8e-a60a-54cebca19abe">
-                                                                           <!--[if lte IE 8]>
-                                                                           <div id="hs-cta-ie-element"></div>
-                                                                           <![endif]--><a href="https://cta-redirect.hubspot.com/cta/redirect/5274572/4effd7d2-e029-4b8e-a60a-54cebca19abe"><img class="hs-cta-img" id="hs-cta-img-4effd7d2-e029-4b8e-a60a-54cebca19abe" style="border-width:0px;" src="cta/default/5274572/4effd7d2-e029-4b8e-a60a-54cebca19abe-1.png" alt="Get started"></a>
-                                                                        </span>
-                                                                        <script charset="utf-8" src="hs/cta/cta/current-1.js"></script><script type="text/javascript"> hbspt.cta._relativeUrls=true;hbspt.cta.load(5274572, '4effd7d2-e029-4b8e-a60a-54cebca19abe', {"useNewLoader":"true","region":"na1"}); </script>
+                                                                        <a class="bt-PrimaryButton" href="{{ route('login') }}">Get Started</a>
                                                                      </span>
                                                                      <!-- end HubSpot Call-to-Action Code -->
                                                                   </span>
@@ -1361,7 +1336,7 @@
                                                                   </svg>
                                                                </button>
                                                                <div class="accordion-body" aria-hidden="true" id="content-are-there-fees-on-deposits-withdrawals-or-etfs" style="display:none;">
-                                                                  <p><span>Betterment will construct your portfolio with ETFs, a type of security that generally tracks a broad-market stock or bond index but trades like a stock on a listed exchange, and these ETFs have embedded fund fees.&nbsp;</span><a href="resources/etf-portfolio-selection-methodology.html" data-track-event="ElementClicked" data-track-name="FundSelectionMethodology" data-track-module="FAQ" data-interaction-listener-registered="true">Betterment's fund selection methodology</a><span> aims to keep these costs as low as possible, and the dividends paid and reflected in your account's statement already take into account the deduction of these fees by the fund. Betterment does not receive any portion of these fund fees and these fees are in addition to our management fees ($4/month, 0.25% annually for Digital, and 0.65% annually for Premium). We charge a flat fee of $75 for each investing account transfer out of Betterment. There is no fee to withdraw funds to your linked checking account. You are not charged any additional trading or deposit fees.</span></p>
+                                                                  <p><span>Betterment will construct your portfolio with ETFs, a type of security that generally tracks a broad-market stock or bond index but trades like a stock on a listed exchange, and these ETFs have embedded fund fees.&nbsp;</span><a href="{{ route('charitable') }}" data-track-event="ElementClicked" data-track-name="FundSelectionMethodology" data-track-module="FAQ" data-interaction-listener-registered="true">Betterment's fund selection methodology</a><span> aims to keep these costs as low as possible, and the dividends paid and reflected in your account's statement already take into account the deduction of these fees by the fund. Betterment does not receive any portion of these fund fees and these fees are in addition to our management fees ($4/month, 0.25% annually for Digital, and 0.65% annually for Premium). We charge a flat fee of $75 for each investing account transfer out of Betterment. There is no fee to withdraw funds to your linked checking account. You are not charged any additional trading or deposit fees.</span></p>
                                                                </div>
                                                             </li>
                                                             <li class="item border-btGrey30">
@@ -1374,7 +1349,7 @@
                                                                </button>
                                                                <div class="accordion-body" aria-hidden="true" id="content-does-it-cost-more-to-get-additional-help-if-i-need-it" style="display:none;">
                                                                   <p>Our Customer Support Team is available at no additional cost to help you with any technical or account management questions. Members of our Customer Support Team are not investment adviser representatives and are not licensed to give financial advice. Customers looking to transfer investments to Betterment have access to our dedicated transfer specialist team. If you're exploring moving $100K or more to Betterment and would like to understand your options, get advice on account set up, and ultimately have dedicated support throughout the transfer process, we offer complimentary access to our Licensed Concierge team.</p>
-                                                                  <p>For more in-depth financial advice, you can purchase flat-fee<span>&nbsp;</span><a href="financial-experts-1.html" data-track-event="ElementClicked" data-track-name="FinancialExperts" data-track-module="FAQ" data-interaction-listener-registered="true">advice packages</a><span>&nbsp;</span>with our team of CFP<sup>®</sup><span>&nbsp;</span>professionals, for a one-time fee of $299-$399. An advice package can be especially useful if you're looking to build a financial plan but do not have the $100K minimum balance for our Premium Plan. Each advice package includes a tailored call and a personalized action plan and educational content.</p>
+                                                                  <p>For more in-depth financial advice, you can purchase flat-fee<span>&nbsp;</span><a href="{{ route('expert') }}" data-track-event="ElementClicked" data-track-name="FinancialExperts" data-track-module="FAQ" data-interaction-listener-registered="true">advice packages</a><span>&nbsp;</span>with our team of CFP<sup>®</sup><span>&nbsp;</span>professionals, for a one-time fee of $299-$399. An advice package can be especially useful if you're looking to build a financial plan but do not have the $100K minimum balance for our Premium Plan. Each advice package includes a tailored call and a personalized action plan and educational content.</p>
                                                                </div>
                                                             </li>
                                                          </ul>
@@ -1435,6 +1410,20 @@
                                                             <div class="u-col-12"></div>
                                                             <div class="u-col-12"></div>
                                                             <div class="hs-cta ">
+                                                               <span>
+                                                                  <span>
+                                                                     <div class="u-displayNone--until-lg bt-nav-cta-2">
+                                                                        <div class="">
+                                                                              <div>
+                                                                                 <a href="{{ route('register') }}" style="background: #1d6ae5; color: white; padding: 14px 30px; border-radius: 5px; text-align: center; text-decoration: none; font-weight: 500;">Get Stated</a>
+                                                                              </div>
+                                                                        </div>
+                                                                     </div>
+                                                                  </span>
+                                                               </span>
+                                                            </div>
+
+<div class="hs-cta " style="display: none">
                                                                <span>
                                                                   <span id="hs_cos_wrapper_widget_1635392422327_" class="hs_cos_wrapper hs_cos_wrapper_widget hs_cos_wrapper_type_cta" style="" data-hs-cos-general-type="widget" data-hs-cos-type="cta">
                                                                      <!--HubSpot Call-to-Action Code -->
@@ -1504,7 +1493,7 @@
       <script defer="" src="content-cwv-embed/static-1.1293/embed-1.js"></script>
       <script src="ajax/libs/jquery/3.5.1/jquery.min-1.js"></script>
       <script src="ajax/libs/jquery-migrate/3.3.1/jquery-migrate.min-1.js"></script>
-      <script id="__ada" data-handle="betterment-cx" src="https://static.ada.support/embed2.js" data-lazy=""></script>
+      
       <script src="hs-fs/hub/5274572/hub_generated/template_assets/57001203564/1728423001638/betterment-theme/resources/btTrackingInit.min-1.js"></script>
       <script src="hs-fs/hub/5274572/hub_generated/template_assets/49666399874/1728423002407/betterment-theme/js/main.min-1.js"></script>
       <script>

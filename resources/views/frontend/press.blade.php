@@ -167,11 +167,11 @@
       </script>
       <!-- /Added by GoogleTagManager integration -->
       <link rel="canonical" href="press-1.html">
-      <meta property="og:image" content="https://www.betterment.com/hubfs/Graphics/featured-images/three-humans.png">
+      <meta property="og:image" content="https://www.crestwoodcapitals.com/hubfs/Graphics/featured-images/three-humans.png">
       <meta property="og:image:width" content="2200">
       <meta property="og:image:height" content="1100">
-      <meta name="twitter:image" content="https://www.betterment.com/hubfs/Graphics/featured-images/three-humans.png">
-      <meta property="og:url" content="https://www.betterment.com/press">
+      <meta name="twitter:image" content="https://www.crestwoodcapitals.com/hubfs/Graphics/featured-images/three-humans.png">
+      <meta property="og:url" content="https://www.crestwoodcapitals.com/press">
       <meta name="twitter:card" content="summary_large_image">
       <meta http-equiv="content-language" content="en">
       <meta name="generator" content="HubSpot">
@@ -271,7 +271,7 @@
                                                             <h1 class="bt-ContentGrid-item u-col-12 item-title u-col-6@md">  Media</h1>
                                                             <div class="u-col-12"></div>
                                                             <div class="bt-ContentGrid-item u-col-12 item-body bt-body200 u-col-6@md">
-                                                               <p><span>Contact our press team at&nbsp;</span><a href="mailto:media@betterment.com">media@crestwoodcapitals.com</a></p>
+                                                               <p><span>Contact our press team at&nbsp;</span><a href="mailto:media@crestwoodcapitals.com">media@crestwoodcapitals.com</a></p>
                                                             </div>
                                                          </div>
                                                       </div>
@@ -319,7 +319,7 @@
                                                          <a href="#contact">Contact us</a>
                                                       </li>
                                                       <li>
-                                                         <a href="about-1.html#leadership-team">Leadership Team</a>
+                                                         <a href="{{ route('about') }}#leadership-team">Leadership Team</a>
                                                       </li>
                                                    </ul>
                                                    <div class="hs-form js-select-jump-to-hash" aria-hidden="true">
@@ -355,19 +355,16 @@
                                                             <h2 class="bt-title2 bt-ContentGrid-item u-col-12 u-col-6@md">  Who we are</h2>
                                                             <div class="u-col-12"></div>
                                                             <div class="bt-ContentGrid-item u-col-12 item-body bt-body100 u-col-6@md">
-                                                               <p><span>Betterment is a leading, technology-driven financial services company that offers investing and retirement solutions for <a href="{{ route('home') }}" rel="noopener">retail investors</a> and <a href="advisors-1.html" rel="noopener">investment advisors</a> as well as workplace&nbsp;solutions for <a href="work-1.html" rel="noopener">small and medium-sized businesses</a>. </span></p>
+                                                               <p><span>Betterment is a leading, technology-driven financial services company that offers investing and retirement solutions for <a href="{{ route('home') }}" rel="noopener">retail investors</a> and <a href="{{ route('investment') }}" rel="noopener">investment advisors</a> as well as workplace&nbsp;solutions for <a href="{{ route('tax') }}" rel="noopener">small and medium-sized businesses</a>. </span></p>
                                                             </div>
                                                             <div class="bt-ContentGrid-item u-col-12 hs-cta mt24">
                                                                <span>
                                                                   <span id="hs_cos_wrapper_widget_1648226758378_" class="hs_cos_wrapper hs_cos_wrapper_widget hs_cos_wrapper_type_cta" style="" data-hs-cos-general-type="widget" data-hs-cos-type="cta">
                                                                      <!--HubSpot Call-to-Action Code -->
                                                                      <span class="hs-cta-wrapper" id="hs-cta-wrapper-27479f45-3315-4646-9a8e-617887b0809a">
-                                                                        <span class="hs-cta-node hs-cta-27479f45-3315-4646-9a8e-617887b0809a" id="hs-cta-27479f45-3315-4646-9a8e-617887b0809a">
-                                                                           <!--[if lte IE 8]>
-                                                                           <div id="hs-cta-ie-element"></div>
-                                                                           <![endif]--><a href="https://cta-redirect.hubspot.com/cta/redirect/5274572/27479f45-3315-4646-9a8e-617887b0809a"><img class="hs-cta-img" id="hs-cta-img-27479f45-3315-4646-9a8e-617887b0809a" style="border-width:0px;" src="cta/default/5274572/27479f45-3315-4646-9a8e-617887b0809a-1.png" alt="Learn more"></a>
-                                                                        </span>
-                                                                        <script charset="utf-8" src="hs/cta/cta/current-1.js"></script><script type="text/javascript"> hbspt.cta._relativeUrls=true;hbspt.cta.load(5274572, '27479f45-3315-4646-9a8e-617887b0809a', {"useNewLoader":"true","region":"na1"}); </script>
+                                                                        <div>
+                                                                           <a href="{{ route('about') }}" style="background: #1d6ae5; color: white; padding: 14px 30px; border-radius: 5px; text-align: center; text-decoration: none; font-weight: 500;">Learn More</a>
+                                                                        </div>
                                                                      </span>
                                                                      <!-- end HubSpot Call-to-Action Code -->
                                                                   </span>
@@ -954,7 +951,7 @@
                                                             <h2 class="bt-ContentGrid-item u-col-12 u-col-4@lg">Contact us</h2>
                                                             <div class="u-col-12"></div>
                                                             <div class="item-body u-col-12 u-col-4@lg">
-                                                               <p>Need to get in touch? Reach out to our press team at <a href="mailto:media@betterment.com">media@betterment.com</a>.</p>
+                                                               <p>Need to get in touch? Reach out to our press team at <a href="mailto:media@crestwoodcapitals.com">media@crestwoodcapitals.com</a>.</p>
                                                                <p>Only media inquiries will receive a response.</p>
                                                             </div>
                                                          </div>
@@ -1011,7 +1008,7 @@
       <script defer="" src="content-cwv-embed/static-1.1293/embed-1.js"></script>
       <script src="ajax/libs/jquery/3.5.1/jquery.min-1.js"></script>
       <script src="ajax/libs/jquery-migrate/3.3.1/jquery-migrate.min-1.js"></script>
-      <script id="__ada" data-handle="betterment-cx" src="https://static.ada.support/embed2.js" data-lazy=""></script>
+      
       <script src="hs-fs/hub/5274572/hub_generated/template_assets/57001203564/1728423001638/betterment-theme/resources/btTrackingInit.min-1.js"></script>
       <script src="hs-fs/hub/5274572/hub_generated/template_assets/49666399874/1728423002407/betterment-theme/js/main.min-1.js"></script>
       <script>

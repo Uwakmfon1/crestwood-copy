@@ -2,373 +2,553 @@
 
 @section('content')
 
+<style>
+    select {
+        appearance: auto !important;
+        -webkit-appearance: auto;
+        -moz-appearance: auto;
+    }
+    select:focus {
+        appearance: none;
+    }
+</style>
+
 <!-- Start::app-content -->
-<div class="main-content app-content">
-            <div class="container-fluid">
-
-                <!-- Start::page-header -->
-                <div class="my-4 page-header-breadcrumb d-flex align-items-center justify-content-between flex-wrap gap-2">
-                    <div>
-                        <h1 class="page-title fw-medium fs-18 mb-2">Savings</h1>
-                        <ol class="breadcrumb mb-0">
-                            <li class="breadcrumb-item">
-                                <a href="javascript:void(0);">
-                                    Pages
-                                </a>
-                            </li>
-                            <li class="breadcrumb-item" aria-current="page"><a href="javascript:void(0);">Savings</a></li>
-                            <li class="breadcrumb-item active" aria-current="page">Savings Create</li>
-                        </ol>
-                    </div>
-                    <!-- <div class="d-flex gap-2">
-                        <button class="btn btn-white btn-wave border-0 me-0 fw-normal waves-effect waves-light">
-                            <i class="ri-filter-3-fill me-2"></i>Filter
-                        </button>
-                        <button type="button" class="btn btn-primary btn-wave waves-effect waves-light"> 
-                            <i class="ri-upload-2-line me-2"></i> Export report
-                        </button> 
-                    </div> -->
+    <div class="main-content app-content">
+        <div class="container-fluid">
+            <div class="my-4 page-header-breadcrumb d-flex align-items-center justify-content-between flex-wrap gap-2">
+                <div>
+                    <h1 class="page-title fw-medium fs-18 mb-2">Savings</h1>
+                    <ol class="breadcrumb mb-0">
+                        <li class="breadcrumb-item">
+                            <a href="javascript:void(0);">
+                            Dashboard
+                            </a>
+                        </li>
+                        <li class="breadcrumb-item" aria-current="page"><a href="javascript:void(0);">Savings</a></li>
+                        <li class="breadcrumb-item active" aria-current="page">Plans</li>
+                    </ol>
                 </div>
-                <!-- End::page-header -->
-                <!-- @if ($errors->any())
-                    <div class="row">
-                        <div class="col-6 my-1">
-                            <div class="alert alert-danger" role="alert">
-                                <ul>
-                                    @foreach ($errors->all() as $error)
-                                    <li>
-                                        <i data-feather="alert-circle" class="mr-2"></i>
-                                        <strong style="font-size: 13px" class="small">{{ $error }}</strong>
-                                    </li>
-                                    @endforeach
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                @endif -->
-
-                <!-- Start::row-1 -->
-                <div class="row">
-                    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12">
-                        <div class="row">
-                            <div class="col-xl-12">
-                                <div class="card custom-card overflow-hidden">
-                                    <img src="https://images.rawpixel.com/image_800/cHJpdmF0ZS9sci9pbWFnZXMvd2Vic2l0ZS8yMDIyLTA1L3JtMjE4LWV5ZS0wNy5qcGc.jpg" class="card-img-top" style="height: 200px;" alt="...">
-                                    <div class="card-img-overlay-profile">
-                                        <div class="d-flex align-items-start text-fixed-white">
-                                            <div class="flex-grow-1 text-center">
-                                                <div class="mt-1 align-items-center justify-conent-between fs-22 mb-1">
-                                                    <span>Expected Returns</span>
-                                                    <span class="min-w-fit-content fs-10 ms-1 "></span>
-                                                </div>
-                                                <div class="d-flex align-items-center justify-conent-between">
-                                                    <span class="flex-grow-1 fs-30 fw-semibold sale-font counter">$0.00<span>
-                                                        </span></span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="d-flex justify-content-center mt-3 px-3">
-                                            <div class="d-flex align-items-start">
-                                                <span class="avatar avatar-sm rounded-circle me-3 bg-white-transparent mt-2 d-sm-flex d-none">
-                                                    <i class="bx bx-up-arrow-alt fs-20 text-fixed-white"></i>
-                                                </span>
-                                                <div class="flex-grow-1 text-fixed-white">
-                                                    <div class="d-flex align-items-center justify-conent-between fs-20 fw-medium">
-                                                        <span id="initial">$0.00</span>
-                                                    </div>
-                                                    <div class="d-flex align-items-center justify-conent-between">
-                                                        <span class="flex-grow-1 fs-13 fw-semibold">Initial</span>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="d-flex ms-5">
-                                                <span class="avatar avatar-sm rounded-circle me-3 bg-white-transparent mt-2 d-sm-flex d-none">
-                                                    <i class="bx bx-down-arrow-alt fs-20 text-fixed-white"></i>
-                                                </span>
-                                                <div class="flex-grow-1 text-fixed-white">
-                                                    <div class="d-flex align-items-center justify-conent-between fs-20 fw-medium">
-                                                        <span id="contributions">$0.00</span>
-                                                    </div>
-                                                    <div class="d-flex align-items-center justify-conent-between">
-                                                        <span class="flex-grow-1 fs-13 fw-semibold">Contribution</span>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="card-body p-0">
-                                        <ul class="list-group list-group-flush">
-                                            <li class="list-group-item p-3">
-                                                <div class="d-flex align-items-start gap-3">
-                                                    <div>
-                                                        <span class="avatar avatar-rounded bg-primary-transparent text-primary"><i class="ti ti-clock  fs-22"></i></span>
-                                                    </div>
-                                                    <div class="flex-fill">
-                                                        <span class="mb-0 fw-medium d-block">Period</span>
-                                                        <span class="text-muted fs-12">Period of which the savings will run</span>
-
-                                                    </div>
-                                                    <div class="text-end">
-                                                        <span class="flex-grow-1 fs-15 fw-semibold sale-font counter text-dark">--</span>
-                                                    </div>
-                                                </div>
-                                            </li>
-                                            <li class="list-group-item p-3">
-                                                <div class="d-flex align-items-start gap-3">
-                                                    <div>
-                                                        <span class="avatar avatar-rounded bg-secondary-transparent text-secondary"><i class="ti ti-bolt fs-22"></i></span>
-                                                    </div>
-                                                    <div class="flex-fill">
-                                                        <span class="mb-0 fw-medium d-block">Total-Profit</span>
-                                                        <span class="text-muted fs-12">Profit after the whole savings period</span>
-                                                    </div>
-                                                    <div class="text-end">
-                                                        <span class="flex-grow-1 fs-15 fw-semibold sale-font counter text-dark">$0.00</span>
-                                                    </div>
-                                                </div>
-                                            </li>
-                                            <li class="list-group-item p-3">
-                                                <div class="d-flex align-items-start gap-3">
-                                                    <div>
-                                                        <span class="avatar avatar-rounded bg-success-transparent"><i class="ti ti-percentage fs-22"></i></span>
-                                                    </div>
-                                                    <div class="flex-fill">
-                                                        <span class="mb-0 fw-medium d-block">ROI</span>
-                                                        <span class="text-muted fs-12">Rate of Investment</span>
-
-                                                    </div>
-                                                    <div class="text-end">
-                                                        <span class="lex-grow-1 fs-15 fw-semibold sale-font counter text-dark">0%</span>
-                                                    </div>
-                                                </div>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-xl-5 col-lg-6 col-md-6 col-sm-12">
-                        <form action="{{ route('savings.store') }}" method="post">
-                            @csrf
-                            <div class="card custom-card">
-                                <div class="card-header">
-                                    <div class="card-title">New Savings</div>
-                                </div>
-                                <div class="card-body">
-                                    <div class="row gy-3">
-                                        <div class="col-xl-12">
-                                            <div class="row">
-                                                <div class="col-6">
-                                                    <label for="deposit" class="form-label">Initial Deposit</label>
-                                                    <input name="deposit" type="number" class="form-control" id="deposit" placeholder="Enter deposit">
-                                                    @error('deposit')
-                                                        <strong class="small text-danger">
-                                                            {{ $message }}
-                                                        </strong>
-                                                    @enderror
-                                                </div>
-                                                <div class="col-6">
-                                                    <label for="contribution" class="form-label">Periodical Contribution</label>
-                                                    <input name="contribution" type="number" class="form-control" id="contribution" placeholder="Enter contribution">
-                                                    @error('contribution')
-                                                        <strong class="small text-danger">
-                                                            {{ $message }}
-                                                        </strong>
-                                                    @enderror
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-xl-12">
-                                            <label for="roi" class="form-label">Risk Level</label>
-                                            <select class="form-control" name="roi" id="roi">
-                                                <option value="">Select Level</option>
-                                                <option value="10">Basic</option>
-                                                <option value="20">Mid-Risk</option>
-                                                <option value="30">Premium</option>
-                                            </select>
-                                            @error('roi')
-                                                <strong class="small text-danger">
-                                                    {{ $message }}
-                                                </strong>
-                                            @enderror
-                                        </div>
-                                        <div class="col-xl-12">
-                                            <div class="row">
-                                                <div class="col-6">
-                                                    <label for="timeframe" class="form-label">Contribution Timeframe</label>
-                                                    <select class="form-control" name="timeframe" id="timeframe">
-                                                        <option value="--">Select timeframe</option>
-                                                        <option value="daily">Daily</option>
-                                                        <option value="weekly">Weekly</option>
-                                                        <option value="montly">Montly</option>
-                                                        <option value="yearly">Yearly</option>
-                                                    </select>
-                                                    @error('timeframe')
-                                                        <strong class="small text-danger">
-                                                            {{ $message }}
-                                                        </strong>
-                                                    @enderror
-                                                </div>
-                                                <div class="col-6">
-                                                    <label for="duration" class="form-label">Savings Duration</label>
-                                                    <select class="form-control" name="duration" id="duration">
-                                                        <option value="--">Select Duration</option>
-                                                        <option value="2w">2 weeks</option>
-                                                        <option value="4w">4 weeks</option>
-                                                        <option value="1m">1 month</option>
-                                                        <option value="1y">1 year</option>
-                                                    </select>
-                                                    @error('duration')
-                                                        <strong class="small text-danger">
-                                                            {{ $message }}
-                                                        </strong>
-                                                    @enderror
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="card-footer">
-                                @if($setting['invest'] == 1)
-                                    <div class="btn-list text-start">
-                                        <button type="submit" class="btn btn-primary">Start Savings</button>
-                                    </div>
-                                @else
-                                    <div class="btn-list text-end">
-                                        <button type="button" class="btn btn-sm btn-primary" disabled>Start Savings</button>
-                                    </div>
-                                @endif
-                                </div>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-                <!--End::row-1 -->
-
             </div>
+
         </div>
-        <!-- End::app-content -->
+
+        <!-- <div class="row mx-2 no-gutters">
+            <div class="col-md-4 col-sm-12 ">
+                <div class="card py-2">
+                    <div class="">
+                        <div class="">
+                            <div class="my-4 px-auto py-4 text-center">
+                                <span class="avatar avatar-xl bg-primary-transparent me-2 shadow-avatar mb-3">
+                                    <img class="p-1" src="https://www.oneazcu.com/media/54nn41qg/propel-savings_500x500.png" alt="">
+                                </span>
+                                <h5 class="fw-medium fs-14 mt-2 mx-2"> 
+                                    High-Yield Savings Account (HYSA)
+                                </h5>
+                            </div>
+                        </div>
+                        <div class=" text-center px-auto">
+                            <button class="btn btn-primary-transparent px-4 fs-12">Start Savings <i class="fe fe-plus me-2"></i></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div> -->
+
+        <div class="row mx-2 no-gutters" id="cardContainer">
+             <!-- :::Content goes here -->
+        </div>
+
+        <!-- <div class="modal fade" id="modalHYSA" tabindex="-1" role="dialog" aria-labelledby="modalHYSALabel" aria-hidden="true">
+            <div class="modal-dialog" role="document" style="max-width: 700px;">
+                <div class="modal-content">
+                    <div class="my-4">
+                        <h5 class="modal-title text-center fw-bold" id="nairaDepositModalLabel">High-Yield Savings Account (HYSA)</h5>
+                    </div>
+
+                    <div id="screen-holder">
+                        
+                    </div>
+                </div>
+            </div>
+        </div> -->
+
+
+    </div>
+<!-- End::app-content -->
 
 @endsection
 
 @section('scripts')
 
 <script>
+// $(document).ready(function() {
+//     // Card data array
+//     const cardData = [
+//         {
+//             name: 'High-Yield Savings Account (HYSA)',
+//             img: 'https://www.oneazcu.com/media/54nn41qg/propel-savings_500x500.png',
+//             btnText: 'Start Savings',
+//             modalId: '#modalHYSA',
+//             questions: [
+//                 {
+//                     question: 'What is your primary goal for this savings account?',
+//                     answers: ['Build an emergency fund', 'Save for retirement', 'Big purchase', 'Other']
+//                 },
+//                 {
+//                     question: 'What is your expected contribution frequency?',
+//                     answers: ['Weekly', 'Monthly', 'Quarterly', 'Annually']
+//                 }
+//             ]
+//         },
+//         {
+//             name: 'Cash Interest Account',
+//             img: 'https://www.oneazcu.com/media/zpfjqqui/no-fees_500x500.webp',
+//             btnText: 'Start Savings',
+//             modalId: '#modalCashInterest'
+//         },
+//         {
+//             name: 'Tax-Free Savings Account',
+//             img: 'https://www.oneazcu.com/media/a0jeky3a/cash_2024_500x500.webp',
+//             btnText: 'Start Savings',
+//             modalId: '#modalTaxFree'
+//         },
+//         {
+//             name: 'First Home Savings Account',
+//             img: 'https://www.oneazcu.com/media/3junkeko/transfer-money-500x500.webp',
+//             btnText: 'Start Savings',
+//             modalId: '#modalFirstHome'
+//         },
+//         {
+//             name: 'Corporate Accounts',
+//             img: 'https://www.oneazcu.com/media/0axfwoe2/lock-security-500x500.webp',
+//             btnText: 'Start Savings',
+//             modalId: '#modalCorporate'
+//         },
+//         {
+//             name: 'Retirement Accounts',
+//             img: 'https://www.oneazcu.com/media/xf5p3zer/click_desktop_500x500.webp',
+//             btnText: 'Start Savings',
+//             modalId: '#modalRetirement'
+//         }
+//     ];
+
+//     // Generate cards dynamically
+//     cardData.forEach((card, index) => {
+//         const cardHtml = `
+//             <div class="col-md-4 col-sm-12">
+//                 <div class="card py-2">
+//                     <div class="my-4 px-auto py-4 text-center">
+//                         <span class="avatar avatar-xl bg-primary-transparent me-2 shadow-avatar mb-3">
+//                             <img class="p-1" src="${card.img}" alt="">
+//                         </span>
+//                         <h5 class="fw-medium fs-14 mt-2 mx-2">${card.name}</h5>
+//                     </div>
+//                     <div class="text-center px-auto">
+//                         <button class="btn btn-primary-transparent px-4 fs-12" data-toggle="modal" data-target="${card.modalId}">
+//                             ${card.btnText} <i class="fe fe-plus me-2"></i>
+//                         </button>
+//                     </div>
+//                 </div>
+//             </div>`;
+        
+//         // Append card to the container
+//         $('#cardContainer').append(cardHtml);
+//     });
+
+//     // Optional: Modal handler if you want to log which modal is opened
+//     $('[data-toggle="modal"]').click(function() {
+//         const targetModal = $(this).data('target');
+
+//         $(targetModal).modal('show');
+//     });
+
+//     $('.open-modal').on('click', function() {
+//         const cardIndex = $(this).data('card-index');
+//         const card = cardData[cardIndex];
+        
+//         // Update modal title
+//         $('#modalHYSA .modal-title').text(card.name);
+        
+//         // Clear previous content
+//         const screenHolder = $('#modalHYSA #screen-holder');
+//         screenHolder.empty();
+        
+//         // Populate questions dynamically
+//         card.questions.forEach((item, index) => {
+//             const questionHtml = `
+//                 <div class="screen-${index + 1} ${index > 0 ? 'd-none' : ''}">
+//                     <div class="mx-auto" style="max-width: 550px;">
+//                         <div class="row d-flex justify-content-center mx-auto">
+//                             <div class="col-xl-12 my-2">
+//                                 <label class="text-left fs-13 fw-medium my-2">${item.question}</label>
+//                                 <select class="form-control fw-bold py-3 text-muted rounded-3">
+//                                     <option value="">--Select Answer--</option>
+//                                     ${item.answers.map(answer => `<option value="${answer}">${answer}</option>`).join('')}
+//                                 </select>
+//                             </div>
+//                         </div>
+//                     </div>
+//                 </div>`;
+            
+//             // Append question to modal content
+//             screenHolder.append(questionHtml);
+//         });
+        
+//         // Show modal
+//         $(card.modalId).modal('show');
+//     });
+// });
+
+
 $(document).ready(function() {
-    // Get references to the form inputs and card elements
-    const $depositInput = $('#deposit');
-    const $contributionInput = $('#contribution');
-    const $roiSelect = $('#roi');
-    const $durationSelect = $('#duration');
-    const $timeframeSelect = $('#timeframe');
+    // Card data array with questions and answers
+    const cardData = [
+    {
+        name: 'High-Yield Savings Account (HYSA)',
+        img: 'https://www.oneazcu.com/media/54nn41qg/propel-savings_500x500.png',
+        btnText: 'Start Savings',
+        modalId: 'modalHYSA', // Unique modal ID for each card
+        questions: [
+            {
+                question: 'What is your primary goal for this savings account?',
+                answers: [
+                    'Build an emergency fund',
+                    'Earn higher interest on savings',
+                    'Save for future large purchases (e.g., home, car)',
+                ]
+            },
+            {
+                question: 'What is your expected contribution amount?',
+                answers: [
+                    'Less than $500/month',
+                    '$500 – $1,000/month',
+                    'Over $1,000/month',
+                ]
+            },
+            {
+                question: 'How long do you plan to keep your savings in this account?',
+                answers: [
+                    'Less than 1 year',
+                    '1–3 years',
+                    'Over 3 years',
+                ]
+            },
+            {
+                question: 'Do you need frequent access to the funds, or can they remain untouched?',
+                answers: [
+                    'Frequent access needed',
+                    'No access required for now',
+                ]
+            },
+            {
+                question: 'Would you like to reinvest interest into the account or withdraw it periodically?',
+                answers: [
+                    'Reinvest interest',
+                    'Withdraw interest periodically',
+                ]
+            }
+        ]
+    },
+    {
+        name: 'Cash Interest Account',
+        img: 'https://www.oneazcu.com/media/zpfjqqui/no-fees_500x500.webp',
+        btnText: 'Start Savings',
+        modalId: 'modalCashInterest',
+        questions: [
+            {
+                question: 'What is the purpose of this cash account?',
+                answers: [
+                    'Maintain liquidity with interest growth',
+                    'Short-term cash management for upcoming expenses',
+                    'Long-term capital preservation with flexible access',
+                ]
+            },
+            {
+                question: 'How often do you plan to deposit funds into this account?',
+                answers: [
+                    'Weekly',
+                    'Monthly',
+                    'Irregularly',
+                ]
+            },
+            {
+                question: 'Do you need frequent access to these funds?',
+                answers: [
+                    'Yes, I’ll need regular access',
+                    'No, I can leave the funds untouched',
+                ]
+            },
+            {
+                question: 'Would you like a portion of this account to be allocated to higher interest products?',
+                answers: [
+                    'Yes, maximize growth on a portion of funds',
+                    'No, keep everything liquid',
+                ]
+            }
+        ]
+        },
+        {
+            name: 'Tax-Free Savings Account',
+            img: 'https://www.oneazcu.com/media/a0jeky3a/cash_2024_500x500.webp',
+            btnText: 'Start Savings',
+            modalId: 'modalTaxFree',
+            questions: [
+                {
+                    question: 'What is your primary goal for this tax-free savings account?',
+                    answers: [
+                        'Save for education or long-term projects',
+                        'Maximize tax-free growth',
+                        'Build long-term savings for retirement or specific milestones',
+                    ]
+                },
+                {
+                    question: 'How much do you plan to contribute each year?',
+                    answers: [
+                        'Less than $5,000',
+                        '$5,000 – $10,000',
+                        'Over $10,000',
+                    ]
+                },
+                {
+                    question: 'What is your expected time horizon for this account?',
+                    answers: [
+                        'Less than 5 years',
+                        '5–10 years',
+                        'Over 10 years',
+                    ]
+                },
+                {
+                    question: 'Do you prefer to reinvest all earnings into the account or withdraw them as they accumulate?',
+                    answers: [
+                        'Reinvest all earnings',
+                        'Withdraw earnings periodically',
+                    ]
+                }
+            ]
+        },
+        {
+            name: 'First Home Savings Account',
+            img: 'https://www.oneazcu.com/media/3junkeko/transfer-money-500x500.webp',
+            btnText: 'Start Savings',
+            modalId: 'modalFirstHome',
+            questions: [
+                {
+                    question: 'When do you plan to purchase your first home?',
+                    answers: [
+                        'Within 1 year',
+                        '1–3 years',
+                        'Over 3 years',
+                    ]
+                },
+                {
+                    question: 'How much do you plan to save for a home down payment?',
+                    answers: [
+                        'Less than $50,000',
+                        '$50,000 – $100,000',
+                        'Over $100,000',
+                    ]
+                },
+                {
+                    question: 'How much do you plan to contribute monthly toward this goal?',
+                    answers: [
+                        'Less than $500',
+                        '$500 – $1,000',
+                        'Over $1,000',
+                    ]
+                },
+                {
+                    question: 'Do you need to access these funds before reaching your savings goal?',
+                    answers: [
+                        'Yes, I may need access',
+                        'No, I plan to leave the funds untouched',
+                    ]
+                },
+                {
+                    question: 'Would you like financial advice on home-buying incentives and tax benefits?',
+                    answers: [
+                        'Yes',
+                        'No',
+                    ]
+                }
+            ]
+        },
+        {
+            name: 'Corporate Accounts',
+            img: 'https://www.oneazcu.com/media/0axfwoe2/lock-security-500x500.webp',
+            btnText: 'Start Savings',
+            modalId: 'modalCorporate',
+            questions: [
+                {
+                    question: 'What is the primary purpose of this corporate account?',
+                    answers: [
+                        'Cash flow management for operations',
+                        'Capital preservation for business investments',
+                        'Employee benefit funding (e.g., 401(k) or pensions)',
+                    ]
+                },
+                {
+                    question: 'How much do you plan to deposit into this account monthly?',
+                    answers: [
+                        'Less than $10,000',
+                        '$10,000 – $50,000',
+                        'Over $50,000',
+                    ]
+                },
+                {
+                    question: 'Do you require frequent access to corporate funds?',
+                    answers: [
+                        'Yes, for daily operations',
+                        'No, funds can remain untouched',
+                    ]
+                },
+                {
+                    question: 'Would you like a portion of corporate funds to be invested for long-term growth?',
+                    answers: [
+                        'Yes, allocate a portion to investments',
+                        'No, keep all funds in cash reserves',
+                    ]
+                }
+            ]
+        },
+        {
+            name: 'Retirement Accounts (Roth IRA, SEP IRA, Traditional IRA)',
+            img: 'https://www.oneazcu.com/media/xf5p3zer/click_desktop_500x500.webp',
+            btnText: 'Start Savings',
+            modalId: 'modalRetirement',
+            questions: [
+                {
+                    question: 'What is your goal with this Roth IRA?',
+                    answers: [
+                        'Tax-free growth for retirement',
+                        'Maximize savings for long-term retirement needs',
+                    ]
+                },
+                {
+                    question: 'How much do you plan to contribute each year?',
+                    answers: [
+                        'Less than $6,500',
+                        '$6,500 – $15,000 (catch-up contributions for age 50+)',
+                    ]
+                },
+                {
+                    question: 'When do you expect to start withdrawing from the account?',
+                    answers: [
+                        'Before age 59 ½',
+                        'After age 59 ½',
+                    ]
+                },
+                {
+                    question: 'Would you prefer automatic monthly or annual contributions?',
+                    answers: [
+                        'Monthly',
+                        'Annually',
+                    ]
+                }
+            ]
+        }
+    ];
 
-    const $expectedReturnsElem = $('.card .sale-font.counter').eq(0);
-    const $initialAmountElem = $('#initial');
-    const $contributionAmountElem = $('#contributions');
-    const $periodElem = $('.list-group-item:nth-child(1) .text-end span').eq(0);
-    const $profitElem = $('.list-group-item:nth-child(2) .text-end span').eq(0);
-    const $roiElem = $('.list-group-item:nth-child(3) .text-end span').eq(0);
 
-    // Update card based on input
-    function updateCard() {
-        const depositValue = parseFloat($depositInput.val()) || 0;
-        const contributionValue = parseFloat($contributionInput.val()) || 0;
-        const roiValue = parseFloat($roiSelect.val()) || 0;
-        const durationValue = $durationSelect.find('option:selected').text();
-        const timeframeValue = $timeframeSelect.find('option:selected').text();
+    // Generate cards dynamically
+    cardData.forEach((card, index) => {
+        const cardHtml = `
+            <div class="col-md-4 col-sm-12">
+                <div class="card py-2">
+                    <div class="my-4 px-auto py-4 text-center">
+                        <span class="avatar avatar-xl bg-primary-transparent me-2 shadow-avatar mb-3">
+                            <img class="p-1" src="${card.img}" alt="">
+                        </span>
+                        <h5 class="fw-medium fs-14 mt-2 mx-2">${card.name}</h5>
+                    </div>
+                    <div class="text-center px-auto">
+                        <button class="btn btn-primary-transparent px-4 fs-12 open-modal-btn" 
+                                data-index="${index}" 
+                                data-toggle="modal" 
+                                data-target="#${card.modalId}">
+                            ${card.btnText} <i class="fe fe-plus me-2"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>`;
+        
+        // Append card to the container
+        $('#cardContainer').append(cardHtml);
 
-        // Calculate expected returns
-        const totalContributions = contributionValue * (parseInt(durationValue) || 1);
-        const expectedReturns = depositValue + totalContributions + (totalContributions + depositValue) * (roiValue / 100);
+        // Create modal dynamically for each card
+        const modalHtml = `
+            <div class="modal fade" id="${card.modalId}" tabindex="-1" role="dialog" aria-labelledby="${card.modalId}Label" aria-hidden="true">
+                <div class="modal-dialog" role="document" style="max-width: 700px;">
+                    <div class="modal-content">
+                        <div class="my-4">
+                            <h5 class="modal-title text-center fw-bold" id="${card.modalId}Label">${card.name}</h5>
+                        </div>
 
-        // Update UI
-        $expectedReturnsElem.text(`$${expectedReturns.toFixed(2)}`);
-        $initialAmountElem.text(`$${depositValue.toFixed(2)}`);
-        $contributionAmountElem.text(`$${totalContributions.toFixed(2)}`);
-        $periodElem.text(`${durationValue} (${timeframeValue})`);
-        $roiElem.text(`${roiValue}%`);
-        $profitElem.text(`$${(expectedReturns - depositValue - totalContributions).toFixed(2)}`);
-    }
+                        <div class="fw-bold fs-18" id="back-arrow" style="position: absolute; top: 22px; right: 20px; cursor: pointer;" data-bs-dismiss="modal">
+                            <i class="fe fe-x  me-2"></i>
+                        </div>
 
-    // Attach event listeners to update card on input change
-    $depositInput.on('input', updateCard);
-    $contributionInput.on('input', updateCard);
-    $roiSelect.on('change', updateCard);
-    $durationSelect.on('change', updateCard);
-    $timeframeSelect.on('change', updateCard);
+                        <div id="screen-holder-${card.modalId}">
+                            <!-- Questions will be dynamically added here -->
+                        </div>
 
-    // Initial card update with default values
-    // updateCard();
+                        <div class="mx-auto">
+                            <div class="d-flex justify-content-between my-4">
+                                <button type="button" class="btn btn-primary-transparent px-4" id="nextScreenButton">Start Savings</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>`;
+
+        // Append modal to the body
+        $('body').append(modalHtml);
+    });
+
+    // Handle modal opening and populate content based on selected card
+    $('.open-modal-btn').click(function() {
+        const cardIndex = $(this).data('index');
+        const selectedCard = cardData[cardIndex];
+        
+        // Set modal title dynamically (already done above)
+        const modalId = selectedCard.modalId;
+        const modalLabelId = `${modalId}Label`;
+
+        // Clear previous questions
+        $(`#screen-holder-${modalId}`).empty();
+
+        // Populate modal with dynamic questions and answers
+        selectedCard.questions.forEach((item, qIndex) => {
+            const questionHtml = `
+                <div class="mx-auto" style="max-width: 550px;">
+                    <div class="row d-flex justify-content-center mx-auto">
+                        <div class="col-xl-12 my-2">
+                            <label class="text-left fs-13 fw-medium my-2">${item.question}</label>
+                            <select name="" id="" class="form-control fw-bold py-3 text-muted rounded-3">
+                                <option value="">-- Select Answer --</option>
+                                ${item.answers.map(answer => `<option value="${answer}">${answer}</option>`).join('')}
+                            </select>
+                        </div>
+                    </div>
+                </div>`;
+
+            $(`#screen-holder-${modalId}`).append(questionHtml);
+        });
+
+        // Show modal
+        $(`#${modalId}`).modal('show');
+    });
+
+    // Handle submit button click (just an example, you can replace this with your own logic)
+    $(document).on('click', '.submitButton', function() {
+        alert('Form submitted!');
+        // You can add the form submission logic here
+        $('.modal').modal('hide'); // Close modal after submit
+    });
 });
 
-</script>
 
-<script>
-    $(document).ready(function() {
-        $('#savings-summary').hide();
 
-        function updateSummary() {
-            var selectedPackage = $('#package').find('option:selected');
-            var roi = selectedPackage.attr('data-roi');
-            var duration = $('#duration').val();
-            var milestone = $('#milestone').val();
-
-            if (duration && milestone) {
-                var durationText = milestone + ' ';
-                if (milestone > 1) {
-                    durationText += duration === 'daily' ? ' days' : duration === 'weekly' ? ' weeks' : ' months';
-                } else {
-                    durationText += duration === 'daily' ? ' day' : duration === 'weekly' ? ' week' : ' month';
-                }
-
-                $('#summary-roi').text(roi + '%');
-                $('#summary-duration').text(durationText);
-                $('#savings-summary').show();
-            } else { 
-                $('#savings-summary').hide();
-            }
-        }
-
-        $('#package').change(function() {
-            var selectedPackage = $(this).find('option:selected');
-            var price = selectedPackage.attr('data-price');
-            var slot = parseFloat($('#slot').val());
-
-            if (price && !isNaN(slot)) {
-                price = parseFloat(price);
-                $('#amount').val('₦ ' + (price * slot).toLocaleString());
-            } else {
-                $('#amount').val('₦ 0.00');
-            }
-
-            calculateReturns();
-            updateSummary();
-        });
-
-        $('#slots, #milestone, #duration').on('input change', function() {
-            calculateReturns();
-            updateSummary();
-        });
-
-        function calculateReturns() {
-            var selectedPackage = $('#package').find('option:selected');
-            var price = parseFloat(selectedPackage.attr('data-price'));
-            var roi = parseFloat(selectedPackage.attr('data-roi'));
-            var slot = parseFloat($('#slots').val());
-            var milestone = parseFloat($('#milestone').val());
-
-            if (isNaN(price) || isNaN(roi) || isNaN(slot) || isNaN(milestone)) {
-                $('#returns').val('₦ 0.00');
-                return;
-            }
-
-            var amountToInvest = price * slot;
-            var expectedReturn = amountToInvest * milestone * (1 + roi / 100);
-            $('#amount').val('₦ ' + amountToInvest.toLocaleString());
-            $('#returns').val('₦ ' + expectedReturn.toLocaleString());
-        }
-    });
 </script>
 
 @endsection

@@ -1,6 +1,6 @@
 <?php
 
-
+use App\Http\Controllers\API\HomeController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ExportController;
@@ -9,6 +9,7 @@ use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\TransactionController;
 use App\Http\Controllers\Auth\EmailverificationController;
 use App\Http\Controllers\FrontendController;
+use App\Http\Controllers\HomeController as ControllersHomeController;
 use App\Http\Controllers\SavingsController;
 use App\Http\Controllers\SupportController;
 use App\Http\Controllers\TradeController as ControllersTradeController;
@@ -64,6 +65,7 @@ Route::get('/referral', [FrontendController::class, 'referal'])->name('referal')
 Route::get('/tax', [FrontendController::class, 'tax'])->name('tax');
 Route::get('/legal', [FrontendController::class, 'tax'])->name('legal');
 Route::get('/resources', [FrontendController::class, 'review'])->name('resources');
+Route::get('/contact', [FrontendController::class, 'contact'])->name('contact');
 
 
 
@@ -178,6 +180,8 @@ Route::group(['middleware' => ['auth','verified', 'active_user', 'profile_comple
         Route::post('/support/ticket/store', [SupportController::class, 'store'])->name('support.store');
         Route::delete('/support/ticket/{id}', [SupportController::class, 'destroy'])->name('support.destroy');
         Route::post('/support/ticket/{support}/respond', [SupportController::class, 'reply'])->name('support.reply');
+
+        Route::get('/user/kyc', [ControllersHomeController::class, 'kyc'])->name('kyc.index');
 
     // });
 });

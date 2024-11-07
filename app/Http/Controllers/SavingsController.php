@@ -31,7 +31,7 @@ class SavingsController extends Controller
 
     public function create()
     {
-        return view('user_.savings.create', ['title' => 'Save', 'setting' => Setting::all()->first(), 'packages' => SavingPackage::all()]);
+        return view('user_.savings.create', ['title' => 'Save', 'setting' => Setting::all()->first(),]);
     }
 
     public function show(Saving $savings)

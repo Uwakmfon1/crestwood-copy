@@ -341,12 +341,9 @@
                                                                   <span id="hs_cos_wrapper_module_1682525715957_" class="hs_cos_wrapper hs_cos_wrapper_widget hs_cos_wrapper_type_cta" style="" data-hs-cos-general-type="widget" data-hs-cos-type="cta">
                                                                      <!--HubSpot Call-to-Action Code -->
                                                                      <span class="hs-cta-wrapper" id="hs-cta-wrapper-bff614d8-9613-49ef-afd5-db5ad0726199">
-                                                                        <span class="hs-cta-node hs-cta-bff614d8-9613-49ef-afd5-db5ad0726199" id="hs-cta-bff614d8-9613-49ef-afd5-db5ad0726199">
-                                                                           <!--[if lte IE 8]>
-                                                                           <div id="hs-cta-ie-element"></div>
-                                                                           <![endif]--><a href="https://cta-redirect.hubspot.com/cta/redirect/5274572/bff614d8-9613-49ef-afd5-db5ad0726199"><img class="hs-cta-img" id="hs-cta-img-bff614d8-9613-49ef-afd5-db5ad0726199" style="border-width:0px;" src="cta/default/5274572/bff614d8-9613-49ef-afd5-db5ad0726199-1.png" alt="Schedule a call"></a>
-                                                                        </span>
-                                                                        <script charset="utf-8" src="hs/cta/cta/current-1.js"></script><script type="text/javascript"> hbspt.cta._relativeUrls=true;hbspt.cta.load(5274572, 'bff614d8-9613-49ef-afd5-db5ad0726199', {"useNewLoader":"true","region":"na1"}); </script>
+                                                                        <div>
+                                                                           <a href="{{ route('register') }}" style="background: #1d6ae5; color: white; padding: 14px 30px; border-radius: 5px; text-align: center; text-decoration: none; font-weight: 500;">Schedule a call</a>
+                                                                        </div>
                                                                      </span>
                                                                      <!-- end HubSpot Call-to-Action Code -->
                                                                   </span>
@@ -355,12 +352,9 @@
                                                                   <span id="hs_cos_wrapper_module_1682525715957_" class="hs_cos_wrapper hs_cos_wrapper_widget hs_cos_wrapper_type_cta" style="" data-hs-cos-general-type="widget" data-hs-cos-type="cta">
                                                                      <!--HubSpot Call-to-Action Code -->
                                                                      <span class="hs-cta-wrapper" id="hs-cta-wrapper-01c18463-22ad-42c8-826e-97e0edc4eed6">
-                                                                        <span class="hs-cta-node hs-cta-01c18463-22ad-42c8-826e-97e0edc4eed6" id="hs-cta-01c18463-22ad-42c8-826e-97e0edc4eed6">
-                                                                           <!--[if lte IE 8]>
-                                                                           <div id="hs-cta-ie-element"></div>
-                                                                           <![endif]--><a href="https://cta-redirect.hubspot.com/cta/redirect/5274572/01c18463-22ad-42c8-826e-97e0edc4eed6" target="_blank" rel="noopener"><img class="hs-cta-img" id="hs-cta-img-01c18463-22ad-42c8-826e-97e0edc4eed6" style="border-width:0px;" src="cta/default/5274572/01c18463-22ad-42c8-826e-97e0edc4eed6-1.png" alt="Learn more"></a>
-                                                                        </span>
-                                                                        <script charset="utf-8" src="hs/cta/cta/current-1.js"></script><script type="text/javascript"> hbspt.cta._relativeUrls=true;hbspt.cta.load(5274572, '01c18463-22ad-42c8-826e-97e0edc4eed6', {"useNewLoader":"true","region":"na1"}); </script>
+                                                                        <div>
+                                                                           <a href="{{ route('pricing') }}" style="background: #1d6ae5; color: white; padding: 14px 30px; border-radius: 5px; text-align: center; text-decoration: none; font-weight: 500;">Pricing</a>
+                                                                        </div>
                                                                      </span>
                                                                      <!-- end HubSpot Call-to-Action Code -->
                                                                   </span>
@@ -429,12 +423,9 @@
                                                                   <span id="hs_cos_wrapper_module_1682621355575_" class="hs_cos_wrapper hs_cos_wrapper_widget hs_cos_wrapper_type_cta" style="" data-hs-cos-general-type="widget" data-hs-cos-type="cta">
                                                                      <!--HubSpot Call-to-Action Code -->
                                                                      <span class="hs-cta-wrapper" id="hs-cta-wrapper-78902f73-3b75-4de9-8167-2b4824f362c7">
-                                                                        <span class="hs-cta-node hs-cta-78902f73-3b75-4de9-8167-2b4824f362c7" id="hs-cta-78902f73-3b75-4de9-8167-2b4824f362c7">
-                                                                           <!--[if lte IE 8]>
-                                                                           <div id="hs-cta-ie-element"></div>
-                                                                           <![endif]--><a href="https://cta-redirect.hubspot.com/cta/redirect/5274572/78902f73-3b75-4de9-8167-2b4824f362c7"><img class="hs-cta-img" id="hs-cta-img-78902f73-3b75-4de9-8167-2b4824f362c7" style="border-width:0px;" src="cta/default/5274572/78902f73-3b75-4de9-8167-2b4824f362c7-1.png" alt="Schedule a call"></a>
-                                                                        </span>
-                                                                        <script charset="utf-8" src="hs/cta/cta/current-1.js"></script><script type="text/javascript"> hbspt.cta._relativeUrls=true;hbspt.cta.load(5274572, '78902f73-3b75-4de9-8167-2b4824f362c7', {"useNewLoader":"true","region":"na1"}); </script>
+                                                                     <div>
+                                                                           <a href="{{ route('register') }}" style="background: #1d6ae5; color: white; padding: 14px 30px; border-radius: 5px; text-align: center; text-decoration: none; font-weight: 500;">Schedule a call</a>
+                                                                        </div>
                                                                      </span>
                                                                      <!-- end HubSpot Call-to-Action Code -->
                                                                   </span>
@@ -443,12 +434,7 @@
                                                                   <span id="hs_cos_wrapper_module_1682621355575_" class="hs_cos_wrapper hs_cos_wrapper_widget hs_cos_wrapper_type_cta" style="" data-hs-cos-general-type="widget" data-hs-cos-type="cta">
                                                                      <!--HubSpot Call-to-Action Code -->
                                                                      <span class="hs-cta-wrapper" id="hs-cta-wrapper-0248036b-2042-4bb2-991e-8f80a9bca8a1">
-                                                                        <span class="hs-cta-node hs-cta-0248036b-2042-4bb2-991e-8f80a9bca8a1" id="hs-cta-0248036b-2042-4bb2-991e-8f80a9bca8a1">
-                                                                           <!--[if lte IE 8]>
-                                                                           <div id="hs-cta-ie-element"></div>
-                                                                           <![endif]--><a href="https://cta-redirect.hubspot.com/cta/redirect/5274572/0248036b-2042-4bb2-991e-8f80a9bca8a1"><img class="hs-cta-img" id="hs-cta-img-0248036b-2042-4bb2-991e-8f80a9bca8a1" style="border-width:0px;" src="cta/default/5274572/0248036b-2042-4bb2-991e-8f80a9bca8a1-1.png" alt="Learn more"></a>
-                                                                        </span>
-                                                                        <script charset="utf-8" src="hs/cta/cta/current-1.js"></script><script type="text/javascript"> hbspt.cta._relativeUrls=true;hbspt.cta.load(5274572, '0248036b-2042-4bb2-991e-8f80a9bca8a1', {"useNewLoader":"true","region":"na1"}); </script>
+                                                                        <a href="{{ route('expert') }}" rel="noopener" aria-label="Learn about premium pricing">Learn more ➔</a>
                                                                      </span>
                                                                      <!-- end HubSpot Call-to-Action Code -->
                                                                   </span>
@@ -646,15 +632,26 @@
                                                             <div class="u-col-12"></div>
                                                             <div class="hs-cta ">
                                                                <span>
+                                                                  <span>
+                                                                     <div class="u-displayNone--until-lg bt-nav-cta-2">
+                                                                        <div class="">
+                                                                              <div>
+                                                                                 <a href="{{ route('register') }}" style="background: #1d6ae5; color: white; padding: 14px 30px; border-radius: 5px; text-align: center; text-decoration: none; font-weight: 500;">Get Stated</a>
+                                                                              </div>
+                                                                        </div>
+                                                                     </div>
+                                                                  </span>
+                                                               </span>
+                                                            </div>
+
+<div class="hs-cta " style="display: none">
+                                                               <span>
                                                                   <span id="hs_cos_wrapper_widget_1634588576197_" class="hs_cos_wrapper hs_cos_wrapper_widget hs_cos_wrapper_type_cta" style="" data-hs-cos-general-type="widget" data-hs-cos-type="cta">
                                                                      <!--HubSpot Call-to-Action Code -->
                                                                      <span class="hs-cta-wrapper" id="hs-cta-wrapper-78902f73-3b75-4de9-8167-2b4824f362c7">
-                                                                        <span class="hs-cta-node hs-cta-78902f73-3b75-4de9-8167-2b4824f362c7" id="hs-cta-78902f73-3b75-4de9-8167-2b4824f362c7">
-                                                                           <!--[if lte IE 8]>
-                                                                           <div id="hs-cta-ie-element"></div>
-                                                                           <![endif]--><a href="https://cta-redirect.hubspot.com/cta/redirect/5274572/78902f73-3b75-4de9-8167-2b4824f362c7"><img class="hs-cta-img" id="hs-cta-img-78902f73-3b75-4de9-8167-2b4824f362c7" style="border-width:0px;" src="cta/default/5274572/78902f73-3b75-4de9-8167-2b4824f362c7-1.png" alt="Schedule a call"></a>
-                                                                        </span>
-                                                                        <script charset="utf-8" src="hs/cta/cta/current-1.js"></script><script type="text/javascript"> hbspt.cta._relativeUrls=true;hbspt.cta.load(5274572, '78902f73-3b75-4de9-8167-2b4824f362c7', {"useNewLoader":"true","region":"na1"}); </script>
+                                                                        <div>
+                                                                           <a href="{{ route('login') }}" style="background: #1d6ae5; color: white; padding: 14px 30px; border-radius: 5px; text-align: center; text-decoration: none; font-weight: 500;">Schedule a call</a>
+                                                                        </div>
                                                                      </span>
                                                                      <!-- end HubSpot Call-to-Action Code -->
                                                                   </span>
@@ -714,7 +711,7 @@
       <script defer="" src="content-cwv-embed/static-1.1293/embed-1.js"></script>
       <script src="ajax/libs/jquery/3.5.1/jquery.min-1.js"></script>
       <script src="ajax/libs/jquery-migrate/3.3.1/jquery-migrate.min-1.js"></script>
-      <script id="__ada" data-handle="betterment-cx" src="https://static.ada.support/embed2.js" data-lazy=""></script>
+      
       <script src="hs-fs/hub/5274572/hub_generated/template_assets/57001203564/1728423001638/betterment-theme/resources/btTrackingInit.min-1.js"></script>
       <script src="hs-fs/hub/5274572/hub_generated/template_assets/49666399874/1728423002407/betterment-theme/js/main.min-1.js"></script>
       <script>

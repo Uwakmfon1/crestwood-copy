@@ -415,7 +415,7 @@
                                                    <div class="grid-items">
                                                       <div class="flex-wrap bt-row card-count-0 per-row-count-3">
                                                          <span class="bt-ContentGrid-item portfolio-item u-col-12 u-col-4@lg" id="portfolio-options-item-core" role="tabpanel">
-                                                            <a class="card-container" href="core-portfolio-1.html" aria-label="explore core portfolio details">
+                                                            <a class="card-container" href="{{ route('stocks') }}" aria-label="explore core portfolio details">
                                                                <div class="card-container-top fancy-bullet fancy-bullet_check fancy-bullet_check_blue">
                                                                   <img class="icon" src="hubfs/Graphics/webpage-graphics/portfolio-core-1.png" alt="">
                                                                   <h3 class="bt-title3">Core</h3>
@@ -435,7 +435,7 @@
                                                             </a>
                                                          </span>
                                                          <span class="bt-ContentGrid-item portfolio-item u-col-12 u-col-4@lg" id="portfolio-options-item-cash-reserve" role="tabpanel">
-                                                            <a class="card-container" href="cash-portfolio-1.html" aria-label="explore cash reserve portfolio details">
+                                                            <a class="card-container" href="{{ route('cash') }}" aria-label="explore cash reserve portfolio details">
                                                                <div class="card-container-top fancy-bullet fancy-bullet_check fancy-bullet_check_blue">
                                                                   <img class="icon" src="hubfs/Graphics/webpage-graphics/portfolio-cash-1.png" alt="">
                                                                   <h3 class="bt-title3">Cash Reserve</h3>
@@ -455,7 +455,7 @@
                                                             </a>
                                                          </span>
                                                          <span class="bt-ContentGrid-item portfolio-item u-col-12 u-col-4@lg" id="portfolio-options-item-goldman-sachs-taxsmart-bonds" role="tabpanel">
-                                                            <a class="card-container" href="goldman-sachs-tax-smart-bonds-1.html" aria-label="explore goldman sachs tax-smart bonds portfolio details">
+                                                            <a class="card-container" href="{{ route('bonds') }}" aria-label="explore goldman sachs tax-smart bonds portfolio details">
                                                                <div class="card-container-top fancy-bullet fancy-bullet_check fancy-bullet_check_blue">
                                                                   <img class="icon" src="hubfs/GBSTB-1.png" alt="">
                                                                   <h3 class="bt-title3">Goldman Sachs Tax-Smart Bonds</h3>
@@ -475,7 +475,7 @@
                                                             </a>
                                                          </span>
                                                          <span class="bt-ContentGrid-item portfolio-item u-col-12 u-col-4@lg" id="portfolio-options-item-blackrock-target-income" role="tabpanel">
-                                                            <a class="card-container" href="blackrock-target-income-portfolio-1.html" aria-label="explore blackrock target income portfolio details">
+                                                            <a class="card-container" href="{{ route('portfolio') }}" aria-label="explore blackrock target income portfolio details">
                                                                <div class="card-container-top fancy-bullet fancy-bullet_check fancy-bullet_check_blue">
                                                                   <img class="icon" src="hubfs/Graphics/webpage-graphics/portfolio-blackrock-1.png" alt="">
                                                                   <h3 class="bt-title3">BlackRock Target Income</h3>
@@ -495,7 +495,7 @@
                                                             </a>
                                                          </span>
                                                          <span class="bt-ContentGrid-item portfolio-item u-col-12 u-col-4@lg" id="portfolio-options-item-broad-impact" role="tabpanel">
-                                                            <a class="card-container" href="socially-responsible-broad-impact-portfolio-1.html" aria-label="explore broad impact portfolio details">
+                                                            <a class="card-container" href="{{ route('socially') }}" aria-label="explore broad impact portfolio details">
                                                                <div class="card-container-top fancy-bullet fancy-bullet_check fancy-bullet_check_blue">
                                                                   <img class="icon" src="hubfs/Graphics/webpage-graphics/portfolio-broad-1.png" alt="">
                                                                   <h3 class="bt-title3">Broad Impact</h3>
@@ -518,7 +518,7 @@
                                                             </a>
                                                          </span>
                                                          <span class="bt-ContentGrid-item portfolio-item u-col-12 u-col-4@lg" id="portfolio-options-item-climate-impact" role="tabpanel">
-                                                            <a class="card-container" href="socially-responsible-climate-impact-portfolio-1.html" aria-label="explore climate impact portfolio details">
+                                                            <a class="card-container" href="{{ route('checking') }}" aria-label="explore climate impact portfolio details">
                                                                <div class="card-container-top fancy-bullet fancy-bullet_check fancy-bullet_check_blue">
                                                                   <img class="icon" src="hubfs/Graphics/webpage-graphics/portfolio-climate-1.png" alt="">
                                                                   <h3 class="bt-title3">Climate Impact</h3>
@@ -541,7 +541,7 @@
                                                             </a>
                                                          </span>
                                                          <span class="bt-ContentGrid-item portfolio-item u-col-12 u-col-4@lg" id="portfolio-options-item-social-impact" role="tabpanel">
-                                                            <a class="card-container" href="socially-responsible-social-impact-portfolio-1.html" aria-label="explore social impact portfolio details">
+                                                            <a class="card-container" href="{{ route('socially') }}" aria-label="explore social impact portfolio details">
                                                                <div class="card-container-top fancy-bullet fancy-bullet_check fancy-bullet_check_blue">
                                                                   <img class="icon" src="hubfs/Graphics/webpage-graphics/portfolio-social-1.png" alt="">
                                                                   <h3 class="bt-title3">Social Impact</h3>
@@ -564,7 +564,7 @@
                                                             </a>
                                                          </span>
                                                          <span class="bt-ContentGrid-item portfolio-item u-col-12 u-col-4@lg" id="portfolio-options-item-goldman-sachs-smart-beta" role="tabpanel">
-                                                            <a class="card-container" href="goldman-sachs-smart-beta-portfolio-1.html" aria-label="explore goldman sachs smart beta portfolio details">
+                                                            <a class="card-container" href="{{ route('reserve') }}" aria-label="explore goldman sachs smart beta portfolio details">
                                                                <div class="card-container-top fancy-bullet fancy-bullet_check fancy-bullet_check_blue">
                                                                   <img class="icon" src="hubfs/Graphics/webpage-graphics/portfolio-goldman-1.png" alt="">
                                                                   <h3 class="bt-title3">Goldman Sachs Smart Beta</h3>
@@ -584,7 +584,7 @@
                                                             </a>
                                                          </span>
                                                          <span class="bt-ContentGrid-item portfolio-item u-col-12 u-col-4@lg" id="portfolio-options-item-innovative-technology" role="tabpanel">
-                                                            <a class="card-container" href="innovative-tech-portfolio-1.html" aria-label="explore innovative technology portfolio details">
+                                                            <a class="card-container" href="{{ route('performance') }}" aria-label="explore innovative technology portfolio details">
                                                                <div class="card-container-top fancy-bullet fancy-bullet_check fancy-bullet_check_blue">
                                                                   <img class="icon" src="hubfs/Graphics/webpage-graphics/portfolio-innovative-tech-1.png" alt="">
                                                                   <h3 class="bt-title3">Innovative Technology</h3>
@@ -604,7 +604,7 @@
                                                             </a>
                                                          </span>
                                                          <span class="bt-ContentGrid-item portfolio-item u-col-12 u-col-4@lg" id="portfolio-options-item-value-tilt" role="tabpanel">
-                                                            <a class="card-container" href="value-tilt-portfolio-1.html" aria-label="explore value tilt portfolio details">
+                                                            <a class="card-container" href="{{ route('rewards') }}" aria-label="explore value tilt portfolio details">
                                                                <div class="card-container-top fancy-bullet fancy-bullet_check fancy-bullet_check_blue">
                                                                   <img class="icon" src="hubfs/Graphics/webpage-graphics/portfolio-value-tilt-1.png" alt="">
                                                                   <h3 class="bt-title3">Value Tilt</h3>
@@ -624,7 +624,7 @@
                                                             </a>
                                                          </span>
                                                          <span class="bt-ContentGrid-item portfolio-item u-col-12 u-col-4@lg" id="portfolio-options-item-crypto-etf" role="tabpanel">
-                                                            <a class="card-container" href="crypto-etf-1.html" aria-label="explore crypto etf portfolio details">
+                                                            <a class="card-container" href="{{ route('cryptoinvest') }}" aria-label="explore crypto etf portfolio details">
                                                                <div class="card-container-top fancy-bullet fancy-bullet_check fancy-bullet_check_blue">
                                                                   <img class="icon" src="hubfs/portfolio-icon_crypto-btc-eth-1.png" alt="">
                                                                   <h3 class="bt-title3">Crypto ETF</h3>
@@ -710,16 +710,9 @@
                                                             <div class="hs-cta mt16">
                                                                <span>
                                                                   <span id="hs_cos_wrapper_widget_1633665643225_" class="hs_cos_wrapper hs_cos_wrapper_widget hs_cos_wrapper_type_cta" style="" data-hs-cos-general-type="widget" data-hs-cos-type="cta">
-                                                                     <!--HubSpot Call-to-Action Code -->
-                                                                     <span class="hs-cta-wrapper" id="hs-cta-wrapper-98c2bf89-06ed-4333-b24a-2d66d48eb511">
-                                                                        <span class="hs-cta-node hs-cta-98c2bf89-06ed-4333-b24a-2d66d48eb511" id="hs-cta-98c2bf89-06ed-4333-b24a-2d66d48eb511">
-                                                                           <!--[if lte IE 8]>
-                                                                           <div id="hs-cta-ie-element"></div>
-                                                                           <![endif]--><a href="https://cta-redirect.hubspot.com/cta/redirect/5274572/98c2bf89-06ed-4333-b24a-2d66d48eb511"><img class="hs-cta-img" id="hs-cta-img-98c2bf89-06ed-4333-b24a-2d66d48eb511" style="border-width:0px;" src="cta/default/5274572/98c2bf89-06ed-4333-b24a-2d66d48eb511-1.png" alt="Learn more"></a>
-                                                                        </span>
-                                                                        <script charset="utf-8" src="hs/cta/cta/current-1.js"></script><script type="text/javascript"> hbspt.cta._relativeUrls=true;hbspt.cta.load(5274572, '98c2bf89-06ed-4333-b24a-2d66d48eb511', {"useNewLoader":"true","region":"na1"}); </script>
-                                                                     </span>
-                                                                     <!-- end HubSpot Call-to-Action Code -->
+                                                                     <p>
+                                                                        <a href="{{ route('expert') }}" rel="noopener" aria-label="Learn about premium pricing">Learn more ➔</a>
+                                                                     </p>
                                                                   </span>
                                                                </span>
                                                             </div>
@@ -863,7 +856,7 @@
                                                                <div class="item-content-area dark">
                                                                   <h3 class="item-headline bt-title3">Lower costs.</h3>
                                                                   <div class="item-body bt-body2">
-                                                                     <p>Keep more money in your portfolio with low-cost exchange-traded funds (ETFs) and <a href="pricing-1.html"></a><a href="pricing-1.html">our transparent pricing</a>.</p>
+                                                                     <p>Keep more money in your portfolio with low-cost exchange-traded funds (ETFs) and <a href="{{ route('pricing') }}"></a><a href="{{ route('pricing') }}">our transparent pricing</a>.</p>
                                                                   </div>
                                                                </div>
                                                             </div>
@@ -944,7 +937,21 @@
                                                             <h2 class="bt-ContentGrid-item u-col-12 u-col-6@lg">Be invested.</h2>
                                                             <div class="u-col-12"></div>
                                                             <div class="u-col-12"></div>
-                                                            <div class="hs-cta "><div class="u-displayNone--until-lg bt-nav-cta-2">
+                                                            <div class="hs-cta ">
+                                                               <span>
+                                                                  <span>
+                                                                     <div class="u-displayNone--until-lg bt-nav-cta-2">
+                                                                        <div class="">
+                                                                              <div>
+                                                                                 <a href="{{ route('register') }}" style="background: #1d6ae5; color: white; padding: 14px 30px; border-radius: 5px; text-align: center; text-decoration: none; font-weight: 500;">Get Stated</a>
+                                                                              </div>
+                                                                        </div>
+                                                                     </div>
+                                                                  </span>
+                                                               </span>
+                                                            </div>
+
+<div class="hs-cta " style="display: none"><div class="u-displayNone--until-lg bt-nav-cta-2">
                                                                <div class="">
                                                                      <div>
                                                                         <a href="{{ route('login') }}" style="background: #1d6ae5; color: white; padding: 14px 30px; border-radius: 5px; text-align: center; text-decoration: none; font-weight: 500;">Get Started</a>
@@ -1117,7 +1124,7 @@
       <script defer="" src="content-cwv-embed/static-1.1293/embed-1.js"></script>
       <script src="ajax/libs/jquery/3.5.1/jquery.min-1.js"></script>
       <script src="ajax/libs/jquery-migrate/3.3.1/jquery-migrate.min-1.js"></script>
-      <script id="__ada" data-handle="betterment-cx" src="https://static.ada.support/embed2.js" data-lazy=""></script>
+      
       <script src="hs-fs/hub/5274572/hub_generated/template_assets/57001203564/1728423001638/betterment-theme/resources/btTrackingInit.min-1.js"></script>
       <script src="hs-fs/hub/5274572/hub_generated/template_assets/49666399874/1728423002407/betterment-theme/js/main.min-1.js"></script>
       <script>
@@ -1132,44 +1139,8 @@
       <script src="hs-fs/hub/5274572/hub_generated/module_assets/87640144244/1725556675401/module_87640144244_get_started_mobile_popup.min-1.js"></script>
       <script src="hs-fs/hub/5274572/hub_generated/module_assets/55748752406/1725556670961/module_55748752406_chatbot.min-1.js"></script>
       <!-- Start of HubSpot Analytics Code -->
-      <script type="text/javascript">
-         var _hsq = _hsq || [];
-         _hsq.push(["setContentType", "standard-page"]);
-         _hsq.push(["setCanonicalUrl", "https:\/\/www.betterment.com\/investments"]);
-         _hsq.push(["setPageId", "58655254607"]);
-         _hsq.push(["setContentMetadata", {
-             "contentPageId": 58655254607,
-             "legacyPageId": "58655254607",
-             "contentFolderId": null,
-             "contentGroupId": null,
-             "abTestId": null,
-             "languageVariantId": 58655254607,
-             "languageCode": "en",
-             
-             
-         }]);
-      </script>
+      
       <script type="text/javascript" id="hs-script-loader" async="" defer="" src="hs/scriptloader/5274572-1.js"></script>
-      <!-- End of HubSpot Analytics Code -->
-      <script type="text/javascript">
-         var hsVars = {
-             render_id: "32733019-e938-4748-a68e-8dafc95e721c",
-             ticks: 1730128110589,
-             page_id: 58655254607,
-             
-             content_group_id: 0,
-             portal_id: 5274572,
-             app_hs_base_url: "https://app.hubspot.com",
-             cp_hs_base_url: "https://cp.hubspot.com",
-             language: "en",
-             analytics_page_type: "standard-page",
-             scp_content_type: "",
-             analytics_page_id: "58655254607",
-             category_id: 1,
-             folder_id: 0,
-             is_hubspot_user: false
-         }
-      </script>
-      <script defer="" src="hs/hsstatic/HubspotToolsMenu/static-1.354/js/index-1.js"></script>
+
    </body>
 </html>

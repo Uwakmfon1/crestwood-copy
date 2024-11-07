@@ -178,12 +178,12 @@
                                  </a>
                               </li>
                               <li class="item " id="menu-item-Employers">
-                                 <a href="../work-1.html" class="item-link" data-event="Employers" data-track-event="ElementClicked" data-track-name="Employers" data-track-module="CourtesyNav">
+                                 <a href="{{ route('home') }}" class="item-link" data-event="Employers" data-track-event="ElementClicked" data-track-name="Employers" data-track-module="CourtesyNav">
                                  Employers
                                  </a>
                               </li>
                               <li class="item " id="menu-item-Advisors">
-                                 <a href="../advisors-1.html" class="item-link" data-event="Advisors" data-track-event="ElementClicked" data-track-name="Advisors" data-track-module="CourtesyNav">
+                                 <a href=".{{ route('home') }}" class="item-link" data-event="Advisors" data-track-event="ElementClicked" data-track-name="Advisors" data-track-module="CourtesyNav">
                                  Advisors
                                  </a>
                               </li>
@@ -286,10 +286,10 @@
                                     <a href="#b4b_participant_videos">Videos</a>
                                  </li>
                                  <li>
-                                    <a href="investments-1.html">Investment options</a>
+                                    <a href="{{ route('investment') }}">Investment options</a>
                                  </li>
                                  <li>
-                                    <a href="../help/tag/401k-participants-1.html">FAQs</a>
+                                    <a href="{{ route('faq') }}">FAQs</a>
                                  </li>
                               </ul>
                            </div>
@@ -302,7 +302,7 @@
                <div class="bt-container">
                   <div class="flex-wrap ">
                      <div class="u-col-12 u-col-12_1">
-                        <a class="item read-time has-excerpt" href="resources/how-to-turn-your-retirement-savings-into-retirement-income-1.html">
+                        <a class="item read-time has-excerpt" href="#">
                            <img class="item-image lazy" data-src="https://www.betterment.com/hubfs/pie-chart-slice.webp" alt="">
                            <p class="item-title">How to turn your retirement savings into retirement income</p>
                            <p class="item-excerpt">An income strategy during retirement can help make your portfolio last longer, while also easing potential tax burdens.</p>
@@ -318,10 +318,10 @@
                            <div id="hs_cos_wrapper_module_1632879976" class="hs_cos_wrapper hs_cos_wrapper_widget hs_cos_wrapper_type_module" style="" data-hs-cos-general-type="widget" data-hs-cos-type="module">
                               <ul>
                                  <li>
-                                    <a class="item" href="resources/401k-contribution-rate-1.html">How to pick a 401(k) contribution rate</a>
+                                    <a class="item" href="#">How to pick a 401(k) contribution rate</a>
                                  </li>
                                  <li>
-                                    <a class="item" href="resources/401k-roll-over-1.html">Rolling over is more than a dog trick</a>
+                                    <a class="item" href="#">Rolling over is more than a dog trick</a>
                                  </li>
                               </ul>
                            </div>
@@ -330,28 +330,28 @@
                            <h3 class="featured-grid_header-title bt-eyebrow">Most Recent Posts</h3>
                            <ul>
                               <li>
-                                 <a class="item" href="resources/how-to-invest-during-market-highs-1.html">How to invest during market highs</a>
+                                 <a class="item" href="#">How to invest during market highs</a>
                                  <div class="js-post-body-count" aria-hidden="true" hidden="">
                                     How to invest during market highs Betterment experts weigh in on how to override anxiety, and be invested when the market climbs. While we invest for our own reasons, we get into the market to take advantage of potential price appreciation and income produced by financial assets. But anxiety can get the best of even the most eager investors. What if I buy when the market peaks, and then immediately declines? Sound familiar? As any investor knows, psychological aspects can cloud one’s judgment when it comes to money. We’re encouraged to minimize risk and maximize returns, whenever possible. So, a market that’s going up-up-up, can leave some investors feeling hesitant about paying premium prices—instead of opting for undervalued stocks, or lower price points. So how do we override the Fear of Purchasing at All-time Highs (or FOPAH, for short)? Is it best to dive in, or wait for a potential pullback? Our investment experts believe one of the best things you can do is face your fear, wading into the market. In practice, it can take a long time before that pullback comes, during which there may be further positive market returns. For instance, between 2012 and 2017, the S&amp;P 500 did not experience a pullback greater than 12%. Oftentimes when a pullback does arrive, it’s not heralded as a positive outcome—but an ominous event, accompanied by scary headlines that spark new fears of further downturn. This can all lead to additional hesitancy around buying stocks. While there's no "perfect" time to invest, we can still be confident that choosing a diversified portfolio of investments is a smart way to help achieve long-term financial goals. To ease your fears, work out approximately how much time you’ll need to save up for your own goals. Long-term goals, like saving for college or a deposit on a house, can take time. And that’s a good thing! The longer your time horizon (the period of time you plan to keep your savings invested in the market), the more confident you can be that your money will grow by the point you want to withdraw it. Even if the market has already recently run up when you go to invest, a prolonged time horizon should help quell a pullback in the nearterm. Despite volatility, the stock market tends to trend upwards over longer periods. By maintaining a long-term perspective, you can position yourself to benefit from the market's long-term growth potential, which can outweigh short-term losses. Dating back to 1988, if you decided to invest on any given trading day, 65% of those days would have resulted in a positive investment return over the following month. The share of days with positive returns goes up as that trailing holding period extends. Historically, no matter when an investment was made between 1988 and 2009, the market was higher 100% the time just 15 years later. Short-term goals, like saving for a vacation or a home reno, have a shorter time horizon—meaning your money has less time to grow in the market. However, it's worth remembering that historically, investing at all-time highs has not resulted in lower future returns compared to investing on any other given day. After the S&amp;P 500 reaches an all-time high, average returns tend to be slightly higher than during periods when the index has not soared so high. Practical steps to help ease your anxiety: Set up recurring deposits: When you commit to investing a fixed amount of money at set intervals over time, your losses could potentially be smaller if the market does dive in the near term. Plus, you will still have cash ready to buy at lower prices. While this comes with the risk of later buying at higher prices, it can help override the emotional pressure of trying to time the market. Diversify: Consider adding other asset classes, regions, and company sizes in your portfolio (as we do at Betterment). Our automated portfolio rebalancing is designed to maintain your investment portfolio's target asset allocation over time. Betterment continuously monitors your portfolio to see if the current allocation deviates from your target allocation—due to market fluctuations or changes in the value of your investments. Our auto-adjust feature can also help right-size the risk level of your portfolio by reducing the share of the portfolio allocated to more volatile stocks, and increasing the share allocated to bonds as your time horizon shortens.
                                  </div>
                                  <div class="readingTime"></div>
                               </li>
                               <li>
-                                 <a class="item" href="resources/how-an-ira-can-fit-into-your-retirement-strategy-1.html">How an IRA can fit into your retirement strategy</a>
+                                 <a class="item" href="#">How an IRA can fit into your retirement strategy</a>
                                  <div class="js-post-body-count" aria-hidden="true" hidden="">
                                     How an IRA can fit into your retirement strategy You already have access to a Betterment 401(k) through your employer. But if you’re not sure what the difference is between your 401(k) and IRA, we’ll lay it all out for you here. An Individual Retirement Account (IRA) is a type of investment account with tax advantages that helps you prepare for retirement. Depending on the type of IRA you invest in, you can make tax-free withdrawals when you retire, earn tax-free interest, or put off paying taxes until retirement. The sooner you start investing in an IRA, the more time you have for the earnings on your investment to compound before you reach retirement age. If you’re planning for retirement, it’s important to understand your options and learn how to maximize your tax benefits. Your employer already offers a 401(k) through Betterment—nice! But you may also want to have an IRA too, for a more robust plan. In this article, we’ll walk you through: What makes an IRA different from a 401(k) The types of IRAs How to choose between a Roth IRA and a Traditional IRA Timing your IRA contributions IRA recharacterizations Roth IRA conversions Let’s start by looking at what makes an Individual Retirement Account different from a 401(k). How is an IRA different from a 401(k)? When it comes to retirement planning, the two most common investment accounts people talk about are IRAs and 401(k)s. 401(k)s offer similar tax advantages to IRAs, but just about anyone can open an IRA. A 401(k) is what’s known as an employer-sponsored retirement plan: It’s only available through an employer. Other differences between these two types of accounts are that: Employers may offer a matching contribution into your 401(k) account, based on what you contribute 401(k) contributions come right out of your paycheck 401(k) contribution limits are significantly higher If your employer matches contributions to a 401(k), they’re basically giving you free money you wouldn’t otherwise receive. It’s typically wise to take advantage of this match before looking to an IRA. With an IRA, you determine exactly when and how to make contributions. You can put money into an IRA at any time over the course of the year, whereas a 401(k) almost always has to come from your paycheck. Note that annual IRA contributions can be made up until that year’s tax filing deadline, whereas the contribution deadline for 401(k)s is at the end of each calendar year. Every year, you’re only allowed to put a fixed amount of money into a retirement account, and the exact amount often changes year-to-year. For an IRA, the contribution limit for 2024 is $7,000 if you’re under 50, or $8,000 if you’re 50 or older. For a 401(k), the contribution limit for 2024 is $23,000 if you’re under 50, or $30,500 if you’re 50 or older. These contribution limits are separate, so it’s not uncommon for investors to have both a 401(k) and an IRA. What are the types of IRAs? The challenge for most people looking into IRAs is understanding which kind of IRA is most advantageous for them. For many, this boils down to Roth and/or Traditional. The advantages of each can shift over time as tax laws and your income level changes, so this is a common question for even advanced investors. As a side note, there are other IRA options suited for the self-employed or small business owner, such as the SEP IRA, but we won’t go into those here. As mentioned in the section above, IRA contributions are not made directly from your paycheck. That means that the money you are contributing to an IRA has already been taxed. When you contribute to a Traditional IRA, your contribution may be tax-deductible. Whether you are eligible to take a full, partial, or any deduction at all depends on if you or your spouse is covered by an employer retirement plan (i.e. a 401(k)) and your income level (more on these limitations later). Once funds are in your Traditional IRA, you will not pay any income taxes on investment earnings until you begin to withdraw from the account. This means that you benefit from “tax-deferred” growth. If you were able to deduct your contributions, you will pay income tax on the contributions as well as earnings at the time of withdrawal. If you were not eligible to take a deduction on your contributions, then you generally will only pay taxes on the earnings at the time of withdrawal. This is done on a “pro-rata” basis. Comparatively, contributions to a Roth IRA are not tax deductible. When it comes time to withdraw from your Roth IRA in retirement, your withdrawals will generally be tax free—even the interest you’ve accumulated. How to choose between a Roth IRA and a Traditional IRA For most people, choosing an IRA is a matter of deciding between a Roth IRA and a Traditional IRA. Neither option is inherently better: it depends on your income and your tax bracket now—and in retirement. Your income determines whether you can contribute to a Roth IRA, and also whether you are eligible to deduct contributions made to a Traditional IRA. However, the IRS doesn’t use your gross income; they look at your modified adjusted gross income, which can be different from taxable income. With Roth IRAs, your ability to contribute is phased out when your modified adjusted gross income (MAGI) reaches a certain level. If you’re eligible for both types of IRAs, the choice often comes down to what tax bracket you’re in now, and what tax bracket you think you’ll be in when you retire. If you think you’ll be in a lower tax bracket when you retire, postponing taxes with a Traditional IRA will likely result in you keeping more of your money. If you expect to be in a higher tax bracket when you retire, using a Roth IRA to pay taxes now may be the better choice. The best type of account for you may change over time, but making a choice now doesn’t lock you into one option forever. So as you start retirement planning, focus on where you are now and where you’d like to be then. It’s healthy to re-evaluate your position periodically, especially when you go through major financial transitions such as getting a new job, losing a job, receiving a promotion, or creating an additional revenue stream. Timing IRA contributions: Why earlier is better Regardless of which type of IRA you select, it helps to understand how the timing of your contributions impacts your investment returns. It’s your choice to either make a maximum contribution early in the year, contribute over time, or wait until the deadline. By timing your contribution to be as early as possible, you can maximize your time in the market, which could help you achieve greater returns over time. Consider the difference between making a maximum contribution on January 1 and making it on December 1 each year. Then suppose, hypothetically, that your annual growth rate is 10%. Here’s what the difference could look like between an IRA with early contributions and an IRA with late contributions: This figure represents the scenarios mentioned above.‘Deposit Early’ indicates depositing $6,000 on January 1 of each calendar year, whereas ‘Deposit Late’ indicates depositing $6,000 on December 1 of the same calendar year, both every year for a ten-year period. Calculations assume a hypothetical growth rate of 10% annually. The hypothetical growth rate is not based on, and should not be interpreted to reflect, any Betterment portfolio, or any other investment or portfolio, and is purely an arbitrary number. Further, the results are solely based on the calculations mentioned in the preceding sentences. These figures do not take into account any dividend reinvestment, taxes, market changes, or any fees charged. The illustration does not reflect the chance for loss or gain, and actual returns can vary from those above. What’s an IRA recharacterization? You might contribute to an IRA before you have started filing your taxes and may not know exactly what your Modified Adjusted Gross Income will be for that year. Therefore, you may not know whether you will be eligible to contribute to a Roth IRA, or if you will be able to deduct your contributions to a Traditional IRA. In some cases, the IRS allows you to reclassify your IRA contributions. A recharacterization changes your contributions (plus the gains or minus the losses attributed to them) from a Traditional IRA to a Roth IRA, or, from a Roth IRA to a Traditional IRA. It’s most common to recharacterize a Roth IRA to a Traditional IRA. Generally, there are no taxes associated with a recharacterization if the amount you recharacterize includes gains or excludes dollars lost. Here are three instances where a recharacterization may be right for you: If you made a Roth contribution during the year but discovered later that your income was high enough to reduce the amount you were allowed to contribute—or prohibit you from contributing at all. If you contributed to a Traditional IRA because you thought your income would be above the allowed limits for a Roth IRA contribution, but your income ended up lower than you’d expected. If you contributed to a Roth IRA, but while preparing your tax return, you realize that you’d benefit more from the immediate tax deduction a Traditional IRA contribution would potentially provide. Additionally, we have listed a few methods that can be used to correct an over-contribution to an IRA in this FAQ resource. You cannot recharacterize an amount that’s more than your allowable maximum annual contribution. You have until each year’s tax filing deadline to recharacterize—unless you file for an extension or you file an amended tax return. What’s a Roth conversion? A Roth conversion is a one-way street. It’s a potentially taxable event where funds are transferred from a Traditional IRA to a Roth IRA. There is no such thing as a Roth to Traditional conversion. It is different from a recharacterization because you are not changing the type of IRA that you contributed to for that particular year. There is no cap on the amount that’s eligible to be converted, so the sky’s the limit for those that choose to convert. We go into Roth conversions in more detail in our Help Center. So what’s right for you? Since your employer offers a 401(k) through Betterment, it’s typically best to start there. Some employers auto-enroll new hires, meaning that paycheck contributions start automatically. Whether your employer auto-enrolls or not, you’ll need to start by claiming your 401(k) account. Once you claim your account, you can set or adjust the contribution rate. Get started here: betterment.com/accountaccess. After you’ve got your 401(k) up and running, you might want to consider contributing to an IRA as well. On your dashboard, select “Add new” in the left-hand navigation, then choose: IRA. Follow the prompts to select which type of IRA you want, and sync a bank account to contribute from. You’ll have access to the same investment options available in your 401(k). Retirement can feel hard to plan for, but Betterment has plenty of investing options to make it easy to save for. We’re here to help you work towards for the retirement of your dreams.
                                  </div>
                                  <div class="readingTime"></div>
                               </li>
                               <li>
-                                 <a class="item" href="resources/get-to-know-your-portfolio-options-1.html">Get to know your portfolio options</a>
+                                 <a class="item" href="#">Get to know your portfolio options</a>
                                  <div class="js-post-body-count" aria-hidden="true" hidden="">
                                     Get to know your portfolio options Betterment helps take the stress out of investing with a range of expert-built portfolio options, made of generally low-cost ETFs (exchange-traded funds). Given the breadth of available choices, it’s natural to wonder which portfolio is right for your financial situation. The good news is each option has been designed to help investors, like you, reach their financial goals. While all of our portfolios combining stocks and bonds possess similar expected risk and return profiles, Betterment will recommend an investment allocation for you, based on the time horizon and goal type you select. You can also adjust your diversification and risk preferences. For most portfolios that hold both stocks and bonds, our “auto-adjust” feature systematically glides your portfolio(s) to a lower overall risk level as you get closer to, enter, and progress through retirement. This feature is very similar to a “glidepath,” which is found in target-date funds (TDFs). It’s great for those that want to “set it, and forget it.” With that, let’s review your portfolio options. Core Well-diversified, low-cost, and built for long-term investing, the Core portfolio features a broad collection of ETFs made of thousands of stocks and bonds from around the world. This is the default investment option for those who do not specify a portfolio strategy. Innovative Technology A well-diversified portfolio allocated similarly to the Core portfolio, but with a subset of stocks allocated to high-growth potential companies such as clean energy, semiconductors, robots, virtual reality, blockchain, and nanotechnology. This comes with increased exposure to risk. Value Tilt A well-diversified portfolio allocated similarly to the Core portfolio, but with a subset of the stocks allocation focused on potentially undervalued U.S. companies, according to certain financial metrics. Broad Impact A well-diversified portfolio that invests in companies that rank highly on environmental, social, and corporate governance (ESG) criteria. Climate Impact A well-diversified portfolio that invests in companies working to lower carbon emissions, fund green projects, and divest from holders of fossil fuel reserves—while still designed for potential long-term growth. Social Impact A well-diversified portfolio that invests in companies actively working toward minority empowerment and gender diversity as part of its long-term strategy. Goldman Sachs Smart Beta Targets companies that have potential to outperform the broader market over the long term. Diverse and relatively low-cost, this portfolio comes with higher exposure to risk. BlackRock Target Income A 100% bond portfolio with different income yields to help protect you against stock market volatility. This portfolio option is more suitable for investors with shorter time horizons, or for those that are seeking to generate income. Flexible portfolio A Flexible portfolio gives you more control over your investments, and allows you to modify the individual asset class weights to best fit your preferences. We’ll provide guidance on the risk exposure and diversification of your portfolio, based on your adjustments. See when using a Flexible portfolio might be right for you. After you make a portfolio selection, Betterment will handle the rest. Here are some things to keep in mind: All portfolios benefit from auto-rebalancing, which returns the value of all allocated funds back to the target weight (after the portfolio drifts with market movements). Rebalancing may be subject to a drift threshold and account balance minimum. Although changing a portfolio’s asset allocation and fund selection can cause changes in the portfolio’s performance, Betterment has designed each portfolio to be suitable in terms of its riskiness and return potential for a given time horizon and level of risk. Which is to say, you should feel comfortable choosing a portfolio based on your convictions and values. If you’re uncertain where to start, the Betterment Core portfolio is a great way to go—and it is the portfolio used by the majority of Betterment users. Keep in mind: As your investment fiduciary, Betterment monitors market action and portfolio performance, and will periodically update asset allocation or include more cost-efficient underlying funds to help optimize your portfolio performance. We’re here to help you make decisions that bring your goals into focus, and be invested in your future.
                                  </div>
                                  <div class="readingTime"></div>
                               </li>
                            </ul>
-                           <a class="see-all-cta" href="resources/all-1.html">See all articles</a>
+                           <a class="see-all-cta" href="#">See all articles</a>
                         </div>
                      </div>
                   </div>
@@ -366,13 +366,13 @@
                      <div class="bt-ContentGrid-item cols col-1 u-col-12 u-col-12@md u-col-3@lg">
                         <h3 class="category-title">Getting started </h3>
                         <div>
-                           <a href="resources/tag/getting-started-1.html">See the full list</a>
+                           <a href="#">See the full list</a>
                         </div>
                      </div>
                      <div class="cols col-2 u-col-12 u-col-12@md u-col-9@lg">
                         <ul class="flex-wrap bt-row">
                            <li class="bt-ContentGrid-item u-col-12 u-col-4@md u-col-4@lg post-list-item_small">
-                              <a class="item read-time " href="resources/start-investing-retirement-1.html">
+                              <a class="item read-time " href="{{ route('investment') }}">
                                  <img class="item-image lazy" data-src="https://www.betterment.com/hubfs/Graphics/featured-images/contribution-tree-compound-interest.png" alt="">
                                  <p class="item-title">When’s the best time to invest for retirement? Now.</p>
                                  <div class="js-post-body-count" aria-hidden="true" hidden="">
@@ -382,7 +382,7 @@
                               </a>
                            </li>
                            <li class="bt-ContentGrid-item u-col-12 u-col-4@md u-col-4@lg post-list-item_small">
-                              <a class="item read-time " href="resources/your-betterment-401k.html">
+                              <a class="item read-time " href="{{ route('ira') }}">
                                  <img class="item-image lazy" data-src="https://www.betterment.com/hubfs/Graphics/featured-images/your-betterment-401k.png" alt="">
                                  <p class="item-title">Getting started with your Betterment 401(k)</p>
                                  <div class="js-post-body-count" aria-hidden="true" hidden="">
@@ -392,7 +392,7 @@
                               </a>
                            </li>
                            <li class="bt-ContentGrid-item u-col-12 u-col-4@md u-col-4@lg post-list-item_small">
-                              <a class="item read-time " href="resources/529s-1.html">
+                              <a class="item read-time " href="{{ route('home') }}">
                                  <img class="item-image lazy" data-src="https://www.betterment.com/hubfs/Graphics/featured-images/featured-image-529s.png" alt="">
                                  <p class="item-title">Welcome to Your 529 Education Savings Benefit</p>
                                  <div class="js-post-body-count" aria-hidden="true" hidden="">
@@ -408,13 +408,13 @@
                      <div class="bt-ContentGrid-item cols col-1 u-col-12 u-col-12@md u-col-3@lg">
                         <h3 class="category-title">Investing with Betterment </h3>
                         <div>
-                           <a href="resources/tag/investing-with-betterment-1.html">See the full list</a>
+                           <a href="{{ route('home') }}">See the full list</a>
                         </div>
                      </div>
                      <div class="cols col-2 u-col-12 u-col-12@md u-col-9@lg">
                         <ul class="flex-wrap bt-row">
                            <li class="bt-ContentGrid-item u-col-12 u-col-4@md u-col-4@lg post-list-item_small">
-                              <a class="item read-time " href="resources/diversify-outside-us-1.html">
+                              <a class="item read-time " href="#">
                                  <img class="item-image lazy" data-src="https://www.betterment.com/hubfs/Graphics/Featured-images/pie-chart-slice.png" alt="">
                                  <p class="item-title">Why diversify outside of the US?</p>
                                  <div class="js-post-body-count" aria-hidden="true" hidden="">
@@ -424,7 +424,7 @@
                               </a>
                            </li>
                            <li class="bt-ContentGrid-item u-col-12 u-col-4@md u-col-4@lg post-list-item_small">
-                              <a class="item read-time " href="resources/get-to-know-your-portfolio-options-1.html">
+                              <a class="item read-time " href="{{ route('portfolio') }}">
                                  <img class="item-image lazy" data-src="https://www.betterment.com/hubfs/1.1%20Blog%20Header.png" alt="">
                                  <p class="item-title">Get to know your portfolio options</p>
                                  <div class="js-post-body-count" aria-hidden="true" hidden="">
@@ -434,7 +434,7 @@
                               </a>
                            </li>
                            <li class="bt-ContentGrid-item u-col-12 u-col-4@md u-col-4@lg post-list-item_small">
-                              <a class="item read-time " href="resources/how-to-invest-during-market-highs-1.html">
+                              <a class="item read-time " href="{{ route('home') }}">
                                  <img class="item-image lazy" data-src="https://www.betterment.com/hubfs/ILLO%20FINAL.png" alt="">
                                  <p class="item-title">How to invest during market highs</p>
                                  <div class="js-post-body-count" aria-hidden="true" hidden="">
@@ -450,13 +450,13 @@
                      <div class="bt-ContentGrid-item cols col-1 u-col-12 u-col-12@md u-col-3@lg">
                         <h3 class="category-title">Next-level planning </h3>
                         <div>
-                           <a href="resources/tag/next-level-planning-1.html">See the full list</a>
+                           <a href="{{ route('home') }}">See the full list</a>
                         </div>
                      </div>
                      <div class="cols col-2 u-col-12 u-col-12@md u-col-9@lg">
                         <ul class="flex-wrap bt-row">
                            <li class="bt-ContentGrid-item u-col-12 u-col-4@md u-col-4@lg post-list-item_small">
-                              <a class="item read-time " href="resources/traditional-and-roth-401ks-1.html">
+                              <a class="item read-time " href="{{ route('ira') }}l">
                                  <img class="item-image lazy" data-src="https://www.betterment.com/hubfs/Graphics/featured-images/puzzle-pieces.png" alt="">
                                  <p class="item-title">Traditional and Roth 401(k)s</p>
                                  <div class="js-post-body-count" aria-hidden="true" hidden="">
@@ -466,7 +466,7 @@
                               </a>
                            </li>
                            <li class="bt-ContentGrid-item u-col-12 u-col-4@md u-col-4@lg post-list-item_small">
-                              <a class="item read-time " href="resources/how-an-ira-can-fit-into-your-retirement-strategy-1.html">
+                              <a class="item read-time " href="{{ route('home') }}">
                                  <img class="item-image lazy" data-src="https://www.betterment.com/hubfs/human-lounge-chair-bar-charts.webp" alt="">
                                  <p class="item-title">How an IRA can fit into your retirement strategy</p>
                                  <div class="js-post-body-count" aria-hidden="true" hidden="">
@@ -476,7 +476,7 @@
                               </a>
                            </li>
                            <li class="bt-ContentGrid-item u-col-12 u-col-4@md u-col-4@lg post-list-item_small">
-                              <a class="item read-time " href="resources/investing-in-your-40s-1.html">
+                              <a class="item read-time " href="{{ route('home') }}">
                                  <img class="item-image lazy" data-src="https://www.betterment.com/hubfs/Graphics/featured-images/40s.png" alt="">
                                  <p class="item-title">Investing in Your 40s: 4 Financial Goals You Should Prioritize at Mid-Life</p>
                                  <div class="js-post-body-count" aria-hidden="true" hidden="">
@@ -492,13 +492,13 @@
                      <div class="bt-ContentGrid-item cols col-1 u-col-12 u-col-12@md u-col-3@lg">
                         <h3 class="category-title">Preparing to retire </h3>
                         <div>
-                           <a href="resources/tag/preparing-to-retire-1.html">See the full list</a>
+                           <a href="{{ route('home') }}">See the full list</a>
                         </div>
                      </div>
                      <div class="cols col-2 u-col-12 u-col-12@md u-col-9@lg">
                         <ul class="flex-wrap bt-row">
                            <li class="bt-ContentGrid-item u-col-12 u-col-4@md u-col-4@lg post-list-item_small">
-                              <a class="item read-time " href="resources/how-to-turn-your-retirement-savings-into-retirement-income-1.html">
+                              <a class="item read-time " href="{{ route('home') }}">
                                  <img class="item-image lazy" data-src="https://www.betterment.com/hubfs/pie-chart-slice.webp" alt="">
                                  <p class="item-title">How to turn your retirement savings into retirement income</p>
                                  <div class="js-post-body-count" aria-hidden="true" hidden="">
@@ -508,7 +508,7 @@
                               </a>
                            </li>
                            <li class="bt-ContentGrid-item u-col-12 u-col-4@md u-col-4@lg post-list-item_small">
-                              <a class="item read-time " href="resources/required-minimum-distributions-age-1.html">
+                              <a class="item read-time " href="{{ route('home') }}">
                                  <img class="item-image lazy" data-src="https://resources.betterment.com/hubfs/Graphics/Featured-images/reaching-the-pinnacle-financial-pyramid.jpg" alt="">
                                  <p class="item-title">What is a Required Minimum Distribution?</p>
                                  <div class="js-post-body-count" aria-hidden="true" hidden="">
@@ -518,7 +518,7 @@
                               </a>
                            </li>
                            <li class="bt-ContentGrid-item u-col-12 u-col-4@md u-col-4@lg post-list-item_small">
-                              <a class="item read-time " href="resources/investing-in-your-50s-1.html">
+                              <a class="item read-time " href="{{ route('home') }}">
                                  <img class="item-image lazy" data-src="https://www.betterment.com/hubfs/Graphics/featured-images/50s.png" alt="">
                                  <p class="item-title">Investing in Your 50s: 4 Practical Tips for Retirement Planning</p>
                                  <div class="js-post-body-count" aria-hidden="true" hidden="">
@@ -543,14 +543,14 @@
                   <div class="bt-container">
                      <div class="u-col-12@lg add-margin-auto">
                         <div class="flex-wrap bt-row flex-spaceBetween grid-items dark">
-                           <a href="video/investing-with-betterment-1.html" class="bt-ContentGrid-item u-col-12 u-col-4@lg u-col-6@md item" data-track-event="ElementClicked" data-track-name="Investing with Betterment " data-track-module="video_hubdb_set">
+                           <a href="{{ route('video') }}" class="bt-ContentGrid-item u-col-12 u-col-4@lg u-col-6@md item" data-track-event="ElementClicked" data-track-name="Investing with Betterment " data-track-module="video_hubdb_set">
                               <img class="item-image" src="../hubfs/thumbnail%20for%20vid%20on%20hubspot-1.png" alt="thumbnail for vid on hubspot" loading="lazy">
                               <div class="flex flex-spaceBetween item-title-wrap">
                                  <h3 class="item-title bt-title4">  Investing with Betterment </h3>
                               </div>
                               <div class="item-description bt-body1">Gain a better understanding of Betterment's approach to investing and how we construct our portfolios.&nbsp;</div>
                            </a>
-                           <a href="video/betterment-product-overview-1.html" class="bt-ContentGrid-item u-col-12 u-col-4@lg u-col-6@md item" data-track-event="ElementClicked" data-track-name="An overview of the Betterment platform" data-track-module="video_hubdb_set">
+                           <a href="{{ route('home') }}" class="bt-ContentGrid-item u-col-12 u-col-4@lg u-col-6@md item" data-track-event="ElementClicked" data-track-name="An overview of the Betterment platform" data-track-module="video_hubdb_set">
                               <img class="item-image" src="../hubfs/Graphics/featured-images/betterment-app-on-phone-with-sparkles-1.jpg" alt="image representing An overview of the Betterment platform" loading="lazy">
                               <div class="flex flex-spaceBetween item-title-wrap">
                                  <h3 class="item-title bt-title4">  An overview of the Betterment platform</h3>
@@ -559,7 +559,7 @@
                                  <p>We're more than your 401(k) provider.</p>
                               </div>
                            </a>
-                           <a href="video/401k-claiming-1.html" class="bt-ContentGrid-item u-col-12 u-col-4@lg u-col-6@md item" data-track-event="ElementClicked" data-track-name="How to claim your Betterment 401(k)" data-track-module="video_hubdb_set">
+                           <a href="{{ route('video') }}" class="bt-ContentGrid-item u-col-12 u-col-4@lg u-col-6@md item" data-track-event="ElementClicked" data-track-name="How to claim your Betterment 401(k)" data-track-module="video_hubdb_set">
                               <img class="item-image" src="../hubfs/custom-video-thumbnails/thumbnail-hazvpnfq4h-how-to-claim-account-1.png" alt="image representing How to claim your Betterment 401(k)" loading="lazy">
                               <div class="flex flex-spaceBetween item-title-wrap">
                                  <h3 class="item-title bt-title4">  How to claim your Betterment 401(k)</h3>
@@ -568,7 +568,7 @@
                                  <p>A step-by-step demo of how to set up your account when logging in for the first time.&nbsp;</p>
                               </div>
                            </a>
-                           <a href="video/401k-investment-options-1.html" class="bt-ContentGrid-item u-col-12 u-col-4@lg u-col-6@md item" data-track-event="ElementClicked" data-track-name="Investment options for your 401(k)" data-track-module="video_hubdb_set">
+                           <a href="{{ route('video') }}" class="bt-ContentGrid-item u-col-12 u-col-4@lg u-col-6@md item" data-track-event="ElementClicked" data-track-name="Investment options for your 401(k)" data-track-module="video_hubdb_set">
                               <img class="item-image" src="../hubfs/custom-video-thumbnails/thumbnail-hwyl5byc7v-investment-options-for-your-401k-1.png" alt="image representing Investment options for your 401(k)" loading="lazy">
                               <div class="flex flex-spaceBetween item-title-wrap">
                                  <h3 class="item-title bt-title4">  Investment options for your 401(k)</h3>
@@ -577,7 +577,7 @@
                                  <p><span>We make it easy to invest like a pro. Learn what investment options are available and what might be the best fit for your retirement.</span></p>
                               </div>
                            </a>
-                           <a href="video/401k-take-advantage-1.html" class="bt-ContentGrid-item u-col-12 u-col-4@lg u-col-6@md item" data-track-event="ElementClicked" data-track-name="Tips on making the most of your 401(k) " data-track-module="video_hubdb_set">
+                           <a href="{{ route('video') }}" class="bt-ContentGrid-item u-col-12 u-col-4@lg u-col-6@md item" data-track-event="ElementClicked" data-track-name="Tips on making the most of your 401(k) " data-track-module="video_hubdb_set">
                               <img class="item-image" src="../hubfs/custom-video-thumbnails/thumbnail-acntzrcrq9-three-steps-401k-1.png" alt="image representing Tips on making the most of your 401(k) " loading="lazy">
                               <div class="flex flex-spaceBetween item-title-wrap">
                                  <h3 class="item-title bt-title4">  Tips on making the most of your 401(k) </h3>
@@ -586,7 +586,7 @@
                                  <p>Unlock the potential of your 401(k) with expert tips on contribution rates, portfolio choices, and rollover options to help you achieve the retirement you want. </p>
                               </div>
                            </a>
-                           <a href="video/why-use-a-401k-1.html" class="bt-ContentGrid-item u-col-12 u-col-4@lg u-col-6@md item" data-track-event="ElementClicked" data-track-name="Why should you invest in your 401(k)?" data-track-module="video_hubdb_set">
+                           <a href="{{ route('video') }}" class="bt-ContentGrid-item u-col-12 u-col-4@lg u-col-6@md item" data-track-event="ElementClicked" data-track-name="Why should you invest in your 401(k)?" data-track-module="video_hubdb_set">
                               <img class="item-image" src="../hubfs/custom-video-thumbnails/thumbnail-yqrsxklm3r-why-you-should-use-your-401k-1.png" alt="image representing Why should you invest in your 401(k)?" loading="lazy">
                               <div class="flex flex-spaceBetween item-title-wrap">
                                  <h3 class="item-title bt-title4">  Why should you invest in your 401(k)?</h3>
@@ -597,7 +597,7 @@
                      </div>
                      <div class="center">
                         <br>
-                        <a class="bt-PrimaryButton" href="video-1.html">See all videos</a>
+                        <a class="bt-PrimaryButton" href="{{ route('video') }}">See all videos</a>
                      </div>
                   </div>
                   <div class="video-data">
@@ -634,7 +634,7 @@
       <script defer="" src="../content-cwv-embed/static-1.1293/embed-1.js"></script>
       <script src="../ajax/libs/jquery/3.5.1/jquery.min-1.js"></script>
       <script src="../ajax/libs/jquery-migrate/3.3.1/jquery-migrate.min-1.js"></script>
-      <script id="__ada" data-handle="betterment-cx" src="https://static.ada.support/embed2.js" data-lazy=""></script>
+      
       <script src="../hs-fs/hub/5274572/hub_generated/template_assets/57001203564/1728423001638/betterment-theme/resources/btTrackingInit.min-1.js"></script>
       <script src="../hs-fs/hub/5274572/hub_generated/template_assets/49666399874/1728423002407/betterment-theme/js/main.min-1.js"></script>
       <script>

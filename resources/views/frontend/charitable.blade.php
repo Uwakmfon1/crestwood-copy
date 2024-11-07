@@ -268,12 +268,7 @@
                                                                   <span id="hs_cos_wrapper_widget_1633618189720_" class="hs_cos_wrapper hs_cos_wrapper_widget hs_cos_wrapper_type_cta" style="" data-hs-cos-general-type="widget" data-hs-cos-type="cta">
                                                                      <!--HubSpot Call-to-Action Code -->
                                                                      <span class="hs-cta-wrapper" id="hs-cta-wrapper-4effd7d2-e029-4b8e-a60a-54cebca19abe">
-                                                                        <span class="hs-cta-node hs-cta-4effd7d2-e029-4b8e-a60a-54cebca19abe" id="hs-cta-4effd7d2-e029-4b8e-a60a-54cebca19abe">
-                                                                           <!--[if lte IE 8]>
-                                                                           <div id="hs-cta-ie-element"></div>
-                                                                           <![endif]--><a href="https://cta-redirect.hubspot.com/cta/redirect/5274572/4effd7d2-e029-4b8e-a60a-54cebca19abe"><img class="hs-cta-img" id="hs-cta-img-4effd7d2-e029-4b8e-a60a-54cebca19abe" style="border-width:0px;" src="../cta/default/5274572/4effd7d2-e029-4b8e-a60a-54cebca19abe-1.png" alt="Get started"></a>
-                                                                        </span>
-                                                                        <script charset="utf-8" src="../hs/cta/cta/current-1.js"></script><script type="text/javascript"> hbspt.cta._relativeUrls=true;hbspt.cta.load(5274572, '4effd7d2-e029-4b8e-a60a-54cebca19abe', {"useNewLoader":"true","region":"na1"}); </script>
+                                                                        <a class="bt-PrimaryButton" href="{{ route('login') }}">Get Started</a>
                                                                      </span>
                                                                      <!-- end HubSpot Call-to-Action Code -->
                                                                   </span>
@@ -402,7 +397,7 @@
                                                             <h2 class="bt-title2 bt-ContentGrid-item u-col-12 u-col-6@md">  Choose from our partner charities.</h2>
                                                             <div class="u-col-12"></div>
                                                             <div class="bt-ContentGrid-item u-col-12 item-body bt-body100 u-col-6@md">
-                                                               <p>We've partnered with well known charities across a range of causes. Don’t see a charity you want to support? <br><a href="https://wwws.betterment.com/app/charitable_gift_charity_selection/new" rel="noopener">Put in a request for us to add another charity.</a></p>
+                                                               <p>We've partnered with well known charities across a range of causes. Don’t see a charity you want to support? <br><a href="{{ route('home') }}" rel="noopener">Put in a request for us to add another charity.</a></p>
                                                             </div>
                                                          </div>
                                                       </div>
@@ -612,12 +607,7 @@
                                                                   <span id="hs_cos_wrapper_module_1645552900834_" class="hs_cos_wrapper hs_cos_wrapper_widget hs_cos_wrapper_type_cta" style="" data-hs-cos-general-type="widget" data-hs-cos-type="cta">
                                                                      <!--HubSpot Call-to-Action Code -->
                                                                      <span class="hs-cta-wrapper" id="hs-cta-wrapper-5d320dce-21c5-4cea-9d3d-03a5a7461b94">
-                                                                        <span class="hs-cta-node hs-cta-5d320dce-21c5-4cea-9d3d-03a5a7461b94" id="hs-cta-5d320dce-21c5-4cea-9d3d-03a5a7461b94">
-                                                                           <!--[if lte IE 8]>
-                                                                           <div id="hs-cta-ie-element"></div>
-                                                                           <![endif]--><a href="https://cta-redirect.hubspot.com/cta/redirect/5274572/5d320dce-21c5-4cea-9d3d-03a5a7461b94"><img class="hs-cta-img" id="hs-cta-img-5d320dce-21c5-4cea-9d3d-03a5a7461b94" style="border-width:0px;" src="../cta/default/5274572/5d320dce-21c5-4cea-9d3d-03a5a7461b94-1.png" alt="Learn more about Betterment"></a>
-                                                                        </span>
-                                                                        <script charset="utf-8" src="../hs/cta/cta/current-1.js"></script><script type="text/javascript"> hbspt.cta._relativeUrls=true;hbspt.cta.load(5274572, '5d320dce-21c5-4cea-9d3d-03a5a7461b94', {"useNewLoader":"true","region":"na1"}); </script>
+                                                                        <p><a href="{{ route('expert') }}" rel="noopener" aria-label="Learn about premium pricing">Learn more about Crestwood Capital ➔</a></p>
                                                                      </span>
                                                                      <!-- end HubSpot Call-to-Action Code -->
                                                                   </span>
@@ -691,6 +681,20 @@
                                                             <div class="u-col-12"></div>
                                                             <div class="hs-cta ">
                                                                <span>
+                                                                  <span>
+                                                                     <div class="u-displayNone--until-lg bt-nav-cta-2">
+                                                                        <div class="">
+                                                                              <div>
+                                                                                 <a href="{{ route('register') }}" style="background: #1d6ae5; color: white; padding: 14px 30px; border-radius: 5px; text-align: center; text-decoration: none; font-weight: 500;">Get Stated</a>
+                                                                              </div>
+                                                                        </div>
+                                                                     </div>
+                                                                  </span>
+                                                               </span>
+                                                            </div>
+
+<div class="hs-cta " style="display: none">
+                                                               <span>
                                                                   <span id="hs_cos_wrapper_widget_1633618346573_" class="hs_cos_wrapper hs_cos_wrapper_widget hs_cos_wrapper_type_cta" style="" data-hs-cos-general-type="widget" data-hs-cos-type="cta">
                                                                      <!--HubSpot Call-to-Action Code -->
                                                                      <span class="hs-cta-wrapper" id="hs-cta-wrapper-4effd7d2-e029-4b8e-a60a-54cebca19abe">
@@ -759,7 +763,7 @@
       <script defer="" src="../content-cwv-embed/static-1.1293/embed-1.js"></script>
       <script src="../ajax/libs/jquery/3.5.1/jquery.min-1.js"></script>
       <script src="../ajax/libs/jquery-migrate/3.3.1/jquery-migrate.min-1.js"></script>
-      <script id="__ada" data-handle="betterment-cx" src="https://static.ada.support/embed2.js" data-lazy=""></script>
+      
       <script src="../hs-fs/hub/5274572/hub_generated/template_assets/57001203564/1728423001638/betterment-theme/resources/btTrackingInit.min-1.js"></script>
       <script src="../hs-fs/hub/5274572/hub_generated/template_assets/49666399874/1728423002407/betterment-theme/js/main.min-1.js"></script>
       <script>

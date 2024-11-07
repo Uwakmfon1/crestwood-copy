@@ -261,16 +261,13 @@
                                                             <div class="u-col-12"></div>
                                                             <div class="bt-ContentGrid-item u-col-12 item-body bt-body200 u-col-6@md"><span>We’re here to help you invest in crypto with a managed portfolio of Bitcoin and Ethereum ETFs.</span></div>
                                                             <div class="bt-ContentGrid-item u-col-12 hs-cta ">
-                                                               <span>
+                                                               <span style="margin: 30px 0px ;">
                                                                   <span id="hs_cos_wrapper_widget_1643743130983_" class="hs_cos_wrapper hs_cos_wrapper_widget hs_cos_wrapper_type_cta" style="" data-hs-cos-general-type="widget" data-hs-cos-type="cta">
                                                                      <!--HubSpot Call-to-Action Code -->
                                                                      <span class="hs-cta-wrapper" id="hs-cta-wrapper-e37b71cd-3f41-4d74-b6d6-46f0aeff55b5">
-                                                                        <span class="hs-cta-node hs-cta-e37b71cd-3f41-4d74-b6d6-46f0aeff55b5" id="hs-cta-e37b71cd-3f41-4d74-b6d6-46f0aeff55b5">
-                                                                           <!--[if lte IE 8]>
-                                                                           <div id="hs-cta-ie-element"></div>
-                                                                           <![endif]--><a href="https://cta-redirect.hubspot.com/cta/redirect/5274572/e37b71cd-3f41-4d74-b6d6-46f0aeff55b5"><img class="hs-cta-img" id="hs-cta-img-e37b71cd-3f41-4d74-b6d6-46f0aeff55b5" style="border-width:0px;" src="cta/default/5274572/e37b71cd-3f41-4d74-b6d6-46f0aeff55b5-1.png" alt="Get started"></a>
-                                                                        </span>
-                                                                        <script charset="utf-8" src="hs/cta/cta/current-1.js"></script><script type="text/javascript"> hbspt.cta._relativeUrls=true;hbspt.cta.load(5274572, 'e37b71cd-3f41-4d74-b6d6-46f0aeff55b5', {"useNewLoader":"true","region":"na1"}); </script>
+                                                                        <div>
+                                                                           <a href="{{ route('register') }}" style="background: #1d6ae5; color: white; padding: 14px 30px; border-radius: 5px; text-align: center; text-decoration: none; font-weight: 500;">Get Stated</a>
+                                                                        </div>
                                                                      </span>
                                                                      <!-- end HubSpot Call-to-Action Code -->
                                                                   </span>
@@ -319,16 +316,9 @@
                                                                <div class="hs-cta flex flex-column-sm mt24 align-center">
                                                                   <span>
                                                                      <span id="hs_cos_wrapper_widget_1728576711923_" class="hs_cos_wrapper hs_cos_wrapper_widget hs_cos_wrapper_type_cta" style="" data-hs-cos-general-type="widget" data-hs-cos-type="cta">
-                                                                        <!--HubSpot Call-to-Action Code -->
-                                                                        <span class="hs-cta-wrapper" id="hs-cta-wrapper-6c785dec-0378-4db8-907e-eb18a7f504ac">
-                                                                           <span class="hs-cta-node hs-cta-6c785dec-0378-4db8-907e-eb18a7f504ac" id="hs-cta-6c785dec-0378-4db8-907e-eb18a7f504ac">
-                                                                              <!--[if lte IE 8]>
-                                                                              <div id="hs-cta-ie-element"></div>
-                                                                              <![endif]--><a href="https://cta-redirect.hubspot.com/cta/redirect/5274572/6c785dec-0378-4db8-907e-eb18a7f504ac"><img class="hs-cta-img" id="hs-cta-img-6c785dec-0378-4db8-907e-eb18a7f504ac" style="border-width:0px;" src="cta/default/5274572/6c785dec-0378-4db8-907e-eb18a7f504ac-1.png" alt="Learn more"></a>
-                                                                           </span>
-                                                                           <script charset="utf-8" src="hs/cta/cta/current-1.js"></script><script type="text/javascript"> hbspt.cta._relativeUrls=true;hbspt.cta.load(5274572, '6c785dec-0378-4db8-907e-eb18a7f504ac', {"useNewLoader":"true","region":"na1"}); </script>
-                                                                        </span>
-                                                                        <!-- end HubSpot Call-to-Action Code -->
+                                                                        <p>
+                                                                           <a href="{{ route('expert') }}" rel="noopener" aria-label="Learn about premium pricing">Learn more ➔</a>
+                                                                        </p>
                                                                      </span>
                                                                   </span>
                                                                </div>
@@ -579,6 +569,20 @@
                                                             <div class="u-col-12"></div>
                                                             <div class="hs-cta ">
                                                                <span>
+                                                                  <span>
+                                                                     <div class="u-displayNone--until-lg bt-nav-cta-2">
+                                                                        <div class="">
+                                                                              <div>
+                                                                                 <a href="{{ route('register') }}" style="background: #1d6ae5; color: white; padding: 14px 30px; border-radius: 5px; text-align: center; text-decoration: none; font-weight: 500;">Get Stated</a>
+                                                                              </div>
+                                                                        </div>
+                                                                     </div>
+                                                                  </span>
+                                                               </span>
+                                                            </div>
+
+<div class="hs-cta " style="display: none">
+                                                               <span>
                                                                   <span id="hs_cos_wrapper_widget_1663961491720_" class="hs_cos_wrapper hs_cos_wrapper_widget hs_cos_wrapper_type_cta" style="" data-hs-cos-general-type="widget" data-hs-cos-type="cta">
                                                                      <!--HubSpot Call-to-Action Code -->
                                                                      <span class="hs-cta-wrapper" id="hs-cta-wrapper-e37b71cd-3f41-4d74-b6d6-46f0aeff55b5">
@@ -647,7 +651,7 @@
       <script defer="" src="content-cwv-embed/static-1.1293/embed-1.js"></script>
       <script src="ajax/libs/jquery/3.5.1/jquery.min-1.js"></script>
       <script src="ajax/libs/jquery-migrate/3.3.1/jquery-migrate.min-1.js"></script>
-      <script id="__ada" data-handle="betterment-cx" src="https://static.ada.support/embed2.js" data-lazy=""></script>
+      
       <script src="hs-fs/hub/5274572/hub_generated/template_assets/57001203564/1728423001638/betterment-theme/resources/btTrackingInit.min-1.js"></script>
       <script src="hs-fs/hub/5274572/hub_generated/template_assets/49666399874/1728423002407/betterment-theme/js/main.min-1.js"></script>
       <script>

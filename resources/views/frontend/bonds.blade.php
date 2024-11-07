@@ -284,17 +284,28 @@
                                                             </div>
                                                             <div class="hs-cta ">
                                                                <span>
-                                                                  <span id="hs_cos_wrapper_widget_1726507559555_" class="hs_cos_wrapper hs_cos_wrapper_widget hs_cos_wrapper_type_cta" style="" data-hs-cos-general-type="widget" data-hs-cos-type="cta">
-                                                                     <!--HubSpot Call-to-Action Code -->
-                                                                     <span class="hs-cta-wrapper" id="hs-cta-wrapper-221584ee-f18f-4c6d-bc9a-249dba73949d">
-                                                                        <span class="hs-cta-node hs-cta-221584ee-f18f-4c6d-bc9a-249dba73949d" id="hs-cta-221584ee-f18f-4c6d-bc9a-249dba73949d">
-                                                                           <!--[if lte IE 8]>
-                                                                           <div id="hs-cta-ie-element"></div>
-                                                                           <![endif]--><a href="https://cta-redirect.hubspot.com/cta/redirect/5274572/221584ee-f18f-4c6d-bc9a-249dba73949d"><img class="hs-cta-img" id="hs-cta-img-221584ee-f18f-4c6d-bc9a-249dba73949d" style="border-width:0px;" src="cta/default/5274572/221584ee-f18f-4c6d-bc9a-249dba73949d-1.png" alt="See accounts"></a>
-                                                                        </span>
-                                                                        <script charset="utf-8" src="hs/cta/cta/current-1.js"></script><script type="text/javascript"> hbspt.cta._relativeUrls=true;hbspt.cta.load(5274572, '221584ee-f18f-4c6d-bc9a-249dba73949d', {"useNewLoader":"true","region":"na1"}); </script>
-                                                                     </span>
-                                                                     <!-- end HubSpot Call-to-Action Code -->
+                                                                  <span>
+                                                                     <div class="u-displayNone--until-lg bt-nav-cta-2">
+                                                                        <div class="">
+                                                                              <div>
+                                                                                 <a href="{{ route('register') }}" style="background: #1d6ae5; color: white; padding: 14px 30px; border-radius: 5px; text-align: center; text-decoration: none; font-weight: 500;">Get Stated</a>
+                                                                              </div>
+                                                                        </div>
+                                                                     </div>
+                                                                  </span>
+                                                               </span>
+                                                            </div>
+
+<div class="hs-cta " style="display: none">
+                                                               <span>
+                                                                  <span>
+                                                                     <div class="u-displayNone--until-lg bt-nav-cta-2">
+                                                                        <div class="">
+                                                                              <div>
+                                                                                 <a href="{{ route('register') }}" style="background: #1d6ae5; color: white; padding: 14px 30px; border-radius: 5px; text-align: center; text-decoration: none; font-weight: 500;">Get Stated</a>
+                                                                              </div>
+                                                                        </div>
+                                                                     </div>
                                                                   </span>
                                                                </span>
                                                             </div>
@@ -464,13 +475,8 @@
                                                                   <span id="hs_cos_wrapper_widget_1724858532818_" class="hs_cos_wrapper hs_cos_wrapper_widget hs_cos_wrapper_type_cta" style="" data-hs-cos-general-type="widget" data-hs-cos-type="cta">
                                                                      <!--HubSpot Call-to-Action Code -->
                                                                      <span class="hs-cta-wrapper" id="hs-cta-wrapper-460e701d-36b2-4515-ad7f-6c2cc5099396">
-                                                                        <span class="hs-cta-node hs-cta-460e701d-36b2-4515-ad7f-6c2cc5099396" id="hs-cta-460e701d-36b2-4515-ad7f-6c2cc5099396">
-                                                                           <!--[if lte IE 8]>
-                                                                           <div id="hs-cta-ie-element"></div>
-                                                                           <![endif]--><a href="https://cta-redirect.hubspot.com/cta/redirect/5274572/460e701d-36b2-4515-ad7f-6c2cc5099396"><img class="hs-cta-img" id="hs-cta-img-460e701d-36b2-4515-ad7f-6c2cc5099396" style="border-width:0px;" src="cta/default/5274572/460e701d-36b2-4515-ad7f-6c2cc5099396-1.png" alt="Start with cash"></a>
+                                                                     <a class="bt-PrimaryButton" href="{{ route('investment') }}">Start with Investment</a>
                                                                         </span>
-                                                                        <script charset="utf-8" src="hs/cta/cta/current-1.js"></script><script type="text/javascript"> hbspt.cta._relativeUrls=true;hbspt.cta.load(5274572, '460e701d-36b2-4515-ad7f-6c2cc5099396', {"useNewLoader":"true","region":"na1"}); </script>
-                                                                     </span>
                                                                      <!-- end HubSpot Call-to-Action Code -->
                                                                   </span>
                                                                </div>
@@ -478,12 +484,9 @@
                                                                   <span id="hs_cos_wrapper_widget_1724858532818_" class="hs_cos_wrapper hs_cos_wrapper_widget hs_cos_wrapper_type_cta" style="" data-hs-cos-general-type="widget" data-hs-cos-type="cta">
                                                                      <!--HubSpot Call-to-Action Code -->
                                                                      <span class="hs-cta-wrapper" id="hs-cta-wrapper-1356de3e-cf44-4680-a919-85140bcd5e3a">
-                                                                        <span class="hs-cta-node hs-cta-1356de3e-cf44-4680-a919-85140bcd5e3a" id="hs-cta-1356de3e-cf44-4680-a919-85140bcd5e3a">
-                                                                           <!--[if lte IE 8]>
-                                                                           <div id="hs-cta-ie-element"></div>
-                                                                           <![endif]--><a href="https://cta-redirect.hubspot.com/cta/redirect/5274572/1356de3e-cf44-4680-a919-85140bcd5e3a"><img class="hs-cta-img" id="hs-cta-img-1356de3e-cf44-4680-a919-85140bcd5e3a" style="border-width:0px;" src="cta/default/5274572/1356de3e-cf44-4680-a919-85140bcd5e3a-1.png" alt="Learn more"></a>
-                                                                        </span>
-                                                                        <script charset="utf-8" src="hs/cta/cta/current-1.js"></script><script type="text/javascript"> hbspt.cta._relativeUrls=true;hbspt.cta.load(5274572, '1356de3e-cf44-4680-a919-85140bcd5e3a', {"useNewLoader":"true","region":"na1"}); </script>
+                                                                        <a href="{{ route('cash') }}" class="HeaderNavWp__LoginButton" style="font-weight: 500;" data-cy-nav-large-secondary-cta="" data-track-event="ElementClicked" data-track-name="LogIn" data-track-module="TopNav" data-interaction-listener-registered="true">
+                                                                           Learn more <i class="fe fe-plus me-2"></i>
+                                                                        </a>
                                                                      </span>
                                                                      <!-- end HubSpot Call-to-Action Code -->
                                                                   </span>
@@ -525,27 +528,19 @@
                                                                <div class="hs-cta center hs-cta-full-width center hs-cta_with-min-height mt24 ">
                                                                   <span id="hs_cos_wrapper_widget_1724858532818_" class="hs_cos_wrapper hs_cos_wrapper_widget hs_cos_wrapper_type_cta" style="" data-hs-cos-general-type="widget" data-hs-cos-type="cta">
                                                                      <!--HubSpot Call-to-Action Code -->
-                                                                     <span class="hs-cta-wrapper" id="hs-cta-wrapper-8c0403ab-654a-4791-9447-d186f0e280ba">
-                                                                        <span class="hs-cta-node hs-cta-8c0403ab-654a-4791-9447-d186f0e280ba" id="hs-cta-8c0403ab-654a-4791-9447-d186f0e280ba">
-                                                                           <!--[if lte IE 8]>
-                                                                           <div id="hs-cta-ie-element"></div>
-                                                                           <![endif]--><a href="https://cta-redirect.hubspot.com/cta/redirect/5274572/8c0403ab-654a-4791-9447-d186f0e280ba"><img class="hs-cta-img" id="hs-cta-img-8c0403ab-654a-4791-9447-d186f0e280ba" style="border-width:0px;" src="cta/default/5274572/8c0403ab-654a-4791-9447-d186f0e280ba-1.png" alt="Start with bonds"></a>
+                                                                     <span class="hs-cta-wrapper" id="hs-cta-wrapper-460e701d-36b2-4515-ad7f-6c2cc5099396">
+                                                                     <a class="bt-PrimaryButton" href="{{ route('bonds') }}">Start with Bonds</a>
                                                                         </span>
-                                                                        <script charset="utf-8" src="hs/cta/cta/current-1.js"></script><script type="text/javascript"> hbspt.cta._relativeUrls=true;hbspt.cta.load(5274572, '8c0403ab-654a-4791-9447-d186f0e280ba', {"useNewLoader":"true","region":"na1"}); </script>
-                                                                     </span>
                                                                      <!-- end HubSpot Call-to-Action Code -->
                                                                   </span>
                                                                </div>
                                                                <div class="hs-cta center hs-cta center hs-cta_with-min-height mt16 pb16">
                                                                   <span id="hs_cos_wrapper_widget_1724858532818_" class="hs_cos_wrapper hs_cos_wrapper_widget hs_cos_wrapper_type_cta" style="" data-hs-cos-general-type="widget" data-hs-cos-type="cta">
                                                                      <!--HubSpot Call-to-Action Code -->
-                                                                     <span class="hs-cta-wrapper" id="hs-cta-wrapper-7d396bc1-c0cb-4f72-818d-26d95abfd4c8">
-                                                                        <span class="hs-cta-node hs-cta-7d396bc1-c0cb-4f72-818d-26d95abfd4c8" id="hs-cta-7d396bc1-c0cb-4f72-818d-26d95abfd4c8">
-                                                                           <!--[if lte IE 8]>
-                                                                           <div id="hs-cta-ie-element"></div>
-                                                                           <![endif]--><a href="https://cta-redirect.hubspot.com/cta/redirect/5274572/7d396bc1-c0cb-4f72-818d-26d95abfd4c8"><img class="hs-cta-img" id="hs-cta-img-7d396bc1-c0cb-4f72-818d-26d95abfd4c8" style="border-width:0px;" src="cta/default/5274572/7d396bc1-c0cb-4f72-818d-26d95abfd4c8-1.png" alt="Learn more"></a>
-                                                                        </span>
-                                                                        <script charset="utf-8" src="hs/cta/cta/current-1.js"></script><script type="text/javascript"> hbspt.cta._relativeUrls=true;hbspt.cta.load(5274572, '7d396bc1-c0cb-4f72-818d-26d95abfd4c8', {"useNewLoader":"true","region":"na1"}); </script>
+                                                                     <span class="hs-cta-wrapper" id="hs-cta-wrapper-1356de3e-cf44-4680-a919-85140bcd5e3a">
+                                                                        <a href="{{ route('cash') }}" class="HeaderNavWp__LoginButton" style="font-weight: 500;" data-cy-nav-large-secondary-cta="" data-track-event="ElementClicked" data-track-name="LogIn" data-track-module="TopNav" data-interaction-listener-registered="true">
+                                                                           Learn more <i class="fe fe-plus me-2"></i>
+                                                                        </a>
                                                                      </span>
                                                                      <!-- end HubSpot Call-to-Action Code -->
                                                                   </span>
@@ -587,27 +582,19 @@
                                                                <div class="hs-cta center hs-cta-full-width center hs-cta_with-min-height mt24 ">
                                                                   <span id="hs_cos_wrapper_widget_1724858532818_" class="hs_cos_wrapper hs_cos_wrapper_widget hs_cos_wrapper_type_cta" style="" data-hs-cos-general-type="widget" data-hs-cos-type="cta">
                                                                      <!--HubSpot Call-to-Action Code -->
-                                                                     <span class="hs-cta-wrapper" id="hs-cta-wrapper-9cb5d705-9bb4-42af-a839-6138864e77e9">
-                                                                        <span class="hs-cta-node hs-cta-9cb5d705-9bb4-42af-a839-6138864e77e9" id="hs-cta-9cb5d705-9bb4-42af-a839-6138864e77e9">
-                                                                           <!--[if lte IE 8]>
-                                                                           <div id="hs-cta-ie-element"></div>
-                                                                           <![endif]--><a href="https://cta-redirect.hubspot.com/cta/redirect/5274572/9cb5d705-9bb4-42af-a839-6138864e77e9"><img class="hs-cta-img" id="hs-cta-img-9cb5d705-9bb4-42af-a839-6138864e77e9" style="border-width:0px;" src="cta/default/5274572/9cb5d705-9bb4-42af-a839-6138864e77e9-1.png" alt="Start with bonds"></a>
+                                                                     <span class="hs-cta-wrapper" id="hs-cta-wrapper-460e701d-36b2-4515-ad7f-6c2cc5099396">
+                                                                     <a class="bt-PrimaryButton" href="{{ route('bonds') }}">Start with Bonds</a>
                                                                         </span>
-                                                                        <script charset="utf-8" src="hs/cta/cta/current-1.js"></script><script type="text/javascript"> hbspt.cta._relativeUrls=true;hbspt.cta.load(5274572, '9cb5d705-9bb4-42af-a839-6138864e77e9', {"useNewLoader":"true","region":"na1"}); </script>
-                                                                     </span>
                                                                      <!-- end HubSpot Call-to-Action Code -->
                                                                   </span>
                                                                </div>
                                                                <div class="hs-cta center hs-cta center hs-cta_with-min-height mt16 pb16">
                                                                   <span id="hs_cos_wrapper_widget_1724858532818_" class="hs_cos_wrapper hs_cos_wrapper_widget hs_cos_wrapper_type_cta" style="" data-hs-cos-general-type="widget" data-hs-cos-type="cta">
                                                                      <!--HubSpot Call-to-Action Code -->
-                                                                     <span class="hs-cta-wrapper" id="hs-cta-wrapper-04b4b211-1b72-4912-a88e-25568540dc7e">
-                                                                        <span class="hs-cta-node hs-cta-04b4b211-1b72-4912-a88e-25568540dc7e" id="hs-cta-04b4b211-1b72-4912-a88e-25568540dc7e">
-                                                                           <!--[if lte IE 8]>
-                                                                           <div id="hs-cta-ie-element"></div>
-                                                                           <![endif]--><a href="https://cta-redirect.hubspot.com/cta/redirect/5274572/04b4b211-1b72-4912-a88e-25568540dc7e"><img class="hs-cta-img" id="hs-cta-img-04b4b211-1b72-4912-a88e-25568540dc7e" style="border-width:0px;" src="cta/default/5274572/04b4b211-1b72-4912-a88e-25568540dc7e-1.png" alt="Learn more"></a>
-                                                                        </span>
-                                                                        <script charset="utf-8" src="hs/cta/cta/current-1.js"></script><script type="text/javascript"> hbspt.cta._relativeUrls=true;hbspt.cta.load(5274572, '04b4b211-1b72-4912-a88e-25568540dc7e', {"useNewLoader":"true","region":"na1"}); </script>
+                                                                     <span class="hs-cta-wrapper" id="hs-cta-wrapper-1356de3e-cf44-4680-a919-85140bcd5e3a">
+                                                                        <a href="{{ route('cash') }}" class="HeaderNavWp__LoginButton" style="font-weight: 500;" data-cy-nav-large-secondary-cta="" data-track-event="ElementClicked" data-track-name="LogIn" data-track-module="TopNav" data-interaction-listener-registered="true">
+                                                                           Learn more <i class="fe fe-plus me-2"></i>
+                                                                        </a>
                                                                      </span>
                                                                      <!-- end HubSpot Call-to-Action Code -->
                                                                   </span>
@@ -636,7 +623,7 @@
                                                                   <li class="mb12 pb12 border-bottom_grey30">
                                                                      <p class="footnote bt-body50 mb0">Returns</p>
                                                                      <div class="mt4">
-                                                                        <p><a href="performance-1.html" rel="noopener">See performance</a></p>
+                                                                        <p><a href="{{ route('performance') }}" rel="noopener">See performance</a></p>
                                                                      </div>
                                                                   </li>
                                                                   <li class="mb0">
@@ -649,27 +636,19 @@
                                                                <div class="hs-cta center hs-cta-full-width center hs-cta_with-min-height mt24 ">
                                                                   <span id="hs_cos_wrapper_widget_1724858532818_" class="hs_cos_wrapper hs_cos_wrapper_widget hs_cos_wrapper_type_cta" style="" data-hs-cos-general-type="widget" data-hs-cos-type="cta">
                                                                      <!--HubSpot Call-to-Action Code -->
-                                                                     <span class="hs-cta-wrapper" id="hs-cta-wrapper-9fd5ba0b-188f-4c19-a26b-99ed4b692124">
-                                                                        <span class="hs-cta-node hs-cta-9fd5ba0b-188f-4c19-a26b-99ed4b692124" id="hs-cta-9fd5ba0b-188f-4c19-a26b-99ed4b692124">
-                                                                           <!--[if lte IE 8]>
-                                                                           <div id="hs-cta-ie-element"></div>
-                                                                           <![endif]--><a href="https://cta-redirect.hubspot.com/cta/redirect/5274572/9fd5ba0b-188f-4c19-a26b-99ed4b692124"><img class="hs-cta-img" id="hs-cta-img-9fd5ba0b-188f-4c19-a26b-99ed4b692124" style="border-width:0px;" src="cta/default/5274572/9fd5ba0b-188f-4c19-a26b-99ed4b692124-1.png" alt="Start with investing"></a>
+                                                                     <span class="hs-cta-wrapper" id="hs-cta-wrapper-460e701d-36b2-4515-ad7f-6c2cc5099396">
+                                                                     <a class="bt-PrimaryButton" href="{{ route('investment') }}">Start with Investment</a>
                                                                         </span>
-                                                                        <script charset="utf-8" src="hs/cta/cta/current-1.js"></script><script type="text/javascript"> hbspt.cta._relativeUrls=true;hbspt.cta.load(5274572, '9fd5ba0b-188f-4c19-a26b-99ed4b692124', {"useNewLoader":"true","region":"na1"}); </script>
-                                                                     </span>
                                                                      <!-- end HubSpot Call-to-Action Code -->
                                                                   </span>
                                                                </div>
                                                                <div class="hs-cta center hs-cta center hs-cta_with-min-height mt16 pb16">
                                                                   <span id="hs_cos_wrapper_widget_1724858532818_" class="hs_cos_wrapper hs_cos_wrapper_widget hs_cos_wrapper_type_cta" style="" data-hs-cos-general-type="widget" data-hs-cos-type="cta">
                                                                      <!--HubSpot Call-to-Action Code -->
-                                                                     <span class="hs-cta-wrapper" id="hs-cta-wrapper-9256bf74-7c22-4396-a45a-83c4712c7d37">
-                                                                        <span class="hs-cta-node hs-cta-9256bf74-7c22-4396-a45a-83c4712c7d37" id="hs-cta-9256bf74-7c22-4396-a45a-83c4712c7d37">
-                                                                           <!--[if lte IE 8]>
-                                                                           <div id="hs-cta-ie-element"></div>
-                                                                           <![endif]--><a href="https://cta-redirect.hubspot.com/cta/redirect/5274572/9256bf74-7c22-4396-a45a-83c4712c7d37"><img class="hs-cta-img" id="hs-cta-img-9256bf74-7c22-4396-a45a-83c4712c7d37" style="border-width:0px;" src="cta/default/5274572/9256bf74-7c22-4396-a45a-83c4712c7d37-1.png" alt="Learn more"></a>
-                                                                        </span>
-                                                                        <script charset="utf-8" src="hs/cta/cta/current-1.js"></script><script type="text/javascript"> hbspt.cta._relativeUrls=true;hbspt.cta.load(5274572, '9256bf74-7c22-4396-a45a-83c4712c7d37', {"useNewLoader":"true","region":"na1"}); </script>
+                                                                     <span class="hs-cta-wrapper" id="hs-cta-wrapper-1356de3e-cf44-4680-a919-85140bcd5e3a">
+                                                                        <a href="{{ route('cash') }}" class="HeaderNavWp__LoginButton" style="font-weight: 500;" data-cy-nav-large-secondary-cta="" data-track-event="ElementClicked" data-track-name="LogIn" data-track-module="TopNav" data-interaction-listener-registered="true">
+                                                                           Learn more <i class="fe fe-plus me-2"></i>
+                                                                        </a>
                                                                      </span>
                                                                      <!-- end HubSpot Call-to-Action Code -->
                                                                   </span>
@@ -758,12 +737,9 @@
                                                                   <span id="hs_cos_wrapper_widget_1721928852747_" class="hs_cos_wrapper hs_cos_wrapper_widget hs_cos_wrapper_type_cta" style="" data-hs-cos-general-type="widget" data-hs-cos-type="cta">
                                                                      <!--HubSpot Call-to-Action Code -->
                                                                      <span class="hs-cta-wrapper" id="hs-cta-wrapper-ce11bdb2-9add-4d88-beda-240d25975316">
-                                                                        <span class="hs-cta-node hs-cta-ce11bdb2-9add-4d88-beda-240d25975316" id="hs-cta-ce11bdb2-9add-4d88-beda-240d25975316">
-                                                                           <!--[if lte IE 8]>
-                                                                           <div id="hs-cta-ie-element"></div>
-                                                                           <![endif]--><a href="https://cta-redirect.hubspot.com/cta/redirect/5274572/ce11bdb2-9add-4d88-beda-240d25975316"><img class="hs-cta-img" id="hs-cta-img-ce11bdb2-9add-4d88-beda-240d25975316" style="border-width:0px;" src="cta/default/5274572/ce11bdb2-9add-4d88-beda-240d25975316-1.png" alt="Get started"></a>
-                                                                        </span>
-                                                                        <script charset="utf-8" src="hs/cta/cta/current-1.js"></script><script type="text/javascript"> hbspt.cta._relativeUrls=true;hbspt.cta.load(5274572, 'ce11bdb2-9add-4d88-beda-240d25975316', {"useNewLoader":"true","region":"na1"}); </script>
+                                                                        <a href="{{ route('login') }}" class="HeaderNavWp__LoginButton" style="font-weight: 500;" data-cy-nav-large-secondary-cta="" data-track-event="ElementClicked" data-track-name="LogIn" data-track-module="TopNav" data-interaction-listener-registered="true">
+                                                                           Get Started <i class="fe fe-arrow-left me-2"></i>
+                                                                        </a>
                                                                      </span>
                                                                      <!-- end HubSpot Call-to-Action Code -->
                                                                   </span>
@@ -846,14 +822,14 @@
                                                 <div class="bt-container">
                                                    <ul class="flex-wrap bt-row dark flex-center  per-row-count-2 ">
                                                       <li class="flex-wrap bt-ContentGrid-item u-col-6@md">
-                                                         <a class="item " href="resources/what-to-do-when-rates-fall-1.html">
+                                                         <a class="item " href="#">
                                                             <img class="item-image" src="hubfs/featured-image-interest-rate-outlook-1.webp" alt="featured-image-interest-rate-outlook">
                                                             <h2 class="bt-title3 item-title">  When will interest rates finally start to fall?</h2>
                                                             <div class="item-excerpt bt-body2"><span>We look back at the last 40 years of interest rate peaks and plateaus for a guide.</span></div>
                                                          </a>
                                                       </li>
                                                       <li class="flex-wrap bt-ContentGrid-item u-col-6@md">
-                                                         <a class="item " href="resources/are-bonds-right-for-you-1.html">
+                                                         <a class="item " href="#">
                                                             <img class="item-image" src="hubfs/img%20placeholder-3-1.png" alt="">
                                                             <h2 class="bt-title3 item-title">  Are bonds right for you?</h2>
                                                             <div class="item-excerpt bt-body2">
@@ -893,14 +869,14 @@
                                                 <div class="bt-container">
                                                    <ul class="flex-wrap bt-row dark flex-center  per-row-count-2 ">
                                                       <li class="flex-wrap bt-ContentGrid-item u-col-6@md">
-                                                         <a class="item " href="resources/make-your-money-hustle-bond-investing-betterment-1.html">
+                                                         <a class="item " href="#">
                                                             <img class="item-image" src="hubfs/img%20placeholder-4-1.png" alt="Blackrock Target Income">
                                                             <h2 class="bt-title3 item-title">  Make your money hustle: Bond investing</h2>
                                                             <div class="item-excerpt bt-body2">Bonds can be confusing, but we’re here to simplify them</div>
                                                          </a>
                                                       </li>
                                                       <li class="flex-wrap bt-ContentGrid-item u-col-6@md">
-                                                         <a class="item " href="resources/too-much-cash-1.html">
+                                                         <a class="item " href="{{ route('cash') }}">
                                                             <img class="item-image" src="hubfs/img%20placeholder-Jul-25-2024-05-58-54-7197-PM-1.png" alt="A hand depositing a coin into a coin slot">
                                                             <h2 class="bt-title3 item-title">  How much cash is too much cash to be in savings?</h2>
                                                             <div class="item-excerpt bt-body2">
@@ -945,7 +921,7 @@
                                                             <li class="">
                                                                <a class="card-container card-container_interactive flex flex-spaceBetween bg-white flex-middle
                                                                   mb16
-                                                                  p24" href="https://wwws.betterment.com/app/signup?signup_motivation=general_investing">
+                                                                  p24" href="{{ route('investment') }}">
                                                                   <div class="item-content flex flex-middle">
                                                                      <div class="mr16"> 
                                                                         <img src="hs-fs/hubfs/goal-icon_plant-11.png?width=32&amp;name=goal-icon_plant.png" alt="goal-icon_plant" width="32" class="display-block" srcset="hs-fs/hubfs/goal-icon_plant-12.png 16w?width=16&amp;name=goal-icon_plant.png 16w, hs-fs/hubfs/goal-icon_plant-11.png 32wg?width=32&amp;name=goal-icon_plant.png 32w, hs-fs/hubfs/goal-icon_plant-13.png 48wg?width=48&amp;name=goal-icon_plant.png 48w, hs-fs/hubfs/goal-icon_plant-14.png 64wg?width=64&amp;name=goal-icon_plant.png 64w, hs-fs/hubfs/goal-icon_plant-15.png 80wg?width=80&amp;name=goal-icon_plant.png 80w, hs-fs/hubfs/goal-icon_plant-16.png 96wg?width=96&amp;name=goal-icon_plant.png 96w" sizes="(max-width: 32px) 100vw, 32px">
@@ -966,7 +942,7 @@
                                                             <li class="">
                                                                <a class="card-container card-container_interactive flex flex-spaceBetween bg-white flex-middle
                                                                   mb16
-                                                                  p24" href="https://wwws.betterment.com/app/signup?signup_motivation=bond_investing">
+                                                                  p24" href="{{ route('bonds') }}">
                                                                   <div class="item-content flex flex-middle">
                                                                      <div class="mr16"> 
                                                                         <img src="hs-fs/hubfs/goal-bond-1-8.png?width=32&amp;name=goal-bond-1.png" alt="goal-bond-1" width="32" class="display-block" srcset="hs-fs/hubfs/goal-bond-1-9.png 16w?width=16&amp;name=goal-bond-1.png 16w, hs-fs/hubfs/goal-bond-1-8.png 32wg?width=32&amp;name=goal-bond-1.png 32w, hs-fs/hubfs/goal-bond-1-10.png 48wg?width=48&amp;name=goal-bond-1.png 48w, hs-fs/hubfs/goal-bond-1-11.png 64wg?width=64&amp;name=goal-bond-1.png 64w, hs-fs/hubfs/goal-bond-1-12.png 80wg?width=80&amp;name=goal-bond-1.png 80w, hs-fs/hubfs/goal-bond-1-13.png 96wg?width=96&amp;name=goal-bond-1.png 96w" sizes="(max-width: 32px) 100vw, 32px">
@@ -987,7 +963,7 @@
                                                             <li class="">
                                                                <a class="card-container card-container_interactive flex flex-spaceBetween bg-white flex-middle
                                                                   mb16
-                                                                  p24" href="https://wwws.betterment.com/app/signup?signup_motivation=savings">
+                                                                  p24" href="{{ route('cash') }}">
                                                                   <div class="item-content flex flex-middle">
                                                                      <div class="mr16"> 
                                                                         <img src="hs-fs/hubfs/General%20Investing%20-%20Icon-6.png?width=32&amp;name=General%20Investing%20-%20Icon.png" alt="General Investing - Icon" width="32" class="display-block" srcset="hs-fs/hubfs/General%20Investing%20-%20Icon-7.png 16w?width=16&amp;name=General%20Investing%20-%20Icon.png 16w, hs-fs/hubfs/General%20Investing%20-%20Icon-6.png 32wg?width=32&amp;name=General%20Investing%20-%20Icon.png 32w, hs-fs/hubfs/General%20Investing%20-%20Icon-8.png 48wg?width=48&amp;name=General%20Investing%20-%20Icon.png 48w, hs-fs/hubfs/General%20Investing%20-%20Icon-9.png 64wg?width=64&amp;name=General%20Investing%20-%20Icon.png 64w, hs-fs/hubfs/General%20Investing%20-%20Icon-10.png 80wg?width=80&amp;name=General%20Investing%20-%20Icon.png 80w, hs-fs/hubfs/General%20Investing%20-%20Icon-11.png 96wg?width=96&amp;name=General%20Investing%20-%20Icon.png 96w" sizes="(max-width: 32px) 100vw, 32px">
@@ -1064,6 +1040,20 @@
                                                             <div class="u-col-12"></div>
                                                             <div class="hs-cta ">
                                                                <span>
+                                                                  <span>
+                                                                     <div class="u-displayNone--until-lg bt-nav-cta-2">
+                                                                        <div class="">
+                                                                              <div>
+                                                                                 <a href="{{ route('register') }}" style="background: #1d6ae5; color: white; padding: 14px 30px; border-radius: 5px; text-align: center; text-decoration: none; font-weight: 500;">Get Stated</a>
+                                                                              </div>
+                                                                        </div>
+                                                                     </div>
+                                                                  </span>
+                                                               </span>
+                                                            </div>
+
+<div class="hs-cta " style="display: none">
+                                                               <span>
                                                                   <span id="hs_cos_wrapper_widget_1721931351363_" class="hs_cos_wrapper hs_cos_wrapper_widget hs_cos_wrapper_type_cta" style="" data-hs-cos-general-type="widget" data-hs-cos-type="cta">
                                                                      <!--HubSpot Call-to-Action Code -->
                                                                      <span class="hs-cta-wrapper" id="hs-cta-wrapper-264c4217-8981-4ad2-bcab-8cddd4e20b76">
@@ -1132,7 +1122,7 @@
       <script defer="" src="content-cwv-embed/static-1.1293/embed-1.js"></script>
       <script src="ajax/libs/jquery/3.5.1/jquery.min-1.js"></script>
       <script src="ajax/libs/jquery-migrate/3.3.1/jquery-migrate.min-1.js"></script>
-      <script id="__ada" data-handle="betterment-cx" src="https://static.ada.support/embed2.js" data-lazy=""></script>
+      
       <script src="hs-fs/hub/5274572/hub_generated/template_assets/57001203564/1728423001638/betterment-theme/resources/btTrackingInit.min-1.js"></script>
       <script src="hs-fs/hub/5274572/hub_generated/template_assets/49666399874/1728423002407/betterment-theme/js/main.min-1.js"></script>
       <script>

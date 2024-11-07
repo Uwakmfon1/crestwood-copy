@@ -258,8 +258,8 @@
                         </div>
                         <ul class="flex-wrap bt-row">
                            <li class="bt-ContentGrid-item u-col-4@lg post-list-item_small">
-                              <a class="item read-time has-excerpt" href="help/what-is-betterment-1.html">
-                                 <img class="item-image lazy" data-src="https://resources.betterment.com/hubfs/Graphics/Featured-images/things-to-save-for-retirement-emergency-fund-house.jpg" alt="">
+                              <a class="item read-time has-excerpt" href="#">
+                                 <img class="item-image lazy" data-src="../hubfs/Graphics/featured-images/betterment-app-on-phone-with-sparkles-1.jpg" alt="">
                                  <p class="item-title">What is Betterment and how does it work?</p>
                                  <p class="item-excerpt">Betterment is a smart money manager and the largest independent online financial advisor that serves one ...</p>
                                  <div class="js-post-body-count" aria-hidden="true" hidden="">
@@ -269,8 +269,8 @@
                               </a>
                            </li>
                            <li class="bt-ContentGrid-item u-col-4@lg post-list-item_small">
-                              <a class="item read-time has-excerpt" href="help/transaction-timelines-1.html">
-                                 <img class="item-image lazy" data-src="https://resources.betterment.com/hubfs/Graphics/Featured-images/timer-on-stairs-illustration.jpg" alt="">
+                              <a class="item read-time has-excerpt" href="#">
+                                 <img class="item-image lazy" data-src="../hubfs/Graphics/featured-images/betterment-app-on-phone-with-sparkles-1.jpg" alt="">
                                  <p class="item-title">Transaction timelines</p>
                                  <p class="item-excerpt">Betterment Account Transfer Times All timelines listed are in business days1 Note: These transactions may ...</p>
                                  <div class="js-post-body-count" aria-hidden="true" hidden="">
@@ -280,8 +280,8 @@
                               </a>
                            </li>
                            <li class="bt-ContentGrid-item u-col-4@lg post-list-item_small">
-                              <a class="item read-time has-excerpt" href="help/fees-1.html">
-                                 <img class="item-image lazy" data-src="https://resources.betterment.com/hubfs/Graphics/Featured-images/tools-and-features-betterment.jpg" alt="">
+                              <a class="item read-time has-excerpt" href="#">
+                                 <img class="item-image lazy" data-src="../hubfs/Graphics/featured-images/betterment-app-on-phone-with-sparkles-1.jpg" alt="">
                                  <p class="item-title">What are Betterment’s fees?</p>
                                  <p class="item-excerpt">Betterment offers several fee plans for our investing services. Below we’ve listed a pricing breakdown ...</p>
                                  <div class="js-post-body-count" aria-hidden="true" hidden="">
@@ -501,7 +501,7 @@
       <script defer="" src="content-cwv-embed/static-1.1293/embed-1.js"></script>
       <script src="ajax/libs/jquery/3.5.1/jquery.min-1.js"></script>
       <script src="ajax/libs/jquery-migrate/3.3.1/jquery-migrate.min-1.js"></script>
-      <script id="__ada" data-handle="betterment-cx" src="https://static.ada.support/embed2.js" data-lazy=""></script>
+      
       <script src="hs-fs/hub/5274572/hub_generated/template_assets/57001203564/1728423001638/betterment-theme/resources/btTrackingInit.min-1.js"></script>
       <script src="hs-fs/hub/5274572/hub_generated/template_assets/49666399874/1728423002407/betterment-theme/js/main.min-1.js"></script>
       <script>
