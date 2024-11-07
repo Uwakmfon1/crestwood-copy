@@ -790,7 +790,7 @@
                                                                         <p class="mb7 bt-title3">Recurring deposits can help you earn even more.</p>
                                                                         <div>Customers with automated deposits earned 6% higher annual returns than those that did not.</div>
                                                                      </div>
-                                                                     <div class="bt-body3 mt16 align-self-end">Based on Betterment's internal calculations for the Core portfolio. Users in the "auto-deposit on" groups earned an additional 1% annualized over 5 years and 6% over the last year. <a href="#percentageclaims" rel="noopener">See more in disclosures.</a></div>
+                                                                     <div class="bt-body3 mt16 align-self-end">Based on Crestwood Capital Management's internal calculations for the Core portfolio. Users in the "auto-deposit on" groups earned an additional 1% annualized over 5 years and 6% over the last year. <a href="#percentageclaims" rel="noopener">See more in disclosures.</a></div>
                                                                   </div>
                                                                </li>
                                                             </ul>
