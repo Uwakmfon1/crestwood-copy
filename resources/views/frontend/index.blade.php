@@ -2,7 +2,7 @@
 <html lang="en">
    <head data-ipt="B4C Homepage | Control">
       <meta charset="utf-8">
-      <title>Crestwood Capital Management   </title>
+      <title>Crestwood Capital Management | Home</title>
       <link rel="icon" href="{{ asset('asset/images/brand-logos/favicon.png') }}" type="image/x-icon">
       <meta name="description" content="Crestwood Capital Management  can help grow your money by making saving and investing easy. 
          Invest in a tailored portfolio, set buckets for your goals, and earn 
