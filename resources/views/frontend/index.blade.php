@@ -865,22 +865,14 @@
                                                             <div class="awards bt-row flex-wrap mt28 ">
                                                             </div>
                                                             <div class="bt-body3 mt8">
-<<<<<<< HEAD
                                                                <p>For Cash Reserve (“CR”), Crestwood Capital Management  LLC only receives compensation from our <a href="{{ route('cash') }}" rel="noopener" target="_blank">program banks</a>; Crestwood Capital Management  LLC and Crestwood Capital Management  Securities do not charge fees on your CR balance.</p>
-=======
-                                                               <p>For Cash Reserve (“CR”), Crestwood Capital Management LLC only receives compensation from our <a href="{{ route('cash') }}" rel="noopener" target="_blank">program banks</a>; Crestwood Capital Management LLC and Crestwood Capital Management Securities do not charge fees on your CR balance.</p>
->>>>>>> 916f914e2ca3c85d9b056ecb2f9891d7648bb078
                                                             </div>
                                                          </div>
                                                       </div>
                                                       
                                                       <div class="bt-ContentGrid-item u-col-12 u-col-6@md cols col-2 ">
                                                          <div>
-<<<<<<< HEAD
                                                             <div id="bt-cash-reserve-thunderbolt-animation" aria-label="A hypothetical image of a Crestwood Capital Management Cash Reserve account displaying 12K in savings with accrued 4.50% apy*" data-apy="4.50" class="visible">
-=======
-                                                            <div id="bt-cash-reserve-thunderbolt-animation" aria-label="A hypothetical image of a Betterment Cash Reserve account displaying 12K in savings with accrued 4.50% apy*" data-apy="4.50" class="visible">
->>>>>>> 916f914e2ca3c85d9b056ecb2f9891d7648bb078
                                                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 646 498" width="646" height="498" style="width: 100%; height: 100%; transform: translate3d(0px, 0px, 0px); content-visibility: visible;" preserveAspectRatio="xMidYMid meet" aria-hidden="true">
                                                                   <defs>
                                                                      <clipPath id="__lottie_element_2">
@@ -1274,11 +1266,7 @@
                                                                   <div>
                                                                      <div><span>Fund your future with our dollars! We’ll match 1% of your net Roth and traditional IRA contributions until December 30, 2024.<br></span></div>
                                                                      <div><span>&nbsp;</span></div>
-<<<<<<< HEAD
                                                                      <div class="hs-cta"><span><span class="hs-cta-wrapper" id="hs-cta-wrapper-05a30c44-878e-4af6-a8b3-d4cb19d5125c"><span class="hs-cta-node hs-cta-05a30c44-878e-4af6-a8b3-d4cb19d5125c" id="hs-cta-05a30c44-878e-4af6-a8b3-d4cb19d5125c" data-hs-drop="true"><a id="cta_button_5274572_ab336feb-9a24-4cc1-8d72-c084cbb77b38" href="{{ route('ira') }}" title="Claim your offer" rel="noopener" cta_dest_link="https://www.Crestwood Capital Management.com/get-started/intent?signup_motivation=retirement">Click here</a> to learn how to claim your offer.</span></span></span></div>
-=======
-                                                                     <div class="hs-cta"><span><span class="hs-cta-wrapper" id="hs-cta-wrapper-05a30c44-878e-4af6-a8b3-d4cb19d5125c"><span class="hs-cta-node hs-cta-05a30c44-878e-4af6-a8b3-d4cb19d5125c" id="hs-cta-05a30c44-878e-4af6-a8b3-d4cb19d5125c" data-hs-drop="true"><a id="cta_button_5274572_ab336feb-9a24-4cc1-8d72-c084cbb77b38" href="{{ route('ira') }}" title="Claim your offer" rel="noopener" cta_dest_link="https://www.betterment.com/get-started/intent?signup_motivation=retirement">Click here</a> to learn how to claim your offer.</span></span></span></div>
->>>>>>> 916f914e2ca3c85d9b056ecb2f9891d7648bb078
                                                                      <div><span>Conditions apply.&nbsp;See&nbsp;<a href="{{ route('ira') }}" rel="noopener">offer terms</a>.</span></div>
                                                                   </div>
                                                                </div>
@@ -1869,11 +1857,7 @@
                                                       <div class="bt-ContentGrid-item u-col-12">
                                                          <div class="flex-wrap bt-row  bt-body50 footnote">
                                                             <div class="bt-ContentGrid-item u-col-12 u-col-12@lg">
-<<<<<<< HEAD
                                                                <div style="text-align: center;">Images are hypothetical<br>For Cash Reserve (“CR”), Crestwood Capital Management  LLC only receives compensation from our <a href="{{ route('cash') }}" rel="noopener" target="_blank">program banks</a>; Crestwood Capital Management  LLC and Crestwood Capital Management  Securities do not charge fees on your CR balance.</div>
-=======
-                                                               <div style="text-align: center;">Images are hypothetical<br>For Cash Reserve (“CR”), Crestwood Capital Management LLC only receives compensation from our <a href="{{ route('cash') }}" rel="noopener" target="_blank">program banks</a>; Crestwood Capital Management LLC and Crestwood Capital Management Securities do not charge fees on your CR balance.</div>
->>>>>>> 916f914e2ca3c85d9b056ecb2f9891d7648bb078
                                                             </div>
                                                          </div>
                                                       </div>
@@ -2054,11 +2038,7 @@
                                                                   </svg>
                                                                </button>
                                                                <div class="accordion-body" aria-hidden="true" id="content-is-my-money-safe-at-betterment" style="display:none;">
-<<<<<<< HEAD
                                                                   <p>Crestwood Capital Management  Securities is a Member of SIPC, which protects securities of its members up to $500K (including $250K for claims for cash). Explanatory brochure available upon request or at www.sipc.org. What you should remember is that the SIPC does not protect against market changes in your investing account.</p>
-=======
-                                                                  <p>Crestwood Capital Management Securities is a Member of SIPC, which protects securities of its members up to $500K (including $250K for claims for cash). Explanatory brochure available upon request or at www.sipc.org. What you should remember is that the SIPC does not protect against market changes in your investing account.</p>
->>>>>>> 916f914e2ca3c85d9b056ecb2f9891d7648bb078
                                                                   <p>Individual Cash Reserve accounts have FDIC insurance up to $2 million and joint Cash Reserve accounts offer up to $4 million in<span>&nbsp;</span><a data-track-event="ElementClicked" data-track-module="AboutUsSection" data-track-name="FDICInsurance" href="checking-1.html" data-interaction-listener-registered="true" rel="noopener">FDIC insurance</a><span>&nbsp;</span>once funds are deposited into our<span>&nbsp;</span><a data-track-event="ElementClicked" data-track-module="AboutUsSection" data-track-name="ProgramBanks" href="{{ route('cash') }}" data-interaction-listener-registered="true" rel="noopener">program banks</a><sup>†</sup>.</p>
                                                                   <p>Funds deposited into Checking are FDIC-insured up to $250,000 for individual accounts and up to $250,000 per depositor for joint accounts, provided by nbkc bank, Member FDIC. Explore further details about<span>&nbsp;</span><a data-track-event="ElementClicked" data-track-module="AboutUsSection" data-track-name="FDICInsurance" href="checking-1.html" data-interaction-listener-registered="true" rel="noopener">FDIC insurance</a>.</p>
                                                                </div>
