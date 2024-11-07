@@ -351,11 +351,7 @@
                                                          <div class="flex-wrap bt-row  bt-body50 footnote">
                                                             <div class="bt-ContentGrid-item u-col-12 u-col-12@lg">
                                                                <hr class="bg-grey30 mt0 mb16">
-<<<<<<< HEAD
                                                                Cash Reserve is only available to clients of Crestwood Capital Management LLC, which is not a bank, and cash transfers to program banks are conducted through the clients’ brokerage accounts at Crestwood Capital Management Securities. For Cash Reserve (“CR”), Crestwood Capital Management LLC only receives compensation from our <a href="{{ route('portfolio') }}" rel="noopener" target="_blank">program banks</a>; Crestwood Capital Management LLC and Crestwood Capital Management Securities do not charge fees on your CR balance.
-=======
-                                                               Cash Reserve is only available to clients of Betterment LLC, which is not a bank, and cash transfers to program banks are conducted through the clients’ brokerage accounts at Betterment Securities. For Cash Reserve (“CR”), Betterment LLC only receives compensation from our <a href="{{ route('portfolio') }}" rel="noopener" target="_blank">program banks</a>; Betterment LLC and Betterment Securities do not charge fees on your CR balance.
->>>>>>> 916f914e2ca3c85d9b056ecb2f9891d7648bb078
                                                             </div>
                                                          </div>
                                                       </div>

@@ -843,11 +843,7 @@
                                                       <div class="bt-ContentGrid-item u-col-12">
                                                          <div class="flex-wrap bt-row center justify-content-center bt-body50 footnote">
                                                             <div class="bt-ContentGrid-item u-col-12 u-col-12@lg">
-<<<<<<< HEAD
                                                                <p><span>Non-paid client of Crestwood Capital Management. Views may not be representative, see more reviews at the <a href="https://apps.apple.com/us/app/betterment-invest-save-money/id393156562" rel="noopener">App Store</a> and <a href="https://play.google.com/store/apps/details?id=com.betterment" rel="noopener">Google Play Store</a>. </span>Annual percentage yield (variable) is as of September 20, 2024. Cash Reserve is only available to clients of Crestwood Capital Management LLC, which is not a bank, and cash transfers to <a href="{{ route('cash') }}">Program Banks</a> are conducted through the clients’ brokerage accounts at Crestwood Capital Management Securities.</p>
-=======
-                                                               <p><span>Non-paid client of Betterment. Views may not be representative, see more reviews at the <a href="https://apps.apple.com/us/app/betterment-invest-save-money/id393156562" rel="noopener">App Store</a> and <a href="https://play.google.com/store/apps/details?id=com.betterment" rel="noopener">Google Play Store</a>. </span>Annual percentage yield (variable) is as of September 20, 2024. Cash Reserve is only available to clients of Betterment LLC, which is not a bank, and cash transfers to <a href="{{ route('cash') }}">Program Banks</a> are conducted through the clients’ brokerage accounts at Betterment Securities.</p>
->>>>>>> 916f914e2ca3c85d9b056ecb2f9891d7648bb078
                                                             </div>
                                                          </div>
                                                       </div>
@@ -1031,11 +1027,7 @@
                                                       <div class="bt-ContentGrid-item u-col-12">
                                                          <div class="flex-wrap bt-row center justify-content-center bt-body50 footnote">
                                                             <div class="bt-ContentGrid-item u-col-12 u-col-12@lg">
-<<<<<<< HEAD
                                                                <p><span>Non-paid client of Crestwood Capital Management. Views may not be representative, see more reviews at the <a href="https://apps.apple.com/us/app/betterment-invest-save-money/id393156562" rel="noopener">App Store</a> and <a href="https://play.google.com/store/apps/details?id=com.betterment" rel="noopener">Google Play Store</a>. Tax Loss Harvesting+ (TLH+) is not suitable for all investors. Consider your personal circumstances before deciding whether to utilize Crestwood Capital Management's TLH+ feature. </span>Annual percentage yield (variable) is as of September 20, 2024. Cash Reserve is only available to clients of Crestwood Capital Management LLC, which is not a bank, and cash transfers to <a href="{{ route('cash') }}">Program Banks</a> are conducted through the clients’ brokerage accounts at Crestwood Capital Management Securities.</p>
-=======
-                                                               <p><span>Non-paid client of Betterment. Views may not be representative, see more reviews at the <a href="https://apps.apple.com/us/app/betterment-invest-save-money/id393156562" rel="noopener">App Store</a> and <a href="https://play.google.com/store/apps/details?id=com.betterment" rel="noopener">Google Play Store</a>. Tax Loss Harvesting+ (TLH+) is not suitable for all investors. Consider your personal circumstances before deciding whether to utilize Betterment’s TLH+ feature. </span>Annual percentage yield (variable) is as of September 20, 2024. Cash Reserve is only available to clients of Betterment LLC, which is not a bank, and cash transfers to <a href="{{ route('cash') }}">Program Banks</a> are conducted through the clients’ brokerage accounts at Betterment Securities.</p>
->>>>>>> 916f914e2ca3c85d9b056ecb2f9891d7648bb078
                                                             </div>
                                                          </div>
                                                       </div>

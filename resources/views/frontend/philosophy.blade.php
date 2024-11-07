@@ -283,11 +283,7 @@
                               <div class="blog-post-meta-text bt-body3">
                                  <span class="blog-post-meta-text-top">
                                  By
-<<<<<<< HEAD
                                  <a href="#" rel="author">Crestwood Capital Management Editors</a>
-=======
-                                 <a href="#" rel="author">Betterment Editors</a>
->>>>>>> 916f914e2ca3c85d9b056ecb2f9891d7648bb078
                                  </span>
                                  <div class="blog-post-meta-text-bottom">
                                     <div class="blog-post-date">
@@ -376,13 +372,8 @@
                               <p>Investors have a name for this process: <span style="font-weight: bold;">asset allocation</span>.</p>
                               <p>Asset allocation involves splitting up your investment dollars across several types of financial assets (like stocks and bonds). Together these investments form your portfolio.</p>
                               <p>A good portfolio will have your investment dollars in the right baskets: protecting you from extreme loss when the markets perform poorly, yet leaving you open to windfalls when the market does well.</p>
-<<<<<<< HEAD
                               <p>If that sounds complicated, there’s good news: Crestwood Capital Management will automatically recommend how to allocate your investments based on your individual goals.</p>
                               <h2>How Crestwood Capital Management provides allocation advice</h2>
-=======
-                              <p>If that sounds complicated, there’s good news: Betterment will automatically recommend how to allocate your investments based on your individual goals.</p>
-                              <h2>How Betterment provides allocation advice</h2>
->>>>>>> 916f914e2ca3c85d9b056ecb2f9891d7648bb078
                               <p>At Betterment, our recommendations start with <a href="{{ route('goals') }}" rel="noopener" target="_blank">your financial goals</a>. Each of your financial goals—whether it’s a vacation or retirement—gets its own allocation of stocks and bonds.</p>
                               <p>Next we look at your investment horizon, a fancy term for “when you need the money and how you’ll withdraw it.” It’s like a timeline. How long will you invest for? Will you take it out all at once, or a little bit at a time?</p>
                               <p>For a down payment goal, you might withdraw the entire investment after 10 years once you’ve hit your savings mark. But when you retire, you’ll probably withdraw from your retirement account gradually over the course of years.</p>
@@ -399,13 +390,8 @@
                               <p>Take more risk than we recommend, and we’ll tell you we believe your approach is “too aggressive” given your goal and time horizon. Even if you care about the downsides less than the average outcome, we’ll still caution you against taking on more risk, because it can be very difficult to recover from losses in a portfolio flagged as “too aggressive.”</p>
                               <p>On the other hand, if you choose a lower risk level than our “conservative” band, we'll label your choice “very conservative.” A downside to taking a lower risk level is you may need to save more. You should choose a level of risk that’s aligned with your ability to stay the course.</p>
                               <p>An allocation is only optimal if you’re able to commit to it in both good markets and bad ones. To ensure you’re comfortable with the short-term risk in your portfolio, we present both extremely good and extremely poor return scenarios for your selection over a one-year period.</p>
-<<<<<<< HEAD
                               <h2>How Crestwood Capital Management automatically optimizes your risk</h2>
                               <p>An advantage of investing with Crestwood Capital Management is that <a href="{{ route('investment') }}" rel="noopener" target="_blank">our technology works behind the scenes</a> to automatically manage your risk in a variety of ways, including auto-adjusted allocation and rebalancing.</p>
-=======
-                              <h2>How Betterment automatically optimizes your risk</h2>
-                              <p>An advantage of investing with Betterment is that <a href="{{ route('investment') }}" rel="noopener" target="_blank">our technology works behind the scenes</a> to automatically manage your risk in a variety of ways, including auto-adjusted allocation and rebalancing.</p>
->>>>>>> 916f914e2ca3c85d9b056ecb2f9891d7648bb078
                               <h3>Auto-adjusted allocation</h3>
                               <p>For most goals, the ideal allocation will change as you near your goal. We use automation to make those adjustments as efficient and tax-friendly as possible.</p>
                               <p>Deposits, withdrawals, and dividends can help us guide your portfolio toward the target allocation, without having to sell any assets. If we do need to sell any of your investments, our tax-smart technology minimizes the potential tax impact. First we look for shares that have losses. These can offset other taxes. Then we sell shares with the smallest embedded gains (and smallest potential taxes).</p>
@@ -421,15 +407,9 @@
                               If you are an Advised client, rebalancing in your account may function differently depending on the portfolio type your Advisor has selected for you. We recommend reaching out to your Advisor for further details.<br><br>
                               <h2>How Crestwood Capital Management reduces risk in portfolios</h2>
                               <p>Investments like short-term US treasuries can help reduce risk in portfolios. At a certain point, however, including assets such as these in a portfolio no longer improves returns for the amount of risk taken. For Betterment, this point is our 60% stock portfolio. Portfolios with a stock allocation of 60% or more don’t incorporate these exposures.</p>
-<<<<<<< HEAD
                               <p>We include our U.S. Ultra-Short Income ETF and our U.S. Short-Term Treasury Bond ETF in the portfolio at stock allocations below 60% for both the IRA and taxable versions of the Crestwood Capital Management Core portfolio strategy.</p>
                               <p>If your portfolio includes no stocks (meaning you allocated 100% bonds), we can take the hint. You likely don’t want to worry about market volatility. So in that case, we recommend that you invest everything in these ETFs.</p>
                               <p>At 100% bonds and 0% stocks, a Crestwood Capital Management Core portfolio consists of 60% U.S. short-term treasury bonds, 20% U.S. short-term high quality bonds, and 20% inflation protected bonds. Increase the stock allocation in your portfolio, and we’ll decrease the allocation to these exposures. Reach the 60% stock allocation threshold, and we’ll remove these funds from the recommended portfolio. At that allocation, they decrease expected returns given the desired risk of the overall portfolio.</p>
-=======
-                              <p>We include our U.S. Ultra-Short Income ETF and our U.S. Short-Term Treasury Bond ETF in the portfolio at stock allocations below 60% for both the IRA and taxable versions of the Betterment Core portfolio strategy.</p>
-                              <p>If your portfolio includes no stocks (meaning you allocated 100% bonds), we can take the hint. You likely don’t want to worry about market volatility. So in that case, we recommend that you invest everything in these ETFs.</p>
-                              <p>At 100% bonds and 0% stocks, a Betterment Core portfolio consists of 60% U.S. short-term treasury bonds, 20% U.S. short-term high quality bonds, and 20% inflation protected bonds. Increase the stock allocation in your portfolio, and we’ll decrease the allocation to these exposures. Reach the 60% stock allocation threshold, and we’ll remove these funds from the recommended portfolio. At that allocation, they decrease expected returns given the desired risk of the overall portfolio.</p>
->>>>>>> 916f914e2ca3c85d9b056ecb2f9891d7648bb078
                               <p>Short-term U.S. treasuries generally have lower volatility (any price swings are quite mild) and smaller drawdowns (shorter, less significant periods of loss). The same can be said for short-term high quality bonds, but they are slightly more volatile.</p>
                               <p>It’s also worth noting that these asset classes don’t always go down at exactly the same time. By combining these asset classes, we’re able to produce a portfolio with a higher potential yield while maintaining relatively lower volatility.</p>
                               <p>As with other assets, the returns for assets such as high quality bonds include both the possibility of price returns and income yield. Generally, price returns are expected to be minimal, with the primary form of returns coming from the income yield.</p>

@@ -355,11 +355,7 @@
                                                             <h2 class="bt-title2 bt-ContentGrid-item u-col-12 u-col-6@md">  Who we are</h2>
                                                             <div class="u-col-12"></div>
                                                             <div class="bt-ContentGrid-item u-col-12 item-body bt-body100 u-col-6@md">
-<<<<<<< HEAD
                                                                <p><span>Crestwood Capital Management is a leading, technology-driven financial services company that offers investing and retirement solutions for <a href="{{ route('home') }}" rel="noopener">retail investors</a> and <a href="{{ route('investment') }}" rel="noopener">investment advisors</a> as well as workplace&nbsp;solutions for <a href="{{ route('tax') }}" rel="noopener">small and medium-sized businesses</a>. </span></p>
-=======
-                                                               <p><span>Betterment is a leading, technology-driven financial services company that offers investing and retirement solutions for <a href="{{ route('home') }}" rel="noopener">retail investors</a> and <a href="{{ route('investment') }}" rel="noopener">investment advisors</a> as well as workplace&nbsp;solutions for <a href="{{ route('tax') }}" rel="noopener">small and medium-sized businesses</a>. </span></p>
->>>>>>> 916f914e2ca3c85d9b056ecb2f9891d7648bb078
                                                             </div>
                                                             <div class="bt-ContentGrid-item u-col-12 hs-cta mt24">
                                                                <span>

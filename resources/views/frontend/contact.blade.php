@@ -2,31 +2,18 @@
 <html lang="en">
    <head data-ipt="B4C Contact">
       <meta charset="utf-8">
-<<<<<<< HEAD
       <title>Contact Crestwood Capital Management Customer Support</title>
       <link rel="icon" href="{{ asset('asset/images/brand-logos/favicon.png') }}" type="image/x-icon">
       <meta name="description" content="Get the help you need for investing and money management at Crestwood Capital Management. Find FAQs or reach out to our team over the phone or email.">
-=======
-      <title>Contact Betterment Customer Support</title>
-      <link rel="icon" href="{{ asset('asset/images/brand-logos/favicon.png') }}" type="image/x-icon">
-      <meta name="description" content="Get the help you need for investing and money management at Betterment. Find FAQs or reach out to our team over the phone or email.">
->>>>>>> 916f914e2ca3c85d9b056ecb2f9891d7648bb078
       <script>
          window.TT = "ewogICAgInNwbGl0cyI6e30sCiAgICAiZXhwZXJpZW5jZVNhbXBsaW5nV2VpZ2h0IjoxMDAsCiAgICAidXJsIjoiaHR0cHM6XC9cL3R0LmJldHRlcm1lbnQuY29tIiwKICAgICJjb29raWVEb21haW4iOiIuYmV0dGVybWVudC5jb20iLAogICAgImVuY29kZWRBdCI6IjIwMjEwNzEzMTU1MjAxIgp9"
       </script>
       <script>!function(){window.semaphore=window.semaphore||[],window.ketch=function(){window.semaphore.push(arguments)};var e=new URLSearchParams(document.location.search),o=e.has("property")?e.get("property"):"betterment_com",n=document.createElement("script");n.type="text/javascript",n.src="https://global.ketchcdn.com/web/v2/config/betterment/".concat(o,"/boot.js"),n.defer=n.async=!0,document.getElementsByTagName("head")[0].appendChild(n)}();</script>
       <meta name="viewport" content="width=device-width, initial-scale=1">
-<<<<<<< HEAD
       <meta property="og:description" content="Get the help you need for investing and money management at Crestwood Capital Management. Find FAQs or reach out to our team over the phone or email.">
       <meta property="og:title" content="Contact Crestwood Capital Management Customer Support">
       <meta name="twitter:description" content="Get the help you need for investing and money management at Crestwood Capital Management. Find FAQs or reach out to our team over the phone or email.">
       <meta name="twitter:title" content="Contact Crestwood Capital Management Customer Support">
-=======
-      <meta property="og:description" content="Get the help you need for investing and money management at Betterment. Find FAQs or reach out to our team over the phone or email.">
-      <meta property="og:title" content="Contact Betterment Customer Support">
-      <meta name="twitter:description" content="Get the help you need for investing and money management at Betterment. Find FAQs or reach out to our team over the phone or email.">
-      <meta name="twitter:title" content="Contact Betterment Customer Support">
->>>>>>> 916f914e2ca3c85d9b056ecb2f9891d7648bb078
       <style>
          a.cta_button{-moz-box-sizing:content-box !important;-webkit-box-sizing:content-box !important;box-sizing:content-box !important;vertical-align:middle}.hs-breadcrumb-menu{list-style-type:none;margin:0px 0px 0px 0px;padding:0px 0px 0px 0px}.hs-breadcrumb-menu-item{float:left;padding:10px 0px 10px 10px}.hs-breadcrumb-menu-divider:before{content:'›';padding-left:10px}.hs-featured-image-link{border:0}.hs-featured-image{float:right;margin:0 0 20px 20px;max-width:50%}@media (max-width: 568px){.hs-featured-image{float:none;margin:0;width:100%;max-width:100%}}.hs-screen-reader-text{clip:rect(1px, 1px, 1px, 1px);height:1px;overflow:hidden;position:absolute !important;width:1px}
       </style>
@@ -170,7 +157,6 @@
       </script>
       <!-- /Added by GoogleTagManager integration -->
       <link rel="canonical" href="contact-1.html">
-<<<<<<< HEAD
       <meta property="og:image" content="https://www.Crestwood Capital Management.com/hubfs/Graphics/Featured-images/b2c_default.png">
       <meta property="og:image:width" content="1200">
       <meta property="og:image:height" content="628">
@@ -178,15 +164,6 @@
       <meta name="twitter:image" content="https://www.Crestwood Capital Management.com/hubfs/Graphics/Featured-images/b2c_default.png">
       <meta name="twitter:image:alt" content="Betterment">
       <meta property="og:url" content="https://www.Crestwood Capital Management.com/contact">
-=======
-      <meta property="og:image" content="https://www.betterment.com/hubfs/Graphics/Featured-images/b2c_default.png">
-      <meta property="og:image:width" content="1200">
-      <meta property="og:image:height" content="628">
-      <meta property="og:image:alt" content="Betterment">
-      <meta name="twitter:image" content="https://www.betterment.com/hubfs/Graphics/Featured-images/b2c_default.png">
-      <meta name="twitter:image:alt" content="Betterment">
-      <meta property="og:url" content="https://www.betterment.com/contact">
->>>>>>> 916f914e2ca3c85d9b056ecb2f9891d7648bb078
       <meta name="twitter:card" content="summary_large_image">
       <meta http-equiv="content-language" content="en">
       <meta name="generator" content="HubSpot">
@@ -527,11 +504,7 @@
                                                                         <div>
                                                                            <div>
                                                                               <div>
-<<<<<<< HEAD
                                                                                  <p>Moving money to Crestwood Capital Management or looking for help with financial planning? We have two great teams, each excited to work with you.<span>&nbsp;</span></p>
-=======
-                                                                                 <p>Moving money to Betterment or looking for help with financial planning? We have two great teams, each excited to work with you.<span>&nbsp;</span></p>
->>>>>>> 916f914e2ca3c85d9b056ecb2f9891d7648bb078
                                                                                  <p><a href="{{ route('expert') }}">Explore our one-on-one services</a></p>
                                                                               </div>
                                                                            </div>
@@ -544,11 +517,7 @@
                                                       </div>
                                                       <div class="bt-ContentGrid-item u-col-12 u-col-4@md cols col-2 ">
                                                          <div>
-<<<<<<< HEAD
                                                             <img src="hs-fs/hubfs/Graphics/webpage-graphics/nick-holeman-6.png?width=459&amp;name=nick-holeman.png" alt="Nick Holeman, head of advisors at Crestwood Capital Management. " width="459" srcset="hs-fs/hubfs/Graphics/webpage-graphics/nick-holeman-7.png 230w?width=230&amp;name=nick-holeman.png 230w, hs-fs/hubfs/Graphics/webpage-graphics/nick-holeman-6.png 459wg?width=459&amp;name=nick-holeman.png 459w, hs-fs/hubfs/Graphics/webpage-graphics/nick-holeman-8.png 689wg?width=689&amp;name=nick-holeman.png 689w, hs-fs/hubfs/Graphics/webpage-graphics/nick-holeman-9.png 918wg?width=918&amp;name=nick-holeman.png 918w, hs-fs/hubfs/Graphics/webpage-graphics/nick-holeman-10.png 1148wg?width=1148&amp;name=nick-holeman.png 1148w, hs-fs/hubfs/Graphics/webpage-graphics/nick-holeman-11.png 1377wg?width=1377&amp;name=nick-holeman.png 1377w" sizes="(max-width: 459px) 100vw, 459px">
-=======
-                                                            <img src="hs-fs/hubfs/Graphics/webpage-graphics/nick-holeman-6.png?width=459&amp;name=nick-holeman.png" alt="Nick Holeman, head of advisors at Betterment. " width="459" srcset="hs-fs/hubfs/Graphics/webpage-graphics/nick-holeman-7.png 230w?width=230&amp;name=nick-holeman.png 230w, hs-fs/hubfs/Graphics/webpage-graphics/nick-holeman-6.png 459wg?width=459&amp;name=nick-holeman.png 459w, hs-fs/hubfs/Graphics/webpage-graphics/nick-holeman-8.png 689wg?width=689&amp;name=nick-holeman.png 689w, hs-fs/hubfs/Graphics/webpage-graphics/nick-holeman-9.png 918wg?width=918&amp;name=nick-holeman.png 918w, hs-fs/hubfs/Graphics/webpage-graphics/nick-holeman-10.png 1148wg?width=1148&amp;name=nick-holeman.png 1148w, hs-fs/hubfs/Graphics/webpage-graphics/nick-holeman-11.png 1377wg?width=1377&amp;name=nick-holeman.png 1377w" sizes="(max-width: 459px) 100vw, 459px">
->>>>>>> 916f914e2ca3c85d9b056ecb2f9891d7648bb078
                                                          </div>
                                                       </div>
                                                    </div>
@@ -736,11 +705,7 @@
                                                 <div class="bt-container center white">
                                                    <div class="flex-wrap bt-row flex-center">
                                                       <div class="bt-ContentGrid-item u-col-12 u-col-6@md ">
-<<<<<<< HEAD
                                                          <h2 class="bt-title2 ">  Crestwood Capital Management addresses:</h2>
-=======
-                                                         <h2 class="bt-title2 ">  Betterment addresses:</h2>
->>>>>>> 916f914e2ca3c85d9b056ecb2f9891d7648bb078
                                                       </div>
                                                    </div>
                                                 </div>
@@ -780,11 +745,7 @@
                                                                   <div class="item-text">
                                                                      <h3 class="item-headline ">Address for outbound transfer paperwork:</h3>
                                                                      <div class="bt-body2 fancy-bullet fancy-bullet_check_blue">
-<<<<<<< HEAD
                                                                         <p>Crestwood Capital Management Transfers<br>PO Box 207691<br>Dallas, TX 75320-7691</p>
-=======
-                                                                        <p>Betterment Transfers<br>PO Box 207691<br>Dallas, TX 75320-7691</p>
->>>>>>> 916f914e2ca3c85d9b056ecb2f9891d7648bb078
                                                                      </div>
                                                                   </div>
                                                                </div>
@@ -796,11 +757,7 @@
                                                                   <div class="item-text">
                                                                      <h3 class="item-headline ">Overnight address for outbound transfer paperwork:</h3>
                                                                      <div class="bt-body2 fancy-bullet fancy-bullet_check_blue">
-<<<<<<< HEAD
                                                                         <p><span>Crestwood Capital Management Transfers</span><br><span>2975 Regent Blvd, Suite 100</span><br><span>Lockbox Services 207691</span><br><span>Irving, TX 75063</span><br><br><span>Note: Instructions for 401(k) transfers can be found within participant accounts.</span></p>
-=======
-                                                                        <p><span>Betterment Transfers</span><br><span>2975 Regent Blvd, Suite 100</span><br><span>Lockbox Services 207691</span><br><span>Irving, TX 75063</span><br><br><span>Note: Instructions for 401(k) transfers can be found within participant accounts.</span></p>
->>>>>>> 916f914e2ca3c85d9b056ecb2f9891d7648bb078
                                                                      </div>
                                                                   </div>
                                                                </div>
@@ -812,11 +769,7 @@
                                                                   <div class="item-text">
                                                                      <h3 class="item-headline ">Corporate office mailing address:</h3>
                                                                      <div class="bt-body2 fancy-bullet fancy-bullet_check_blue">
-<<<<<<< HEAD
                                                                         <p>Crestwood Capital Management LLC<br>450 West 33rd Street, FL 11<br>New York, NY 10001</p>
-=======
-                                                                        <p>Betterment LLC<br>450 West 33rd Street, FL 11<br>New York, NY 10001</p>
->>>>>>> 916f914e2ca3c85d9b056ecb2f9891d7648bb078
                                                                      </div>
                                                                   </div>
                                                                </div>
@@ -919,11 +872,7 @@
       <script type="text/javascript">
          var _hsq = _hsq || [];
          _hsq.push(["setContentType", "standard-page"]);
-<<<<<<< HEAD
          _hsq.push(["setCanonicalUrl", "https:\/\/www.Crestwood Capital Management.com\/contact"]);
-=======
-         _hsq.push(["setCanonicalUrl", "https:\/\/www.betterment.com\/contact"]);
->>>>>>> 916f914e2ca3c85d9b056ecb2f9891d7648bb078
          _hsq.push(["setPageId", "57835466818"]);
          _hsq.push(["setContentMetadata", {
              "contentPageId": 57835466818,

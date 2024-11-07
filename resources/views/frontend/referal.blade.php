@@ -430,11 +430,7 @@
                                                                <div class="item-content-area dark">
                                                                   <h3 class="item-headline bt-title4">Personalized advice.</h3>
                                                                   <div class="item-body bt-body2">
-<<<<<<< HEAD
                                                                      <p><span>Crestwood Capital Management will recommend a&nbsp;</span><a href="{{ route('goals') }}">personalized strategy</a><span>&nbsp;for their financial goals. Create goals to save for retirement, a house, to build wealth, or all of the above.</span></p>
-=======
-                                                                     <p><span>Betterment will recommend a&nbsp;</span><a href="{{ route('goals') }}">personalized strategy</a><span>&nbsp;for their financial goals. Create goals to save for retirement, a house, to build wealth, or all of the above.</span></p>
->>>>>>> 916f914e2ca3c85d9b056ecb2f9891d7648bb078
                                                                   </div>
                                                                </div>
                                                             </div>

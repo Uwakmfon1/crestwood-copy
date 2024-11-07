@@ -412,13 +412,8 @@
                                     </button>
                                     <div class="accordion-body" aria-hidden="true" id="content-how-does-betterment-compare-to-other-financial-companies" style="display:none;">
                                        <span class="bt-body2">
-<<<<<<< HEAD
                                           <p>We like to point to three major ways we're focused on the customer: We're a fiduciary—we are required to act in your best interest and we're required to disclose any potential conflict of interest. For instance, Crestwood Capital Management does not have or recommend any Betterment-created funds for its client portfolios Our platform combines powerful technology with personalized advice developed by our passionate team of experts. When you have questions, our Customer Support team is ready to help you with ...</p>
                                           <a class="link" href="{{ route('home') }}" aria-label="Read more about How does Crestwood Capital Management compare to other financial companies?">Read More</a>
-=======
-                                          <p>We like to point to three major ways we're focused on the customer: We're a fiduciary—we are required to act in your best interest and we're required to disclose any potential conflict of interest. For instance, Betterment does not have or recommend any Betterment-created funds for its client portfolios Our platform combines powerful technology with personalized advice developed by our passionate team of experts. When you have questions, our Customer Support team is ready to help you with ...</p>
-                                          <a class="link" href="{{ route('home') }}" aria-label="Read more about How does Betterment compare to other financial companies?">Read More</a>
->>>>>>> 916f914e2ca3c85d9b056ecb2f9891d7648bb078
                                        </span>
                                     </div>
                                  </li>
@@ -433,11 +428,7 @@
                                     <div class="accordion-body" aria-hidden="true" id="content-who-are-the-experts-behind-betterment" style="display:none;">
                                        <span class="bt-body2">
                                           <p>Our team of investing experts make decisions about our portfolio strategies and fund selection with the help of an external committee of economists, PhDs, and industry experts. More than just a portfolio management team, our experts work to develop improvements to our Tax Smart technology and other advanced strategies.</p>
-<<<<<<< HEAD
                                           <a class="link" href="{{ route('home') }}" aria-label="Read more about Who are the experts behind Crestwood Capital Management?">Read More</a>
-=======
-                                          <a class="link" href="{{ route('home') }}" aria-label="Read more about Who are the experts behind Betterment?">Read More</a>
->>>>>>> 916f914e2ca3c85d9b056ecb2f9891d7648bb078
                                        </span>
                                     </div>
                                  </li>
@@ -451,13 +442,8 @@
                                     </button>
                                     <div class="accordion-body" aria-hidden="true" id="content-is-betterment-a-regulated-financial-institution" style="display:none;">
                                        <span class="bt-body2">
-<<<<<<< HEAD
                                           <p>Crestwood Capital Management LLC is an SEC-registered Investment Advisor, and brokerage services provided to clients of Crestwood Capital Management LLC is done by Crestwood Capital Management Securities, an SEC-registered broker-dealer and member of FINRA /SIPC.</p>
                                           <a class="link" href="{{ route('home') }}" aria-label="Read more about Is Crestwood Capital Management a regulated financial institution?">Read More</a>
-=======
-                                          <p>Betterment LLC is an SEC-registered Investment Advisor, and brokerage services provided to clients of Betterment LLC is done by Betterment Securities, an SEC-registered broker-dealer and member of FINRA /SIPC.</p>
-                                          <a class="link" href="{{ route('home') }}" aria-label="Read more about Is Betterment a regulated financial institution?">Read More</a>
->>>>>>> 916f914e2ca3c85d9b056ecb2f9891d7648bb078
                                        </span>
                                     </div>
                                  </li>
@@ -487,11 +473,7 @@
                                     <div class="accordion-body" aria-hidden="true" id="content-how-is-betterment-different" style="display:none;">
                                        <span class="bt-body2">
                                           <p>Traditionally, people have manually managed their money and investments, which can be a very time consuming and painful process, or they've paid very costly fees to have access to financial advisors and advanced investment strategies. You may be a first-time investor just starting out, a seasoned investor wondering if you could be doing better, or a retiree thinking about ways to make your nest egg last. For those seeking an alternative to expensive advisor fees or the labor-intensive process ...</p>
-<<<<<<< HEAD
                                           <a class="link" href="{{ route('home') }}" aria-label="Read more about How is Crestwood Capital Management different?">Read More</a>
-=======
-                                          <a class="link" href="{{ route('home') }}" aria-label="Read more about How is Betterment different?">Read More</a>
->>>>>>> 916f914e2ca3c85d9b056ecb2f9891d7648bb078
                                        </span>
                                     </div>
                                  </li>
@@ -510,13 +492,8 @@
                                     </button>
                                     <div class="accordion-body" aria-hidden="true" id="content-what-happens-to-my-money-if-betterment-goes-public-is-acquired-or-closes" style="display:none;">
                                        <span class="bt-body2">
-<<<<<<< HEAD
                                           <p>Crestwood Capital Management Securities is a member of the Securities Investor Protection Corporation (SIPC), which protects securities customers of its members up to $500,000 (including $250,000 for claims for cash). Explanatory brochure available upon request or at www.sipc.org. At a high level, you can think of SIPC as providing protection for funds held in a brokerage account in the event that the brokerage fails. The Securities Investor Protection Corporation (SIPC) provides insurance that protects your ...</p>
                                           <a class="link" href="{{ route('home') }}" aria-label="Read more about What happens to my money if Crestwood Capital Management goes public, is acquired, or closes?">Read More</a>
-=======
-                                          <p>Betterment Securities is a member of the Securities Investor Protection Corporation (SIPC), which protects securities customers of its members up to $500,000 (including $250,000 for claims for cash). Explanatory brochure available upon request or at www.sipc.org. At a high level, you can think of SIPC as providing protection for funds held in a brokerage account in the event that the brokerage fails. The Securities Investor Protection Corporation (SIPC) provides insurance that protects your ...</p>
-                                          <a class="link" href="{{ route('home') }}" aria-label="Read more about What happens to my money if Betterment goes public, is acquired, or closes?">Read More</a>
->>>>>>> 916f914e2ca3c85d9b056ecb2f9891d7648bb078
                                        </span>
                                     </div>
                                  </li>
@@ -530,11 +507,7 @@
                                     </button>
                                     <div class="accordion-body" aria-hidden="true" id="content-how-do-you-keep-my-money-safe" style="display:none;">
                                        <span class="bt-body2">
-<<<<<<< HEAD
                                           <p>Crestwood Capital Management Securities is a member of SIPC, which protects securities customers of its members up to $500,000 (including $250,000 for claims for cash). Explanatory brochure available upon request or at www.sipc.org. What you should remember is that the SIPC does not protect against market changes in your account. The risks inherent in investing are tradeoffs you make to pursue investment returns. We design our portfolio to aim for the highest projected returns given your risk level. With our ...</p>
-=======
-                                          <p>Betterment Securities is a member of SIPC, which protects securities customers of its members up to $500,000 (including $250,000 for claims for cash). Explanatory brochure available upon request or at www.sipc.org. What you should remember is that the SIPC does not protect against market changes in your account. The risks inherent in investing are tradeoffs you make to pursue investment returns. We design our portfolio to aim for the highest projected returns given your risk level. With our ...</p>
->>>>>>> 916f914e2ca3c85d9b056ecb2f9891d7648bb078
                                           <a class="link" href="{{ route('home') }}" aria-label="Read more about How do you keep my money safe?">Read More</a>
                                        </span>
                                     </div>
@@ -554,13 +527,8 @@
                                     </button>
                                     <div class="accordion-body" aria-hidden="true" id="content-what-are-Crestwood Capital Management's-fees" style="display:none;">
                                        <span class="bt-body2">
-<<<<<<< HEAD
                                           <p>Crestwood Capital Management offers several fee plans for our investing services. Below we’ve listed a pricing breakdown according to account type and additional fee information. Stocks and Bonds Investing Accounts Crestwood Capital Management's investment advice is available for 0.25% (25 bps) per year or $4 per month. While it will impact our fees, Crestwood Capital Management does not require you to maintain a minimum balance for your account. We call this our Digital plan because you receive our advice online. The Digital pricing plan for our ...</p>
                                           <a class="link" href="{{ route('home') }}" aria-label="Read more about What are Crestwood Capital Management's fees?">Read More</a>
-=======
-                                          <p>Betterment offers several fee plans for our investing services. Below we’ve listed a pricing breakdown according to account type and additional fee information. Stocks and Bonds Investing Accounts Betterment’s investment advice is available for 0.25% (25 bps) per year or $4 per month. While it will impact our fees, Betterment does not require you to maintain a minimum balance for your account. We call this our Digital plan because you receive our advice online. The Digital pricing plan for our ...</p>
-                                          <a class="link" href="{{ route('home') }}" aria-label="Read more about What are Betterment’s fees?">Read More</a>
->>>>>>> 916f914e2ca3c85d9b056ecb2f9891d7648bb078
                                        </span>
                                     </div>
                                  </li>
@@ -574,13 +542,8 @@
                                     </button>
                                     <div class="accordion-body" aria-hidden="true" id="content-how-is-a-betterment-investment-account-different-from-a-traditional-online-brokerage-account" style="display:none;">
                                        <span class="bt-body2">
-<<<<<<< HEAD
                                           <p>Crestwood Capital Management offers a variety of features, including: A straightforward pricing model without hidden fees. A straightforward user experience which can help make it easier to understand your finances and set your goals. Automatic diversification of your assets through expert-built portfolios of ETFs . Automatic rebalancing of your portfolio once your balance reaches the minimum threshold. Automatic reinvestment of your dividends. Transaction in exact dollar amounts (so you don't have to buy whole ...</p>
                                           <a class="link" href="{{ route('home') }}" aria-label="Read more about How is a Crestwood Capital Management investment account different from a traditional online brokerage account?">Read More</a>
-=======
-                                          <p>Betterment offers a variety of features, including: A straightforward pricing model without hidden fees. A straightforward user experience which can help make it easier to understand your finances and set your goals. Automatic diversification of your assets through expert-built portfolios of ETFs . Automatic rebalancing of your portfolio once your balance reaches the minimum threshold. Automatic reinvestment of your dividends. Transaction in exact dollar amounts (so you don't have to buy whole ...</p>
-                                          <a class="link" href="{{ route('home') }}" aria-label="Read more about How is a Betterment investment account different from a traditional online brokerage account?">Read More</a>
->>>>>>> 916f914e2ca3c85d9b056ecb2f9891d7648bb078
                                        </span>
                                     </div>
                                  </li>
@@ -594,13 +557,8 @@
                                     </button>
                                     <div class="accordion-body" aria-hidden="true" id="content-who-is-eligible-to-use-betterment" style="display:none;">
                                        <span class="bt-body2">
-<<<<<<< HEAD
                                           <p>Crestwood Capital Management currently only operates in the United States, and for regulatory reasons cannot accept international customers residing outside the United States. This includes U.S. citizens residing and/or working abroad.* Login access to Crestwood Capital Management's application and/or website may be blocked in certain countries. All customers must be at least 18 years of age in order to consent to all our agreements. Customers must have a permanent U.S. address, a U.S. Social Security Number or an ITIN, and a ...</p>
                                           <a class="link" href="{{ route('home') }}" aria-label="Read more about Who is eligible to use Crestwood Capital Management?">Read More</a>
-=======
-                                          <p>Betterment currently only operates in the United States, and for regulatory reasons cannot accept international customers residing outside the United States. This includes U.S. citizens residing and/or working abroad.* Login access to Betterment’s application and/or website may be blocked in certain countries. All customers must be at least 18 years of age in order to consent to all our agreements. Customers must have a permanent U.S. address, a U.S. Social Security Number or an ITIN, and a ...</p>
-                                          <a class="link" href="{{ route('home') }}" aria-label="Read more about Who is eligible to use Betterment?">Read More</a>
->>>>>>> 916f914e2ca3c85d9b056ecb2f9891d7648bb078
                                        </span>
                                     </div>
                                  </li>
@@ -614,13 +572,8 @@
                                     </button>
                                     <div class="accordion-body" aria-hidden="true" id="content-what-is-betterment-and-how-does-it-work" style="display:none;">
                                        <span class="bt-body2">
-<<<<<<< HEAD
                                           <p>Crestwood Capital Management is a smart money manager and the largest independent online financial advisor that serves one purpose: to help you make the most of your money. Crestwood Capital Management helps you manage your money through cash management, guided investing, and retirement planning. We are a fiduciary, which means we act in your best interest. We'll ask a bit about you when you sign up. We'll also gather information when you connect your outside accounts. Then, we'll help you set financial goals and set you up with ...</p>
                                           <a class="link" href="{{ route('home') }}" aria-label="Read more about What is Crestwood Capital Management and how does it work?">Read More</a>
-=======
-                                          <p>Betterment is a smart money manager and the largest independent online financial advisor that serves one purpose: to help you make the most of your money. Betterment helps you manage your money through cash management, guided investing, and retirement planning. We are a fiduciary, which means we act in your best interest. We'll ask a bit about you when you sign up. We'll also gather information when you connect your outside accounts. Then, we'll help you set financial goals and set you up with ...</p>
-                                          <a class="link" href="{{ route('home') }}" aria-label="Read more about What is Betterment and how does it work?">Read More</a>
->>>>>>> 916f914e2ca3c85d9b056ecb2f9891d7648bb078
                                        </span>
                                     </div>
                                  </li>
@@ -634,13 +587,8 @@
                                     </button>
                                     <div class="accordion-body" aria-hidden="true" id="content-does-betterment-do-a-credit-check" style="display:none;">
                                        <span class="bt-body2">
-<<<<<<< HEAD
                                           <p>No. Since Crestwood Capital Management does not lend out money, the only check we do is an identification (ID) verification as required by law. We do not pull your credit score or act in any way which would impact your credit rating.</p>
                                           <a class="link" href="{{ route('home') }}" aria-label="Read more about Does Crestwood Capital Management do a credit check?">Read More</a>
-=======
-                                          <p>No. Since Betterment does not lend out money, the only check we do is an identification (ID) verification as required by law. We do not pull your credit score or act in any way which would impact your credit rating.</p>
-                                          <a class="link" href="{{ route('home') }}" aria-label="Read more about Does Betterment do a credit check?">Read More</a>
->>>>>>> 916f914e2ca3c85d9b056ecb2f9891d7648bb078
                                        </span>
                                     </div>
                                  </li>
@@ -659,11 +607,7 @@
                                     </button>
                                     <div class="accordion-body" aria-hidden="true" id="content-can-i-invest-in-an-individual-stock-or-fund-ie-sampp-500-index-or-apple" style="display:none;">
                                        <span class="bt-body2">
-<<<<<<< HEAD
                                           <p>No, you cannot invest in an individual stock or fund at Crestwood Capital Management. We aim to invest in a globally-diversified portfolio (which includes over 5,000 companies) made up of low-cost and liquid ETFs. The portfolio was chosen to help provide optimal returns at every level of risk, and is rebalanced as the market fluctuates and as you grow closer to your goal’s end date, if you have a time horizon set. We believe in passive investing. The majority of the evidence shows that active management, whether ...</p>
-=======
-                                          <p>No, you cannot invest in an individual stock or fund at Betterment. We aim to invest in a globally-diversified portfolio (which includes over 5,000 companies) made up of low-cost and liquid ETFs. The portfolio was chosen to help provide optimal returns at every level of risk, and is rebalanced as the market fluctuates and as you grow closer to your goal’s end date, if you have a time horizon set. We believe in passive investing. The majority of the evidence shows that active management, whether ...</p>
->>>>>>> 916f914e2ca3c85d9b056ecb2f9891d7648bb078
                                           <a class="link" href="{{ route('home') }}" aria-label="Read more about Can I invest in an individual stock or fund (ie., S&amp;P 500 index or Apple)?">Read More</a>
                                        </span>
                                     </div>
@@ -683,13 +627,8 @@
                                     </button>
                                     <div class="accordion-body" aria-hidden="true" id="content-what-accounts-can-i-open-with-betterment" style="display:none;">
                                        <span class="bt-body2">
-<<<<<<< HEAD
                                           <p>Available Account Types: Roth IRA Traditional IRA SEP IRA (single participant only) Inherited IRA (contact us to set up) Individual taxable accounts Joint taxable accounts with rights of survivorship 529 accounts (only available through select employers who use Crestwood Capital Management at Work) Student Loan Management accounts (only available through select employers who use Crestwood Capital Management at Work) Trust accounts (log in from a web browser to open) Cash Reserve (a cash account; funds for specific goals can be ...</p>
                                           <a class="link" href="{{ route('home') }}" aria-label="Read more about What accounts can I open with Crestwood Capital Management?">Read More</a>
-=======
-                                          <p>Available Account Types: Roth IRA Traditional IRA SEP IRA (single participant only) Inherited IRA (contact us to set up) Individual taxable accounts Joint taxable accounts with rights of survivorship 529 accounts (only available through select employers who use Betterment at Work) Student Loan Management accounts (only available through select employers who use Betterment at Work) Trust accounts (log in from a web browser to open) Cash Reserve (a cash account; funds for specific goals can be ...</p>
-                                          <a class="link" href="{{ route('home') }}" aria-label="Read more about What accounts can I open with Betterment?">Read More</a>
->>>>>>> 916f914e2ca3c85d9b056ecb2f9891d7648bb078
                                        </span>
                                     </div>
                                  </li>
@@ -703,11 +642,7 @@
                                     </button>
                                     <div class="accordion-body" aria-hidden="true" id="content-where-can-i-find-account-statements" style="display:none;">
                                        <span class="bt-body2">
-<<<<<<< HEAD
                                           <p>Crestwood Capital Management automatically uploads monthly statements in PDF format, typically by the end of the second full week of the month for the previous month. To download your monthly statements: Web browser: Log in to your account. Select "Documents" from the menu to download monthly account statements. Mobile app: Log in to the app. Tap the three lines in the upper left-hand corner to open the menu. Tap "Documents". Tap "Statements". Custom Account Statements If you require a custom account summary for ...</p>
-=======
-                                          <p>Betterment automatically uploads monthly statements in PDF format, typically by the end of the second full week of the month for the previous month. To download your monthly statements: Web browser: Log in to your account. Select "Documents" from the menu to download monthly account statements. Mobile app: Log in to the app. Tap the three lines in the upper left-hand corner to open the menu. Tap "Documents". Tap "Statements". Custom Account Statements If you require a custom account summary for ...</p>
->>>>>>> 916f914e2ca3c85d9b056ecb2f9891d7648bb078
                                           <a class="link" href="{{ route('home') }}" aria-label="Read more about Where can I find account statements?">Read More</a>
                                        </span>
                                     </div>
@@ -737,13 +672,8 @@
                                     </button>
                                     <div class="accordion-body" aria-hidden="true" id="content-what-mobile-platforms-does-betterment-support" style="display:none;">
                                        <span class="bt-body2">
-<<<<<<< HEAD
                                           <p>Crestwood Capital Management supports apps on iOS and Android. You can download them below: iOS Android</p>
                                           <a class="link" href="{{ route('home') }}" aria-label="Read more about What mobile platforms does Crestwood Capital Management support?">Read More</a>
-=======
-                                          <p>Betterment supports apps on iOS and Android. You can download them below: iOS Android</p>
-                                          <a class="link" href="{{ route('home') }}" aria-label="Read more about What mobile platforms does Betterment support?">Read More</a>
->>>>>>> 916f914e2ca3c85d9b056ecb2f9891d7648bb078
                                        </span>
                                     </div>
                                  </li>
