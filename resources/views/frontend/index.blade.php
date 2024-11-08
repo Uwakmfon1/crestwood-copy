@@ -378,25 +378,23 @@
                                                             </div>
                                                             <div class="hs-cta flex flex-column-sm  align-center mt28">
                                                                <span>
-                                                                  <div class="u-displayNone--until-lg bt-nav-cta-2">
-                                                                     <div class="">
-                                                                           <div>
-                                                                              <a href="{{ route('register') }}" style="background: #1d6ae5; color: white; padding: 14px 30px; border-radius: 5px; text-align: center; text-decoration: none; font-weight: 500;">Get Stated</a>
-                                                                           </div>
-                                                                     </div>
-                                                                  </div>
+                                                                  <span id="hs_cos_wrapper_widget_1708031463261_" class="hs_cos_wrapper hs_cos_wrapper_widget hs_cos_wrapper_type_cta" style="" data-hs-cos-general-type="widget" data-hs-cos-type="cta">
+                                                                     <!--HubSpot Call-to-Action Code -->
+                                                                     <span class="hs-cta-wrapper" id="hs-cta-wrapper-4effd7d2-e029-4b8e-a60a-54cebca19abe">
+                                                                        <a class="bt-PrimaryButton" href="{{ route('register') }}">Get Started</a>
+                                                                     </span>
+                                                                     <!-- end HubSpot Call-to-Action Code -->
+                                                                  </span>
                                                                </span>
                                                                <span>
-                                                                  <div class="u-displayNone--until-lg bt-nav-cta-2">
-                                                                     <div class="">
-                                                                           <div>
-                                                                              <a href="{{ route('login') }}" style="color: white; padding: 14px 30px; border-radius: 5px; text-align: center; font-weight: 500;">Login</a>
-                                                                           </div>
-                                                                     </div>
-                                                                  </div>
+                                                                  <span id="hs_cos_wrapper_widget_1708031463261_" class="hs_cos_wrapper hs_cos_wrapper_widget hs_cos_wrapper_type_cta" style="" data-hs-cos-general-type="widget" data-hs-cos-type="cta">
+                                                                     <!--HubSpot Call-to-Action Code -->
+                                                                     <span class="hs-cta-wrapper" id="hs-cta-wrapper-c2c61ea1-50f8-4d28-899b-89b9d085f088">
+                                                                     <p><a href="{{ route('login') }}" rel="noopener" aria-label="Learn about premium pricing">Login ➔</a></p>
+                                                                     </span>
+                                                                     <!-- end HubSpot Call-to-Action Code -->
+                                                                  </span>
                                                                </span>
-                                                            </div>
-                                                            <div class="awards bt-row flex-wrap mt28 justify-content-center-md">
                                                             </div>
                                                          </div>
                                                       </div>
@@ -667,26 +665,29 @@
                                                                </ul>
                                                             </div>
 
-                                                            <div class="hs-cta flex flex-column-sm  align-center mt28">
+                                                            <div class="hs-cta mt16">
                                                                <span>
-                                                                  <div class="u-displayNone--until-lg bt-nav-cta-2">
-                                                                     <div class="">
-                                                                           <div>
-                                                                              <a href="{{ route('investment') }}" style="background: #1d6ae5; color: white; padding: 14px 30px; border-radius: 5px; text-align: center; text-decoration: none; font-weight: 500;">Start investing</a>
-                                                                           </div>
-                                                                     </div>
-                                                                  </div>
+                                                                  <span id="hs_cos_wrapper_widget_1670358960944_" class="hs_cos_wrapper hs_cos_wrapper_widget hs_cos_wrapper_type_cta" style="" data-hs-cos-general-type="widget" data-hs-cos-type="cta">
+                                                                     <!--HubSpot Call-to-Action Code -->
+                                                                     <span class="hs-cta-wrapper" id="hs-cta-wrapper-dd4d1ac8-beab-4e80-bba5-28ce409896e5">
+                                                                        <a class="bt-PrimaryButton" href="{{ route('investment') }}">Start investing</a>
+                                                                     </span>
+                                                                     <!-- end HubSpot Call-to-Action Code -->
+                                                                  </span>
                                                                </span>
                                                                <span>
-                                                                  <div class="u-displayNone--until-lg bt-nav-cta-2">
-                                                                     <div class="">
-                                                                           <div>
-                                                                              <a href="{{ route('login') }}" style="color: #1d6ae5; padding: 14px 30px; border-radius: 5px; text-align: center; font-weight: 500;">Learn More</a>
-                                                                           </div>
-                                                                     </div>
-                                                                  </div>
+                                                                  <span id="hs_cos_wrapper_widget_1670358960944_" class="hs_cos_wrapper hs_cos_wrapper_widget hs_cos_wrapper_type_cta" style="" data-hs-cos-general-type="widget" data-hs-cos-type="cta">
+                                                                     <!--HubSpot Call-to-Action Code -->
+                                                                     <span class="hs-cta-wrapper" id="hs-cta-wrapper-88444564-fdbe-4f35-a5a3-97d208c9b4a0">
+                                                                        <p>
+                                                                           <a href="{{ route('login') }}" rel="noopener" aria-label="Learn about premium pricing">Learn more ➔</a>
+                                                                        </p>
+                                                                     </span>
+                                                                     <!-- end HubSpot Call-to-Action Code -->
+                                                                  </span>
                                                                </span>
                                                             </div>
+
                                                             <div class="awards bt-row flex-wrap mt28 ">
                                                             </div>
                                                          </div>
@@ -842,28 +843,30 @@
                                                                   <li>Transfer cash to investing accounts seamlessly</li>
                                                                </ul>
                                                             </div>
-                                                            <div class="hs-cta flex flex-column-sm  align-center mt28">
+
+                                                            <div class="hs-cta mt16">
                                                                <span>
-                                                                  <div class="u-displayNone--until-lg bt-nav-cta-2">
-                                                                     <div class="">
-                                                                           <div>
-                                                                              <a href="{{ route('investment') }}" style="background: #1d6ae5; color: white; padding: 14px 30px; border-radius: 5px; text-align: center; text-decoration: none; font-weight: 500;">Start Saving</a>
-                                                                           </div>
-                                                                     </div>
-                                                                  </div>
+                                                                  <span id="hs_cos_wrapper_module_1670359637540_" class="hs_cos_wrapper hs_cos_wrapper_widget hs_cos_wrapper_type_cta" style="" data-hs-cos-general-type="widget" data-hs-cos-type="cta">
+                                                                     <!--HubSpot Call-to-Action Code -->
+                                                                     <span class="hs-cta-wrapper" id="hs-cta-wrapper-c2736150-9d5a-4600-b54d-c962c18e21ea">
+                                                                        <a class="bt-PrimaryButton" href="{{ route('investment') }}">Start Saving</a>
+                                                                     </span>
+                                                                     <!-- end HubSpot Call-to-Action Code -->
+                                                                  </span>
                                                                </span>
                                                                <span>
-                                                                  <div class="u-displayNone--until-lg bt-nav-cta-2">
-                                                                     <div class="">
-                                                                           <div>
-                                                                              <a href="{{ route('login') }}" style="color: #1d6ae5; padding: 14px 30px; border-radius: 5px; text-align: center; font-weight: 500;">Learn More</a>
-                                                                           </div>
-                                                                     </div>
-                                                                  </div>
+                                                                  <span id="hs_cos_wrapper_module_1670359637540_" class="hs_cos_wrapper hs_cos_wrapper_widget hs_cos_wrapper_type_cta" style="" data-hs-cos-general-type="widget" data-hs-cos-type="cta">
+                                                                     <!--HubSpot Call-to-Action Code -->
+                                                                     <span class="hs-cta-wrapper" id="hs-cta-wrapper-58f38844-a2cf-43a1-a9f7-6986b5dbe38b">
+                                                                        <p>
+                                                                           <a href="{{ route('login') }}" rel="noopener" aria-label="Learn about premium pricing">Learn more ➔</a>
+                                                                        </p>
+                                                                     </span>
+                                                                     <!-- end HubSpot Call-to-Action Code -->
+                                                                  </span>
                                                                </span>
                                                             </div>
-                                                            <div class="awards bt-row flex-wrap mt28 ">
-                                                            </div>
+                                                            
                                                             <div class="bt-body3 mt8">
                                                                <p>For Cash Reserve (“CR”), Crestwood Capital Management  LLC only receives compensation from our <a href="{{ route('cash') }}" rel="noopener" target="_blank">program banks</a>; Crestwood Capital Management  LLC and Crestwood Capital Management  Securities do not charge fees on your CR balance.</p>
                                                             </div>
@@ -1271,24 +1274,27 @@
                                                                   </div>
                                                                </div>
                                                             </div>
-                                                            <div class="hs-cta flex flex-column-sm  align-center mt28">
+                                                            
+                                                            <div class="hs-cta mt16">
                                                                <span>
-                                                                  <div class="u-displayNone--until-lg bt-nav-cta-2">
-                                                                     <div class="">
-                                                                           <div>
-                                                                              <a href="{{ route('investment') }}" style="background: #1d6ae5; color: white; padding: 14px 30px; border-radius: 5px; text-align: center; text-decoration: none; font-weight: 500;">Open an IRA</a>
-                                                                           </div>
-                                                                     </div>
-                                                                  </div>
+                                                                  <span id="hs_cos_wrapper_module_1670359637540_" class="hs_cos_wrapper hs_cos_wrapper_widget hs_cos_wrapper_type_cta" style="" data-hs-cos-general-type="widget" data-hs-cos-type="cta">
+                                                                     <!--HubSpot Call-to-Action Code -->
+                                                                     <span class="hs-cta-wrapper" id="hs-cta-wrapper-c2736150-9d5a-4600-b54d-c962c18e21ea">
+                                                                        <a class="bt-PrimaryButton" href="{{ route('investment') }}">Open an IRA</a>
+                                                                     </span>
+                                                                     <!-- end HubSpot Call-to-Action Code -->
+                                                                  </span>
                                                                </span>
                                                                <span>
-                                                                  <div class="u-displayNone--until-lg bt-nav-cta-2">
-                                                                     <div class="">
-                                                                           <div>
-                                                                              <a href="{{ route('login') }}" style="color: #1d6ae5; padding: 14px 30px; border-radius: 5px; text-align: center; font-weight: 500;">Learn More</a>
-                                                                           </div>
-                                                                     </div>
-                                                                  </div>
+                                                                  <span id="hs_cos_wrapper_module_1670359637540_" class="hs_cos_wrapper hs_cos_wrapper_widget hs_cos_wrapper_type_cta" style="" data-hs-cos-general-type="widget" data-hs-cos-type="cta">
+                                                                     <!--HubSpot Call-to-Action Code -->
+                                                                     <span class="hs-cta-wrapper" id="hs-cta-wrapper-58f38844-a2cf-43a1-a9f7-6986b5dbe38b">
+                                                                        <p>
+                                                                           <a href="{{ route('login') }}" rel="noopener" aria-label="Learn about premium pricing">Learn more ➔</a>
+                                                                        </p>
+                                                                     </span>
+                                                                     <!-- end HubSpot Call-to-Action Code -->
+                                                                  </span>
                                                                </span>
                                                             </div>
                                                             <div class="awards bt-row flex-wrap mt28 ">
@@ -1738,23 +1744,9 @@
                                                                         <!-- Simplified HubSpot Call-to-Action Code -->
                                                                         <div id="hs_cos_wrapper_widget_1711045604719_" class="hs_cos_wrapper">
                                                                            <div class="hs-cta-wrapper" id="hs-cta-wrapper-0ecfe237-8360-4775-8a49-c59368dc46fd">
-                                                                              <a href="{{ route('investment') }}"> <!-- Replace with the intended link URL -->
-                                                                                    <img class="hs-cta-img" id="hs-cta-img-0ecfe237-8360-4775-8a49-c59368dc46fd" 
-                                                                                       style="border-width:0px;" 
-                                                                                       src="cta/default/5274572/0ecfe237-8360-4775-8a49-c59368dc46fd-1.png" 
-                                                                                       alt="Start investing">
-                                                                              </a>
-                                                                              <script charset="utf-8" src="hs/cta/cta/current-1.js"></script>
-                                                                              <script type="text/javascript">
-                                                                                    hbspt.cta._relativeUrls = true;
-                                                                                    hbspt.cta.load(5274572, '0ecfe237-8360-4775-8a49-c59368dc46fd', {
-                                                                                       "useNewLoader": "true",
-                                                                                       "region": "na1"
-                                                                                    });
-                                                                              </script>
+                                                                                 <p><a href="{{ route('investment') }}" rel="noopener" aria-label="Learn about premium pricing">Start Investment ➔</a></p> 
                                                                            </div>
                                                                         </div>
-
                                                                      </div>
                                                                      <div class="mt16">
                                                                         <img class="d-block" src="hs-fs/hubfs/Portfolio-showcase-6.png?width=718&amp;name=Portfolio-showcase.png" alt="An image showing our core, innovative, and Goldman Sachs Portofolios" width="718" srcset="hs-fs/hubfs/Portfolio-showcase-7.png 359w?width=359&amp;name=Portfolio-showcase.png 359w, hs-fs/hubfs/Portfolio-showcase-6.png 718wg?width=718&amp;name=Portfolio-showcase.png 718w, hs-fs/hubfs/Portfolio-showcase-8.png 1077wg?width=1077&amp;name=Portfolio-showcase.png 1077w, hs-fs/hubfs/Portfolio-showcase-9.png 1436wg?width=1436&amp;name=Portfolio-showcase.png 1436w, hs-fs/hubfs/Portfolio-showcase-10.png 1795wg?width=1795&amp;name=Portfolio-showcase.png 1795w, hs-fs/hubfs/Portfolio-showcase-11.png 2154wg?width=2154&amp;name=Portfolio-showcase.png 2154w" sizes="(max-width: 718px) 100vw, 718px">
@@ -1776,9 +1768,7 @@
                                                                               <!--HubSpot Call-to-Action Code -->
                                                                               <span class="hs-cta-wrapper" id="hs-cta-wrapper-9c007fb7-0a12-4be5-a115-6a505bc9faf2">
                                                                                  <span class="hs-cta-node hs-cta-9c007fb7-0a12-4be5-a115-6a505bc9faf2" id="hs-cta-9c007fb7-0a12-4be5-a115-6a505bc9faf2">
-                                                                                    <!--[if lte IE 8]>
-                                                                                    <div id="hs-cta-ie-element"></div>
-                                                                                    <![endif]--><a href="{{ route('investment') }}"><img class="hs-cta-img" id="hs-cta-img-9c007fb7-0a12-4be5-a115-6a505bc9faf2" style="border-width:0px;" src="cta/default/5274572/9c007fb7-0a12-4be5-a115-6a505bc9faf2-1.png" alt="Start saving"></a>
+                                                                                    <p><a href="{{ route('investment') }}" rel="noopener" aria-label="Learn about premium pricing">Start Saving ➔</a></p> 
                                                                                  </span>
                                                                                  
                                                                               </span>
@@ -1806,9 +1796,7 @@
                                                                               <!--HubSpot Call-to-Action Code -->
                                                                               <span class="hs-cta-wrapper" id="hs-cta-wrapper-07f67120-cda5-40ef-a2f0-f6430d68fc6d">
                                                                                  <span class="hs-cta-node hs-cta-07f67120-cda5-40ef-a2f0-f6430d68fc6d" id="hs-cta-07f67120-cda5-40ef-a2f0-f6430d68fc6d">
-                                                                                    <!--[if lte IE 8]>
-                                                                                    <div id="hs-cta-ie-element"></div>
-                                                                                    <![endif]--><a href="{{ route('investment') }}"><img class="hs-cta-img" id="hs-cta-img-07f67120-cda5-40ef-a2f0-f6430d68fc6d" style="border-width:0px;" src="cta/default/5274572/07f67120-cda5-40ef-a2f0-f6430d68fc6d-1.png" alt="Open an IRA"></a>
+                                                                                    <p><a href="{{ route('investment') }}" rel="noopener" aria-label="Learn about premium pricing">Open an IRA ➔</a></p> 
                                                                                  </span>
                                                                               </span>
                                                                               <!-- end HubSpot Call-to-Action Code -->

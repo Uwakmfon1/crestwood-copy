@@ -341,9 +341,7 @@
                                                                   <span id="hs_cos_wrapper_module_1682525715957_" class="hs_cos_wrapper hs_cos_wrapper_widget hs_cos_wrapper_type_cta" style="" data-hs-cos-general-type="widget" data-hs-cos-type="cta">
                                                                      <!--HubSpot Call-to-Action Code -->
                                                                      <span class="hs-cta-wrapper" id="hs-cta-wrapper-bff614d8-9613-49ef-afd5-db5ad0726199">
-                                                                        <div>
-                                                                           <a href="{{ route('register') }}" style="background: #1d6ae5; color: white; padding: 14px 30px; border-radius: 5px; text-align: center; text-decoration: none; font-weight: 500;">Schedule a call</a>
-                                                                        </div>
+                                                                        <a class="bt-PrimaryButton" href="{{ route('contact') }}">Schedule a call</a>
                                                                      </span>
                                                                      <!-- end HubSpot Call-to-Action Code -->
                                                                   </span>
@@ -352,9 +350,7 @@
                                                                   <span id="hs_cos_wrapper_module_1682525715957_" class="hs_cos_wrapper hs_cos_wrapper_widget hs_cos_wrapper_type_cta" style="" data-hs-cos-general-type="widget" data-hs-cos-type="cta">
                                                                      <!--HubSpot Call-to-Action Code -->
                                                                      <span class="hs-cta-wrapper" id="hs-cta-wrapper-01c18463-22ad-42c8-826e-97e0edc4eed6">
-                                                                        <div>
-                                                                           <a href="{{ route('pricing') }}" style="background: #1d6ae5; color: white; padding: 14px 30px; border-radius: 5px; text-align: center; text-decoration: none; font-weight: 500;">Pricing</a>
-                                                                        </div>
+                                                                        <a class="bt-PrimaryButton" href="{{ route('pricing') }}">Pricing</a>
                                                                      </span>
                                                                      <!-- end HubSpot Call-to-Action Code -->
                                                                   </span>
@@ -420,21 +416,19 @@
                                                             </div>
                                                             <div class="hs-cta mt16">
                                                                <span>
-                                                                  <span id="hs_cos_wrapper_module_1682621355575_" class="hs_cos_wrapper hs_cos_wrapper_widget hs_cos_wrapper_type_cta" style="" data-hs-cos-general-type="widget" data-hs-cos-type="cta">
+                                                                  <span id="hs_cos_wrapper_module_1682525715957_" class="hs_cos_wrapper hs_cos_wrapper_widget hs_cos_wrapper_type_cta" style="" data-hs-cos-general-type="widget" data-hs-cos-type="cta">
                                                                      <!--HubSpot Call-to-Action Code -->
-                                                                     <span class="hs-cta-wrapper" id="hs-cta-wrapper-78902f73-3b75-4de9-8167-2b4824f362c7">
-                                                                     <div>
-                                                                           <a href="{{ route('register') }}" style="background: #1d6ae5; color: white; padding: 14px 30px; border-radius: 5px; text-align: center; text-decoration: none; font-weight: 500;">Schedule a call</a>
-                                                                        </div>
+                                                                     <span class="hs-cta-wrapper" id="hs-cta-wrapper-bff614d8-9613-49ef-afd5-db5ad0726199">
+                                                                        <a class="bt-PrimaryButton" href="{{ route('contact') }}">Schedule a call</a>
                                                                      </span>
                                                                      <!-- end HubSpot Call-to-Action Code -->
                                                                   </span>
                                                                </span>
                                                                <span>
-                                                                  <span id="hs_cos_wrapper_module_1682621355575_" class="hs_cos_wrapper hs_cos_wrapper_widget hs_cos_wrapper_type_cta" style="" data-hs-cos-general-type="widget" data-hs-cos-type="cta">
+                                                                  <span id="hs_cos_wrapper_module_1682525715957_" class="hs_cos_wrapper hs_cos_wrapper_widget hs_cos_wrapper_type_cta" style="" data-hs-cos-general-type="widget" data-hs-cos-type="cta">
                                                                      <!--HubSpot Call-to-Action Code -->
-                                                                     <span class="hs-cta-wrapper" id="hs-cta-wrapper-0248036b-2042-4bb2-991e-8f80a9bca8a1">
-                                                                        <a href="{{ route('expert') }}" rel="noopener" aria-label="Learn about premium pricing">Learn more ➔</a>
+                                                                     <span class="hs-cta-wrapper" id="hs-cta-wrapper-01c18463-22ad-42c8-826e-97e0edc4eed6">
+                                                                        <p><a href="{{ route('login') }}" rel="noopener" aria-label="Learn about premium pricing">Learn more ➔</a></p>
                                                                      </span>
                                                                      <!-- end HubSpot Call-to-Action Code -->
                                                                   </span>
