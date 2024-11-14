@@ -334,7 +334,11 @@
                                           <span class="hs-cta-wrapper" id="hs-cta-wrapper-d7c0bb95-3ae4-41ca-9072-43cc68d590a7">
                                              <span class="hs-cta-node hs-cta-d7c0bb95-3ae4-41ca-9072-43cc68d590a7" id="hs-cta-d7c0bb95-3ae4-41ca-9072-43cc68d590a7">
                                                 <!--[if lte IE 8]>
-                                 <div id="hs-cta-ie-element"></div><![endif]--><a href="{{ route('dashboard') }}"><img class="hs-cta-img" id="hs-cta-img-d7c0bb95-3ae4-41ca-9072-43cc68d590a7" style="border-width:0px;" src="cta/default/5274572/d7c0bb95-3ae4-41ca-9072-43cc68d590a7-1.png" alt="Learn more"></a>
+                                                <div id="hs-cta-ie-element"></div><![endif]-->
+                                                <!-- <a href="{{ route('dashboard') }}">
+                                                   <img class="hs-cta-img" id="hs-cta-img-d7c0bb95-3ae4-41ca-9072-43cc68d590a7" style="border-width:0px;" src="cta/default/5274572/d7c0bb95-3ae4-41ca-9072-43cc68d590a7-1.png" alt="Learn more">
+                                                </a> -->
+                                                <a href="{{ route('dashboard') }}" rel="noopener" aria-label="Learn about premium pricing">Learn more ➔</a>
                                              </span>
                                  </span></p>
                               </div>

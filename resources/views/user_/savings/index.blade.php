@@ -29,8 +29,7 @@
     <div class="container-fluid">
 
         <!-- Start::page-header -->
-        <div
-            class="my-4 page-header-breadcrumb d-flex align-items-center justify-content-between flex-wrap gap-2">
+        <div class="my-4 page-header-breadcrumb d-flex align-items-center justify-content-between flex-wrap gap-2">
             <div>
                 <h1 class="page-title fw-medium fs-18 mb-2">Savings</h1>
                 <ol class="breadcrumb mb-0">
@@ -285,15 +284,15 @@
                                 <table class="table text-nowrap">
                                     <thead>
                                         <tr>
-                                        <th>S/N</th>
-                                        <th>Deposit</th>
-                                        <th>Contribution</th>
-                                        <th>ROI</th>
-                                        <th>Days left</th>
-                                        <th>Reuturn</th>
-                                        <th>Date</th>
-                                        <th>Status</th>
-                                        <th>Action</th>
+                                            <th>S/N</th>
+                                            <th>Deposit</th>
+                                            <th>Contribution</th>
+                                            <th>ROI</th>
+                                            <th>Days left</th>
+                                            <th>Reuturn</th>
+                                            <th>Date</th>
+                                            <th>Status</th>
+                                            <th>Action</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -313,7 +312,7 @@
                                                         {{ number_format($saving['roi'], 0) }}<i class="ti ti-percentage fs-15"></i>
                                                     </span>
                                                 </td>
-                                                <td> 
+                                                <td>
                                                     @if ($daysLeft > 0)
                                                         {{ $daysLeft }} days left
                                                     @elseif ($daysLeft == 0)
