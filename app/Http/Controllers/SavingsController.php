@@ -20,7 +20,8 @@ class SavingsController extends Controller
         $active_savings = $savings->where('status', 'active')->count();
         $completed_savings = $savings->where('status', 'settled')->count();
 
-        $balance = auth()->user()->savingsWalletBalance();
+        $user = auth()->user();
+        $balance = $user->wallet->save;
 
         return view('user_.savings.index', ['title' => 'Savings', 'savings' => auth()->user()->savings()->latest()->get(), 'balance' => $balance, 'asv' => $active_savings, 'csv' => $completed_savings]);
     }
@@ -159,88 +160,38 @@ class SavingsController extends Controller
     //Create Savings
     public function store(Request $request): \Illuminate\Http\RedirectResponse
     {
-        //        Validate request
-        $validator = Validator::make($request->all(), [
-            'package' => ['required'],
-            'slots' => ['required', 'numeric', 'min:1', 'integer'],
-            'milestone' => ['required', 'numeric', 'integer'],
-            'duration' => ['required'],
-        ]);
-        if ($validator->fails()){
-            return back()->withErrors($validator)->withInput()->with('error', 'Invalid input data');
-        }
-        
-        $payment = 'wallet'; // $request['payment']
+        // If you are using JSON, you can decode it using:
+        $data = $request->all();
 
-        if (Setting::all()->first()['save'] == 0){
-            return back()->with('error', 'Savings in packages is currently unavailable, check back later');
-        }
-
-        $package = SavingPackage::all()->where('id', $request['package'])->first();
-
-        $amount = $request['slots'] * $package['price'];
-        
-        switch ($payment){
-            case 'wallet':
-                if (!auth()->user()->hasSufficientBalance($amount, 'savings')){
-                    return back()->withInput()->with('error', 'Insufficient savings balance');
-                }
-                auth()->user()->savingsWallet->decrement('balance', $amount);
-                $status = 'active';
-                $msg = 'Savings created successfully';
-                break;
-            case 'deposit':
-                $status = 'pending';
-                $msg = 'Savings queued successfully';
-                break;
-            case 'card':
-                $data = ['type' => 'investment', 'package' => $package, 'slots' => $request['slots']];
-                return PaymentController::initializeOnlineTransaction($request['slots'] * $package['price'], $data);
-            default:
-                return back()->withInput()->with('error', 'Invalid payment method');
-        }
-
-        if ($package['duration'] == 'monthly') {
-            $returnDate = now()->addMonths($request['milestone'])->format('Y-m-d H:i:s');
-        } elseif($package['duration'] == 'weekly') {
-            $returnDate = now()->addWeeks($request['milestone'])->format('Y-m-d H:i:s');
-        } else {
-            $returnDate = now()->addDays($request['milestone'])->format('Y-m-d H:i:s');
-        }
-
-        $totalReturn = ($amount * $request['milestone']) + (($amount / $package['roi']) * $request['milestone']);
-
-        $savings = auth()->user()->savings()->create([
-            'savings_package_id'=>$package['id'], 
-            'duration' => $request['duration'], 
-            'milestone' => $request['milestone'], 
-            'amount' => $amount,
-            'slot' =>  $request['slots'],
-            'total_return' => $totalReturn,
-            'savings_date' => now()->format('Y-m-d H:i:s'),
-            'return_date' => $returnDate, 
-            'status' => $status
+        $validator = Validator::make($data, [
+            'plan_id' => ['required'],
+            'plan_info' => ['required'],
         ]);
 
-        $savings->savingsTransactions()->create(
-            [
-                'user_id' => auth()->user()->id,
-                'amount' => $amount, 
-                'type' => 'withdrawal',
-                'account_type' => 'savings',
-                'description' => 'Savings into ' . $package['name'],
-                'method' => 'wallet',
-                'status' => 'approved'
-            ]
-        );
+        if ($validator->fails()) {
+            return back()->with('error', 'Invalid input data');
+        }
 
-        $desc = 'Saved to '. $package['name'];
+        $user = auth()->user();
+
+        $savings = $user->savings()->create([
+            'plan_id' => $data['plan_id'], 
+            'plan_info' => $data['plan_info'],
+            'status' => 'active'
+        ]);
+
+        $savings->savingsTransactions()->create([
+            'amount' => 0.1, 
+            'type' => 'debit',
+            'status' => 'success',
+        ]);
+
+        $msg = 'Savings was created successfully';
 
         if ($savings) {
-            TransactionController::storeSavingTransaction($savings, $savings['amount'], $request['payment'], 'savings', $desc, $savings['id']);
-                NotificationController::sendSavingsCreatedNotification($savings);
             return redirect()->route('savings')->with('success', $msg);
         }
+
         return back()->withInput()->with('error', 'Error processing investment');
     }
 
@@ -270,5 +221,10 @@ class SavingsController extends Controller
         $investments = $query->paginate(10);
 
         return view('user_.savings.history', ['title' => 'Savings History', 'investments' => $investments]);
+    }
+
+    public function questionaire ()
+    {
+        return view('user_.savings.start');
     }
 }

@@ -86,6 +86,15 @@ class HomeController extends Controller
     {
         $user = auth()->user();
 
+        return view('auth.kyc', [
+            'user' => $user
+        ]);
+    }
+
+    public function user_kyc()
+    {
+        $user = auth()->user();
+
         return view('user_.kyc.index', [
             'user' => $user
         ]);

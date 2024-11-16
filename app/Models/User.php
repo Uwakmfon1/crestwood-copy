@@ -397,6 +397,11 @@ class User extends Authenticatable implements MustVerifyEmail, JWTSubject
         return $this->hasMany(Support::class);
     }
 
+    public function savings(): HasMany
+    {
+        return $this->hasMany(Saving::class);
+    }
+
 
 
 
@@ -529,10 +534,10 @@ class User extends Authenticatable implements MustVerifyEmail, JWTSubject
         return $this->hasMany(CryptoTrade::class);
     }
 
-    public function savings(): HasMany
-    {
-        return $this->hasMany(Saving::class);
-    }
+    // public function savings(): HasMany
+    // {
+    //     return $this->hasMany(Saving::class);
+    // }
 
     // public function transactions(): HasMany
     // {

@@ -131,7 +131,7 @@ Route::group(['middleware' => ['auth','verified', 'active_user', 'profile_comple
         
         Route::get('/savings/packages', [SavingsController::class, 'packages'])->name('savingsPackage');
         Route::get('/savings/create', [SavingsController::class, 'create'])->name('savings.create');
-        Route::post('/savings/store', [SavingsController::class, 'save'])->name('savings.store');
+        Route::post('/savings/store', [SavingsController::class, 'store'])->name('savings.store');
         Route::get('/savings', [SavingsController::class, 'index'])->name('savings');
         Route::get('/savings/{savings}/show', [SavingsController::class, 'show'])->name('savings.show');
         Route::post('/payment/{savings}', [SavingsController::class, 'makePayment'])->name('make.payment');
@@ -181,7 +181,8 @@ Route::group(['middleware' => ['auth','verified', 'active_user', 'profile_comple
         Route::delete('/support/ticket/{id}', [SupportController::class, 'destroy'])->name('support.destroy');
         Route::post('/support/ticket/{support}/respond', [SupportController::class, 'reply'])->name('support.reply');
 
-        Route::get('/user/kyc', [ControllersHomeController::class, 'kyc'])->name('kyc.index');
+        Route::get('/update/kyc', [App\Http\Controllers\HomeController::class, 'user_kyc'])->name('kyc.index');
+        Route::get('/start/savings/{id}', [App\Http\Controllers\SavingsController::class, 'questionaire'])->name('savings.start');
 
     // });
 });

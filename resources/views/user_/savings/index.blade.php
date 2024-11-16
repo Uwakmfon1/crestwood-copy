@@ -27,7 +27,7 @@
 
 <div class="main-content app-content">
     <div class="container-fluid">
-
+    @include('partials.users.alert')
         <!-- Start::page-header -->
         <div class="my-4 page-header-breadcrumb d-flex align-items-center justify-content-between flex-wrap gap-2">
             <div>
@@ -296,7 +296,7 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        @foreach($savings as $key=>$saving)
+                                        {{-- @foreach($savings as $key=>$saving)
                                         @php 
                                             $paid = $saving->transaction()->where('status', 'approved')->count();
                                             $now = \Carbon\Carbon::now();
@@ -342,7 +342,7 @@
                                                     <a href="{{ route('savings.show', $saving['id']) }}" class="btn btn-sm btn-primary">View</a> 
                                                 </td>
                                             </tr>
-                                        @endforeach
+                                        @endforeach --}}
                                     </tbody>
                                 </table>
                                         @if($savings->count() == 0)

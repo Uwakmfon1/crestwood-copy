@@ -55,8 +55,8 @@ class Saving extends Model
         }
     }
 
-    public function savingsTransactions(): MorphMany
+    public function savingsTransactions(): HasMany
     {
-        return $this->morphMany(WalletsTransactions::class, 'transactable');
+        return $this->hasMany(SaveTransaction::class);
     }
 }

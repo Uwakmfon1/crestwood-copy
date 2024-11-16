@@ -38,55 +38,65 @@
                         <div class="row d-flex justify-content-center mx-auto">
                             <div class="col-xl-12">
                                 <div class="my-1">
-                                    <p class="text-left fs-12 fw-medium">Personal Information:</p>
+                                    <p class="text-left fs-13 fw-bold">Personal Information:</p>
                                 </div>
+
+                                <!-- First Name and Last Name -->
                                 <div class="row my-2">
                                     <div class="col-6">
-                                        <div class="input-group my-1">
-                                            <button type="button" class="input-group-text btn btn-light-light btn-wave fs-10">First Name</button>
-                                            <input type="text" name="first_name" class="form-control fw-bold" aria-label="Stock Quantity" value="{{ $user->first_name }}" disabled>
+                                        <div class="form-group my-1">
+                                            <label for="first_name" class="fs-10 fw-bold text-muted">First Name</label>
+                                            <input type="text" id="first_name" name="first_name" class="form-control fw-bold" value="{{ $user->first_name }}" disabled>
                                         </div>
                                     </div>
                                     <div class="col-6">
-                                        <div class="input-group my-1">
-                                            <button type="button" class="input-group-text btn btn-light-light btn-wave fs-10">Last Name</button>
-                                            <input type="text" name="last_name" class="form-control fw-bold" aria-label="Stock Quantity" value="{{ $user->last_name }}" disabled>
+                                        <div class="form-group my-1">
+                                            <label for="last_name" class="fs-10 fw-bold text-muted">Last Name</label>
+                                            <input type="text" id="last_name" name="last_name" class="form-control fw-bold" value="{{ $user->last_name }}" disabled>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-12 my-2">
-                                    <div class="input-group my-1">
-                                        <button type="button" class="input-group-text btn btn-light-light btn-wave fs-10">Email Address</button>
-                                        <input type="text" name="first_name" class="form-control fw-bold" aria-label="Stock Quantity" value="{{ $user->email }}" disabled>
-                                    </div>
+
+                                <!-- Email Address -->
+                                <div class="form-group my-2">
+                                    <label for="email" class="fs-10 fw-bold text-muted">Email Address</label>
+                                    <input type="text" id="email" name="email" class="form-control fw-bold" value="{{ $user->email }}" disabled>
                                 </div>
-                                <div class="col-12 my-2">
-                                    <div class="input-group my-1">
-                                        <button type="button" class="input-group-text btn btn-light-light btn-wave fs-10">Phone Number</button>
-                                        <input type="text" name="last_name" class="form-control fw-bold" aria-label="Stock Quantity" value="{{ $user->phone }}" disabled>
-                                    </div>
+
+                                <!-- Phone Number -->
+                                <div class="form-group my-2">
+                                    <label for="phone" class="fs-10 fw-bold text-muted">Phone Number</label>
+                                    <input type="text" id="phone" name="phone" class="form-control fw-bold" value="{{ $user->phone }}" disabled>
                                 </div>
-                                <div class="input-group my-2">
-                                    <button type="button" class="input-group-text btn btn-light-light btn-wave fs-10">Date of Birth</button>
-                                    <!-- <input type="text" name="roi_method" class="form-control fw-bold" placeholder="Enter Method..." aria-label="Stock Quantity" value=""> -->
-                                    <input type="date" class="form-control fw-bold" name="dob" id="bod">
+
+                                <!-- Date of Birth -->
+                                <div class="form-group my-2">
+                                    <label for="dob" class="fs-10 fw-bold text-muted">Date of Birth</label>
+                                    <input type="date" id="dob" name="dob" class="form-control fw-bold">
                                 </div>
-                                <div class="input-group my-2">
-                                    <button type="button" class="input-group-text btn btn-light-light btn-wave fs-10">SSN/TIN</button>
-                                    <input type="number" name="ssn" class="form-control fw-bold" placeholder="Social Security Number (SSN) or Tax-Identification Number (TIN)" value="">
+
+                                <!-- SSN/TIN -->
+                                <div class="form-group my-2">
+                                    <label for="ssn" class="fs-10 fw-bold text-muted">SSN/TIN</label>
+                                    <input type="number" id="ssn" name="ssn" class="form-control fw-bold" placeholder="Social Security Number (SSN) or Tax-Identification Number (TIN)">
                                 </div>
-                                <div class="col-12 my-2">
-                                    <div class="input-group my-1">
-                                        <button type="button" class="input-group-text btn btn-light-light btn-wave fs-10">Address</button>
-                                        <textarea name="address" id="" class="form-control fw-bold" placeholder="Enter home address..."></textarea>
-                                    </div>
+
+                                <!-- Address -->
+                                <div class="form-group my-2">
+                                    <label for="address" class="fs-10 fw-bold text-muted">Address</label>
+                                    <textarea id="address" name="address" class="form-control fw-bold" placeholder="Enter home address..."></textarea>
                                 </div>
-                            </div>
-                            <div class="d-flex justify-content-between my-4 float-end" style="max-width: 500px;">
-                                <button type="button" class="btn btn-transparent border-0 text-muted px-4" disabled><i class="fe fe-arrow-left"></i> Previous</button>
-                                <button type="button" class="btn btn-primary-transparent px-4" id="nextScreenButton">Next <i class="fe fe-arrow-right"></i></button>
                             </div>
 
+                            <!-- Navigation Buttons -->
+                            <div class="d-flex justify-content-between my-4 float-end" style="max-width: 550px;">
+                                <button type="button" class="btn btn-transparent border-0 text-muted px-1" disabled>
+                                    <i class="fe fe-arrow-left"></i> Previous
+                                </button>
+                                <button type="button" class="btn btn-primary-transparent px-4" id="nextScreenButton">
+                                    Next <i class="fe fe-arrow-right"></i>
+                                </button>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -95,26 +105,49 @@
                         <div class="row d-flex justify-content-center mx-auto">
                             <div class="col-xl-12">
                                 <div class="my-1">
-                                    <p class="text-left fs-12 fw-medium">Employment Status:</p>
+                                    <p class="text-left fs-13 fw-bold">Employment Status:</p>
                                 </div>
-                                <div class="col-12 my-2">
-                                    <div class="input-group my-1">
-                                        <img class="bg-dark bg-opacity-10 rounded-circle p-2" width="50" height="50" src="https://static.thenounproject.com/png/2086733-200.png" alt="">
-                                         <select name="" id="" class="form-control fw-medium py-3 text-muted rounded-3 mx-2" >
-                                            <option value="">--Select Employment Status--</option>
-                                            <option value="employed">Employed</option>
-                                            <option value="selfemployed">Self-employed</option>
-                                            <option value="unemployed">Unemployed</option>
-                                            <option value="retired">Retired</option>
-                                         </select>
+                                
+                                <!-- Employment Status Options -->
+                                <div class="col-12 my-3">
+                                    <div class="form-check-group"> 
+                                            <div class="form-check mb-2" style="border: 1px solid rgba(0, 0, 0, 0.1); padding: 20px 0px; border-radius: 15px; cursor: pointer;">
+                                                <input class="form-check-input mx-3" type="radio" name="employment_status" value="employed">
+                                                <label class="form-check-label mx-3" for="employed">
+                                                   Employed
+                                                </label>
+                                            </div>
+                                            <div class="form-check mb-2" style="border: 1px solid rgba(0, 0, 0, 0.1); padding: 20px 0px; border-radius: 15px; cursor: pointer;">
+                                                <input class="form-check-input mx-3" type="radio" name="employment_status" value="selfemployed">
+                                                <label class="form-check-label mx-3" for="selfemployed">
+                                                    Self-employed
+                                                </label>
+                                            </div>
+                                            <div class="form-check mb-2" style="border: 1px solid rgba(0, 0, 0, 0.1); padding: 20px 0px; border-radius: 15px; cursor: pointer;">
+                                                <input class="form-check-input mx-3" type="radio" name="employment_status" value="unemployed">
+                                                <label class="form-check-label mx-3" for="unemployed">
+                                                    Unemployed
+                                                </label>
+                                            </div>
+                                            <div class="form-check mb-2" style="border: 1px solid rgba(0, 0, 0, 0.1); padding: 20px 0px; border-radius: 15px; cursor: pointer;">
+                                                <input class="form-check-input mx-3" type="radio" name="employment_status" value="retired">
+                                                <label class="form-check-label mx-3" for="retired">
+                                                    Retired
+                                                </label>
+                                            </div>
                                     </div>
                                 </div>
                             </div>
-                            <div class="d-flex justify-content-between my-4 float-end" style="max-width: 500px;">
-                                <button type="button" class="btn btn-dark-transparent px-4"><i class="fe fe-arrow-left"></i> Previous </button>
-                                <button type="button" class="btn btn-success-transparent px-4" id="nextScreenButtonOne">Next <i class="fe fe-arrow-right"></i></button>
-                            </div>
 
+                            <!-- Navigation Buttons -->
+                            <div class="d-flex justify-content-between my-4 float-end" style="max-width: 500px;">
+                                <button type="button" class="btn btn-dark-transparent px-4">
+                                    <i class="fe fe-arrow-left"></i> Previous
+                                </button>
+                                <button type="button" class="btn btn-primary-transparent px-4" id="nextScreenButtonOne">
+                                    Next <i class="fe fe-arrow-right"></i>
+                                </button>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -123,23 +156,42 @@
                         <div class="row d-flex justify-content-center mx-auto">
                             <div class="col-xl-12">
                                 <div class="my-1">
-                                    <p class="text-left fs-12 fw-medium">Annual Income Range:</p>
+                                    <p class="text-left fs-13 fw-bold">Annual Income Range:</p>
                                 </div>
-                                <div class="col-12 my-2">
-                                    <div class="input-group my-1">
-                                        <img class="bg-dark bg-opacity-10 rounded-circle p-2" width="50" height="50" src="https://static.thenounproject.com/png/2086733-200.png" alt="">
-                                         <select name="" id="" class="form-control fw-medium py-3 text-muted rounded-3 mx-2" >
-                                            <option value="">--Select Annual Income Range--</option>
-                                            <option value="employed">Less than $50K</option>
-                                            <option value="selfemployed">$50k - $100K</option>
-                                            <option value="unemployed">Over $100K</option>
-                                         </select>
+                                
+                                <!-- Annual Income Range Options -->
+                                <div class="col-12 my-3">
+                                    <div class="form-check-group"> 
+                                        <div class="form-check mb-2" style="border: 1px solid rgba(0, 0, 0, 0.1); padding: 20px 0px; border-radius: 15px; cursor: pointer;">
+                                            <input class="form-check-input mx-3" type="radio" name="income_range" value="less_than_50k">
+                                            <label class="form-check-label mx-3" for="less_than_50k">
+                                            Less than $50K
+                                            </label>
+                                        </div>
+                                        <div class="form-check mb-2" style="border: 1px solid rgba(0, 0, 0, 0.1); padding: 20px 0px; border-radius: 15px; cursor: pointer;">
+                                            <input class="form-check-input mx-3" type="radio" name="income_range" value="50k_100k">
+                                            <label class="form-check-label mx-3" for="50k_100k">
+                                                $50K - $100K
+                                            </label>
+                                        </div>
+                                        <div class="form-check mb-2" style="border: 1px solid rgba(0, 0, 0, 0.1); padding: 20px 0px; border-radius: 15px; cursor: pointer;">
+                                            <input class="form-check-input mx-3" type="radio" name="income_range" value="over_100k">
+                                            <label class="form-check-label mx-3" for="over_100k">
+                                                Over $100K
+                                            </label>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
+
+                            <!-- Navigation Buttons -->
                             <div class="d-flex justify-content-between my-4 float-end" style="max-width: 500px;">
-                                <button type="button" class="btn btn-dark-transparent px-4"><i class="fe fe-arrow-left"></i> Previous </button>
-                                <button type="button" class="btn btn-primary-transparent px-4" id="nextScreenButton">Next <i class="fe fe-arrow-right"></i></button>
+                                <button type="button" class="btn btn-dark-transparent px-4">
+                                    <i class="fe fe-arrow-left"></i> Previous
+                                </button>
+                                <button type="button" class="btn btn-primary-transparent px-4" id="nextScreenButton">
+                                    Next <i class="fe fe-arrow-right"></i>
+                                </button>
                             </div>
                         </div>
                     </div>
@@ -149,24 +201,48 @@
                         <div class="row d-flex justify-content-center mx-auto">
                             <div class="col-xl-12">
                                 <div class="my-1">
-                                    <p class="text-left fs-12 fw-medium">Source Of Funds:</p>
+                                    <p class="text-left fs-13 fw-bold">Source Of Funds:</p>
                                 </div>
-                                <div class="col-12 my-2">
-                                    <div class="input-group my-1">
-                                        <img class="bg-dark bg-opacity-10 rounded-circle p-2" width="50" height="50" src="https://static.thenounproject.com/png/2086733-200.png" alt="">
-                                         <select name="" id="" class="form-control fw-medium py-3 text-muted rounded-3 mx-2" >
-                                            <option value="">--Select Source Of Funds--</option>
-                                            <option value="salary">Salary</option>
-                                            <option value="investment">Investment</option>
-                                            <option value="business">Business Income</option>
-                                            <option value="others">Others</option>
-                                         </select>
+                                
+                                <!-- Source Of Funds Options -->
+                                <div class="col-12 my-3">
+                                    <div class="form-check-group"> 
+                                        <div class="form-check mb-2" style="border: 1px solid rgba(0, 0, 0, 0.1); padding: 20px 0px; border-radius: 15px; cursor: pointer;">
+                                            <input class="form-check-input mx-3" type="radio" name="source_of_funds" value="salary">
+                                            <label class="form-check-label mx-3" for="salary">
+                                            Salary
+                                            </label>
+                                        </div>
+                                        <div class="form-check mb-2" style="border: 1px solid rgba(0, 0, 0, 0.1); padding: 20px 0px; border-radius: 15px; cursor: pointer;">
+                                            <input class="form-check-input mx-3" type="radio" name="source_of_funds" value="investment">
+                                            <label class="form-check-label mx-3" for="investment">
+                                                Investment
+                                            </label>
+                                        </div>
+                                        <div class="form-check mb-2" style="border: 1px solid rgba(0, 0, 0, 0.1); padding: 20px 0px; border-radius: 15px; cursor: pointer;">
+                                            <input class="form-check-input mx-3" type="radio" name="source_of_funds" value="business">
+                                            <label class="form-check-label mx-3" for="business">
+                                                Business Income
+                                            </label>
+                                        </div>
+                                        <div class="form-check mb-2" style="border: 1px solid rgba(0, 0, 0, 0.1); padding: 20px 0px; border-radius: 15px; cursor: pointer;">
+                                            <input class="form-check-input mx-3" type="radio" name="source_of_funds" value="others">
+                                            <label class="form-check-label mx-3" for="others">
+                                                Others
+                                            </label>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
+
+                            <!-- Navigation Buttons -->
                             <div class="d-flex justify-content-between my-4 float-end" style="max-width: 500px;">
-                                <button type="button" class="btn btn-dark-transparent px-4"><i class="fe fe-arrow-left"></i> Previous </button>
-                                <button type="button" class="btn btn-primary-transparent px-4" id="nextScreenButton">Sumbit</button>
+                                <button type="button" class="btn btn-dark-transparent px-4">
+                                    <i class="fe fe-arrow-left"></i> Previous
+                                </button>
+                                <button type="button" class="btn btn-primary-transparent px-4" id="nextScreenButton">
+                                    Submit
+                                </button>
                             </div>
                         </div>
                     </div>
@@ -208,6 +284,12 @@ $(document).ready(function() {
             currentIndex--;
             showScreen(screens[currentIndex]);
         }
+    });
+
+    $(document).on('click', '.form-check', function() {
+        const radioInput = $(this).find('input[type="radio"]');
+        radioInput.prop('checked', true); // Select the radio button
+        radioInput.trigger('change'); // Trigger change event in case there is a listener
     });
 });
 
