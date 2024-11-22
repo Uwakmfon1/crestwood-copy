@@ -140,7 +140,8 @@ class DatabaseSeeder extends Seeder
         // }
         $this->call([
             // CryptoSeeder::class,
-            StocksSeeder::class,
+            // StocksSeeder::class,
+            PlanSeeder::class,
         ]);
     }
 }

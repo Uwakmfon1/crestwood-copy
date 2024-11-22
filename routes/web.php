@@ -137,6 +137,7 @@ Route::group(['middleware' => ['auth','verified', 'active_user', 'profile_comple
         Route::post('/payment/{savings}', [SavingsController::class, 'makePayment'])->name('make.payment');
         Route::post('/savings/{savings}/settle', [SavingsController::class, 'settlePayment'])->name('settle.payment');
         Route::get('/savings/history', [SavingsController::class, 'history'])->name('savings.history');
+        Route::post('/savings/plan/payment/{savings}', [SavingsController::class, 'savingsPayment'])->name('savings.payment');
 
         Route::get('/test/jods', [App\Http\Controllers\CommandController::class, 'handleSavings']);
 
@@ -184,5 +185,8 @@ Route::group(['middleware' => ['auth','verified', 'active_user', 'profile_comple
         Route::get('/update/kyc', [App\Http\Controllers\HomeController::class, 'user_kyc'])->name('kyc.index');
         Route::get('/start/savings/{id}', [App\Http\Controllers\SavingsController::class, 'questionaire'])->name('savings.start');
 
+        Route::get('/fetch/plans', [SavingsController::class, 'fetchPlan'])->name('get.plans');
+        Route::get('/fetch/plans/{id}', [SavingsController::class, 'getPlanDetails'])->name('plans.savings');
+        Route::post('/support/ticket/{support}/respond', [SupportController::class, 'reply'])->name('support.reply');
     // });
 });

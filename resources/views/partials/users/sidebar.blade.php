@@ -50,9 +50,9 @@
                     <i class="ri-arrow-right-s-line side-menu__angle"></i>
                 </a>
                 <ul class="slide-menu child1 pages-ul">
-                    <!-- <li class="slide">
+                    <li class="slide">
                         <a href="{{ route('savings') }}" class="side-menu__item @if(request()->routeIs(['savings'])) active @endif">My Savings</a>
-                    </li> -->
+                    </li>
                     <li class="slide">
                         <a href="{{ route('savings.create') }}" class="side-menu__item @if(request()->routeIs(['savings.create'])) active @endif">New Savings</a>
                     </li>

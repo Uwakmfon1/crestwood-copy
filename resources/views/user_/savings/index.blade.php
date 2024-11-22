@@ -76,7 +76,9 @@
                                         <div class="mt-3">
                                             <h4 class="fw-semibold mb-1">&#36;{{ number_format($balance, 2) }}</h4>
                                             <span class="text-muted fs-12">Savings Balance<span class="text-success ms-2 d-inline-block">0.45%<i class="ti ti-arrow-narrow-up"></i></span></span>
-
+                                            <div class="mt-2">
+                                                <a href="javascript:void(0);" class="py-2 fs-11 text-muted fw-semibold" data-bs-toggle="modal" data-bs-target="#transferModa" id="openSavingsModal">Withdraw <i class="fe fe-arrow-right me-2 align-middle d-inline-block"></i></a>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -109,6 +111,9 @@
                                         <div class="mt-3">
                                             <h4 class="fw-semibold mb-1">{{ number_format($asv) }}</h4>
                                             <span class="text-muted fs-12">Active Savings<span class="text-success ms-2 d-inline-block">+$20.80</span></span>
+                                        </div>
+                                        <div class="mt-2">
+                                            <a href="javascript:void(0);" class="py-2 fs-11 text-white fw-semibold">.</a>
                                         </div>
                                     </div>
                                 </div>
@@ -285,51 +290,21 @@
                                     <thead>
                                         <tr>
                                             <th>S/N</th>
-                                            <th>Deposit</th>
-                                            <th>Contribution</th>
-                                            <th>ROI</th>
-                                            <th>Days left</th>
-                                            <th>Reuturn</th>
+                                            <th>Plan</th>
                                             <th>Date</th>
                                             <th>Status</th>
                                             <th>Action</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        {{-- @foreach($savings as $key=>$saving)
-                                        @php 
-                                            $paid = $saving->transaction()->where('status', 'approved')->count();
-                                            $now = \Carbon\Carbon::now();
-                                            $returnDate = \Carbon\Carbon::parse($saving['return_date']);
-                                            $daysLeft = $now->diffInDays($returnDate, false);
-                                        @endphp
+                                        @foreach($savings as $key=>$saving)
                                             <tr>
                                                 <td>{{ $key + 1 }}</td>
-                                                <td>${{ number_format($saving['deposit'], 2) }}</td>
-                                                <td>${{ number_format($saving['contribution'], 2) }} ({{ $saving['timeframe'] }})</td>
-                                                <td>
-                                                    <span class="badge bg-light text-dark fs-15">
-                                                        {{ number_format($saving['roi'], 0) }}<i class="ti ti-percentage fs-15"></i>
-                                                    </span>
-                                                </td>
-                                                <td>
-                                                    @if ($daysLeft > 0)
-                                                        {{ $daysLeft }} days left
-                                                    @elseif ($daysLeft == 0)
-                                                        {{ $returnDate->diffInHours($now) }} hours left
-                                                    @else
-                                                        --
-                                                    @endif
-                                                </td>
-                                                <td>${{ number_format($saving['total_return'], 2)  }}</td>
+                                                <td>{{ $saving->plan->name }}</td>
                                                 <td>{{ $saving['created_at']->format('M d, Y \a\t h:i A') }}</td>
                                                 <td>
                                                     @if($saving['status'] == 'active')
-                                                        @if($saving['return_date']->diffInDays(now()) >= 1)
-                                                            <span class="badge bg-success-transparent"><i class="ri-check-fill align-middle me-1"></i>Active</span>
-                                                        @else
-                                                            <span class="badge bg-light text-dark"><i class="ri-check-fill align-middle me-1"></i>Completed</span>
-                                                        @endif
+                                                        <span class="badge bg-success-transparent"><i class="ri-check-fill align-middle me-1"></i>Active</span>
                                                     @elseif($saving['status'] == 'pending')
                                                         <span class="badge bg-warning-transparent"><i class="ri-info-fill align-middle me-1"></i>Pending</span>
                                                     @elseif($saving['status'] == 'cancelled')
@@ -342,7 +317,7 @@
                                                     <a href="{{ route('savings.show', $saving['id']) }}" class="btn btn-sm btn-primary">View</a> 
                                                 </td>
                                             </tr>
-                                        @endforeach --}}
+                                        @endforeach 
                                     </tbody>
                                 </table>
                                         @if($savings->count() == 0)
@@ -358,6 +333,7 @@
                 </div>
             </div>
             <!-- End:: row-2 -->
+            @include('partials.users.modal.topup')
     </div>
 </div>
 <!-- End::app-content -->

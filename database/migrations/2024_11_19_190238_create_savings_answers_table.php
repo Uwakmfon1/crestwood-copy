@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateSaveTransactionsTable extends Migration
+class CreateSavingsAnswersTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,11 @@ class CreateSaveTransactionsTable extends Migration
      */
     public function up()
     {
-        Schema::create('save_transactions', function (Blueprint $table) {
+        Schema::create('savings_answers', function (Blueprint $table) {
             $table->id();
             $table->foreignId('saving_id')->constrained()->onDelete('cascade');
-            $table->decimal('amount', 15, 2)->default(0);
-            $table->enum('type', ['credit', 'debit']);
-            $table->enum('status', ['success', 'failed']);
-            $table->boolean('is_interest')->default(false);
+            $table->foreignId('question_id')->constrained()->onDelete('cascade');
+            $table->foreignId('answer_id')->constrained()->onDelete('cascade');
             $table->timestamps();
         });
     }
@@ -31,6 +29,6 @@ class CreateSaveTransactionsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('save_transactions');
+        Schema::dropIfExists('savings_answers');
     }
 }

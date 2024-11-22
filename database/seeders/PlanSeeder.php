@@ -1,27 +1,22 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace Database\Seeders;
 
-use Carbon\Carbon;
 use App\Models\Plan;
-use App\Models\User;
 use App\Models\Answer;
-use App\Models\Ledger;
-use App\Models\Saving;
-use App\Models\Setting;
 use App\Models\Question;
-use Illuminate\Http\Request;
-use App\Models\SavingPackage;
-use App\Models\SavingsAnswer;
-use InvalidArgumentException;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Validator;
+use Illuminate\Database\Seeder;
 
-class SavingsController extends Controller
+class PlanSeeder extends Seeder
 {
-    public function index()
+    /**
+     * Run the database seeds.
+     *
+     * @return void
+     */
+    public function run()
     {
-        $plan = [
+        $plans = [
             [
                 'id' => 1,
                 'name' => 'High-Yield Savings Account (HYSA)',
@@ -241,7 +236,7 @@ class SavingsController extends Controller
             ],
             [
                 'id' => 6,
-                'name' => 'Retirement Accounts (Roth IRA, SEP IRA, Traditional IRA)',
+                'name' => 'Retirement Accounts (Roth IRA)',
                 'sub_name' => 'Lorem ipsum dolor sit amet consectetur, adipisicing.',
                 'img' => 'https://www.oneazcu.com/media/xf5p3zer/click_desktop_500x500.webp',
                 'btnText' => 'Start Savings',
@@ -279,288 +274,31 @@ class SavingsController extends Controller
             ]
         ];
 
-        $savings = auth()->user()->savings()->latest();
+        foreach ($plans as $planData) {
+            // Create the plan
+            $plan = Plan::create([
+                'id' => $planData['id'],
+                'name' => $planData['name'],
+                'description' => $planData['sub_name'],
+                'img' => $planData['img'],
+                'modalId' => $planData['modalId'],
+            ]);
 
-        $active_savings = $savings->where('status', 'active')->count();
-        $completed_savings = $savings->where('status', 'settled')->count();
+            // Create the questions for the plan
+            foreach ($planData['questions'] as $questionData) {
+                $question = Question::create([
+                    'plan_id' => $plan->id,
+                    'text' => $questionData['question'],
+                ]);
 
-        $user = auth()->user();
-        $balance = $user->savings()
-            ->with(['savingsTransactions' => function($query) {
-                $query->where('type', 'debit')->where('status', 'success');
-            }])
-            ->get()
-            ->pluck('savingsTransactions')
-            ->flatten()
-            ->sum('amount') ?? 0;
-
-        return view('user_.savings.index', [
-            'title' => 'Savings', 
-            'savings' => auth()->user()->savings()->latest()->get(),
-            'balance' => $balance, 
-            'asv' => $active_savings, 
-            'csv' => $completed_savings,
-            'plan' => $plan
-        ]);
-    }
-    public function packages()
-    {
-        return view('user.savings.packages.index', ['title' => 'Packages', 'packages' => SavingPackage::all()]);
-    }
-
-    public function create()
-    {
-        return view('user_.savings.create', ['title' => 'Save', 'setting' => Setting::all()->first(),]);
-    }
-
-    public function show(Saving $savings)
-    {
-        $paid = 1;
-
-        // Generate dates for the progress report (for example, daily progress)
-        $progressDates = [];
-        $progressAmounts = [];
-
-        $currentAmount = $savings->deposit;
-        $contributionPerDay = $savings->contribution / 30; // assuming 30 days in a month for simplicity
-
-        $startDate = \Carbon\Carbon::parse($savings->savings_date);
-        $endDate = \Carbon\Carbon::parse($savings->return_date);
-
-        while ($startDate <= $endDate) {
-            $progressDates[] = $startDate->format('Y-m-d');
-            $progressAmounts[] = $currentAmount;
-
-            // Add the daily contribution to the current amount
-            $currentAmount += $contributionPerDay;
-
-            // Move to the next day
-            $startDate->addDay();
-        }
-
-        $savingsQA = Saving::with(['plan', 'answers.question', 'answers.answer'])
-            ->where('user_id', auth()->id())
-            ->where('id', $savings->id)
-            ->first();
-
-        $savingPayment = $savings->savingsTransactions()->where('is_interest', 0)->get();
-        
-        $total = $savings->savingsTransactions()
-        ->where('type', 'debit')
-        ->where('status', 'success')
-        ->sum('amount');
-
-        return view('user_.savings.show', [
-            'title' => 'Savings', 
-            'savings' => $savings, 
-            'save' => $savingsQA, 
-            'packages' => [], 
-            'payment' => $savingPayment, 
-            'paid' => $paid, 
-            'progressDates' => $progressDates,
-            'progressAmounts' => $progressAmounts,
-            'total' => $total,
-        ]);
-    }
-
-    public function questionaire ()
-    {
-        return view('user_.savings.start');
-    }
-
-    //Create Savings
-    public function store(Request $request): \Illuminate\Http\RedirectResponse
-    {
-        $validator = Validator::make($request->all(), [
-            'plan_id' => 'required|exists:plans,id',
-            'answers' => 'required',
-        ]);
-
-        if ($validator->fails()) {
-            // Retrieve all error messages
-            $errors = $validator->errors()->all();
-            
-            $errorMessage = implode(', ', $errors);
-            return back()->with('error', $errorMessage);
-        }        
-        
-        $answersJson = $request->input('answers');
-        $answersData = json_decode($answersJson, true);
-        
-        if (!$answersData) {
-            return back()->withInput()->with('error', 'Invalid Data format.');
-        }
-
-        // Create Savings
-        $savings = Saving::create([
-            'user_id' => auth()->id(),
-            'plan_id' => $request->plan_id,
-            'plan_info' => $request->answers,
-            'status' => 'active'
-        ]);
-
-        $savingsId = $savings->id;
-        if (!$savingsId) {
-            return back()->withInput()->with('error', 'Savings is required.');
-        }
-
-        // Iterate over the answers data
-        foreach ($answersData as $key => $data) {
-            // Get the answer_id text from the provided data
-            $answerText = $data['answer_id'] ?? null;
-            
-            if ($answerText) {
-                // Find the Answer by its text in the database
-                $answer = Answer::where('text', $answerText)->first();
-
-                if ($answer) {
-                    // Create a new entry in the savings_answers table
-                    SavingsAnswer::create([
-                        'saving_id'  => $savingsId,
-                        'question_id' => $answer->question_id,
-                        'answer_id'   => $answer->id,
+                // Create the answers for the question
+                foreach ($questionData['answers'] as $answerText) {
+                    Answer::create([
+                        'question_id' => $question->id,
+                        'text' => $answerText,
                     ]);
-                } else {
-                    // Handle the case where the answer was not found (optional)
-                    return back()->withInput()->with('error', "Answer with text '{$answerText}' not found.");
                 }
             }
         }
-
-        $savingsQA = Saving::with(['plan', 'answers.question', 'answers.answer'])
-            ->where('user_id', auth()->id())
-            ->where('id', $savings->id)
-            ->first();
-
-        $msg = 'Savings was created successfully';
-
-        if ($savings) {
-            return redirect()->route('savings.show', $savings->id)->with('success', $msg);
-        }
-        return back()->withInput()->with('error', 'Error processing Savings');
-    }
-
-    public function history(Request $request)
-    {
-        $query = auth()->user()->savings();
-
-        // Search functionality
-        if ($request->filled('search')) {
-            $searchTerm = $request->input('search');
-            $query->where(function ($q) use ($searchTerm) {
-                $q->whereHas('package', function ($q2) use ($searchTerm) {
-                    $q2->where('name', 'like', '%' . $searchTerm . '%');
-                })
-                ->orWhere('amount', 'like', '%' . $searchTerm . '%')
-                ->orWhere('total_return', 'like', '%' . $searchTerm . '%')
-                ->orWhere('status', 'like', '%' . $searchTerm . '%');
-            });
-        }
-
-        // Filter functionality
-        if ($request->has('status')) {
-            $status = $request->get('status');
-            $query->where('status', $status);
-        }
-
-        $investments = $query->paginate(10);
-
-        return view('user_.savings.history', ['title' => 'Savings History', 'investments' => $investments]);
-    }
-    
-    public function fetchPlan()
-    {
-        try {
-            // Retrieve all plans from the database
-            $plans = Plan::all();
-
-            // Return response as JSON
-            return response()->json([
-                'status' => 'success',
-                'data' => $plans
-            ], 200);
-        } catch (\Exception $e) {
-            // Handle any errors
-            return response()->json([
-                'status' => 'error',
-                'message' => $e->getMessage()
-            ], 500);
-        }
-    }
-
-    public function getPlanDetails($id)
-    {
-        try {
-            // Fetch the plan by ID
-            $plan = Plan::with('questions.answers') // Assuming there's a 'questions' relationship, and questions have 'answers'
-                        ->findOrFail($id); // Fetch the plan or throw an exception if not found
-
-            // Return the response
-            return response()->json([
-                'id' => $plan->id,
-                'name' => $plan->name,
-                'description' => $plan->description,
-                'img' => $plan->img, // Assuming the plan has an 'img' attribute
-                'btnText' => 'Start Savings', // Static button text, or you can modify this as needed
-                'modalId' => $plan->modalId, // Dynamically generate the modal ID
-                'questions' => $plan->questions->map(function ($question) {
-                    return [
-                        'question' => $question->text,
-                        'answers' => $question->answers->pluck('text')->toArray(), // Assuming answers have an 'answer' column
-                    ];
-                })
-            ], 200);
-        } catch (\Exception $e) {
-            // Handle any errors (plan not found, or any DB-related errors)
-            return response()->json([
-                'error' => 'Plan not found or an error occurred',
-                'details' => $e->getMessage()
-            ], 500);
-        }
-    }
-
-    public function savingsPayment(Saving $savings, Request $request)
-    {
-        $validator = Validator::make($request->all(), [
-            'amount' => ['required', 'numeric', 'min:1', 'integer'],
-        ]);
-
-        if ($validator->fails()) {
-            // Retrieve all error messages
-            $errors = $validator->errors()->all();
-            
-            $errorMessage = implode(', ', $errors);
-            return back()->with('error', $errorMessage);
-        }  
-
-        $user = auth()->user();
-
-        // ::::: Store Ledger :::::: //
-        try {
-            Ledger::debit($user->wallet, $request->amount, 'wallet', null, 'Savings Account');
-
-            $user->transaction('wallet')->create([
-                'amount' => $request->amount,
-                'data_id' => $savings->id,
-                'type' => 'wallet',
-                'status' => 'approved',
-                'description' => "Transfer from wallet to savings",
-                'method' => 'credit'
-            ]);
-        } catch (InvalidArgumentException $e) {
-            return back()->with('error', 'Error debiting wallet: ' . $e->getMessage());
-        }
-        // ::::: Store Ledger :::::: //
-
-        $payment = $savings->savingsTransactions()->create([
-            'amount' => $request->amount,
-            'type' => 'debit',
-            'status' => 'success'
-        ]);
-
-        if($payment)
-            return back()->with('success', "Payment of $" . $request->amount . " was made successfully");
-
-        return back()->with('error', 'Error processing Payment');
     }
 }
