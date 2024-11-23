@@ -157,12 +157,12 @@
                                             <p class="text-fixed-dark op-5 mb-3 fs-12">Start your first savings with your desired amount</p>
                                             <div class="input-group mx-auto"> 
                                                 <button type="button" class="input-group-text btn btn-dark-light btn-wave text-dark fs-12 fw-bold">USD</button>
-                                                <input type="number" value="500" style="font-size: 14px; font-weight: 800;" step="any" class="form-control" name="amount" id="saveAmount" placeholder="Amount">
+                                                <input type="number" value="" style="font-size: 14px; font-weight: 800;" step="any" class="form-control" name="amount" id="saveAmount" placeholder="Amount">
                                                 <button type="button" class="input-group-text btn btn-dark-light btn-wave text-dark fs-12 fw-bold">.00</button>
                                             </div>
                                             <div class="fs-12 alert alert-info w-100 mt-3">
                                                 <div class="fs-11 fw-medium" id="savings-summary">
-                                                    Start your savings for this month with <strong>$500</strong>
+                                                    Start your savings for this month with <strong>$--</strong>
                                                 </div>
                                             </div>
                                             <div class="mx-auto">
@@ -225,15 +225,27 @@
                                         @foreach($payment as $index => $save)
                                             <tr>
                                                 <td><b>{{ $index + 1 }} </b></td>
-                                                <td><b> Savings </b></td>
+                                                <td>
+                                                    @if($save->is_interest)
+                                                        <b> Interest </b>
+                                                    @else
+                                                        <b> Savings </b>
+                                                    @endif
+                                                </td>
                                                 <td>
                                                     <b>${{ number_format($save->amount, 2) }}</b>
                                                 </td>
                                                 <td>
                                                     @if($save->status == 'success')
-                                                        <span class="badge bg-success-transparent">
-                                                            <b><i class="ri-check-fill align-middle me-1"></i> Paid </b>
-                                                        </span>
+                                                        @if(!$save->is_interest)
+                                                            <span class="badge bg-success-transparent">
+                                                                <b><i class="ri-check-fill align-middle me-1"></i> Paid </b>
+                                                            </span>
+                                                        @else
+                                                            <span class="badge bg-info-transparent">
+                                                                <b><i class="ri-check-fill align-middle me-1"></i> Received </b>
+                                                            </span>
+                                                        @endif
                                                     @else
                                                         <span class="badge bg-dark-transparent">
                                                             <b><i class="ri-check-fill align-middle me-1"></i> Awaiting </b>
@@ -248,7 +260,15 @@
                                                 </td>
                                                 <td>
                                                     @if($save->status == 'success')
-                                                        <button type="button" class="btn btn-dark-light fs-12 fw-bold border-.5" disabled>Cleared <i class="fe fe-arrow-right mx-1"></i></button>
+                                                        @if(!$save->is_interest)
+                                                            <button type="button" class="btn btn-primary-light fs-12 fw-bold border-0" disabled>Cleared <i class="fe fe-arrow-right mx-1"></i></button>
+                                                        @else
+                                                            <form action="{{ route('interest.withdaw', $save->id) }}" method="post">
+                                                                @csrf
+                                                                <input type="hidden" name="amount" value="{{ $save->amount }}">
+                                                                <button type="submit" class="btn btn-info-light fs-12 fw-bold border-0 withdrawInterestBtn">Withdraw <i class="fe fe-arrow-right mx-1"></i></button>
+                                                            </form>
+                                                        @endif
                                                     @else
                                                         <form action="{{ route('savings.payment', $savings->id) }}" method="post">
                                                             @csrf
@@ -271,7 +291,7 @@
                                                 <b>${{ number_format($total, 2) }}</b>
                                             </td>
                                             <td>
-                                                <span class="badge bg-primary-transparent">
+                                                <span class="badge bg-primary-transparent" id="totalDate">
                                                     <b><i class="ri-check-fill align-middle me-1"></i> In Progress </b>
                                                 </span>
                                             </td>
@@ -282,10 +302,10 @@
                                                 </span>
                                             </td>
                                             <td>
-                                                <form action="{{ route('settle.payment', $savings['id']) }}" method="post">
-                                                    @csrf
-                                                    <button type="submit" class="btn btn-primary" disabled>Withdraw <i class="fe fe-card mx-1"></i></button>
-                                                </form>
+                                                <!-- <form action="{{ route('settle.payment', $savings['id']) }}" method="post">
+                                                    @csrf -->
+                                                    <button type="submit" class="btn btn-primary" id="withdrawBtn" disabled>Withdraw <i class="fe fe-card mx-1"></i></button>
+                                                <!-- </form> -->
                                             </td>
                                         </tr>
                                     </tbody>
@@ -1132,6 +1152,12 @@ $(document).ready(function () {
     const backendModalId = "{{ $savings->plan->modalId }}";
     const currentMonthTotal = "{{ $currentMonthTotal }}";
     const lastTransactionDate = "{{ $lastTransactionDate }}";
+    const currentDate = new Date();
+    // const nextContributionDate = new Date(currentDate.getFullYear(), currentDate.getMonth() + 1, currentDate.getDate());
+
+    const lastContributionDate = lastTransactionDate;
+    const frequency = 'monthly';
+    const interval = 1;
 
     const disableInputBtn = () => {
         // Disable input and button for current month
@@ -1155,36 +1181,6 @@ $(document).ready(function () {
         updateSummary(min, max);
     };
 
-    // Calculate the next contribution date (same day next month)
-    const currentDate = new Date();
-    const nextContributionDate = new Date(currentDate.getFullYear(), currentDate.getMonth() + 1, currentDate.getDate());
-
-    // Countdown timer logic
-    function updateCountdown() {
-        const now = new Date().getTime();
-        const countDownDate = nextContributionDate.getTime();
-        const distance = countDownDate - now;
-
-        // Calculate days, hours, minutes, seconds
-        const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-        const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-        const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-        const seconds = Math.floor((distance % (1000 * 60)) / 1000);
-
-        // Update countdown display
-        $('.school-card .d-flex .bg-white-transparent').eq(0).text(String(days).padStart(2, '0'));
-        $('.school-card .d-flex .bg-white-transparent').eq(1).text(String(hours).padStart(2, '0'));
-        $('.school-card .d-flex .bg-white-transparent').eq(2).text(String(minutes).padStart(2, '0'));
-        $('.school-card .d-flex .bg-white-transparent').eq(3).text(String(seconds).padStart(2, '0'));
-
-        // If the countdown is finished
-        if (distance < 0) {
-            clearInterval(countdownInterval);
-            $('.school-card .d-flex .bg-white-transparent').text('00');
-            alert('Next contribution date has arrived!');
-        }
-    }
-
     const checkAmountAnswer = (answer) => {
         switch (answer) { 
             case "Less than $500/month":
@@ -1202,12 +1198,80 @@ $(document).ready(function () {
                 break;
 
             case "Over $1,000/month":
-
+                setAmountRange(1000, null, 1000);
                 break;
         }
     };
 
-    if(backendModalId == 'modalHYSA') {
+    const chechWithdrawInterest = (answer) => {
+        switch (answer) { 
+            case "Reinvest interest":
+                    $('.withdrawInterestBtn').prop('disabled', true);
+                break;
+
+            case "Withdraw interest periodically":
+                    $('.withdrawInterestBtn').prop('disabled', true);
+                break;
+        }
+    };
+
+    const checkAmountDuration = (answer) => {
+        switch (answer) { 
+            case "Weekly":
+                    dateTimeMethod('weekly');
+                break;
+
+            case "Monthly":
+                    dateTimeMethod('monthly');
+                break;
+
+            case "Irregularly":
+                    dateTimeMethod('daily');
+                break;
+        }
+    };
+
+    const checkFundsAccess = (answer) => {
+        switch (answer) { 
+            case "Yes, I’ll need regular access":
+                    $('#withdrawBtn').prop('disabled', false);
+                break;
+
+            case "No, I can leave the funds untouched":
+                    $('#withdrawBtn').prop('disabled', true);
+                break;
+        }
+    }
+
+    function calculateNextContributionDate(lastContributionDate, frequency, interval) {
+        // Clone the date to avoid mutation
+        const nextDate = new Date(lastContributionDate);
+
+        // Calculate the next contribution date based on frequency and interval
+        switch (frequency.toLowerCase()) {
+            case 'daily':
+                nextDate.setDate(nextDate.getDate() + interval); // Interval in days
+                break;
+            case 'weekly':
+                nextDate.setDate(nextDate.getDate() + (interval * 7)); // Interval in weeks
+                break;
+            case 'monthly':
+                nextDate.setMonth(nextDate.getMonth() + interval); // Interval in months
+                break;
+            case 'yearly':
+                nextDate.setFullYear(nextDate.getFullYear() + interval); // Interval in years
+                break;
+            default:
+                console.error('Invalid frequency specified');
+                break;
+        }
+
+        return nextDate;
+    }
+
+    const dateTimeMethod = (frequency) => {
+        const nextContributionDate = calculateNextContributionDate(lastContributionDate, frequency, interval);
+
         // Display the next contribution date
         $('#nextContribution').text(nextContributionDate.toLocaleDateString('en-US', {
             day: 'numeric',
@@ -1215,9 +1279,103 @@ $(document).ready(function () {
             year: 'numeric'
         }));
 
-        // Set the countdown interval
+        // Countdown setup
         const countdownInterval = setInterval(updateCountdown, 1000);
         updateCountdown();
+
+        function updateCountdown() {
+            const now = new Date().getTime();
+            const countDownDate = nextContributionDate.getTime();
+            const distance = countDownDate - now;
+
+            // Calculate days, hours, minutes, seconds
+            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+            // Update countdown display
+            $('.school-card .d-flex .bg-white-transparent').eq(0).text(String(days).padStart(2, '0'));
+            $('.school-card .d-flex .bg-white-transparent').eq(1).text(String(hours).padStart(2, '0'));
+            $('.school-card .d-flex .bg-white-transparent').eq(2).text(String(minutes).padStart(2, '0'));
+            $('.school-card .d-flex .bg-white-transparent').eq(3).text(String(seconds).padStart(2, '0'));
+
+            // If the countdown is finished
+            if (distance < 0) {
+                clearInterval(countdownInterval);
+                $('.school-card .d-flex .bg-white-transparent').text('00');
+                alert('Next contribution date has arrived!');
+            }
+        }
+    }
+
+    const checkAmountContribute = (answer) => {
+        switch (answer) { 
+            case "Less than $5,000":
+                setAmountRange(10, (5000 - currentMonthTotal), (5000 - currentMonthTotal));
+                break;
+
+            case "$5,000 – $10,000":
+                if(currentMonthTotal >= 1000) {
+                    disableInputBtn();
+                }
+                setAmountRange(10, (10000 - currentMonthTotal), (10000 - currentMonthTotal));
+                break;
+
+            case "Over $10,000":
+                setAmountRange(10, null, 10000);
+                break;
+        }
+    };
+
+    const checkMontlyAmount = (answer) => {
+        switch (answer) { 
+            case "Less than $500":
+                if(currentMonthTotal > 500) {
+                    disableInputBtn();
+                }
+                setAmountRange(10, (500 - currentMonthTotal), (500 - currentMonthTotal));
+                break;
+
+            case "$500 – $1,000":
+                if(currentMonthTotal >= 1000) {
+                    disableInputBtn();
+                }
+                setAmountRange(500, (1000 - currentMonthTotal), (1000 - currentMonthTotal));
+                break;
+
+            case "Over $1,000":
+                setAmountRange(1000, null, 1000);
+                break;
+        }
+    }
+
+    const checkDepositAmount = (answer) => {
+        switch (answer) { 
+            case "Less than $10,000":
+                    if(currentMonthTotal > 10000) {
+                        disableInputBtn();
+                    }
+                    setAmountRange(10, (10000 - currentMonthTotal), (10000 - currentMonthTotal));
+                break;
+
+            case "$10,000 – $50,000":
+                    if(currentMonthTotal >= 50000) {
+                        disableInputBtn();
+                    }
+                    setAmountRange(10, (50000 - currentMonthTotal), (50000 - currentMonthTotal));
+                break;
+
+            case "Over $50,000":
+                    setAmountRange(500000, null, 500000);
+                break;
+        }
+    }
+
+    if(backendModalId == 'modalHYSA') {
+        $('.withdrawInterestBtn').prop('disabled', true);
+
+        dateTimeMethod('monthly');
 
         $('.quests').each(function () {
             const question = $(this).find('#savingsQuestion').text().trim();
@@ -1241,6 +1399,191 @@ $(document).ready(function () {
                     
                 case "Would you like to reinvest interest into the account or withdraw it periodically?":
                     // Add specific conditions here if necessary
+                    chechWithdrawInterest(answer)
+                    break;
+            }
+        });
+    }
+
+    if(backendModalId == 'modalCashInterest') {
+        $('.withdrawInterestBtn').prop('disabled', true);
+
+        setAmountRange(10, null, 10);
+
+        $('.quests').each(function () {
+            const question = $(this).find('#savingsQuestion').text().trim();
+            const answer = $(this).find('#savingsAnswer').text().trim();
+
+            // Switch for processing question and answer
+            switch (question) {
+                case "What is the purpose of this cash account?":
+                    //blank for now
+                    break;
+                case "How often do you plan to deposit funds into this account?":
+                    checkAmountDuration(answer);
+                    break;
+                case "Do you need frequent access to these funds?":
+                    checkFundsAccess(answer);
+                    break;
+                case "Would you like a portion of this account to be allocated to higher interest products?":
+                    // Add specific conditions here if necessary
+                    break;
+            }
+        });
+    }
+
+    if(backendModalId == 'modalTaxFree') {
+        $('.withdrawInterestBtn').prop('disabled', true);
+
+        dateTimeMethod('yearly');
+
+        $('.quests').each(function () {
+            const question = $(this).find('#savingsQuestion').text().trim();
+            const answer = $(this).find('#savingsAnswer').text().trim();
+
+            // Switch for processing question and answer
+            switch (question) {
+                case "What is your primary goal for this tax-free savings account?":
+                    //blank for now
+                    break;
+                case "How much do you plan to contribute each year?":
+                    checkAmountContribute(answer);
+                    break;
+                case "What is your expected time horizon for this account?":
+                    // checkFundsAccess(answer);
+                    break;
+                case "Do you prefer to reinvest all earnings into the account or withdraw them as they accumulate?":
+                    switch (answer) { 
+                        case "Reinvest all earnings":
+                                $('#withdrawInterestBtn').prop('disabled', true);
+                            break;
+
+                        case "Withdraw earnings periodically":
+                                $('#withdrawInterestBtn').prop('disabled', false);
+                            break;
+                    }
+                    break;
+            }
+        });
+    }
+
+    if(backendModalId == 'modalFirstHome') {
+        $('.withdrawInterestBtn').prop('disabled', true);
+
+        dateTimeMethod('monthly');
+
+        $('.quests').each(function () {
+            const question = $(this).find('#savingsQuestion').text().trim();
+            const answer = $(this).find('#savingsAnswer').text().trim();
+
+            // Switch for processing question and answer
+            switch (question) {
+                case "What is your primary goal for this tax-free savings account?":
+                    //blank for now
+                    break;
+                case "How much do you plan to contribute each year?":
+                    // checkAmountContribute(answer);
+                    break;
+                case "How much do you plan to contribute monthly toward this goal?":
+                        checkMontlyAmount(answer);
+                    break;
+                case "Do you need to access these funds before reaching your savings goal?":
+                    switch (answer) { 
+                        case "Yes, I may need access":
+                                $('#withdrawBtn').prop('disabled', false);
+                            break;
+
+                        case "No, I plan to leave the funds untouched":
+                                $('#withdrawBtn').prop('disabled', true);
+                            break;
+                    }
+                    break;
+            }
+        });
+    }
+
+    if(backendModalId == 'modalCorporate') {
+        $('.withdrawInterestBtn').prop('disabled', true);
+
+        dateTimeMethod('monthly');
+
+        $('.quests').each(function () {
+            const question = $(this).find('#savingsQuestion').text().trim();
+            const answer = $(this).find('#savingsAnswer').text().trim();
+
+            // Switch for processing question and answer
+            switch (question) {
+                case "What is your primary goal for this tax-free savings account?":
+                    //blank for now
+                    break;
+                case "How much do you plan to deposit into this account monthly?":
+                    checkDepositAmount(answer);
+                    break;
+                case "Do you require frequent access to corporate funds?":
+                    switch (answer) { 
+                        case "Yes, for daily operations":
+                                $('#withdrawBtn').prop('disabled', false);
+                            break;
+
+                        case "No, funds can remain untouched":
+                                $('#withdrawBtn').prop('disabled', true);
+                            break;
+                    }
+                    break;
+                case "Would you like a portion of corporate funds to be invested for long-term growth?":
+                        // checkMontlyAmount(answer);
+                    break;
+            }
+        });
+    }
+
+    if(backendModalId == 'modalRetirement') {
+        $('.withdrawInterestBtn').prop('disabled', true);
+
+        dateTimeMethod('monthly');
+
+        $('.quests').each(function () {
+            const question = $(this).find('#savingsQuestion').text().trim();
+            const answer = $(this).find('#savingsAnswer').text().trim();
+
+            // Switch for processing question and answer
+            switch (question) {
+                case "What is your goal with this Roth IRA?":
+                    //blank for now
+                    break;
+                case "How much do you plan to contribute each year?":
+                    // checkDepositAmount(answer);
+                    switch (answer) { 
+                        case "Less than $6,500":
+                                if(currentMonthTotal > 6500) {
+                                    disableInputBtn();
+                                }
+
+                                setAmountRange(10, (6500 - currentMonthTotal), (6500 - currentMonthTotal));
+                            break;
+
+                        case "$6,500 – $15,000 (catch-up contributions for age 50+)":
+                                if(currentMonthTotal > 15000) {
+                                    disableInputBtn();
+                                }
+
+                                setAmountRange(10, (15000 - currentMonthTotal), (15000 - currentMonthTotal));
+                            break;
+                    }
+                    break;
+                case "When do you expect to start withdrawing from the account?":
+                    switch (answer) { 
+                        case "Yes, for daily operations":
+                                $('#withdrawBtn').prop('disabled', false);
+                            break;
+
+                        case "No, funds can remain untouched":
+                                $('#withdrawBtn').prop('disabled', true);
+                            break;
+                    }
+                    break;
+                case "How often do you plan to deposit funds into this account?":
+                        // checkMontlyAmount(answer);
                     break;
             }
         });

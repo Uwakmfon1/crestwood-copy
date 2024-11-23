@@ -14,6 +14,7 @@ use Illuminate\Http\Request;
 use App\Models\SavingPackage;
 use App\Models\SavingsAnswer;
 use InvalidArgumentException;
+use App\Models\SaveTransaction;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 
@@ -320,10 +321,10 @@ class SavingsController extends Controller
             ->where('id', $savings->id)
             ->first();
 
-        $savingPayment = $savings->savingsTransactions()->where('is_interest', 0)->get();
+        $savingPayment = $savings->savingsTransactions()->get();
         
         $total = $savings->savingsTransactions()
-        ->where('type', 'debit')
+        // ->where('type', 'debit')
         ->where('status', 'success')
         ->sum('amount');
 
@@ -550,5 +551,43 @@ class SavingsController extends Controller
             return back()->with('success', "Payment of $" . $request->amount . " was made successfully");
 
         return back()->with('error', 'Error processing Payment');
+    }
+
+    public function savingsInterest(Saving $savings)
+    {
+        $user = auth()->user();
+
+        $total = $savings->savingsTransactions()
+        ->where('type', 'debit')
+        ->where('status', 'success')
+        ->sum('amount');
+
+        $interest = $total * 0.08; // 8% interest
+
+        $payment = $savings->savingsTransactions()->create([
+            'amount' => $interest,
+            'type' => 'credit',
+            'status' => 'success',
+            'is_interest' => 1,
+        ]);
+
+        return back()->with('success', 'Interest Paid!');
+    }
+
+    public function withdrawInterest(SaveTransaction $saveTransaction)
+    {
+        $user = auth()->user();
+
+        // ::::: Store Ledger :::::: //
+        try {
+            Ledger::credit($user->wallet, $saveTransaction->amount, 'wallet', null, 'Interest Credit');
+        } catch (InvalidArgumentException $e) {
+            return back()->with('error', 'Error debiting wallet: ' . $e->getMessage());
+        }
+        // ::::: Store Ledger :::::: //
+
+        $saveTransaction->delete();
+
+        return back()->with('success', 'Interest Withdrawn!');
     }
 }

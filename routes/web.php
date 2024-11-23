@@ -139,6 +139,11 @@ Route::group(['middleware' => ['auth','verified', 'active_user', 'profile_comple
         Route::get('/savings/history', [SavingsController::class, 'history'])->name('savings.history');
         Route::post('/savings/plan/payment/{savings}', [SavingsController::class, 'savingsPayment'])->name('savings.payment');
 
+        // Interest for Admin
+        Route::get('/savings/interest/{savings}', [SavingsController::class, 'savingsInterest'])->name('savings.interest');
+        Route::post('/savings/interest/{saveTransaction}/withdraw', [SavingsController::class, 'withdrawInterest'])->name('interest.withdaw');
+
+
         Route::get('/test/jods', [App\Http\Controllers\CommandController::class, 'handleSavings']);
 
         Route::post('/account/generate', [WalletController::class, 'generateVirtualAccount'])->name('create.virtual_account');
