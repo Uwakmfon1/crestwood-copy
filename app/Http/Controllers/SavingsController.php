@@ -315,29 +315,6 @@ class SavingsController extends Controller
 
     public function show(Saving $savings)
     {
-        $paid = 1;
-
-        // Generate dates for the progress report (for example, daily progress)
-        $progressDates = [];
-        $progressAmounts = [];
-
-        $currentAmount = $savings->deposit;
-        $contributionPerDay = $savings->contribution / 30; // assuming 30 days in a month for simplicity
-
-        $startDate = \Carbon\Carbon::parse($savings->savings_date);
-        $endDate = \Carbon\Carbon::parse($savings->return_date);
-
-        while ($startDate <= $endDate) {
-            $progressDates[] = $startDate->format('Y-m-d');
-            $progressAmounts[] = $currentAmount;
-
-            // Add the daily contribution to the current amount
-            $currentAmount += $contributionPerDay;
-
-            // Move to the next day
-            $startDate->addDay();
-        }
-
         $savingsQA = Saving::with(['plan', 'answers.question', 'answers.answer'])
             ->where('user_id', auth()->id())
             ->where('id', $savings->id)
@@ -350,16 +327,27 @@ class SavingsController extends Controller
         ->where('status', 'success')
         ->sum('amount');
 
+        $currentMonthTotal = $savings->savingsTransactions()
+            ->where('type', 'debit')
+            ->where('status', 'success')
+            ->whereMonth('created_at', now()->month) // Filter by current month
+            ->whereYear('created_at', now()->year)  // Filter by current year
+            ->sum('amount');
+
+        $lastTransactionDate = $savings->savingsTransactions()
+            ->where('status', 'success') // Consider only successful transactions
+            ->latest('created_at')       // Get the most recent transaction
+            ->value('created_at');
+
         return view('user_.savings.show', [
             'title' => 'Savings', 
             'savings' => $savings, 
             'save' => $savingsQA, 
             'packages' => [], 
             'payment' => $savingPayment, 
-            'paid' => $paid, 
-            'progressDates' => $progressDates,
-            'progressAmounts' => $progressAmounts,
             'total' => $total,
+            'currentMonthTotal' => $currentMonthTotal,
+            'lastTransactionDate' => $lastTransactionDate,
         ]);
     }
 

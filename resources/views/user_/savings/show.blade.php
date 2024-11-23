@@ -161,7 +161,7 @@
                                                 <button type="button" class="input-group-text btn btn-dark-light btn-wave text-dark fs-12 fw-bold">.00</button>
                                             </div>
                                             <div class="fs-12 alert alert-info w-100 mt-3">
-                                                <div class="fs-11 fw-medium" id="savings-summary" style="">
+                                                <div class="fs-11 fw-medium" id="savings-summary">
                                                     Start your savings for this month with <strong>$500</strong>
                                                 </div>
                                             </div>
@@ -181,7 +181,7 @@
                                 <div class="row justify-content-between">
                                     <div class="col-12">
                                         <p class="text-fixed-white op-8 mb-2">Next Contribution</p>
-                                        <p class="mb-2 h5 text-fixed-white fw-bold">{{ $save->created_at->format('M d, Y') }}</p>
+                                        <p class="mb-2 h5 text-fixed-white fw-bold" id="nextContribution">{{ $save->created_at->format('M d, Y') }}</p>
                                         <span class="text-fixed-white op-7">Next contribution</span>
                                         <div class="d-flex gap-2 mt-2 align-items-center">
                                             <div class="bg-white-transparent fw-semibold py-1 px-2 rounded">
@@ -304,10 +304,10 @@
         <div class="modal fade" id="paymentModal" tabindex="-1" aria-labelledby="paymentModalLabel" aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content">
-                    <div class="modal-header">
+                    <!-- <div class="modal-header">
                         <h5 class="modal-title" id="paymentModalLabel">Initiate Savings</h5>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
+                    </div> -->
                     <div class="modal-body">
                         <form action="{{ route('savings.payment', $savings->id) }}" method="post">
                             @csrf
@@ -339,7 +339,7 @@
 
 @section('scripts')
 <script>
-    let countDownDate = new Date("January 1, 2025 15:37:25").getTime();
+    let countDownDate = new Date("December 1, 2025 15:37:25").getTime();
     // let countDownDate = new Date("{{ $savings['created_at']->format('F d, Y H:i:s') }}").getTime();
     let countDown = document.getElementById('countdown');
     let x = setInterval(function() {
@@ -365,10 +365,10 @@
         var savingsProgressChart = new Chart(ctx, {
             type: 'line', // or 'bar', 'radar', etc.
             data: {
-                labels: @json($progressDates), // Dates array for the X-axis
+                labels: [], // Dates array for the X-axis
                 datasets: [{
                     label: 'Savings Progress',
-                    data: @json($progressAmounts), // Amounts array for the Y-axis
+                    data: [], // Amounts array for the Y-axis
                     backgroundColor: 'rgba(130, 116, 255, 0.1)',
                     borderColor: 'rgb(130, 116, 255)',
                     fill: true,
@@ -392,7 +392,7 @@
 @endphp
 
 
-<script>
+<!-- <script>
     $(document).ready(function () {
         const backendModalId = "{{ $savings->plan->modalId }}";
         const plans = [
@@ -706,6 +706,7 @@
                             if (ranges[answer]) setAmountRange(...ranges[answer]);
                             break;
                         case "What is your primary goal for this savings account?":
+
                         case "How often do you plan to deposit funds into this account?":
                             // Add specific conditions here if necessary
                             break;
@@ -1124,6 +1125,151 @@
             }
         });
     });
+</script> -->
+
+<script>
+$(document).ready(function () {
+    const backendModalId = "{{ $savings->plan->modalId }}";
+    const currentMonthTotal = "{{ $currentMonthTotal }}";
+    const lastTransactionDate = "{{ $lastTransactionDate }}";
+
+    const disableInputBtn = () => {
+        // Disable input and button for current month
+        $('#saveAmount').prop('disabled', true);
+        $('#payBtn').prop('disabled', true);
+    }
+
+    const updateSummary = (min, max) => {
+        const $summary = $('#savings-summary');
+        $summary.html(max 
+            ? `Initiate your next savings for the month with an amount between <strong>$${min}</strong> and <strong>$${max}</strong>`
+            : `Initiate your next savings for the month with an amount of <strong>$${min}</strong> or more`
+        );
+    };
+
+    const setAmountRange = (min, max, val) => {
+        const $amountInput = $('#saveAmount');
+        $amountInput.attr('min', min);
+        max ? $amountInput.attr('max', max) : $amountInput.removeAttr('max');
+        $amountInput.val(val);  // Set default to min
+        updateSummary(min, max);
+    };
+
+    // Calculate the next contribution date (same day next month)
+    const currentDate = new Date();
+    const nextContributionDate = new Date(currentDate.getFullYear(), currentDate.getMonth() + 1, currentDate.getDate());
+
+    // Countdown timer logic
+    function updateCountdown() {
+        const now = new Date().getTime();
+        const countDownDate = nextContributionDate.getTime();
+        const distance = countDownDate - now;
+
+        // Calculate days, hours, minutes, seconds
+        const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+        const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+        const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+        // Update countdown display
+        $('.school-card .d-flex .bg-white-transparent').eq(0).text(String(days).padStart(2, '0'));
+        $('.school-card .d-flex .bg-white-transparent').eq(1).text(String(hours).padStart(2, '0'));
+        $('.school-card .d-flex .bg-white-transparent').eq(2).text(String(minutes).padStart(2, '0'));
+        $('.school-card .d-flex .bg-white-transparent').eq(3).text(String(seconds).padStart(2, '0'));
+
+        // If the countdown is finished
+        if (distance < 0) {
+            clearInterval(countdownInterval);
+            $('.school-card .d-flex .bg-white-transparent').text('00');
+            alert('Next contribution date has arrived!');
+        }
+    }
+
+    const checkAmountAnswer = (answer) => {
+        switch (answer) { 
+            case "Less than $500/month":
+                if(currentMonthTotal > 500) {
+                    disableInputBtn();
+                }
+                setAmountRange(10, (500 - currentMonthTotal), (500 - currentMonthTotal));
+                break;
+
+            case "$500 – $1,000/month":
+                if(currentMonthTotal >= 1000) {
+                    disableInputBtn();
+                }
+                setAmountRange(500, (1000 - currentMonthTotal), (1000 - currentMonthTotal));
+                break;
+
+            case "Over $1,000/month":
+
+                break;
+        }
+    };
+
+    if(backendModalId == 'modalHYSA') {
+        // Display the next contribution date
+        $('#nextContribution').text(nextContributionDate.toLocaleDateString('en-US', {
+            day: 'numeric',
+            month: 'long',
+            year: 'numeric'
+        }));
+
+        // Set the countdown interval
+        const countdownInterval = setInterval(updateCountdown, 1000);
+        updateCountdown();
+
+        $('.quests').each(function () {
+            const question = $(this).find('#savingsQuestion').text().trim();
+            const answer = $(this).find('#savingsAnswer').text().trim();
+
+            // Switch for processing question and answer
+            switch (question) {
+                case "What is your primary goal for this savings account?":
+                    //blank for now
+                    break;
+                case "What is your expected contribution amount?":
+                    checkAmountAnswer(answer);
+                    break;
+                case "How long do you plan to keep your savings in this account?":
+                    // Add specific conditions here if necessary
+                    break;
+                    
+                case "Do you need frequent access to the funds, or can they remain untouched?":
+                    // Add specific conditions here if necessary
+                    break;
+                    
+                case "Would you like to reinvest interest into the account or withdraw it periodically?":
+                    // Add specific conditions here if necessary
+                    break;
+            }
+        });
+    }
+});
+    
+
+$(document).ready(function () {
+    const isPaymentAttached = @json($payment->isEmpty() ? false : true);
+    const modalElement = $('#paymentModal');
+
+    if (!isPaymentAttached) {
+        modalElement.modal('show');
+    }
+
+    modalElement.on('hide.bs.modal', function (e) {
+        if (!isPaymentAttached) {
+            e.preventDefault();
+        }
+    });
+    
+    $('#payBtn').on('click', function (e) {
+        const amount = $('#saveAmount').val();
+        if (amount <= 0) {
+            e.preventDefault();
+            alert('Please enter a valid amount to initiate savings.');
+        }
+    });
+});
 </script>
 
 @endsection
