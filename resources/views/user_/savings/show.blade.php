@@ -154,7 +154,7 @@
                                         @csrf
                                         <div class="col-12">
                                             <p class="text-fixed-dark op-10 mb-1 fw-bold">Initiate Savings</p>
-                                            <p class="text-fixed-dark op-5 mb-3 fs-12">Start your first savings with your desired amount</p>
+                                            <p class="text-fixed-dark op-5 mb-3 fs-12">Make your next savings deposit with your desired amount</p>
                                             <div class="input-group mx-auto"> 
                                                 <button type="button" class="input-group-text btn btn-dark-light btn-wave text-dark fs-12 fw-bold">USD</button>
                                                 <input type="number" value="" style="font-size: 14px; font-weight: 800;" step="any" class="form-control" name="amount" id="saveAmount" placeholder="Amount">
@@ -332,16 +332,23 @@
                         <form action="{{ route('savings.payment', $savings->id) }}" method="post">
                             @csrf
                             <div class="col-12">
-                                <p class="text-fixed-dark op-10 mb-1 fw-bold">Initiate Savings</p>
+                                <div class="d-flex justify-content-between">
+                                    <div class="">
+                                        <p class="text-fixed-dark op-10 mb-1 fw-bold">Initiate Savings</p>
+                                    </div>
+                                    <div class="">
+                                        <a href="{{ route('wallet') }}" class="text-primary fw-bold fs-12">Top Up</a>
+                                    </div>
+                                </div>
                                 <p class="text-fixed-dark op-5 mb-3 fs-12">Start your first savings with your desired amount</p>
                                 <div class="input-group mx-auto"> 
                                     <button type="button" class="input-group-text btn btn-dark-light btn-wave text-dark fs-12 fw-bold">USD</button>
-                                    <input type="number" value="500" style="font-size: 14px; font-weight: 800;" step="any" class="form-control" name="amount" id="saveAmount" placeholder="Amount">
+                                    <input type="number" value="10" style="font-size: 14px; font-weight: 800;" step="any" class="form-control" name="amount" id="saveAmount" placeholder="Amount">
                                     <button type="button" class="input-group-text btn btn-dark-light btn-wave text-dark fs-12 fw-bold">.00</button>
                                 </div>
                                 <div class="fs-12 alert alert-info w-100 mt-3">
                                     <div class="fs-11 fw-medium" id="savings-summary" style="">
-                                        Start your savings for this month with <strong>$500</strong>
+                                        Start your savings for this month with <strong>$---</strong>
                                     </div>
                                 </div>
                                 <div class="mx-auto">

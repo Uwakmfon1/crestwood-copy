@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" dir="ltr" data-nav-layout="vertical" data-theme-mode="light" data-header-styles="light" data-width="default" data-menu-styles="dark" data-toggled="close">
+<html lang="en" dir="ltr" data-nav-layout="vertical" data-theme-mode="{{ auth()->user()['mode'] }}" data-header-styles="{{ auth()->user()['mode'] }}" data-width="default" data-menu-styles="dark" data-toggled="close">
 <head>
     
 @include('partials.users.header')
@@ -43,7 +43,7 @@
                                         Light
                                     </label>
                                     <input class="form-check-input" type="radio" name="theme-style" id="switcher-light-theme"
-                                        checked>
+                                        >
                                 </div>
                             </div>
                             <div class="col-4">
@@ -51,7 +51,7 @@
                                     <label class="form-check-label" for="switcher-dark-theme">
                                         Dark
                                     </label>
-                                    <input class="form-check-input" type="radio" name="theme-style" id="switcher-dark-theme">
+                                    <input class="form-check-input" type="radio" name="theme-style" id="switcher-dark-theme" checked>
                                 </div>
                             </div>
                         </div>

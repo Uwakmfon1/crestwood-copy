@@ -92,6 +92,7 @@ Route::group(['middleware' => ['auth','verified', 'active_user', 'profile_comple
     Route::get('/profile', [App\Http\Controllers\HomeController::class, 'profile'])->name('profile');
     Route::post('/password/custom/update', [App\Http\Controllers\HomeController::class, 'changePassword'])->name('password.custom.update');
     Route::post('/profile/update', [App\Http\Controllers\HomeController::class, 'updateProfile'])->name('profile.update');
+    Route::post('/profile/update/settings', [App\Http\Controllers\HomeController::class, 'tabUpdates'])->name('profile.data');
     // Route::get('/getStates/{name}', [App\Http\Controllers\HomeController::class, 'getState'])->name('user.getstate');
     Route::get('/settings', [App\Http\Controllers\HomeController::class, 'settings'])->name('settings');
 
@@ -188,10 +189,13 @@ Route::group(['middleware' => ['auth','verified', 'active_user', 'profile_comple
         Route::post('/support/ticket/{support}/respond', [SupportController::class, 'reply'])->name('support.reply');
 
         Route::get('/update/kyc', [App\Http\Controllers\HomeController::class, 'user_kyc'])->name('kyc.index');
+        Route::post('/update/kyc/submit', [App\Http\Controllers\HomeController::class, 'storeKYC'])->name('kyc.post');
         Route::get('/start/savings/{id}', [App\Http\Controllers\SavingsController::class, 'questionaire'])->name('savings.start');
 
         Route::get('/fetch/plans', [SavingsController::class, 'fetchPlan'])->name('get.plans');
         Route::get('/fetch/plans/{id}', [SavingsController::class, 'getPlanDetails'])->name('plans.savings');
         Route::post('/support/ticket/{support}/respond', [SupportController::class, 'reply'])->name('support.reply');
+
+        Route::post('/user/mode', [App\Http\Controllers\HomeController::class, 'userMode'])->name('change.mode');
     // });
 });

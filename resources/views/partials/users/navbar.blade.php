@@ -46,9 +46,12 @@
 
                 <!-- Start::header-element -->
                 <li class="header-element header-theme-mode">
+                    <form id="modeChangeForm" action="{{ route('change.mode') }}" method="POST" style="display: none;">
+                        @csrf
+                    </form>
                     <!-- Start::header-link|layout-setting -->
                     <a href="javascript:void(0);" class="header-link layout-setting">
-                        <span class="light-layout">
+                        <span class="light-layout" onclick="submitMethod()">
                             <!-- Start::header-link-icon -->
                             <svg xmlns="http://www.w3.org/2000/svg" class="header-link-icon"
                                 enable-background="new 0 0 24 24" height="24px" viewBox="0 0 24 24" width="24px"
@@ -62,7 +65,7 @@
                             </svg>
                             <!-- End::header-link-icon -->
                         </span>
-                        <span class="dark-layout">
+                        <span class="dark-layout" onclick="submitMethod()">
                             <!-- Start::header-link-icon -->
                             <svg xmlns="http://www.w3.org/2000/svg" class="header-link-icon"
                                 enable-background="new 0 0 24 24" height="24px" viewBox="0 0 24 24" width="24px"
@@ -262,3 +265,9 @@
         <!-- End::main-header-container -->
 
     </header>
+
+    <script>
+        function submitMethod() {
+            document.getElementById('modeChangeForm').submit();
+        }
+    </script>

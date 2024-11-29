@@ -120,21 +120,93 @@
                             </div>
                         </div>
                     </div>
-                    <div class="card custom-card">
-                        <div class="card-header d-flex">
-                            <div class="card-title">Savings</div>
-                            <div class="btn-group ms-auto">
-                                <button class="btn btn-success btn-sm" id="one_month">1M</button>
-                                <button class="btn btn-success btn-sm" id="six_months">6M</button>
-                                <button class="btn btn-success btn-sm" id="one_year">1Y</button>
-                                <button class="btn btn-success btn-sm" id="all">ALL</button>
-                                <!-- <button class="btn btn-primary btn-sm" id="ytd">ALL</button> -->
+                    <!-- Start:: row-2 -->
+                    <div class="row">
+                        <div class="col-xxl-12 col-xl-12">
+                            <div class="card custom-card">
+                                <div class="card-header justify-content-between">
+                                    <div class="card-title">
+                                        All Savings 
+                                    </div>
+                                    <div class="d-flex flex-wrap gap-2"> 
+                                        <div> 
+                                            <input class="form-control form-control-sm" type="text" placeholder="Search Here" aria-label=".form-control-sm example"> 
+                                        </div> 
+                                        <div class="dropdown"> 
+                                            <a href="javascript:void(0);" class="btn btn-primary btn-sm btn-wave waves-effect waves-light" data-bs-toggle="dropdown" aria-expanded="false"> Sort By<i class="ri-arrow-down-s-line align-middle ms-1 d-inline-block"></i> 
+                                            </a> 
+                                            <ul class="dropdown-menu" role="menu"> 
+                                                <li><a class="dropdown-item" href="{{ request()->offsetExists('pending') }}">New</a></li> 
+                                                <li><a class="dropdown-item" href="javascript:void(0);">Popular</a></li> 
+                                                <li><a class="dropdown-item" href="javascript:void(0);">Relevant</a></li> 
+                                                @if(request()->offsetExists('active'))
+                                                    <li class="breadcrumb-item"><a href="{{ route('savings') }}">Savings</a></li>
+                                                    <li class="breadcrumb-item active" aria-current="page">Active</li>
+                                                @elseif(request()->offsetExists('pending'))
+                                                    <li class="breadcrumb-item"><a href="{{ route('savings') }}">Savings</a></li>
+                                                    <li class="breadcrumb-item active" aria-current="page">Pending</li>
+                                                @elseif(request()->offsetExists('cancelled'))
+                                                    <li class="breadcrumb-item"><a href="{{ route('savings') }}">Savings</a></li>
+                                                    <li class="breadcrumb-item active" aria-current="page">Cancelled</li>
+                                                @elseif(request()->offsetExists('settled'))
+                                                    <li class="breadcrumb-item"><a href="{{ route('savings') }}">Savings</a></li>
+                                                    <li class="breadcrumb-item active" aria-current="page">Settled</li>
+                                                @else
+                                                    <li class="breadcrumb-item active" aria-current="page">Savings</li>
+                                                @endif
+                                            </ul> 
+                                        </div> 
+                                    </div>
+                                </div>
+                                <div class="card-body p-0">
+                                    <div class="table-responsive">
+                                        <table class="table text-nowrap">
+                                            <thead>
+                                                <tr>
+                                                    <th>S/N</th>
+                                                    <th>Plan</th>
+                                                    <th>Date</th>
+                                                    <th>Status</th>
+                                                    <th>Action</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                @foreach($savings as $key=>$saving)
+                                                    <tr>
+                                                        <td>{{ $key + 1 }}</td>
+                                                        <td>{{ $saving->plan->name }}</td>
+                                                        <td>{{ $saving['created_at']->format('M d, Y \a\t h:i A') }}</td>
+                                                        <td>
+                                                            @if($saving['status'] == 'active')
+                                                                <span class="badge bg-success-transparent"><i class="ri-check-fill align-middle me-1"></i>Active</span>
+                                                            @elseif($saving['status'] == 'pending')
+                                                                <span class="badge bg-warning-transparent"><i class="ri-info-fill align-middle me-1"></i>Pending</span>
+                                                            @elseif($saving['status'] == 'cancelled')
+                                                                <span class="badge bg-danger-transparent"><i class="ri-close-fill align-middle me-1"></i>Cancelled</span>
+                                                            @elseif($saving['status'] == 'settled')
+                                                                <span class="badge bg-light text-dark"><i class="ri-reply-line align-middle me-1"></i>Settled</span>
+                                                            @endif
+                                                        </td>
+                                                        <td>
+                                                            <a href="{{ route('savings.show', $saving['id']) }}" class="btn btn-sm btn-primary">View</a> 
+                                                        </td>
+                                                    </tr>
+                                                @endforeach 
+                                            </tbody>
+                                        </table>
+                                                @if($savings->count() == 0)
+                                                    <tr>
+                                                        <p class="py-4 text-center">
+                                                            No Savings
+                                                        </p>
+                                                    </tr>
+                                                @endif
+                                    </div>
+                                </div>
                             </div>
                         </div>
-                        <div class="card-body">
-                            <div id="area-datetime"></div>
-                        </div>
                     </div>
+                    <!-- End:: row-2 -->
                 </div>
                 <div class="col-xl-3">
                     <div class="row">
@@ -245,95 +317,7 @@
             </div>
         </div>
         <!-- End:: row-1 -->
-
-            <!-- Start:: row-2 -->
-            <div class="row">
-                <div class="col-xxl-12 col-xl-12">
-                    <div class="card custom-card">
-                        <div class="card-header justify-content-between">
-                            <div class="card-title">
-                                All Savings 
-                            </div>
-                            <div class="d-flex flex-wrap gap-2"> 
-                                <div> 
-                                    <input class="form-control form-control-sm" type="text" placeholder="Search Here" aria-label=".form-control-sm example"> 
-                                </div> 
-                                <div class="dropdown"> 
-                                    <a href="javascript:void(0);" class="btn btn-primary btn-sm btn-wave waves-effect waves-light" data-bs-toggle="dropdown" aria-expanded="false"> Sort By<i class="ri-arrow-down-s-line align-middle ms-1 d-inline-block"></i> 
-                                    </a> 
-                                    <ul class="dropdown-menu" role="menu"> 
-                                        <li><a class="dropdown-item" href="{{ request()->offsetExists('pending') }}">New</a></li> 
-                                        <li><a class="dropdown-item" href="javascript:void(0);">Popular</a></li> 
-                                        <li><a class="dropdown-item" href="javascript:void(0);">Relevant</a></li> 
-                                        @if(request()->offsetExists('active'))
-                                            <li class="breadcrumb-item"><a href="{{ route('savings') }}">Savings</a></li>
-                                            <li class="breadcrumb-item active" aria-current="page">Active</li>
-                                        @elseif(request()->offsetExists('pending'))
-                                            <li class="breadcrumb-item"><a href="{{ route('savings') }}">Savings</a></li>
-                                            <li class="breadcrumb-item active" aria-current="page">Pending</li>
-                                        @elseif(request()->offsetExists('cancelled'))
-                                            <li class="breadcrumb-item"><a href="{{ route('savings') }}">Savings</a></li>
-                                            <li class="breadcrumb-item active" aria-current="page">Cancelled</li>
-                                        @elseif(request()->offsetExists('settled'))
-                                            <li class="breadcrumb-item"><a href="{{ route('savings') }}">Savings</a></li>
-                                            <li class="breadcrumb-item active" aria-current="page">Settled</li>
-                                        @else
-                                            <li class="breadcrumb-item active" aria-current="page">Savings</li>
-                                        @endif
-                                    </ul> 
-                                </div> 
-                            </div>
-                        </div>
-                        <div class="card-body p-0">
-                            <div class="table-responsive">
-                                <table class="table text-nowrap">
-                                    <thead>
-                                        <tr>
-                                            <th>S/N</th>
-                                            <th>Plan</th>
-                                            <th>Date</th>
-                                            <th>Status</th>
-                                            <th>Action</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        @foreach($savings as $key=>$saving)
-                                            <tr>
-                                                <td>{{ $key + 1 }}</td>
-                                                <td>{{ $saving->plan->name }}</td>
-                                                <td>{{ $saving['created_at']->format('M d, Y \a\t h:i A') }}</td>
-                                                <td>
-                                                    @if($saving['status'] == 'active')
-                                                        <span class="badge bg-success-transparent"><i class="ri-check-fill align-middle me-1"></i>Active</span>
-                                                    @elseif($saving['status'] == 'pending')
-                                                        <span class="badge bg-warning-transparent"><i class="ri-info-fill align-middle me-1"></i>Pending</span>
-                                                    @elseif($saving['status'] == 'cancelled')
-                                                        <span class="badge bg-danger-transparent"><i class="ri-close-fill align-middle me-1"></i>Cancelled</span>
-                                                    @elseif($saving['status'] == 'settled')
-                                                        <span class="badge bg-light text-dark"><i class="ri-reply-line align-middle me-1"></i>Settled</span>
-                                                    @endif
-                                                </td>
-                                                <td>
-                                                    <a href="{{ route('savings.show', $saving['id']) }}" class="btn btn-sm btn-primary">View</a> 
-                                                </td>
-                                            </tr>
-                                        @endforeach 
-                                    </tbody>
-                                </table>
-                                        @if($savings->count() == 0)
-                                            <tr>
-                                                <p class="py-4 text-center">
-                                                    No Savings
-                                                </p>
-                                            </tr>
-                                        @endif
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- End:: row-2 -->
-            @include('partials.users.modal.topup')
+        @include('partials.users.modal.topup')
     </div>
 </div>
 <!-- End::app-content -->
