@@ -17,7 +17,7 @@ class AddSwissCodeToUsers extends Migration
             $table->string('swiss_code')->nullable();
             $table->string('reference')->nullable();
             $table->string('ssn')->nullable();
-            $table->dateTime('dob');
+            $table->dateTime('dob')->nullable();
             $table->enum('mode', ['light', 'dark'])->default('light');
         });
     }
