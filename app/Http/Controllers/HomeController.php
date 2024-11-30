@@ -4,20 +4,21 @@ namespace App\Http\Controllers;
 
 use App\Models\Setting;
 use App\Models\Trading;
-use App\Notifications\EmailOTPNotification;
+use App\Models\Watchlist;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Http;
-use Intervention\Image\Facades\Image;
-use Illuminate\Support\Facades\Response;
-use Illuminate\Support\Facades\Validator;
-
-
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Crypt;
+
+
+use Intervention\Image\Facades\Image;
+use Illuminate\Support\Facades\Response;
+use Illuminate\Support\Facades\Validator;
+use App\Notifications\EmailOTPNotification;
 
 class HomeController extends Controller
 {
@@ -30,7 +31,7 @@ class HomeController extends Controller
         $trading = $user->wallet->trade;
         $locked = $user->wallet->locked;
 
-        $transactions = $user->transaction()->latest()->get(); 
+        $transactions = $user->transaction()->paginate(10); 
 
         $totalAmount = 0;
 
@@ -551,6 +552,8 @@ class HomeController extends Controller
         if ($request->screen == 'five')
         {
             $validator = Validator::make($request->all(), [
+                'ssn' => ['sometimes'],
+                'dob' => ['sometimes'],
                 'location' => ['sometimes'],
                 'country' => ['sometimes'],
                 'state' => ['sometimes'],
@@ -571,6 +574,8 @@ class HomeController extends Controller
             $user =auth()->user();
 
             $update = $user->update([
+                'ssn' => $request->ssn,
+                'dob' => $request->dob,
                 'location' => $request->location,
                 'country' => $request->country,
                 'state' => $request->state,
@@ -676,6 +681,48 @@ class HomeController extends Controller
             return back()->withInput()->with('error', 'Error updating profile');
 
         }
+
+        if ($request->screen == 'eight')
+        {
+            // $validator = Validator::make($request->all(), [
+            //     'nk_name' => ['sometimes'],
+            //     'nk_phone' => ['sometimes'],
+            //     'nk_relationship' => ['sometimes'],
+            //     'nk_country' => ['sometimes'],
+            //     'nk_state' => ['sometimes'],
+            //     'nk_address' => ['sometimes'],
+            //     'nk_postal' => ['sometimes'],
+            // ]);
+
+            // if ($validator->fails()) {
+            //     // Retrieve all error messages
+            //     $errors = $validator->errors()->all();
+            
+            //     // Convert errors to a readable string
+            //     $errorMessage = implode(', ', $errors);
+            
+            //     return back()->withInput()->withErrors($validator)->with('error', 'Invalid input data: ' . $errorMessage);
+            // }
+
+            // $user =auth()->user();
+
+            // $update = $user->update([
+            //     'nk_name' => $request->nk_name,
+            //     'nk_phone' => $request->nk_phone,
+            //     'nk_relation' => $request->nk_relationship,
+            //     'nk_country' => $request->nk_country,
+            //     'nk_state' => $request->nk_state,
+            //     'nk_address' => $request->nk_address,
+            //     'nk_postal' => $request->nk_postal,
+            // ]);
+
+            // Update profile
+            // if ($update) {
+                return back()->with('success', 'Profile updated successfully');
+            // }
+            // return back()->withInput()->with('error', 'Error updating profile');
+
+        }
     }
 
     public function storeKYC(Request $request)
@@ -703,5 +750,43 @@ class HomeController extends Controller
         }
 
         return back()->with('primary', 'User Mode Changed');
+    }
+
+    public function storeWatchlist(Request $request)
+    {
+        $request->validate([
+            'type' => 'required|in:crypto,stocks',
+            'data_id' => 'required|integer',
+        ]);
+
+        $userId = auth()->id();
+
+        // Check if the item already exists
+        $watchlist = Watchlist::where('user_id', $userId)
+            ->where('type', $request->type)
+            ->where('data_id', $request->data_id)
+            ->first();
+
+        if ($watchlist) {
+            // If it exists, remove it (unwatch)
+            $watchlist->delete();
+            return response()->json([
+                'status' => 'removed',
+                'message' => 'Item removed from your watchlist.',
+            ], 200);
+        } else {
+            // Otherwise, add it to the watchlist
+            Watchlist::create([
+                'user_id' => $userId,
+                'type' => $request->type,
+                'data_id' => $request->data_id,
+            ]);
+
+            return response()->json([
+                'status' => 'added',
+                'message' => 'Item added to your watchlist.',
+            ], 200);
+        }
+    
     }
 }

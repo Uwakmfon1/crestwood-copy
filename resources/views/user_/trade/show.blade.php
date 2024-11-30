@@ -230,9 +230,21 @@
     <div class="modal-dialog modal-lg">
         <div class="modal-content" style="height: 100%; max-width: 650px !important;">
             <div class="modal-body p-2" style="height: 100%;">
-                    <div class="btn-list float-end py-2">
+                    <!-- <div class="btn-list float-end py-2">
                         <a href="javascript:void(0);" class="avatar avatar-rounded bg-light text-default avatar-sm" data-bs-toggle="tooltip" data-bs-placement="top" aria-label="Add to Wishlist" data-bs-original-title="Add to Wishlist"><span><i class="bi bi-heart"></i></span></a>
+                    </div> -->
+                    <div class="btn-list float-end py-2">
+                        <a href="javascript:void(0);"
+                        class="avatar avatar-rounded bg-primary text-white avatar-sm watchlist-toggle"
+                        data-type="stocks"
+                        data-id="{{$stock->id}}"
+                        aria-label="Add to Wishlist"
+                        data-bs-toggle="tooltip"
+                        data-bs-placement="top">
+                            <span><i class="bi bi-heart"></i></span>
+                        </a>
                     </div>
+
                     <div class="d-flex align-items-center flex-wrap gap-2">
                         <span class="avatar avatar-lg bg-white  border p-2 avatar-rounded">
                             <img src="{{ $stock->img }}" alt="">
@@ -326,8 +338,19 @@
     <div class="modal-dialog modal-lg">
         <div class="modal-content" style="height: 100%; max-width: 650px !important;">
             <div class="modal-body p-2" style="height: 100%;">
-                <div class="btn-list float-end py-2">
+                <!-- <div class="btn-list float-end py-2">
                     <a href="javascript:void(0);" class="avatar avatar-rounded bg-light text-default avatar-sm" data-bs-toggle="tooltip" data-bs-placement="top" aria-label="Add to Wishlist" data-bs-original-title="Add to Wishlist"><span><i class="bi bi-heart"></i></span></a>
+                </div> -->
+                <div class="btn-list float-end py-2">
+                    <a href="javascript:void(0);"
+                    class="avatar avatar-rounded bg-primary text-white avatar-sm watchlist-toggle"
+                    data-type="stocks"
+                    data-id="{{$stock->id}}"
+                    aria-label="Add to Wishlist"
+                    data-bs-toggle="tooltip"
+                    data-bs-placement="top">
+                        <span><i class="bi bi-heart"></i></span>
+                    </a>
                 </div>
                 <div class="d-flex align-items-center flex-wrap gap-2">
                     <span class="avatar avatar-lg bg-white  border p-2 avatar-rounded">
@@ -419,6 +442,41 @@
 @endsection
 
 @section('scripts')
+<script>
+$(document).ready(function() {
+    $('.watchlist-toggle').on('click', function() {
+        var icon = $(this); // Store the icon element
+        var type = icon.data('type'); // Get the type (crypto or stocks)
+        var dataId = icon.data('id'); // Get the data ID (e.g., 123)
+        
+        // Send AJAX request to store the watchlist
+        $.ajax({
+            url: '/watchlist', // Replace with your actual route URL
+            type: 'POST',
+            data: {
+                _token: $('meta[name="csrf-token"]').attr('content'), // CSRF token for security
+                type: type,
+                data_id: dataId
+            },
+            success: function(response) {
+                // Handle the response based on status
+                if (response.status === 'added') {
+                    icon.addClass('bg-success'); // Change icon to indicate it's added
+                    icon.find('i').removeClass('bi-heart').addClass('bi-heart-fill'); // Change icon to filled heart
+                } else if (response.status === 'removed') {
+                    icon.removeClass('bg-success'); // Remove the added state
+                    icon.find('i').removeClass('bi-heart-fill').addClass('bi-heart'); // Change icon to empty heart
+                }
+                alert(response.message); // Show message
+            },
+            error: function(xhr, status, error) {
+                alert('Something went wrong, please try again.');
+            }
+        });
+    });
+});
+</script>
+
 <!-- Add custom scripts if necessary -->
 <script>
 $(document).ready(function() {

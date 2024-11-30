@@ -269,33 +269,24 @@
                             <div class="mx-auto" style="max-width: 500px;">
                                 <div class="row d-flex justify-content-center mx-auto">
                                     <div class="col-xl-12">
-                                        <div class="row">
-                                            <div class="col-6">
-                                                <div class="input-group my-1">
-                                                    <button type="button" class="input-group-text btn btn-light-light btn-wave fs-11">Delivering Bank</button>
-                                                    <input type="text" name="delivering" class="form-control fw-bold fs-11" placeholder="..." id="delivering">
-                                                </div>
-                                            </div>
-                                            <div class="col-6">
-                                                <div class="input-group my-1">
-                                                    <button type="button" class="input-group-text btn btn-light-light btn-wave fs-11">Swift Code</button>
-                                                    <input type="text" name="swift" class="form-control fw-bold fs-11" placeholder="..." id="swift">
-                                                </div>
-                                            </div>
+                                        <div class="form-group my-2">
+                                            <label for="delivering" class="fs-12 fw-medium my-2 text-muted">Delivering Bank</label>
+                                            <input type="text" name="delivering" class="form-control fw-bold fs-11" placeholder="..." id="delivering">
                                         </div>
-                                        <div class="row">
-                                            <div class="col-6">
-                                                <div class="input-group my-1">
-                                                    <button id="" type="button" class="input-group-text btn btn-light-light btn-wave fs-11">Account Number</button>
-                                                    <input type="text" name="account" class="form-control fw-bold fs-11" placeholder="..." id="account">
-                                                </div>
-                                            </div>
-                                            <div class="col-6">
-                                                <div class="input-group my-1">
-                                                    <button type="button" class="input-group-text btn btn-light-light btn-wave fs-11">Initiated time</button>
-                                                    <input type="time" name="time" class="form-control fw-bold fs-11" placeholder="..." id="time">
-                                                </div>
-                                            </div>
+                                        
+                                        <div class="form-group my-2">
+                                            <label for="swift" class="fs-12 fw-medium my-2 text-muted">Swift Code</label>
+                                            <input type="text" name="swift" class="form-control fw-bold fs-11" placeholder="..." id="swift">
+                                        </div>
+                                        
+                                        <div class="form-group my-2">
+                                            <label for="account" class="fs-12 fw-medium my-2 text-muted">Account Number</label>
+                                            <input type="text" name="account" class="form-control fw-bold fs-11" placeholder="..." id="account">
+                                        </div>
+                                        
+                                        <div class="form-group my-2">
+                                            <label for="time" class="fs-12 fw-medium my-2 text-muted">Initiated Time</label>
+                                            <input type="time" name="time" class="form-control fw-bold fs-11" id="time">
                                         </div>
                                     </div>
                                     <div class="col-xl-12">
@@ -323,7 +314,7 @@
                                 <div>
                                     <h3 class="fs-16 fw-bold text-center my-3">Summary</h3>
                                     <div>
-                                        <h4 class="text-center fs-13">You have made a deposit of <strong class="fw-bold text-primary amount-val" id="amount-val-summary">0 USD</strong></h4>
+                                        <h4 class="text-center fs-13">You are about to make a deposit of <strong class="fw-bold text-primary amount-val" id="amount-val-summary">0 USD</strong></h4>
                                         <div class="row d-flex justify-content-center mx-auto">
                                             <div class="col-xl-12" style="max-width: 500px;">
                                                 <div class="row">
@@ -389,9 +380,14 @@
 
         $('#bank-amount').on('input', function () {
             const usdAmount = parseFloat($('#bank-amount').val()) || 0;
-
-            $('.amount-val-bank').text(usdAmount.toFixed(2) + ' USD');
+            
+            // Format the amount with commas and fixed to two decimal places
+            const formattedAmount = usdAmount.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+            
+            // Update the displayed value with the formatted amount
+            $('.amount-val-bank').text(formattedAmount + ' USD');
         });
+
 
         const coinImages = {
             ETH: 'https://images.seeklogo.com/logo-png/52/1/ethereum-logo-png_seeklogo-527153.png',
@@ -443,10 +439,13 @@
             const coinAmount = usdAmount / selectedCoinRate; // Calculate equivalent coin amount
 
             if (!isNaN(coinAmount) && selectedCoinRate > 0) {
-                // Update displayed amount in selected coin
-                $('.amount-val').text(coinAmount.toFixed(5) + ' ' + selectedCoinSymbol);
+                // Format the coin amount with commas
+                const formattedCoinAmount = coinAmount.toLocaleString(undefined, { minimumFractionDigits: 5, maximumFractionDigits: 5 });
 
-                $('#coin-value').prop('value', coinAmount.toFixed(5));
+                // Update displayed amount in selected coin
+                $('.amount-val').text(formattedCoinAmount + ' ' + selectedCoinSymbol);
+
+                $('#coin-value').prop('value', coinAmount);
             } else {
                 // Reset display if invalid input or no coin selected
                 $('.amount-val').text('0 ' + selectedCoinSymbol);
@@ -634,23 +633,19 @@
             var textToCopy = $(this).closest('.input-group').find('input').val();
             copyToClipboard(textToCopy, this);
         });
-
-        // Initially disable all input fields (just in case)
-        // $('#crypto').find('input, select').prop('disabled', true);
-        // $('#bank').find('input, select').prop('disabled', true);
     });
 
     $(document).ready(function() {
-    //     // Default show screen-one, hide others
-    //     $('#screen-one').removeClass('d-none').addClass('d-block');
-    //     $('#screen-two, #screen-three').removeClass('d-block').addClass('d-none');
         
         // Handle "Continue" button click on screen-one
         $('#screen-one .btn-success-transparent').click(function() {
             var amount = $('#bank-amount').val();
-
-             // Update the summary section with the form values
-            $('#amount-val-summary').text(amount + " USD");
+            
+            // Format the amount with commas
+            var formattedAmount = parseFloat(amount).toLocaleString();
+            
+            // Update the summary section with the formatted amount
+            $('#amount-val-summary').text(formattedAmount + " USD");
         });
         
         // Handle "Continue" button click on screen-two

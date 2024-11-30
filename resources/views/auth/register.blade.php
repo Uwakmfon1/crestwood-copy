@@ -135,13 +135,7 @@
                         <div class="d-flex align-items-center justify-content-center gap-3 mb-3 flex-wrap">
                             <button class="btn btn-primary-light btn-md btn-icon">
                                 <i class="ti ti-brand-google fs-18"></i>
-                        </button>
-                        <button class="btn btn-primary-light btn-md btn-icon">
-                                <i class="ti ti-mail  fs-18"></i>
-                        </button>
-                        <button class="btn btn-primary-light btn-md btn-icon">
-                                <i class="ti ti-brand-facebook  fs-18"></i>
-                        </button>
+                            </button>
                         </div>
                         <div class="d-grid mt-4">
                             <button type="submit" class="btn btn-primary">Sign Up</button>

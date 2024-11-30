@@ -22,9 +22,9 @@
                 </ol>
             </div>
             <div class="d-flex gap-4">
-                <button type="button" class="btn btn-primary-light btn-wave waves-effect waves-light">
+                <a href="{{ route('wallet') }}" class="btn btn-primary-light btn-wave waves-effect waves-light">
                     <i class="fe fe-dollar-sign me-2"></i> Wallet
-                </button>
+                </a>
             </div>
         </div>
         <!-- End::page-header -->
@@ -54,7 +54,9 @@
                                     </div>
                                     <div class="mt-3">
                                         <h4 class="fw-semibold mb-1">&#36;{{ number_format($savings, 2) }}</h4>
-                                        <span class="text-muted fs-12">Savings Balance<span class="text-success ms-2 d-inline-block">0.45%<i class="ti ti-arrow-narrow-up"></i></span></span>
+                                        <span class="text-muted fs-12">Savings Balance
+                                            <!-- <span class="text-success ms-2 d-inline-block">0.45% <i class="ti ti-arrow-narrow-up"></i></span> -->
+                                        </span>
 
                                     </div>
                                 </div>
@@ -78,7 +80,9 @@
                                     </div>
                                     <div class="mt-3">
                                         <h4 class="fw-semibold mb-1">&#36;{{ number_format($investment, 2) }}</h4>
-                                        <span class="text-muted fs-12">Investment Balance<span class="text-danger ms-2 d-inline-block">-1.32%<i class="ti ti-arrow-narrow-down"></i></span></span>
+                                        <span class="text-muted fs-12">Investment Balance 
+                                            <!-- <span class="text-danger ms-2 d-inline-block">-1.32%<i class="ti ti-arrow-narrow-down"></i></span> -->
+                                        </span>
 
                                     </div>
                                 </div>
@@ -104,7 +108,9 @@
                                     </div>
                                     <div class="mt-3">
                                         <h4 class="fw-semibold mb-1">&#36;{{ number_format($trading, 2) }}</h4>
-                                        <span class="text-muted fs-12">Tradning Balance<span class="text-success ms-2 d-inline-block">0.45%<i class="ti ti-arrow-narrow-up"></i></span></span>
+                                        <span class="text-muted fs-12">Tradning Balance
+                                            <!-- <span class="text-success ms-2 d-inline-block">0.45%<i class="ti ti-arrow-narrow-up"></i></span> -->
+                                        </span>
 
                                     </div>
                                 </div>
@@ -117,7 +123,7 @@
                                 <div class="card-title">
                                     Activity Stats
                                 </div>
-                                <div class="dropdown">
+                                <!-- <div class="dropdown">
                                     <a href="javascript:void(0);" class="p-2 fs-12 text-muted"
                                         data-bs-toggle="dropdown" aria-expanded="true"> Sort By <i
                                             class="ri-arrow-down-s-line align-middle ms-1 d-inline-block"></i>
@@ -132,7 +138,7 @@
                                         <li><a class="dropdown-item" href="javascript:void(0);">This Month</a>
                                         </li>
                                     </ul>
-                                </div>
+                                </div> -->
                             </div>
                             <div class="card-body">
                                 <div id="area-spline"></div>
@@ -168,7 +174,7 @@
                                         </div>
                                     </div>
                                     <div class="flex-fill">
-                                        <div class="mb-2">Total Amount</div>
+                                        <div class="mb-2">Overall locked funds</div>
                                         <div class="text-muted mb-0 fs-18 d-flex align-items-center">
                                             <h5 class="fs-26 fw-bold mb-0 flex-fill fw-medium text-fixed-white" style="margin-top: -8px;">
                                                 &#36;{{ number_format($locked, 2) }}
@@ -522,7 +528,8 @@
                             <div class="table-responsive">
                                 <table class="table table-hover text-nowrap">
                                     <tbody>
-                                        <tr>
+                                        <p class="text-center my-5 py-5">No top traders</p>
+                                        <!-- <tr>
                                             <td>
                                                 <div class="d-flex align-items-center">
                                                     <div class="me-2"> <span
@@ -623,7 +630,7 @@
                                             <td class="border-bottom-0 text-end">
                                                 <p class="mb-0 fw-semibold">$2,534.56</p>
                                             </td>
-                                        </tr>
+                                        </tr> -->
                                     </tbody>
                                 </table>
                             </div>
@@ -701,7 +708,7 @@
                     </div>
                     <div class="card-footer">
                         <div class="d-flex align-items-center">
-                            <div> Showing 6 Entries <i class="bi bi-arrow-right ms-2 fw-semibold"></i> </div>
+                            <div> Showing 10 Entries <i class="bi bi-arrow-right ms-2 fw-semibold"></i> </div>
                             
                         </div>
                     </div>

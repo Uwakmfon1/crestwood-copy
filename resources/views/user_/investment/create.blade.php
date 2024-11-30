@@ -395,7 +395,8 @@ $(document).ready(function() {
         const packageInDays = convertToDays(packageDurationValue, packageDurationUnit);
 
         const summary = `Your investment of $${amount} into <strong>${packageName}</strong> will run for <strong>${packageDurationString}</strong>.`;
-        const summaryRoi = `Your ROI will be paid every <strong>${roiMethod} ${formatDuration(roiMethod, roiDuration)}</strong>.`;
+        // const summaryRoi = `Your ROI will be paid every <strong>${roiMethod} ${formatDuration(roiMethod, roiDuration)}</strong>.`;
+        const summaryRoi = `Your ROI will be paid every <strong>Week</strong>.`;
 
         $('#savings-summaryX').html(summary);
         $('#roi-summaryX').html(summaryRoi);

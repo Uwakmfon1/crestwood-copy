@@ -40,7 +40,7 @@
                                 @enderror
                             </div>
                             <div class="col-xl-12 mb-2">
-                                <label for="signin-password" class="form-label text-default d-block">Password<a href="reset-password-basic.html" class="float-end link-primary op-5 fw-medium fs-12">Forget password ?</a></label>
+                                <label for="signin-password" class="form-label text-default d-block">Password  <!-- <a href="{{ route('password.request') }}" class="float-end link-primary op-5 fw-medium fs-12">Forget password ?</a></label> -->
                                 <div class="input-group">
                                     <input name="password" type="password" class="form-control" id="signin-password" placeholder="Enter password...">
                                     <a href="javascript:void(0);" class="input-group-text bg-white text-muted" onclick="createpassword('signin-password',this)"><i class="ri-eye-off-line align-middle"></i></a>
@@ -66,13 +66,7 @@
                         <div class="d-flex align-items-center justify-content-center gap-3 mb-3 flex-wrap">
                             <button class="btn btn-primary-light btn-md btn-icon">
                                 <i class="ti ti-brand-google fs-18"></i>
-                        </button>
-                        <button class="btn btn-primary-light btn-md btn-icon">
-                                <i class="ti ti-mail  fs-18"></i>
-                        </button>
-                        <button class="btn btn-primary-light btn-md btn-icon">
-                                <i class="ti ti-brand-facebook  fs-18"></i>
-                        </button>
+                            </button>
                         </div>
                         <div class="d-grid mt-4">
                             <button type="submit" class="btn btn-primary">Sign In</button>

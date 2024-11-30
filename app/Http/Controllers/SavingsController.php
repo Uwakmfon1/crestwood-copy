@@ -284,6 +284,12 @@ class SavingsController extends Controller
 
         $active_savings = $savings->where('status', 'active')->count();
         $completed_savings = $savings->where('status', 'settled')->count();
+        $settled_savings = $savings->where('status', 'settled')->count();
+
+        // $transactions = $savings->savingsTransactions('status', 'settled')->count();
+
+        // $watchlistData = $user->savings()->where('type', 'crypto')->pluck('data_id');
+        // $watchlist = SaveTransaction::whereIn('id', $watchlistData)->get();
 
         $user = auth()->user();
         $balance = $user->savings()
@@ -301,7 +307,9 @@ class SavingsController extends Controller
             'balance' => $balance, 
             'asv' => $active_savings, 
             'csv' => $completed_savings,
-            'plan' => $plan
+            'ssv' => $settled_savings,
+            'plan' => $plan,
+            'profit' => [],
         ]);
     }
     public function packages()

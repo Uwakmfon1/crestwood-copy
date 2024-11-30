@@ -7,6 +7,7 @@ use App\Models\User;
 use App\Models\Email;
 use App\Models\Stock;
 use App\Models\Crypto;
+use App\Models\Ledger;
 use App\Models\Saving;
 use App\Models\Payment;
 use App\Models\Setting;
@@ -14,6 +15,7 @@ use App\Models\Referral;
 use App\Models\Investment;
 use App\Models\Transaction;
 use Illuminate\Http\Request;
+use InvalidArgumentException;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
@@ -477,22 +479,30 @@ class CommandController extends Controller
             $profit_for_today = ($profit_percentage * $total_profit) / 100;
 
             if (self::shouldDistributeProfit($investment, $remaining_days)) {
-                // Credit user's wallet
-                $investment->user->investmentWallet->increment('balance', $profit_for_today);
 
-                // Create a wallet transaction for the profit
-                $investment->investmentTransactions()->create(
-                    [
-                        'user_id' => $investment->user->id,
-                        'amount' => $profit_for_today,
-                        'type' => 'deposit',
-                        'account_type' => 'investment',
-                        'description' => '$'. $profit_for_today . ' profit on ' . $investment->package->name,
-                        'method' => 'wallet',
-                        'status' => 'approved',
-                        'is_profit' => 1
-                    ]
-                );
+                //Create Transaction
+                $transaction = $investment->user->transaction('invest')->create([
+                    'amount' => $profit_for_today,
+                    'data_id' => $investment->id,
+                    'status' => 'approved',
+                    'description' =>  '$'. $profit_for_today . ' profit on ' . $investment->package->name,
+                    'method' => 'credit'
+                ]);
+
+                //Create Investment Transaction
+                $investment->investmentTransaction()->create([
+                    'amount' => $profit_for_today,
+                    'type' => 'credit',
+                    'status' => 'success',
+                ]);
+
+                // ::::: Store Ledger :::::: //
+                try {
+                    Ledger::credit($investment->user->wallet, $profit_for_today, 'invest', null, '$'. $profit_for_today . ' profit on ' . $investment->package->name);
+                } catch (InvalidArgumentException $e) {
+                    return back()->with('error', 'Error debiting wallet: ' . $e->getMessage());
+                }
+                // ::::: Store Ledger :::::: //
 
                 Log::info('Profit to distribute today: ' . $profit_for_today);
             }

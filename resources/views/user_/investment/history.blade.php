@@ -33,6 +33,7 @@
                                 <button type="submit" class="btn btn-success btn-sm">Search</button>
                             </div>
                         </form>
+                        <a href="{{ route('investments') }}" class="btn btn-primary btn-sm ml-5">Back </a>
                         </div>
                     </div>
                     <div class="card-body p-0">

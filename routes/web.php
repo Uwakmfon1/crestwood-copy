@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\API\HomeController;
+use App\Http\Controllers\API\InvestmentController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ExportController;
@@ -177,7 +178,11 @@ Route::group(['middleware' => ['auth','verified', 'active_user', 'profile_comple
         Route::post('/asset/{trade}/close/all', [TradingController::class, 'closeAllAssets'])->name('asset.close.all');
 
         //:: For Developmenent :://
+
         // Route::get('/wallet-balance/reset', [WalletController::class, 'walletReset'])->name('wallet.reset');
+        Route::get('/investment/profit/{investment}', [App\Http\Controllers\InvestmentController::class, 'storeProfit'])->name('invest.profit');
+
+        //:: For Developmenent :://
 
         Route::get('/wallet/deposit', [WalletController::class, 'depo'])->name('wallet.deposit');
 
@@ -197,5 +202,6 @@ Route::group(['middleware' => ['auth','verified', 'active_user', 'profile_comple
         Route::post('/support/ticket/{support}/respond', [SupportController::class, 'reply'])->name('support.reply');
 
         Route::post('/user/mode', [App\Http\Controllers\HomeController::class, 'userMode'])->name('change.mode');
+        Route::post('/watchlist', [App\Http\Controllers\HomeController::class, 'storeWatchlist'])->name('add.watchlist');
     // });
 });

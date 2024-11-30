@@ -230,15 +230,48 @@ class TradingController extends Controller
 
         // Calculate the total amount of all trades
         $totalStocks = $user->trades('stocks')->sum('amount');
-        $watchList = Stock::latest()->take(3)->get();
+
+        $watchlistData = $user->watchlist()->where('type', 'crypto')->pluck('data_id');
+        $watchlist = Stock::whereIn('id', $watchlistData)->get();
+
+        $totalInvestment = 0;
+        $totalCurrentValue = 0;
+        $totalQuantity = 0;
+
+        $stocks = $user->trades('stocks')->with('stock')->get();
+
+        foreach ($stocks as $stock) {
+            $investmentAmount = $stock->purchase_amount * $stock->quantity;
+            $currentValue = $stock->stock['price'] * $stock->quantity;
+
+            $currentQuantity = $stock->quantity;
+
+            $totalInvestment += $investmentAmount;
+            $totalCurrentValue += $currentValue;
+            $totalQuantity += $currentQuantity;
+        }
+
+        $totalProfit = $totalCurrentValue - $totalInvestment;
+        $percentageDifference = ($totalInvestment > 0) 
+            ? ($totalProfit / $totalInvestment) * 100 
+            : 0;
+        
+        $equityBalance = $totalCurrentValue;
+        $totalAssetQuantity = $totalQuantity;
 
         return view('user_.trade.asset', [
             'title' => 'Trading',
-            'asset' => $assets->count(),
+            'assetNumber' => $user->trades('stocks')->count(),
             'assets' => $assets,
             'balance' => $balance,
             'totalAmount' => $totalStocks,
-            'watchList' => $watchList,
+            'watchList' => $watchlist,
+
+            'equityBalance' => $equityBalance,
+            'totalProfit' => $totalProfit,
+            'totalInvestment' => $totalCurrentValue,
+            'percentageDifference' => $percentageDifference,
+            'totalAssetQuantity' => $totalAssetQuantity
         ]);
     }
     
@@ -656,15 +689,47 @@ class TradingController extends Controller
         // Calculate the total amount of all trades
         $totalStocks = $user->trades('crypto')->sum('amount');
 
-        $watchList = Crypto::latest()->take(3)->get();
+        $watchlistData = $user->watchlist()->where('type', 'crypto')->pluck('data_id');
+        $watchlist = Crypto::whereIn('id', $watchlistData)->get();
+
+        $totalInvestment = 0;
+        $totalCurrentValue = 0;
+        $totalQuantity = 0;
+
+        $stocks = $user->trades('crypto')->with('crypto')->get();
+
+        foreach ($stocks as $stock) {
+            $investmentAmount = $stock->purchase_amount * $stock->quantity;
+            $currentValue = $stock->crypto['price'] * $stock->quantity;
+
+            $currentQuantity = $stock->quantity;
+
+            $totalInvestment += $investmentAmount;
+            $totalCurrentValue += $currentValue;
+            $totalQuantity += $currentQuantity;
+        }
+
+        $totalProfit = $totalCurrentValue - $totalInvestment;
+        $percentageDifference = ($totalInvestment > 0) 
+            ? ($totalProfit / $totalInvestment) * 100 
+            : 0;
+        
+        $equityBalance = $totalCurrentValue;
+        $totalAssetQuantity = $totalQuantity;
 
         return view('user_.crypto.asset', [
             'title' => 'Trading',
-            'asset' => $assets->count(),
+            'assetNumber' => $user->trades('crypto')->count(),
             'assets' => $assets,
             'balance' => $balance,
             'totalAmount' => $totalStocks,
-            'watchList' => $watchList,
+            'watchList' => $watchlist,
+
+            'equityBalance' => $equityBalance,
+            'totalProfit' => $totalProfit,
+            'totalInvestment' => $totalCurrentValue,
+            'percentageDifference' => $percentageDifference,
+            'totalAssetQuantity' => $totalAssetQuantity
         ]);
     }
 

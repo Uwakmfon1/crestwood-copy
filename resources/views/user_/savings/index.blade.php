@@ -75,7 +75,9 @@
                                         </div>
                                         <div class="mt-3">
                                             <h4 class="fw-semibold mb-1">&#36;{{ number_format($balance, 2) }}</h4>
-                                            <span class="text-muted fs-12">Savings Balance<span class="text-success ms-2 d-inline-block">0.45%<i class="ti ti-arrow-narrow-up"></i></span></span>
+                                            <span class="text-muted fs-12">Savings Balance
+                                                <!-- <span class="text-success ms-2 d-inline-block">0.45%<i class="ti ti-arrow-narrow-up"></i></span> -->
+                                            </span>
                                             <div class="mt-2">
                                                 <a href="javascript:void(0);" class="py-2 fs-11 text-muted fw-semibold" data-bs-toggle="modal" data-bs-target="#transferModa" id="openSavingsModal">Withdraw <i class="fe fe-arrow-right me-2 align-middle d-inline-block"></i></a>
                                             </div>
@@ -110,7 +112,9 @@
                                         </div>
                                         <div class="mt-3">
                                             <h4 class="fw-semibold mb-1">{{ number_format($asv) }}</h4>
-                                            <span class="text-muted fs-12">Active Savings<span class="text-success ms-2 d-inline-block">+$20.80</span></span>
+                                            <span class="text-muted fs-12">Active Savings 
+                                                <!-- <span class="text-success ms-2 d-inline-block">+$20.80</span> -->
+                                            </span>
                                         </div>
                                         <div class="mt-2">
                                             <a href="javascript:void(0);" class="py-2 fs-11 text-white fw-semibold">.</a>
@@ -230,7 +234,7 @@
                                                 <span class="d-block fw-medium">Active</span>
                                             </div>
                                             <div>
-                                                <span class="badge d-inline-flex bg-success-transparent">4</span>
+                                                <span class="badge d-inline-flex bg-success-transparent">{{ number_format($asv) }}</span>
                                             </div>
                                         </li>
                                         <li class="d-flex justify-content-between">
@@ -239,7 +243,7 @@
                                                 <span class="d-block fw-medium">Completed</span>
                                             </div>
                                             <div>
-                                                <span class="badge d-inline-flex bg-secondary-transparent">0</span>
+                                                <span class="badge d-inline-flex bg-secondary-transparent">{{ number_format($csv) }}</span>
                                             </div>
                                         </li>
                                         <li class="d-flex justify-content-between">
@@ -248,7 +252,7 @@
                                                 <span class="d-block fw-medium">Settled</span>
                                             </div>
                                             <div>
-                                                <span class="badge d-inline-flex bg-primary-transparent">8</span>
+                                                <span class="badge d-inline-flex bg-primary-transparent">{{ number_format($ssv) }}</span>
                                             </div>
                                         </li>
                                     </ul>
@@ -264,6 +268,7 @@
                                 </div>
                                 <div class="card-body">
                                     <ul class="list-unstyled recent-transactions-list">
+                                        @foreach($profit as $data)
                                         <li>
                                             <div class="d-flex align-items-start gap-3">
                                                 <div class="flex-fill">
@@ -275,39 +280,10 @@
                                                 </div>
                                             </div>
                                         </li>
-                                        <li>
-                                            <div class="d-flex align-items-start gap-3">
-                                                <div class="flex-fill">
-                                                    <span class="d-block fw-medium">Yesterday</span>
-                                                    <span class="text-muted fs-12">14, Jun 2024 - 10:15AM</span>
-                                                </div>
-                                                <div>
-                                                    <span class="d-block fw-medium">+532.76</span>
-                                                </div>
-                                            </div>
-                                        </li>
-                                        <li>
-                                            <div class="d-flex align-items-start gap-3">
-                                                <div class="flex-fill">
-                                                    <span class="d-block fw-medium">Tuesday</span>
-                                                    <span class="text-muted fs-12">28, Apr 2024 - 03:36PM</span>
-                                                </div>
-                                                <div>
-                                                    <span class="d-block fw-medium">-1,432.00</span>
-                                                </div>
-                                            </div>
-                                        </li>
-                                        <li>
-                                            <div class="d-flex align-items-start gap-3">
-                                                <div class="flex-fill">
-                                                    <span class="d-block fw-medium">Monday</span>
-                                                    <span class="text-muted fs-12">29, Apr 2024 - 01:18PM</span>
-                                                </div>
-                                                <div>
-                                                    <span class="d-block fw-medium text-success">+$29.00</span>
-                                                </div>
-                                            </div>
-                                        </li>
+                                        @endforeach
+                                        @if($profit == null)
+                                            <p class="text-center my-5 py-4">No transactions</p>
+                                        @endif
                                     </ul>
                                 </div>
                             </div>

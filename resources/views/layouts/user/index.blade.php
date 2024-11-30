@@ -7,6 +7,7 @@
 @yield('styles')
 
 <title> {{ env('APP_NAME') }} | @yield('title') </title>
+<meta name="csrf-token" content="{{ csrf_token() }}">
 
 </head>
 

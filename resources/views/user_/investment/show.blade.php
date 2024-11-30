@@ -118,14 +118,13 @@
                                     <thead>
                                     <tr>
                                         <th>Amount</th>
-                                        <th>Balance</th>
                                         <th>Type</th>
                                         <th>Date</th>
                                         <th>Status</th>
                                     </tr>
                                     </thead>
                                     <tbody>
-                                        <tr>
+                                        <!-- <tr>
                                             <td>${{ number_format(0, 2) }}</td>
                                             <td>${{ number_format($investment['amount'], 2) }}</td>
                                             <td>
@@ -133,22 +132,25 @@
                                             </td>
                                             <td>{{ $investment['created_at']->format('M d, Y \a\t h:i A') }}</td>
                                             <td>
-                                                <span class="badge bg-success-transparent"><i class="ri-check-fill align-middle me-1"></i>Paid</span>
+                                                <span class="badge bg-success-transparent"><i class="ri-check-fill align-middle me-1"></i>Successful</span>
                                             </td>
-                                        </tr>
+                                        </tr> -->
                                         @foreach($transactions as $transaction)
                                             @php
                                                 $balance += $transaction->amount; // Add the transaction amount to the balance
                                             @endphp
                                             <tr>
                                                 <td>${{ number_format($transaction->amount, 2) }}</td>
-                                                <td>${{ number_format($balance, 2) }}</td> <!-- Display updated balance -->
                                                 <td>
-                                                    <span class="badge bg-success-transparent">Profit</span>
+                                                    @if($transaction->amount == $investment['amount'])
+                                                        <span class="badge bg-info-transparent">Deposit</span>
+                                                    @else
+                                                        <span class="badge bg-success-transparent">Profit</span>
+                                                    @endif
                                                 </td>
                                                 <td>{{ $transaction['created_at']->format('M d, Y \a\t h:i A') }}</td>
                                                 <td>
-                                                    <span class="badge bg-success-transparent"><i class="ri-check-fill align-middle me-1"></i>Paid</span>
+                                                    <span class="badge bg-success-transparent"><i class="ri-check-fill align-middle me-1"></i>Successful</span>
                                                 </td>
                                             </tr>
                                         @endforeach

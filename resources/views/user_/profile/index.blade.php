@@ -172,7 +172,8 @@
                                         <button class="nav-link text-start active" id="main-profile-tab" data-bs-toggle="pill" data-bs-target="#main-profile" type="button" role="tab" aria-controls="main-profile" aria-selected="true"><i class="ri-shield-user-line me-1 align-middle d-inline-block"></i>Account Information</button>
                                         <button class="nav-link text-start" id="acct-type-tab" data-bs-toggle="pill" data-bs-target="#acct-type" type="button" role="tab" aria-controls="acct-type" aria-selected="false" tabindex="-1"><i class="ri-u-disk-line me-1 align-middle d-inline-block"></i>Account Type</button>
                                         <button class="nav-link text-start" id="man-password-tab" data-bs-toggle="pill" data-bs-target="#man-password" type="button" role="tab" aria-controls="man-password" aria-selected="false" tabindex="-1"><i class="ri-u-disk-line me-1 align-middle d-inline-block"></i>Payment Methond</button>
-                                        <button class="nav-link text-start" id="main-team-tab" data-bs-toggle="pill" data-bs-target="#main-team" type="button" role="tab" aria-controls="main-team" aria-selected="false" tabindex="-1"><i class="ri-group-line me-1 align-middle d-inline-block"></i>Personal Information</button>
+                                        <button class="nav-link text-start" id="main-team-tab" data-bs-toggle="pill" data-bs-target="#main-team" type="button" role="tab" aria-controls="main-team" aria-selected="false" tabindex="-1"><i class="ri-group-line me-1 align-middle d-inline-block"></i>Personal Information (KYC)</button>
+                                        <button class="nav-link text-start" id="main-kyc-tab" data-bs-toggle="pill" data-bs-target="#main-kyc" type="button" role="tab" aria-controls="main-kyc" aria-selected="false" tabindex="-1"><i class="ri-group-line me-1 align-middle d-inline-block"></i>Other KYC</button>
                                         <button class="nav-link text-start" id="main-nextkin-tab" data-bs-toggle="pill" data-bs-target="#main-nextkin" type="button" role="tab" aria-controls="main-nextkin" aria-selected="false" tabindex="-1"><i class="ri-group-line me-1 align-middle d-inline-block"></i>Next of kin</button>
                                         <button class="nav-link text-start" id="main-billing-tab" data-bs-toggle="pill" data-bs-target="#main-billing" type="button" role="tab" aria-controls="main-billing" aria-selected="false" tabindex="-1"><i class="ri-bill-line me-1 align-middle d-inline-block"></i>Identity & Verification</button>
                                         <button class="nav-link text-start" id="main-password-tab" data-bs-toggle="pill" data-bs-target="#main-password" type="button" role="tab" aria-controls="main-password" aria-selected="false" tabindex="-1"><i class="ri-user-line me-1 align-middle d-inline-block"></i>Password</button>
@@ -447,6 +448,17 @@
                                                     <input type="hidden" name="screen" value="five">
                                                     <div class="register-page my-4">
                                                         <div class="row gy-3">
+                                                            <!-- Date of Birth -->
+                                                            <div class="form-group my-2">
+                                                                <label for="dob" class="fs-10 fw-medium my-2 text-muted">Date of Birth</label>
+                                                                <input type="date" id="dob" name="dob" class="form-control fw-medium">
+                                                            </div>
+
+                                                            <!-- SSN/TIN -->
+                                                            <div class="form-group my-2">
+                                                                <label for="ssn" class="fs-10 fw-medium text-muted my-2">SSN/TIN</label>
+                                                                <input type="number" id="ssn" name="ssn" class="form-control fw-medium" placeholder="Social Security Number (SSN) or Tax-Identification Number (TIN)">
+                                                            </div>
                                                             <div class="col-lg-6">
                                                                 <label class="form-label fs-12 text-muted">Loaction Type</label>
                                                                 <select name="location" id="location" class="form-control text-dark text-capitalize @error('location') is-invalid @enderror">
@@ -510,6 +522,49 @@
                                                             <div class="col-xl-6">
                                                                 <label class="form-label fs-12 text-muted" for="address">Address line 2</label>
                                                                 <textarea class="form-control @error('address2') is-invalid @enderror" name="address2" id="address2" placeholder="Enter address..." rows="3" cols="10">{{ old('address') }}</textarea>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div>
+                                                        <button class="btn btn-success" type="submit">Submit</button>
+                                                    </div>
+                                                </form>
+                                            </div>
+                                            <div class="tab-pane" id="main-kyc" role="tabpanel" aria-labelledby="main-kyc-tab" tabindex="0">
+                                                <form action="{{ route('profile.data') }}" method="post" enctype="multipart/form-data">
+                                                    @csrf
+                                                    <input type="hidden" name="screen" value="eight">
+                                                    <div class="register-page my-4">
+                                                        <div class="row gy-3">
+                                                            <div class="col-12">
+                                                                <label class="form-label fs-12 text-muted my-2" for="employment_status">Employment Status:</label>
+                                                                <select class="form-control" id="employment_status" name="employment_status">
+                                                                    <option value="employed">Employed</option>
+                                                                    <option value="selfemployed">Self-employed</option>
+                                                                    <option value="unemployed">Unemployed</option>
+                                                                    <option value="retired">Retired</option>
+                                                                </select>
+                                                            </div>
+
+                                                            <!-- Annual Income Range -->
+                                                            <div class="col-12">
+                                                                <label class="form-label fs-12 text-muted my-2" for="income_range">Annual Income Range:</label>
+                                                                <select class="form-control" id="income_range" name="income_range">
+                                                                    <option value="less_than_50k">Less than $50K</option>
+                                                                    <option value="50k_100k">$50K - $100K</option>
+                                                                    <option value="over_100k">Over $100K</option>
+                                                                </select>
+                                                            </div>
+
+                                                            <!-- Source Of Funds -->
+                                                            <div class="col-12">
+                                                                <label class="form-label fs-12 text-muted my-2" for="source_of_funds">Source Of Funds:</label>
+                                                                <select class="form-control" id="source_of_funds" name="source_of_funds">
+                                                                    <option value="salary">Salary</option>
+                                                                    <option value="investment">Investment</option>
+                                                                    <option value="business">Business Income</option>
+                                                                    <option value="others">Others</option>
+                                                                </select>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -779,7 +834,7 @@
                     </div>
                 </div>
                 <div class="">
-                    <a href="{{ route('kyc.index') }}" class="btn btn-primary-light border-1 w-100">Complete KYC</a>
+                    <!-- <a href="{{ route('kyc.index') }}" class="btn btn-primary-light border-1 w-100">Complete KYC</a> -->
                 </div>
             </div>
         </div>

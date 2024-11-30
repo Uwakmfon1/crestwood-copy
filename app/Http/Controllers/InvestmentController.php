@@ -34,7 +34,14 @@ class InvestmentController extends Controller
         $dates = $transactions->pluck('date')->toArray();  // Extract dates
         $totals = $transactions->pluck('total_amount')->toArray(); 
 
-        // dd($transaction);
+        $totalCredits = Investment::where('user_id', $user->id)
+        ->with(['investmentTransaction' => function ($query) {
+            $query->where('type', 'credit'); // Filter by type 'credit'
+        }])
+        ->get()
+        ->pluck('investmentTransaction') // Get all related transactions
+        ->flatten() // Flatten the collection of arrays into a single collection
+        ->sum('amount'); // Sum the 'amount' field
 
         return view('user_.investment.index', [
             'title' => 'Investments', 
@@ -45,13 +52,14 @@ class InvestmentController extends Controller
             'total_amount' => $total_amount,
             'total_invest' => $total_invest,
             'dates' => $dates,
-            'totals' => $totals
+            'totals' => $totals,
+            'profit' => $totalCredits
         ]);
     }
 
     public function show(Investment $investment)
     {
-        $transaction = $investment->investmentTransaction();
+        $transaction = $investment->investmentTransaction()->get();
 
         return view('user_.investment.show', [
             'title' => 'Investment', 
@@ -129,10 +137,6 @@ class InvestmentController extends Controller
             return back()->with('error', 'Insufficient investment balance!');
         }
 
-        // Start Investment
-        // $user->updateWalletBalance('investment', $request->amount, 'decrement'); // Debit Investment wallet
-        // $user->updateWalletBalance('locked', $request->amount, 'increment'); // Credit Locked wallet
-
         // Create Investment
         $investment = $user->investments()->create([
             'package_id'=>$package['id'], 
@@ -155,7 +159,7 @@ class InvestmentController extends Controller
         //Create Investment Transaction
         $transaction = $investment->investmentTransaction()->create([
             'amount' => $request->amount,
-            'type' => 'credit',
+            'type' => 'debit',
             'status' => 'success',
         ]);
 
@@ -176,5 +180,49 @@ class InvestmentController extends Controller
             return redirect()->route('investments')->with('success', 'Investment created successfully');
 
         return back()->withInput()->with('error', 'Error processing investment');
+    }
+
+    public function storeProfit(Investment $investment): \Illuminate\Http\RedirectResponse
+    {
+        $user = auth()->user();
+
+        $package = Package::all()->where('id', $investment['package_id'])->first();
+        $amount = (($package->roi / 100) * $investment->amount);
+
+        //Create Transaction
+        $transaction = $user->transaction('invest')->create([
+            'amount' => $amount,
+            'data_id' => $investment->id,
+            'status' => 'approved',
+            'description' => 'Investment profit on ' . $package->name,
+            'method' => 'credit'
+        ]);
+
+        //Create Investment Transaction
+        $transaction = $investment->investmentTransaction()->create([
+            'amount' => $amount,
+            'type' => 'credit',
+            'status' => 'success',
+        ]);
+
+        // ::::: Store Ledger :::::: //
+        try {
+            Ledger::credit($user->wallet, $amount, 'invest', null, 'Investment profit on ' . $package->name);
+        } catch (InvalidArgumentException $e) {
+            return back()->with('error', 'Error debiting wallet: ' . $e->getMessage());
+        }
+        // ::::: Store Ledger :::::: //
+
+        dd($transaction);
+
+        // if($transaction) 
+            // if ($investment['status'] == 'active'){
+            //     NotificationController::sendInvestmentCreatedNotification($investment);
+            // }else{
+            //     NotificationController::sendInvestmentQueuedNotification($investment);
+            // }
+            // return redirect()->route('investments')->with('success', 'Investment created successfully');
+
+        // return back()->withInput()->with('error', 'Error processing investment');
     }
 }

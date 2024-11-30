@@ -16,6 +16,8 @@ class AddSwissCodeToUsers extends Migration
         Schema::table('users', function (Blueprint $table) {
             $table->string('swiss_code')->nullable();
             $table->string('reference')->nullable();
+            $table->string('ssn')->nullable();
+            $table->dateTime('dob');
             $table->enum('mode', ['light', 'dark'])->default('light');
         });
     }
