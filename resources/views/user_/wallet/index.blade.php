@@ -101,7 +101,7 @@
                                         <span class="fs-10">Locked Cash</span>
                                     </div>
                                     <div class="d-flex">
-                                        <span class="fs-18 fw-semibold text-start">{{ number_format($locked, 2) }} USD</span>
+                                        <span class="fs-18 fw-semibold text-start">{{ number_format($lockedFunds, 2) }} USD</span>
                                     </div>
                                     <div class="mt-1">  </div>
                                 </div>

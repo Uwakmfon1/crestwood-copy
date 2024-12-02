@@ -125,7 +125,7 @@
                         </div>
                         <div>
                             <div class="my-4">
-                                <p class="text-center fs-12 fw-medium">Carefully follow the procedures below for successful investment.</p>
+                                <p class="text-center fs-12 fw-medium">Carefully follow the procedures below for successful deposit.</p>
                                 <div class="d-flex justify-content-center mx-auto my-2">
                                     <img width="130" height="130" src="https://upload.wikimedia.org/wikipedia/commons/5/5e/QR_Code_example.png" alt="...">
                                 </div>

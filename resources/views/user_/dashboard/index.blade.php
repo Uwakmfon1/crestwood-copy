@@ -177,7 +177,7 @@
                                         <div class="mb-2">Overall locked funds</div>
                                         <div class="text-muted mb-0 fs-18 d-flex align-items-center">
                                             <h5 class="fs-26 fw-bold mb-0 flex-fill fw-medium text-fixed-white" style="margin-top: -8px;">
-                                                &#36;{{ number_format($locked, 2) }}
+                                                &#36;{{ number_format($lockedFunds, 2) }}
                                             </h5>
                                         </div>
                                     </div>

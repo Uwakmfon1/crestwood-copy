@@ -63,6 +63,21 @@ class HomeController extends Controller
         $investmentPercentage = $totalAmount > 0 ? ($investmentTotal / $totalAmount) * 100 : 0;
         $tradingPercentage = $totalAmount > 0 ? ($tradingTotal / $totalAmount) * 100 : 0;
 
+        $inv = $user->investments()->where('status', 'active')->sum('amount');
+
+        $sav = $user->savings()
+            ->with(['savingsTransactions' => function($query) {
+                $query->where('type', 'debit')->where('status', 'success');
+            }])
+            ->get()
+            ->pluck('savingsTransactions')
+            ->flatten()
+            ->sum('amount') ?? 0;
+
+        $trd = $user->trades('stocks')->sum('amount') + $user->trades('crypto')->sum('amount');
+
+        $lockedFunds = ($inv + $sav + $trd);
+
         return view('user_.dashboard.index', [
             'title' => 'Dashboard', 
             'savings' => $savings,
@@ -80,6 +95,8 @@ class HomeController extends Controller
             'savingsPercentage' => $savingsPercentage,
             'investmentPercentage' => $investmentPercentage,
             'tradingPercentage' => $tradingPercentage,
+
+            'lockedFunds' => $lockedFunds,
         ]);
     }
 

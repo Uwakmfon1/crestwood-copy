@@ -51,6 +51,21 @@ class WalletController extends Controller
         $alignedTrading = $transact->where('type', 'trade')->pluck('total_amount');
         $dates = $transact->pluck('date')->unique()->values(); // Get unique dates
 
+        $inv = $user->investments()->where('status', 'active')->sum('amount');
+
+        $sav = $user->savings()
+            ->with(['savingsTransactions' => function($query) {
+                $query->where('type', 'debit')->where('status', 'success');
+            }])
+            ->get()
+            ->pluck('savingsTransactions')
+            ->flatten()
+            ->sum('amount') ?? 0;
+
+        $trd = $user->trades('stocks')->sum('amount') + $user->trades('crypto')->sum('amount');
+
+        $lockedFunds = ($inv + $sav + $trd);
+
         // Pass data to view
         return view('user_.wallet.index', [ 
             'title' => 'Wallets', 
@@ -68,6 +83,7 @@ class WalletController extends Controller
             'alignedSavings' => $alignedSavings->values(),
             'alignedInvestments' => $alignedInvestments->values(),
             'alignedTrading' => $alignedTrading->values(),
+            'lockedFunds' => $lockedFunds,
         ]);
     }
 
