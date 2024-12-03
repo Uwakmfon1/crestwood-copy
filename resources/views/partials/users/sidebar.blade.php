@@ -45,7 +45,7 @@
              <!-- Start::slide -->
              <li class="slide has-sub @if(request()->routeIs(['savings', 'savings.create'])) active @endif">
                 <a href="javascript:void(0);" class="side-menu__item">
-                    <i class="fe fe-dollar-sign mx-2"></i>
+                    <i class="fe fe-circle mx-2"></i>
                     <span class="side-menu__label">Savings </span>
                     <i class="ri-arrow-right-s-line side-menu__angle"></i>
                 </a>
@@ -85,7 +85,7 @@
 
             <li class="slide has-sub @if(request()->routeIs(['crypto', 'crypto.assets'])) active @endif">
                 <a href="javascript:void(0);" class="side-menu__item">
-                <i class="fe fe-dollar-sign mx-2"></i>
+                <i class="fe fe-trending-up mx-2"></i>
                     <span class="side-menu__label">Crypto</span>
                     <i class="ri-arrow-right-s-line side-menu__angle"></i>
                 </a>
@@ -98,15 +98,7 @@
                     </li>
                 </ul>
             </li>
-
-            <!-- <li class="slide @if(request()->routeIs(['asset'])) active @endif">
-                <a href="{{ route('assets') }}" class="side-menu__item">
-                    <i class="fe fe-credit-card mx-2"></i>
-                    <span class="side-menu__label">History</span>
-                </a>
-            </li> -->
           
-            
             <!-- Start::slide__category -->
             <li class="slide__category"><span class="category-name">Finance</span></li>
             <!-- End::slide__category -->
@@ -120,7 +112,7 @@
 
             <li class="slide @if(request()->routeIs(['transactions.history'])) active @endif">
                 <a href="{{ route('transactions.history') }}" class="side-menu__item">
-                    <i class="fe fe-dollar-sign mx-2"></i>
+                    <i class="fe fe-clock mx-2"></i>
                     <span class="side-menu__label">History</span>
                 </a>
             </li>

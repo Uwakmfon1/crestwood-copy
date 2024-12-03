@@ -63,7 +63,7 @@
                                         </span>
                                     </div>
                                     <div class="mt-1">
-                                        <a href="javascript:void(0);" class="py-2 fs-11 text-primary fw-semibold" data-bs-toggle="modal" data-bs-target="#transferModal" id="openInvestmentModal">Top Up Wallet <i class="fe fe-arrow-right me-2 align-middle d-inline-block"></i></a>
+                                        <a href="javascript:void(0);" class="py-2 fs-11 text-primary fw-semibold" data-bs-toggle="modal" data-bs-target="#transferModal" id="openInvestmentModal">Top Up Wallet<i class="fe fe-arrow-right me-2 align-middle d-inline-block"></i></a>
                                     </div>
                                 </div>
                             </div>

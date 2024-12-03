@@ -213,7 +213,7 @@ class WalletController extends Controller
         $validator = Validator::make($request->all(), [
             'amount' => ['required', 'numeric', 'gt:0'],
             'from_account' => ['required', 'in:invest,save,trade,wallet'],
-            'to_account' => ['required', 'in:invest,save,trade'],
+            'to_account' => ['required', 'in:invest,save,trade,wallet'],
         ]);
 
         if ($validator->fails()) {

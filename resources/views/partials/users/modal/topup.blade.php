@@ -120,6 +120,22 @@ $(document).ready(function() {
         initModal('trade', 'Trading Wallet');
     });
 
+    // Example: Trigger modal for trading page
+    $('#openSWalletModal').on('click', function() {
+        $('#fromAccount').val('save'); // Default to Savings Wallet
+        initModal('wallet', 'Portfolio Wallet');
+    });
+
+    $('#openIWalletModal').on('click', function() {
+        $('#fromAccount').val('invest'); // Default to Savings Wallet
+        initModal('wallet', 'Portfolio Wallet');
+    });
+
+    $('#openTWalletModal').on('click', function() {
+        $('#fromAccount').val('trade'); // Default to Savings Wallet
+        initModal('wallet', 'Portfolio Wallet');
+    });
+
     // Function to update summary based on input
     function updateSummary() {
         let amount = parseFloat($('#amountDeposit').val());
