@@ -129,14 +129,14 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="text-center my-3 authentication-barrier">
+                        <!-- <div class="text-center my-3 authentication-barrier">
                             <span class="op-4 fs-11">Or SignIn With</span>
                         </div>
                         <div class="d-flex align-items-center justify-content-center gap-3 mb-3 flex-wrap">
                             <button class="btn btn-primary-light btn-md btn-icon">
                                 <i class="ti ti-brand-google fs-18"></i>
                             </button>
-                        </div>
+                        </div> -->
                         <div class="d-grid mt-4">
                             <button type="submit" class="btn btn-primary">Sign Up</button>
                         </div>

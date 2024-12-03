@@ -219,13 +219,13 @@
                         </li>
                         <li><a class="dropdown-item d-flex align-items-center" href="{{ route('profile') }}"><i
                                     class="ti ti-user me-2 fs-18 text-primary"></i>Profile</a></li>
-                        <li><a class="dropdown-item d-flex align-items-center" href="mail.html"><i
-                                    class="ti ti-mail me-2 fs-18 text-primary"></i>Inbox</a></li>
-                        <li><a class="dropdown-item d-flex align-items-center" href="to-do-list.html"><i
-                                    class="ti ti-checklist me-2 fs-18 text-primary"></i>Task Manager</a></li>
-                        <li><a class="dropdown-item d-flex align-items-center" href="mail-settings.html"><i
-                                    class="ti ti-settings me-2 fs-18 text-primary"></i>Settings</a></li>
-                        <li><a class="dropdown-item d-flex align-items-center" href="chat.html"><i
+                        <!-- <li><a class="dropdown-item d-flex align-items-center" href="mail.html"><i
+                                    class="ti ti-mail me-2 fs-18 text-primary"></i>Inbox</a></li> -->
+                        <!-- <li><a class="dropdown-item d-flex align-items-center" href="to-do-list.html"><i
+                                    class="ti ti-checklist me-2 fs-18 text-primary"></i>Task Manager</a></li> -->
+                        <li><a class="dropdown-item d-flex align-items-center" href="{{ route('wallet.deposit') }}"><i
+                                    class="ti ti-cash me-2 fs-18 text-primary"></i>Deposit</a></li>
+                        <li><a class="dropdown-item d-flex align-items-center" href="{{ route('support.index') }}"><i
                                     class="ti ti-headset me-2 fs-18 text-primary"></i>Support</a></li>
                         <li>
                             <form action="{{ route('logout') }}" method="post">

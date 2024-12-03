@@ -46,7 +46,7 @@
              <li class="slide has-sub @if(request()->routeIs(['savings', 'savings.create'])) active @endif">
                 <a href="javascript:void(0);" class="side-menu__item">
                     <i class="fe fe-dollar-sign mx-2"></i>
-                    <span class="side-menu__label">Savings <span class="mx-2 badge bg-info-transparent">Coming soon</span> </span>
+                    <span class="side-menu__label">Savings </span>
                     <i class="ri-arrow-right-s-line side-menu__angle"></i>
                 </a>
                 <ul class="slide-menu child1 pages-ul">
