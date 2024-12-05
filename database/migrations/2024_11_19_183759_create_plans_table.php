@@ -18,6 +18,7 @@ class CreatePlansTable extends Migration
             $table->string('name');
             $table->string('description');
             $table->text('img');
+            $table->text('info');
             $table->string('modalId');
             $table->timestamps();
         });

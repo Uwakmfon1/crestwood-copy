@@ -20,7 +20,7 @@ class PlanSeeder extends Seeder
             [
                 'id' => 1,
                 'name' => 'High-Yield Savings Account (HYSA)',
-                'sub_name' => 'Lorem ipsum dolor sit amet consectetur, adipisicing.',
+                'sub_name' => 'Grow your savings faster with higher annual interest rates and full flexibility.',
                 'img' => 'https://www.oneazcu.com/media/54nn41qg/propel-savings_500x500.png',
                 'btnText' => 'Start Savings',
                 'modalId' => 'modalHYSA',
@@ -63,12 +63,21 @@ class PlanSeeder extends Seeder
                             'Withdraw interest periodically',
                         ]
                     ]
-                ]
+                        ],
+                'info' => 
+                '<ul>
+                    <li><strong>Interest Rate/APY:</strong> Earn up to 5.00% annual interest on your deposits.</li>
+                    <li><strong>Minimum Deposit:</strong> $5,000 minimum to open this account.</li>
+                    <li><strong>Withdrawals:</strong> Enjoy penalty-free withdrawals anytime.</li>
+                    <li><strong>Duration:</strong> Recommended for short- to mid-term savings (6 to 24 months).</li>
+                    <li><strong>Eligibility:</strong> Open to all verified individual account holders.</li>
+                    <li><strong>Purpose:</strong> Ideal for building emergency funds or achieving short-term financial goals.</li>
+                </ul>'
             ],
             [
                 'id' => 2,
                 'name' => 'Cash Interest Account',
-                'sub_name' => 'Lorem ipsum dolor sit amet consectetur, adipisicing.',
+                'sub_name' => 'Earn interest while keeping your funds fully accessible.',
                 'img' => 'https://www.oneazcu.com/media/zpfjqqui/no-fees_500x500.webp',
                 'btnText' => 'Start Savings',
                 'modalId' => 'modalCashInterest',
@@ -103,12 +112,21 @@ class PlanSeeder extends Seeder
                             'No, keep everything liquid',
                         ]
                     ]
-                ]
+                ],
+                'info' => 
+                '<ul>
+                    <li><strong>Interest Rate/APY:</strong> Earn up to 5.00% annual interest on your deposits.</li>
+                    <li><strong>Minimum Deposit:</strong> $5,000 minimum to open this account.</li>
+                    <li><strong>Withdrawals:</strong> Enjoy penalty-free withdrawals anytime.</li>
+                    <li><strong>Duration:</strong> Recommended for short- to mid-term savings (6 to 24 months).</li>
+                    <li><strong>Eligibility:</strong> Open to all verified individual account holders.</li>
+                    <li><strong>Purpose:</strong> Ideal for building emergency funds or achieving short-term financial goals.</li>
+                </ul>'
             ],
             [
                 'id' => 3,
                 'name' => 'Tax-Free Savings Account',
-                'sub_name' => 'Lorem ipsum dolor sit amet consectetur, adipisicing.',
+                'sub_name' => 'Save for the future with tax-free growth on interest and returns.',
                 'img' => 'https://www.oneazcu.com/media/a0jeky3a/cash_2024_500x500.webp',
                 'btnText' => 'Start Savings',
                 'modalId' => 'modalTaxFree',
@@ -144,12 +162,21 @@ class PlanSeeder extends Seeder
                             'Withdraw earnings periodically',
                         ]
                     ]
-                ]
+                ],
+                'info' => 
+                '<ul>
+                    <li><strong>Interest Rate/APY:</strong> Earn up to 5.00% annual interest on your deposits.</li>
+                    <li><strong>Minimum Deposit:</strong> $5,000 minimum to open this account.</li>
+                    <li><strong>Withdrawals:</strong> Enjoy penalty-free withdrawals anytime.</li>
+                    <li><strong>Duration:</strong> Recommended for short- to mid-term savings (6 to 24 months).</li>
+                    <li><strong>Eligibility:</strong> Open to all verified individual account holders.</li>
+                    <li><strong>Purpose:</strong> Ideal for building emergency funds or achieving short-term financial goals.</li>
+                </ul>'
             ],
             [
                 'id' => 4,
                 'name' => 'First Home Savings Account',
-                'sub_name' => 'Lorem ipsum dolor sit amet consectetur, adipisicing.',
+                'sub_name' => 'Achieve your dream of owning your first home with tailored savings options.',
                 'img' => 'https://www.oneazcu.com/media/3junkeko/transfer-money-500x500.webp',
                 'btnText' => 'Start Savings',
                 'modalId' => 'modalFirstHome',
@@ -192,12 +219,21 @@ class PlanSeeder extends Seeder
                             'No',
                         ]
                     ]
-                ]
+                ],
+                'info' => 
+                '<ul>
+                    <li><strong>Interest Rate/APY:</strong> Earn up to 5.00% annual interest on your deposits.</li>
+                    <li><strong>Minimum Deposit:</strong> $5,000 minimum to open this account.</li>
+                    <li><strong>Withdrawals:</strong> Enjoy penalty-free withdrawals anytime.</li>
+                    <li><strong>Duration:</strong> Recommended for short- to mid-term savings (6 to 24 months).</li>
+                    <li><strong>Eligibility:</strong> Open to all verified individual account holders.</li>
+                    <li><strong>Purpose:</strong> Ideal for building emergency funds or achieving short-term financial goals.</li>
+                </ul>'
             ],
             [
                 'id' => 5,
                 'name' => 'Corporate Accounts',
-                'sub_name' => 'Lorem ipsum dolor sit amet consectetur, adipisicing.',
+                'sub_name' => 'Effortlessly manage business reserves with competitive interest rates.',
                 'img' => 'https://www.oneazcu.com/media/0axfwoe2/lock-security-500x500.webp',
                 'btnText' => 'Start Savings',
                 'modalId' => 'modalCorporate',
@@ -232,12 +268,21 @@ class PlanSeeder extends Seeder
                             'No, keep all funds in cash reserves',
                         ]
                     ]
-                ]
+                ],
+                'info' => 
+                '<ul>
+                    <li><strong>Interest Rate/APY:</strong> Earn up to 5.00% annual interest on your deposits.</li>
+                    <li><strong>Minimum Deposit:</strong> $5,000 minimum to open this account.</li>
+                    <li><strong>Withdrawals:</strong> Enjoy penalty-free withdrawals anytime.</li>
+                    <li><strong>Duration:</strong> Recommended for short- to mid-term savings (6 to 24 months).</li>
+                    <li><strong>Eligibility:</strong> Open to all verified individual account holders.</li>
+                    <li><strong>Purpose:</strong> Ideal for building emergency funds or achieving short-term financial goals.</li>
+                </ul>'
             ],
             [
                 'id' => 6,
                 'name' => 'Retirement Accounts (Roth IRA)',
-                'sub_name' => 'Lorem ipsum dolor sit amet consectetur, adipisicing.',
+                'sub_name' => 'Plan for a secure future with tax-advantaged retirement savings options.',
                 'img' => 'https://www.oneazcu.com/media/xf5p3zer/click_desktop_500x500.webp',
                 'btnText' => 'Start Savings',
                 'modalId' => 'modalRetirement',
@@ -270,7 +315,16 @@ class PlanSeeder extends Seeder
                             'Annually',
                         ]
                     ]
-                ]
+                ],
+                'info' => 
+                '<ul>
+                    <li><strong>Interest Rate/APY:</strong> Earn up to 5.00% annual interest on your deposits.</li>
+                    <li><strong>Minimum Deposit:</strong> $5,000 minimum to open this account.</li>
+                    <li><strong>Withdrawals:</strong> Enjoy penalty-free withdrawals anytime.</li>
+                    <li><strong>Duration:</strong> Recommended for short- to mid-term savings (6 to 24 months).</li>
+                    <li><strong>Eligibility:</strong> Open to all verified individual account holders.</li>
+                    <li><strong>Purpose:</strong> Ideal for building emergency funds or achieving short-term financial goals.</li>
+                </ul>'
             ]
         ];
 
@@ -282,6 +336,7 @@ class PlanSeeder extends Seeder
                 'description' => $planData['sub_name'],
                 'img' => $planData['img'],
                 'modalId' => $planData['modalId'],
+                'info' => $planData['info'],
             ]);
 
             // Create the questions for the plan
