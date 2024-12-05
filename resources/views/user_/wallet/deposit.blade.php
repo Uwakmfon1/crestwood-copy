@@ -121,7 +121,7 @@
 
                         <div class="my-1">
                             <h4 class="text-center fs-13">You are about to make a deposit of <strong class="fw-bold text-primary amount-val">0 ---</strong></h4>
-                            <p class="text-center text-muted fs-10">Exchange Rate: 1 <strong id="selected-coin-symbol"></strong>  - <span id="exchange-rate">0</span> USD</p>
+                            <p class="text-center text-muted fs-10">Exchange Rate: 1 <strong id="selected-coin-symbol"></strong>  - <span class="fw-bold" id="exchange-rate">0</span> USD</p>
                         </div>
                         <div>
                             <div class="my-4">
@@ -408,7 +408,7 @@
                 selectedCoinSymbol = coin.symbol;
 
                 // Update the exchange rate and symbol display
-                $('#exchange-rate').text(selectedCoinRate.toFixed(5)); // Display the rate with 5 decimal places
+                $('#exchange-rate').text(selectedCoinRate.toLocaleString()); // Display the rate with 5 decimal places
                 $('#selected-coin-symbol').text(selectedCoinSymbol); // Display selected coin symbol
                 updateDisplay();
                 
@@ -656,11 +656,6 @@
             $('#summary-bank').val(delivering);
             $('#summary-swift').val(swift);
         });
-
-    //     // Handle "Continue" button click on screen-three to submit the form
-    //     $('#screen-three .btn-primary-transparent').click(function() {
-    //         $('form').submit(); // Assuming you have a form wrapping the content
-    //     });
     });
 
     $(document).ready(function() {

@@ -3,7 +3,7 @@
 
 <!-- Start::main-sidebar-header -->
 <div class="main-sidebar-header">
-    <a href="/" class="header-logo">
+    <a href="{{ route('dashboard') }}" class="header-logo">
         <img src="{{ asset('asset/images/logo/logo-light.png') }}" alt="logo" class="desktop-logo">
         <img src="{{ asset('asset/images/logo/logo-light.png') }}" alt="logo" class="toggle-dark">
         <img src="{{ asset('asset/images/logo/logo-light.png') }}" alt="logo" class="desktop-dark">
@@ -117,13 +117,6 @@
                 </a>
             </li>
 
-            <li class="slide @if(request()->routeIs(['support.index'])) active @endif">
-                <a href="{{ route('support.index') }}" class="side-menu__item">
-                    <i class="fe fe-user mx-2"></i>
-                    <span class="side-menu__label">Support</span>
-                </a>
-            </li>
-
             <!-- Start::slide__category -->
             <li class="slide__category"><span class="category-name">Account</span></li>
             <!-- End::slide__category -->
@@ -139,6 +132,13 @@
                 <a href="{{ route('profile') }}" class="side-menu__item">
                     <i class="fe fe-settings mx-2"></i>
                     <span class="side-menu__label">Settings</span>
+                </a>
+            </li>
+
+            <li class="slide @if(request()->routeIs(['support.index'])) active @endif">
+                <a href="{{ route('support.index') }}" class="side-menu__item">
+                    <i class="fe fe-user mx-2"></i>
+                    <span class="side-menu__label">Support</span>
                 </a>
             </li>
 

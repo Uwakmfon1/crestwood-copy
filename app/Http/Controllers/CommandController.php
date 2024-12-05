@@ -410,43 +410,83 @@ class CommandController extends Controller
         $stockSymbols = DB::table('cryptos')->pluck('symbol')->chunk(100); // Chunk to handle large data sets
         $command->info("Starting crypto updates...");
 
-        foreach ($stockSymbols as $chunk) {
-            $symbolString = implode(',', $chunk->toArray());
-            $apiUrl = "https://financialmodelingprep.com/api/v3/quote/{$symbolString}?apikey=U16Gq0PRKGgnTbltSa5423seAWtQNV0T";
+        // foreach ($stockSymbols as $chunk) {
+        //     $symbolString = implode(',', $chunk->toArray());
+        //     $apiUrl = "https://financialmodelingprep.com/api/v3/quote/{$symbolString}?apikey=U16Gq0PRKGgnTbltSa5423seAWtQNV0T";
 
-            $response = Http::get($apiUrl);
+        //     $response = Http::get($apiUrl);
 
-            if ($response->successful()) {
-                foreach ($response->json() as $data) {
-                    DB::table('cryptos')->updateOrInsert(
-                        ['symbol' => $data['symbol']],
-                        [
-                            'price' => $data['price'] ?? 0,
-                            'changes_percentage' => $data['changesPercentage'] ?? 0,
-                            'change' => $data['change'] ?? 0,
-                            'day_low' => $data['dayLow'] ?? 0,
-                            'day_high' => $data['dayHigh'] ?? 0,
-                            'year_low' => $data['yearLow'] ?? 0,
-                            'year_high' => $data['yearHigh'] ?? 0,
-                            'market_cap' => $data['marketCap'] ?? 0,
-                            'price_avg_50' => $data['priceAvg50'] ?? 0,
-                            'price_avg_200' => $data['priceAvg200'] ?? 0,
-                            'volume' => $data['volume'] ?? 0,
-                            'avg_volume' => $data['avgVolume'] ?? 0,
-                            'open' => $data['open'] ?? 0,
-                            'previous_close' => $data['previousClose'] ?? 0,
-                            'eps' => $data['eps'] ?? 0, // Assuming 'eps' might be included in the response, if not it defaults to 0
-                            'pe' => $data['pe'] ?? 0,   // Assuming 'pe' might be included in the response, if not it defaults to 0
-                        ]
-                    );
-                    $command->info("Updated stock: {$data['symbol']}");
+        //     if ($response->successful()) {
+        //         foreach ($response->json() as $data) {
+        //             DB::table('cryptos')->updateOrInsert(
+        //                 ['symbol' => $data['symbol']],
+        //                 [
+        //                     'price' => $data['price'] ?? 0,
+        //                     'changes_percentage' => $data['changesPercentage'] ?? 0,
+        //                     'change' => $data['change'] ?? 0,
+        //                     'day_low' => $data['dayLow'] ?? 0,
+        //                     'day_high' => $data['dayHigh'] ?? 0,
+        //                     'year_low' => $data['yearLow'] ?? 0,
+        //                     'year_high' => $data['yearHigh'] ?? 0,
+        //                     'market_cap' => $data['marketCap'] ?? 0,
+        //                     'price_avg_50' => $data['priceAvg50'] ?? 0,
+        //                     'price_avg_200' => $data['priceAvg200'] ?? 0,
+        //                     'volume' => $data['volume'] ?? 0,
+        //                     'avg_volume' => $data['avgVolume'] ?? 0,
+        //                     'open' => $data['open'] ?? 0,
+        //                     'previous_close' => $data['previousClose'] ?? 0,
+        //                     'eps' => $data['eps'] ?? 0, // Assuming 'eps' might be included in the response, if not it defaults to 0
+        //                     'pe' => $data['pe'] ?? 0,   // Assuming 'pe' might be included in the response, if not it defaults to 0
+        //                 ]
+        //             );
+        //             $command->info("Updated stock: {$data['symbol']}");
+        //         }
+        //     } else {
+        //         Log::error("Failed to fetch stock data. Status: " . $response->status());
+        //         $command->error("Failed to fetch stock data for chunk: " . $symbolString);
+        //     }
+        // }
+
+        // Update `account_coins` table for specific cryptos
+        $command->info("Updating specific cryptocurrencies in account_coins...");
+
+        // Define the mapping between database symbols and API symbols
+        $cryptoMapping = [
+            'BTC' => 'BTCUSD',
+            'ETH' => 'ETHUSD',
+            'USDT' => 'USDTUSD',
+            'TRX' => 'TRXUSD',
+        ];
+
+        // Prepare the API query string
+        $cryptoSymbols = array_values($cryptoMapping);
+        $cryptoString = implode(',', $cryptoSymbols);
+        $apiUrl = "https://financialmodelingprep.com/api/v3/quote/{$cryptoString}?apikey=U16Gq0PRKGgnTbltSa5423seAWtQNV0T";
+
+        $response = Http::get($apiUrl);
+
+        if ($response->successful()) {
+            $responseData = collect($response->json())->keyBy('symbol'); // Organize data by symbol
+
+            foreach ($cryptoMapping as $dbSymbol => $apiSymbol) {
+                if (isset($responseData[$apiSymbol])) {
+                    $data = $responseData[$apiSymbol];
+                    DB::table('account_coins')->where('symbol', $dbSymbol)->update([
+                        'rate' => $data['price'] ?? 0,
+                        'updated_at' => now(),
+                    ]);
+                    $command->info("Updated coin: {$dbSymbol} with rate from {$apiSymbol}");
+                } else {
+                    $command->error("Data for {$apiSymbol} not found in API response.");
                 }
-            } else {
-                Log::error("Failed to fetch stock data. Status: " . $response->status());
-                $command->error("Failed to fetch stock data for chunk: " . $symbolString);
             }
+        } else {
+            Log::error("Failed to fetch crypto data for account_coins. Status: " . $response->status());
+            $command->error("Failed to fetch crypto data for account_coins.");
         }
-        $command->info("Stock updates completed.");
+
+        $command->info("Crypto updates completed.");
+
     }
 
     public static function distributeProfit($command)

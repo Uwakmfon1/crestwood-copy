@@ -87,7 +87,7 @@
                                             </div>
                                         </div>
                                     <div class="lh-1">
-                                        <span class="d-block mb-2 fw-medium">Trading Balance</span>
+                                        <span class="d-block mb-2 fw-medium">Available Trading Balance</span>
                                         <h4 class="mb-1 fw-semibold">${{ number_format($balance, 2) }}</h4>
                                     </div>
                                 </div>
@@ -122,7 +122,7 @@
                                             </div>
                                         </div>
                                     <div class="lh-1">
-                                        <span class="d-block mb-2 fw-medium">Total Asset</span>
+                                        <span class="d-block mb-2 fw-medium">Investing</span>
                                         <h4 class="mb-0 fw-semibold mb-1">${{ number_format($totalAmount, 2) }}</h4>
                                     </div>
                                 </div>
@@ -139,11 +139,11 @@
                                         <table class="table text-nowrap">
                                             <thead>
                                                 <tr>
-                                                    <th>Asset</th>
+                                                    <th>Stocks</th>
                                                     <th>Current Price</th>
                                                     <th>Quantity</th>
-                                                    <th>Amount</th>
-                                                    <th>Profit</th>
+                                                    <th>Invested Amount</th>
+                                                    <th>Open P/L</th>
                                                     <th>Action</th>
                                                 </tr>
                                             </thead>
@@ -473,7 +473,7 @@
                         <!-- <div class="card custom-card bg-primary"> -->
                             <div class="card-body p-2">
                                 <div class="">
-                                    <div class="text-fixed-dark mb-2">Equity Balance <span class="ms-2 d-inline-block text-success op-5"><span class="text-success fs-12 d-block">+1.5%</span></span>
+                                    <div class="text-fixed-dark mb-2">Stock Portfolio <span class="ms-2 d-inline-block text-success op-5"><span class="text-success fs-12 d-block">+1.5%</span></span>
                                     </div>
                                     <h4 class="fw-semibold mb-0 text-fixed-dark">${{ number_format($equityBalance, 2) }}</h4>
                                 </div>
@@ -494,8 +494,12 @@
                                         </div>
                                     </div>
                                     <div class="flex-fill">
-                                        <span class="fw-medium fs18">Profit/Loss</span>
-                                        <span class="text-success fs-11 d-block">{{ number_format($percentageDifference, 2) }}%</span>
+                                        <span class="fw-medium fs18"> Open P/L</span>
+                                        @if($percentageDifference >= 0)
+                                            <span class="text-success fs-11 d-block">{{ number_format($percentageDifference, 2) }}%</span>
+                                        @else
+                                            <span class="text-danger fs-11 d-block">{{ number_format($percentageDifference, 2) }}%</span>
+                                        @endif
                                     </div>
                                     <div>
                                         <span class="fw-medium text-muted mb-0 fs-14">${{ number_format($totalProfit, 2) }}</span>
@@ -559,6 +563,26 @@
                                     </div>
                                     <div>
                                         <span class="fw-medium text-muted mb-0 fs-14">{{ number_format($totalAssetQuantity, 2) }}</span>
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="list-group-item">
+                                <div class="d-flex align-items-center gap-3">
+                                    <div class="main-card-icon primary">
+                                        <div class="avatar avatar-md bg-light">
+                                            <div class="avatar avatar-sm svg-primary">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="#000000" viewBox="0 0 256 256">
+                                                    <path d="M216,56H160a16,16,0,0,0-16,16v32a16,16,0,0,0,16,16h56a16,16,0,0,0,16-16V72A16,16,0,0,0,216,56Zm0,48H160V72h56Zm0,48H160a16,16,0,0,0-16,16v32a16,16,0,0,0,16,16h56a16,16,0,0,0,16-16V168A16,16,0,0,0,216,152Zm0,48H160V168h56ZM96,56H40A16,16,0,0,0,24,72v32a16,16,0,0,0,16,16H96a16,16,0,0,0,16-16V72A16,16,0,0,0,96,56ZM96,104H40V72H96ZM96,152H40a16,16,0,0,0-16,16v32a16,16,0,0,0,16,16H96a16,16,0,0,0,16-16V168A16,16,0,0,0,96,152Zm0,48H40V168H96Z"></path>
+                                                </svg>                                                          
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="flex-fill">
+                                        <span class="fw-medium">Today’s Change</span>
+                                        <span class="text-muted fs-12 d-block">Changes</span>
+                                    </div>
+                                    <div>
+                                        <span class="fw-medium text-muted mb-0 fs-14">{{ number_format(0, 2) }}%</span>
                                     </div>
                                 </div>
                             </li>

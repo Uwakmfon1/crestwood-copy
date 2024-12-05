@@ -9,7 +9,7 @@
                 <!-- Start::header-element -->
                 <div class="header-element">
                     <div class="horizontal-logo">
-                        <a href="index.html" class="header-logo">
+                        <a href="{{ route('dashboard') }}" class="header-logo">
                             <img src="{{ asset('asset/images/logo/logo-dark.png') }}" alt="logo" class="desktop-logo">
                             <img src="{{ asset('asset/images/logo/logo-dark.png') }}" alt="logo" class="toggle-logo">
                             <img src="{{ asset('asset/images/logo/logo-dark.png') }}" alt="logo" class="desktop-dark">
