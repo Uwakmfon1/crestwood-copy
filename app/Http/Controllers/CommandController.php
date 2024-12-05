@@ -368,7 +368,7 @@ class CommandController extends Controller
 
         foreach ($stockSymbols as $chunk) {
             $symbolString = implode(',', $chunk->toArray());
-            $apiUrl = "https://financialmodelingprep.com/api/v3/quote/{$symbolString}?apikey=ExYlr0LoPC6GqCmzuScjwq79Fn4Krx77";
+            $apiUrl = "https://financialmodelingprep.com/api/v3/quote/{$symbolString}?apikey=U16Gq0PRKGgnTbltSa5423seAWtQNV0T";
 
             $response = Http::get($apiUrl);
 
@@ -412,7 +412,7 @@ class CommandController extends Controller
 
         foreach ($stockSymbols as $chunk) {
             $symbolString = implode(',', $chunk->toArray());
-            $apiUrl = "https://financialmodelingprep.com/api/v3/quote/{$symbolString}?apikey=ExYlr0LoPC6GqCmzuScjwq79Fn4Krx77";
+            $apiUrl = "https://financialmodelingprep.com/api/v3/quote/{$symbolString}?apikey=U16Gq0PRKGgnTbltSa5423seAWtQNV0T";
 
             $response = Http::get($apiUrl);
 
