@@ -23,7 +23,24 @@ class SavingsController extends Controller
 
     public function show(Saving $saving)
     {
-        return view('admin.savings.show', ['investment' => $saving, 'packages' => SavingPackage::all()]);
+        $savingsQA = Saving::with(['plan', 'answers.question', 'answers.answer'])
+            ->where('user_id', $saving->user_id)
+            ->where('id', $saving->id)
+            ->first();
+
+        $savingPayment = $saving->savingsTransactions()->get();
+
+        $total = $saving->savingsTransactions()
+        // ->where('type', 'debit')
+        ->where('status', 'success')
+        ->sum('amount');
+
+        return view('admin.savings.show', [
+            'investment' => $saving, 
+            'save' => $savingsQA,
+            'payment' => $savingPayment, 
+            'total' => $total,
+        ]);
     }
 
     public function create()
@@ -124,7 +141,7 @@ class SavingsController extends Controller
     {
         // Define all column names
         $columns = [
-            'id', 'name', 'timeframe', 'deposit', 'contribution', 'total_return', 'return_date', 'status', 'action'
+            'id', 'name', 'plan', 'status', 'date'
         ];
 
         // Determine the data to retrieve based on the requested type
@@ -199,13 +216,14 @@ class SavingsController extends Controller
             $data[] = [
                 'sn' => $i,
                 'name' => auth()->user()->can('View Users') && $saving->user 
-                    ? '<a href="' . route('admin.users.show', $saving->user['id']) . '">' . ucwords($saving->user['name']) . '</a>' 
+                    ? '<a href="' . route('admin.users.show', $saving->user['id']) . '">' . ucwords($saving->user['first_name']) . ' ' . ucwords($saving->user['last_name']) . '</a>' 
                     : ($saving->user ? ucwords($saving->user['name']) : 'Deleted Account'),
-                'timeframe' => ucfirst($saving['timeframe']),
-                'deposit' => '$ ' . number_format($saving['deposit'], 2),
-                'contribution' => '$ ' . number_format($saving['contribution'], 2),
-                'total_return' => '$ ' . number_format($saving['total_return'], 2),
-                'return_date' => $saving->return_date->format('M d, Y'),
+                'plan' => ucfirst($saving['plan']->name),
+                'date' => $saving['created_at']->format('M d, Y \a\t h:i A'),
+                // 'deposit' => '$ ' . number_format($saving['deposit'], 2),
+                // 'contribution' => '$ ' . number_format($saving['contribution'], 2),
+                // 'total_return' => '$ ' . number_format($saving['total_return'], 2),
+                // 'return_date' => $saving->return_date->format('M d, Y'),
                 'status' => $statusBadge,
                 'action' => '<div class="dropdown">
                                 <button class="btn btn-sm btn-primary" type="button" id="dropdownMenuButton3" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">

@@ -63,12 +63,9 @@
                                 <tr>
                                     <th>#</th>
                                     <th>Name</th>
-                                    <th>Timeframe</th>
-                                    <th>Deposit</th>
-                                    <th>Contribution</th>
-                                    <th>Total Return</th>
-                                    <th>Return Date</th>
+                                    <th>Plan</th>
                                     <th>Status</th>
+                                    <th>Date</th>
                                     <th>Action</th>
                                 </tr>
                             </thead>
@@ -100,12 +97,9 @@
                 "columns": [
                     { "data": "sn" },
                     { "data": "name" },
-                    { "data": "timeframe" },
-                    { "data": "deposit" },
-                    { "data": "contribution" },
-                    { "data": "total_return" },
-                    { "data": "return_date" },
+                    { "data": "plan" },
                     { "data": "status" },
+                    { "data": "date" },
                     { "data": "action" }
                 ],
                 "lengthMenu": [50, 100, 200, 500]

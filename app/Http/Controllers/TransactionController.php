@@ -181,69 +181,6 @@ class TransactionController extends Controller
 
         $user = auth()->user();
 
-        // Check Account
-        // switch ($request['account_type']) {
-        //     case 'savings':
-        //         if (!$user->hasSufficientBalance($request['amount'], 'savings')) {
-        //             return back()->withInput()->with('error', 'Insufficient savings balance');
-        //         }
-        //         $user->savingsWallet->decrement('balance', $request['amount']);
-        //         $transaction = $user->savingsWallet->walletTransactions()->create([
-        //             'user_id' => $user->id,
-        //             'amount' => $request['amount'],
-        //             'account_type' => $request['account_type'],
-        //             'type' => 'withdrawal',
-        //             'description' => 'Withdrawal from ' . $request['account_type'] . ' account',
-        //             'method' => 'wallet',
-        //             'status' => 'pending',
-        //         ]);
-        //         break;
-        //     case 'trading':
-        //         if (!$user->hasSufficientBalance($request['amount'], 'trading')) {
-        //             return back()->withInput()->with('error', 'Insufficient trading balance');
-        //         }
-        //         $user->tradingWallet->decrement('balance', $request['amount']);
-        //         $transaction = $user->tradingWallet->walletTransactions()->create([
-        //             'user_id' => $user->id,
-        //             'amount' => $request['amount'],
-        //             'account_type' => $request['account_type'],
-        //             'type' => 'withdrawal',
-        //             'description' => 'Withdrawal from ' . $request['account_type'] . ' account',
-        //             'method' => 'wallet',
-        //             'status' => 'pending',
-        //         ]);
-        //         break;
-        //     case 'investment':
-        //         if (!$user->hasSufficientBalance($request['amount'], 'investment')) {
-        //             return back()->withInput()->with('error', 'Insufficient investment balance');
-        //         }
-        //         $user->investmentWallet->decrement('balance', $request['amount']);
-        //         $transaction = $user->investmentWallet->walletTransactions()->create([
-        //             'user_id' => $user->id,
-        //             'amount' => $request['amount'],
-        //             'account_type' => $request['account_type'],
-        //             'type' => 'withdrawal',
-        //             'description' => 'Withdrawal from ' . $request['account_type'] . ' account',
-        //             'method' => 'wallet',
-        //             'status' => 'pending',
-        //         ]);
-        //         break;
-        //     default:
-        //         return back()->withInput()->with('error', 'Invalid account type');
-        // }
-
-        // $transaction = $user->wallet->walletTransactions()->create(
-        //     [
-        //         'user_id' => $user->id,
-        //         'amount' => $request['amount'],  
-        //         'account_type' => $request['account_type'],
-        //         'type' => 'debit',
-        //         'description' => 'Deposit into portfolio wallet',
-        //         'method' => 'wallet',
-        //         'status' => 'pending'
-        //     ]
-        // );
-
         if (!$user->wallet->sufficentAccountBalance($request->amount, 'wallet')){
             return back()->with('error', 'Insufficient wallet balance!');
         }
@@ -253,7 +190,8 @@ class TransactionController extends Controller
             'data_id' => 0,
             'status' => 'pending',
             'description' => 'Withdrawal Request...',
-            'method' => 'debit'
+            'method' => 'debit',
+            'type' => 'wallet'
         ]);
 
         if ($transaction) {

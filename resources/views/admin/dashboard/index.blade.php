@@ -26,15 +26,30 @@
     <div class="row">
         <div class="col-12 col-xl-12 stretch-card">
             <div class="row flex-grow">
-                <div class="col-md-4 grid-margin stretch-card">
+                <div class="col-md-6 grid-margin stretch-card">
                     <div class="card">
                         <div class="card-body">
                             <div class="d-flex justify-content-between align-items-baseline">
-                                <h6 class="card-title mb-0">Users</h6>
+                                <h6 class="card-title mb-0 font-weight-light">Users</h6>
                             </div>
                             <div class="row">
                                 <div class="col-6 col-md-12 col-xl-5">
-                                    <h6 class="font-weight-light mt-3">{{ number_format(\App\Models\User::all()->count()) }}</h6>
+                                    <h6 class="font-weight-bold mt-3">{{ number_format(\App\Models\User::all()->count()) }}</h6>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 grid-margin stretch-card">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="d-flex justify-content-between align-items-baseline">
+                                <h6 class="card-title mb-0 font-weight-light">Wallet Amount</h6>
+                            </div>
+                            <div class="row">
+                                <div class="col-6 col-md-12 col-xl-5">
+                                    <h6 class="font-weight-bold dashboard-cash-info mt-3" @if($setting['show_cash'] == 0)style="display: none;"@endif> ${{ number_format(\App\Models\Wallet::query()->sum('balance')) }}</h6>
+                                    <h6 class="font-weight-light mt-3" @if($setting['show_cash'] == 1)style="display: none;"@endif>--- </h6>
                                 </div>
                             </div>
                         </div>
@@ -44,11 +59,11 @@
                     <div class="card">
                         <div class="card-body">
                             <div class="d-flex justify-content-between align-items-baseline">
-                                <h6 class="card-title mb-0">Total Investments</h6>
+                                <h6 class="card-title mb-0 font-weight-light">Total Investments</h6>
                             </div>
                             <div class="row">
                                 <div class="col-6 col-md-12 col-xl-5">
-                                    <h6 class="font-weight-light dashboard-cash-info mt-3" @if($setting['show_cash'] == 0)style="display: none;"@endif>{{ \App\Models\Investment::query()->where('status', '!=', 'cancelled')->where('status', '!=', 'pending')->count() }}</h6>
+                                    <h6 class="font-weight-bold dashboard-cash-info mt-3" @if($setting['show_cash'] == 0)style="display: none;"@endif>{{ \App\Models\Investment::query()->where('status', '!=', 'cancelled')->where('status', '!=', 'pending')->count() }}</h6>
                                     <h6 class="font-weight-light mt-3" @if($setting['show_cash'] == 1)style="display: none;"@endif>₦ ---</h6>
                                 </div>
                             </div>
@@ -59,11 +74,11 @@
                     <div class="card">
                         <div class="card-body">
                             <div class="d-flex justify-content-between align-items-baseline">
-                                <h6 class="card-title mb-0">Active Investments</h6>
+                                <h6 class="card-title mb-0 font-weight-light">Active Investments</h6>
                             </div>
                             <div class="row">
                                 <div class="col-6 col-md-12 col-xl-5">
-                                    <h6 class="font-weight-light dashboard-cash-info mt-3" @if($setting['show_cash'] == 0)style="display: none;"@endif>₦ {{ number_format(\App\Models\Investment::query()->where('status', 'active')->sum('amount')) }}</h6>
+                                    <h6 class="font-weight-bold dashboard-cash-info mt-3" @if($setting['show_cash'] == 0)style="display: none;"@endif>$ {{ number_format(\App\Models\Investment::query()->where('status', 'active')->sum('amount')) }}</h6>
                                     <h6 class="font-weight-light mt-3" @if($setting['show_cash'] == 1)style="display: none;"@endif>₦ ---</h6>
                                 </div>
                             </div>
@@ -74,12 +89,12 @@
                     <div class="card">
                         <div class="card-body">
                             <div class="d-flex justify-content-between align-items-baseline">
-                                <h6 class="card-title mb-0">Total Traded</h6>
+                                <h6 class="card-title mb-0 font-weight-light">Trade Amount</h6>
                             </div>
                             <div class="row">
                                 <div class="col-6 col-md-12 col-xl-5">
-                                    <h6 class="font-weight-light dashboard-cash-info mt-3" @if($setting['show_cash'] == 0)style="display: none;"@endif> {{ round(\App\Models\Trade::query()->where('status', 'success')->sum('grams'), 6) }} grams</h6>
-                                    <h6 class="font-weight-light mt-3" @if($setting['show_cash'] == 1)style="display: none;"@endif>--- grams</h6>
+                                    <h6 class="font-weight-bold dashboard-cash-info mt-3" @if($setting['show_cash'] == 0)style="display: none;"@endif> ${{ round(\App\Models\Trade::query()->sum('amount'), 6) }}</h6>
+                                    <h6 class="font-weight-light mt-3" @if($setting['show_cash'] == 1)style="display: none;"@endif>--- </h6>
                                 </div>
                             </div>
                         </div>
@@ -89,12 +104,12 @@
                     <div class="card">
                         <div class="card-body">
                             <div class="d-flex justify-content-between align-items-baseline">
-                                <h6 class="card-title mb-0">Gold Wallet</h6>
+                                <h6 class="card-title mb-0 font-weight-light">Total Trade</h6>
                             </div>
                             <div class="row">
                                 <div class="col-6 col-md-12 col-xl-5">
-                                    <h6 class="font-weight-light dashboard-cash-info mt-3" @if($setting['show_cash'] == 0)style="display: none;"@endif> {{ round(\App\Models\GoldWallet::all()->sum('balance'), 6) }} grams</h6>
-                                    <h6 class="font-weight-light mt-3" @if($setting['show_cash'] == 1)style="display: none;"@endif>--- grams</h6>
+                                    <h6 class="font-weight-bold dashboard-cash-info mt-3" @if($setting['show_cash'] == 0)style="display: none;"@endif> {{ round(\App\Models\Trade::query()->count()) }} </h6>
+                                    <h6 class="font-weight-light mt-3" @if($setting['show_cash'] == 1)style="display: none;"@endif>--- </h6>
                                 </div>
                             </div>
                         </div>
@@ -104,12 +119,12 @@
                     <div class="card">
                         <div class="card-body">
                             <div class="d-flex justify-content-between align-items-baseline">
-                                <h6 class="card-title mb-0">Silver Wallet</h6>
+                                <h6 class="card-title mb-0 font-weight-light">Savings Amount</h6>
                             </div>
                             <div class="row">
                                 <div class="col-6 col-md-12 col-xl-5">
-                                    <h6 class="font-weight-light dashboard-cash-info mt-3" @if($setting['show_cash'] == 0)style="display: none;"@endif> {{ round(\App\Models\SilverWallet::all()->sum('balance'), 6) }} grams</h6>
-                                    <h6 class="font-weight-light mt-3" @if($setting['show_cash'] == 1)style="display: none;"@endif>--- grams</h6>
+                                    <h6 class="font-weight-bold dashboard-cash-info mt-3" @if($setting['show_cash'] == 0)style="display: none;"@endif>${{ round(\App\Models\SaveTransaction::query()->where('type', 'debit')->where('status', 'success')->sum('amount'), 6) }}</h6>
+                                    <h6 class="font-weight-light mt-3" @if($setting['show_cash'] == 1)style="display: none;"@endif>$ ---</h6>
                                 </div>
                             </div>
                         </div>
@@ -119,12 +134,12 @@
                     <div class="card">
                         <div class="card-body">
                             <div class="d-flex justify-content-between align-items-baseline">
-                                <h6 class="card-title mb-0">Naira Wallet</h6>
+                                <h6 class="card-title mb-0 font-weight-light">Total Savings</h6>
                             </div>
                             <div class="row">
                                 <div class="col-6 col-md-12 col-xl-5">
-                                    <h6 class="font-weight-light dashboard-cash-info mt-3" @if($setting['show_cash'] == 0)style="display: none;"@endif>₦ {{ number_format(\App\Models\User::with('wallet')->get()->sum(function ($user) { return $user->wallet->balance;}), 2) }}</h6>
-                                    <h6 class="font-weight-light mt-3" @if($setting['show_cash'] == 1)style="display: none;"@endif>₦ ---</h6>
+                                    <h6 class="font-weight-bold dashboard-cash-info mt-3" @if($setting['show_cash'] == 0)style="display: none;"@endif>{{ round(\App\Models\Saving::query()->count()) }}</h6>
+                                    <h6 class="font-weight-light mt-3" @if($setting['show_cash'] == 1)style="display: none;"@endif>$ ---</h6>
                                 </div>
                             </div>
                         </div>

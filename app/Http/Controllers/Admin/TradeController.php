@@ -161,7 +161,7 @@ class TradeController extends Controller
     {
 //        Define all column names
         $columns = [
-            'id', 'name', 'grams', 'amount', 'product', 'type', 'date', 'status', 'action'
+            'id', 'name', 'symbol', 'amount', 'quantity', 'type', 'date', 'status', 'action'
         ];
 //        Find data based on page
         switch ($type){
@@ -233,24 +233,24 @@ class TradeController extends Controller
                 $status = '<span class="badge badge-pill badge-danger">Failed</span>';
                 $disabled = 'disabled';
             }
-            if ($trade['type'] == 'buy'){
+            if ($trade['type']){
                 $type = '<span class="badge badge-success">Buy</span>';
             }else{
                 $type = '<span class="badge badge-danger">Sell</span>';
             }
-            if ($trade['product'] == 'gold'){
-                $product = '<span class="badge badge-gold">Gold</span>';
+            if ($trade['type'] == 'stocks'){
+                $product = '<span class="badge badge-gold">Stocks</span>';
             }else{
-                $product = '<span class="badge badge-silver">Silver</span>';
+                $product = '<span class="badge badge-silver">Crpyto</span>';
             }
             $datum['sn'] = $i;
             if (auth()->user()->can('View Users')){
-                $datum['name'] = '<a href="'.route('admin.users.show', $trade->user['id']).'">'.ucwords($trade->user['name']).'</a>';
+                $datum['name'] = '<a href="'.route('admin.users.show', $trade->user['id']).'">'.ucwords($trade->user['first_name']) . ' ' . ucwords($trade->user['last_name'] ).'</a>';
             }else{
                 $datum['name'] = ucwords($trade->user['name']);
             }
-            $datum['grams'] = $trade['grams'].' Grams';
-            $datum['amount'] = '₦ '.number_format($trade['amount']);
+            $datum['grams'] = ucwords($trade['symbol']);
+            $datum['amount'] = '$'.number_format($trade['amount'], 4);
             $datum['product'] = $product;
             $datum['type'] = $type;
             $datum['date'] = $trade['created_at']->format('M d, Y');

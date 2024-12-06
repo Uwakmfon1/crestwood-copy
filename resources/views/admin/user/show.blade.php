@@ -182,10 +182,10 @@
                                 <div class="col-md-6 my-2">
                                     <div class="card">
                                         <div class="card-body text-center">
-                                            <h5 class="card-title text-center">Naira Wallet</h5>
+                                            <h5 class="card-title text-center">Wallet Account</h5>
                                             <div class="my-2">
                                                 <p class="mt-3 small">Total Balance</p>
-                                                <h3 class="font-weight-light">${{ number_format($user->walletBalance(), 2) }}</h3>
+                                                <h3 class="font-weight-light">${{ number_format($user->wallet->balance, 2) }}</h3>
                                             </div>
                                             <div class="mt-3 bg-light py-3 mb-2 d-flex justify-content-around" style="border-radius: 5px">
                                                 @can('Deposit For Users')
@@ -204,151 +204,10 @@
                                         </div>
                                     </div>
                                 </div>
-{{--                                <div class="col-md-6 my-2">--}}
-{{--                                    <div class="card">--}}
-{{--                                        <div class="card-body text-center">--}}
-{{--                                            <h5 class="card-title text-center">Gold Wallet</h5>--}}
-{{--                                            <div class="my-2">--}}
-{{--                                                <p class="mt-3 small">Total Balance</p>--}}
-{{--                                                <h3 class="font-weight-light">{{ round($user->goldWallet['balance'], 6) }} grams</h3>--}}
-{{--                                            </div>--}}
-{{--                                            <div class="mt-3 bg-light py-3 mb-2 d-flex justify-content-around" style="border-radius: 5px">--}}
-{{--                                                @can('Buy Products For Users')--}}
-{{--                                                <a href="{{ route('admin.users.trades.buy', $user['id']) }}" class="btn my-2 px-4 mx-1 btn-success">--}}
-{{--                                                    <i class="fa fa-chart-line"></i>--}}
-{{--                                                    <span class="mt-1 d-block small">Buy</span>--}}
-{{--                                                </a>--}}
-{{--                                                @endcan--}}
-{{--                                                @can('Sell Products For Users')--}}
-{{--                                                <a href="{{ route('admin.users.trades.sell', $user['id']) }}" class="btn my-2 px-4 mx-1 btn-danger">--}}
-{{--                                                    <i class="fa fa-chart-line"></i>--}}
-{{--                                                    <span class="mt-1 d-block small">Sell</span>--}}
-{{--                                                </a>--}}
-{{--                                                @endcan--}}
-{{--                                            </div>--}}
-{{--                                        </div>--}}
-{{--                                    </div>--}}
-{{--                                </div>--}}
-{{--                                <div class="col-md-6 my-2">--}}
-{{--                                    <div class="card">--}}
-{{--                                        <div class="card-body text-center">--}}
-{{--                                            <h5 class="card-title text-center">Silver Wallet</h5>--}}
-{{--                                            <div class="my-2">--}}
-{{--                                                <p class="mt-3 small">Total Balance</p>--}}
-{{--                                                <h3 class="font-weight-light">{{ round($user->silverWallet['balance'], 6) }} grams</h3>--}}
-{{--                                            </div>--}}
-{{--                                            <div class="mt-3 bg-light py-3 mb-2 d-flex justify-content-around" style="border-radius: 5px">--}}
-{{--                                                @can('Buy Products For Users')--}}
-{{--                                                <a href="{{ route('admin.users.trades.buy', $user['id']) }}" class="btn my-2 px-4 mx-1 btn-success">--}}
-{{--                                                    <i class="fa fa-chart-line"></i>--}}
-{{--                                                    <span class="mt-1 d-block small">Buy</span>--}}
-{{--                                                </a>--}}
-{{--                                                @endcan--}}
-{{--                                                @can('Sell Products For Users')--}}
-{{--                                                <a href="{{ route('admin.users.trades.sell', $user['id']) }}" class="btn my-2 px-4 mx-1 btn-danger">--}}
-{{--                                                    <i class="fa fa-chart-line"></i>--}}
-{{--                                                    <span class="mt-1 d-block small">Sell</span>--}}
-{{--                                                </a>--}}
-{{--                                                @endcan--}}
-{{--                                            </div>--}}
-{{--                                        </div>--}}
-{{--                                    </div>--}}
-{{--                                </div>--}}
                             </div>
                         </div>
                     </div>
                 </div>
-{{--                <div id="trades" class="col-12 mb-5">--}}
-{{--                    <div class="card rounded">--}}
-{{--                        <div class="card-body">--}}
-{{--                            <div class="mb-5">--}}
-{{--                                <div class="d-flex mb-3 align-items-center justify-content-between">--}}
-{{--                                    <h6 class="card-title my-auto">Trades</h6>--}}
-{{--                                    <div>--}}
-{{--                                        @can('Buy Gold For Users')--}}
-{{--                                        <a href="{{ route('admin.users.trades.buy', $user['id']) }}" class="btn mx-2 btn-sm btn-success">Buy</a>--}}
-{{--                                        @endcan--}}
-{{--                                        @can('Sell Gold For Users')--}}
-{{--                                        <a href="{{ route('admin.users.trades.sell', $user['id']) }}" class="btn btn-sm btn-danger">Sell</a>--}}
-{{--                                        @endcan--}}
-{{--                                    </div>--}}
-{{--                                </div>--}}
-{{--                                <div class="table-responsive">--}}
-{{--                                    <table id="dataTableExample" class="table">--}}
-{{--                                        <thead>--}}
-{{--                                        <tr>--}}
-{{--                                            <th><i class="fas fa-list-ul"></i></th>--}}
-{{--                                            <th>Grams</th>--}}
-{{--                                            <th>Amount</th>--}}
-{{--                                            <th>Product</th>--}}
-{{--                                            <th>Type</th>--}}
-{{--                                            <th>Date</th>--}}
-{{--                                            <th>Status</th>--}}
-{{--                                            <th>Action</th>--}}
-{{--                                        </tr>--}}
-{{--                                        </thead>--}}
-{{--                                        <tbody>--}}
-{{--                                        @foreach($user->trades()->latest()->get() as $key=>$trade)--}}
-{{--                                            <tr>--}}
-{{--                                                <td>{{ $key + 1 }}</td>--}}
-{{--                                                <td>{{ $trade['grams'] }} Grams</td>--}}
-{{--                                                <td>₦ {{ number_format($trade['amount']) }}</td>--}}
-{{--                                                <td>--}}
-{{--                                                    @if($trade['product'] == 'gold')--}}
-{{--                                                        <span class="badge badge-gold">Gold</span>--}}
-{{--                                                    @else--}}
-{{--                                                        <span class="badge badge-silver">Silver</span>--}}
-{{--                                                    @endif--}}
-{{--                                                </td>--}}
-{{--                                                <td>--}}
-{{--                                                    @if($trade['type'] == 'buy')--}}
-{{--                                                        <span class="badge badge-success">Buy</span>--}}
-{{--                                                    @else--}}
-{{--                                                        <span class="badge badge-danger">Sell</span>--}}
-{{--                                                    @endif--}}
-{{--                                                </td>--}}
-{{--                                                <td>{{ $trade['created_at']->format('M d, Y') }}</td>--}}
-{{--                                                <td>--}}
-{{--                                                    @if($trade['status'] == 'success')--}}
-{{--                                                        <span class="badge badge-pill badge-success">Success</span>--}}
-{{--                                                    @elseif($trade['status'] == 'pending')--}}
-{{--                                                        <span class="badge badge-pill badge-warning">Pending</span>--}}
-{{--                                                    @elseif($trade['status'] == 'failed')--}}
-{{--                                                        <span class="badge badge-pill badge-danger">Failed</span>--}}
-{{--                                                    @endif--}}
-{{--                                                </td>--}}
-{{--                                                <td>--}}
-{{--                                                    <div class="dropdown">--}}
-{{--                                                        <button @if($trade['status'] != 'pending') disabled @endif class="btn btn-sm btn-primary" type="button" id="dropdownMenuButton3" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">--}}
-{{--                                                            Action <i class="icon-lg" data-feather="chevron-down"></i>--}}
-{{--                                                        </button>--}}
-{{--                                                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton3">--}}
-{{--                                                            @if($trade['transaction']['status'] == 'pending')--}}
-{{--                                                                <a class="dropdown-item d-flex align-items-center" onclick="event.preventDefault(); confirmFormSubmit('transactionApprove{{ $trade['id'] }}')" href="{{ route('admin.transactions.approve', $trade['transaction']['id']) }}"><i data-feather="check" class="icon-sm mr-2"></i> <span class="">Approve</span></a>--}}
-{{--                                                                <a class="dropdown-item d-flex align-items-center" onclick="event.preventDefault(); confirmFormSubmit('transactionDecline{{ $trade['id'] }}')" href="{{ route('admin.transactions.decline', $trade['transaction']['id']) }}"><i data-feather="x" class="icon-sm mr-2"></i> <span class="">Decline</span></a>--}}
-{{--                                                            @endif--}}
-{{--                                                        </div>--}}
-{{--                                                        @if($trade['transaction']['status'] == 'pending')--}}
-{{--                                                            <form id="transactionApprove{{ $trade['id'] }}" action="{{ route('admin.transactions.approve', $trade['transaction']['id']) }}" method="POST">--}}
-{{--                                                                @csrf--}}
-{{--                                                                @method('PUT')--}}
-{{--                                                            </form>--}}
-{{--                                                            <form id="transactionDecline{{ $trade['id'] }}" action="{{ route('admin.transactions.decline', $trade['transaction']['id']) }}" method="POST">--}}
-{{--                                                                @csrf--}}
-{{--                                                                @method('PUT')--}}
-{{--                                                            </form>--}}
-{{--                                                        @endif--}}
-{{--                                                    </div>--}}
-{{--                                                </td>--}}
-{{--                                            </tr>--}}
-{{--                                        @endforeach--}}
-{{--                                        </tbody>--}}
-{{--                                    </table>--}}
-{{--                                </div>--}}
-{{--                            </div>--}}
-{{--                        </div>--}}
-{{--                    </div>--}}
-{{--                </div>--}}
 
                 <div id="investments" class="col-12 mb-5">
                     <div class="card rounded">
@@ -448,18 +307,39 @@
                                     <table id="dataTableExample1" class="table">
                                         <thead>
                                         <tr>
-                                            <th><i class="fas fa-list-ul"></i></th>
-                                            <th>Package</th>
-                                            <th>Duration</th>
-                                            <th>Amount Saved</th>
-                                            <th>Amount Remaining</th>
-                                            <th>Days Left</th>
+                                            <th>S/N</th>
+                                            <th>Plan</th>
+                                            <th>Date</th>
                                             <th>Status</th>
                                             <th>Action</th>
                                         </tr>
                                         </thead>
                                         <tbody>
-                                        @foreach($user->savings()->latest()->get() as $key=>$saving)
+
+                                        @php 
+                                            $save = $user->savings;
+                                        @endphp
+                                            
+                                        @foreach($save as $key=>$saving)
+                                            <tr>
+                                                <td>{{ $key + 1 }}</td>
+                                                <td>{{ $saving->plan->name }}</td>
+                                                <td>{{ $saving['created_at']->format('M d, Y \a\t h:i A') }}</td>
+                                                <td>
+                                                    @if($saving['status'] == 'active')
+                                                        <span class="badge bg-success-transparent"><i class="ri-check-fill align-middle me-1"></i>Active</span>
+                                                    @elseif($saving['status'] == 'pending')
+                                                        <span class="badge bg-warning-transparent"><i class="ri-info-fill align-middle me-1"></i>Pending</span>
+                                                    @elseif($saving['status'] == 'cancelled')
+                                                        <span class="badge bg-danger-transparent"><i class="ri-close-fill align-middle me-1"></i>Cancelled</span>
+                                                    @elseif($saving['status'] == 'settled')
+                                                        <span class="badge bg-light text-dark"><i class="ri-reply-line align-middle me-1"></i>Settled</span>
+                                                    @endif
+                                                </td>
+                                                <td></td>
+                                            </tr>
+                                        @endforeach
+                                        {{-- @foreach($user->savings()->latest()->get() as $key=>$saving)
                                             @php 
                                                 $paid = $saving->transaction()->where('status', 'approved')->count();
                                             @endphp
@@ -499,7 +379,7 @@
                                                     </div>
                                                 </td>
                                             </tr>
-                                        @endforeach
+                                        @endforeach --}}
                                         </tbody>
                                     </table>
                                 </div>

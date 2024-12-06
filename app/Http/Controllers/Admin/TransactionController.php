@@ -158,11 +158,12 @@ class TransactionController extends Controller
         // Process transaction based on type
         $user = $transaction['user'];
 
-        // $user->updateWalletBalance('balance', $transaction->amount, 'increment');
-
         try {
-            Ledger::credit($user->wallet, $transaction->amount, 'wallet', null, 'Approved Deposit');
-
+            if ($transaction['method'] == 'credit' && $transaction['status'] == 'pending'){
+                Ledger::credit($user->wallet, $transaction->amount, 'wallet', null, 'Approved Deposit');
+            } elseif ($transaction['method'] == 'debit' && $transaction['status'] == 'pending') {
+                Ledger::debit($user->wallet, $transaction->amount, 'wallet', null, 'Approved Deposit');
+            }
             //::: Error: assign the particular deposit ::://
             $user->wallet->deposit()->update([
                 'status' => 'approved',
@@ -182,33 +183,25 @@ class TransactionController extends Controller
 
     public function decline(Transaction $transaction): \Illuminate\Http\RedirectResponse
     {
-//        Check if transaction is pending
+        // Check if transaction is pending
         if (!$transaction['status'] == 'pending'){
             return back()->with('error', 'Transaction already processed');
         }
-//        Process transaction based on type
+
+        // Process transaction based on type
         $user = $transaction['user'];
-        switch ($transaction['type']){
-            case 'withdrawal':
-                $user->nairaWallet()->increment('balance', $transaction['amount']);
-                NotificationController::sendWithdrawalCancelledNotification($transaction);
-                break;
-            case 'deposit':
-                NotificationController::sendDepositCancelledNotification($transaction);
-                break;
-            case 'others':
-                if ($transaction['investment']){
-                    $transaction->investment()->update([
-                        'status' => 'cancelled'
-                    ]);
-                    NotificationController::sendInvestmentCancelledNotification($transaction['investment']);
-                }elseif ($transaction['trade']){
-                    $transaction->trade()->update(['status' => 'failed']);
-                    NotificationController::sendTradeCancelledNotification($transaction['trade']);
-                }
-                break;
+
+        try {
+            //::: Error: assign the particular deposit ::://
+            $user->wallet->deposit()->update([
+                'status' => 'approved',
+            ]);
+            //::: Error: assign the particular deposit ::://
+        } catch (InvalidArgumentException $e) {
+            return back()->with('error', 'Error debiting wallet: ' . $e->getMessage());
         }
-//        Update transaction
+
+        // Update transaction
         if ($transaction->update(['status' => 'declined'])){
             return back()->with('success', 'Transaction declined successfully');
         }
@@ -217,7 +210,7 @@ class TransactionController extends Controller
     
     public function fetchTransactionsWithAjax(Request $request, $type)
     {
-//        Define all column names
+// Define all column names
         $columns = [
             'id', 'name', 'amount', 'description', 'date', 'id', 'method', 'channel', 'status', 'action'
         ];
@@ -227,10 +220,10 @@ class TransactionController extends Controller
                 $transactions = Transaction::query()->latest()->where('status', 'pending');
                 break;
             case 'withdrawal':
-                $transactions = Transaction::query()->latest()->where('type', 'withdrawal');
+                $transactions = Transaction::query()->latest()->where('method', 'debit')->where('type', 'wallet');
                 break;
             case 'deposit':
-                $transactions = Transaction::query()->latest()->where('type', 'deposit');
+                $transactions = Transaction::query()->latest()->where('method', 'credit')->where('type', 'wallet');
                 break;
             case 'others':
                 $transactions = Transaction::query()->latest()->where('type', 'others');

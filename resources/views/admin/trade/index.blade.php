@@ -48,12 +48,12 @@
                             <tr>
                                 <th><i class="fas fa-list-ul"></i></th>
                                 <th>Name</th>
-                                <th>Units</th>
+                                <th>Symbol</th>
                                 <th>Amount</th>
-                                <th>Product</th>
+                                <th>Asset</th>
                                 <th>Type</th>
                                 <th>Date</th>
-                                <th>Status</th>
+                                <!-- <th>Status</th> -->
                                 <th>Action</th>
                             </tr>
                             </thead>
@@ -89,7 +89,7 @@
                     { "data": "product" },
                     { "data": "type" },
                     { "data": "date" },
-                    { "data": "status" },
+                    // { "data": "status" },
                     { "data": "action" }
                 ],
                 "lengthMenu": [50, 100, 200, 500]

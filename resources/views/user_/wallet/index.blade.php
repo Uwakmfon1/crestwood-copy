@@ -277,8 +277,8 @@
                                                         <span class="badge bg-success-transparent"><i class="ri-check-fill align-middle me-1"></i>Approved</span>
                                                     @elseif($transaction['status'] == 'pending')
                                                         <span class="badge bg-warning-transparent"><i class="ri-info-fill align-middle me-1"></i>Pending</span>
-                                                    @elseif($transaction['status'] == 'decline')
-                                                        <span class="badge bg-danger-transparent"><i class="ri-close-fill align-middle me-1"></i>Decline</span>
+                                                    @elseif($transaction['status'] == 'declined')
+                                                        <span class="badge bg-danger-transparent"><i class="ri-close-fill align-middle me-1"></i>Declined</span>
                                                     @endif
                                                 </td>
                                                 <td>{{ $transaction['created_at']->format('M d, Y \a\t h:i A') }}</td>
@@ -311,13 +311,13 @@
 </div>
 <!-- End::app-content -->
 
-<!-- <div class="modal fade" id="nairaDepositModal" tabindex="-1" role="dialog" aria-labelledby="nairaDepositModalLabel" aria-hidden="true">
+<div class="modal fade" id="nairaWithdrawalModal" tabindex="-1" role="dialog" aria-labelledby="nairaWithdrawalModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document" style="max-width: 700px;">
         <div class="modal-content">
-            <form method="POST" action="{{ route('deposit') }}" id="depositForm">
+            <form method="POST" action="{{ route('withdraw') }}" id="depositForm">
                 @csrf
                 <div class="my-4">
-                    <h5 class="modal-title text-center fw-bold" id="nairaDepositModalLabel">Make a Deposit</h5>
+                    <h5 class="modal-title text-center fw-bold" id="nairaDepositModalLabel">Make a Withdrwal</h5>
                 </div>
                 <div class="modal-body">
                     <div class="row mx-auto" id="depoSelect" style="max-width: 600px;">
@@ -348,81 +348,10 @@
                     </div>
                     <div id="crypto" class="d-none">
                         <div class="row d-flex justify-content-center mx-auto" style="max-width: 600px;">
-                            <div class="col-xl-6">
-                                <label class="form-label" for="coin-select">Select Coin</label>
-                                <div class="input-group"> 
-                                    <select name="coin" id="coin-select" class="form-control py-2">
-                                        <option value="">Select Coin</option>
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="col-xl-6">
-                                <label class="form-label" for="network-select">Choose Network</label>
-                                <div class="input-group"> 
-                                    <select name="network" id="network-select" class="form-control py-2">
-                                        <option value="">Select Network</option>
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="col-xl-12 my-2">
-                                <div class="input-group"> 
-                                    <input type="number" value="{{ old('amount') }}" style="font-size: 14px; font-weight: 800;" step="any" class="form-control text-center amountDeposit" name="amount" id="" placeholder="Amount">
-                                    <button type="button" class="input-group-text btn btn-dark-light btn-wave text-dark fs-12 fw-bold">USD</button>
-                                    <input type="hidden" name="coinvalue" id="coin-value">
-                                </div>
-                                @error('amount')
-                                    <strong class="small text-danger">
-                                        {{ $message }}
-                                    </strong>
-                                @enderror
-                            </div>
-                        </div>
-
-                        <div class="my-1">
-                            <h4 class="text-center fs-13">You are about to make a deposit of <strong class="fw-bold text-primary amount-val">0 BTC</strong></h4>
-                            <p class="text-center text-muted fs-10">Exchange Rate: 1 <strong id="selected-coin-symbol"></strong>  - <span id="exchange-rate">0</span> USD</p>
-                        </div>
-                        <div>
-                            <div class="my-4">
-                                <p class="text-center fs-12 fw-medium">Carefully follow the procedures below for successful investment.</p>
-                                <div class="d-flex justify-content-center mx-auto my-2">
-                                    <img width="130" height="130" src="https://upload.wikimedia.org/wikipedia/commons/5/5e/QR_Code_example.png" alt="...">
-                                </div>
-                                <p class="text-center fs-12 fw-medium">Scan the QR code above or copy and pay to this <span class="text-primary fw-bold">CRESTWOOD</span> address below:</p>
-                            </div>
-
-                            <div class="row d-flex justify-content-center mx-auto" style="max-width: 600px;">
-                                <div class="col-xl-12">
-                                    <div class="input-group">
-                                        <button type="button" class="input-group-text btn btn-light-light btn-wave"><i class="ri-link me-2"></i></button>
-                                        <input type="text" id="address-display" name="address-display" class="form-control text-center" placeholder="Enter Method..." aria-label="Stock Quantity" value="-------" disabled>
-                                        <button type="button" class="input-group-text btn btn-dark-light btn-wave copy-btn text-primary fs-13"><i class="ri-file-copy-fill text-primary me-2"></i> Copy</button>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <input type="hidden" name="account_type" value="wallet">
-
-                            <div id="" class="alert mx-3 alert-primary mt-2">
-                                <h4 class="text-danger fs-13">Please Note</h4>
-                                <div class="">
-                                        <p class="fs-12 text-muted"> <i class="fe fe-info text-primary fs-12 me-2"></i> Please ensure you deposit the exact amount of cryptocurrency before confirming your transaction</p>
-                                </div>
-                                <div class="">
-                                        <p class="fs-12 text-muted"> <i class="fe fe-info text-primary fs-12 me-2"></i> Incase the current session closed after you made payment, you can always start a new transaction with the exact amount you deposited.</p>
-                                </div>
-                                <div class="">
-                                        <p class="fs-12 text-muted"> <i class="fe fe-info text-primary fs-12 me-2"></i> Our customer care representatives are always available for support.</p>
-                                </div>
-                            </div>
-                            <p class="text-dark fs-13 text-center fw-medium">Already made payment of <span class="fw-bold text-primary amount-val">100USD</span> to the wallet address above® <br> Click the button below to confirm transaction.</p>
-                        </div>
-                    </div>
-                    <div id="bank" class="d-none">
-                        <div class="row d-flex justify-content-center mx-auto" style="max-width: 600px;">
                             <div class="col-xl-12">
                                 <div class="input-group"> 
-                                    <input type="number" style="font-size: 14px" step="any" class="form-control amountDeposit" name="amount" id="bank-amount" placeholder="Amount">
+                                    <input type="number" style="font-size: 14px" step="any" class="form-control amountWithdraw" name="amount" id="coin-amount" placeholder="Enter amount..." required min="10">
+                                    <input type="hidden" name="account_type" id="account_type" value="crypto">
                                     <button type="button" class="input-group-text btn btn-dark-light btn-wave text-dark fs-12 fw-bold">USD</button>
                                 </div>
                                 @error('amount')
@@ -434,33 +363,75 @@
                         </div>
 
                         <div class="my-4">
-                            <h4 class="text-center fs-13">You are about to make a deposit of <strong class="fw-bold text-primary amount-val-bank">0 USD</strong></h4>
+                            <h4 class="text-center fs-13">You are about to make a withdrwal of <strong class="fw-bold text-primary amount-val-coin">0 USD</strong></h4>
+                            <p class="text-center text-muted fs-10">Exchange Rate: 1 USD - 1.00 USDT</strong></p>
+                        </div>
+                        <div class="">
+                            <div class="my-2">
+                                <p class="text-center fs-12 fw-medium">You are making a withdrwal to the following wallet detail</p>
+                            </div>
+                            <div class="row d-flex justify-content-center mx-auto">
+                                <div class="col-xl-12" style="max-width: 500px;">
+                                    <div class="input-group my-3">
+                                        <button type="button" class="input-group-text btn btn-light-light btn-wave fs-10">Name</button>
+                                        <input type="text" name="roi_method" class="form-control fw-bold" placeholder="" aria-label="Stock Quantity" value="{{ auth()->user()['first_name'] }} {{ auth()->user()['last_name'] }}" disabled>
+                                    </div>
+                                    <div class="input-group my-3">
+                                        <button type="button" class="input-group-text btn btn-light-light btn-wave fs-10">Wallet Address</button>
+                                        <input type="text" name="roi_method" class="form-control fw-bold" placeholder="" aria-label="Stock Quantity" value="{{ auth()->user()['wallet_address'] }}" disabled>
+                                    </div>
+                                    <div class="input-group my-3">
+                                        <button type="button" class="input-group-text btn btn-light-light btn-wave fs-10">Coin Network</button>
+                                        <input type="text" name="roi_method" class="form-control fw-bold" placeholder="" aria-label="Stock Quantity" value="Bitcoin Wallet" disabled>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="bank" class="d-none">
+                        <div class="row d-flex justify-content-center mx-auto" style="max-width: 600px;">
+                            <div class="col-xl-12">
+                                <div class="input-group"> 
+                                    <input type="number" style="font-size: 14px" step="any" class="form-control amountDeposit" name="amount" id="bank-amount" placeholder="Enter amount..." required min="10">
+                                    <input type="hidden" name="account_type" value="bank" id="acct_type">
+                                    <button type="button" class="input-group-text btn btn-dark-light btn-wave text-dark fs-12 fw-bold">USD</button>
+                                </div>
+                                @error('amount')
+                                    <strong class="small text-danger">
+                                        {{ $message }}
+                                    </strong>
+                                @enderror
+                            </div>
+                        </div>
+
+                        <div class="my-4">
+                            <h4 class="text-center fs-13">You are about to make a withdrwal of <strong class="fw-bold text-primary amount-val-bank">0 USD</strong></h4>
                             <p class="text-center text-muted fs-10">Exchange Rate: 1 USD - 1.00 USD</strong></p>
                         </div>
                         <div class="">
                             <div class="my-2">
-                                <p class="text-center fs-12 fw-medium">You are making a deposit into the following account detail</p>
+                                <p class="text-center fs-12 fw-medium">You are making a withdrwal to the following account detail</p>
                             </div>
                             <div class="row d-flex justify-content-center mx-auto">
                                 <div class="col-xl-12" style="max-width: 500px;">
                                     <div class="input-group my-3">
                                         <button type="button" class="input-group-text btn btn-light-light btn-wave fs-10">Account Name</button>
-                                        <input type="text" name="roi_method" class="form-control fw-bold" placeholder="Enter Method..." aria-label="Stock Quantity" value="Crestwood Capital LTD" disabled>
+                                        <input type="text" name="roi_method" class="form-control fw-bold" placeholder="" aria-label="Stock Quantity" value="{{ auth()->user()['first_name'] }} {{ auth()->user()['last_name'] }}" disabled>
                                     </div>
                                     <div class="input-group my-3">
                                         <button type="button" class="input-group-text btn btn-light-light btn-wave fs-10">Account Number</button>
-                                        <input type="text" name="roi_method" class="form-control fw-bold" placeholder="Enter Method..." aria-label="Stock Quantity" value="0092431552" disabled>
-                                        <button type="button" class="input-group-text btn btn-dark-light btn-wave copy-btn text-primary fs-13"><i class="ri-file-copy-fill text-primary me-2"></i> Copy</button>
+                                        <input type="text" name="roi_method" class="form-control fw-bold" placeholder="" aria-label="Stock Quantity" value="{{ auth()->user()['account_number'] }}" disabled>
+                                        <!-- <button type="button" class="input-group-text btn btn-dark-light btn-wave copy-btn text-primary fs-13"><i class="ri-file-copy-fill text-primary me-2"></i> Copy</button> -->
                                     </div>
                                     <div class="input-group my-3">
                                         <button type="button" class="input-group-text btn btn-light-light btn-wave fs-10">Bank Name</button>
-                                        <input type="text" name="roi_method" class="form-control fw-bold" placeholder="Enter Method..." aria-label="Stock Quantity" value="Swiss Banks LTD" disabled>
-                                        <button type="button" class="input-group-text btn btn-dark-light btn-wave copy-btn text-primary fs-13"><i class="ri-file-copy-fill text-primary me-2"></i> Copy</button>
+                                        <input type="text" name="roi_method" class="form-control fw-bold" placeholder="" aria-label="Stock Quantity" value="{{ auth()->user()['bank_name'] }}" disabled>
+                                        <!-- <button type="button" class="input-group-text btn btn-dark-light btn-wave copy-btn text-primary fs-13"><i class="ri-file-copy-fill text-primary me-2"></i> Copy</button> -->
                                     </div>
                                     <div class="input-group my-3">
                                         <button type="button" class="input-group-text btn btn-light-light btn-wave fs-10">SWISS Code</button>
-                                        <input type="text" name="roi_method" class="form-control fw-bold" placeholder="Enter Method..." aria-label="Stock Quantity" value="3352241" disabled>
-                                        <button type="button" class="input-group-text btn btn-dark-light btn-wave copy-btn text-primary fs-13"><i class="ri-file-copy-fill text-primary me-2"></i> Copy</button>
+                                        <input type="text" name="roi_method" class="form-control fw-bold" placeholder="" aria-label="Stock Quantity" value="{{ auth()->user()['swiss_code'] }}" disabled>
+                                        <!-- <button type="button" class="input-group-text btn btn-dark-light btn-wave copy-btn text-primary fs-13"><i class="ri-file-copy-fill text-primary me-2"></i> Copy</button> -->
                                     </div>
                                 </div>
                             </div>
@@ -468,78 +439,7 @@
                     </div>
                 </div>
                 <div class="modal-footer d-none" id="depositFooter">
-                    <button type="submit"  class="btn btn-primary-transparent" style="width: 100%;" >Confirm Deposit</button>
-                    <button type="button" class="btn btn-secondary-transparent" style="width: 100%;" data-bs-dismiss="modal">Close</button>
-                </div>
-            </form>
-        </div>
-    </div>
-</div> -->
-
-<div class="modal fade" id="nairaWithdrawalModal" tabindex="-1" role="dialog" aria-labelledby="nairaWithdrawalModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document" style="max-width: 700px;">
-        <div class="modal-content">
-            <form method="POST" action="{{ route('withdraw') }}" id="withdrawalForm">
-                @csrf
-                <div class="my-4">
-                    <h5 class="modal-title text-center fw-bold" id="nairaDepositModalLabel">Withdrawal</h5>
-                </div>
-                <div class="modal-body">
-                    <div class="row d-flex justify-content-center mx-auto" style="max-width: 600px;">
-                        <div class="col-xl-6">
-                            <label for="amountWithdrawal" class="form-label">Deposit Amount</label>
-                            <div class="input-group"> 
-                                <input type="number" value="{{ old('amount') }}" required style="font-size: 14px" step="any" class="form-control" name="amount" id="amountWithdrawal" placeholder="Amount" value="10">
-                                <button type="button" class="input-group-text btn btn-dark-light btn-wave text-dark fs-12 fw-bold">USD</button>
-                            </div>
-                            @error('amount')
-                                <strong class="small text-danger">
-                                    {{ $message }}
-                                </strong>
-                            @enderror
-                        </div>
-                        <div class="col-xl-6">
-                            <label class="form-label" for="duration-type">Choose withdrawal method</label>
-                            <div class="input-group"> 
-                                <select name="account_type" id="duration-type" class="form-control py-2">
-                                    <option value="coin">Cryptocurrency</option>
-                                    <option value="bank">Bank Account</option>
-                                </select>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="my-4">
-                        <h4 class="text-center fs-13">You are about to make a withdrawal of <strong class="fw-bold text-primary amount-val">-- USD</strong></h4>
-                        <p class="text-center text-muted fs-10">Exchange Rate: 1USD - 0.99928USDT</strong></p>
-                    </div>
-                    <div id="bank" class="">
-                        <div class="my-2">
-                            <p class="text-center fs-12 fw-medium">Confirm you are making a withrawal to your account detail below</p>
-                        </div>
-                        <div class="row d-flex justify-content-center mx-auto">
-                            <div class="col-xl-12" style="max-width: 500px;">
-                                <div class="input-group my-3">
-                                    <button type="button" class="input-group-text btn btn-light-light btn-wave fs-10">Account Name</button>
-                                    <input type="text" name="roi_method" class="form-control fw-bold" placeholder="Enter Method..." aria-label="Stock Quantity" value="{{ auth()->user()['account_name'] }}" disabled>
-                                    <!-- <button type="button" class="input-group-text btn btn-dark-light btn-wave increment-btn-buy text-primary fs-13"><i class="ri-file-copy-fill text-primary me-2"></i> Copy</button> -->
-                                </div>
-                                <div class="input-group my-3">
-                                    <button type="button" class="input-group-text btn btn-light-light btn-wave fs-10">Account Number</button>
-                                    <input type="text" name="roi_method" class="form-control fw-bold" placeholder="Enter Method..." aria-label="Stock Quantity" value="{{ auth()->user()['account_number'] }}" disabled>
-                                    <button type="button" class="input-group-text btn btn-dark-light btn-wave copy-btn text-primary fs-13">
-                                </div>
-                                <div class="input-group my-3">
-                                    <button type="button" class="input-group-text btn btn-light-light btn-wave fs-10">Bank Name</button>
-                                    <input type="text" name="roi_method" class="form-control fw-bold" placeholder="Enter Method..." aria-label="Stock Quantity" value="{{ auth()->user()['bank_name'] }}" disabled>
-                                    <button type="button" class="input-group-text btn btn-dark-light btn-wave copy-btn text-primary fs-13">
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="submit" id="card"  class="btn btn-primary-transparent" style="width: 100%;" >Confirm Withdrawal</button>
+                    <button type="submit"  class="btn btn-primary-transparent" style="width: 100%;" >Confirm Withdrawal</button>
                     <button type="button" class="btn btn-secondary-transparent" style="width: 100%;" data-bs-dismiss="modal">Close</button>
                 </div>
             </form>
@@ -575,7 +475,13 @@
         $('#bank-amount').on('input', function () {
             const usdAmount = parseFloat($('#bank-amount').val()) || 0;
 
-            $('.amount-val-bank').text(usdAmount.toFixed(2) + ' USD');
+            $('.amount-val-bank').text(usdAmount.toLocaleString() + ' USD');
+        });
+
+        $('#coin-amount').on('input', function () {
+            const usdAmount = parseFloat($('#coin-amount').val()) || 0;
+
+            $('.amount-val-coin').text(usdAmount.toLocaleString() + ' USD');
         });
 
         // Fetch networks and update display based on coin selection
@@ -714,7 +620,9 @@
             $('#bank').hide();
 
             // Enable all input fields inside #crypto
-            $('#crypto').find('input, select').prop('disabled', false);
+            // $('#crypto').find('input, select').prop('disabled', false);
+            $('#coin-amount').prop('disabled', false);
+            $('#account_type').prop('disabled', false);
 
             // Disable all input fields inside #bank
             $('#bank').find('input, select').prop('disabled', true);
@@ -732,6 +640,7 @@
 
             // Enable all input fields inside #bank
             $('#bank-amount').prop('disabled', false);
+            $('#acct_type').prop('disabled', false);
 
             // Disable all input fields inside #crypto
             $('#crypto').find('input, select').prop('disabled', true);

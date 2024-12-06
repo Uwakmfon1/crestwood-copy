@@ -20,32 +20,6 @@
         <ul class="nav">
             <li class="nav-item nav-category">Main</li>
             @if(auth()->user()->can('View Quick Overview') || auth()->user()->can('View Investment Dashboard') || auth()->user()->can('View Trading Dashboard'))
-{{--            <li class="nav-item @if(request()->routeIs(['admin.dashboard', 'admin.dashboard.investment', 'admin.dashboard.trading'])) active @endif">--}}
-{{--                <a class="nav-link" data-toggle="collapse" href="#dashboard" role="button" aria-expanded="false" aria-controls="investment">--}}
-{{--                    <i class="link-icon" data-feather="grid"></i>--}}
-{{--                    <span class="link-title">Dashboard</span>--}}
-{{--                    <i class="link-arrow" data-feather="chevron-down"></i>--}}
-{{--                </a>--}}
-{{--                <div class="collapse" id="dashboard">--}}
-{{--                    <ul class="nav sub-menu">--}}
-{{--                        @can('View Quick Overview')--}}
-{{--                        <li class="nav-item">--}}
-{{--                            <a href="{{ route('admin.dashboard') }}" class="nav-link @if(request()->routeIs(['admin.dashboard'])) text-primary @endif">Quick Overview</a>--}}
-{{--                        </li>--}}
-{{--                        @endcan--}}
-{{--                        @can('View Investment Dashboard')--}}
-{{--                        <li class="nav-item">--}}
-{{--                            <a href="{{ route('admin.dashboard.investment') }}" class="nav-link @if(request()->routeIs(['admin.dashboard.investment'])) text-primary @endif">Investment</a>--}}
-{{--                        </li>--}}
-{{--                        @endcan--}}
-{{--                        @can('View Trading Dashboard')--}}
-{{--                        <li class="nav-item">--}}
-{{--                            <a href="{{ route('admin.dashboard.trading') }}" class="nav-link @if(request()->routeIs(['admin.dashboard.trading'])) text-primary @endif">Trading</a>--}}
-{{--                        </li>--}}
-{{--                        @endcan--}}
-{{--                    </ul>--}}
-{{--                </div>--}}
-{{--            </li>--}}
             <li class="nav-item @if(request()->is('admin.dashboard')) active @endif">
                 <a href="{{ route('admin.dashboard') }}" class="nav-link">
                     <i class="link-icon" data-feather="grid"></i>
@@ -54,12 +28,6 @@
             </li>
             @endif
             @can('View Packages')
-            <!-- <li class="nav-item @if(request()->routeIs(['admin.packages', 'admin.packages.create', 'admin.packages.edit'])) active @endif">
-                <a href="{{ route('admin.packages') }}" class="nav-link">
-                    <i class="link-icon" data-feather="package"></i>
-                    <span class="link-title">Packages</span>
-                </a>
-            </li> -->
             <li class="nav-item @if(request()->is('admin.saving.package') || request()->routeIs(['admin.packages'])) active @endif">
                 <a class="nav-link" data-toggle="collapse" href="#savings" role="button" aria-expanded="false" aria-controls="savings">
                     <i class="link-icon" data-feather="layers"></i>
@@ -71,9 +39,9 @@
                         <li class="nav-item">
                             <a href="{{ route('admin.packages') }}" class="nav-link @if(request()->is('admin/investments') && !request('type')) text-primary @endif">Investment</a>
                         </li>
-                        <li class="nav-item">
+                        <!-- <li class="nav-item">
                             <a href="{{ route('admin.saving.package') }}" class="nav-link @if(request('type') == 'active') text-primary @endif">Savings</a>
-                        </li>
+                        </li> -->
                     </ul>
                 </div>
             </li>
@@ -104,26 +72,26 @@
             <li class="nav-item @if(request()->is('admin/investments') || request()->routeIs(['admin.investments.show'])) active @endif">
                 <a class="nav-link" data-toggle="collapse" href="#investment" role="button" aria-expanded="false" aria-controls="investment">
                     <i class="link-icon" data-feather="layers"></i>
-                    <span class="link-title">Investments @if($invs > 0) <span class="badge badge-primary badge-pill px-2">{{ $invs }}</span> @endif</span>
+                    <span class="link-title">Features @if($invs > 0) <span class="badge badge-primary badge-pill px-2">{{ $invs }}</span> @endif</span>
                     <i class="link-arrow" data-feather="chevron-down"></i>
                 </a>
                 <div class="collapse" id="investment">
                     <ul class="nav sub-menu">
                         <li class="nav-item">
-                            <a href="{{ route('admin.investments') }}" class="nav-link @if(request()->is('admin/investments') && !request('type')) text-primary @endif">All</a>
+                            <a href="{{ route('admin.investments') }}" class="nav-link @if(request()->is('admin/investments') && !request('type')) text-primary @endif">Investments</a>
                         </li>
                         <li class="nav-item">
-                            <a href="{{ route('admin.investments', ['type' => 'active']) }}" class="nav-link @if(request('type') == 'active') text-primary @endif">Active</a>
+                            <a href="{{ route('admin.savings') }}" class="nav-link @if(request('type') == 'active') text-primary @endif">Savings</a>
                         </li>
                         <li class="nav-item">
-                            <a href="{{ route('admin.investments', ['type' => 'pending']) }}" class="nav-link @if(request('type') == 'pending') text-primary @endif">Pending</a>
+                            <a href="{{ route('admin.trades') }}" class="nav-link @if(request('type') == 'pending') text-primary @endif">Trade</a>
                         </li>
-                        <li class="nav-item">
+                        <!-- <li class="nav-item">
                             <a href="{{ route('admin.investments', ['type' => 'cancelled']) }}" class="nav-link @if(request('type') == 'cancelled') text-primary @endif">Cancelled</a>
                         </li>
                         <li class="nav-item">
                             <a href="{{ route('admin.investments', ['type' => 'settled']) }}" class="nav-link @if(request('type') == 'settled') text-primary @endif">Settled</a>
-                        </li>
+                        </li> -->
                     </ul>
                 </div>
             </li>
@@ -157,12 +125,12 @@
             </li>
             @endcan
             @can('View Investments Maturity')
-            <li class="nav-item @if(request()->routeIs(['admin.investment.maturity'])) active @endif">
+            <!-- <li class="nav-item @if(request()->routeIs(['admin.investment.maturity'])) active @endif">
                 <a href="{{ route('admin.investment.maturity') }}" class="nav-link">
                     <i class="link-icon" data-feather="package"></i>
                     <span class="link-title">Investments Maturity</span>
                 </a>
-            </li>
+            </li> -->
             @endcan
             @can('View Transactions')
             <li class="nav-item @if(request()->is('admin/transactions')) active @endif">
