@@ -746,7 +746,7 @@
                                             <!-- <button class="btn bg-danger-transparent text-danger btn-wave waves-effect waves-light" data-bs-toggle="modal" data-bs-target="#exampleModal{{ $stock->id }}sell">
                                                 SELL
                                             </button> -->
-                                            <a href="{{ route('user.asset', $stock->id) }}" class="btn bg-danger-transparent text-danger btn-wave waves-effect waves-light">
+                                            <a href="{{ route('asset.view', $stock->id) }}" class="btn bg-danger-transparent text-danger btn-wave waves-effect waves-light">
                                                 SELL
                                             </a>
                                         </td>

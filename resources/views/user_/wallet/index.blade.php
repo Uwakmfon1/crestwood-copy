@@ -68,7 +68,7 @@
                         </div>
                         <hr class="text-fixed-white op-1">
                         <div>
-                            <span class="text-fixed-white op-8">My Portfolio</span>
+                            <span class="text-fixed-white op-8">Total Portfolio</span>
                             <h4 class="fw-semibold d-block text-fixed-white mt-2">
                                 {{ number_format($wallet, 2) }}
                                 <span class="fs-12 ms-1 d-inline-flex" style="margin-top: -5px;">USD</span>
@@ -102,6 +102,19 @@
                                     </div>
                                     <div class="d-flex">
                                         <span class="fs-18 fw-semibold text-start">{{ number_format($lockedFunds, 2) }} USD</span>
+                                    </div>
+                                    <div class="mt-1">  </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                <div class="text-center p-2 my-2 bg-white-transparent rounded">
+                                    <div class="d-flex">
+                                        <span class="fs-10">Performance Indicator</span>
+                                    </div>
+                                    <div class="d-flex">
+                                        <span class="fs-18 fw-semibold text-start">+0.00 USD (0.0%)</span>
                                     </div>
                                     <div class="mt-1">  </div>
                                 </div>
@@ -215,10 +228,10 @@
                                 Latest Transactions 
                             </div>
                             <div class="d-flex flex-wrap gap-2"> 
-                                <div class="dropdown"> 
+                                <!-- <div class="dropdown"> 
                                     <a href="javascript:void(0);" class="btn btn-primary btn-sm btn-wave waves-effect waves-light" data-bs-toggle="dropdown" aria-expanded="false"> Sort By<i class="ri-arrow-down-s-line align-middle ms-1 d-inline-block"></i> 
                                     </a>  
-                                </div> 
+                                </div>  -->
                             </div>
                         </div>
                         <div class="card-body p-0">

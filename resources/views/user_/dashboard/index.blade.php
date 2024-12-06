@@ -54,7 +54,7 @@
                                     </div>
                                     <div class="mt-3">
                                         <h4 class="fw-semibold mb-1">&#36;{{ number_format($savings, 2) }}</h4>
-                                        <span class="text-muted fs-12">Savings Balance
+                                        <span class="text-muted fs-12">Savings Account
                                             <!-- <span class="text-success ms-2 d-inline-block">0.45% <i class="ti ti-arrow-narrow-up"></i></span> -->
                                         </span>
 
@@ -80,7 +80,7 @@
                                     </div>
                                     <div class="mt-3">
                                         <h4 class="fw-semibold mb-1">&#36;{{ number_format($investment, 2) }}</h4>
-                                        <span class="text-muted fs-12">Investment Balance 
+                                        <span class="text-muted fs-12">Managed Investment 
                                             <!-- <span class="text-danger ms-2 d-inline-block">-1.32%<i class="ti ti-arrow-narrow-down"></i></span> -->
                                         </span>
 
@@ -108,7 +108,7 @@
                                     </div>
                                     <div class="mt-3">
                                         <h4 class="fw-semibold mb-1">&#36;{{ number_format($trading, 2) }}</h4>
-                                        <span class="text-muted fs-12">Tradning Balance
+                                        <span class="text-muted fs-12">Available Tradning Balance
                                             <!-- <span class="text-success ms-2 d-inline-block">0.45%<i class="ti ti-arrow-narrow-up"></i></span> -->
                                         </span>
 
@@ -151,12 +151,13 @@
                 <div class="row">
                     <div class="col-xxl-12 col-xl-12">
                         <div class="card custom-card card-bg-success ecommerce-card">
-                            <div class="card-header border-bottom-0">
+                            <div class="card-header border-bottom-0" style="margin-bottom: -15px;">
                                 <div class="card-title text-fixed-white">
-                                    Locked Funds
+                                    Reserved Funds
                                 </div>
+                                <p class="text-white fs-10">Funds allocated to active investment or savings</p>
                             </div>
-                            <div class="card-body p-0">
+                            <div class="p-0">
                                 <div class="d-flex align-items-start gap-3 px-3">
                                     <div class="main-card-icon secondary p-0">
                                         <div
@@ -174,9 +175,9 @@
                                         </div>
                                     </div>
                                     <div class="flex-fill">
-                                        <div class="mb-2">Overall locked funds</div>
+                                        <div class="mb-2"></div>
                                         <div class="text-muted mb-0 fs-18 d-flex align-items-center">
-                                            <h5 class="fs-26 fw-bold mb-0 flex-fill fw-medium text-fixed-white" style="margin-top: -8px;">
+                                            <h5 class="fs-26 fw-bold mb-0 flex-fill fw-medium text-fixed-white" style="margin-top: 0px;">
                                                 &#36;{{ number_format($lockedFunds, 2) }}
                                             </h5>
                                         </div>
@@ -213,15 +214,15 @@
                                 <div class="row mt-0">
                                     <div class="col-4 border-end border-inline-end-dashed text-center">
                                         <p class="text-muted mb-1 fs-10">Savings</p>
-                                        <h6 class="fw-semibold fs-14">{{ number_format($savingsPercentage, 2) }}%</h6>
+                                        <h6 class="fw-semibold fs-14"> &#36;{{ number_format($savings, 2) }}  <span class="fs-9 text-muted">{{ number_format($savingsPercentage, 2) }}% </span></h6>
                                     </div>
                                     <div class="col-4 border-end border-inline-end-dashed text-center">
                                         <p class="text-muted mb-1 fs-10">Investment</p>
-                                        <h6 class="fw-semibold fs-14">{{ number_format($investmentPercentage, 2) }}%</h6>
+                                        <h6 class="fw-semibold fs-14"> &#36;{{ number_format($investment, 2) }}  <span class="fs-9 text-muted">{{ number_format($investmentPercentage, 2) }}% </span></h6>
                                     </div>
                                     <div class="col-4 text-center">
                                         <p class="text-muted mb-1 fs-10">Trading</p>
-                                        <h6 class="fw-semibold fs-14">{{ number_format($tradingPercentage, 2) }}%</h6>
+                                        <h6 class="fw-semibold fs-14"> &#36;{{ number_format($trading, 2) }}  <span class="fs-9 text-muted">{{ number_format($tradingPercentage, 2) }}% </span></h6>
                                     </div>
                                 </div>
                             </div>
