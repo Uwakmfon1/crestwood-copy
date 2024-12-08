@@ -1,6 +1,10 @@
 @extends('layouts.user.index')
 
+@section('styles')
+
 <link rel="stylesheet" href="{{ asset('asset/libs/swiper/swiper-bundle.min.css') }}">
+
+@endsection
 
 @section('content')
 <!-- Start::app-content -->
@@ -53,11 +57,14 @@
                                         </div>
                                     </div>
                                     <div class="mt-3">
-                                        <h4 class="fw-semibold mb-1">&#36;{{ number_format($savings, 2) }}</h4>
+                                        <h4 class="fw-semibold mb-1">&#36;{{ number_format($savings, 2) }} 
+                                            <span class="text-success ms-2 d-inline-block fs-12">0.45% <i class="ti ti-arrow-narrow-up"></i></span>
+                                        </h4>
                                         <span class="text-muted fs-12">Savings Account
-                                            <!-- <span class="text-success ms-2 d-inline-block">0.45% <i class="ti ti-arrow-narrow-up"></i></span> -->
+                                            <a href="javascript:void(0);" data-bs-toggle="tooltip" data-bs-custom-class="tooltip-dark" title="Total value of funds across all savings accounts." class="text-muted mx-1">
+                                                <i class="fe fe-info"></i>
+                                            </a>
                                         </span>
-
                                     </div>
                                 </div>
                             </div>
@@ -79,11 +86,14 @@
                                         </div>
                                     </div>
                                     <div class="mt-3">
-                                        <h4 class="fw-semibold mb-1">&#36;{{ number_format($investment, 2) }}</h4>
-                                        <span class="text-muted fs-12">Managed Investment 
-                                            <!-- <span class="text-danger ms-2 d-inline-block">-1.32%<i class="ti ti-arrow-narrow-down"></i></span> -->
+                                        <h4 class="fw-semibold mb-1">&#36;{{ number_format($investment, 2) }} 
+                                            <span class="text-success ms-2 d-inline-block fs-12">3.5% <i class="ti ti-arrow-narrow-up"></i></span>
+                                        </h4>
+                                        <span class="text-muted fs-12">Managed Investment
+                                            <a href="javascript:void(0);" data-bs-toggle="tooltip" data-bs-custom-class="tooltip-dark" title="Total value of investments across all packages." class="text-muted mx-1">
+                                                <i class="fe fe-info"></i>
+                                            </a>
                                         </span>
-
                                     </div>
                                 </div>
                             </div>
@@ -107,11 +117,14 @@
                                         </div>
                                     </div>
                                     <div class="mt-3">
-                                        <h4 class="fw-semibold mb-1">&#36;{{ number_format($trading, 2) }}</h4>
+                                        <h4 class="fw-semibold mb-1">&#36;{{ number_format($trading, 2) }} 
+                                            <span class="text-success ms-2 d-inline-block fs-12">0.05% <i class="ti ti-arrow-narrow-up"></i></span>
+                                        </h4>
                                         <span class="text-muted fs-12">Available Tradning Balance
-                                            <!-- <span class="text-success ms-2 d-inline-block">0.45%<i class="ti ti-arrow-narrow-up"></i></span> -->
+                                            <a href="javascript:void(0);" data-bs-toggle="tooltip" data-bs-custom-class="tooltip-dark" title="Funds available for placing new trades." class="text-muted mx-1">
+                                                <i class="fe fe-info"></i>
+                                            </a>
                                         </span>
-
                                     </div>
                                 </div>
                             </div>
@@ -152,10 +165,12 @@
                     <div class="col-xxl-12 col-xl-12">
                         <div class="card custom-card card-bg-success ecommerce-card">
                             <div class="card-header border-bottom-0" style="margin-bottom: -15px;">
-                                <div class="card-title text-fixed-white">
+                                <div class="card-title text-fixed-white mb-4">
                                     Reserved Funds
+                                    <a href="javascript:void(0);" data-bs-toggle="tooltip" data-bs-custom-class="tooltip-dark" title="Funds allocated to active investment or savings" class="text-fixed-white mx-1">
+                                        <i class="fe fe-info"></i>
+                                    </a>
                                 </div>
-                                <p class="text-white fs-10">Funds allocated to active investment or savings</p>
                             </div>
                             <div class="p-0">
                                 <div class="d-flex align-items-start gap-3 px-3">
@@ -733,7 +748,7 @@
 <script src="{{ asset('asset/js/stocks-dashboard.js') }}"></script>
 
 <!-- Custom JS -->
-<script src="{{ asset('asset/js/custom.js') }}"></script>
+<!-- <script src="{{ asset('asset/js/custom.js') }}"></script> -->
 
 <script>
     // Convert the PHP data into JavaScript arrays

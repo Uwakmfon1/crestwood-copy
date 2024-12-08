@@ -79,7 +79,11 @@
                                             </div>
                                         </div>
                                     <div class="lh-1">
-                                        <span class="d-block mb-2 fw-medium">Available Crypto Balance</span>
+                                        <span class="d-block mb-2 fw-medium">Available Crypto Balance 
+                                            <a href="javascript:void(0);" data-bs-toggle="tooltip" data-bs-custom-class="tooltip-primary" title="Funds available for purchasing or trading cryptocurrencies." class="text-muted mx-1">
+                                                <i class="fe fe-info"></i>
+                                            </a>
+                                        </span>
                                         <h4 class="mb-1 fw-semibold">${{ number_format($balance, 2) }}</h4>
                                     </div>
                                 </div>
@@ -115,9 +119,9 @@
                                         </div>
                                     <div class="lh-1">
                                         <span class="d-block mb-2 fw-medium">Investing
-                                            <!-- <a href="javascript:void(0);" data-bs-toggle="tooltip" data-bs-custom-class="tooltip-primary" title="Select Package Investment" class="text-primary mx-1">
+                                            <a href="javascript:void(0);" data-bs-toggle="tooltip" data-bs-custom-class="tooltip-primary" title="The total value of all cryptocurrencies currently held." class="text-muted mx-1">
                                                 <i class="fe fe-info"></i>
-                                            </a> -->
+                                            </a>
                                         </span>
                                         <h4 class="mb-0 fw-semibold mb-1">${{ number_format($totalAmount, 2) }}</h4>
                                     </div>
@@ -469,9 +473,12 @@
                         <!-- <div class="card custom-card bg-primary"> -->
                             <div class="card-body p-2">
                                 <div class="">
-                                    <div class="text-fixed-dark mb-2">Crypto Portfolio  <span class="ms-2 d-inline-block text-success op-5"><span class="text-success fs-12 d-block">+1.5%</span></span>
+                                    <div class="text-fixed-dark mb-2">Crypto Portfolio Value
+                                            <a href="javascript:void(0);" data-bs-toggle="tooltip" data-bs-custom-class="tooltip-primary" title="The total value of all cryptocurrencies currently held." class="text-muted mx-1">
+                                                <i class="fe fe-info"></i>
+                                            </a>
                                     </div>
-                                    <h4 class="fw-semibold mb-0 text-fixed-dark">${{ number_format($equityBalance, 2) }}</h4>
+                                    <h4 class="fw-semibold mb-0 text-fixed-dark">${{ number_format($equityBalance, 2) }}  <span class="ms-2 d-inline-block text-success op-5"><span class="text-success fs-12 d-block">+1.5%</span></span></h4>
                                 </div>
                             </div>
                         <!-- </div> -->
@@ -570,7 +577,11 @@
                                         </div>
                                     </div>
                                     <div class="flex-fill">
-                                        <span class="fw-medium">Today’s Change</span>
+                                        <span class="fw-medium">Today’s Change 
+                                            <a href="javascript:void(0);" data-bs-toggle="tooltip" data-bs-custom-class="tooltip-primary" title="The dollar and percentage change in your crypto portfolio value for the current trading day." class="text-muted mx-1">
+                                                <i class="fe fe-info"></i>
+                                            </a>
+                                        </span>
                                         <span class="text-success fs-12 d-block">{{ number_format($totalProfit, 2) }}%</span>
                                     </div>
                                     <div>

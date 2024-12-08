@@ -68,7 +68,11 @@
                         </div>
                         <hr class="text-fixed-white op-1">
                         <div>
-                            <span class="text-fixed-white op-8">Total Portfolio</span>
+                            <span class="text-fixed-white op-8">Total Portfolio Value 
+                                <a href="javascript:void(0);" data-bs-toggle="tooltip" data-bs-custom-class="tooltip-dark" title="The total value of all funds in your account, including savings, investments, and trading balances." class="text-fixed-white mx-1">
+                                    <i class="fe fe-info"></i>
+                                </a>
+                            </span>
                             <h4 class="fw-semibold d-block text-fixed-white mt-2">
                                 {{ number_format($wallet, 2) }}
                                 <span class="fs-12 ms-1 d-inline-flex" style="margin-top: -5px;">USD</span>
@@ -78,7 +82,11 @@
                             <div class="col">
                                 <div class="text-center p-2 my-2 bg-white-transparent rounded">
                                     <div class="d-flex">
-                                        <span class="fs-10">Available Balance</span>
+                                        <span class="fs-10">Available Balance 
+                                            <a href="javascript:void(0);" data-bs-toggle="tooltip" data-bs-custom-class="tooltip-dark" title="Funds available for withdrawal or transfer, not currently in use." class="text-fixed-white mx-1">
+                                                <i class="fe fe-info"></i>
+                                            </a>
+                                        </span>
                                     </div>
                                     <div class="d-flex">
                                         <span class="fs-18 fw-semibold text-start">{{ number_format($cash, 2) }} USD</span>
@@ -98,7 +106,11 @@
                                                 </path>
                                             </svg>
                                         </span> -->
-                                        <span class="fs-10">Locked Cash</span>
+                                        <span class="fs-10">Locked Cash 
+                                            <a href="javascript:void(0);" data-bs-toggle="tooltip" data-bs-custom-class="tooltip-dark" title="Funds actively tied up in investments or savings." class="text-fixed-white mx-1">
+                                                <i class="fe fe-info"></i>
+                                            </a>
+                                        </span>
                                     </div>
                                     <div class="d-flex">
                                         <span class="fs-18 fw-semibold text-start">{{ number_format($lockedFunds, 2) }} USD</span>
@@ -107,27 +119,14 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="row">
-                            <div class="col">
-                                <div class="text-center p-2 my-2 bg-white-transparent rounded">
-                                    <div class="d-flex">
-                                        <span class="fs-10">Performance Indicator</span>
-                                    </div>
-                                    <div class="d-flex">
-                                        <span class="fs-18 fw-semibold text-start">+0.00 USD (0.0%)</span>
-                                    </div>
-                                    <div class="mt-1">  </div>
-                                </div>
-                            </div>
-                        </div>
                     </div>
                 </div>
-                <div class="card custom-card bg-dark py-2">
+                <div class="card custom-card bg-black pb-4 py-2">
                     <div class="card-body p-4">
                         <div class="">
-                            <div class="text-fixed-white mb-2">Ledger Balance<span class="ms-2 d-inline-block text-fixed-white op-5"><i class="fe fe-arrow-up-right"></i>0.25%</span>
+                            <div class="text-fixed-white mb-2">Performance Indicator<span class="ms-2 d-inline-block text-fixed-white op-5"><i class="fe fe-arrow-up-right"></i></span>
                             </div>
-                            <h4 class="fw-semibold mb-0 text-fixed-white">0.00 <sub class="fs-12 op-8 d-inline-flex">USD</sub></h4>
+                            <h4 class="fw-semibold mb-0 text-fixed-white">$0.00 <sub class="fs-12 op-8 d-inline-flex">0.0%</sub></h4>
                         </div>
                     </div>
                 </div>
@@ -139,7 +138,11 @@
                             <div class="card-body p-4">
                                 <div class="d-flex align-items-start justify-content-between">
                                     <div>
-                                        <div class="mb-1 text-muted">Savings Balance</div>
+                                        <div class="mb-1 text-muted">Savings Balance
+                                            <a href="javascript:void(0);" data-bs-toggle="tooltip" data-bs-custom-class="tooltip-dark" title="Funds available to contribute to your savings account." class="text-muted mx-1">
+                                                <i class="fe fe-info"></i>
+                                            </a>
+                                        </div>
                                         <h4 class="fw-semibold mb-0">
                                             ${{ number_format($savings, 2) }}
                                         </h4>
@@ -161,7 +164,11 @@
                             <div class="card-body p-4">
                                 <div class="d-flex align-items-start justify-content-between">
                                     <div>
-                                        <div class="mb-1 text-muted">Investment Balance</div>
+                                        <div class="mb-1 text-muted">Investment Balance
+                                            <a href="javascript:void(0);" data-bs-toggle="tooltip" data-bs-custom-class="tooltip-dark" title="Funds available to invest in managed investment packages." class="text-muted mx-1">
+                                                <i class="fe fe-info"></i>
+                                            </a>
+                                        </div>
                                         <h4 class="fw-semibold mb-0">
                                             ${{ number_format($investment, 2) }}
                                         </h4>
@@ -183,7 +190,11 @@
                             <div class="card-body p-4">
                                 <div class="d-flex align-items-start justify-content-between">
                                     <div>
-                                        <div class="mb-1 text-muted">Trading balance</div>
+                                        <div class="mb-1 text-muted">Trading balance
+                                            <a href="javascript:void(0);" data-bs-toggle="tooltip" data-bs-custom-class="tooltip-dark" title="Funds available to trade in stocks or crypto markets." class="text-muted mx-1">
+                                                <i class="fe fe-info"></i>
+                                            </a>
+                                        </div>
                                         <h4 class="fw-semibold mb-0">
                                             ${{ number_format($trading, 2) }}
                                         </h4>

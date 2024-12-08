@@ -11,8 +11,8 @@
     </div>
     <div class="modal-body">
         <div class="form-group">
-            <label for="amountDeposit" class="form-label fw-semibold">Amount</label>
-            <input type="number" value="{{ old('amount') }}" required step="any" class="form-control" name="amount" id="amountDeposit" placeholder="Enter amount">
+            <label for="amountDeposit" class="form-label fw-semibold">Amount to Transfer</label>
+            <input type="number" value="{{ old('amount') }}" required step="any" class="form-control" name="amount" id="amountDeposit" placeholder="Enter amount to transfer.">
             @error('amount')
                 <strong class="small text-danger">{{ $message }}</strong>
             @enderror
@@ -24,7 +24,7 @@
                 <label for="fromAccount" class="form-label fw-semibold">From Account</label>
                 <span id="fromAccountBalance" class="text-end text-primary fw-semibold"></span>
             </div>
-            <select name="from_account" class="form-control" required id="fromAccount">
+            <select name="from_account" class="form-control" required id="fromAccount" readonly>
                 <option value="wallet" selected>Portfolio Wallet</option>
                 <option value="save">Savings Wallet</option>
                 <option value="trade">Trading Wallet</option>
@@ -62,13 +62,15 @@
 <script>
 $(document).ready(function() {
     // Function to initialize the modal
+    $('#transferButton').attr('disabled', true);
+    
     function initModal(toAccount, toAccountDisplayName) {
         // Set the "To Account" input values
         $('#toAccountValue').val(toAccount);
         $('#toAccountDisplay').val(toAccountDisplayName);
 
         // Set modal title dynamically
-        $('#modalTitle').text('Top up ' + toAccountDisplayName);
+        $('#modalTitle').text('Transfer Funds to ' + toAccountDisplayName);
 
         // Remove the selected option from the "From Account" dropdown
         $('#fromAccount option').each(function() {
@@ -120,19 +122,39 @@ $(document).ready(function() {
         initModal('trade', 'Trading Wallet');
     });
 
-    // Example: Trigger modal for trading page
     $('#openSWalletModal').on('click', function() {
-        $('#fromAccount').val('save'); // Default to Savings Wallet
-        initModal('wallet', 'Portfolio Wallet');
+    $('#fromAccount').val('save');
+    $('#fromAccount option').each(function() {
+        if ($(this).val() !== 'save') {
+            $(this).attr('hidden', true);
+        } else {
+            $(this).removeAttr('hidden');
+        }
     });
+    initModal('wallet', 'Portfolio Wallet');
+});
 
     $('#openIWalletModal').on('click', function() {
         $('#fromAccount').val('invest'); // Default to Savings Wallet
+        $('#fromAccount option').each(function() {
+        if ($(this).val() !== 'invest') {
+            $(this).attr('hidden', true);
+        } else {
+            $(this).removeAttr('hidden');
+        }
+    });
         initModal('wallet', 'Portfolio Wallet');
     });
 
     $('#openTWalletModal').on('click', function() {
         $('#fromAccount').val('trade'); // Default to Savings Wallet
+        $('#fromAccount option').each(function() {
+        if ($(this).val() !== 'trade') {
+            $(this).attr('hidden', true);
+        } else {
+            $(this).removeAttr('hidden');
+        }
+    });
         initModal('wallet', 'Portfolio Wallet');
     });
 
@@ -145,9 +167,11 @@ $(document).ready(function() {
         updateFromAccountBalance();
 
         if (!isNaN(amount) && amount > 0) {
-            $('#summaryText').html(`A sum of <strong>$${amount.toFixed(2)}</strong> will be transferred from <strong>${fromAccount}</strong> to <strong>${toAccount}</strong>.`);
+            $('#summaryText').html(`You are transferring funds from your <strong>${fromAccount}</strong> to your <strong>${toAccount}</strong>.`);
+            $('#transferButton').attr('disabled', false);
         } else {
-            $('#summaryText').html('Please enter a valid amount.');
+            $('#summaryText').html('Please enter a valid transfer amount.');
+            $('#transferButton').attr('disabled', true);
         }
     }
 
