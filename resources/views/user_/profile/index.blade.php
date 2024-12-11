@@ -1,5 +1,11 @@
 @extends('layouts.user.index')
 
+@section('styles')
+
+<link rel="stylesheet" href="{{ asset('asset/libs/swiper/swiper-bundle.min.css') }}">
+
+@endsection
+
 <style>
     .account_select {
         border-radius: 20px !important; 
@@ -98,64 +104,53 @@
                                     </div>
                                     <div>
                                         <p class="fw-semibold h6 mb-0">${{ number_format($balance, 2)  }}</p>
-                                        <p class="mb-0 fs-12 text-muted fw-medium">Wallet</p>
+                                        <p class="mb-0 fs-12 text-muted fw-medium">Account Balance</p>
                                     </div>
                                 </div>
                                 <div class="py-2 px-3 rounded d-flex align-items-center border gap-3">
                                     <div class="main-card-icon primary">
                                         <div class="avatar avatar-sm bg-primary-transparent svg-primary">
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32"
-                                                fill="#000000" viewBox="0 0 256 256">
-                                                <path
-                                                    d="M224,118.31V200a8,8,0,0,1-8,8H40a8,8,0,0,1-8-8V118.31h0A191.14,191.14,0,0,0,128,144,191.08,191.08,0,0,0,224,118.31Z"
-                                                    opacity="0.2"></path>
-                                                <path
-                                                    d="M104,112a8,8,0,0,1,8-8h32a8,8,0,0,1,0,16H112A8,8,0,0,1,104,112ZM232,72V200a16,16,0,0,1-16,16H40a16,16,0,0,1-16-16V72A16,16,0,0,1,40,56H80V48a24,24,0,0,1,24-24h48a24,24,0,0,1,24,24v8h40A16,16,0,0,1,232,72ZM96,56h64V48a8,8,0,0,0-8-8H104a8,8,0,0,0-8,8ZM40,72v41.62A184.07,184.07,0,0,0,128,136a184,184,0,0,0,88-22.39V72ZM216,200V131.63A200.25,200.25,0,0,1,128,152a200.19,200.19,0,0,1-88-20.36V200H216Z">
-                                                </path>
-                                            </svg>
+                                            <i class="bi bi-coin fs-15"></i>
                                         </div>
                                     </div>
                                     <div>
                                         <p class="fw-semibold h6 mb-0">{{ number_format($trading)  }}</p>
-                                        <p class="mb-0 fs-12 text-muted fw-medium">Trade</p>
+                                        <p class="mb-0 fs-12 text-muted fw-medium">Trade 
+                                            <a href="javascript:void(0);" data-bs-toggle="tooltip" data-bs-custom-class="tooltip-dark" title="Number of executed trades in this account." class="text-muted mx-1">
+                                                <i class="fe fe-info"></i>
+                                            </a>
+                                        </p>
                                     </div>
                                 </div>
                                 <div class="py-2 px-3 rounded d-flex align-items-center border gap-3">
                                     <div class="main-card-icon success">
                                         <div class="avatar avatar-sm bg-primary-transparent svg-primary">
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32"
-                                                fill="#000000" viewBox="0 0 256 256">
-                                                <path
-                                                    d="M208,40H48a8,8,0,0,0-8,8V208a8,8,0,0,0,8,8H208a8,8,0,0,0,8-8V48A8,8,0,0,0,208,40ZM57.78,216A72,72,0,0,1,128,160a40,40,0,1,1,40-40,40,40,0,0,1-40,40,72,72,0,0,1,70.22,56Z"
-                                                    opacity="0.2"></path>
-                                                <path
-                                                    d="M208,32H48A16,16,0,0,0,32,48V208a16,16,0,0,0,16,16H208a16,16,0,0,0,16-16V48A16,16,0,0,0,208,32ZM96,120a32,32,0,1,1,32,32A32,32,0,0,1,96,120ZM68.67,208A64.45,64.45,0,0,1,87.8,182.2a64,64,0,0,1,80.4,0A64.45,64.45,0,0,1,187.33,208ZM208,208h-3.67a79.87,79.87,0,0,0-46.69-50.29,48,48,0,1,0-59.28,0A79.87,79.87,0,0,0,51.67,208H48V48H208V208Z">
-                                                </path>
-                                            </svg>
+                                            <i class="bi bi-patch-check fs-15"></i>
                                         </div>
                                     </div>
                                     <div>
-                                        <p class="fw-semibold h6 mb-0">{{ number_format($savings)  }}</p>
-                                        <p class="mb-0 fs-12 text-muted fw-medium">Savings</p>
+                                        <p class="fw-semibold h6 mb-0">{{ number_format($savings)  }}
+                                        </p>
+                                        <p class="mb-0 fs-12 text-muted fw-medium">Savings
+                                            <a href="javascript:void(0);" data-bs-toggle="tooltip" data-bs-custom-class="tooltip-dark" title="Active savings accounts linked to this profile." class="text-muted mx-1">
+                                                <i class="fe fe-info"></i>
+                                            </a>
+                                        </p>
                                     </div>
                                 </div>
                                 <div class="py-2 px-3 rounded d-flex align-items-center border gap-3">
                                     <div class="main-card-icon success">
                                         <div class="avatar avatar-sm bg-primary-transparent svg-primary">
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32"
-                                                fill="#000000" viewBox="0 0 256 256">
-                                                <path
-                                                    d="M208,40H48a8,8,0,0,0-8,8V208a8,8,0,0,0,8,8H208a8,8,0,0,0,8-8V48A8,8,0,0,0,208,40ZM57.78,216A72,72,0,0,1,128,160a40,40,0,1,1,40-40,40,40,0,0,1-40,40,72,72,0,0,1,70.22,56Z"
-                                                    opacity="0.2"></path>
-                                                <path
-                                                    d="M208,32H48A16,16,0,0,0,32,48V208a16,16,0,0,0,16,16H208a16,16,0,0,0,16-16V48A16,16,0,0,0,208,32ZM96,120a32,32,0,1,1,32,32A32,32,0,0,1,96,120ZM68.67,208A64.45,64.45,0,0,1,87.8,182.2a64,64,0,0,1,80.4,0A64.45,64.45,0,0,1,187.33,208ZM208,208h-3.67a79.87,79.87,0,0,0-46.69-50.29,48,48,0,1,0-59.28,0A79.87,79.87,0,0,0,51.67,208H48V48H208V208Z">
-                                                </path>
-                                            </svg>
+                                            <i class="bi bi-card-list fs-15"></i>
                                         </div>
                                     </div>
                                     <div>
                                         <p class="fw-semibold h6 mb-0">{{ number_format($savings)  }}</p>
-                                        <p class="mb-0 fs-12 text-muted fw-medium">Investment</p>
+                                        <p class="mb-0 fs-12 text-muted fw-medium">Investment
+                                            <a href="javascript:void(0);" data-bs-toggle="tooltip" data-bs-custom-class="tooltip-dark" title="Active investment packages under this account." class="text-muted mx-1">
+                                                <i class="fe fe-info"></i>
+                                            </a>
+                                        </p>
                                     </div>
                                 </div>
                             </div>
@@ -173,8 +168,8 @@
                                         <button class="nav-link text-start" id="acct-type-tab" data-bs-toggle="pill" data-bs-target="#acct-type" type="button" role="tab" aria-controls="acct-type" aria-selected="false" tabindex="-1"><i class="ri-u-disk-line me-1 align-middle d-inline-block"></i>Account Type</button>
                                         <button class="nav-link text-start" id="man-password-tab" data-bs-toggle="pill" data-bs-target="#man-password" type="button" role="tab" aria-controls="man-password" aria-selected="false" tabindex="-1"><i class="ri-u-disk-line me-1 align-middle d-inline-block"></i>Payment Methond</button>
                                         <button class="nav-link text-start" id="main-team-tab" data-bs-toggle="pill" data-bs-target="#main-team" type="button" role="tab" aria-controls="main-team" aria-selected="false" tabindex="-1"><i class="ri-group-line me-1 align-middle d-inline-block"></i>Personal Information (KYC)</button>
-                                        <button class="nav-link text-start" id="main-kyc-tab" data-bs-toggle="pill" data-bs-target="#main-kyc" type="button" role="tab" aria-controls="main-kyc" aria-selected="false" tabindex="-1"><i class="ri-group-line me-1 align-middle d-inline-block"></i>Other KYC</button>
-                                        <button class="nav-link text-start" id="main-nextkin-tab" data-bs-toggle="pill" data-bs-target="#main-nextkin" type="button" role="tab" aria-controls="main-nextkin" aria-selected="false" tabindex="-1"><i class="ri-group-line me-1 align-middle d-inline-block"></i>Next of kin</button>
+                                        <button class="nav-link text-start" id="main-kyc-tab" data-bs-toggle="pill" data-bs-target="#main-kyc" type="button" role="tab" aria-controls="main-kyc" aria-selected="false" tabindex="-1"><i class="ri-group-line me-1 align-middle d-inline-block"></i>Additional Verification</button>
+                                        <!-- <button class="nav-link text-start" id="main-nextkin-tab" data-bs-toggle="pill" data-bs-target="#main-nextkin" type="button" role="tab" aria-controls="main-nextkin" aria-selected="false" tabindex="-1"><i class="ri-group-line me-1 align-middle d-inline-block"></i>Next of kin</button> -->
                                         <button class="nav-link text-start" id="main-billing-tab" data-bs-toggle="pill" data-bs-target="#main-billing" type="button" role="tab" aria-controls="main-billing" aria-selected="false" tabindex="-1"><i class="ri-bill-line me-1 align-middle d-inline-block"></i>Identity & Verification</button>
                                         <button class="nav-link text-start" id="main-password-tab" data-bs-toggle="pill" data-bs-target="#main-password" type="button" role="tab" aria-controls="main-password" aria-selected="false" tabindex="-1"><i class="ri-user-line me-1 align-middle d-inline-block"></i>Password</button>
                                         </div>
@@ -263,17 +258,20 @@
                                                             <label for="flexCheckChecked1" style="width: 100%; margin: 10px 0px;">
                                                                 <div class="form-check d-flex align-items-center gap-1 py-3 px-2 account_select">
                                                                     <div>
-                                                                        <span class="avatar avatar-md avatar-rounded bg-success-transparent">
-                                                                            <i class="bi bi-hospital"></i>
+                                                                        <span class="avatar avatar-md avatar-rounded bg-success-transparent mx-2">
+                                                                            <i class="bi bi-graph-up"></i>
                                                                         </span>
                                                                     </div>
                                                                     <div class="flex-fill">
                                                                         <label class="form-check-label d-block fw-medium fs-14" for="flexCheckChecked1">Savings Account</label>
-                                                                        <span class="fs-11 text-muted">Lorem, ipsum dolor sit.</span>
+                                                                        <span class="fs-10 text-muted mt-4">A secure account for holding funds with competitive interest rates tailored to your needs.</span>
                                                                     </div>
                                                                     <div>
-                                                                        <input class="form-check-input form-checked-success rounded-circle" type="checkbox" value="" id="flexCheckChecked1" name="test[]" checked>
+                                                                        <input class="form-check-input form-checked-success rounded-circle mx-2" type="checkbox" value="" id="flexCheckChecked1" name="test[]" checked>
                                                                     </div>
+                                                                </div>
+                                                                <div class="mx-2 my-2">
+                                                                    <a href="{{ route('savings') }}" class="text-primary fs-10">Manage Account</a> <i class="fe fe-arrow-right me-2 align-middle d-inline-block text-primary fs-10"></i>
                                                                 </div>
                                                             </label>
                                                         </div>
@@ -281,17 +279,20 @@
                                                             <label for="flexCheckChecked2" style="width: 100%; margin: 10px 0px;">
                                                                 <div class="form-check d-flex align-items-center gap-1 py-3 px-2 account_select">
                                                                     <div>
-                                                                        <span class="avatar avatar-md avatar-rounded bg-orange-transparent">
-                                                                            <i class="bi bi-hospital"></i>
+                                                                        <span class="avatar avatar-md avatar-rounded bg-orange-transparent mx-2">
+                                                                            <i class="bi bi-card-list"></i>
                                                                         </span>
                                                                     </div>
                                                                     <div class="flex-fill">
                                                                         <label class="form-check-label d-block fw-medium fs-14" for="flexCheckChecked2">Investment Account</label>
-                                                                        <span class="fs-11 text-muted">Lorem, ipsum dolor sit.</span>
+                                                                        <span class="fs-10 text-muted mt-4">A flexible account for trading stocks, cryptocurrencies, and other financial instruments.</span>
                                                                     </div>
                                                                     <div>
-                                                                        <input class="form-check-input form-checked-warning rounded-circle" type="checkbox" value="" id="flexCheckChecked2" name="test[]" checked>
+                                                                        <input class="form-check-input form-checked-warning rounded-circle mx-2" type="checkbox" value="" id="flexCheckChecked2" name="test[]" checked>
                                                                     </div>
+                                                                </div>
+                                                                <div class="mx-2 my-2">
+                                                                    <a href="{{ route('investments') }}" class="text-primary fs-10">Manage Account</a> <i class="fe fe-arrow-right me-2 align-middle d-inline-block text-primary fs-10"></i>
                                                                 </div>
                                                             </label>
                                                         </div>
@@ -299,17 +300,20 @@
                                                             <label for="flexCheckChecked3" style="width: 100%; margin: 10px 0px;">
                                                                 <div class="form-check d-flex align-items-center gap-1 py-3 px-2 account_select m-auto">
                                                                     <div>
-                                                                        <span class="avatar avatar-md avatar-rounded bg-info-transparent">
-                                                                            <i class="bi bi-hospital"></i>
+                                                                        <span class="avatar avatar-md avatar-rounded bg-info-transparent mx-2">
+                                                                            <i class="bi bi-coin"></i>
                                                                         </span>
                                                                     </div>
                                                                     <div class="flex-fill">
                                                                         <label class="form-check-label d-block fw-medium fs-14" for="flexCheckChecked3">Trading Account</label>
-                                                                        <span class="fs-11 text-muted">Lorem, ipsum dolor sit.</span>
+                                                                        <span class="fs-10 text-muted mt-4">A professionally managed account designed for long-term wealth creation and portfolio diversification.</span>
                                                                     </div>
                                                                     <div>
-                                                                        <input class="form-check-input form-checked-info rounded-circle" type="checkbox" value="" id="flexCheckChecked3" name="test[]" checked>
+                                                                        <input class="form-check-input form-checked-info rounded-circle mx-2" type="checkbox" value="" id="flexCheckChecked3" name="test[]" checked>
                                                                     </div>
+                                                                </div>
+                                                                <div class="mx-2 my-2">
+                                                                    <a href="{{ route('tradings') }}" class="text-primary fs-10">View Portfolio</a> <i class="fe fe-arrow-right me-2 align-middle d-inline-block text-primary fs-10"></i>
                                                                 </div>
                                                             </label>
                                                         </div>
@@ -320,10 +324,10 @@
                                                 <div class="card-body">
                                                     <ul class="nav nav-tabs mb-3 nav-justified nav-style-1 d-sm-flex d-block" role="tablist">
                                                         <li class="nav-item" role="presentation">
-                                                            <a class="nav-link active" data-bs-toggle="tab" role="tab" href="#home1-justified" aria-selected="false" tabindex="-1">Bank Account</a>
+                                                            <a class="nav-link active" data-bs-toggle="tab" role="tab" href="#home1-justified" aria-selected="false" tabindex="-1">Bank Account Information</a>
                                                         </li>
                                                         <li class="nav-item" role="presentation">
-                                                            <a class="nav-link" data-bs-toggle="tab" role="tab" href="#about1-justified" aria-selected="true">Wallet Information</a>
+                                                            <a class="nav-link" data-bs-toggle="tab" role="tab" href="#about1-justified" aria-selected="true">Crypto Wallet Information</a>
                                                         </li>
                                                     </ul>
                                                     <div class="tab-content">
@@ -334,8 +338,11 @@
                                                                 <div class="row">
                                                                     <div class="col-xl-12 my-2">
                                                                         <label for="account_name" class="form-label text-muted fs-12">Account Name</label>
-                                                                        <input name="account_name" type="text" class="form-control @error('account_name') is-invalid @enderror" id="account_name"
-                                                                            value="{{ auth()->user()['first_name'] }} {{ auth()->user()['last_name'] }}" disabled>
+                                                                        <a href="javascript:void(0);" data-bs-toggle="tooltip" data-bs-custom-class="tooltip-dark" title="This is the name associated with your CrestWood Capital account." class="text-muted mx-1">
+                                                                            <i class="fe fe-info"></i>
+                                                                        </a>
+                                                                        <input name="account_name" type="text" class="form-control @error('account_name') is-invalid @enderror" id="account_name" value="{{ auth()->user()['first_name'] }} {{ auth()->user()['last_name'] }}" disabled>
+                                                                        
                                                                         @error('account_name')
                                                                             <span class="invalid-feedback" role="alert">
                                                                                 <strong>{{ $message }}</strong>
@@ -345,7 +352,7 @@
                                                                     <div class="col-xl-12 my-2">
                                                                         <label for="account_number" class="form-label text-muted fs-12">Account Number</label>
                                                                         <input name="account_number" type="number" class="form-control @error('account_number') is-invalid @enderror" id="account_number" step="1" min="1"
-                                                                            placeholder="Enter bank name..." value="{{ auth()->user()['account_number'] }}">
+                                                                            placeholder="Enter your bank account number" value="{{ auth()->user()['account_number'] }}">
                                                                         @error('account_number')
                                                                             <span class="invalid-feedback" role="alert">
                                                                                 <strong>{{ $message }}</strong>
@@ -364,9 +371,12 @@
                                                                     </div>
                                                                     <div class="row">
                                                                         <div class="col-6">
-                                                                            <label for="swiss_code" class="form-label text-muted fs-12">Swiss Code</label>
+                                                                            <label for="swiss_code" class="form-label text-muted fs-12">SWIFT Code (optional)</label>
+                                                                            <a href="javascript:void(0);" data-bs-toggle="tooltip" data-bs-custom-class="tooltip-dark" title="This is required for international transfers." class="text-muted mx-1">
+                                                                                <i class="fe fe-info"></i>
+                                                                            </a>
                                                                             <input name="swiss_code" type="number" class="form-control @error('swiss_code') is-invalid @enderror" id="swiss_code"
-                                                                                placeholder="Enter Swiss Code..." value="{{ auth()->user()['swiss_code'] }}">
+                                                                                placeholder="Enter SWIFT Code..." value="{{ auth()->user()['swiss_code'] }}">
                                                                             @error('swiss_code')
                                                                                 <span class="invalid-feedback" role="alert">
                                                                                     <strong>{{ $message }}</strong>
@@ -376,7 +386,7 @@
                                                                         <div class="col-6">
                                                                             <label for="reference" class="form-label text-muted fs-12">Reference</label>
                                                                             <input name="reference" type="text" class="form-control @error('reference') is-invalid @enderror" id="reference"
-                                                                                placeholder="Enter Swiss Code..." value="{{ auth()->user()['reference'] }}">
+                                                                                placeholder="Optional reference for your bank account" value="{{ auth()->user()['reference'] }}">
                                                                             @error('reference')
                                                                                 <span class="invalid-feedback" role="alert">
                                                                                     <strong>{{ $message }}</strong>
@@ -386,7 +396,7 @@
                                                                     </div>
                                                                     <div class="col-xl-12 my-2">
                                                                         <label for="others" class="form-label text-muted fs-12">Other Information</label>
-                                                                        <textarea class="form-control @error('others') is-invalid @enderror" name="others" id="others" rows="3" cols="10">{{ auth()->user()['account_info'] }}</textarea>
+                                                                        <textarea class="form-control @error('others') is-invalid @enderror" name="others" id="others" rows="3" cols="10" placeholder="Enter any other relevant information about this bank account">{{ auth()->user()['account_info'] }}</textarea>
                                                                         @error('others')
                                                                             <span class="invalid-feedback" role="alert">
                                                                                 <strong>{{ $message }}</strong>
@@ -394,7 +404,15 @@
                                                                         @enderror
                                                                     </div>
                                                                     <div>
-                                                                        <button class="btn btn-success">Submit</button>
+                                                                        <div id="" class="alert alert-primary mt-2">
+                                                                            <h4 class="text-danger fs-12 fw-bold">Security Disclaimer:</h4>
+                                                                            <div class="">
+                                                                                <p class="fs-12 text-muted">Ensure the bank account details provided are accurate. CrestWood Capital will not be responsible for errors caused by incorrect information.</p>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div>
+                                                                        <button class="btn btn-success my-3">Submit</button>
                                                                     </div>
                                                                 </div>
                                                             </form>
@@ -405,7 +423,7 @@
                                                                 <input type="hidden" name="screen" value="four">
                                                                 <div class="row">
                                                                     <div class="col-xl-12 my-2">
-                                                                        <label class="form-label fs-12 text-muted" for="coin-select">Select Coin</label>
+                                                                        <label class="form-label fs-12 text-muted" for="coin-select">Select Cryptocurrency</label>
                                                                         <div class="input-group"> 
                                                                             <button type="button" class="input-group-text btn btn-white btn-wave text-dark" style="border-right: 0px;">
                                                                                 <img id="coin-img" width="23" class="rounded-circle" style="border-left: 0px; opacity: .3;" src="https://cdn4.iconfinder.com/data/icons/cryptocoins/227/USDT-alt-512.png" alt="USDT">
@@ -416,7 +434,10 @@
                                                                         </div>
                                                                     </div>
                                                                     <div class="col-xl-12 my-2">
-                                                                        <label class="form-label fs-12 text-muted" for="network-select">Choose Network</label>
+                                                                        <label class="form-label fs-12 text-muted" for="network-select">Select Wallet Network</label>
+                                                                        <a href="javascript:void(0);" data-bs-toggle="tooltip" data-bs-custom-class="tooltip-dark" title="Choose the correct network for your wallet." class="text-muted mx-1">
+                                                                            <i class="fe fe-info"></i>
+                                                                        </a>
                                                                         <div class="input-group"> 
                                                                             <select name="network" id="network-select" class="form-control py-2">
                                                                                 <option value="">Select Network</option>
@@ -426,7 +447,7 @@
                                                                     <div class="col-xl-12 my-2">
                                                                         <label for="wallet_address" class="form-label text-muted fs-12">Wallet Address</label>
                                                                         <input name="wallet_address" type="text" class="form-control @error('wallet_address') is-invalid @enderror" id="wallet_address"
-                                                                            placeholder="Enter wallet address..." value="{{ auth()->user()['wallet_asset'] }}">
+                                                                            placeholder="Enter your wallet address" value="{{ auth()->user()['wallet_asset'] }}" required>
                                                                         @error('wallet_address')
                                                                             <span class="invalid-feedback" role="alert">
                                                                                 <strong>{{ $message }}</strong>
@@ -434,7 +455,16 @@
                                                                         @enderror
                                                                     </div>
                                                                     <div>
-                                                                        <button class="btn btn-success" type="submit">Submit</button>
+                                                                        <div id="" class="alert alert-primary mt-2">
+                                                                            <h4 class="text-danger fs-12 fw-bold">Security Disclaimer:</h4>
+                                                                            <div class="">
+                                                                                <p class="fs-12 text-muted">Ensure the wallet address and network match correctly to avoid withdrawal errors or loss of funds.
+                                                                                CrestWood Capital will not be responsible for any incorrect wallet details provided.</p>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div>
+                                                                        <button class="btn btn-success mt-2" type="submit">Submit</button>
                                                                     </div>
                                                                 </div>
                                                             </form>
@@ -447,17 +477,20 @@
                                                     @csrf
                                                     <input type="hidden" name="screen" value="five">
                                                     <div class="register-page my-4">
+                                                        <div class="fs-15 fw-medium d-sm-flex d-block align-items-center justify-content-between mb-3">
+                                                            <div>Personal Information:</div>
+                                                        </div>
                                                         <div class="row gy-3">
                                                             <!-- Date of Birth -->
                                                             <div class="form-group my-2">
                                                                 <label for="dob" class="fs-10 fw-medium my-2 text-muted">Date of Birth</label>
-                                                                <input type="date" id="dob" name="dob" class="form-control fw-medium">
+                                                                <input type="date" id="dob" name="dob" class="form-control fw-medium" value="{{ $user->dob }}">
                                                             </div>
 
                                                             <!-- SSN/TIN -->
                                                             <div class="form-group my-2">
                                                                 <label for="ssn" class="fs-10 fw-medium text-muted my-2">SSN/TIN</label>
-                                                                <input type="number" id="ssn" name="ssn" class="form-control fw-medium" placeholder="Social Security Number (SSN) or Tax-Identification Number (TIN)">
+                                                                <input type="number" id="ssn" name="ssn" class="form-control fw-medium" value="{{ $user->ssn }}" placeholder="Social Security Number (SSN) or Tax-Identification Number (TIN)">
                                                             </div>
                                                             <div class="col-lg-6">
                                                                 <label class="form-label fs-12 text-muted">Loaction Type</label>
@@ -473,7 +506,7 @@
                                                                 @enderror
                                                             </div>
                                                             <div class="col-lg-6">
-                                                                <label class="form-label fs-12 text-muted">Country</label>
+                                                                <label class="form-label fs-12 text-muted">Country of Residence</label>
                                                                 <select name="country" id="country" class="form-control text-dark text-capitalize @error('country') is-invalid @enderror" required>
                                                                     <option value="">Select Country</option>
                                                                     @foreach(\App\Models\Country::get() as $country)
@@ -490,7 +523,7 @@
                                                                 @enderror
                                                             </div>
                                                             <div class="col-xl-6">
-                                                                <label class="form-label fs-12 text-muted">Select State</label>
+                                                                <label class="form-label fs-12 text-muted">State/Province</label>
                                                                 <select name="state" id="state" class="form-control text-dark text-capitalize @error('state') is-invalid @enderror" required>
                                                                     <option value="">Select Country</option> 
                                                                 </select>
@@ -503,7 +536,7 @@
                                                             <div class="col-xl-6">
                                                                 <label for="postal_code" class="form-label fs-12 text-muted">Postal Code</label>
                                                                 <input name="postal_code" type="text" class="form-control @error('postal_code') is-invalid @enderror" id="postal_code"
-                                                                    placeholder="Enter postal code..." value="{{ old('postal_code') }}">
+                                                                    placeholder="Enter postal code..." value="{{ $user->postal_code }}">
                                                                 @error('postal_code')
                                                                     <span class="invalid-feedback" role="alert">
                                                                         <strong>{{ $message }}</strong>
@@ -512,7 +545,7 @@
                                                             </div>
                                                             <div class="col-xl-6">
                                                                 <label class="form-label fs-12 text-muted" for="address">Address</label>
-                                                                <textarea class="form-control @error('address') is-invalid @enderror" name="address" id="address" placeholder="Enter address..." rows="3" cols="10" >{{ old('address') }}</textarea>
+                                                                <textarea class="form-control @error('address') is-invalid @enderror" name="address" id="address" placeholder="Enter address..." rows="3" cols="10" >{{ $user->address }}</textarea>
                                                                 @error('address')
                                                                     <span class="invalid-feedback" role="alert">
                                                                         <strong>{{ $message }}</strong>
@@ -521,66 +554,15 @@
                                                             </div>
                                                             <div class="col-xl-6">
                                                                 <label class="form-label fs-12 text-muted" for="address">Address line 2</label>
-                                                                <textarea class="form-control @error('address2') is-invalid @enderror" name="address2" id="address2" placeholder="Enter address..." rows="3" cols="10">{{ old('address') }}</textarea>
+                                                                <textarea class="form-control @error('address2') is-invalid @enderror" name="address2" id="address2" placeholder="Enter address..." rows="3" cols="10">{{ $user->address_2 }}</textarea>
                                                             </div>
                                                         </div>
                                                     </div>
-                                                    <div>
-                                                        <button class="btn btn-success" type="submit">Submit</button>
-                                                    </div>
-                                                </form>
-                                            </div>
-                                            <div class="tab-pane" id="main-kyc" role="tabpanel" aria-labelledby="main-kyc-tab" tabindex="0">
-                                                <form action="{{ route('profile.data') }}" method="post" enctype="multipart/form-data">
-                                                    @csrf
-                                                    <input type="hidden" name="screen" value="eight">
-                                                    <div class="register-page my-4">
-                                                        <div class="row gy-3">
-                                                            <div class="col-12">
-                                                                <label class="form-label fs-12 text-muted my-2" for="employment_status">Employment Status:</label>
-                                                                <select class="form-control" id="employment_status" name="employment_status">
-                                                                    <option value="employed">Employed</option>
-                                                                    <option value="selfemployed">Self-employed</option>
-                                                                    <option value="unemployed">Unemployed</option>
-                                                                    <option value="retired">Retired</option>
-                                                                </select>
-                                                            </div>
 
-                                                            <!-- Annual Income Range -->
-                                                            <div class="col-12">
-                                                                <label class="form-label fs-12 text-muted my-2" for="income_range">Annual Income Range:</label>
-                                                                <select class="form-control" id="income_range" name="income_range">
-                                                                    <option value="less_than_50k">Less than $50K</option>
-                                                                    <option value="50k_100k">$50K - $100K</option>
-                                                                    <option value="over_100k">Over $100K</option>
-                                                                </select>
-                                                            </div>
-
-                                                            <!-- Source Of Funds -->
-                                                            <div class="col-12">
-                                                                <label class="form-label fs-12 text-muted my-2" for="source_of_funds">Source Of Funds:</label>
-                                                                <select class="form-control" id="source_of_funds" name="source_of_funds">
-                                                                    <option value="salary">Salary</option>
-                                                                    <option value="investment">Investment</option>
-                                                                    <option value="business">Business Income</option>
-                                                                    <option value="others">Others</option>
-                                                                </select>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div>
-                                                        <button class="btn btn-success" type="submit">Submit</button>
-                                                    </div>
-                                                </form>
-                                            </div>
-                                            <div class="tab-pane" id="main-nextkin" role="tabpanel" aria-labelledby="main-nextkin-tab" tabindex="0">
-                                                <form action="{{ route('profile.data') }}" method="post" enctype="multipart/form-data">
-                                                    @csrf
-                                                    <input type="hidden" name="screen" value="six">
                                                     <div class="register-page my-4">
-                                                        <!-- <div class="fs-15 fw-medium d-sm-flex d-block align-items-center justify-content-between mb-3">
+                                                        <div class="fs-15 fw-medium d-sm-flex d-block align-items-center justify-content-between mb-3">
                                                             <div>Next of kin:</div>
-                                                        </div> -->
+                                                        </div>
                                                         <div class="row gy-3">
                                                             <div class="col-xl-6">
                                                                 <label for="nk_name" class="form-label fs-12 text-muted">Full Name</label>
@@ -667,6 +649,58 @@
                                                             </div>
                                                         </div>
                                                     </div>
+
+                                                    <div>
+                                                        <div id="" class="alert alert-primary mt-2">
+                                                            <h4 class="text-danger fs-12 fw-bold">Compliance Disclaimer:</h4>
+                                                            <div class="">
+                                                                <p class="fs-12 text-muted">All information provided is securely stored and used solely for verification purposes in compliance with applicable laws and CIP (Customer Identification Program) requirements.</p>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div>
+                                                        <button class="btn btn-success my-3" type="submit">Submit</button>
+                                                    </div>
+                                                </form>
+                                            </div>
+                                            <div class="tab-pane" id="main-kyc" role="tabpanel" aria-labelledby="main-kyc-tab" tabindex="0">
+                                                <form action="{{ route('profile.data') }}" method="post" enctype="multipart/form-data">
+                                                    @csrf
+                                                    <input type="hidden" name="screen" value="eight">
+                                                    <div class="register-page my-4">
+                                                        <div class="row gy-3">
+                                                            <div class="col-12">
+                                                                <label class="form-label fs-12 text-muted my-2" for="employment_status">Employment Status:</label>
+                                                                <select class="form-control" id="employment_status" name="employment_status">
+                                                                    <option value="employed">Employed</option>
+                                                                    <option value="selfemployed">Self-employed</option>
+                                                                    <option value="unemployed">Unemployed</option>
+                                                                    <option value="retired">Retired</option>
+                                                                </select>
+                                                            </div>
+
+                                                            <!-- Annual Income Range -->
+                                                            <div class="col-12">
+                                                                <label class="form-label fs-12 text-muted my-2" for="income_range">Annual Income Range:</label>
+                                                                <select class="form-control" id="income_range" name="income_range">
+                                                                    <option value="less_than_50k">Less than $50K</option>
+                                                                    <option value="50k_100k">$50K - $100K</option>
+                                                                    <option value="over_100k">Over $100K</option>
+                                                                </select>
+                                                            </div>
+
+                                                            <!-- Source Of Funds -->
+                                                            <div class="col-12">
+                                                                <label class="form-label fs-12 text-muted my-2" for="source_of_funds">Source Of Funds:</label>
+                                                                <select class="form-control" id="source_of_funds" name="source_of_funds">
+                                                                    <option value="salary">Salary</option>
+                                                                    <option value="investment">Investment</option>
+                                                                    <option value="business">Business Income</option>
+                                                                    <option value="others">Others</option>
+                                                                </select>
+                                                            </div>
+                                                        </div>
+                                                    </div>
                                                     <div>
                                                         <button class="btn btn-success" type="submit">Submit</button>
                                                     </div>
@@ -681,8 +715,9 @@
                                                             <label class="form-label mt-2 text-muted fs-12" for="avatar">ID Type</label>
                                                             <select class="form-control" name="" id="">
                                                                 <option value="">Select Type</option>
-                                                                <option value="">Driver's License</option>
-                                                                <option value="">International Passport</option>
+                                                                <option value="passport">Passport</option>
+                                                                <option value="license">Driver's License</option>
+                                                                <option value="nationalid">National ID</option>
                                                             </select>
                                                         </div>
                                                         <div class="col-md-12 my-2">
@@ -696,6 +731,14 @@
                                                         <div class="col-md-12 my-2">
                                                             <label class="form-label mt-2 text-muted fs-12" for="avatar">Upload Image (Back)</label>
                                                             <input type="file" id="avatar" name="avatar" class="form-control"/>
+                                                        </div>
+                                                        <div>
+                                                            <div id="" class="alert alert-primary mt-2">
+                                                                <h4 class="text-danger fs-12 fw-bold">Compliance Notice:</h4>
+                                                                <div class="">
+                                                                    <p class="fs-12 text-muted">Add a disclaimer below the form: "In compliance with applicable laws and Customer Identification Program (CIP) requirements, your information will be securely processed.</p>
+                                                                </div>
+                                                            </div>
                                                         </div>
                                                         <div class="my-2">
                                                             <button class="btn btn-success">Submit</button>
@@ -748,7 +791,7 @@
                 <div class="card custom-card overflow-hidden">
                     <div class="card-header">
                         <div class="card-title">
-                            Personal Info
+                            Personal Details & KYC
                         </div>
                     </div>
                     <div class="card-body p-0">
@@ -1057,7 +1100,7 @@
                 type: 'GET',
                 success: function (response) {
                     coins = response.data;
-                    let options = '<option value="">Select Coin</option>';
+                    let options = '<option value="">Select Cryptocurrency</option>';
                     response.data.forEach(function (coin) {
                         options += `<option value="${coin.id}">${coin.name} (${coin.symbol})</option>`;
                     });
