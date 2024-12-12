@@ -266,7 +266,7 @@
                                                       <div class="bt-ContentGrid-item u-col-12 u-col-6@md cols col-1 dark">
                                                          <div>
                                                             <h1 class="item-title ">  Save and earn more with 4.50% APY<sup>*</sup></h1>
-                                                            <div class="bt-body200">
+                                                            <div class="bt-body200" style="margin-bottom: 30px;">
                                                                <p><strong>APY is variable.</strong></p>
                                                                <p>Grow your savings with a high-yield cash account. Crestwood Capital Management's Cash Reserve secures your money during volatile times while earning nearly 10x the national average.**</p>
                                                             </div>
@@ -303,7 +303,10 @@
                                                          </div>
                                                       </div>
                                                       <div class="bt-ContentGrid-item u-col-12 u-col-6@md cols col-2">
-                                                         <div id="bt-cash-reserved-graph" aria-label="graph illustration showing Crestwood Capital Management Cash Reserve at 4.50% APY, while the National average is 0.46% APY. Earn nearly 10x the national average**." data-national_average_apy_comparison="nearly 10x" data-bt_cash_reserve_value="4.50" data-national_average_value="0.46">
+                                                         <div>
+                                                            <img src="{{ asset('/imgs/reserve.png') }}" alt="">
+                                                         </div>
+                                                         <!-- <div id="bt-cash-reserved-graph" aria-label="graph illustration showing Crestwood Capital Management Cash Reserve at 4.50% APY, while the National average is 0.46% APY. Earn nearly 10x the national average**." data-national_average_apy_comparison="nearly 10x" data-bt_cash_reserve_value="4.50" data-national_average_value="0.46">
                                                             <div class="app-loading loading-spinner">
                                                                <span class="flex flex-middle">
                                                                   <svg width="4.8rem" height="4.8rem" viewbox="25 25 50 50">
@@ -314,7 +317,7 @@
                                                                   <span> ...loading image</span>
                                                                </span>
                                                             </div>
-                                                         </div>
+                                                         </div> -->
                                                       </div>
                                                    </div>
                                                 </div>

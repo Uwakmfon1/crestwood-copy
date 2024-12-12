@@ -259,7 +259,7 @@
                         <ul class="flex-wrap bt-row">
                            <li class="bt-ContentGrid-item u-col-4@lg post-list-item_small">
                               <a class="item read-time has-excerpt" href="#">
-                                 <img class="item-image lazy" data-src="../hubfs/Graphics/featured-images/betterment-app-on-phone-with-sparkles-1.jpg" alt="">
+                                 <img class="item-image lazy" src="{{ asset('/imgs/goal.webp') }}" alt="">
                                  <p class="item-title">What is Crestwood Capital Management and how does it work?</p>
                                  <p class="item-excerpt">Crestwood Capital Management is a smart money manager and the largest independent online financial advisor that serves one ...</p>
                                  <div class="js-post-body-count" aria-hidden="true" hidden="">
@@ -270,7 +270,7 @@
                            </li>
                            <li class="bt-ContentGrid-item u-col-4@lg post-list-item_small">
                               <a class="item read-time has-excerpt" href="#">
-                                 <img class="item-image lazy" data-src="../hubfs/Graphics/featured-images/betterment-app-on-phone-with-sparkles-1.jpg" alt="">
+                                 <img class="item-image lazy" src="{{ asset('/imgs/sand.webp') }}" alt="">
                                  <p class="item-title">Transaction timelines</p>
                                  <p class="item-excerpt">Crestwood Capital Management Account Transfer Times All timelines listed are in business days1 Note: These transactions may ...</p>
                                  <div class="js-post-body-count" aria-hidden="true" hidden="">
@@ -281,7 +281,7 @@
                            </li>
                            <li class="bt-ContentGrid-item u-col-4@lg post-list-item_small">
                               <a class="item read-time has-excerpt" href="#">
-                                 <img class="item-image lazy" data-src="../hubfs/Graphics/featured-images/betterment-app-on-phone-with-sparkles-1.jpg" alt="">
+                                 <img class="item-image lazy" src="{{ asset('/imgs/tools.webp') }}" alt="">
                                  <p class="item-title">What are Crestwood Capital Management's fees?</p>
                                  <p class="item-excerpt">Crestwood Capital Management offers several fee plans for our investing services. Below we’ve listed a pricing breakdown ...</p>
                                  <div class="js-post-body-count" aria-hidden="true" hidden="">
