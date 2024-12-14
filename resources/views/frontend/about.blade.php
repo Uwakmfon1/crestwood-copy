@@ -4,15 +4,15 @@
       <meta charset="utf-8">
       <title>About Crestwood Capital Management| Making people's lives better</title>
       <link rel="icon" href="{{ asset('asset/images/brand-logos/favicon.png') }}" type="image/x-icon">
-      <meta name="description" content="Since 2010, Betterment's mission has been making people's lives better. We're here to help people turn everyday investments, no matter how small, into their dreams, no matter how big.">
+      <meta name="description" content="Since 2010, Crestwood Capital Management's mission has been making people's lives better. We're here to help people turn everyday investments, no matter how small, into their dreams, no matter how big.">
       <script>
          window.TT = "ewogICAgInNwbGl0cyI6e30sCiAgICAiZXhwZXJpZW5jZVNhbXBsaW5nV2VpZ2h0IjoxMDAsCiAgICAidXJsIjoiaHR0cHM6XC9cL3R0LmJldHRlcm1lbnQuY29tIiwKICAgICJjb29raWVEb21haW4iOiIuYmV0dGVybWVudC5jb20iLAogICAgImVuY29kZWRBdCI6IjIwMjEwNzEzMTU1MjAxIgp9"
       </script>
       <script>!function(){window.semaphore=window.semaphore||[],window.ketch=function(){window.semaphore.push(arguments)};var e=new URLSearchParams(document.location.search),o=e.has("property")?e.get("property"):"betterment_com",n=document.createElement("script");n.type="text/javascript",n.src="https://global.ketchcdn.com/web/v2/config/betterment/".concat(o,"/boot.js"),n.defer=n.async=!0,document.getElementsByTagName("head")[0].appendChild(n)}();</script>
       <meta name="viewport" content="width=device-width, initial-scale=1">
-      <meta property="og:description" content="Since 2010, Betterment's mission has been making people's lives better. We're here to help people turn everyday investments, no matter how small, into their dreams, no matter how big.">
+      <meta property="og:description" content="Since 2010, Crestwood Capital Management's mission has been making people's lives better. We're here to help people turn everyday investments, no matter how small, into their dreams, no matter how big.">
       <meta property="og:title" content="About Crestwood Capital Management| Making people's lives better">
-      <meta name="twitter:description" content="Since 2010, Betterment's mission has been making people's lives better. We're here to help people turn everyday investments, no matter how small, into their dreams, no matter how big.">
+      <meta name="twitter:description" content="Since 2010, Crestwood Capital Management's mission has been making people's lives better. We're here to help people turn everyday investments, no matter how small, into their dreams, no matter how big.">
       <meta name="twitter:title" content="About Crestwood Capital Management| Making people's lives better">
       <style>
          a.cta_button{-moz-box-sizing:content-box !important;-webkit-box-sizing:content-box !important;box-sizing:content-box !important;vertical-align:middle}.hs-breadcrumb-menu{list-style-type:none;margin:0px 0px 0px 0px;padding:0px 0px 0px 0px}.hs-breadcrumb-menu-item{float:left;padding:10px 0px 10px 10px}.hs-breadcrumb-menu-divider:before{content:'›';padding-left:10px}.hs-featured-image-link{border:0}.hs-featured-image{float:right;margin:0 0 20px 20px;max-width:50%}@media (max-width: 568px){.hs-featured-image{float:none;margin:0;width:100%;max-width:100%}}.hs-screen-reader-text{clip:rect(1px, 1px, 1px, 1px);height:1px;overflow:hidden;position:absolute !important;width:1px}
@@ -508,7 +508,7 @@
                                                       </div>
                                                       <div class="bt-ContentGrid-item u-col-12 u-col-5@md cols col-2 ">
                                                          <div>
-                                                            <img src="hs-fs/hubfs/Graphics/webpage-graphics/phone-shining-light-6.png?width=883&amp;name=phone-shining-light.png" alt="A phone with Betterment's logo shining light on a wall." width="883" srcset="hs-fs/hubfs/Graphics/webpage-graphics/phone-shining-light-7.png 442w?width=442&amp;name=phone-shining-light.png 442w, hs-fs/hubfs/Graphics/webpage-graphics/phone-shining-light-6.png 883wg?width=883&amp;name=phone-shining-light.png 883w, hs-fs/hubfs/Graphics/webpage-graphics/phone-shining-light-8.png 1325wg?width=1325&amp;name=phone-shining-light.png 1325w, hs-fs/hubfs/Graphics/webpage-graphics/phone-shining-light-9.png 1766wg?width=1766&amp;name=phone-shining-light.png 1766w, hs-fs/hubfs/Graphics/webpage-graphics/phone-shining-light-10.png 2208wg?width=2208&amp;name=phone-shining-light.png 2208w, hs-fs/hubfs/Graphics/webpage-graphics/phone-shining-light-11.png 2649wg?width=2649&amp;name=phone-shining-light.png 2649w" sizes="(max-width: 883px) 100vw, 883px">
+                                                            <img src="hs-fs/hubfs/Graphics/webpage-graphics/phone-shining-light-6.png?width=883&amp;name=phone-shining-light.png" alt="A phone with Crestwood Capital Management's logo shining light on a wall." width="883" srcset="hs-fs/hubfs/Graphics/webpage-graphics/phone-shining-light-7.png 442w?width=442&amp;name=phone-shining-light.png 442w, hs-fs/hubfs/Graphics/webpage-graphics/phone-shining-light-6.png 883wg?width=883&amp;name=phone-shining-light.png 883w, hs-fs/hubfs/Graphics/webpage-graphics/phone-shining-light-8.png 1325wg?width=1325&amp;name=phone-shining-light.png 1325w, hs-fs/hubfs/Graphics/webpage-graphics/phone-shining-light-9.png 1766wg?width=1766&amp;name=phone-shining-light.png 1766w, hs-fs/hubfs/Graphics/webpage-graphics/phone-shining-light-10.png 2208wg?width=2208&amp;name=phone-shining-light.png 2208w, hs-fs/hubfs/Graphics/webpage-graphics/phone-shining-light-11.png 2649wg?width=2649&amp;name=phone-shining-light.png 2649w" sizes="(max-width: 883px) 100vw, 883px">
                                                          </div>
                                                       </div>
                                                    </div>
@@ -978,7 +978,7 @@
                                                                      <div class="u-displayNone--until-lg bt-nav-cta-2">
                                                                         <div class="">
                                                                               <div>
-                                                                                 <a href="{{ route('register') }}" style="background: #1d6ae5; color: white; padding: 14px 30px; border-radius: 5px; text-align: center; text-decoration: none; font-weight: 500;">Get Stated</a>
+                                                                                 <a href="{{ route('register') }}" style="background: #1d6ae5; color: white; padding: 14px 30px; border-radius: 5px; text-align: center; text-decoration: none; font-weight: 500;">Get Started</a>
                                                                               </div>
                                                                         </div>
                                                                      </div>

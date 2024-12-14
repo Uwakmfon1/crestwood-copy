@@ -1422,7 +1422,7 @@
                                                                      <div class="u-displayNone--until-lg bt-nav-cta-2">
                                                                         <div class="">
                                                                               <div>
-                                                                                 <a href="{{ route('register') }}" style="background: #1d6ae5; color: white; padding: 14px 30px; border-radius: 5px; text-align: center; text-decoration: none; font-weight: 500;">Get Stated</a>
+                                                                                 <a href="{{ route('register') }}" style="background: #1d6ae5; color: white; padding: 14px 30px; border-radius: 5px; text-align: center; text-decoration: none; font-weight: 500;">Get Started</a>
                                                                               </div>
                                                                         </div>
                                                                      </div>

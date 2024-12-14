@@ -273,7 +273,7 @@
                                                                      <!--HubSpot Call-to-Action Code -->
                                                                      <span class="hs-cta-wrapper" id="hs-cta-wrapper-264c4217-8981-4ad2-bcab-8cddd4e20b76">
                                                                      <div>
-                                                                           <a href="{{ route('register') }}" style="background: #1d6ae5; color: white; padding: 14px 30px; border-radius: 5px; text-align: center; text-decoration: none; font-weight: 500;">Get Stated</a>
+                                                                           <a href="{{ route('register') }}" style="background: #1d6ae5; color: white; padding: 14px 30px; border-radius: 5px; text-align: center; text-decoration: none; font-weight: 500;">Get Started</a>
                                                                         </div>
                                                                      </span>
                                                                      <!-- end HubSpot Call-to-Action Code -->
@@ -469,7 +469,7 @@
                                                             <div class="bt-ContentGrid-item u-col-12 u-col-12@lg">
                                                                <div class="flex center justify-content-center">
                                                                   <div>
-                                                                     <p>Non-paid client of Crestwood Capital Management. Views may not be representative, see more reviews at the&nbsp;<a href="https://www.google.com/url?q=https://apps.apple.com/us/app/betterment-investing-saving/id393156562&sa=D&source=docs&ust=1667424287234673&usg=AOvVaw1_Nu-qbIyIAbmRz3RpMn-3">App Store</a>&nbsp;and&nbsp;<a href="https://www.google.com/url?q=https://play.google.com/store/apps/details?id%3Dcom.betterment%26hl%3Den_US%26gl%3DUS&sa=D&source=docs&ust=1667424287234806&usg=AOvVaw1CLoECluYFoz5dzO500PNd">Google Play Store</a>.</p>
+                                                                     <p>Non-paid client of Crestwood Capital Management.</p>
                                                                   </div>
                                                                </div>
                                                             </div>
@@ -657,7 +657,7 @@
                                                             <div class="bt-ContentGrid-item u-col-12 u-col-12@lg">
                                                                <div class="flex center justify-content-center">
                                                                   <div>
-                                                                     <p>Non-paid client of Crestwood Capital Management. Views may not be representative, see more reviews at the&nbsp;<a href="https://www.google.com/url?q=https://apps.apple.com/us/app/betterment-investing-saving/id393156562&sa=D&source=docs&ust=1667424287234673&usg=AOvVaw1_Nu-qbIyIAbmRz3RpMn-3">App Store</a>&nbsp;and&nbsp;<a href="https://www.google.com/url?q=https://play.google.com/store/apps/details?id%3Dcom.betterment%26hl%3Den_US%26gl%3DUS&sa=D&source=docs&ust=1667424287234806&usg=AOvVaw1CLoECluYFoz5dzO500PNd">Google Play Store</a>.</p>
+                                                                     <p>Non-paid client of Crestwood Capital Management.</p>
                                                                   </div>
                                                                </div>
                                                             </div>
@@ -843,7 +843,7 @@
                                                       <div class="bt-ContentGrid-item u-col-12">
                                                          <div class="flex-wrap bt-row center justify-content-center bt-body50 footnote">
                                                             <div class="bt-ContentGrid-item u-col-12 u-col-12@lg">
-                                                               <p><span>Non-paid client of Crestwood Capital Management. Views may not be representative, see more reviews at the <a href="https://apps.apple.com/us/app/betterment-invest-save-money/id393156562" rel="noopener">App Store</a> and <a href="https://play.google.com/store/apps/details?id=com.betterment" rel="noopener">Google Play Store</a>. </span>Annual percentage yield (variable) is as of September 20, 2024. Cash Reserve is only available to clients of Crestwood Capital Management LLC, which is not a bank, and cash transfers to <a href="{{ route('cash') }}">Program Banks</a> are conducted through the clients’ brokerage accounts at Crestwood Capital Management Securities.</p>
+                                                               <p><span>Non-paid client of Crestwood Capital Management.</span>Annual percentage yield (variable) is as of September 20, 2024. Cash Reserve is only available to clients of Crestwood Capital Management LLC, which is not a bank, and cash transfers to <a href="{{ route('cash') }}">Program Banks</a> are conducted through the clients’ brokerage accounts at Crestwood Capital Management Securities.</p>
                                                             </div>
                                                          </div>
                                                       </div>
@@ -982,7 +982,7 @@
                                                                            </g>
                                                                         </svg>
                                                                      </div>
-                                                                     <div class="bt-body1 mt24"><span>"I like how easy Crestwood Capital Management is to use and access. I can see what all of my money is doing in one easy snapshot. I really like Betterment's Cash Reserve accounts."<br></span></div>
+                                                                     <div class="bt-body1 mt24"><span>"I like how easy Crestwood Capital Management is to use and access. I can see what all of my money is doing in one easy snapshot. I really like Crestwood Capital Management's Cash Reserve accounts."<br></span></div>
                                                                   </div>
                                                                   <div class="align-self-end mt16">
                                                                      <p class="bt-body2 mb0">
@@ -1027,7 +1027,7 @@
                                                       <div class="bt-ContentGrid-item u-col-12">
                                                          <div class="flex-wrap bt-row center justify-content-center bt-body50 footnote">
                                                             <div class="bt-ContentGrid-item u-col-12 u-col-12@lg">
-                                                               <p><span>Non-paid client of Crestwood Capital Management. Views may not be representative, see more reviews at the <a href="https://apps.apple.com/us/app/betterment-invest-save-money/id393156562" rel="noopener">App Store</a> and <a href="https://play.google.com/store/apps/details?id=com.betterment" rel="noopener">Google Play Store</a>. Tax Loss Harvesting+ (TLH+) is not suitable for all investors. Consider your personal circumstances before deciding whether to utilize Crestwood Capital Management's TLH+ feature. </span>Annual percentage yield (variable) is as of September 20, 2024. Cash Reserve is only available to clients of Crestwood Capital Management LLC, which is not a bank, and cash transfers to <a href="{{ route('cash') }}">Program Banks</a> are conducted through the clients’ brokerage accounts at Crestwood Capital Management Securities.</p>
+                                                               <p><span>Non-paid client of Crestwood Capital Management. Tax Loss Harvesting+ (TLH+) is not suitable for all investors. Consider your personal circumstances before deciding whether to utilize Crestwood Capital Management's TLH+ feature. </span>Annual percentage yield (variable) is as of September 20, 2024. Cash Reserve is only available to clients of Crestwood Capital Management LLC, which is not a bank, and cash transfers to <a href="{{ route('cash') }}">Program Banks</a> are conducted through the clients’ brokerage accounts at Crestwood Capital Management Securities.</p>
                                                             </div>
                                                          </div>
                                                       </div>
@@ -1353,7 +1353,7 @@
                                                                </div>
                                                             </div>
                                                          </li>
-                                                         <li class="bt-ContentGrid-item u-col-12 u-col-3@md adds-margin  odd li-item
+                                                         <!-- <li class="bt-ContentGrid-item u-col-12 u-col-3@md adds-margin  odd li-item
                                                             flex-center item-vertical-offset-- h-feature-padding-24">
                                                             <div class="">
                                                                <div>
@@ -1370,7 +1370,7 @@
                                                                   </div>
                                                                </div>
                                                             </div>
-                                                         </li>
+                                                         </li> -->
                                                       </ul>
                                                    </div>
                                                 </div>
@@ -1505,7 +1505,7 @@
                                                                      <div class="u-displayNone--until-lg bt-nav-cta-2">
                                                                         <div class="">
                                                                               <div>
-                                                                                 <a href="{{ route('register') }}" style="background: #1d6ae5; color: white; padding: 14px 30px; border-radius: 5px; text-align: center; text-decoration: none; font-weight: 500;">Get Stated</a>
+                                                                                 <a href="{{ route('register') }}" style="background: #1d6ae5; color: white; padding: 14px 30px; border-radius: 5px; text-align: center; text-decoration: none; font-weight: 500;">Get Started</a>
                                                                               </div>
                                                                         </div>
                                                                      </div>

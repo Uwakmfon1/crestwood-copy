@@ -96,10 +96,10 @@
                         <a href="{{ route('pricing') }}" data-event="Pricing" data-track-event="ElementClicked" data-track-name="Pricing
                             " data-track-module="TopNav" data-itemindex="3">Pricing</a>
                     </li>
-                    <li id="menu-item-0610123bdd4ffc191a3ea05a847e1307" class="menu-item menu-item_depth-2  menu-item-0610123bdd4ffc191a3ea05a847e1307">
+                    <!-- <li id="menu-item-0610123bdd4ffc191a3ea05a847e1307" class="menu-item menu-item_depth-2  menu-item-0610123bdd4ffc191a3ea05a847e1307">
                         <a href="{{ route('press') }}" data-event="Press" data-track-event="ElementClicked" data-track-name="Press
                             " data-track-module="TopNav" data-itemindex="4">Press</a>
-                    </li>
+                    </li> -->
                 </ul>
                 </li>
                 <li id="menu-item-de7a22a0c94aa64ba2449e520aa20c99" class="menu-item menu-item_depth-1  menu-item-has-children menu-item-de7a22a0c94aa64ba2449e520aa20c99">
@@ -110,16 +110,16 @@
                         <a href="{{ route('article') }}" data-event="Articles" data-track-event="ElementClicked" data-track-name="Articles
                             " data-track-module="TopNav" data-itemindex="0">Articles</a>
                     </li> -->
-                    <li id="menu-item-554cfab3938e21d9270bd6b75931f96f" class="menu-item menu-item_depth-2  menu-item-554cfab3938e21d9270bd6b75931f96f">
+                    <!-- <li id="menu-item-554cfab3938e21d9270bd6b75931f96f" class="menu-item menu-item_depth-2  menu-item-554cfab3938e21d9270bd6b75931f96f">
                         <a href="{{ route('video') }}" data-event="Videos" data-track-event="ElementClicked" data-track-name="Videos
                             " data-track-module="TopNav" data-itemindex="1">Videos</a>
                     </li>
                     <li id="menu-item-727ba7317d47a6d0d31125bba033f9fd" class="menu-item menu-item_depth-2  menu-item-727ba7317d47a6d0d31125bba033f9fd">
                         <a href="{{ route('employee') }}" data-event="Employee resources" data-track-event="ElementClicked" data-track-name="EmployeeResources
                             " data-track-module="TopNav" data-itemindex="2">Employee resources</a>
-                    </li>
+                    </li> -->
                     <li id="menu-item-3d3d0e1cf8a4804562a5f3b14a93218a" class="menu-item menu-item_depth-2  menu-item-3d3d0e1cf8a4804562a5f3b14a93218a">
-                        <a href="{{ route('help') }}" data-event="Help center" data-track-event="ElementClicked" data-track-name="HelpCenter
+                        <a href="{{ route('contact') }}" data-event="Help center" data-track-event="ElementClicked" data-track-name="HelpCenter
                             " data-track-module="TopNav" data-itemindex="3">Help center</a>
                     </li>
                     <li id="menu-item-1fe917b01f9a3f87fa2d7d3b7643fac1" class="menu-item menu-item_depth-2  menu-item-1fe917b01f9a3f87fa2d7d3b7643fac1">
@@ -165,7 +165,7 @@
     <div class="u-displayNone--until-lg bt-nav-cta-2">
         <div class="">
             <div>
-                <a href="{{ route('register') }}" style="background: #1d6ae5; color: white; padding: 14px 30px; border-radius: 5px; text-align: center; text-decoration: none; font-weight: 500;">Get Stated</a>
+                <a href="{{ route('register') }}" style="background: #1d6ae5; color: white; padding: 14px 30px; border-radius: 5px; text-align: center; text-decoration: none; font-weight: 500;">Get Started</a>
             </div>
         </div>
     </div>

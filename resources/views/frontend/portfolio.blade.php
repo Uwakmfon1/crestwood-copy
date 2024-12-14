@@ -4,15 +4,15 @@
       <meta charset="utf-8">
       <title>Investment Options | Portfolio Strategies by Betterment</title>
       <link rel="icon" href="{{ asset('asset/images/brand-logos/favicon.png') }}" type="image/x-icon">
-      <meta name="description" content="Betterment's portfolio options are the easy way to invest like a pro. Explore our selection to help you build wealth over the long term.">
+      <meta name="description" content="Crestwood Capital Management's portfolio options are the easy way to invest like a pro. Explore our selection to help you build wealth over the long term.">
       <script>
          window.TT = "ewogICAgInNwbGl0cyI6e30sCiAgICAiZXhwZXJpZW5jZVNhbXBsaW5nV2VpZ2h0IjoxMDAsCiAgICAidXJsIjoiaHR0cHM6XC9cL3R0LmJldHRlcm1lbnQuY29tIiwKICAgICJjb29raWVEb21haW4iOiIuYmV0dGVybWVudC5jb20iLAogICAgImVuY29kZWRBdCI6IjIwMjEwNzEzMTU1MjAxIgp9"
       </script>
       <script>!function(){window.semaphore=window.semaphore||[],window.ketch=function(){window.semaphore.push(arguments)};var e=new URLSearchParams(document.location.search),o=e.has("property")?e.get("property"):"betterment_com",n=document.createElement("script");n.type="text/javascript",n.src="https://global.ketchcdn.com/web/v2/config/betterment/".concat(o,"/boot.js"),n.defer=n.async=!0,document.getElementsByTagName("head")[0].appendChild(n)}();</script>
       <meta name="viewport" content="width=device-width, initial-scale=1">
-      <meta property="og:description" content="Betterment's portfolio options are the easy way to invest like a pro. Explore our selection to help you build wealth over the long term.">
+      <meta property="og:description" content="Crestwood Capital Management's portfolio options are the easy way to invest like a pro. Explore our selection to help you build wealth over the long term.">
       <meta property="og:title" content="Investment Options | Portfolio Strategies by Betterment">
-      <meta name="twitter:description" content="Betterment's portfolio options are the easy way to invest like a pro. Explore our selection to help you build wealth over the long term.">
+      <meta name="twitter:description" content="Crestwood Capital Management's portfolio options are the easy way to invest like a pro. Explore our selection to help you build wealth over the long term.">
       <meta name="twitter:title" content="Investment Options | Portfolio Strategies by Betterment">
       <script type="application/ld+json">
          {
@@ -943,7 +943,7 @@
                                                                      <div class="u-displayNone--until-lg bt-nav-cta-2">
                                                                         <div class="">
                                                                               <div>
-                                                                                 <a href="{{ route('register') }}" style="background: #1d6ae5; color: white; padding: 14px 30px; border-radius: 5px; text-align: center; text-decoration: none; font-weight: 500;">Get Stated</a>
+                                                                                 <a href="{{ route('register') }}" style="background: #1d6ae5; color: white; padding: 14px 30px; border-radius: 5px; text-align: center; text-decoration: none; font-weight: 500;">Get Started</a>
                                                                               </div>
                                                                         </div>
                                                                      </div>

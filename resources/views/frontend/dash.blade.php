@@ -302,7 +302,7 @@
                                                 <div class="bt-container ">
                                                    <div class="bt-ContentGrid-item flex flex-center u-col-12 
                                                       u-col-9@md  ">
-                                                      <img src="hubfs/Graphics/webpage-graphics/mobile-and-desktop-summary-1-1.png" alt="Betterment's web desktop and native mobile dashboard screens.">
+                                                      <img src="hubfs/Graphics/webpage-graphics/mobile-and-desktop-summary-1-1.png" alt="Crestwood Capital Management's web desktop and native mobile dashboard screens.">
                                                    </div>
                                                 </div>
                                                 <div class="background-absolute bg-image bg-position-center-top background-size_cover lazy" data-bg="https://resources.Crestwood Capital Management.com/hubfs/Graphics/webpage-graphics/clouds-sun-all-in-one-bg.png"></div>
@@ -629,7 +629,7 @@
                                                                      <div class="u-displayNone--until-lg bt-nav-cta-2">
                                                                         <div class="">
                                                                               <div>
-                                                                                 <a href="{{ route('register') }}" style="background: #1d6ae5; color: white; padding: 14px 30px; border-radius: 5px; text-align: center; text-decoration: none; font-weight: 500;">Get Stated</a>
+                                                                                 <a href="{{ route('register') }}" style="background: #1d6ae5; color: white; padding: 14px 30px; border-radius: 5px; text-align: center; text-decoration: none; font-weight: 500;">Get Started</a>
                                                                               </div>
                                                                         </div>
                                                                      </div>

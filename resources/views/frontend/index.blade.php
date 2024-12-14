@@ -519,7 +519,7 @@
                                                                </div>
                                                             </div>
                                                          </li>
-                                                         <li class="bt-ContentGrid-item u-col-12 u-col-4@md  odd li-item
+                                                         <!-- <li class="bt-ContentGrid-item u-col-12 u-col-4@md  odd li-item
                                                             flex-center item-vertical-offset-- h-feature-padding-24">
                                                             <div class="">
                                                                <div>
@@ -537,7 +537,7 @@
                                                                   </div>
                                                                </div>
                                                             </div>
-                                                         </li>
+                                                         </li> -->
                                                       </ul>
                                                    </div>
                                                 </div>
@@ -1665,7 +1665,7 @@
                                                       <div class="bt-ContentGrid-item u-col-12">
                                                          <div class="flex-wrap bt-row center justify-content-center bt-body50 footnote">
                                                             <div class="bt-ContentGrid-item u-col-12 u-col-12@lg">
-                                                               <span>Non-paid client of Crestwood Capital Management. Views may not be representative, see more reviews at the&nbsp;</span><a href="https://apps.apple.com/us/app/betterment-investing-saving/id393156562" rel="noopener">App Store</a><span>&nbsp;and&nbsp;</span><a href="https://play.google.com/store/apps/details?id=com.betterment&hl" rel="noopener">Google Play Store</a><span>.</span>
+                                                               <span>Non-paid client of Crestwood Capital Management.<span>.</span>
                                                             </div>
                                                          </div>
                                                       </div>

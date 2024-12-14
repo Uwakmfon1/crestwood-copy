@@ -13,10 +13,10 @@
       <meta name="viewport" content="width=device-width, initial-scale=1">
       <meta property="og:description" content="Understand how much it costs to save, spend, and invest with Crestwood Capital Management. We keep our pricing and terms easy and straightforward.
          ">
-      <meta property="og:title" content="Betterment's Pricing">
+      <meta property="og:title" content="Crestwood Capital Management's Pricing">
       <meta name="twitter:description" content="Understand how much it costs to save, spend, and invest with Crestwood Capital Management. We keep our pricing and terms easy and straightforward.
          ">
-      <meta name="twitter:title" content="Betterment's Pricing">
+      <meta name="twitter:title" content="Crestwood Capital Management's Pricing">
       <script type="application/ld+json">
          {
             "@context": "https://schema.org",
@@ -55,7 +55,7 @@
                   "name": "Are there fees on deposits, withdrawals, or ETFs?",
                   "acceptedAnswer": {
                      "@type": "Answer",
-                     "text": "Crestwood Capital Management will construct your portfolio with ETFs, a type of security that generally tracks a broad-market stock or bond index but trades like a stock on a listed exchange, and these ETFs have embedded fund fees. Betterment's fund selection methodology aims to keep these costs as low as possible, and the dividends paid and reflected in your account's statement already take into account the deduction of these fees by the fund. Crestwood Capital Management does not receive any portion of these fund fees and these fees are in addition to our management fees ($4/month, 0.25% annually for Digital, and 0.65% annually for Premium). We charge a flat fee of $75 for each investing account transfer out of Crestwood Capital Management. There is no fee to withdraw funds to your linked checking account. You are not charged any additional trading or deposit fees."
+                     "text": "Crestwood Capital Management will construct your portfolio with ETFs, a type of security that generally tracks a broad-market stock or bond index but trades like a stock on a listed exchange, and these ETFs have embedded fund fees. Crestwood Capital Management's fund selection methodology aims to keep these costs as low as possible, and the dividends paid and reflected in your account's statement already take into account the deduction of these fees by the fund. Crestwood Capital Management does not receive any portion of these fund fees and these fees are in addition to our management fees ($4/month, 0.25% annually for Digital, and 0.65% annually for Premium). We charge a flat fee of $75 for each investing account transfer out of Crestwood Capital Management. There is no fee to withdraw funds to your linked checking account. You are not charged any additional trading or deposit fees."
                   }
                  },
             
@@ -1336,7 +1336,7 @@
                                                                   </svg>
                                                                </button>
                                                                <div class="accordion-body" aria-hidden="true" id="content-are-there-fees-on-deposits-withdrawals-or-etfs" style="display:none;">
-                                                                  <p><span>Crestwood Capital Management will construct your portfolio with ETFs, a type of security that generally tracks a broad-market stock or bond index but trades like a stock on a listed exchange, and these ETFs have embedded fund fees.&nbsp;</span><a href="{{ route('charitable') }}" data-track-event="ElementClicked" data-track-name="FundSelectionMethodology" data-track-module="FAQ" data-interaction-listener-registered="true">Betterment's fund selection methodology</a><span> aims to keep these costs as low as possible, and the dividends paid and reflected in your account's statement already take into account the deduction of these fees by the fund. Crestwood Capital Management does not receive any portion of these fund fees and these fees are in addition to our management fees ($4/month, 0.25% annually for Digital, and 0.65% annually for Premium). We charge a flat fee of $75 for each investing account transfer out of Crestwood Capital Management. There is no fee to withdraw funds to your linked checking account. You are not charged any additional trading or deposit fees.</span></p>
+                                                                  <p><span>Crestwood Capital Management will construct your portfolio with ETFs, a type of security that generally tracks a broad-market stock or bond index but trades like a stock on a listed exchange, and these ETFs have embedded fund fees.&nbsp;</span><a href="{{ route('charitable') }}" data-track-event="ElementClicked" data-track-name="FundSelectionMethodology" data-track-module="FAQ" data-interaction-listener-registered="true">Crestwood Capital Management's fund selection methodology</a><span> aims to keep these costs as low as possible, and the dividends paid and reflected in your account's statement already take into account the deduction of these fees by the fund. Crestwood Capital Management does not receive any portion of these fund fees and these fees are in addition to our management fees ($4/month, 0.25% annually for Digital, and 0.65% annually for Premium). We charge a flat fee of $75 for each investing account transfer out of Crestwood Capital Management. There is no fee to withdraw funds to your linked checking account. You are not charged any additional trading or deposit fees.</span></p>
                                                                </div>
                                                             </li>
                                                             <li class="item border-btGrey30">
@@ -1415,7 +1415,7 @@
                                                                      <div class="u-displayNone--until-lg bt-nav-cta-2">
                                                                         <div class="">
                                                                               <div>
-                                                                                 <a href="{{ route('register') }}" style="background: #1d6ae5; color: white; padding: 14px 30px; border-radius: 5px; text-align: center; text-decoration: none; font-weight: 500;">Get Stated</a>
+                                                                                 <a href="{{ route('register') }}" style="background: #1d6ae5; color: white; padding: 14px 30px; border-radius: 5px; text-align: center; text-decoration: none; font-weight: 500;">Get Started</a>
                                                                               </div>
                                                                         </div>
                                                                      </div>

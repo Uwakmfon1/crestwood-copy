@@ -23,7 +23,7 @@
                     "name": "How does Crestwood Capital Management compare to other financial companies?",
                     "acceptedAnswer": {
                       "@type": "Answer",
-                      "text": "We like to point to three major ways we're focused on the customer: We're a fiduciary—we are required to act in your best interest and we're required to disclose any potential conflict of interest. For instance, Crestwood Capital Management does not have or recommend any Betterment-created funds for its client portfolios Our platform combines powerful technology with personalized advice developed by our passionate team of experts. When you have questions, our Customer Support team is ready to help you with ..."
+                      "text": "We like to point to three major ways we're focused on the customer: We're a fiduciary—we are required to act in your best interest and we're required to disclose any potential conflict of interest. For instance, Crestwood Capital Management does not have or recommend any Crestwood Capital Management-created funds for its client portfolios Our platform combines powerful technology with personalized advice developed by our passionate team of experts. When you have questions, our Customer Support team is ready to help you with ..."
                     }
                   },{
                     "@type": "Question",
@@ -412,8 +412,25 @@
                                     </button>
                                     <div class="accordion-body" aria-hidden="true" id="content-how-does-betterment-compare-to-other-financial-companies" style="display:none;">
                                        <span class="bt-body2">
-                                          <p>We like to point to three major ways we're focused on the customer: We're a fiduciary—we are required to act in your best interest and we're required to disclose any potential conflict of interest. For instance, Crestwood Capital Management does not have or recommend any Betterment-created funds for its client portfolios Our platform combines powerful technology with personalized advice developed by our passionate team of experts. When you have questions, our Customer Support team is ready to help you with ...</p>
-                                          <a class="link" href="{{ route('home') }}" aria-label="Read more about How does Crestwood Capital Management compare to other financial companies?">Read More</a>
+                                          <p>
+                                             <div>
+                                                <p>We like to point to three major ways we're focused on the customer:</p>
+                                                <ol>
+                                                   <li>
+                                                         <strong>We're a fiduciary</strong> — We are required to act in your best interest and disclose any potential conflict of interest. 
+                                                         For instance, Crestwood Capital Management does not have or recommend any Crestwood Capital Management-created funds for its client portfolios.
+                                                   </li>
+                                                   <li>
+                                                         <strong>Our platform combines powerful technology with personalized advice</strong> — Developed by our passionate team of experts. 
+                                                         When you have questions, our Customer Support team is ready to help you with account questions and troubleshooting.
+                                                   </li>
+                                                   <li>
+                                                         <strong>We give you the opportunity to connect your external accounts</strong> — See a fuller financial picture in one place as part of Crestwood Capital Management's   low cost.
+                                                   </li>
+                                                </ol>
+                                             </div>
+                                          </p>
+                                          <!-- <a class="link" href="{{ route('home') }}" aria-label="Read more about How does Crestwood Capital Management compare to other financial companies?">Read More</a> -->
                                        </span>
                                     </div>
                                  </li>
@@ -427,8 +444,13 @@
                                     </button>
                                     <div class="accordion-body" aria-hidden="true" id="content-who-are-the-experts-behind-betterment" style="display:none;">
                                        <span class="bt-body2">
-                                          <p>Our team of investing experts make decisions about our portfolio strategies and fund selection with the help of an external committee of economists, PhDs, and industry experts. More than just a portfolio management team, our experts work to develop improvements to our Tax Smart technology and other advanced strategies.</p>
-                                          <a class="link" href="{{ route('home') }}" aria-label="Read more about Who are the experts behind Crestwood Capital Management?">Read More</a>
+                                          <p>
+                                          Our team of investing experts make decisions about our portfolio strategies and fund selection with the help of an external committee of economists, PhDs, and industry experts.
+                                          <br>
+                                          <br>
+                                          More than just a portfolio management team, our experts work to develop improvements to our Tax Smart technology and other advanced strategies.
+                                          </p>
+                                          <!-- <a class="link" href="{{ route('home') }}" aria-label="Read more about Who are the experts behind Crestwood Capital Management?">Read More</a> -->
                                        </span>
                                     </div>
                                  </li>
@@ -443,7 +465,7 @@
                                     <div class="accordion-body" aria-hidden="true" id="content-is-betterment-a-regulated-financial-institution" style="display:none;">
                                        <span class="bt-body2">
                                           <p>Crestwood Capital Management LLC is an SEC-registered Investment Advisor, and brokerage services provided to clients of Crestwood Capital Management LLC is done by Crestwood Capital Management Securities, an SEC-registered broker-dealer and member of FINRA /SIPC.</p>
-                                          <a class="link" href="{{ route('home') }}" aria-label="Read more about Is Crestwood Capital Management a regulated financial institution?">Read More</a>
+                                          <!-- <a class="link" href="{{ route('home') }}" aria-label="Read more about Is Crestwood Capital Management a regulated financial institution?">Read More</a> -->
                                        </span>
                                     </div>
                                  </li>
@@ -457,8 +479,19 @@
                                     </button>
                                     <div class="accordion-body" aria-hidden="true" id="content-what-is-your-mission-statement" style="display:none;">
                                        <span class="bt-body2">
-                                          <p>We are here to empower people to do what's best for their money so they can live better. We’re building smarter, more efficient money management for everyone. By pushing the bounds of what technology can do, by bringing together some of the best software and analytic thinking of diverse, cutting edge industries, we’re able to ensure that more people get the advice that they deserve. We have the ability to help free our customers to pursue what is most meaningful to them, to spend their time ...</p>
-                                          <a class="link" href="{{ route('home') }}" aria-label="Read more about What is your Mission Statement?">Read More</a>
+                                          <p>
+                                          We are here to empower people to do what's best for their money so they can live better.
+                                          <br>
+                                          <br>
+                                          We’re building smarter, more efficient money management for everyone. By pushing the bounds of what technology can do, by bringing together some of the best software and analytic thinking of diverse, cutting edge industries, we’re able to ensure that more people get the advice that they deserve. We have the ability to help free our customers to pursue what is most meaningful to them, to spend their time doing what makes them happy.
+                                          <br>
+                                          <br>
+                                          Our promise is to manage your money in a way that works to give you a better outcome. We advise you on what to do with your money based on your personal financial situation and the goals you’re looking to achieve—we recommend how much to invest each month, how much risk to take on in your portfolio, and what type of accounts you should have.
+                                          <br>
+                                          <br>
+                                          Then, we do it all for you. And by doing that, we have the rare opportunity to help you find something positive and intangible that can’t be bought: peace of mind.
+                                          </p>
+                                          <!-- <a class="link" href="{{ route('home') }}" aria-label="Read more about What is your Mission Statement?">Read More</a> -->
                                        </span>
                                     </div>
                                  </li>
@@ -472,8 +505,35 @@
                                     </button>
                                     <div class="accordion-body" aria-hidden="true" id="content-how-is-betterment-different" style="display:none;">
                                        <span class="bt-body2">
-                                          <p>Traditionally, people have manually managed their money and investments, which can be a very time consuming and painful process, or they've paid very costly fees to have access to financial advisors and advanced investment strategies. You may be a first-time investor just starting out, a seasoned investor wondering if you could be doing better, or a retiree thinking about ways to make your nest egg last. For those seeking an alternative to expensive advisor fees or the labor-intensive process ...</p>
-                                          <a class="link" href="{{ route('home') }}" aria-label="Read more about How is Crestwood Capital Management different?">Read More</a>
+                                          <p>
+                                          <div>
+                                             <p>
+                                                Traditionally, people have manually managed their money and investments, which can be a very time-consuming and painful process, 
+                                                or they've paid very costly fees to have access to financial advisors and advanced investment strategies.
+                                             </p>
+                                             <p>
+                                                You may be a first-time investor just starting out, a seasoned investor wondering if you could be doing better, 
+                                                or a retiree thinking about ways to make your nest egg last. For those seeking an alternative to expensive advisor fees 
+                                                or the labor-intensive process of managing one's own investments, Crestwood Capital Management offers an alternative.
+                                             </p>
+                                             <ul>
+                                                <li>
+                                                      <strong>Crestwood Capital Management's   portfolio</strong> is designed to help customers achieve optimal returns at each level of risk from their investments.
+                                                </li>
+                                                <li>
+                                                      We use a variety of strategies, using technology, to help investors keep as much of those returns as possible.
+                                                </li>
+                                             </ul>
+                                             <p>
+                                                We strive to offer a great user experience and design our technology to be friendly and accessible. 
+                                                Everyone has questions regarding financial services, but a lot of people are embarrassed to ask those questions. 
+                                                Through Crestwood Capital Management, you can ask questions and receive help from our customer support team. 
+                                                You can also access financial experts and receive advice by upgrading to our Premium plan 
+                                                or scheduling a call with our Licensed Concierge team.
+                                             </p>
+                                          </div>
+                                          </p>
+                                          <!-- <a class="link" href="{{ route('home') }}" aria-label="Read more about How is Crestwood Capital Management different?">Read More</a> -->
                                        </span>
                                     </div>
                                  </li>
@@ -492,8 +552,58 @@
                                     </button>
                                     <div class="accordion-body" aria-hidden="true" id="content-what-happens-to-my-money-if-betterment-goes-public-is-acquired-or-closes" style="display:none;">
                                        <span class="bt-body2">
-                                          <p>Crestwood Capital Management Securities is a member of the Securities Investor Protection Corporation (SIPC), which protects securities customers of its members up to $500,000 (including $250,000 for claims for cash). Explanatory brochure available upon request or at www.sipc.org. At a high level, you can think of SIPC as providing protection for funds held in a brokerage account in the event that the brokerage fails. The Securities Investor Protection Corporation (SIPC) provides insurance that protects your ...</p>
-                                          <a class="link" href="{{ route('home') }}" aria-label="Read more about What happens to my money if Crestwood Capital Management goes public, is acquired, or closes?">Read More</a>
+                                          <p> 
+                                          <div>
+                                             <p>
+                                                Crestwood Capital Management Securities is a member of the Securities Investor Protection Corporation (<a href="http://www.sipc.org" target="_blank">SIPC</a>), which protects securities customers of its members up to $500,000 (including $250,000 for claims for cash). 
+                                                Explanatory brochure available upon request or at <a href="http://www.sipc.org" target="_blank">www.sipc.org</a>. At a high level, you can think of SIPC as providing protection for funds held in a brokerage account in the event that the brokerage fails.
+                                             </p>
+                                             <p>
+                                                The Securities Investor Protection Corporation (SIPC) provides insurance that protects your investments, including those held by our broker, Crestwood Capital Management Securities. 
+                                                It covers up to $500,000 of missing assets, including a maximum of $250,000 for cash claims.
+                                             </p>
+                                             <p>
+                                                The limit applies only to the value of missing securities, not losses due to market volatility. If there are securities identified as belonging to the customer, 
+                                                these (or their equivalent value) will be returned regardless of account size, and the $500,000 limit will apply only to the difference.
+                                             </p>
+                                             <p>
+                                                Types of accounts and investments generally protected by SIPC include:
+                                             </p>
+                                             <ul>
+                                                <li>Stocks</li>
+                                                <li>Bonds</li>
+                                                <li>Mutual funds</li>
+                                                <li>Money market mutual funds (MMMFs)</li>
+                                                <li>Certificates of deposit (CDs)</li>
+                                                <li>Annuities</li>
+                                                <li>Government securities</li>
+                                                <li>Municipal securities</li>
+                                                <li>U.S. Treasury securities (Treasuries)</li>
+                                             </ul>
+                                             <p>
+                                                <a href="#">Read more in-depth about the safety and security of your account here.</a>
+                                             </p>
+                                             <h3>Cash Reserve</h3>
+                                             <p>
+                                                Deposits into Crestwood Capital Management’s cash account, Cash Reserve, are covered by Federal Deposit Insurance Corporation (FDIC) insurance up to $2 million per individual account 
+                                                and $4 million per joint account, once deposited into interest-bearing deposit accounts at one or more program banks†.
+                                             </p>
+                                             <p>
+                                                Each interest-bearing deposit account will be eligible for FDIC insurance up to $250,000 for each insurable account type (e.g., individual, joint, etc.), 
+                                                including principal and accrued interest.
+                                             </p>
+                                             <h3>Checking</h3>
+                                             <p>
+                                                For deposits into Crestwood Capital Management Checking—a checking account and Visa debit card provided by nbkc bank, Member FDIC—each account will be eligible for FDIC insurance up to $250,000 
+                                                for each insurable account type (e.g., individual, joint, etc.), when combined with all other deposits held in the same insurable capacity at nbkc.
+                                             </p>
+                                             <p>
+                                                In the unlikely event of a bank failure, and FDIC deposit insurance payments become necessary, there is no specific time period during which the FDIC must make insurance payments available, 
+                                                and you may not earn interest on your deposits from the time a program bank is closed. You may also be required to provide certain documentation to the FDIC before insurance payments are made.
+                                             </p>
+                                          </div>
+                                          </p>
+                                          <!-- <a class="link" href="{{ route('home') }}" aria-label="Read more about What happens to my money if Crestwood Capital Management goes public, is acquired, or closes?">Read More</a> -->
                                        </span>
                                     </div>
                                  </li>
@@ -507,8 +617,33 @@
                                     </button>
                                     <div class="accordion-body" aria-hidden="true" id="content-how-do-you-keep-my-money-safe" style="display:none;">
                                        <span class="bt-body2">
-                                          <p>Crestwood Capital Management Securities is a member of SIPC, which protects securities customers of its members up to $500,000 (including $250,000 for claims for cash). Explanatory brochure available upon request or at www.sipc.org. What you should remember is that the SIPC does not protect against market changes in your account. The risks inherent in investing are tradeoffs you make to pursue investment returns. We design our portfolio to aim for the highest projected returns given your risk level. With our ...</p>
-                                          <a class="link" href="{{ route('home') }}" aria-label="Read more about How do you keep my money safe?">Read More</a>
+                                          <p>
+                                             <div>
+                                                <p>
+                                                   Crestwood Capital Management Securities is a member of the Securities Investor Protection Corporation (<a href="http://www.sipc.org" target="_blank">SIPC</a>), 
+                                                   which protects securities customers of its members up to $500,000 (including $250,000 for claims for cash). 
+                                                   Explanatory brochure available upon request or at <a href="http://www.sipc.org" target="_blank">www.sipc.org</a>. 
+                                                   What you should remember is that the SIPC does not protect against market changes in your account. 
+                                                   The risks inherent in investing are tradeoffs you make to pursue investment returns. 
+                                                   We design our portfolio to aim for the highest projected returns given your risk level.
+                                                </p>
+                                                <p>
+                                                   With our cash management products, your money is insured by the FDIC.
+                                                </p>
+                                                <h3>Cash Reserve</h3>
+                                                <p>
+                                                   Individual Cash Reserve accounts have insurance up to $2 million† and joint Cash Reserve accounts offer up to $4 million† in FDIC insurance 
+                                                   once funds are deposited into our program banks. Cash Reserve is available to clients of Crestwood Capital Management LLC, which is not a bank, 
+                                                   and cash transfers to program banks are facilitated by Crestwood Capital Management Securities.
+                                                </p>
+                                                <h3>Checking</h3>
+                                                <p>
+                                                   Checking is insured up to $250,000 through nbkc bank and is provided by Crestwood Capital Management Financial LLC‡. 
+                                                   <a href="#">Explore further details about FDIC insurance.</a>
+                                                </p>
+                                             </div>
+                                          </p>
+                                          <!-- <a class="link" href="{{ route('home') }}" aria-label="Read more about How do you keep my money safe?">Read More</a> -->
                                        </span>
                                     </div>
                                  </li>
@@ -527,8 +662,67 @@
                                     </button>
                                     <div class="accordion-body" aria-hidden="true" id="content-what-are-Crestwood Capital Management's-fees" style="display:none;">
                                        <span class="bt-body2">
-                                          <p>Crestwood Capital Management offers several fee plans for our investing services. Below we’ve listed a pricing breakdown according to account type and additional fee information. Stocks and Bonds Investing Accounts Crestwood Capital Management's investment advice is available for 0.25% (25 bps) per year or $4 per month. While it will impact our fees, Crestwood Capital Management does not require you to maintain a minimum balance for your account. We call this our Digital plan because you receive our advice online. The Digital pricing plan for our ...</p>
-                                          <a class="link" href="{{ route('home') }}" aria-label="Read more about What are Crestwood Capital Management's fees?">Read More</a>
+                                          <p>
+                                             <div>
+                                                <h4>Crestwood Capital Management Fee Plans</h4>
+                                                <p>Crestwood Capital Management offers several fee plans for our investing services. Below is a pricing breakdown according to account type and additional fee information.</p>
+
+                                                <h3>Stocks and Bonds Investing Accounts</h3>
+                                                <p>Crestwood Capital Management's  investment advice is available for 0.25% (25 bps) per year or $4 per month. While it will impact our fees, Crestwood Capital Management does not require you to maintain a minimum balance for your account. This is called the Digital plan because you receive our advice online.</p>
+
+                                                <h4>Digital Plan Pricing</h4>
+                                                <ul>
+                                                   <li>If your household balance is below $20,000, and you do not have at least $250/month in recurring deposits enabled across your household’s Crestwood Capital Management account(s), you will be charged $4 per month.</li>
+                                                   <li>If your household balance is equal to or above $20,000, or if you have $250/month or greater in recurring deposits enabled across your household’s Crestwood Capital Management account(s), you will be charged an annual fee of 0.25% (25 bps).</li>
+                                                </ul>
+
+                                                <h4>Premium Plan</h4>
+                                                <p>
+                                                   For 0.65% (65 bps) per year, you can gain over-the-phone and/or email access to our team of CFP® professionals 
+                                                   who provide in-depth advice on all your investments and help manage your Crestwood Capital Management account based on your directions. 
+                                                   This plan requires a minimum investing balance of $100,000. 
+                                                   <a href="#">Learn more about Premium and our pricing.</a>
+                                                </p>
+
+                                                <h4>Balances in Excess of $2M</h4>
+                                                <p>
+                                                   If the balance of your stocks and bonds investing account(s) exceeds $2 million (excluding cash balances in Cash Reserve, Crestwood Capital Management Checking, 
+                                                   HSA balances, and 401(k) balances through Crestwood Capital Management at Work), you will receive a 10 bps discount on the portion above $2 million:
+                                                </p>
+                                                <ul>
+                                                   <li><strong>Digital:</strong> 0.15% (15 bps) per year</li>
+                                                   <li><strong>Premium:</strong> 0.55% (55 bps) per year</li>
+                                                </ul>
+                                                <p>Balances are calculated based on households. The portion of your balance managed free will apply to those with higher fees first.</p>
+
+                                                <h4>Calculating Fees</h4>
+                                                <p>
+                                                   Crestwood Capital Management's pricing fee calculation varies depending on your plan. To read in-depth about this topic, 
+                                                   <a href="#">please visit this resource</a>. You can view your total fees on the "Activity" page, filtered by "Fees" for a customizable time frame, 
+                                                   and download a CSV statement to quickly total your fees.
+                                                </p>
+
+                                                <h4>What Does the Fee Cover?</h4>
+                                                <p>
+                                                   For traditional securities investing accounts, Crestwood Capital Management's  fee covers investment advice, portfolio management, all trading and custody fees, 
+                                                   transfers, and all other account administration.
+                                                </p>
+
+                                                <h4>Transaction Fees</h4>
+                                                <p>
+                                                   Crestwood Capital Management does not charge additional transaction fees for buying or selling securities within your stocks and bonds portfolios. 
+                                                   Any fund held in this type of portfolio at Crestwood Capital Management will assess fund-level fees, called expense ratios. 
+                                                   Crestwood Capital Management aims to keep these costs low and receives no part of these fees. 
+                                                   <a href="#">Learn more about fund fees here</a>.
+                                                </p>
+
+                                                <h3>Fees on Cash Accounts</h3>
+                                                <p>
+                                                   Crestwood Capital Management does not charge account fees for Crestwood Capital Management Checking or Cash Reserve. For Cash Reserve, Crestwood Capital Management LLC only receives compensation from our program banks.
+                                                </p>
+                                             </div>
+                                          </p>
+                                          <!-- <a class="link" href="{{ route('home') }}" aria-label="Read more about What are Crestwood Capital Management's fees?">Read More</a> -->
                                        </span>
                                     </div>
                                  </li>
@@ -542,8 +736,20 @@
                                     </button>
                                     <div class="accordion-body" aria-hidden="true" id="content-how-is-a-betterment-investment-account-different-from-a-traditional-online-brokerage-account" style="display:none;">
                                        <span class="bt-body2">
-                                          <p>Crestwood Capital Management offers a variety of features, including: A straightforward pricing model without hidden fees. A straightforward user experience which can help make it easier to understand your finances and set your goals. Automatic diversification of your assets through expert-built portfolios of ETFs . Automatic rebalancing of your portfolio once your balance reaches the minimum threshold. Automatic reinvestment of your dividends. Transaction in exact dollar amounts (so you don't have to buy whole ...</p>
-                                          <a class="link" href="{{ route('home') }}" aria-label="Read more about How is a Crestwood Capital Management investment account different from a traditional online brokerage account?">Read More</a>
+                                          <p>
+                                             <div>
+                                                <h4>Crestwood Capital Management Features</h4>
+                                                <ul>
+                                                   <li><strong>Straightforward Pricing Model:</strong> No hidden fees.</li>
+                                                   <li><strong>User-Friendly Experience:</strong> Makes it easier to understand your finances and set your goals.</li>
+                                                   <li><strong>Automatic Diversification:</strong> Expert-built portfolios of ETFs diversify your assets automatically.</li>
+                                                   <li><strong>Automatic Rebalancing:</strong> Your portfolio is rebalanced once your balance reaches the minimum threshold.</li>
+                                                   <li><strong>Automatic Dividend Reinvestment:</strong> Reinvest dividends to maximize your growth potential.</li>
+                                                   <li><strong>Fractional Transactions:</strong> Buy and sell in exact dollar amounts—no need to purchase whole shares.</li>
+                                                </ul>
+                                             </div>
+                                          </p>
+                                          <!-- <a class="link" href="{{ route('home') }}" aria-label="Read more about How is a Crestwood Capital Management investment account different from a traditional online brokerage account?">Read More</a> -->
                                        </span>
                                     </div>
                                  </li>
@@ -557,8 +763,41 @@
                                     </button>
                                     <div class="accordion-body" aria-hidden="true" id="content-who-is-eligible-to-use-betterment" style="display:none;">
                                        <span class="bt-body2">
-                                          <p>Crestwood Capital Management currently only operates in the United States, and for regulatory reasons cannot accept international customers residing outside the United States. This includes U.S. citizens residing and/or working abroad.* Login access to Crestwood Capital Management's application and/or website may be blocked in certain countries. All customers must be at least 18 years of age in order to consent to all our agreements. Customers must have a permanent U.S. address, a U.S. Social Security Number or an ITIN, and a ...</p>
-                                          <a class="link" href="{{ route('home') }}" aria-label="Read more about Who is eligible to use Crestwood Capital Management?">Read More</a>
+                                          <p>
+                                             <div>
+                                                <h4>Crestwood Capital Management Availability and Account Policies</h4>
+                                                <h3>Availability</h3>
+                                                <ul>
+                                                   <li>Crestwood Capital Management operates only in the United States.</li>
+                                                   <li>International customers, including U.S. citizens residing or working abroad, are not eligible.*</li>
+                                                   <li>Login access to Crestwood Capital Management's  application or website may be restricted in certain countries.</li>
+                                                   <li>Supported territories include Puerto Rico and the Virgin Islands but exclude Guam.</li>
+                                                   <li>U.S. military personnel residing abroad are supported with a valid U.S. address, including Army Post Office boxes.</li>
+                                                </ul>
+                                                
+                                                <h3>Eligibility Requirements</h3>
+                                                <ul>
+                                                   <li>Customers must be at least 18 years of age to consent to all agreements.</li>
+                                                   <li>Requirements include:
+                                                         <ul>
+                                                            <li>A permanent U.S. address</li>
+                                                            <li>A U.S. Social Security Number (SSN) or Individual Taxpayer Identification Number (ITIN)</li>
+                                                            <li>A checking account from a U.S. bank</li>
+                                                         </ul>
+                                                   </li>
+                                                </ul>
+
+                                                <h3>Accounts for Minors</h3>
+                                                <ul>
+                                                   <li>Crestwood Capital Management does not offer custodial accounts for minors.</li>
+                                                   <li>You can create separate savings goals for minors within your account and manage deposits and withdrawals on their behalf.</li>
+                                                   <li>Trust accounts for children can be set up if you are the trustee, using a <a href="#">Crestwood Capital Management Trust account</a>.</li>
+                                                </ul>
+                                                
+                                                <p><em>*Crestwood Capital Management supports residents in Puerto Rico and the Virgin Islands but not in Guam.</em></p>
+                                             </div>
+                                          </p>
+                                          <!-- <a class="link" href="{{ route('home') }}" aria-label="Read more about Who is eligible to use Crestwood Capital Management?">Read More</a> -->
                                        </span>
                                     </div>
                                  </li>
@@ -572,8 +811,35 @@
                                     </button>
                                     <div class="accordion-body" aria-hidden="true" id="content-what-is-betterment-and-how-does-it-work" style="display:none;">
                                        <span class="bt-body2">
-                                          <p>Crestwood Capital Management is a smart money manager and the largest independent online financial advisor that serves one purpose: to help you make the most of your money. Crestwood Capital Management helps you manage your money through cash management, guided investing, and retirement planning. We are a fiduciary, which means we act in your best interest. We'll ask a bit about you when you sign up. We'll also gather information when you connect your outside accounts. Then, we'll help you set financial goals and set you up with ...</p>
-                                          <a class="link" href="{{ route('home') }}" aria-label="Read more about What is Crestwood Capital Management and how does it work?">Read More</a>
+                                          <p>
+                                             <div>
+                                                <h4>About Crestwood Capital Management</h4>
+                                                <p>
+                                                   Crestwood Capital Management is a smart money manager and the largest independent online financial advisor. Our mission is simple: to help you make the most of your money. As a fiduciary, we are committed to acting in your best interest.
+                                                </p>
+
+                                                <h3>How Crestwood Capital Management Helps You</h3>
+                                                <ul>
+                                                   <li><strong>Cash Management:</strong> Manage your daily saving and spending through products like Checking (offered by nbkc bank, Member FDIC) and Cash Reserve.</li>
+                                                   <li><strong>Guided Investing:</strong> Receive personalized investment portfolios tailored to your financial goals.</li>
+                                                   <li><strong>Retirement Planning:</strong> Plan and invest for long-term needs, such as retirement, vacations, or major purchases.</li>
+                                                </ul>
+
+                                                <h3>Our Process</h3>
+                                                <ol>
+                                                   <li>Sign up and provide basic information about yourself.</li>
+                                                   <li>Connect your external accounts for a comprehensive financial view.</li>
+                                                   <li>Set financial goals, such as retirement or saving for a big purchase.</li>
+                                                   <li>Get customized investment portfolios for each goal.</li>
+                                                </ol>
+
+                                                <h3>Investment Strategy</h3>
+                                                <p>
+                                                   For long-term financial needs, Crestwood Capital Management uses low-cost ETFs (exchange-traded funds) and a risk profile aligned with your investment timeline. 
+                                                </p>
+                                             </div>
+                                          </p>
+                                          <!-- <a class="link" href="{{ route('home') }}" aria-label="Read more about What is Crestwood Capital Management and how does it work?">Read More</a> -->
                                        </span>
                                     </div>
                                  </li>
@@ -588,7 +854,7 @@
                                     <div class="accordion-body" aria-hidden="true" id="content-does-betterment-do-a-credit-check" style="display:none;">
                                        <span class="bt-body2">
                                           <p>No. Since Crestwood Capital Management does not lend out money, the only check we do is an identification (ID) verification as required by law. We do not pull your credit score or act in any way which would impact your credit rating.</p>
-                                          <a class="link" href="{{ route('home') }}" aria-label="Read more about Does Crestwood Capital Management do a credit check?">Read More</a>
+                                          <!-- <a class="link" href="{{ route('home') }}" aria-label="Read more about Does Crestwood Capital Management do a credit check?">Read More</a> -->
                                        </span>
                                     </div>
                                  </li>
@@ -607,8 +873,21 @@
                                     </button>
                                     <div class="accordion-body" aria-hidden="true" id="content-can-i-invest-in-an-individual-stock-or-fund-ie-sampp-500-index-or-apple" style="display:none;">
                                        <span class="bt-body2">
-                                          <p>No, you cannot invest in an individual stock or fund at Crestwood Capital Management. We aim to invest in a globally-diversified portfolio (which includes over 5,000 companies) made up of low-cost and liquid ETFs. The portfolio was chosen to help provide optimal returns at every level of risk, and is rebalanced as the market fluctuates and as you grow closer to your goal’s end date, if you have a time horizon set. We believe in passive investing. The majority of the evidence shows that active management, whether ...</p>
-                                          <a class="link" href="{{ route('home') }}" aria-label="Read more about Can I invest in an individual stock or fund (ie., S&amp;P 500 index or Apple)?">Read More</a>
+                                          <p>
+                                          <div>
+                                             No, you cannot invest in an individual stock or fund at Crestwood Capital Management. We aim to invest in a globally-diversified portfolio (which includes over 5,000 companies) made up of low-cost and liquid ETFs. The portfolio was chosen to help provide optimal returns at every level of risk, and is rebalanced as the market fluctuates and as you grow closer to your goal’s end date, if you have a time horizon set.
+                                             <br>
+                                             <br>
+                                             We believe in passive investing. The majority of the evidence shows that active management, whether by individual investors or fund managers, can cause more harm than good in net-of-fee returns. This is why we invest in low-cost, passive investments and seek to match the market’s performance.
+                                             <br>
+                                             <br>
+                                             We do offer some alternatives to the Crestwood Capital Management Portfolio, including strategies for those interested in socially responsible investing, targeting income generation, quantitative factor investing, and value tilt investing. Each portfolio is available at the individual goal level, and adjusts its recommended allocation or target income based on your preferences and time horizon. You can have multiple portfolio strategies within your Crestwood Capital Management account, tailored for your different financial goals.
+                                             <br>
+                                             <br>
+                                             For our advanced investors, the most customization we offer are flexible portfolios, which allow you to adjust the weight of each asset class within the Crestwood Capital Management Portfolio.
+                                          </div>
+                                          </p>
+                                          <!-- <a class="link" href="{{ route('home') }}" aria-label="Read more about Can I invest in an individual stock or fund (ie., S&amp;P 500 index or Apple)?">Read More</a> -->
                                        </span>
                                     </div>
                                  </li>
@@ -627,8 +906,50 @@
                                     </button>
                                     <div class="accordion-body" aria-hidden="true" id="content-what-accounts-can-i-open-with-betterment" style="display:none;">
                                        <span class="bt-body2">
-                                          <p>Available Account Types: Roth IRA Traditional IRA SEP IRA (single participant only) Inherited IRA (contact us to set up) Individual taxable accounts Joint taxable accounts with rights of survivorship 529 accounts (only available through select employers who use Crestwood Capital Management at Work) Student Loan Management accounts (only available through select employers who use Crestwood Capital Management at Work) Trust accounts (log in from a web browser to open) Cash Reserve (a cash account; funds for specific goals can be ...</p>
-                                          <a class="link" href="{{ route('home') }}" aria-label="Read more about What accounts can I open with Crestwood Capital Management?">Read More</a>
+                                          <p>
+                                             <div>
+                                                <h4>Available Account Types</h4>
+                                                <ul>
+                                                   <li>Roth IRA</li>
+                                                   <li>Traditional IRA</li>
+                                                   <li>SEP IRA (single participant only)</li>
+                                                   <li>Inherited IRA (contact us to set up)</li>
+                                                   <li>Individual taxable accounts</li>
+                                                   <li>Joint taxable accounts with rights of survivorship</li>
+                                                   <li>529 accounts (only available through select employers who use Crestwood Capital Management at Work)</li>
+                                                   <li>Student Loan Management accounts (only available through select employers who use Crestwood Capital Management at Work)</li>
+                                                   <li>Trust accounts (log in from a web browser to open)</li>
+                                                   <li>Cash Reserve (a cash account; funds for specific goals can be held here)</li>
+                                                   <li>Checking account provided by nbkc bank, Member FDIC</li>
+                                                </ul>
+
+                                                <h4>Account Types Not Supported</h4>
+                                                <ul>
+                                                   <li>Custodial or minor accounts</li>
+                                                   <li>Solo 401(k)s (see Crestwood Capital Management at Work for available 401(k) plans)</li>
+                                                   <li>Self-directed accounts (no option to select own funds or specific stocks)</li>
+                                                </ul>
+
+                                                <p><strong>Note:</strong> All customers must be at least 18 years old to consent to our agreements.</p>
+
+                                                <h4>How to Open a New Goal</h4>
+                                                <h3>Web Browser:</h3>
+                                                <ol>
+                                                   <li>After logging in, click “Add New” from the menu.</li>
+                                                   <li>Choose from the available account types.</li>
+                                                </ol>
+
+                                                <h3>Mobile App:</h3>
+                                                <ol>
+                                                   <li>Log in.</li>
+                                                   <li>Scroll down on the home page and tap "Add account."</li>
+                                                   <li>Choose from the available account types.</li>
+                                                </ol>
+
+                                                <p>For more information, refer to Crestwood Capital Management's   approach to setting up goals and accounts.</p>
+                                             </div>
+                                          </p>
+                                          <!-- <a class="link" href="{{ route('home') }}" aria-label="Read more about What accounts can I open with Crestwood Capital Management?">Read More</a> -->
                                        </span>
                                     </div>
                                  </li>
@@ -642,8 +963,30 @@
                                     </button>
                                     <div class="accordion-body" aria-hidden="true" id="content-where-can-i-find-account-statements" style="display:none;">
                                        <span class="bt-body2">
-                                          <p>Crestwood Capital Management automatically uploads monthly statements in PDF format, typically by the end of the second full week of the month for the previous month. To download your monthly statements: Web browser: Log in to your account. Select "Documents" from the menu to download monthly account statements. Mobile app: Log in to the app. Tap the three lines in the upper left-hand corner to open the menu. Tap "Documents". Tap "Statements". Custom Account Statements If you require a custom account summary for ...</p>
-                                          <a class="link" href="{{ route('home') }}" aria-label="Read more about Where can I find account statements?">Read More</a>
+                                          <p>
+                                          <p>Crestwood Capital Management automatically uploads monthly statements in PDF format, typically by the end of the second full week of the month for the previous month.</p>
+
+                                          <h4>Web Browser:</h4>
+                                          <ol>
+                                             <li>Log in to your account.</li>
+                                             <li>Select "Documents" from the menu to download monthly account statements.</li>
+                                          </ol>
+
+                                          <h4>Mobile App:</h4>
+                                          <ol>
+                                             <li>Log in to the app.</li>
+                                             <li>Tap the three lines in the upper left-hand corner to open the menu.</li>
+                                             <li>Tap "Documents".</li>
+                                             <li>Tap "Statements".</li>
+                                          </ol>
+
+                                          <h4>Custom Account Statements</h4>
+                                          <p>If you require a custom account summary for a specific timeframe, select “+Generate account snapshot” in the top corner. Please note that statements for 401(k), Checking, and crypto accounts cannot be generated via account snapshot.</p>
+
+                                          <h4>401(k) Accounts</h4>
+                                          <p>401(k) account statements are issued quarterly and typically released within the first week of the quarter. Similar to most of your account statements, they can be downloaded within the Documents section of your account.</p>
+                                          </p>
+                                          <!-- <a class="link" href="{{ route('home') }}" aria-label="Read more about Where can I find account statements?">Read More</a> -->
                                        </span>
                                     </div>
                                  </li>
@@ -657,8 +1000,12 @@
                                     </button>
                                     <div class="accordion-body" aria-hidden="true" id="content-who-is-available-to-support-me-when-i-need-oneonone-advice" style="display:none;">
                                        <span class="bt-body2">
-                                          <p>Our team is here to support you, whether you're facing a technical problem, making a complicated financial move, or looking for personalized guidance from a professional. When you have a question that warrants personal advice, we have a team of CERTIFIED FINANCIAL PLANNERS™ to support you with one-on-one advice, either in a one-time package or with continuous support in our Premium plan. We also have a Concierge Team who can help advise you if you're working on transitioning a substantial ...</p>
-                                          <a class="link" href="{{ route('home') }}" aria-label="Read more about Who is available to support me when I need one-on-one advice?">Read More</a>
+                                          <p>
+                                          Our team is here to support you, whether you're facing a technical problem, making a complicated financial move, or looking for personalized guidance from a professional.
+                                          <br>
+                                          <br>
+                                          When you have a question that warrants personal advice, we have a team of CERTIFIED FINANCIAL PLANNERS™ to support you with one-on-one advice, either in a one-time package or with continuous support in our Premium plan. We also have a Concierge Team who can help advise you if you're working on transitioning a substantial balance from a previous provider.</p>
+                                          <!-- <a class="link" href="{{ route('home') }}" aria-label="Read more about Who is available to support me when I need one-on-one advice?">Read More</a> -->
                                        </span>
                                     </div>
                                  </li>
@@ -673,7 +1020,7 @@
                                     <div class="accordion-body" aria-hidden="true" id="content-what-mobile-platforms-does-betterment-support" style="display:none;">
                                        <span class="bt-body2">
                                           <p>Crestwood Capital Management supports apps on iOS and Android. You can download them below: iOS Android</p>
-                                          <a class="link" href="{{ route('home') }}" aria-label="Read more about What mobile platforms does Crestwood Capital Management support?">Read More</a>
+                                          <!-- <a class="link" href="{{ route('home') }}" aria-label="Read more about What mobile platforms does Crestwood Capital Management support?">Read More</a> -->
                                        </span>
                                     </div>
                                  </li>
