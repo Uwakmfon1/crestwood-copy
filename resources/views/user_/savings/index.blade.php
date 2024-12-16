@@ -52,7 +52,7 @@
                 </button> -->
                 <a class="btn btn-primary btn-wave waves-effect waves-light" href="{{ route('savings.create') }}">
                     <i class="ri-upload-2-line me-2"></i> New Savings
-                    <a href="javascript:void(0);" data-bs-toggle="tooltip" data-bs-custom-class="tooltip-dark" title="Click to start a new savings plan" class="text-muted mt-3">
+                    <a href="javascript:void(0);" data-bs-toggle="tooltip" data-bs-custom-class="tooltip-dark" title="Click to start a new savings plan" class="text-muted mt-2">
                         <i class="fe fe-info"></i>
                     </a>
                 </a>
@@ -83,8 +83,8 @@
                                         </div>
                                         <div class="mt-3">
                                             <h4 class="fw-semibold mb-1">&#36;{{ number_format($balance, 2) }} <!-- <span class="text-success ms-2 d-inline-block">0.45%<i class="ti ti-arrow-narrow-up"></i></span> --> </h4>
-                                            <span class="text-muted fs-12">Available Savings Balance
-                                                <a href="javascript:void(0);" data-bs-toggle="tooltip" data-bs-custom-class="tooltip-dark" title="Funds allocated to your savings accounts, ready for withdrawal or reinvestment." class="text-muted mx-1">
+                                            <span class="text-muted fs-12 tooltip-container">Available Savings Balance
+                                                <a href="javascript:void(0);" class="tooltip-trigger text-muted mx-1"  data-tooltip="Funds allocated to your savings accounts, ready for withdrawal or reinvestment." class="text-muted mx-1">
                                                     <i class="fe fe-info"></i>
                                                 </a>
                                             </span>
@@ -122,8 +122,8 @@
                                         </div>
                                         <div class="mt-3">
                                             <h4 class="fw-semibold mb-1">{{ number_format($asv) }} <!-- <span class="text-success ms-2 d-inline-block">+$20.80</span> --> </h4>
-                                            <span class="text-muted fs-12">Number of Active Savings Plans
-                                                <a href="javascript:void(0);" data-bs-toggle="tooltip" data-bs-custom-class="tooltip-dark" title="The total number of active savings plans you are currently enrolled in." class="text-muted mx-1">
+                                            <span class="text-muted fs-12 tooltip-container">Number of Active Savings Plans
+                                                <a href="javascript:void(0);" class="tooltip-trigger text-muted mx-1"  data-tooltip="The total number of active savings plans you are currently enrolled in." class="text-muted mx-1">
                                                     <i class="fe fe-info"></i>
                                                 </a>
                                             </span>

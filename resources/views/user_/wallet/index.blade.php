@@ -82,8 +82,8 @@
                             <div class="col">
                                 <div class="text-center p-2 my-2 bg-white-transparent rounded">
                                     <div class="d-flex">
-                                        <span class="fs-10">Available Balance 
-                                            <a href="javascript:void(0);" data-bs-toggle="tooltip" data-bs-custom-class="tooltip-dark" title="Funds available for withdrawal or transfer, not currently in use." class="text-fixed-white mx-1">
+                                        <span class="fs-10 tooltip-container">Available Balance 
+                                            <a href="javascript:void(0);" class="tooltip-trigger text-fixed-white mx-1"  data-tooltip="Funds available for withdrawal or transfer, not currently in use.">
                                                 <i class="fe fe-info"></i>
                                             </a>
                                         </span>
@@ -99,15 +99,8 @@
                             <div class="col">
                                 <div class="text-center p-2 my-2 bg-white-transparent rounded">
                                     <div class="d-flex">
-                                        <!-- <span class="avatar avatar-sm bg-dark avatar-rounded me-2 svg-white">
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="#000000" viewBox="0 0 256 256">
-                                                <path d="M192,168a40,40,0,0,1-40,40H128V128h24A40,40,0,0,1,192,168ZM112,48a40,40,0,0,0,0,80h16V48Z" opacity="0.2"></path>
-                                                <path d="M152,120H136V56h8a32,32,0,0,1,32,32,8,8,0,0,0,16,0,48.05,48.05,0,0,0-48-48h-8V24a8,8,0,0,0-16,0V40h-8a48,48,0,0,0,0,96h8v64H104a32,32,0,0,1-32-32,8,8,0,0,0-16,0,48.05,48.05,0,0,0,48,48h16v16a8,8,0,0,0,16,0V216h16a48,48,0,0,0,0-96Zm-40,0a32,32,0,0,1,0-64h8v64Zm40,80H136V136h16a32,32,0,0,1,0,64Z">
-                                                </path>
-                                            </svg>
-                                        </span> -->
-                                        <span class="fs-10">Locked Cash 
-                                            <a href="javascript:void(0);" data-bs-toggle="tooltip" data-bs-custom-class="tooltip-dark" title="Funds actively tied up in investments or savings." class="text-fixed-white mx-1">
+                                        <span class="fs-10 tooltip-container">Locked Cash 
+                                            <a href="javascript:void(0);" class="tooltip-trigger text-fixed-white mx-1"  data-tooltip="Funds actively tied up in investments or savings.">
                                                 <i class="fe fe-info"></i>
                                             </a>
                                         </span>

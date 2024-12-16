@@ -80,7 +80,7 @@
                                         </div>
                                     <div class="lh-1">
                                         <span class="d-block mb-2 fw-medium">Available Crypto Balance 
-                                            <a href="javascript:void(0);" data-bs-toggle="tooltip" data-bs-custom-class="tooltip-primary" title="Funds available for purchasing or trading cryptocurrencies." class="text-muted mx-1">
+                                            <a href="javascript:void(0);" data-bs-toggle="tooltip" data-bs-custom-class="tooltip-dark" title="Funds available for purchasing or trading cryptocurrencies." class="text-muted mx-1">
                                                 <i class="fe fe-info"></i>
                                             </a>
                                         </span>
@@ -119,7 +119,7 @@
                                         </div>
                                     <div class="lh-1">
                                         <span class="d-block mb-2 fw-medium">Investing
-                                            <a href="javascript:void(0);" data-bs-toggle="tooltip" data-bs-custom-class="tooltip-primary" title="The total value of all cryptocurrencies currently held." class="text-muted mx-1">
+                                            <a href="javascript:void(0);" data-bs-toggle="tooltip" data-bs-custom-class="tooltip-dark" title="The total value of all cryptocurrencies currently held." class="text-muted mx-1">
                                                 <i class="fe fe-info"></i>
                                             </a>
                                         </span>
@@ -474,7 +474,7 @@
                             <div class="card-body p-2">
                                 <div class="">
                                     <div class="text-fixed-dark mb-2">Crypto Portfolio Value
-                                            <a href="javascript:void(0);" data-bs-toggle="tooltip" data-bs-custom-class="tooltip-primary" title="The total value of all cryptocurrencies currently held." class="text-muted mx-1">
+                                            <a href="javascript:void(0);" data-bs-toggle="tooltip" data-bs-custom-class="tooltip-dark" title="The total value of all cryptocurrencies currently held." class="text-muted mx-1">
                                                 <i class="fe fe-info"></i>
                                             </a>
                                     </div>
@@ -578,7 +578,7 @@
                                     </div>
                                     <div class="flex-fill">
                                         <span class="fw-medium">Today’s Change 
-                                            <a href="javascript:void(0);" data-bs-toggle="tooltip" data-bs-custom-class="tooltip-primary" title="The dollar and percentage change in your crypto portfolio value for the current trading day." class="text-muted mx-1">
+                                            <a href="javascript:void(0);" data-bs-toggle="tooltip" data-bs-custom-class="tooltip-dark" title="The dollar and percentage change in your crypto portfolio value for the current trading day." class="text-muted mx-1">
                                                 <i class="fe fe-info"></i>
                                             </a>
                                         </span>

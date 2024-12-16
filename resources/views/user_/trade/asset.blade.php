@@ -88,7 +88,7 @@
                                         </div>
                                     <div class="lh-1">
                                         <span class="d-block mb-2 fw-medium">Available Trading Balance 
-                                            <a href="javascript:void(0);" data-bs-toggle="tooltip" data-bs-custom-class="tooltip-primary" title="Funds available for buying new stocks or assets." class="text-muted mx-1">
+                                            <a href="javascript:void(0);" data-bs-toggle="tooltip" data-bs-custom-class="tooltip-dark" title="Funds available for buying new stocks or assets." class="text-muted mx-1">
                                                 <i class="fe fe-info"></i>
                                             </a>
                                         </span>
@@ -127,7 +127,7 @@
                                         </div>
                                     <div class="lh-1">
                                         <span class="d-block mb-2 fw-medium">Investing
-                                            <a href="javascript:void(0);" data-bs-toggle="tooltip" data-bs-custom-class="tooltip-primary" title="Total value of stocks currently held in your portfolio." class="text-muted mx-1">
+                                            <a href="javascript:void(0);" data-bs-toggle="tooltip" data-bs-custom-class="tooltip-dark" title="Total value of stocks currently held in your portfolio." class="text-muted mx-1">
                                                 <i class="fe fe-info"></i>
                                             </a>
                                         </span>
@@ -482,7 +482,7 @@
                             <div class="card-body p-2">
                                 <div class="">
                                     <div class="text-fixed-dark mb-2">Stock Portfolio Value
-                                        <a href="javascript:void(0);" data-bs-toggle="tooltip" data-bs-custom-class="tooltip-primary" title="Total current value of your cryptocurrency portfolio, including unrealized profits or losses." class="text-muted mx-1">
+                                        <a href="javascript:void(0);" data-bs-toggle="tooltip" data-bs-custom-class="tooltip-dark" title="Total current value of your cryptocurrency portfolio, including unrealized profits or losses." class="text-muted mx-1">
                                             <i class="fe fe-info"></i>
                                         </a>
                                     </div>
@@ -591,7 +591,7 @@
                                     </div>
                                     <div class="flex-fill">
                                         <span class="fw-medium">Today’s Change
-                                            <a href="javascript:void(0);" data-bs-toggle="tooltip" data-bs-custom-class="tooltip-primary" title="The dollar and percentage change in your crypto portfolio value for the current trading day." class="text-muted mx-1">
+                                            <a href="javascript:void(0);" data-bs-toggle="tooltip" data-bs-custom-class="tooltip-dark" title="The dollar and percentage change in your crypto portfolio value for the current trading day." class="text-muted mx-1">
                                                 <i class="fe fe-info"></i>
                                             </a>
                                         </span>

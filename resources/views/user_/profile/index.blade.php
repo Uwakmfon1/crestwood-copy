@@ -29,6 +29,47 @@
         font-size: 13px;
     }
 
+    .tooltip-container {
+        display: inline-block;
+        position: relative;
+    }
+
+    .tooltip-container .tooltip-box {
+        position: absolute;
+        background-color: rgba(0, 0, 0, 0.9);
+        color: #fff;
+        padding: 5px 10px;
+        font-size: 12px;
+        border-radius: 4px;
+        white-space: nowrap;
+        z-index: 10;
+        opacity: 0;
+        visibility: hidden;
+        transition: opacity 0.2s ease-in-out;
+        white-space: normal; 
+        width: 300px; 
+        word-break: break-word; 
+        text-align: center;
+    }
+
+    /* Arrow pointing to the center */
+    .tooltip-box::after {
+        content: "";
+        position: absolute;
+        top: 100%; /* Arrow on the bottom of the tooltip box */
+        left: 50%;
+        transform: translateX(-50%);
+        border-width: 5px;
+        border-style: solid;
+        border-color: rgba(0, 0, 0, 0.8) transparent transparent transparent;
+    }
+
+    /* Show tooltip */
+    .tooltip-box.show {
+        opacity: 1;
+        visibility: visible;
+    }
+
 </style>
 
 @section('content')
@@ -36,9 +77,9 @@
 <div class="main-content app-content">
     <div class="container-fluid">
     @include('partials.users.alert')
+    
         <!-- Page Header -->
-        <div
-            class="my-4 page-header-breadcrumb d-flex align-items-center justify-content-between flex-wrap gap-2">
+        <div class="my-4 page-header-breadcrumb d-flex align-items-center justify-content-between flex-wrap gap-2">
             <div>
                 <h1 class="page-title fw-medium fs-18 mb-2">Profile</h1>
                 <div class="">
@@ -63,7 +104,7 @@
 
         <!-- Start:: row-1 -->
         <div class="row">
-            <div class="col-xxl-9">
+            <div class="col-xxl-9 col-xl-9 col-lg-9 col-sm-12">
                 <div class="card custom-card profile-card">
                     <img height="160" src="https://img.freepik.com/free-vector/gradient-purple-striped-background_23-2149583760.jpg" class="card-img-top" alt="...">
                     <div class="card-body p-4 pb-0 position-relative">
@@ -79,8 +120,7 @@
                                 <img width="40" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTr3jhpAFYpzxx39DRuXIYxNPXc0zI5F6IiMQ&s" alt="">
                             </span>
                         @endif
-                        <div
-                            class="mt-4 mb-3 d-flex align-items-center flex-wrap gap-3 justify-content-between">
+                        <div class="mt-4 mb-3 d-flex align-items-center flex-wrap gap-3 justify-content-between">
                             <div>
                                 <h5 class="fw-semibold mb-1"><h6>{{ auth()->user()['name'] }}</h6></h5>
                                 <span class="d-block fw-medium text-muted mb-1">{{ auth()->user()['email'] }}</span>
@@ -115,8 +155,8 @@
                                     </div>
                                     <div>
                                         <p class="fw-semibold h6 mb-0">{{ number_format($trading)  }}</p>
-                                        <p class="mb-0 fs-12 text-muted fw-medium">Trade 
-                                            <a href="javascript:void(0);" data-bs-toggle="tooltip" data-bs-custom-class="tooltip-dark" title="Number of executed trades in this account." class="text-muted mx-1">
+                                        <p class="mb-0 fs-12 text-muted fw-medium tooltip-container">Trade 
+                                            <a href="javascript:void(0);" class="tooltip-trigger text-muted mx-1"  data-tooltip="Number of executed trades in this account.">
                                                 <i class="fe fe-info"></i>
                                             </a>
                                         </p>
@@ -131,8 +171,8 @@
                                     <div>
                                         <p class="fw-semibold h6 mb-0">{{ number_format($savings)  }}
                                         </p>
-                                        <p class="mb-0 fs-12 text-muted fw-medium">Savings
-                                            <a href="javascript:void(0);" data-bs-toggle="tooltip" data-bs-custom-class="tooltip-dark" title="Active savings accounts linked to this profile." class="text-muted mx-1">
+                                        <p class="mb-0 fs-12 text-muted fw-medium tooltip-container">Savings
+                                            <a href="javascript:void(0);" class="tooltip-trigger text-muted mx-1"  data-tooltip="Active savings accounts linked to this profile." class="text-muted mx-1">
                                                 <i class="fe fe-info"></i>
                                             </a>
                                         </p>
@@ -146,8 +186,8 @@
                                     </div>
                                     <div>
                                         <p class="fw-semibold h6 mb-0">{{ number_format($savings)  }}</p>
-                                        <p class="mb-0 fs-12 text-muted fw-medium">Investment
-                                            <a href="javascript:void(0);" data-bs-toggle="tooltip" data-bs-custom-class="tooltip-dark" title="Active investment packages under this account." class="text-muted mx-1">
+                                        <p class="mb-0 fs-12 text-muted fw-medium tooltip-container">Investment
+                                            <a href="javascript:void(0);" class="tooltip-trigger text-muted mx-1"  data-tooltip="Active investment packages under this account." class="text-muted mx-1">
                                                 <i class="fe fe-info"></i>
                                             </a>
                                         </p>
@@ -336,9 +376,9 @@
                                                                 @csrf
                                                                 <input type="hidden" name="screen" value="three">
                                                                 <div class="row">
-                                                                    <div class="col-xl-12 my-2">
+                                                                    <div class="col-xl-12 my-2 tooltip-container">
                                                                         <label for="account_name" class="form-label text-muted fs-12">Account Name</label>
-                                                                        <a href="javascript:void(0);" data-bs-toggle="tooltip" data-bs-custom-class="tooltip-dark" title="This is the name associated with your CrestWood Capital account." class="text-muted mx-1">
+                                                                        <a href="javascript:void(0);"  class="tooltip-trigger text-muted mx-1"  data-tooltip="This is the name associated with your CrestWood Capital account." class="text-muted mx-1">
                                                                             <i class="fe fe-info"></i>
                                                                         </a>
                                                                         <input name="account_name" type="text" class="form-control @error('account_name') is-invalid @enderror" id="account_name" value="{{ auth()->user()['first_name'] }} {{ auth()->user()['last_name'] }}" disabled>
@@ -370,9 +410,9 @@
                                                                         @enderror
                                                                     </div>
                                                                     <div class="row">
-                                                                        <div class="col-6">
+                                                                        <div class="col-6 tooltip-container">
                                                                             <label for="swiss_code" class="form-label text-muted fs-12">SWIFT Code (optional)</label>
-                                                                            <a href="javascript:void(0);" data-bs-toggle="tooltip" data-bs-custom-class="tooltip-dark" title="This is required for international transfers." class="text-muted mx-1">
+                                                                            <a href="javascript:void(0);"  class="tooltip-trigger text-muted mx-1"  data-tooltip="This is required for international transfers." class="text-muted mx-1">
                                                                                 <i class="fe fe-info"></i>
                                                                             </a>
                                                                             <input name="swiss_code" type="number" class="form-control @error('swiss_code') is-invalid @enderror" id="swiss_code"
@@ -433,9 +473,9 @@
                                                                             </select>
                                                                         </div>
                                                                     </div>
-                                                                    <div class="col-xl-12 my-2">
+                                                                    <div class="col-xl-12 my-2 tooltip-container">
                                                                         <label class="form-label fs-12 text-muted" for="network-select">Select Wallet Network</label>
-                                                                        <a href="javascript:void(0);" data-bs-toggle="tooltip" data-bs-custom-class="tooltip-dark" title="Choose the correct network for your wallet." class="text-muted mx-1">
+                                                                        <a href="javascript:void(0);"  class="tooltip-trigger text-muted mx-1"  data-tooltip="Choose the correct network for your wallet." class="text-muted mx-1">
                                                                             <i class="fe fe-info"></i>
                                                                         </a>
                                                                         <div class="input-group"> 
@@ -887,7 +927,6 @@
 </div>
 <!-- End::app-content -->
 
-
 @endsection
 
 @section('scripts')
@@ -951,60 +990,7 @@
         document.getElementById('phone_code').innerHTML = obj.options[obj.selectedIndex].getAttribute('data-code');
         document.getElementById('phone_code_input').value = obj.options[obj.selectedIndex].getAttribute('data-code');
     }
-    // $(document).ready(function (){
-    //     let bankList = $('#bankList');
-    //     let bankCode = $('#bankCode');
-    //     let accountNumber = $('#account_number');
-    //     let accountName = $('#account_name');
-    //     let verifyingDisplay = $('#verifyingDisplay');
-    //     bankList.on('change', function (){
-    //         $("#bankList option").each(function(){
-    //             if($(this).val() === $('#bankList').val()){
-    //                 bankCode.val($(this).attr('data-code'))
-    //             }
-    //         })
-    //         verifyAccountNumber();
-    //     });
-    //     accountNumber.on('input', verifyAccountNumber);
-    //     function verifyAccountNumber(){
-    //         if (bankList.val() && accountNumber.val().length === 10 && bankCode.val()){
-    //             verifyingDisplay.text('Verifying account number...');
-    //             verifyingDisplay.removeClass('d-none');
-    //             verifyingDisplay.removeClass('text-danger');
-    //             verifyingDisplay.removeClass('text-success');
-    //             verifyingDisplay.addClass('text-info');
-    //             $.ajax({
-    //                 url: "https://api.paystack.co/bank/resolve",
-    //                 data: { account_number: accountNumber.val(), bank_code: bankCode.val().trim() },
-    //                 type: "GET",
-    //                 beforeSend: function(xhr){
-    //                     xhr.setRequestHeader('Authorization', 'Bearer {{ env('PAYSTACK_SECRET_KEY') }}');
-    //                     xhr.setRequestHeader('Content-Type', 'application/json');
-    //                     xhr.setRequestHeader('Accept', 'application/json');
-    //                 },
-    //                 success: function(res) {
-    //                     verifyingDisplay.removeClass('text-info');
-    //                     verifyingDisplay.addClass('text-success');
-    //                     verifyingDisplay.text('Account details verified');
-    //                     accountName.val(res.data.account_name);
-    //                 },
-    //                 error: function (err){
-    //                     let msg = 'Error processing verification';
-    //                     verifyingDisplay.removeClass('text-info');
-    //                     verifyingDisplay.addClass('text-danger');
-    //                     if (parseInt(err.status) === 422){
-    //                         msg = 'Account details doesn\'t match any record';
-    //                     }
-    //                     verifyingDisplay.text(msg);
-    //                 }
-    //             });
-    //         }else{
-    //             accountName.val("");
-    //             verifyingDisplay.addClass('d-none');
-    //         }
-    //     }
-    // });
-
+    
     $(document).ready(function () {
         // Fetch coins on page load
         fetchCoins();
@@ -1140,6 +1126,7 @@
             });
         }
     });
+
 </script>
 
 @endsection

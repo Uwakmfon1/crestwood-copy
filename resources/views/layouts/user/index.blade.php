@@ -6,6 +6,49 @@
 
 @yield('styles')
 
+<style>
+    .tooltip-container {
+        display: inline-block;
+        position: relative;
+    }
+
+    .tooltip-container .tooltip-box {
+        position: absolute;
+        background-color: rgba(0, 0, 0, 0.9);
+        color: #fff;
+        padding: 5px 10px;
+        font-size: 12px;
+        border-radius: 4px;
+        white-space: nowrap;
+        z-index: 10;
+        opacity: 0;
+        visibility: hidden;
+        transition: opacity 0.2s ease-in-out;
+        white-space: normal; 
+        width: 250px; 
+        word-break: break-word; 
+        text-align: center;
+    }
+
+    /* Arrow pointing to the center */
+    .tooltip-box::after {
+        content: "";
+        position: absolute;
+        top: 100%; /* Arrow on the bottom of the tooltip box */
+        left: 50%;
+        transform: translateX(-50%);
+        border-width: 5px;
+        border-style: solid;
+        border-color: rgba(0, 0, 0, 0.8) transparent transparent transparent;
+    }
+
+    /* Show tooltip */
+    .tooltip-box.show {
+        opacity: 1;
+        visibility: visible;
+    }
+</style>
+
 <title> {{ env('APP_NAME') }} | @yield('title') </title>
 <meta name="csrf-token" content="{{ csrf_token() }}">
 
@@ -243,6 +286,46 @@
 
     @yield('scripts')
 
+    <script>
+        $(document).ready(function () {
+            $(".tooltip-trigger").on("mouseenter", function () {
+                // Get the tooltip text
+                const tooltipText = $(this).data("tooltip");
+
+                // Create the tooltip element
+                const tooltip = $("<div>", { class: "tooltip-box" }).text(tooltipText);
+
+                // Append the tooltip to the container
+                const container = $(this).closest(".tooltip-container");
+                container.append(tooltip);
+
+                // Position the tooltip
+                const triggerRect = this.getBoundingClientRect();
+                const containerRect = container[0].getBoundingClientRect();
+                const tooltipWidth = tooltip.outerWidth();
+                const tooltipHeight = tooltip.outerHeight();
+
+                // Calculate the tooltip's position
+                const leftPosition =
+                    triggerRect.left - containerRect.left + triggerRect.width / 2 - tooltipWidth / 2;
+                const bottomPosition =
+                    containerRect.height - (triggerRect.top - containerRect.top) + 5; // 5px spacing
+
+                tooltip.css({
+                    left: `${leftPosition}px`,
+                    bottom: `${bottomPosition}px`,
+                });
+
+                // Make the tooltip visible
+                tooltip.addClass("show");
+            });
+
+            $(".tooltip-trigger").on("mouseleave", function () {
+                // Remove the tooltip on mouse leave
+                $(this).closest(".tooltip-container").find(".tooltip-box").remove();
+            });
+        });
+    </script>
 </body>
 
 
