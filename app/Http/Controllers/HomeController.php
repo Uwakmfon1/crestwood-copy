@@ -108,8 +108,7 @@ class HomeController extends Controller
     private function getTopAssets()
     {
         // Fetch top 5 Cryptos
-        $cryptos = Crypto::where('status', 'active')
-            ->orderBy('market_cap', 'desc')
+        $cryptos = Crypto::orderBy('market_cap', 'desc')
             ->take(5)
             ->get();
 
