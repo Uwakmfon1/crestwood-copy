@@ -518,7 +518,7 @@ class TradingController extends Controller
     private function getTopCrypto()
     {
         // Fetch top 10 Stocks
-        $stocks = Crypto::orderBy('price', 'desc')
+        $stocks = Crypto::orderBy('id', 'asc')
             ->take(10)
             ->get();
 
