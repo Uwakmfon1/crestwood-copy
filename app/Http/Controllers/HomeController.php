@@ -79,72 +79,6 @@ class HomeController extends Controller
         $trd = $user->trades('stocks')->sum('amount') + $user->trades('crypto')->sum('amount');
 
         $lockedFunds = ($inv + $sav + $trd);    
-        
-        // $slidesData = [
-        //     [
-        //         'name' => "Apple",
-        //         'icon' => "bi-apple",
-        //         'colorClass' => "success",
-        //         'price' => "$12,289.44",
-        //         'percentageChange' => "0.14%",
-        //         'changeDirection' => "ti-arrow-bear-right",
-        //         'changeAmount' => "+$1,780.80",
-        //     ],
-        //     [
-        //         'name' => "Bitcoin",
-        //         'icon' => "bi-currency-bitcoin",
-        //         'colorClass' => "secondary",
-        //         'price' => "$58,151.02",
-        //         'percentageChange' => "2.14%",
-        //         'changeDirection' => "ti-arrow-bear-right",
-        //         'changeAmount' => "+$5,745.62",
-        //     ],
-        //     [
-        //         'name' => "Tesla",
-        //         'icon' => "bi-card-list",
-        //         'colorClass' => "info",
-        //         'price' => "$14,452.36",
-        //         'percentageChange' => "4.02%",
-        //         'changeDirection' => "ti-arrow-bear-right",
-        //         'changeAmount' => "+$4,125.63",
-        //     ],
-        //     [
-        //         'name' => "Amazon",
-        //         'icon' => "bi-gift",
-        //         'colorClass' => "dark",
-        //         'price' => "$63,251.11",
-        //         'percentageChange' => "5.14%",
-        //         'changeDirection' => "ti-arrow-bear-right",
-        //         'changeAmount' => "+$936.30",
-        //     ],
-        //     [
-        //         'name' => "Aliexpress",
-        //         'icon' => "bi-truck",
-        //         'colorClass' => "danger",
-        //         'price' => "$5,401.50",
-        //         'percentageChange' => "3.32%",
-        //         'changeDirection' => "ti-arrow-bear-right",
-        //         'changeAmount' => "+$4,360.65",
-        //     ],
-        //     [
-        //         'name' => "Samsung",
-        //         'icon' => "bi-phone",
-        //         'colorClass' => "warning",
-        //         'price' => "$10,732.12",
-        //         'percentageChange' => "1.24%",
-        //         'changeDirection' => "ti-arrow-bear-right",
-        //         'changeAmount' => "+$3,221.29",
-        //     ],
-        //     [
-        //         'name' => "Nvidia",
-        //         'icon' => "bi-nvidia",
-        //         'colorClass' => "primary",
-        //         'price' => "$23,235.25",
-        //         'percentageChange' => "1.14%",
-        //         'changeDirection' => "ti-arrow-bear-right",
-        //         'changeAmount' => "+$5,745.62",
-        //     ]
-        // ];
 
         $slidesData = $this->getTopAssets();
 
@@ -187,18 +121,19 @@ class HomeController extends Controller
         // Merge the cryptos and stocks into one collection
         $assets = $cryptos->merge($stocks);
 
-        // Define the color classes to shuffle
+        // Define the color classes
         $colors = ['success', 'primary', 'secondary', 'info', 'warning', 'danger', 'dark'];
 
         // Iterate over assets and assign random colors and img
-        $assets = $assets->map(function ($asset) use (&$colors) {
+        $assets = $assets->map(function ($asset) use ($colors) {
             // Shuffle the color array to get a random color each time
-            $color = array_splice($colors, rand(0, count($colors) - 1), 1)[0];
-            
+            $shuffledColors = $colors;
+            shuffle($shuffledColors); // Shuffle the array
+
             return [
                 'name' => $asset->name,
                 'icon' => $asset->img,  // Use asset's img as the icon
-                'colorClass' => $color, // Randomly assigned color
+                'colorClass' => $shuffledColors[0], // Randomly assigned color
                 'price' => "$" . number_format($asset->price, 2), // Formatting price
                 'percentageChange' => number_format($asset->changes_percentage, 2) . "%",
                 'changeDirection' => "ti-arrow-bear-right", // You can replace with actual direction logic
@@ -209,7 +144,6 @@ class HomeController extends Controller
         // Shuffle the assets array to mix stocks and cryptos randomly
         return $assets->shuffle(); // Return the shuffled assets directly as an array
     }
-
 
     public function kyc()
     {
