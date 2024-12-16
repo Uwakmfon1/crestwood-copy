@@ -202,7 +202,7 @@
                                         <div class="d-flex gap-2 flex-wrap align-items-center justify-content-between p-3 border rounded bg-{{ $slide['colorClass'] }}-transparent">
                                             <div class="d-flex flex-fill align-items-center">
                                                 <div class="me-2">
-                                                    <span class="avatar avatar-sm rounded-circle bg-white p-2">
+                                                    <span class="avatar avatar-md rounded-circle bg-white p-2">
                                                         <img src="{{ $slide['icon'] }}" alt="{{ $slide['icon'] }}">
                                                     </span>
                                                 </div>
