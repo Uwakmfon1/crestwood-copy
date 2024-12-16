@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Stock;
+use App\Models\Crypto;
 use App\Models\Setting;
 use App\Models\Trading;
 use App\Models\Watchlist;
@@ -11,10 +13,10 @@ use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Mail;
+
+
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Crypt;
-
-
 use Intervention\Image\Facades\Image;
 use Illuminate\Support\Facades\Response;
 use Illuminate\Support\Facades\Validator;
@@ -76,7 +78,75 @@ class HomeController extends Controller
 
         $trd = $user->trades('stocks')->sum('amount') + $user->trades('crypto')->sum('amount');
 
-        $lockedFunds = ($inv + $sav + $trd);
+        $lockedFunds = ($inv + $sav + $trd);    
+        
+        // $slidesData = [
+        //     [
+        //         'name' => "Apple",
+        //         'icon' => "bi-apple",
+        //         'colorClass' => "success",
+        //         'price' => "$12,289.44",
+        //         'percentageChange' => "0.14%",
+        //         'changeDirection' => "ti-arrow-bear-right",
+        //         'changeAmount' => "+$1,780.80",
+        //     ],
+        //     [
+        //         'name' => "Bitcoin",
+        //         'icon' => "bi-currency-bitcoin",
+        //         'colorClass' => "secondary",
+        //         'price' => "$58,151.02",
+        //         'percentageChange' => "2.14%",
+        //         'changeDirection' => "ti-arrow-bear-right",
+        //         'changeAmount' => "+$5,745.62",
+        //     ],
+        //     [
+        //         'name' => "Tesla",
+        //         'icon' => "bi-card-list",
+        //         'colorClass' => "info",
+        //         'price' => "$14,452.36",
+        //         'percentageChange' => "4.02%",
+        //         'changeDirection' => "ti-arrow-bear-right",
+        //         'changeAmount' => "+$4,125.63",
+        //     ],
+        //     [
+        //         'name' => "Amazon",
+        //         'icon' => "bi-gift",
+        //         'colorClass' => "dark",
+        //         'price' => "$63,251.11",
+        //         'percentageChange' => "5.14%",
+        //         'changeDirection' => "ti-arrow-bear-right",
+        //         'changeAmount' => "+$936.30",
+        //     ],
+        //     [
+        //         'name' => "Aliexpress",
+        //         'icon' => "bi-truck",
+        //         'colorClass' => "danger",
+        //         'price' => "$5,401.50",
+        //         'percentageChange' => "3.32%",
+        //         'changeDirection' => "ti-arrow-bear-right",
+        //         'changeAmount' => "+$4,360.65",
+        //     ],
+        //     [
+        //         'name' => "Samsung",
+        //         'icon' => "bi-phone",
+        //         'colorClass' => "warning",
+        //         'price' => "$10,732.12",
+        //         'percentageChange' => "1.24%",
+        //         'changeDirection' => "ti-arrow-bear-right",
+        //         'changeAmount' => "+$3,221.29",
+        //     ],
+        //     [
+        //         'name' => "Nvidia",
+        //         'icon' => "bi-nvidia",
+        //         'colorClass' => "primary",
+        //         'price' => "$23,235.25",
+        //         'percentageChange' => "1.14%",
+        //         'changeDirection' => "ti-arrow-bear-right",
+        //         'changeAmount' => "+$5,745.62",
+        //     ]
+        // ];
+
+        $slidesData = $this->getTopAssets();
 
         return view('user_.dashboard.index', [
             'title' => 'Dashboard', 
@@ -97,8 +167,49 @@ class HomeController extends Controller
             'tradingPercentage' => $tradingPercentage,
 
             'lockedFunds' => $lockedFunds,
+            'slidesData' => $slidesData,
         ]);
     }
+
+    private function getTopAssets()
+    {
+        // Fetch top 5 Cryptos
+        $cryptos = Crypto::where('status', 'active')
+            ->orderBy('market_cap', 'desc')
+            ->take(5)
+            ->get();
+
+        // Fetch top 5 Stocks
+        $stocks = Stock::orderBy('market_cap', 'desc')
+            ->take(5)
+            ->get();
+
+        // Merge the cryptos and stocks into one collection
+        $assets = $cryptos->merge($stocks);
+
+        // Define the color classes to shuffle
+        $colors = ['success', 'primary', 'secondary', 'info', 'warning', 'danger', 'dark'];
+
+        // Iterate over assets and assign random colors and img
+        $assets = $assets->map(function ($asset) use (&$colors) {
+            // Shuffle the color array to get a random color each time
+            $color = array_splice($colors, rand(0, count($colors) - 1), 1)[0];
+            
+            return [
+                'name' => $asset->name,
+                'icon' => $asset->img,  // Use asset's img as the icon
+                'colorClass' => $color, // Randomly assigned color
+                'price' => "$" . number_format($asset->price, 2), // Formatting price
+                'percentageChange' => number_format($asset->changes_percentage, 2) . "%",
+                'changeDirection' => "ti-arrow-bear-right", // You can replace with actual direction logic
+                'changeAmount' => "$" . number_format($asset->change, 2),
+            ];
+        });
+
+        // Shuffle the assets array to mix stocks and cryptos randomly
+        return $assets->shuffle(); // Return the shuffled assets directly as an array
+    }
+
 
     public function kyc()
     {

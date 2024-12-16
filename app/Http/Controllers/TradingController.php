@@ -49,6 +49,8 @@ class TradingController extends Controller
 
         $totalStocks = $user->trades('stocks')->sum('amount');
 
+        $slidesData = $this->getTopAssets();
+
         return view('user_.trade.index', [
             'title' => 'Trading', 
             'stocks' => $stock, 
@@ -60,7 +62,43 @@ class TradingController extends Controller
             'buyTrade' => 0,
             'sellAmount' => 0,
             'sellTrade' => 0,
+
+            'slidesData' => $slidesData,
         ]);
+    }
+
+    private function getTopAssets()
+    {
+        // Fetch top 10 Stocks
+        $stocks = Stock::orderBy('market_cap', 'desc')
+            ->take(10)
+            ->get();
+
+        // Merge the cryptos and stocks into one collection (in this case, it's just stocks)
+        $assets = $stocks;
+
+        // Define the color classes
+        $colors = ['success', 'primary', 'secondary', 'info', 'warning', 'danger', 'dark'];
+
+        // Iterate over assets and assign random colors and img
+        $assets = $assets->map(function ($asset) use ($colors) {
+            // Shuffle the color array to get a random color each time
+            $shuffledColors = $colors;
+            shuffle($shuffledColors); // Shuffle the array
+
+            return [
+                'name' => $asset->name,
+                'icon' => $asset->img,  // Use asset's img as the icon
+                'colorClass' => $shuffledColors[0], // Randomly assigned color
+                'price' => "$" . number_format($asset->price, 2), // Formatting price
+                'percentageChange' => number_format($asset->changes_percentage, 2) . "%",
+                'changeDirection' => "ti-arrow-bear-right", // You can replace with actual direction logic
+                'changeAmount' => "$" . number_format($asset->change, 2),
+            ];
+        });
+
+        // Shuffle the assets array to mix stocks randomly
+        return $assets->shuffle(); // Return the shuffled assets directly as an array
     }
 
     public function store(Request $request): \Illuminate\Http\RedirectResponse
@@ -459,6 +497,8 @@ class TradingController extends Controller
 
         $totalStocks = $user->trades('crypto')->sum('amount');
 
+        $slidesData = $this->getTopCrypto();
+
         return view('user_.crypto.index', [
             'title' => 'Trading', 
             'stocks' => $stock, 
@@ -470,8 +510,45 @@ class TradingController extends Controller
             'buyTrade' => 0,
             'sellAmount' => 0,
             'sellTrade' => 0,
+
+            'slidesData' => $slidesData,
         ]);
     }
+
+    private function getTopCrypto()
+    {
+        // Fetch top 10 Stocks
+        $stocks = Crypto::orderBy('market_cap', 'desc')
+            ->take(10)
+            ->get();
+
+        // Merge the cryptos and stocks into one collection (in this case, it's just stocks)
+        $assets = $stocks;
+
+        // Define the color classes
+        $colors = ['success', 'primary', 'secondary', 'info', 'warning', 'danger', 'dark'];
+
+        // Iterate over assets and assign random colors and img
+        $assets = $assets->map(function ($asset) use ($colors) {
+            // Shuffle the color array to get a random color each time
+            $shuffledColors = $colors;
+            shuffle($shuffledColors); // Shuffle the array
+
+            return [
+                'name' => $asset->name,
+                'icon' => $asset->img,  // Use asset's img as the icon
+                'colorClass' => $shuffledColors[0], // Randomly assigned color
+                'price' => "$" . number_format($asset->price, 2), // Formatting price
+                'percentageChange' => number_format($asset->changes_percentage, 2) . "%",
+                'changeDirection' => "ti-arrow-bear-right", // You can replace with actual direction logic
+                'changeAmount' => "$" . number_format($asset->change, 2),
+            ];
+        });
+
+        // Shuffle the assets array to mix stocks randomly
+        return $assets->shuffle(); // Return the shuffled assets directly as an array
+    }
+
 
     public function storeCrypto(Request $request): \Illuminate\Http\RedirectResponse
     {

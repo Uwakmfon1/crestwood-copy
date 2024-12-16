@@ -206,144 +206,36 @@
                 <div class="d-flex align-items-center justify-content-between">
                     <div class="swiper swiper-basic">
                         <div class="swiper-wrapper">
-                            <div class="swiper-slide">
-                                <div class="card custom-card">
-                                    <div class="card-body">
-                                        <div class="d-flex gap-2 flex-wrap align-items-center justify-content-between p-3 border rounded bg-primary-transparent">
-                                            <div class="d-flex flex-fill align-items-center">
-                                                <div class="me-2">
-                                                    <span class="avatar avatar-sm bg-primary p-2">
-                                                        <i class="bi bi-people fs-18"></i>
+                            @foreach ($slidesData as $slide)
+                                <div class="swiper-slide">
+                                    <div class="card custom-card">
+                                        <div class="card-body">
+                                            <div class="d-flex gap-2 flex-wrap align-items-center justify-content-between p-3 border rounded bg-{{ $slide['colorClass'] }}-transparent">
+                                                <div class="d-flex flex-fill align-items-center">
+                                                    <div class="me-2">
+                                                        <span class="avatar avatar-sm rounded-circle bg-white p-2">
+                                                            <img src="{{ $slide['icon'] }}" alt="{{ $slide['icon'] }}">
+                                                        </span>
+                                                    </div>
+                                                    <div class="lh-1">
+                                                        <span class="d-block mb-2 text-default fw-medium" style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 100px;" title="{{ $slide['name'] }}">
+                                                            {{ $slide['name'] }}
+                                                        </span>
+                                                        <span class="d-block fs-12 fw-bold">{{ $slide['price'] }}</span>
+                                                    </div>
+                                                </div>
+                                                <div class="fs-12 text-end">
+                                                    <span class="{{ strpos($slide['percentageChange'], '-') !== false ? 'text-danger' : 'text-success' }} d-block">
+                                                        {{ $slide['percentageChange'] }}
+                                                        <i class="ti {{ $slide['changeDirection'] }}"></i>
                                                     </span>
+                                                    <span class="text-{{ $slide['colorClass'] }} d-block fs-10">{{ $slide['changeAmount'] }}</span>
                                                 </div>
-                                                <div class="lh-1">
-                                                    <span class="d-block mb-2 text-default fw-medium">Microsoft</span>
-                                                    <span class="d-block fs-12">$304.25</span>
-                                                </div>
-                                            </div>
-                                            <div class="fs-12 text-end">
-                                                <span class="text-success d-block">1.76%<i class="ti ti-arrow-bear-right"></i></span>
-                                                <span class="d-block text-success">+$5.25</span>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="swiper-slide">
-                                <div class="card custom-card">
-                                    <div class="card-body">
-                                        <div class="d-flex gap-2 flex-wrap align-items-center justify-content-between p-3 border rounded bg-warning-transparent">
-                                            <div class="d-flex flex-fill align-items-center">
-                                                <div class="me-2">
-                                                    <span class="avatar avatar-sm bg-warning p-2">
-                                                        <i class="bi bi-bag fs-18"></i>
-                                                    </span>
-                                                </div>
-                                                <div class="lh-1">
-                                                    <span class="d-block mb-2 text-default fw-medium">NVIDIA</span>
-                                                    <span class="d-block fs-12">$219.87</span>
-                                                </div>
-                                            </div>
-                                            <div class="fs-12 text-end">
-                                                <span class="text-danger d-block">2.45%<i class="ti ti-arrow-bear-right"></i></span>
-                                                <span class="d-block text-danger">-$5.56</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="swiper-slide">
-                                <div class="card custom-card">
-                                    <div class="card-body">
-                                        <div class="d-flex gap-2 flex-wrap align-items-center justify-content-between p-3 border rounded bg-danger-transparent">
-                                            <div class="d-flex flex-fill align-items-center">
-                                                <div class="me-2">
-                                                    <span class="avatar avatar-sm bg-danger p-2">
-                                                        <i class="bi bi-heart fs-18"></i>
-                                                    </span>
-                                                </div>
-                                                <div class="lh-1">
-                                                    <span class="d-block mb-2 text-default fw-medium">Pfizer</span>
-                                                    <span class="d-block fs-12">$43.25</span>
-                                                </div>
-                                            </div>
-                                            <div class="fs-12 text-end">
-                                                <span class="text-danger d-block">3.00%<i class="ti ti-arrow-bear-right"></i></span>
-                                                <span class="d-block text-danger">-$1.34</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="swiper-slide">
-                                <div class="card custom-card">
-                                    <div class="card-body">
-                                        <div class="d-flex gap-2 flex-wrap align-items-center justify-content-between p-3 border rounded bg-info-transparent">
-                                            <div class="d-flex flex-fill align-items-center">
-                                                <div class="me-2">
-                                                    <span class="avatar avatar-sm bg-info p-2">
-                                                        <i class="bi bi-geo-alt fs-18"></i>
-                                                    </span>
-                                                </div>
-                                                <div class="lh-1">
-                                                    <span class="d-block mb-2 text-default fw-medium">Walmart</span>
-                                                    <span class="d-block fs-12">$153.50</span>
-                                                </div>
-                                            </div>
-                                            <div class="fs-12 text-end">
-                                                <span class="text-success d-block">0.75%<i class="ti ti-arrow-bear-right"></i></span>
-                                                <span class="d-block text-success">+$1.15</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="swiper-slide">
-                                <div class="card custom-card">
-                                    <div class="card-body">
-                                        <div class="d-flex gap-2 flex-wrap align-items-center justify-content-between p-3 border rounded bg-secondary-transparent">
-                                            <div class="d-flex flex-fill align-items-center">
-                                                <div class="me-2">
-                                                    <span class="avatar avatar-sm bg-secondary p-2">
-                                                        <i class="bi bi-soundwave fs-18"></i>
-                                                    </span>
-                                                </div>
-                                                <div class="lh-1">
-                                                    <span class="d-block mb-2 text-default fw-medium">Intel</span>
-                                                    <span class="d-block fs-12">$30.18</span>
-                                                </div>
-                                            </div>
-                                            <div class="fs-12 text-end">
-                                                <span class="text-danger d-block">1.20%<i class="ti ti-arrow-bear-right"></i></span>
-                                                <span class="d-block text-danger">-$0.36</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="swiper-slide">
-                                <div class="card custom-card">
-                                    <div class="card-body">
-                                        <div class="d-flex gap-2 flex-wrap align-items-center justify-content-between p-3 border rounded bg-dark-transparent">
-                                            <div class="d-flex flex-fill align-items-center">
-                                                <div class="me-2">
-                                                    <span class="avatar avatar-sm bg-dark p-2">
-                                                        <i class="bi bi-mic fs-18"></i>
-                                                    </span>
-                                                </div>
-                                                <div class="lh-1">
-                                                    <span class="d-block mb-2 text-default fw-medium">Coca-Cola</span>
-                                                    <span class="d-block fs-12">$63.10</span>
-                                                </div>
-                                            </div>
-                                            <div class="fs-12 text-end">
-                                                <span class="text-success d-block">0.85%<i class="ti ti-arrow-bear-right"></i></span>
-                                                <span class="d-block text-success">+$0.53</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+                            @endforeach
                         </div>
                     </div>
                 </div>
