@@ -338,7 +338,7 @@
                                                 <!-- <a href="{{ route('dashboard') }}">
                                                    <img class="hs-cta-img" id="hs-cta-img-d7c0bb95-3ae4-41ca-9072-43cc68d590a7" style="border-width:0px;" src="cta/default/5274572/d7c0bb95-3ae4-41ca-9072-43cc68d590a7-1.png" alt="Learn more">
                                                 </a> -->
-                                                <a href="{{ route('dashboard') }}" rel="noopener" aria-label="Learn about premium pricing">Learn more ➔</a>
+                                                <a href="{{ route('dashboard') }}" rel="noopener" aria-label="Learn about premium pricing">Get Started ➔</a>
                                              </span>
                                  </span></p>
                               </div>
@@ -404,10 +404,10 @@
                                                       </div>
                                                       <div class="bt-ContentGrid-item u-col-12 u-col-6@md cols col-2">
                                                          <div>
-                                                            <img src="hs-fs/hubfs/BettermentAppPhone-1-6.png?width=1235&amp;name=BettermentAppPhone-1.png" alt="A smartphone containing an over view Of bettermen's offerings. The accounts pictured include our Cash reserve, investing, and IRA offerings. " width="1235" srcset="hs-fs/hubfs/BettermentAppPhone-1-7.png 618w?width=618&amp;name=BettermentAppPhone-1.png 618w, hs-fs/hubfs/BettermentAppPhone-1-6.png 1235wg?width=1235&amp;name=BettermentAppPhone-1.png 1235w, hs-fs/hubfs/BettermentAppPhone-1-8.png 1853wg?width=1853&amp;name=BettermentAppPhone-1.png 1853w, hs-fs/hubfs/BettermentAppPhone-1-9.png 2470wg?width=2470&amp;name=BettermentAppPhone-1.png 2470w, hs-fs/hubfs/BettermentAppPhone-1-10.png 3088wg?width=3088&amp;name=BettermentAppPhone-1.png 3088w, hs-fs/hubfs/BettermentAppPhone-1-11.png 3705wg?width=3705&amp;name=BettermentAppPhone-1.png 3705w" sizes="(max-width: 1235px) 100vw, 1235px">
+                                                            <img src="hs-fs/hubfs/Graphics/webpage-graphics/various-rewards-6.png?width=842&amp;name=various-rewards.png" alt="An array of various cash back rewards that you can earn with debit card purchases, including 3% cash back from Dunkin', 5% cash back from adidas, and 5% cash back from Sephora." width="842" srcset="hs-fs/hubfs/Graphics/webpage-graphics/various-rewards-7.png 421w?width=421&amp;name=various-rewards.png 421w, hs-fs/hubfs/Graphics/webpage-graphics/various-rewards-6.png 842wg?width=842&amp;name=various-rewards.png 842w, hs-fs/hubfs/Graphics/webpage-graphics/various-rewards-8.png 1263wg?width=1263&amp;name=various-rewards.png 1263w, hs-fs/hubfs/Graphics/webpage-graphics/various-rewards-9.png 1684wg?width=1684&amp;name=various-rewards.png 1684w, hs-fs/hubfs/Graphics/webpage-graphics/various-rewards-10.png 2105wg?width=2105&amp;name=various-rewards.png 2105w, hs-fs/hubfs/Graphics/webpage-graphics/various-rewards-11.png 2526wg?width=2526&amp;name=various-rewards.png 2526w" sizes="(max-width: 842px) 100vw, 842px">
                                                          </div>
                                                          <div class="bt-body3 mt8 center footnote">
-                                                            <p>Image is hypothetical.</p>
+                                                            <!-- <p>Image is hypothetical.</p> -->
                                                          </div>
                                                       </div>
                                                    </div>
@@ -674,7 +674,7 @@
                                                                   <span id="hs_cos_wrapper_widget_1670358960944_" class="hs_cos_wrapper hs_cos_wrapper_widget hs_cos_wrapper_type_cta" style="" data-hs-cos-general-type="widget" data-hs-cos-type="cta">
                                                                      <!--HubSpot Call-to-Action Code -->
                                                                      <span class="hs-cta-wrapper" id="hs-cta-wrapper-dd4d1ac8-beab-4e80-bba5-28ce409896e5">
-                                                                        <a class="bt-PrimaryButton" href="{{ route('investment') }}">Start investing</a>
+                                                                        <a class="bt-PrimaryButton" href="{{ route('login') }}">Start investing</a>
                                                                      </span>
                                                                      <!-- end HubSpot Call-to-Action Code -->
                                                                   </span>
@@ -684,7 +684,7 @@
                                                                      <!--HubSpot Call-to-Action Code -->
                                                                      <span class="hs-cta-wrapper" id="hs-cta-wrapper-88444564-fdbe-4f35-a5a3-97d208c9b4a0">
                                                                         <p>
-                                                                           <a href="{{ route('login') }}" rel="noopener" aria-label="Learn about premium pricing">Learn more ➔</a>
+                                                                           <a href="{{ route('investment') }}" rel="noopener" aria-label="Learn about premium pricing">Learn more ➔</a>
                                                                         </p>
                                                                      </span>
                                                                      <!-- end HubSpot Call-to-Action Code -->
@@ -698,9 +698,9 @@
                                                       </div>
                                                       <div class="bt-ContentGrid-item u-col-12 u-col-6@md cols col-2 ">
                                                          <div>
-                                                            <img src="hs-fs/hubfs/robotgraphs-6.png?width=602&amp;name=robotgraphs.png" alt="A general investing user interface card showing the investing mount, Crestwood Capital Management  Core portfolio strategy, and auto adjust on, with a robot arm assembling an allocation chart behind the card." width="602" srcset="hs-fs/hubfs/robotgraphs-7.png 301w?width=301&amp;name=robotgraphs.png 301w, hs-fs/hubfs/robotgraphs-6.png 602wg?width=602&amp;name=robotgraphs.png 602w, hs-fs/hubfs/robotgraphs-8.png 903wg?width=903&amp;name=robotgraphs.png 903w, hs-fs/hubfs/robotgraphs-9.png 1204wg?width=1204&amp;name=robotgraphs.png 1204w, hs-fs/hubfs/robotgraphs-10.png 1505wg?width=1505&amp;name=robotgraphs.png 1505w, hs-fs/hubfs/robotgraphs-11.png 1806wg?width=1806&amp;name=robotgraphs.png 1806w" sizes="(max-width: 602px) 100vw, 602px">
+                                                            <img src="hs-fs/hubfs/Graphics/webpage-graphics/man-phone-atm-fees-reimbursed-6.png?width=1110&amp;name=man-phone-atm-fees-reimbursed.png" alt="Man getting a notification from the Crestwood Capital Management app on his phone that his ATM fee has been reimbursed." width="1110" srcset="hs-fs/hubfs/Graphics/webpage-graphics/man-phone-atm-fees-reimbursed-7.png 555w?width=555&amp;name=man-phone-atm-fees-reimbursed.png 555w, hs-fs/hubfs/Graphics/webpage-graphics/man-phone-atm-fees-reimbursed-6.png 1110wg?width=1110&amp;name=man-phone-atm-fees-reimbursed.png 1110w, hs-fs/hubfs/Graphics/webpage-graphics/man-phone-atm-fees-reimbursed-8.png 1665wg?width=1665&amp;name=man-phone-atm-fees-reimbursed.png 1665w, hs-fs/hubfs/Graphics/webpage-graphics/man-phone-atm-fees-reimbursed-9.png 2220wg?width=2220&amp;name=man-phone-atm-fees-reimbursed.png 2220w, hs-fs/hubfs/Graphics/webpage-graphics/man-phone-atm-fees-reimbursed-10.png 2775wg?width=2775&amp;name=man-phone-atm-fees-reimbursed.png 2775w, hs-fs/hubfs/Graphics/webpage-graphics/man-phone-atm-fees-reimbursed-11.png 3330wg?width=3330&amp;name=man-phone-atm-fees-reimbursed.png 3330w" sizes="(max-width: 1110px) 100vw, 1110px">
                                                          </div>
-                                                         <div class="bt-body3 mt8 center">Image is hypothetical</div>
+                                                         <!-- <div class="bt-body3 mt8 center">Image is hypothetical</div> -->
                                                       </div>
                                                    </div>
                                                 </div>

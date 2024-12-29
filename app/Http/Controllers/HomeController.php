@@ -32,6 +32,9 @@ class HomeController extends Controller
         $investment = $user->wallet->invest;
         $trading = $user->wallet->trade;
         $locked = $user->wallet->locked;
+        $wallet = $user->wallet->balance;
+
+        $availableCash = ($wallet + ($savings + $investment + $trading));
 
         $transactions = $user->transaction()->paginate(10); 
 
@@ -102,6 +105,8 @@ class HomeController extends Controller
 
             'lockedFunds' => $lockedFunds,
             'slidesData' => $slidesData,
+
+            'portfolio' => $availableCash,
         ]);
     }
 
@@ -620,6 +625,13 @@ class HomeController extends Controller
                 'state' => ['sometimes'],
                 'postal_code' => ['sometimes'],
                 'address' => ['sometimes'],
+                'nk_name' => ['sometimes'],
+                'nk_phone' => ['sometimes'],
+                'nk_relationship' => ['sometimes'],
+                'nk_country' => ['sometimes'],
+                'nk_state' => ['sometimes'],
+                'nk_address' => ['sometimes'],
+                'nk_postal' => ['sometimes'],
             ]);
 
             if ($validator->fails()) {
@@ -642,6 +654,13 @@ class HomeController extends Controller
                 'state' => $request->state,
                 'postal_code' => $request->postal_code,
                 'address' => $request->address,
+                'nk_name' => $request->nk_name,
+                'nk_phone' => $request->nk_phone,
+                'nk_relation' => $request->nk_relationship,
+                'nk_country' => $request->nk_country,
+                'nk_state' => $request->nk_state,
+                'nk_address' => $request->nk_address,
+                'nk_postal' => $request->nk_postal,
             ]);
 
             // Update profile
@@ -654,6 +673,7 @@ class HomeController extends Controller
 
         if ($request->screen == 'six')
         {
+            dd($request->all());
             $validator = Validator::make($request->all(), [
                 'nk_name' => ['sometimes'],
                 'nk_phone' => ['sometimes'],
@@ -696,26 +716,6 @@ class HomeController extends Controller
 
         if ($request->screen == 'seven')
         {
-            // $validator = Validator::make($request->all(), [
-            //     'nk_name' => ['sometimes'],
-            //     'nk_phone' => ['sometimes'],
-            //     'nk_relationship' => ['sometimes'],
-            //     'nk_country' => ['sometimes'],
-            //     'nk_state' => ['sometimes'],
-            //     'nk_address' => ['sometimes'],
-            //     'nk_postal' => ['sometimes'],
-            // ]);
-
-            // if ($validator->fails()) {
-            //     // Retrieve all error messages
-            //     $errors = $validator->errors()->all();
-            
-            //     // Convert errors to a readable string
-            //     $errorMessage = implode(', ', $errors);
-            
-            //     return back()->withInput()->withErrors($validator)->with('error', 'Invalid input data: ' . $errorMessage);
-            // }
-
             $user =auth()->user();
             $data = null;
 
@@ -784,6 +784,49 @@ class HomeController extends Controller
             // return back()->withInput()->with('error', 'Error updating profile');
 
         }
+
+        if ($request->screen == 'proof') {
+            // Validate file
+            $request->validate([
+                'proof' => 'required|file|mimes:jpg,jpeg,png,pdf|max:3072', // Validate file type and size
+            ]);
+    
+            $user = auth()->user();
+            $data = null;
+    
+            if ($request->hasFile('proof')) {
+                // If there's an existing proof file, delete it
+                if ($oldProof = $user->proof) {
+                    try {
+                        unlink(public_path($oldProof)); // Delete old file
+                    } catch (\Exception $e) {
+                        // Handle file deletion error
+                    }
+                }
+    
+                // Handle the new file upload
+                $file = $request->file('proof');
+                $destinationPath = 'assets/proof'; // Define the upload path
+                static::createDirectoryIfNotExists($destinationPath);
+    
+                $fileName = $user->id . '-' . time() . '.' . $file->getClientOriginalExtension(); // Generate a unique file name
+                $file->move(public_path($destinationPath), $fileName); // Move file to destination
+    
+                $data = $destinationPath . '/' . $fileName; // Store the file path
+            }
+    
+            // Update user proof field
+            $update = $user->update([
+                'proof' => $data,
+            ]);
+    
+            if ($update) {
+                return back()->with('success', 'Proof uploaded successfully');
+            }
+    
+            return back()->withInput()->with('error', 'Error updating profile');
+        }
+        
     }
 
     public function storeKYC(Request $request)

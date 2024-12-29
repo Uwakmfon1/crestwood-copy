@@ -14,12 +14,25 @@ class AddSwissCodeToUsers extends Migration
     public function up()
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->string('swiss_code')->nullable();
-            $table->string('reference')->nullable();
-            $table->string('ssn')->nullable();
-            $table->dateTime('dob')->nullable();
-            $table->enum('mode', ['light', 'dark'])->default('light');
-        });
+            if (!Schema::hasColumn('users', 'swiss_code')) {
+                $table->string('swiss_code')->nullable();
+            }
+            if (!Schema::hasColumn('users', 'reference')) {
+                $table->string('reference')->nullable();
+            }
+            if (!Schema::hasColumn('users', 'ssn')) {
+                $table->string('ssn')->nullable();
+            }
+            if (!Schema::hasColumn('users', 'dob')) {
+                $table->dateTime('dob')->nullable();
+            }
+            if (!Schema::hasColumn('users', 'mode')) {
+                $table->enum('mode', ['light', 'dark'])->default('light');
+            }
+            if (!Schema::hasColumn('users', 'proof')) {
+                $table->text('proof')->nullable();
+            }
+        });        
     }
 
     /**

@@ -3,7 +3,6 @@
 @section('title', '| Complete Registration')
 
 @section('content')
-<!-- Start::app-content -->
 
 <style>
     .account_select {
@@ -34,30 +33,19 @@
 
 <div class="container">
     <div class="row justify-content-center authentication authentication-basic align-items-center h-100">
-        <div class="toast-container position-fixed top-0 end-0 p-3">
-            <div id="solid-dangerToast" class="toast colored-toast bg-danger text-fixed-white" role="alert" aria-live="assertive" aria-atomic="true">
-                <div class="toast-header bg-danger text-fixed-white">
-                    <img class="bd-placeholder-img rounded me-2" src="../assets/images/brand-logos/toggle-dark.png" alt="...">
-                    <strong class="me-auto">Vertix</strong>
-                    <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
-                </div>
-                <div class="toast-body">
-                    <span id="toastMessage">Your toast message here.</span>
-                </div>
-            </div>
-        </div>
+        
+        @include('partials.users.alert')
+
         <!-- <div id="square-1"></div> -->
         <div class="col-xxl-7 col-xl-9 col-lg-9 col-md-12 col-sm-12 col-12">
-
-    @include('partials.users.alert')
             <div class="rounded my-4 bg-white basic-page">
                 <div class="basicpage-border"></div>
                 <div class="basicpage-border1"></div>
                 <div class="card-body">
                     <div class="card-body px-5 py-4">
                         <div class="mb-3 d-flex justify-content-center"> 
-                            <a href="index.html"> 
-                                <img src="../assets/images/brand-logos/desktop-logo.png" alt="logo" class="desktop-logo"> 
+                            <a href="{{ route('home') }}"> 
+                                <img src="{{ asset('asset/images/logo/logo-dark.png') }}" alt="logo" class="desktop-logo"> 
                                 <img src="../assets/images/brand-logos/desktop-dark.png" alt="logo" class="desktop-dark"> 
                             </a>
                         </div>
@@ -86,7 +74,7 @@
                                                         </div>
                                                         <div class="flex-fill">
                                                             <label class="form-check-label d-block fw-medium fs-14" for="flexCheckChecked1">Savings Account</label>
-                                                            <span class="fs-11 text-muted">Lorem, ipsum dolor sit.</span>
+                                                            <span class="fs-10 text-muted">A secure account for holding funds with competitive interest rates tailored to your needs.</span>
                                                         </div>
                                                         <div>
                                                             <input class="form-check-input form-checked-success rounded-circle" type="checkbox" value="" id="flexCheckChecked1" name="test[]">
@@ -104,7 +92,8 @@
                                                         </div>
                                                         <div class="flex-fill">
                                                             <label class="form-check-label d-block fw-medium fs-14" for="flexCheckChecked2">Investment Account</label>
-                                                            <span class="fs-11 text-muted">Lorem, ipsum dolor sit.</span>
+                                                            <span class="fs-10 text-muted">A professionally managed account designed for long-term wealth creation and portfolio
+                                                            diversification.</span>
                                                         </div>
                                                         <div>
                                                             <input class="form-check-input form-checked-warning rounded-circle" type="checkbox" value="" id="flexCheckChecked2" name="test[]">
@@ -122,7 +111,7 @@
                                                         </div>
                                                         <div class="flex-fill">
                                                             <label class="form-check-label d-block fw-medium fs-14" for="flexCheckChecked3">Trading Account</label>
-                                                            <span class="fs-11 text-muted">Lorem, ipsum dolor sit.</span>
+                                                            <span class="fs-10 text-muted">A flexible account for trading stocks, cryptocurrencies, and other financial instruments.</span>
                                                         </div>
                                                         <div>
                                                             <input class="form-check-input form-checked-info rounded-circle" type="checkbox" value="" id="flexCheckChecked3" name="test[]">
@@ -132,7 +121,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div class=" wizard-step active" data-title="Payment Information"
+                                    <!-- <div class=" wizard-step active" data-title="Payment Information"
                                         data-id="2e8WqSV3slGIpTbnjcJzmDwBQaHrfh0Z">
                                         <div class="">
                                             <div class="card-body">
@@ -225,15 +214,15 @@
                                                 </div>
                                             </div>
                                         </div>
-                                    </div>
-                                    <div class="wizard-step" data-title="Personal Information"
+                                    </div> -->
+                                    <div class="wizard-step" data-title="Contact Information"
                                         data-id="dOM0iRAyJXsLTr9b3KZfQ2jNv4pgn6Gu" data-limit="3">
                                         <div class="row">
                                             <div class="register-page">
                                                 <div class="row">
-                                                    <div class="col-lg-6 my-3">
+                                                    {{-- <div class="col-lg-6 my-3">
                                                         <label for="location" class="form-label">Loaction Type</label>
-                                                        <select name="location" id="location" class="form-control text-dark text-capitalize @error('location') is-invalid @enderror ">
+                                                        <select name="location" id="location" class="form-control text-dark text-capitalize @error('location') is-invalid @enderror " required>
                                                             <option value="home">Home</option>
                                                             <option value="office">Office</option>
                                                         </select>
@@ -242,10 +231,11 @@
                                                                 <strong>{{ $message }}</strong>
                                                             </span>
                                                         @enderror
-                                                    </div>
+                                                    </div> --}}
+                                                    <input type="hidden" name="location" value="home">
                                                     <div class="col-lg-6 my-3">
                                                         <label class="form-label" for="country">Country</label>
-                                                        <select name="country" id="country" class="form-control text-dark text-capitalize @error('country') is-invalid @enderror">
+                                                        <select name="country" id="country" class="form-control text-dark text-capitalize @error('country') is-invalid @enderror" required>
                                                             <option value="">Select Country</option>
                                                             @foreach(\App\Models\Country::get() as $country)
                                                                 <option value="{{ $country->name }}"
@@ -262,7 +252,7 @@
                                                     </div>
                                                     <div class="col-xl-6 my-3">
                                                         <label class="form-label">Select State</label>
-                                                        <select name="state" id="state" class="form-control @error('state') is-invalid @enderror" data-trigger style="height: 35px;">
+                                                        <select name="state" id="state" class="form-control @error('state') is-invalid @enderror" data-trigger style="height: 35px;" required>
                                                             <option value="">Select Country</option>
                                                             @if(old('state'))
                                                                 <option value="{{ old('state') }}" selected>{{ old('state') }}</option>
@@ -277,17 +267,8 @@
                                                     <div class="col-xl-6 my-3">
                                                         <label for="city" class="form-label">City</label>
                                                         <input name="city" type="text" class="form-control @error('city') is-invalid @enderror" id="city"
-                                                            placeholder="Enter city..." value="{{ old('city') }}">
+                                                            placeholder="Enter city..." value="{{ old('city') }}" required>
                                                         @error('city')
-                                                            <span class="invalid-feedback" role="alert">
-                                                                <strong>{{ $message }}</strong>
-                                                            </span>
-                                                        @enderror
-                                                    </div>
-                                                    <div class="col-xl-6 my-3">
-                                                        <label class="form-label" for="address">Address</label>
-                                                        <input class="form-control @error('address') is-invalid @enderror" name="address" id="address" placeholder="Enter address..." type="text" >{{ old('address') }}</input>
-                                                        @error('address')
                                                             <span class="invalid-feedback" role="alert">
                                                                 <strong>{{ $message }}</strong>
                                                             </span>
@@ -296,8 +277,17 @@
                                                     <div class="col-xl-6 my-3">
                                                         <label for="postal_code" class="form-label">Postal Code</label>
                                                         <input name="postal_code" type="text" class="form-control @error('postal_code') is-invalid @enderror" id="postal_code"
-                                                            placeholder="Enter postal code..." value="{{ old('postal_code') }}">
+                                                            placeholder="Enter postal code..." value="{{ old('postal_code') }}" required>
                                                         @error('postal_code')
+                                                            <span class="invalid-feedback" role="alert">
+                                                                <strong>{{ $message }}</strong>
+                                                            </span>
+                                                        @enderror
+                                                    </div>
+                                                    <div class="col-xl-12 my-3">
+                                                        <label class="form-label" for="address">Address</label>
+                                                        <input class="form-control @error('address') is-invalid @enderror" name="address" id="address" placeholder="Enter address..." type="text" value="{{ old('address') }}" required>
+                                                        @error('address')
                                                             <span class="invalid-feedback" role="alert">
                                                                 <strong>{{ $message }}</strong>
                                                             </span>
@@ -307,7 +297,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="wizard-step" data-title="Next of Kin"
+                                    <div class="wizard-step" data-title="Emergency Contact Details"
                                         data-id="dOM0iRAyJXsLTr9b3KZfQ2jNv4pgn6Gu" data-limit="3">
                                         <div class="row">
                                             <div class="register-page">
@@ -427,16 +417,16 @@
                                             <div class="col-xl-12">
                                                 <div class="checkout-payment-success">
                                                     <div class="mb-4">
-                                                        <h5 class="text-success fw-medium">Great Job!🎉</h5>
+                                                        <h5 class="text-success fw-medium">You're all Set!</h5>
                                                     </div>
                                                     <!-- <div class="mb-4">
                                                         <img src="../assets/images/ecommerce/png/24.png" alt="" class="img-fluid">
                                                     </div> -->
                                                     <div class="mb-4">
-                                                        <p class="mb-1 fs-14">You've done a good job by filling all the necessary information</p>
-                                                        <p class="text-muted">Thank you for your time.</p>
+                                                        <p class="mb-1 fs-14">Thank you for completing your registration.</p>
+                                                        <p class="text-muted">Your account has been successfully set up and is now ready for use</p>
                                                     </div>
-                                                    <button class="btn btn-primary" type="submit">Submit Form</button>
+                                                    <button class="btn btn-primary" type="submit">Complete Registration</button>
                                                 </div>
                                             </div>
                                         </div>
@@ -444,13 +434,13 @@
                                 </aside>
                             </form>
                         </div>
-                    <div class="text-center">
+                    <!-- <div class="text-center mt-4">
                         <p class="text-muted mt-3 mb-0">Already have an account?</p>
                         <form action="{{ route('logout') }}" method="post">
                             @csrf
                             <button class="text-primary" style="background: transparent; border: 0px;" id="logout">Sign In</button>
                         </form>
-                    </div>
+                    </div> -->
                     </div>
                 </div>
             </div>
@@ -459,7 +449,6 @@
     </div>
 </div>
 
-<!-- End::app-content -->
 @endsection
 
 @section('scripts')

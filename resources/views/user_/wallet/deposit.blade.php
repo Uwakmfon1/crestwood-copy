@@ -197,6 +197,9 @@
                                             <button type="button" class="input-group-text btn btn-light-light btn-wave fs-10">Account Name</button>
                                             <input type="text" name="roi_method" class="form-control fw-bold" placeholder="Enter Method..." aria-label="Stock Quantity" value="{{ $setting->account_name }}" disabled>
                                             <!-- <button type="button" class="input-group-text btn btn-dark-light btn-wave increment-btn-buy text-primary fs-13"><i class="ri-file-copy-fill text-primary me-2"></i> Copy</button> -->
+                                            <a href="javascript:void(0);" data-bs-toggle="tooltip" data-bs-custom-class="tooltip-dark" title="Please use the exact name listed to avoid delays." class="text-muted input-group-text btn btn-dark-light btn-wave">
+                                                <i class="fe fe-info"></i>
+                                            </a>
                                         </div>
                                         <div class="input-group my-1">
                                             <button type="button" class="input-group-text btn btn-light-light btn-wave fs-10">Account Number</button>
@@ -207,9 +210,6 @@
                                             <button type="button" class="input-group-text btn btn-light-light btn-wave fs-10">Bank Name</button>
                                             <input type="text" name="roi_method" class="form-control fw-bold" placeholder="Enter Method..." aria-label="Stock Quantity" value="{{ $setting->bank_name }}" disabled>
                                             <!-- <button type="button" class="input-group-text btn btn-dark-light btn-wave copy-btn text-primary fs-13"><i class="ri-file-copy-fill text-primary me-2"></i> Copy</button> -->
-                                            <a href="javascript:void(0);" data-bs-toggle="tooltip" data-bs-custom-class="tooltip-dark" title="Please use the exact name listed to avoid delays." class="text-muted input-group-text btn btn-dark-light btn-wave">
-                                                <i class="fe fe-info"></i>
-                                            </a>
                                         </div>
                                         <div class="input-group my-1">
                                             <button type="button" class="input-group-text btn btn-light-light btn-wave fs-10">SWIFT Code (International Transfers)</button>
@@ -238,10 +238,10 @@
                                                 </div>
                                             </div>
                                             <div class="col-lg-4 col-6">
-                                                <div class="">
+                                                <!-- <div class="">
                                                     <label for="" class="fs-10 text-dark">Phone:</label>
                                                     <p class="text-muted fw-bold fs-12">{{ $setting->bank_phone }}</p>
-                                                </div>
+                                                </div> -->
                                             </div>
                                             <!-- <div class="col-lg-4 col-6">
                                                 <div class="">

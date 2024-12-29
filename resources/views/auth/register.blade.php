@@ -1,7 +1,7 @@
 
 @extends('layouts.user.auth')
 
-@section('title', '| Login')
+@section('title', '| Register')
 
 
 <style>
@@ -29,13 +29,13 @@
                 <div class="basicpage-border1"></div>
                 <div class="card-body p-5">
                     <div class="mb-3 d-flex justify-content-center"> 
-                        <a href="index.html"> 
+                        <a href="{{ route('home') }}"> 
                             <img width="80" src="{{ asset('asset/images/logo/logo-dark.png') }}" alt="logo" class="desktop-logo" > 
                             <img src=".https://www.designevo.com/res/templates/thumb_small/simple-black-and-white-font-style.webp" alt="logo" class="desktop-dark"> 
                         </a> 
                     </div>
-                    <p class="h4 fw-semibold mb-2 text-center">Sign Up</p>
-                    <p class="mb-4 text-muted fw-normal text-center">Welcome back !</p>
+                    <p class="h4 fw-semibold mb-4 text-center">Sign Up</p>
+                    <p class="mb-4 text-muted fw-normal text-center">Create Your Crestwood Capitals Account</p>
                     @if (session('error'))
                         <div class="alert alert-fill-danger" role="alert">
                             <i data-feather="alert-circle" class="mr-2"></i>
@@ -50,9 +50,9 @@
                                     <div class="row gy-3">
                                         <!-- Full Name -->
                                         <div class="col-xl-6">
-                                            <label for="first_name" class="form-label">First name</label>
+                                            <label for="first_name" class="form-label">First Name</label>
                                             <input name="first_name" type="text" class="form-control @error('first_name') is-invalid @enderror" id="first_name"
-                                                placeholder="Enter first name..." value="{{ old('first_name') }}" required>
+                                                placeholder="e.g.., John" value="{{ old('first_name') }}" required>
                                             @error('first_name')
                                                 <span class="text-danger">
                                                     <i class="fe fe-info fs-5 mx-1"></i><strong class="fs-10">{{ $message }}</strong>
@@ -60,9 +60,9 @@
                                             @enderror
                                         </div>
                                         <div class="col-xl-6">
-                                            <label for="last_name" class="form-label">Last name</label>
+                                            <label for="last_name" class="form-label">Last Name</label>
                                             <input name="last_name" type="text" class="form-control @error('last_name') is-invalid @enderror" id="last_name"
-                                                placeholder="Enter last name..." value="{{ old('last_name') }}" required>
+                                                placeholder="e.g.., Doe" value="{{ old('last_name') }}" required>
                                             @error('last_name')
                                                 <span class="text-danger">
                                                     <i class="fe fe-info fs-5 mx-1"></i><strong class="fs-10">{{ $message }}</strong>
@@ -70,9 +70,9 @@
                                             @enderror
                                         </div>
                                         <div class="col-xl-6">
-                                            <label for="email" class="form-label">Email address</label>
+                                            <label for="email" class="form-label">Email Address</label>
                                                 <input name="email" type="email" class="form-control @error('email') is-invalid @enderror" id="email"
-                                                    placeholder="Enter email..." value="{{ old('email') }}" required>
+                                                    placeholder="e.g.., john.doe@gmail.com" value="{{ old('email') }}" required>
                                             @error('email')
                                                 <span class="text-danger">
                                                     <i class="fe fe-info fs-5 mx-1"></i><strong class="fs-10">{{ $message }}</strong>
@@ -110,6 +110,9 @@
                                                         <i class="fe fe-info fs-5 mx-1"></i><strong class="fs-10">{{ $message }}</strong>
                                                     </span>
                                                 @enderror
+                                                <span class="text-primary">
+                                                    <strong class="fs-10">Minimum 8 characters, at least one number, and one special character.</strong>
+                                                </span>
                                             </div>
                                         </div>
                                         <!-- Confirm Password -->
@@ -141,7 +144,7 @@
                             <button type="submit" class="btn btn-primary">Sign Up</button>
                         </div>
                     </form>
-                    <div class="text-center">
+                    <div class="text-center mt-4 pt-3">
                         <p class="text-muted mt-3 mb-0">Already have an account? <a href="{{ route('login') }}" class="text-primary">Sign In</a></p>
                     </div>
                 </div>

@@ -77,8 +77,16 @@ class RegisterController extends Controller
             'nk_country' => ['nullable', 'string', 'max:255'],
             'nk_state' => ['nullable', 'string', 'max:255'],
             'nk_address' => ['nullable', 'string'],
-            'password' => ['required', 'string', 'min:8', 'confirmed'],
+            'password' => [
+                'required',
+                'string',
+                'min:8',
+                'regex:/^(?=.*[0-9])(?=.*[\W_]).+$/',
+                'confirmed',
+            ],
             'ref_code' => ['sometimes', 'nullable', 'string', 'exists:users,ref_code'], 
+        ], [
+            'password.regex' => 'The password must be at least 8 characters long, include at least one number, and one special character.',
         ]);
         
     }

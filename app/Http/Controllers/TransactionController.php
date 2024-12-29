@@ -156,8 +156,7 @@ class TransactionController extends Controller
 
         if ($transaction) {
             // NotificationController::sendDepositQueuedNotification($transaction);
-            // return redirect()->route('wallet')->with('success', 'Deposit queued successfully');
-            return back()->withInput()->with('success', 'Deposit queued successfully');
+            return redirect()->route('transactions.history')->with('success', 'Deposit queued successfully');
         }
         return redirect()->route('wallet')->with('error', 'Error processing deposit');
     }
@@ -196,7 +195,7 @@ class TransactionController extends Controller
 
         if ($transaction) {
             NotificationController::sendWithdrawalQueuedNotification($transaction);
-            return back()->with('success', 'Withdrawal queued successfully');
+            return redirect()->route('transactions.history')->with('success', 'Withdrawal queued successfully');
         }
 
         return back()->withInput()->with('error', 'Error processing withdrawal');

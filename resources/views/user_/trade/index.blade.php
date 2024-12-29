@@ -980,7 +980,7 @@
                     </div>
                     <div class="card-footer border-top-0">
                         <div class="d-flex align-items-center">
-                            <div> Showing {{ $stocks->count() }} of {{ $stocks->total() }} Entries <i class="bi bi-arrow-right ms-2 fw-semibold"></i> </div>
+                            <!-- <div> Showing {{ $stocks->count() }} of {{ $stocks->total() }} Entries <i class="bi bi-arrow-right ms-2 fw-semibold"></i> </div> -->
                             <div class="ms-auto">
                                 <nav aria-label="Page navigation" class="pagination-style-4">
                                     {{ $stocks->links() }}

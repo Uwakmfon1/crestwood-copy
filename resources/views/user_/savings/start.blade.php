@@ -44,6 +44,9 @@
                 <div class="card mx-auto px-3 py-3" style="max-width:850px;">
                     <div class="">
                         <div class="my-4">
+                            <div class="" id="back-arrow" style="position: absolute; top: 28px; left: 20px; cursor: pointer;">
+                                <a href="/savings/create" ><i class="fe fe-x text-dark me-2"></i></a>
+                            </div>
                             <h5 class="modal-title text-center fw-bold">${selectedCard.name}</h5>
                             <p class="modal-title text-center text-muted fs-12 mx-auto mt-2" style="max-width: 300px;">${selectedCard.description}</p>
                         </div>

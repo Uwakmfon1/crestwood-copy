@@ -469,7 +469,7 @@ class SavingsController extends Controller
     {
         try {
             // Retrieve all plans from the database
-            $plans = Plan::all();
+            $plans = Plan::whereBetween('id', [1, 6])->get();
 
             // Return response as JSON
             return response()->json([

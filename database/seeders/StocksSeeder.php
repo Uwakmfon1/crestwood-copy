@@ -18,7 +18,6 @@ class StocksSeeder extends Seeder
      */
     public function run()
     {
-
         $symbols = [
             'AAPL', 'MSFT', 'GOOGL', 'AMZN', 'NVDA', 'META', 'TSLA', 'BRK.B', 'V', 'JNJ',
             'WMT', 'PG', 'JPM', 'UNH', 'MA', 'XOM', 'LLY', 'HD', 'CVX', 'MRK',

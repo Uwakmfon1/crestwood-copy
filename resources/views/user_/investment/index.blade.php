@@ -1,5 +1,7 @@
 @extends('layouts.user.index')
 
+@section('title', ' Investment')
+
 @section('content')
 <!-- Start::app-content -->
 <div class="main-content app-content">

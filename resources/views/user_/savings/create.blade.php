@@ -41,6 +41,70 @@
              <!-- :::Content goes here --> 
         </div>
     </div>
+
+    <div class="modal fade" id="iraModal" tabindex="-1" role="dialog" aria-labelledby="iraModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document" style="max-width: 700px;">
+            <div class="modal-content">
+                <form method="POST" action="{{ route('withdraw') }}" id="depositForm">
+                    @csrf
+                    <div class="my-4">
+                        <h5 class="modal-title text-center fw-bold" id="nairaDepositModalLabel">Select Retirement Accounts</h5>
+                    </div>
+                    <div class="modal-body">
+                        <div class="row mx-auto" id="depoSelect" style="max-width: 600px;">
+                        <div class="row mx-auto my-auto" id="depoSelect" style="max-width: 600px;">
+                            <div class="col-md-6 col-sm-12">
+                                <a href="/start/savings/6">
+                                    <div class="card text-center selectdepo mx-auto pt-5" id="selectCrypto">
+                                        <div class="card-body align-items-center rounded">
+                                            <span class="avatar avatar-md me-2 mb-3">
+                                                <img class="p-1" src="https://cdn-icons-png.flaticon.com/512/1389/1389960.png" alt="">
+                                            </span>
+                                            <h5 class="fw-bold fs-14 mt-2 mx-2"> 
+                                                Roth IRA
+                                            </h5>
+                                            <p class="text-center text-muted fs-10" style="margin-top: -5px;">Plan for a secure future with tax-advantaged retirement savings options.</p>
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+                            <div class="col-md-6 col-sm-12">
+                                <a href="/start/savings/7">
+                                    <div class="card text-center selectdepo mx-auto pt-5" id="selectBank">
+                                        <div class="card-body align-items-center rounded">
+                                            <span class="avatar avatar-md me-2 mb-3">
+                                                <img class="p-1" src="https://cdn-icons-png.flaticon.com/512/2845/2845642.png" alt="">
+                                            </span>
+                                            <h5 class="fw-bold fs-14 mt-2 mx-2"> 
+                                                SEP IRA
+                                            </h5>
+                                            <p class="text-center text-muted fs-10" style="margin-top: -5px;">Plan for a secure future with tax-advantaged retirement savings options.</p>
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+                            <div class="col-md-6 col-sm-12 mx-auto">
+                                <a href="/start/savings/8">
+                                    <div class="card text-center selectdepo mx-auto pt-5" id="selectBank">
+                                        <div class="card-body align-items-center rounded">
+                                            <span class="avatar avatar-md me-2 mb-3">
+                                                <img class="p-1" src="https://cdn-icons-png.flaticon.com/512/2746/2746077.png" alt="">
+                                            </span>
+                                            <h5 class="fw-bold fs-14 mt-2 mx-2"> 
+                                                Traditional IRA
+                                            </h5>
+                                            <p class="text-center text-muted fs-10" style="margin-top: -5px;">Plan for a secure future with tax-advantaged retirement savings options.</p>
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
 <!-- End::app-content -->
 
 @endsection
@@ -57,11 +121,26 @@ $(document).ready(function() {
         success: function(cardData) {
             // cardData should be an array of objects similar to the hardcoded example
             cardData.data.forEach((card, index) => {
+                const startSavingsButton = card.id === 6 
+                ? `<a href="#" class="btn btn-primary-transparent px-4 fs-12 view-more-link" 
+                        data-toggle="modal" 
+                        data-target="#iraModal" 
+                        data-info="Data....">
+                    Start Savings <i class="fe fe-plus me-2"></i>
+                   </a>
+                   `
+                : `<a href="/start/savings/${card.id}" class="btn btn-primary-transparent px-4 fs-12" 
+                        data-index="${index}" 
+                        data-toggle="modal" 
+                        data-target="#${card.modalId}">
+                    Start Savings <i class="fe fe-plus me-2"></i>
+                   </a>`;
+
                 const cardHtml = 
                     `<div class="col-md-4 col-sm-12">
                         <div class="card py-4">
                             <div class="px-auto text-center py-1">
-                                <span class="avatar avatar-xl bg-primary-transparent me-2 shadow-avatar mb-3">
+                                <span class="avatar avatar-xl bg-transparent me-2 mb-3">
                                     <img class="p-1" src="${card.img}" alt="">
                                 </span>
                                 <h5 class="fw-medium fs-14 mt-2 mx-2">${card.name}</h5>
@@ -77,12 +156,7 @@ $(document).ready(function() {
                                 </p>
                             </div>
                             <div class="text-center px-auto py-3">
-                                <a href="/start/savings/${card.id}" class="btn btn-primary-transparent px-4 fs-12" 
-                                        data-index="${index}" 
-                                        data-toggle="modal" 
-                                        data-target="#${card.modalId}">
-                                    Start Savings <i class="fe fe-plus me-2"></i>
-                                </a>
+                                ${startSavingsButton}
                             </div>
                         </div>
                     </div>`;

@@ -57,14 +57,6 @@ class UserController extends Controller
 
     public function destroy(User $user)
     {
-        $user->transactions()->delete();
-        $user->trades()->delete();
-        $user->investments()->delete();
-        $user->nairaWallet()->delete();
-        $user->goldWallet()->delete();
-        $user->silverWallet()->delete();
-        $user->payments()->delete();
-        $user->referrals()->delete();
         $user->delete();
         return redirect('/admin/users')->with('success', 'User deleted successfully');
     }

@@ -4,75 +4,19 @@
 
 <link rel="stylesheet" href="{{ asset('asset/libs/swiper/swiper-bundle.min.css') }}">
 
+<!-- Prism CSS -->
+<link rel="stylesheet" href="{{ asset('asset/libs/prismjs/themes/prism-coy.min.css') }}">
+
+<link rel="stylesheet" href="{{ asset('asset/libs/filepond/filepond.min.css') }}">
+
+<link rel="stylesheet" href="{{ asset('asset/libs/filepond-plugin-image-preview/filepond-plugin-image-preview.min.css') }}">
+<link rel="stylesheet" href="{{ asset('asset/libs/filepond-plugin-image-edit/filepond-plugin-image-edit.min.css') }}">
+<link rel="stylesheet" href="{{ asset('asset/libs/dropzone/dropzone.css') }}">
+
 @endsection
 
-<style>
-    .account_select {
-        border-radius: 20px !important; 
-        border: 1px solid #f0f0f0;
-        /* cursor: pointer; */
-    }
-
-    .account_select:hover {
-        border: 1px solid grey;
-        cursor: pointer;
-    }
-
-    select {
-        appearance: auto !important;
-        -webkit-appearance: auto;
-        -moz-appearance: auto;
-    }
-    .wizard-tab .wizard-nav.dots .wizard-step span {
-        cursor: pointer;
-        font-weight: 400;
-        font-size: 13px;
-    }
-
-    .tooltip-container {
-        display: inline-block;
-        position: relative;
-    }
-
-    .tooltip-container .tooltip-box {
-        position: absolute;
-        background-color: rgba(0, 0, 0, 0.9);
-        color: #fff;
-        padding: 5px 10px;
-        font-size: 12px;
-        border-radius: 4px;
-        white-space: nowrap;
-        z-index: 10;
-        opacity: 0;
-        visibility: hidden;
-        transition: opacity 0.2s ease-in-out;
-        white-space: normal; 
-        width: 300px; 
-        word-break: break-word; 
-        text-align: center;
-    }
-
-    /* Arrow pointing to the center */
-    .tooltip-box::after {
-        content: "";
-        position: absolute;
-        top: 100%; /* Arrow on the bottom of the tooltip box */
-        left: 50%;
-        transform: translateX(-50%);
-        border-width: 5px;
-        border-style: solid;
-        border-color: rgba(0, 0, 0, 0.8) transparent transparent transparent;
-    }
-
-    /* Show tooltip */
-    .tooltip-box.show {
-        opacity: 1;
-        visibility: visible;
-    }
-
-</style>
-
 @section('content')
+
 <!-- Start::app-content -->
 <div class="main-content app-content">
     <div class="container-fluid">
@@ -206,7 +150,7 @@
                                         <div class="nav flex-column nav-pills me-3 tab-style-7" id="v-pills-tab" role="tablist" aria-orientation="vertical">
                                         <button class="nav-link text-start active" id="main-profile-tab" data-bs-toggle="pill" data-bs-target="#main-profile" type="button" role="tab" aria-controls="main-profile" aria-selected="true"><i class="ri-shield-user-line me-1 align-middle d-inline-block"></i>Account Information</button>
                                         <button class="nav-link text-start" id="acct-type-tab" data-bs-toggle="pill" data-bs-target="#acct-type" type="button" role="tab" aria-controls="acct-type" aria-selected="false" tabindex="-1"><i class="ri-u-disk-line me-1 align-middle d-inline-block"></i>Account Type</button>
-                                        <button class="nav-link text-start" id="man-password-tab" data-bs-toggle="pill" data-bs-target="#man-password" type="button" role="tab" aria-controls="man-password" aria-selected="false" tabindex="-1"><i class="ri-u-disk-line me-1 align-middle d-inline-block"></i>Payment Methond</button>
+                                        <button class="nav-link text-start" id="man-password-tab" data-bs-toggle="pill" data-bs-target="#man-password" type="button" role="tab" aria-controls="man-password" aria-selected="false" tabindex="-1"><i class="ri-u-disk-line me-1 align-middle d-inline-block"></i>Payment Method</button>
                                         <button class="nav-link text-start" id="main-team-tab" data-bs-toggle="pill" data-bs-target="#main-team" type="button" role="tab" aria-controls="main-team" aria-selected="false" tabindex="-1"><i class="ri-group-line me-1 align-middle d-inline-block"></i>Personal Information (KYC)</button>
                                         <button class="nav-link text-start" id="main-kyc-tab" data-bs-toggle="pill" data-bs-target="#main-kyc" type="button" role="tab" aria-controls="main-kyc" aria-selected="false" tabindex="-1"><i class="ri-group-line me-1 align-middle d-inline-block"></i>Additional Verification</button>
                                         <!-- <button class="nav-link text-start" id="main-nextkin-tab" data-bs-toggle="pill" data-bs-target="#main-nextkin" type="button" role="tab" aria-controls="main-nextkin" aria-selected="false" tabindex="-1"><i class="ri-group-line me-1 align-middle d-inline-block"></i>Next of kin</button> -->
@@ -487,7 +431,7 @@
                                                                     <div class="col-xl-12 my-2">
                                                                         <label for="wallet_address" class="form-label text-muted fs-12">Wallet Address</label>
                                                                         <input name="wallet_address" type="text" class="form-control @error('wallet_address') is-invalid @enderror" id="wallet_address"
-                                                                            placeholder="Enter your wallet address" value="{{ auth()->user()['wallet_asset'] }}" required>
+                                                                            placeholder="Enter your wallet address" value="{{ auth()->user()['wallet_address'] }}" required>
                                                                         @error('wallet_address')
                                                                             <span class="invalid-feedback" role="alert">
                                                                                 <strong>{{ $message }}</strong>
@@ -524,7 +468,7 @@
                                                             <!-- Date of Birth -->
                                                             <div class="form-group my-2">
                                                                 <label for="dob" class="fs-10 fw-medium my-2 text-muted">Date of Birth</label>
-                                                                <input type="date" id="dob" name="dob" class="form-control fw-medium" value="{{ $user->dob }}">
+                                                                <input type="date" id="dob" name="dob" class="form-control fw-medium" value="{{ isset($user->dob) ? \Carbon\Carbon::parse($user->dob)->format('Y-m-d') : '' }}">
                                                             </div>
 
                                                             <!-- SSN/TIN -->
@@ -535,7 +479,6 @@
                                                             <div class="col-lg-6">
                                                                 <label class="form-label fs-12 text-muted">Loaction Type</label>
                                                                 <select name="location" id="location" class="form-control text-dark text-capitalize @error('location') is-invalid @enderror">
-                                                                    <option value="">Select Loaction Type</option>
                                                                     <option value="home">Home</option>
                                                                     <option value="office">Office</option>
                                                                 </select>
@@ -550,8 +493,9 @@
                                                                 <select name="country" id="country" class="form-control text-dark text-capitalize @error('country') is-invalid @enderror" required>
                                                                     <option value="">Select Country</option>
                                                                     @foreach(\App\Models\Country::get() as $country)
-                                                                        <option value="{{ $country->name }}" data-phone-code="{{ $country->phone_code }}" 
-                                                                            {{ old('nk_country') == $country->name ? 'selected' : '' }}>
+                                                                        <option value="{{ $country->name }}" 
+                                                                            data-phone-code="{{ $country->phone_code }}" 
+                                                                            {{ (old('country') ?? $user->country) == $country->name ? 'selected' : '' }}>
                                                                             {{ $country->name }}
                                                                         </option>
                                                                     @endforeach
@@ -565,7 +509,15 @@
                                                             <div class="col-xl-6">
                                                                 <label class="form-label fs-12 text-muted">State/Province</label>
                                                                 <select name="state" id="state" class="form-control text-dark text-capitalize @error('state') is-invalid @enderror" required>
-                                                                    <option value="">Select Country</option> 
+                                                                    <option value="{{ $user->state ? $user->state : '' }}"> {{ $user->state ? $user->state : 'Select State' }}</option>
+                                                                    @if(isset($user->country))
+                                                                        @foreach(\App\Models\State::where('name', $user->country)->get() as $state)
+                                                                            <option value="{{ $state->name }}" 
+                                                                                {{ (old('state') ?? $user->state) == $state->name ? 'selected' : '' }}>
+                                                                                {{ $state->name }}
+                                                                            </option>
+                                                                        @endforeach
+                                                                    @endif
                                                                 </select>
                                                                 @error('state')
                                                                     <span class="invalid-feedback" role="alert">
@@ -641,8 +593,9 @@
                                                                 <select name="nk_country" id="nk_country" class="form-control text-dark text-capitalize @error('nk_country') is-invalid @enderror" required>
                                                                     <option value="">Select Country</option>
                                                                     @foreach(\App\Models\Country::get() as $country)
-                                                                        <option value="{{ $country->name }}" data-phone-code="{{ $country->phone_code }}" 
-                                                                            {{ old('nk_country') == $country->name ? 'selected' : '' }}>
+                                                                        <option value="{{ $country->name }}" 
+                                                                            data-phone-code="{{ $country->phone_code }}" 
+                                                                            {{ (old('nk_country') ?? $user->nk_country) == $country->name ? 'selected' : '' }}>
                                                                             {{ $country->name }}
                                                                         </option>
                                                                     @endforeach
@@ -656,7 +609,15 @@
                                                             <div class="col-xl-6">
                                                                 <label class="form-label fs-12 text-muted">Select State</label>
                                                                 <select name="nk_state" id="nk_state" class="form-control @error('nk_state') is-invalid @enderror" required>
-                                                                    <option value="">Select State</option>
+                                                                    <option value="{{ $user->nk_state ? $user->nk_state : '' }}"> {{ $user->nk_state ? $user->nk_state : 'Select State' }}</option>
+                                                                    @if(isset($user->nk_country))
+                                                                        @foreach(\App\Models\State::where('name', $user->nk_country)->get() as $state)
+                                                                            <option value="{{ $state->name }}" 
+                                                                                {{ (old('state') ?? $user->nk_state) == $state->name ? 'selected' : '' }}>
+                                                                                {{ $state->name }}
+                                                                            </option>
+                                                                        @endforeach
+                                                                    @endif
                                                                     @if(old('nk_state'))
                                                                         <option value="{{ old('nk_country') }}" selected>{{ old('nk_state') }}</option>
                                                                     @endif
@@ -762,7 +723,7 @@
                                                         </div>
                                                         <div class="col-md-12 my-2">
                                                             <label class="form-label mt-2 text-muted fs-12" for="id_number">Identification Number</label>
-                                                            <input type="text" id="id_number" name="avatar" class="form-control"/>
+                                                            <input type="text" id="id_number" name="identity" class="form-control"/>
                                                         </div>
                                                         <div class="col-md-12 my-2">
                                                             <label class="form-label mt-2 text-muted fs-12" for="avatar">Upload Image (Front)</label>
@@ -883,37 +844,44 @@
                     </div>
                 </div>
                 <div class="card custom-card overflow-hidden">
-                    <div class="d-flex justify-space-between card-header justify-content-between">
+                    <div class="px-3 py-3">
                         <div class="card-title">
-                            Identification
+                            <h3 class="fw-bold fs-14">Proof of Address</h3>
                         </div>
+                        <div id="" class="alert alert-warning mt-2">
+                            <div class="">
+                                <p class="fs-12 text-dark">Upload a valid proof of address document. This can be a utility bill, bank statement, or government-issued document dated within the last 3 months." "Accepted formats: JPG, PNG, PDF. Max size: 10 MB</p>
+                            </div>
+                        </div>
+
                         <div class="">
-                            <span class="badge bg-dark-transparent">waiting...</span>
-                        </div>
-                    </div>
-                    <div class="card-body p-0">
-                        @if(auth()->user()['identification'])
-                            <div class="mt-2 mx-2">
-                                <img class="img-fluid" style="border-radius: 5px" src="{{ asset(auth()->user()['identification']) }}" alt="Identification">
-                            </div>
-                            <!-- <div class="mt-2 text-right">
-                                <button onclick="confirmFormSubmit('downloadFileForm')" class="btn btn-sm btn-primary"><i class="icon-sm" data-feather="download"></i></button>
-                            </div> -->
-                            <form id="downloadFileForm" action="{{ route('download') }}" method="POST">
+                            <form action="{{ route('profile.data') }}" method="POST" enctype="multipart/form-data">
                                 @csrf
-                                <label>
-                                    <input type="hidden" name="path" value="{{ auth()->user()['identification'] }}">
-                                </label>
+                                <input type="hidden" name="screen" value="proof">
+                                <div class="my-3 py-2">
+                                    <p class="fs-14 fw-bold my-2">
+                                        Upload Proof
+                                    </p>
+                                    <div class="">
+                                        <input type="file" id="imageUpload" class="form-control" name="proof" multiple data-allow-reorder="true" data-max-file-size="3MB" data-max-files="6">
+                                    </div>
+                                </div>
+                                @if(auth()->user()['proof'])
+                                    <div class="mt-2 mx-2">
+                                        <img class="img-fluid" style="border-radius: 5px" src="{{ asset(auth()->user()['proof']) }}" alt="proof">
+                                    </div>
+                                @endif
+                                <div id="" class="alert alert-primary my-2">
+                                    <h4 class="text-danger fs-12 fw-bold">Compliance Disclaimer:</h4>
+                                    <div class="">
+                                        <p class="fs-12 text-muted">In compliance with applicable laws and Customer Identification Program (CIP) requirements, your information will be securely processed.</p>
+                                    </div>
+                                </div>
+
+                                <button type="submit" class="btn btn-primary-light border-1 w-100">Submit</button>
                             </form>
-                        @else
-                            <div class="mt-2">
-                                <!-- <img class="img-fluid px-2 py-2" style="border-radius: 5px; max-width: 200px;" src="https://cdn.icon-icons.com/icons2/1760/PNG/512/4105938-account-card-id-identification-identity-card-profile-user-profile_113929.png" alt="Identification"> -->
-                                <p class="text-center text-danger fw-medium">
-                                    You are yet to verify your identity. <br>
-                                    <a href="#" class="fw-bold text-danger text-decoration-underline"  data-bs-toggle="pill" data-bs-target="#main-billing" type="button" role="tab" aria-controls="main-billing" aria-selected="false" tabindex="-1">Click here</a> to start
-                                </p>
-                            </div>
-                        @endif
+
+                        </div>
                     </div>
                 </div>
                 <div class="">
@@ -927,70 +895,71 @@
 </div>
 <!-- End::app-content -->
 
-@endsection
-
-@section('scripts')
 <script>
+
     $(document).ready(function() {
         $('select[name="country"]').on('change', function() {
-            $("select").attr("data-trigger", "");
             var countryID = $(this).val();
-            if(countryID)
+            if (countryID) {
                 $.ajax({
-                    url: '/getStates/'+encodeURI(countryID),
+                    url: '/getStates/' + encodeURIComponent(countryID),
                     type: "GET",
                     dataType: "json",
-                    success:function(data) {
-                        console.log(data);
-                        // $('#state').removeAttr('data-trigger');
-                    $('select[name="state"]').empty()
-                        .append('<option value="">Select State</option>')
-                    $.each(data, function(key, value) {
-                        // console.log(value.name, key);
-                        $('select[name="state"]').append('<option value="'+ value.name +'">'+ value.name.charAt(0).toUpperCase() + value.name.slice(1) +'</option>');
+                    success: function(data) {
+                        var stateSelect = $('select[name="state"]');
+                        stateSelect.empty().append('<option value=""> Select State </option>');
+                        $.each(data, function(key, value) {
+                            stateSelect.append('<option value="' + value.name + '">' + value.name.charAt(0).toUpperCase() + value.name.slice(1) + '</option>');
                         });
+                    },
+                    error: function() {
+                        console.error('Error fetching states.');
                     }
-
                 });
-
-            else
-                $('select[name="state"]').empty()
-                    .append('<option value="">Select A Country</option>')
-
+            } else {
+                $('select[name="state"]').empty().append('<option value="">Select Country</option>');
+            }
         });
 
+        // Trigger state population if country is preselected
+        // var preselectedCountry = '{{ $user->country }}';
+        // if (preselectedCountry) {
+        //     $('select[name="country"]').val(preselectedCountry).trigger('change');
+        // }
+
         document.getElementById('nk_country').addEventListener('change', function() {
-        var countryID = this.value;
+            var countryID = this.value;
 
-        console.log(countryID);
+            console.log(countryID);
 
-        // Clear state and city dropdowns
-        var stateSelect = document.getElementById('nk_state');
-        // var citySelect = document.getElementById('city');
-        stateSelect.innerHTML = '<option value="">Select State</option>';
-        // citySelect.innerHTML = '<option value="">Select City</option>';
+            // Clear state and city dropdowns
+            var stateSelect = document.getElementById('nk_state');
+            // var citySelect = document.getElementById('city');
+            // stateSelect.innerHTML = '<option value="">Select State</option>';
+            // citySelect.innerHTML = '<option value="">Select City</option>';
 
-        if (countryID) {
-            fetch('/getStates/' + encodeURIComponent(countryID))
-                .then(response => response.json())
-                .then(data => {
-                    data.forEach(function(state) {
-                        var option = document.createElement('option');
-                        option.value = state.name;
-                        option.textContent = state.name.charAt(0).toUpperCase() + state.name.slice(1);
-                        stateSelect.appendChild(option);
-                    });
-                })
-                .catch(error => console.error('Error fetching states:', error));
-        }
-    });
+            if (countryID) {
+                fetch('/getStates/' + encodeURIComponent(countryID))
+                    .then(response => response.json())
+                    .then(data => {
+                        data.forEach(function(state) {
+                            var option = document.createElement('option');
+                            option.value = state.name;
+                            stateSelect.innerHTML = '<option value="">Select State</option>';
+                            option.textContent = state.name.charAt(0).toUpperCase() + state.name.slice(1);
+                            stateSelect.appendChild(option);
+                        });
+                    })
+                    .catch(error => console.error('Error fetching states:', error));
+            }
+        });
     });
 
     function getPhoneCode(obj){
         document.getElementById('phone_code').innerHTML = obj.options[obj.selectedIndex].getAttribute('data-code');
         document.getElementById('phone_code_input').value = obj.options[obj.selectedIndex].getAttribute('data-code');
     }
-    
+
     $(document).ready(function () {
         // Fetch coins on page load
         fetchCoins();
@@ -998,6 +967,11 @@
         // Variables to hold selected coin rate and symbol
         let selectedCoinRate = 0;
         let selectedCoinSymbol = '';
+        let coins = []; // Store coins data for reference
+
+        // Default values from server-side data
+        const defaultCoinId = "{{ auth()->user()['wallet_asset'] }}";
+        const defaultNetworkId = "{{ auth()->user()['wallet_network'] }}";
 
         // Trigger display update on input change for amount
         $('.amountDeposit').on('input', function () {
@@ -1006,7 +980,6 @@
 
         $('#bank-amount').on('input', function () {
             const usdAmount = parseFloat($('#bank-amount').val()) || 0;
-
             $('.amount-val-bank').text(usdAmount.toFixed(2) + ' USD');
         });
 
@@ -1032,14 +1005,11 @@
                 $('#exchange-rate').text(selectedCoinRate.toFixed(5)); // Display the rate with 5 decimal places
                 $('#selected-coin-symbol').text(selectedCoinSymbol); // Display selected coin symbol
                 updateDisplay();
-                
+
                 const selectedImg = coinImages[selectedCoinSymbol] || ''; // Get the image for the selected coin
                 $('#coin-img').attr('src', selectedImg); // Update the image source
                 $('#coin-img').attr('style', 'opacity: 1;'); // Update the image source
             } else {
-                // Reset if no coin is selected
-                $('#network-select').html('<option value="">Select Network</option>').prop('disabled', true);
-                $('#address-display').val('Select network first').prop('disabled', true);
                 resetDisplay();
             }
         });
@@ -1060,12 +1030,9 @@
             const coinAmount = usdAmount / selectedCoinRate; // Calculate equivalent coin amount
 
             if (!isNaN(coinAmount) && selectedCoinRate > 0) {
-                // Update displayed amount in selected coin
                 $('.amount-val').text(coinAmount.toFixed(5) + ' ' + selectedCoinSymbol);
-
                 $('#coin-value').prop('value', coinAmount.toFixed(5));
             } else {
-                // Reset display if invalid input or no coin selected
                 $('.amount-val').text('0 ' + selectedCoinSymbol);
             }
         }
@@ -1079,7 +1046,7 @@
             $('.amount-val').text('0');
         }
 
-        // Function to fetch coins (no change here)
+        // Function to fetch coins and set default selection
         function fetchCoins() {
             $.ajax({
                 url: '/api/deposit/coin',
@@ -1091,11 +1058,16 @@
                         options += `<option value="${coin.id}">${coin.name} (${coin.symbol})</option>`;
                     });
                     $('#coin-select').html(options);
+
+                    // Set default coin if available
+                    if (defaultCoinId) {
+                        $('#coin-select').val(defaultCoinId).trigger('change');
+                    }
                 }
             });
         }
 
-        // Function to fetch networks (no change here)
+        // Function to fetch networks and set default selection
         function fetchNetworks(coinId) {
             $.ajax({
                 url: `/api/deposit/networks/${coinId}`,
@@ -1103,21 +1075,25 @@
                 success: function (response) {
                     let options = '<option value="">Select Network</option>';
                     response.data.forEach(function (network) {
-                        options += `<option value="${network.id}">${network.name} </option>`;
+                        options += `<option value="${network.id}">${network.name}</option>`;
                     });
                     $('#network-select').html(options).prop('disabled', false);
-                    $('#address-display').val('Select network first').prop('disabled', true);
+
+                    // Set default network if available
+                    if (defaultNetworkId) {
+                        $('#network-select').val(defaultNetworkId).trigger('change');
+                    }
                 }
             });
         }
 
-        // Function to fetch address (no change here)
+        // Function to fetch address
         function fetchAddress(networkId) {
             $.ajax({
                 url: `/api/deposit/address/${networkId}`,
                 type: 'GET',
                 success: function (response) {
-                    if(response.data && response.data.address) {
+                    if (response.data && response.data.address) {
                         $('#address-display').val(response.data.address).prop('disabled', true);
                     } else {
                         $('#address-display').val('Address not available').prop('disabled', true);
@@ -1128,5 +1104,32 @@
     });
 
 </script>
+
+@endsection
+
+
+@section('scripts')
+
+<!-- Prism JS -->
+<script src="{{ asset('asset/libs/prismjs/prism.js') }}"></script>
+<script src="{{ asset('asset/js/prism-custom.js') }}"></script>
+
+<!-- Filepond JS -->
+<script src="{{ asset('asset/libs/filepond/filepond.min.js') }}"></script>
+<script src="{{ asset('asset/libs/filepond-plugin-image-preview/filepond-plugin-image-preview.min.js') }}"></script>
+<script src="{{ asset('asset/libs/filepond-plugin-image-exif-orientation/filepond-plugin-image-exif-orientation.min.js') }}"></script>
+<script src="{{ asset('asset/libs/filepond-plugin-file-validate-size/filepond-plugin-file-validate-size.min.js') }}"></script>
+<script src="{{ asset('asset/libs/filepond-plugin-file-encode/filepond-plugin-file-encode.min.js') }}"></script>
+<script src="{{ asset('asset/libs/filepond-plugin-image-edit/filepond-plugin-image-edit.min.js') }}"></script>
+<script src="{{ asset('asset/libs/filepond-plugin-file-validate-type/filepond-plugin-file-validate-type.min.js') }}"></script>
+<script src="{{ asset('asset/libs/filepond-plugin-image-crop/filepond-plugin-image-crop.min.js') }}"></script>
+<script src="{{ asset('asset/libs/filepond-plugin-image-resize/filepond-plugin-image-resize.min.js') }}"></script>
+<script src="{{ asset('asset/libs/filepond-plugin-image-transform/filepond-plugin-image-transform.min.js') }}"></script>
+
+<!-- Dropzone JS -->
+<script src="{{ asset('asset/libs/dropzone/dropzone-min.js') }}"></script>
+
+<!-- Fileupload JS -->
+<script src="{{ asset('asset/js/fileupload.js') }}"></script>
 
 @endsection

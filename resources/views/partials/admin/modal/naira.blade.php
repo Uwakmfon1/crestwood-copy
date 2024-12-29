@@ -24,6 +24,7 @@
                         <input type="hidden" name="type" value="deposit">
                         <label for="paymentDeposit">Account Type</label>
                         <select name="account" style="height: 45px; font-size: 14px" class="text-dark" required id="paymentDeposit">
+                            <option value="wallet">Wallet</option>
                             <option value="savings">Savings</option>
                             <option value="investment">Investments</option>
                             <option value="trading">Trade</option>
@@ -56,13 +57,28 @@
                 <form action="{{ route('admin.withdraw') }}" method="POST" id="withdrawalForm">
                     @csrf
                     <div class="form-group">
-                        <label for="amountWithdraw">Amount</label>
-                        <input type="number" value="{{ old('amount') }}" required style="height: 45px; font-size: 14px" step="any" class="form-control" name="amount" id="amountWithdraw" placeholder="Amount">
+                        <label for="amountDeposit">Amount</label>
+                        <input type="number" value="{{ old('amount') }}" required style="height: 45px; font-size: 14px" step="any" class="form-control" name="amount" id="amountDeposit" placeholder="Amount">
                         <input type="hidden" name="user_id" value="{{ $user['id'] }}">
                         @error('amount')
-                        <strong class="small text-danger">
-                            {{ $message }}
-                        </strong>
+                            <strong class="small text-danger">
+                                {{ $message }}
+                            </strong>
+                        @enderror
+                    </div>
+                    <div class="form-group">
+                        <input type="hidden" name="type" value="deposit">
+                        <label for="paymentDeposit">Account Type</label>
+                        <select name="account" style="height: 45px; font-size: 14px" class="text-dark" required id="paymentDeposit">
+                            <option value="wallet">Wallet</option>
+                            <option value="savings">Savings</option>
+                            <option value="investment">Investments</option>
+                            <option value="trading">Trade</option>
+                        </select>
+                        @error('account')
+                            <strong class="small text-danger">
+                                {{ $message }}
+                            </strong>
                         @enderror
                     </div>
                 </form>

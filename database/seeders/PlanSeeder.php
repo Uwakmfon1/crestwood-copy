@@ -281,7 +281,7 @@ class PlanSeeder extends Seeder
             ],
             [
                 'id' => 6,
-                'name' => 'Retirement Accounts (Roth IRA)',
+                'name' => 'Retirement Accounts',
                 'sub_name' => 'Plan for a secure future with tax-advantaged retirement savings options.',
                 'img' => 'https://www.oneazcu.com/media/xf5p3zer/click_desktop_500x500.webp',
                 'btnText' => 'Start Savings',
@@ -325,7 +325,89 @@ class PlanSeeder extends Seeder
                     <li><strong>Eligibility:</strong> Open to all verified individual account holders.</li>
                     <li><strong>Purpose:</strong> Ideal for building emergency funds or achieving short-term financial goals.</li>
                 </ul>'
+            ],
+            [
+                'id' => 7,
+                'name' => 'Retirement Accounts (SEP IRA)',
+                'sub_name' => 'Plan for a secure future with tax-advantaged retirement savings options.',
+                'img' => 'https://www.oneazcu.com/media/xf5p3zer/click_desktop_500x500.webp',
+                'btnText' => 'Start Savings',
+                'modalId' => 'modalRetirement2',
+                'questions' => [
+                    [
+                        'question' => 'Are you self-employed or a business owner?',
+                        'answers' => [
+                            'Yes',
+                            'No',
+                        ]
+                    ],
+                    [
+                        'question' => 'What percentage of your income do you plan to contribute annually?',
+                        'answers' => [
+                            '10% of income',
+                            '15% of income',
+                            '25% (maximum allowable)',
+                        ]
+                    ],
+                    [
+                        'question' => 'Do you need to include employee contributions?',
+                        'answers' => [
+                            'Yes',
+                            'No',
+                        ]
+                    ],
+                ],
+                'info' => 
+                '<ul>
+                    <li><strong>Interest Rate/APY:</strong> Earn up to 5.00% annual interest on your deposits.</li>
+                    <li><strong>Minimum Deposit:</strong> $5,000 minimum to open this account.</li>
+                    <li><strong>Withdrawals:</strong> Enjoy penalty-free withdrawals anytime.</li>
+                    <li><strong>Duration:</strong> Recommended for short- to mid-term savings (6 to 24 months).</li>
+                    <li><strong>Eligibility:</strong> Open to all verified individual account holders.</li>
+                    <li><strong>Purpose:</strong> Ideal for building emergency funds or achieving short-term financial goals.</li>
+                </ul>'
+            ],
+            [
+                'id' => 8,
+                'name' => 'Retirement Accounts (Traditional IRA)',
+                'sub_name' => 'Plan for a secure future with tax-advantaged retirement savings options.',
+                'img' => 'https://www.oneazcu.com/media/xf5p3zer/click_desktop_500x500.webp',
+                'btnText' => 'Start Savings',
+                'modalId' => 'modalRetirement3',
+                'questions' => [
+                    [
+                        'question' => 'Do you have an existing retirement account to roll over into this Traditional IRA?',
+                        'answers' => [
+                            'Yes',
+                            'No',
+                        ]
+                    ],
+                    [
+                        'question' => 'How much do you plan to contribute annually?',
+                        'answers' => [
+                            'Less than $6,500',
+                            '$6,500 – $15,000 (catch-up contributions for age 50+)',
+                        ]
+                    ],
+                    [
+                        'question' => 'When do you expect to start withdrawing from the account?',
+                        'answers' => [
+                            'Before age 59 ½',
+                            'After age 59 ½',
+                        ]
+                    ],
+                ],
+                'info' => 
+                '<ul>
+                    <li><strong>Interest Rate/APY:</strong> Earn up to 5.00% annual interest on your deposits.</li>
+                    <li><strong>Minimum Deposit:</strong> $5,000 minimum to open this account.</li>
+                    <li><strong>Withdrawals:</strong> Enjoy penalty-free withdrawals anytime.</li>
+                    <li><strong>Duration:</strong> Recommended for short- to mid-term savings (6 to 24 months).</li>
+                    <li><strong>Eligibility:</strong> Open to all verified individual account holders.</li>
+                    <li><strong>Purpose:</strong> Ideal for building emergency funds or achieving short-term financial goals.</li>
+                </ul>'
             ]
+
         ];
 
         foreach ($plans as $planData) {

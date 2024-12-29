@@ -215,7 +215,7 @@
                     <ul class="main-header-dropdown dropdown-menu pt-0 overflow-hidden header-profile-dropdown dropdown-menu-end"
                         aria-labelledby="mainHeaderProfile">
                         <li class="border-bottom"><a class="dropdown-item d-flex flex-column" href="#"><span
-                                    class="fs-12 text-muted">Wellcome!</span><span class="fs-14">{{ auth()->user()['name'] }}</span></a>
+                                    class="fs-12 text-muted">Welcome!</span><span class="fs-14">{{ auth()->user()['name'] }}</span></a>
                         </li>
                         <li><a class="dropdown-item d-flex align-items-center" href="{{ route('profile') }}"><i
                                     class="ti ti-user me-2 fs-18 text-primary"></i>Profile</a></li>

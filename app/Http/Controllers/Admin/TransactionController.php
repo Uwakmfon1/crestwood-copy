@@ -59,51 +59,47 @@ class TransactionController extends Controller
         // Check Account
         switch ($request['account']) {
             case 'savings':
-                $user->savingsWallet->increment('balance', $request['amount']);
-                $transaction = $user->savingsWallet->walletTransactions()->create([
-                    'user_id' => $user->id,
+                Ledger::credit($user->wallet, $request['amount'], 'save', null, 'Admin Deposit to Savings Account');
+                $transaction = $user->transaction('save')->create([
                     'amount' => $request['amount'],
-                    'account_type' => $request['account'],
-                    'type' => 'deposit',
-                    'description' => env('APP_NAME') . ' admin Deposit',
-                    'method' => 'wallet',
-                    'status' => 'approved'
+                    'data_id' => 0,
+                    'type' => 'save',
+                    'status' => 'approved',
+                    'description' => 'Admin Deposit to Savings Account',
+                    'method' => 'credit'
                 ]);
                 break;
             case 'trading':
-                $user->tradingWallet->increment('balance', $request['amount']);
-                $transaction = $user->tradingWallet->walletTransactions()->create([
-                    'user_id' => $user->id,
+                Ledger::credit($user->wallet, $request['amount'], 'trade', null, 'Admin Deposit to Trading Account');
+                $transaction = $user->transaction('trade')->create([
                     'amount' => $request['amount'],
-                    'account_type' => $request['account'],
-                    'type' => 'deposit',
-                    'description' => env('APP_NAME') . ' admin Deposit',
-                    'method' => 'wallet',
-                    'status' => 'approved'
+                    'data_id' => 0,
+                    'type' => 'trade',
+                    'status' => 'approved',
+                    'description' => 'Admin Deposit to Trading Account',
+                    'method' => 'credit'
                 ]);
                 break;
             case 'investment':
-                $user->investmentWallet->increment('balance', $request['amount']);
-                $transaction = $user->investmentWallet->walletTransactions()->create([
-                    'user_id' => $user->id,
+                Ledger::credit($user->wallet, $request['amount'], 'invest', null, 'Admin Deposit to Investment Account');
+                $transaction = $user->transaction('invest')->create([
                     'amount' => $request['amount'],
-                    'account_type' => $request['account'],
-                    'type' => 'deposit',
-                    'description' => env('APP_NAME') . ' admin Deposit',
-                    'method' => 'wallet',
-                    'status' => 'approved'
+                    'data_id' => 0,
+                    'type' => 'invest',
+                    'status' => 'approved',
+                    'description' => 'Admin Deposit to Investment Account',
+                    'method' => 'credit'
                 ]);
                 break;
             case 'wallet':
-                $user->wallet->increment('balance', $request['amount']);
-                $transaction = $user->savingsWallet->walletTransactions()->create([
-                    'user_id' => $user->id,
+                Ledger::credit($user->wallet, $request['amount'], 'wallet', null, 'Admin Deposit to Wallet Balance');
+                $transaction = $user->transaction('wallet')->create([
                     'amount' => $request['amount'],
-                    'account_type' => $request['account'],
-                    'type' => 'deposit',
-                    'description' => env('APP_NAME') . ' admin Deposit',
-                    'method' => 'wallet',
-                    'status' => 'approved'
+                    'data_id' => 0,
+                    'type' => 'wallet',
+                    'status' => 'approved',
+                    'description' => 'Admin Deposit to Wallet Balance',
+                    'method' => 'credit'
                 ]);
                 break;
             default:
@@ -112,7 +108,7 @@ class TransactionController extends Controller
 
         if ($transaction) {
             // NotificationController::sendDepositSuccessfulNotification($transaction);
-            return redirect()->route('admin.users.show', $user['id'])->with('success', 'Deposit made successfully');
+            return redirect()->route('admin.users.show', $user['id'])->with('success', 'Deposit made successfully to '. $request['account']);
         }
         return redirect()->route('admin.users.show', $user['id'])->with('error', 'Error processing deposit');
     }
@@ -120,32 +116,78 @@ class TransactionController extends Controller
 
     public function withdraw(Request $request): \Illuminate\Http\RedirectResponse
     {
-//        Validate request
+        // Validate request
         $validator = Validator::make($request->all(), [
             'user_id' => ['required', 'numeric'],
-            'amount' => ['required', 'numeric'],
+            'amount' => ['required', 'numeric', 'gt:0'],
+            'account' => ['required'],
         ]);
-        if ($validator->fails()){
+
+        if ($validator->fails()) {
             return back()->withErrors($validator)->withInput()->with('error', 'Invalid input data');
         }
-//        Find user
-        $user = User::all()->where('id', $request['user_id'])->first();
+
+        // Find user
+        $user = User::find($request['user_id']);
         if (!$user) {
-            return back()->with('error', 'Can\'t process investment, user not found');
+            return back()->with('error', 'Can\'t process transaction, user not found');
         }
-//        Check if user has sufficient balance
-        if (!$user->hasSufficientBalanceForTransaction($request['amount'])) return back()->withInput()->with('error', 'Insufficient wallet balance');
-//        Process withdrawal
-        $user->nairaWallet()->decrement('balance', $request['amount']);
-        $transaction = $user->transactions()->create([
-            'type' => 'withdrawal', 'amount' => $request['amount'], 'method' => 'wallet',
-            'description' => 'Withdrawal by '.env('APP_NAME'), 'status' => 'approved'
-        ]);
+
+        // Check Account
+        switch ($request['account']) {
+            case 'savings':
+                Ledger::debit($user->wallet, $request['amount'], 'save', null, 'Admin Withdrawal from Savings Account');
+                $transaction = $user->transaction('save')->create([
+                    'amount' => $request['amount'],
+                    'data_id' => 0,
+                    'type' => 'save',
+                    'status' => 'approved',
+                    'description' => 'Admin Deposit to Savings Account',
+                    'method' => 'debit'
+                ]);
+                break;
+            case 'trading':
+                Ledger::debit($user->wallet, $request['amount'], 'trade', null, 'Admin Withdrawal from Trading Account');
+                $transaction = $user->transaction('trade')->create([
+                    'amount' => $request['amount'],
+                    'data_id' => 0,
+                    'type' => 'trade',
+                    'status' => 'approved',
+                    'description' => 'Admin Deposit to Trading Account',
+                    'method' => 'debit'
+                ]);
+                break;
+            case 'investment':
+                Ledger::debit($user->wallet, $request['amount'], 'invest', null, 'Admin Withdrawal from Investment Account');
+                $transaction = $user->transaction('invest')->create([
+                    'amount' => $request['amount'],
+                    'data_id' => 0,
+                    'type' => 'invest',
+                    'status' => 'approved',
+                    'description' => 'Admin Deposit to Investment Account',
+                    'method' => 'debit'
+                ]);
+                break;
+            case 'wallet':
+                Ledger::debit($user->wallet, $request['amount'], 'wallet', null, 'Admin Withdrawal from Wallet Balance');
+                $transaction = $user->transaction('wallet')->create([
+                    'amount' => $request['amount'],
+                    'data_id' => 0,
+                    'type' => 'wallet',
+                    'status' => 'approved',
+                    'description' => 'Admin Deposit to Wallet Balance',
+                    'method' => 'debit'
+                ]);
+                break;
+            default:
+                return back()->withInput()->with('error', 'Invalid account method');
+        }
+
         if ($transaction) {
-            NotificationController::sendWithdrawalSuccessfulNotification($transaction);
-            return redirect()->route('admin.users.show', $user['id'])->with('success', 'Withdrawal made successfully');
+            // NotificationController::sendWithdrawalSuccessfulNotification($transaction);
+            return redirect()->route('admin.users.show', $user['id'])->with('success', 'Withdrawal made successfully on '. $request['account']);
         }
-        return redirect()->route('admin.users.show', $user['id'])->with('error', 'Error processing withdrawal');
+        return redirect()->route('admin.users.show', $user['id'])->with('error', 'Error processing deposit');
     }
 
     public function approve(Transaction $transaction): \Illuminate\Http\RedirectResponse
@@ -194,7 +236,7 @@ class TransactionController extends Controller
         try {
             //::: Error: assign the particular deposit ::://
             $user->wallet->deposit()->update([
-                'status' => 'approved',
+                'status' => 'decline',
             ]);
             //::: Error: assign the particular deposit ::://
         } catch (InvalidArgumentException $e) {

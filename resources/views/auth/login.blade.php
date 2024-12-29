@@ -14,17 +14,16 @@
                 <div class="basicpage-border1"></div>
                 <div class="card-body p-5">
                     <div class="mb-3 d-flex justify-content-center"> 
-                        <a href="index.html"> 
+                        <a href="{{ route('home') }}"> 
                             <img src="{{ asset('asset/images/logo/logo-dark.png') }}" alt="logo" class="desktop-logo"> 
                             <img src="../assets/images/brand-logos/desktop-dark.png" alt="logo" class="desktop-dark"> 
                         </a> 
                     </div>
-                    <p class="h4 fw-semibold mb-2 text-center">Sign In</p>
-                    <p class="mb-4 text-muted fw-normal text-center">Welcome back !</p>
+                    <p class="h4 fw-semibold mb-4 pb-4 text-center">Sign In</p>
+                    <!-- <p class="mb-4 text-muted fw-normal text-center">Create Your Crestwood Capitals Account</p> -->
                     @if (session('error'))
-                        <div class="alert alert-fill-danger">
-                            <i data-feather="alert-circle" class="mr-2"></i>
-                            <strong class="small">{{ session('error') }}</strong>
+                        <div class="d-flex mx-auto mb-4">
+                            <span class="mx-auto px-2 badge rounded-pill bg-info-transparent fs-12 fw-semibold">{{ session('error') }}</span>
                         </div>
                     @endif
                     <form action="{{ route('login') }}" method="post">
@@ -40,7 +39,7 @@
                                 @enderror
                             </div>
                             <div class="col-xl-12 mb-2">
-                                <label for="signin-password" class="form-label text-default d-block">Password  <!-- <a href="{{ route('password.request') }}" class="float-end link-primary op-5 fw-medium fs-12">Forget password ?</a></label> -->
+                                <label for="signin-password" class="form-label text-default d-block">Password  <a href="{{ route('password.request') }}" class="float-end text-primary op-5 fw-medium fs-12">Forget password ?</a></label>
                                 <div class="input-group">
                                     <input name="password" type="password" class="form-control" id="signin-password" placeholder="Enter password...">
                                     <a href="javascript:void(0);" class="input-group-text bg-white text-muted" onclick="createpassword('signin-password',this)"><i class="ri-eye-off-line align-middle"></i></a>

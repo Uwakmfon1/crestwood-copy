@@ -1,5 +1,7 @@
 @extends('layouts.user.index')
 
+@section('title', '| Dashboard')
+
 @section('styles')
 
 <link rel="stylesheet" href="{{ asset('asset/libs/swiper/swiper-bundle.min.css') }}">
@@ -10,7 +12,6 @@
 <!-- Start::app-content -->
 <div class="main-content app-content">
     <div class="container-fluid">
-
         <!-- Start::page-header -->
         <div
             class="my-4 page-header-breadcrumb d-flex align-items-center justify-content-between flex-wrap gap-2">
@@ -27,7 +28,7 @@
             </div>
             <div class="d-flex gap-4">
                 <a href="{{ route('wallet') }}" class="btn btn-primary-light btn-wave waves-effect waves-light">
-                    <i class="fe fe-dollar-sign me-2"></i> Wallet
+                    <i class="fe fe-dollar-sign me-2"></i> Cash
                 </a>
             </div>
         </div>
@@ -120,7 +121,7 @@
                                         <h4 class="fw-semibold mb-1">&#36;{{ number_format($trading, 2) }} 
                                             <span class="text-success ms-2 d-inline-block fs-12">0.05% <i class="ti ti-arrow-narrow-up"></i></span>
                                         </h4>
-                                        <span class="text-muted fs-12">Available Tradning Balance
+                                        <span class="text-muted fs-12">Available Trading Balance
                                             <a href="javascript:void(0);" data-bs-toggle="tooltip" data-bs-custom-class="tooltip-dark" title="Funds available for placing new trades." class="text-muted mx-1">
                                                 <i class="fe fe-info"></i>
                                             </a>
@@ -162,6 +163,46 @@
             </div>
             <div class="col-xxl-3">
                 <div class="row">
+                <div class="col-xxl-12 col-xl-12">
+                        <div class="card custom-card card-bg-primary ecommerce-card">
+                            <div class="card-header border-bottom-0" style="margin-bottom: -15px;">
+                                <div class="card-title text-fixed-white mb-4">
+                                Total Portfolio Value 
+                                    <a href="javascript:void(0);" data-bs-toggle="tooltip" data-bs-custom-class="tooltip-dark" title="The total value of all funds in your account, including savings, investments, and trading balances." class="text-fixed-white mx-1">
+                                        <i class="fe fe-info"></i>
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="p-0">
+                                <div class="d-flex align-items-start gap-3 px-3">
+                                    <div class="main-card-icon secondary p-0">
+                                        <div
+                                            class="avatar avatar-lg p-2 bg-white-transparent svg-white shadow-sm">
+                                            <div class="avatar avatar-sm svg-white">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32"
+                                                    fill="#000000" viewBox="0 0 256 256">
+                                                    <path d="M96,40l33.52,88H56Zm104,88H129.52L160,208Z"
+                                                        opacity="0.2"></path>
+                                                    <path
+                                                        d="M240,128a8,8,0,0,1-8,8H204.94l-37.78,75.58A8,8,0,0,1,160,216h-.4a8,8,0,0,1-7.08-5.14L95.35,60.76,63.28,131.31A8,8,0,0,1,56,136H24a8,8,0,0,1,0-16H50.85L88.72,36.69a8,8,0,0,1,14.76.46l57.51,151,31.85-63.71A8,8,0,0,1,200,120h32A8,8,0,0,1,240,128Z">
+                                                    </path>
+                                                </svg>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="flex-fill">
+                                        <div class="mb-2"></div>
+                                        <div class="text-muted mb-0 fs-18 d-flex align-items-center">
+                                            <h5 class="fs-26 fw-bold mb-0 flex-fill fw-medium text-fixed-white" style="margin-top: 0px;">
+                                                &#36;{{ number_format($portfolio, 2) }}
+                                            </h5>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="audience-report"></div>
+                            </div>
+                        </div>
+                    </div>
                     <div class="col-xxl-12 col-xl-12">
                         <div class="card custom-card card-bg-success ecommerce-card">
                             <div class="card-header border-bottom-0" style="margin-bottom: -15px;">
@@ -198,7 +239,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="audience-report"></div>
+                                <div class="my-4"></div>
                             </div>
                         </div>
                     </div>
@@ -287,10 +328,10 @@
         <!-- End:: row-1 -->
 
         <div class="row">
-            <div class="col-xxl-9" style="height: 620px;">
+            <div class="col-xxl-12" style="height: 620px !important;">
                 <!-- TradingView Widget BEGIN -->
-                <div class="tradingview-widget-container">
-                    <div class="tradingview-widget-container__widget"></div>
+                <div class="tradingview-widget-container" style="height: 100%;">
+                    <div class="tradingview-widget-container__widget" style="height: 100%;"></div>
                     <script type="text/javascript">
                         // Define all possible symbols
                         const allSymbols = [
@@ -363,143 +404,6 @@
                     </script>
                 </div>
                 <!-- TradingView Widget END -->
-            </div>
-
-            <div class="col-xxl-3">
-                <div class="card custom-card card-bg-grey ecommerce-card" style="background: #09005b;">
-                    <!-- TradingView Widget BEGIN -->
-                    <div class="tradingview-widget-container">
-                        <div class="tradingview-widget-container__widget"></div>
-                        <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-single-quote.js" async>
-                            {
-                                "symbol": "FX:EURUSD",
-                                "width": "100%",
-                                "isTransparent": true,
-                                "colorTheme": "dark",
-                                "locale": "en"
-                            }
-                        </script>
-                    </div>
-                    <!-- TradingView Widget END -->
-                </div>
-                <div class="col-xxl-12 col-xl-12">
-                    <div class="card custom-card overflow-hidden">
-                        <div class="card-header justify-content-between">
-                            <div class="card-title"> Popular Traders </div>
-                        </div>
-                        <div class="card-body p-0" id="top-collector">
-                            <div class="table-responsive">
-                                <table class="table table-hover text-nowrap">
-                                    <tbody>
-                                        <p class="text-center my-5 py-5">No top traders</p>
-                                        <!-- <tr>
-                                            <td>
-                                                <div class="d-flex align-items-center">
-                                                    <div class="me-2"> <span
-                                                            class="avatar avatar-md p-1 avatar-rounded bg-light">
-                                                            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/59/User-avatar.svg/2048px-User-avatar.svg.png" alt="">
-                                                        </span> </div>
-                                                    <div class="fw-medium">
-                                                        <p class="mb-0">Alicia Smith</p>
-                                                        <span class="fs-12 text-muted">980 Itmes</span>
-                                                    </div>
-                                                </div>
-                                            </td>
-                                            <td class="text-end">
-                                                <p class="mb-0 fw-semibold">$9,223.46</p>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>
-                                                <div class="d-flex align-items-center">
-                                                    <div class="me-2"> <span
-                                                            class="avatar avatar-md p-1 avatar-rounded bg-light">
-                                                            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/59/User-avatar.svg/2048px-User-avatar.svg.png" alt="">
-                                                        </span> </div>
-                                                    <div class="fw-medium">
-                                                        <p class="mb-0">Alex Carey</p>
-                                                        <span class="fs-12 text-muted">126 Itmes</span>
-                                                    </div>
-                                                </div>
-                                            </td>
-                                            <td class="text-end">
-                                                <p class="mb-0 fw-semibold">$17,239.09</p>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>
-                                                <div class="d-flex align-items-center">
-                                                    <div class="me-2"> <span
-                                                            class="avatar avatar-md p-1 avatar-rounded bg-light">
-                                                            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/59/User-avatar.svg/2048px-User-avatar.svg.png" alt="">
-                                                        </span> </div>
-                                                    <div class="fw-medium">
-                                                        <p class="mb-0">Emiley Jack</p>
-                                                        <span class="fs-12 text-muted">170 Itmes</span>
-                                                    </div>
-                                                </div>
-                                            </td>
-                                            <td class="text-end">
-                                                <p class="mb-0 fw-semibold">$5,902.83</p>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>
-                                                <div class="d-flex align-items-center">
-                                                    <div class="me-2"> <span
-                                                            class="avatar avatar-md p-1 avatar-rounded bg-light">
-                                                            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/59/User-avatar.svg/2048px-User-avatar.svg.png" alt="">
-                                                        </span> </div>
-                                                    <div class="fw-medium">
-                                                        <p class="mb-0">Jessica</p>
-                                                        <span class="fs-12 text-muted">220 Itmes</span>
-                                                    </div>
-                                                </div>
-                                            </td>
-                                            <td class="text-end">
-                                                <p class="mb-0 fw-semibold">$3,993.09</p>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>
-                                                <div class="d-flex align-items-center">
-                                                    <div class="me-2"> <span
-                                                            class="avatar avatar-md p-1 avatar-rounded bg-light">
-                                                            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/59/User-avatar.svg/2048px-User-avatar.svg.png" alt="">
-                                                        </span> </div>
-                                                    <div class="fw-medium">
-                                                        <p class="mb-0">Toni Stark</p>
-                                                        <span class="fs-12 text-muted">160 Itmes</span>
-                                                    </div>
-                                                </div>
-                                            </td>
-                                            <td class="text-end">
-                                                <p class="mb-0 fw-semibold">$12,124.34</p>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td class="border-bottom-0">
-                                                <div class="d-flex align-items-center">
-                                                    <div class="me-2"> <span
-                                                            class="avatar avatar-md p-1 avatar-rounded bg-light">
-                                                            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/59/User-avatar.svg/2048px-User-avatar.svg.png" alt="">
-                                                        </span> </div>
-                                                    <div class="fw-medium">
-                                                        <p class="mb-0">Kiara May</p>
-                                                        <span class="fs-12 text-muted">120 Itmes</span>
-                                                    </div>
-                                                </div>
-                                            </td>
-                                            <td class="border-bottom-0 text-end">
-                                                <p class="mb-0 fw-semibold">$2,534.56</p>
-                                            </td>
-                                        </tr> -->
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
-                    </div>
-                </div>
             </div>
         </div>
 
@@ -579,7 +483,6 @@
             </div>
         </div>
         <!-- End:: row-3 -->
-
     </div>
 </div>
 <!-- End::app-content -->
