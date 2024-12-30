@@ -213,7 +213,7 @@
                                             <div class="d-flex gap-2 flex-wrap align-items-center justify-content-between p-3 border rounded bg-{{ $slide['colorClass'] }}-transparent">
                                                 <div class="d-flex flex-fill align-items-center">
                                                     <div class="me-2">
-                                                        <span class="avatar avatar-sm rounded-circle bg-white p-2">
+                                                        <span class="avatar avatar-sm rounded-circle bg-dark bg-opacity-25 border border-white p-2">
                                                             <img src="{{ $slide['icon'] }}" alt="{{ $slide['icon'] }}">
                                                         </span>
                                                     </div>
@@ -666,7 +666,7 @@
                                         <td onclick="window.location='{{ route('trade.show', ['stock' => $stock['id'], 'symbol' => $stock['symbol']]) }}';">
                                             <div class="d-flex align-items-start gap-3">
                                                 <span class="avatar avatar-md p-1 avatar-rounded bg-light">
-                                                    <img src="{{ $stock->img }}" alt="" class="invert-1">
+                                                    <img src="{{ $stock->img }}" alt="" class="invert-1 bg-dark bg-opacity-25">
                                                 </span>
                                                 <div class="flex-fill lh-1">
                                                 <a href="javascript:void(0);" class="d-block mb-1 fs-14 fw-medium">{{ $stock->name }}</a>

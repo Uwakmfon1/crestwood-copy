@@ -327,7 +327,7 @@
                               </div>
                               <div class="cols col-2 bt-body2">
                                  <p class="navy">
-                                    <strong>Earn up to 5.00%</strong> (variable) APY* for 3 months when you open your first cash account with a qualifying deposit. New customers only. Terms apply.&nbsp;
+                                    <strong>Earn up to 4.5%</strong> (variable) APY* for 3 months when you open your first cash account with a qualifying deposit. New customers only. Terms apply.&nbsp;
                                     <span class="toast-cta">
                                        <span id="hs_cos_wrapper_module_16419355051849_" class="hs_cos_wrapper hs_cos_wrapper_widget hs_cos_wrapper_type_cta" style="" data-hs-cos-general-type="widget" data-hs-cos-type="cta">
                                           <!--HubSpot Call-to-Action Code -->
@@ -1284,7 +1284,7 @@
                                                                   <span id="hs_cos_wrapper_module_1670359637540_" class="hs_cos_wrapper hs_cos_wrapper_widget hs_cos_wrapper_type_cta" style="" data-hs-cos-general-type="widget" data-hs-cos-type="cta">
                                                                      <!--HubSpot Call-to-Action Code -->
                                                                      <span class="hs-cta-wrapper" id="hs-cta-wrapper-c2736150-9d5a-4600-b54d-c962c18e21ea">
-                                                                        <a class="bt-PrimaryButton" href="{{ route('investment') }}">Open an IRA</a>
+                                                                        <a class="bt-PrimaryButton" href="{{ route('dashboard') }}">Open an IRA</a>
                                                                      </span>
                                                                      <!-- end HubSpot Call-to-Action Code -->
                                                                   </span>
@@ -1294,7 +1294,7 @@
                                                                      <!--HubSpot Call-to-Action Code -->
                                                                      <span class="hs-cta-wrapper" id="hs-cta-wrapper-58f38844-a2cf-43a1-a9f7-6986b5dbe38b">
                                                                         <p>
-                                                                           <a href="{{ route('login') }}" rel="noopener" aria-label="Learn about premium pricing">Learn more ➔</a>
+                                                                           <a href="{{ route('investment') }}" rel="noopener" aria-label="Learn about premium pricing">Learn more ➔</a>
                                                                         </p>
                                                                      </span>
                                                                      <!-- end HubSpot Call-to-Action Code -->

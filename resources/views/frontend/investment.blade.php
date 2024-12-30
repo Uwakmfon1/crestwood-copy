@@ -264,8 +264,8 @@
                                           <!--HubSpot Call-to-Action Code -->
                                           <span class="hs-cta-wrapper" id="hs-cta-wrapper-20077b1b-5873-4a3f-ae67-57005ac70e12">
                                              <span class="hs-cta-node hs-cta-20077b1b-5873-4a3f-ae67-57005ac70e12" id="hs-cta-20077b1b-5873-4a3f-ae67-57005ac70e12">
-                                                <!--[if lte IE 8]>
-                                 <div id="hs-cta-ie-element"></div><![endif]--><a href="{{ route('ira') }}"><img class="hs-cta-img" id="hs-cta-img-20077b1b-5873-4a3f-ae67-57005ac70e12" style="border-width:0px;" src="cta/default/5274572/20077b1b-5873-4a3f-ae67-57005ac70e12-1.png" alt="Learn more"></a></span></span><!-- end HubSpot Call-to-Action Code --></span>
+                                             <a href="{{ route('dashboard') }}" rel="noopener" aria-label="Learn about premium pricing">Get Started ➔</a>
+                              </span>
                                  </span></p>
                               </div>
                               <button class="close-toast-banner" id="close-toast-banner" aria-label="close toast banner">
@@ -496,27 +496,7 @@
                                                       </div>
                                                       <div class="bt-ContentGrid-item u-col-12 u-col-5@md cols col-2 ">
                                                          <div>
-                                                            <div class="lottie-video-wrap " aria-label="A Phone with Crestwood Capital Management logo behind a card showing target amount of $850,000 and target date of May 2050, a card showing Crestwood Capital Management Core portfolio and other portfolio icons, and a card showing total earned amount of $6,340.67, dividends earned amount of $4,114.20, and Tax Loss Harvesting+ turned on.">
-                                                               <div class="bt-lottie-player-wrap">
-                                                                  <button class="button-reset play-pause-button position_bottom_left dark-button " data-play_state="play">
-                                                                     <span class="icon icon_play active">
-                                                                        <svg aria-hidden="true" fill="none" xmlns="http://www.w3.org/2000/svg" viewbox="0 0 44 44">
-                                                                           <path d="M30.333 21.038c.741.427.741 1.497 0 1.924l-11.666 6.736A1.111 1.111 0 0 1 17 28.736V15.264c0-.855.926-1.39 1.667-.962l11.666 6.736Z" fill="currentColor"></path>
-                                                                           <rect x="1" y="1" width="42" height="42" rx="21" stroke="currentColor" stroke-width="2"></rect>
-                                                                        </svg>
-                                                                     </span>
-                                                                     <span class="icon icon_pause ">
-                                                                        <svg aria-hidden="true" fill="none" xmlns="http://www.w3.org/2000/svg" viewbox="0 0 44 44">
-                                                                           <rect x="16" y="14" width="4" height="16" rx="1" fill="currentColor"></rect>
-                                                                           <rect x="24" y="14" width="4" height="16" rx="1" fill="currentColor"></rect>
-                                                                           <rect x="1" y="1" width="42" height="42" rx="21" stroke="currentColor" stroke-width="2"></rect>
-                                                                        </svg>
-                                                                     </span>
-                                                                  </button>
-                                                                  <lottie-player id="-lottie-player-lottie-player" class="bt-lottie-player width100" src="hubfs/Graphics/webpage-graphics/lottie_json/phone-logo-steps-2-1.json" background="transparent" speed="1" data-id="lottie_02f5f5506e84440ecce3d326dd983e91" autoplay="">
-                                                                  </lottie-player>
-                                                               </div>
-                                                            </div>
+                                                            <img class="blog-post-featured-image" src="../hubfs/Graphics/featured-images/chart-with-arrow-hitting-bullseye-target.jpg" alt="illustration of chart and bullseye">      
                                                          </div>
                                                       </div>
                                                    </div>
@@ -1168,7 +1148,9 @@
                                                                         <h2 class="item-headline bt-title3 ">We’re a fiduciary.</h2>
                                                                      </div>
                                                                      <div class="bt-body2">
-                                                                        <p>We are an SEC-registered investment advisor, which means we’re legally bound to put your interests first when investing your money.<br><a href="{{ route('home') }}" rel="noopener"><span style="color: #1d6ae5;">Learn more</span></a></p>
+                                                                        <p>We are an SEC-registered investment advisor, which means we’re legally bound to put your interests first when investing your money.<br>
+                                                                        <!-- <a href="{{ route('home') }}" rel="noopener"><span style="color: #1d6ae5;">Learn more</span></a> -->
+                                                                     </p>
                                                                      </div>
                                                                   </div>
                                                                </div>

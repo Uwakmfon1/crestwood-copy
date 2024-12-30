@@ -327,39 +327,30 @@
         </div>
         <!-- End:: row-1 -->
 
+        <!-- Start:: row-3 -->
         <div class="row">
-            <div class="col-xxl-12" style="height: 620px !important;">
-                <!-- TradingView Widget BEGIN -->
-                <div class="tradingview-widget-container" style="height: 100%;">
-                    <div class="tradingview-widget-container__widget" style="height: 100%;"></div>
-                    <script type="text/javascript">
-                        // Define all possible symbols
-                        const allSymbols = [
-                            ["Apple", "AAPL|1D"],
-                            ["Google", "GOOGL|1D"],
-                            ["Microsoft", "MSFT|1D"],
-                            ["Amazon", "AMZN|1D"],
-                            ["Tesla", "TSLA|1D"],
-                            ["Facebook", "META|1D"],
-                            ["Netflix", "NFLX|1D"],
-                            ["Nvidia", "NVDA|1D"]
-                        ];
-
-                        // Function to shuffle and select a subset of symbols
-                        function getRandomSymbols(symbols, count) {
-                            for (let i = symbols.length - 1; i > 0; i--) {
-                                const j = Math.floor(Math.random() * (i + 1));
-                                [symbols[i], symbols[j]] = [symbols[j], symbols[i]];
-                            }
-                            return symbols.slice(0, count);
-                        }
-
-                        // Get 3 random symbols
-                        const selectedSymbols = getRandomSymbols(allSymbols, 3);
-
-                        // Inject the symbols into the TradingView widget config
-                        const widgetConfig = {
-                            "symbols": selectedSymbols,
+            <div class="col-xl-9" style="height: 580px;">
+                <div class="tradingview-widget-container" style="height: max-content;">
+                    <div class="tradingview-widget-container__widget"></div>
+                    <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-symbol-overview.js" async>
+                        { 
+                            "symbols": [
+                                [
+                                "Apple",
+                                "AAPL|1D"
+                                ],
+                                [
+                                "Google",
+                                "GOOGL|1D"
+                                ],
+                                [
+                                "Microsoft",
+                                "MSFT|1D"
+                                ],
+                                [
+                                "NASDAQ:NVDA|1D"
+                                ]
+                            ],
                             "chartOnly": false,
                             "width": "100%",
                             "height": "95%",
@@ -393,19 +384,49 @@
                                 "60m|1W",
                                 "all|1M"
                             ]
-                        };
-
-                        // Create the TradingView widget
-                        const script = document.createElement('script');
-                        script.src = "https://s3.tradingview.com/external-embedding/embed-widget-symbol-overview.js";
-                        script.async = true;
-                        script.innerHTML = JSON.stringify(widgetConfig);
-                        document.querySelector('.tradingview-widget-container__widget').appendChild(script);
+                        }
                     </script>
                 </div>
-                <!-- TradingView Widget END -->
+            </div>
+            <div class="col-xl-3">
+                <div class="row">
+                    <div class="col-xl-12 col-lg-12 col-md-6">
+                        <div class="card custom-card">
+                            <!-- TradingView Widget BEGIN -->
+                            <div class="tradingview-widget-container">
+                                <div class="tradingview-widget-container__widget"></div>
+                                <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-hotlists.js" async>
+                                    {
+                                        "colorTheme": "light",
+                                        "dateRange": "1M",
+                                        "exchange": "US",
+                                        "showChart": true,
+                                        "locale": "en",
+                                        "largeChartUrl": "",
+                                        "isTransparent": false,
+                                        "showSymbolLogo": false,
+                                        "showFloatingTooltip": false,
+                                        "width": "100%",
+                                        "height": "550",
+                                        "plotLineColorGrowing": "rgba(201, 10, 255, 1)",
+                                        "plotLineColorFalling": "rgba(201, 10, 255, 1)",
+                                        "gridLineColor": "rgba(42, 46, 57, 0)",
+                                        "scaleFontColor": "rgba(19, 23, 34, 1)",
+                                        "belowLineFillColorGrowing": "rgba(41, 98, 255, 0.12)",
+                                        "belowLineFillColorFalling": "rgba(41, 98, 255, 0.12)",
+                                        "belowLineFillColorGrowingBottom": "rgba(41, 98, 255, 0)",
+                                        "belowLineFillColorFallingBottom": "rgba(41, 98, 255, 0)",
+                                        "symbolActiveColor": "rgba(41, 98, 255, 0.12)"
+                                    }
+                                </script>
+                            </div>
+                            <!-- TradingView Widget END -->
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
+        <!-- End:: row-3 -->
 
         <!-- Start:: row-3 -->
         <div class="row">

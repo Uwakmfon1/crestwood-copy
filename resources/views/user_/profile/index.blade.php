@@ -151,9 +151,9 @@
                                         <button class="nav-link text-start active" id="main-profile-tab" data-bs-toggle="pill" data-bs-target="#main-profile" type="button" role="tab" aria-controls="main-profile" aria-selected="true"><i class="ri-shield-user-line me-1 align-middle d-inline-block"></i>Account Information</button>
                                         <button class="nav-link text-start" id="acct-type-tab" data-bs-toggle="pill" data-bs-target="#acct-type" type="button" role="tab" aria-controls="acct-type" aria-selected="false" tabindex="-1"><i class="ri-u-disk-line me-1 align-middle d-inline-block"></i>Account Type</button>
                                         <button class="nav-link text-start" id="man-password-tab" data-bs-toggle="pill" data-bs-target="#man-password" type="button" role="tab" aria-controls="man-password" aria-selected="false" tabindex="-1"><i class="ri-u-disk-line me-1 align-middle d-inline-block"></i>Payment Method</button>
-                                        <button class="nav-link text-start" id="main-team-tab" data-bs-toggle="pill" data-bs-target="#main-team" type="button" role="tab" aria-controls="main-team" aria-selected="false" tabindex="-1"><i class="ri-group-line me-1 align-middle d-inline-block"></i>Personal Information (KYC)</button>
-                                        <button class="nav-link text-start" id="main-kyc-tab" data-bs-toggle="pill" data-bs-target="#main-kyc" type="button" role="tab" aria-controls="main-kyc" aria-selected="false" tabindex="-1"><i class="ri-group-line me-1 align-middle d-inline-block"></i>Additional Verification</button>
-                                        <!-- <button class="nav-link text-start" id="main-nextkin-tab" data-bs-toggle="pill" data-bs-target="#main-nextkin" type="button" role="tab" aria-controls="main-nextkin" aria-selected="false" tabindex="-1"><i class="ri-group-line me-1 align-middle d-inline-block"></i>Next of kin</button> -->
+                                        <button class="nav-link text-start" id="main-team-tab" data-bs-toggle="pill" data-bs-target="#main-team" type="button" role="tab" aria-controls="main-team" aria-selected="false" tabindex="-1"><i class="ri-user-line me-1 align-middle d-inline-block"></i>Personal Information (KYC)</button>
+                                        <button class="nav-link text-start" id="main-kyc-tab" data-bs-toggle="pill" data-bs-target="#main-kyc" type="button" role="tab" aria-controls="main-kyc" aria-selected="false" tabindex="-1"><i class="ri-shield-check-line me-1 align-middle d-inline-block"></i>Additional Verification</button>
+                                        <button class="nav-link text-start" id="main-proof-tab" data-bs-toggle="pill" data-bs-target="#main-proof" type="button" role="tab" aria-controls="main-proof" aria-selected="false" tabindex="-1"><i class="ri-map-pin-line me-1 align-middle d-inline-block"></i>Proof of Address</button>
                                         <button class="nav-link text-start" id="main-billing-tab" data-bs-toggle="pill" data-bs-target="#main-billing" type="button" role="tab" aria-controls="main-billing" aria-selected="false" tabindex="-1"><i class="ri-bill-line me-1 align-middle d-inline-block"></i>Identity & Verification</button>
                                         <button class="nav-link text-start" id="main-password-tab" data-bs-toggle="pill" data-bs-target="#main-password" type="button" role="tab" aria-controls="main-password" aria-selected="false" tabindex="-1"><i class="ri-user-line me-1 align-middle d-inline-block"></i>Password</button>
                                         </div>
@@ -238,7 +238,7 @@
                                             <div class="tab-pane" id="acct-type" role="tabpanel" tabindex="0" aria-labelledby="acct-type-tab">
                                                 <div class="card-body">
                                                     <div class="row">
-                                                        <div class="col-md-6">
+                                                        <div class="col-md-12">
                                                             <label for="flexCheckChecked1" style="width: 100%; margin: 10px 0px;">
                                                                 <div class="form-check d-flex align-items-center gap-1 py-3 px-2 account_select">
                                                                     <div>
@@ -259,7 +259,7 @@
                                                                 </div>
                                                             </label>
                                                         </div>
-                                                        <div class="col-md-6">
+                                                        <div class="col-md-12">
                                                             <label for="flexCheckChecked2" style="width: 100%; margin: 10px 0px;">
                                                                 <div class="form-check d-flex align-items-center gap-1 py-3 px-2 account_select">
                                                                     <div>
@@ -707,6 +707,47 @@
                                                     </div>
                                                 </form>
                                             </div>
+                                            <div class="tab-pane" id="main-proof" role="tabpanel" aria-labelledby="main-proof-tab" tabindex="0">
+                                                <div class="px-3 py-3">
+                                                    <div class="card-title">
+                                                        <h3 class="fw-bold fs-14">Proof of Address</h3>
+                                                    </div>
+                                                    <div id="" class="alert alert-warning mt-2">
+                                                        <div class="">
+                                                            <p class="fs-12 text-dark">Upload a valid proof of address document. This can be a utility bill, bank statement, or government-issued document dated within the last 3 months." "Accepted formats: JPG, PNG, PDF. Max size: 10 MB</p>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="">
+                                                        <form action="{{ route('profile.data') }}" method="POST" enctype="multipart/form-data">
+                                                            @csrf
+                                                            <input type="hidden" name="screen" value="proof">
+                                                            <div class="my-3 py-2">
+                                                                <p class="fs-14 fw-bold my-2">
+                                                                    Upload Proof
+                                                                </p>
+                                                                <div class="">
+                                                                    <input type="file" id="imageUpload" class="form-control" name="proof" multiple data-allow-reorder="true" data-max-file-size="3MB" data-max-files="6">
+                                                                </div>
+                                                            </div>
+                                                            @if(auth()->user()['proof'])
+                                                                <div class="mt-2 mx-2">
+                                                                    <img class="img-fluid" style="border-radius: 5px" src="{{ asset(auth()->user()['proof']) }}" alt="proof">
+                                                                </div>
+                                                            @endif
+                                                            <div id="" class="alert alert-primary my-2">
+                                                                <h4 class="text-danger fs-12 fw-bold">Compliance Disclaimer:</h4>
+                                                                <div class="">
+                                                                    <p class="fs-12 text-muted">In compliance with applicable laws and Customer Identification Program (CIP) requirements, your information will be securely processed.</p>
+                                                                </div>
+                                                            </div>
+
+                                                            <button type="submit" class="btn btn-primary-light border-1 w-100">Submit</button>
+                                                        </form>
+
+                                                    </div>
+                                                </div>
+                                            </div>
                                             <div class="tab-pane" id="main-billing" role="tabpanel" aria-labelledby="main-billing-tab" tabindex="0">
                                                 <form action="{{ route('profile.data') }}" method="post" enctype="multipart/form-data">
                                                     @csrf
@@ -843,7 +884,7 @@
                         </ul>
                     </div>
                 </div>
-                <div class="card custom-card overflow-hidden">
+                <!-- <div class="card custom-card overflow-hidden">
                     <div class="px-3 py-3">
                         <div class="card-title">
                             <h3 class="fw-bold fs-14">Proof of Address</h3>
@@ -883,7 +924,7 @@
 
                         </div>
                     </div>
-                </div>
+                </div> -->
                 <div class="">
                     <!-- <a href="{{ route('kyc.index') }}" class="btn btn-primary-light border-1 w-100">Complete KYC</a> -->
                 </div>
