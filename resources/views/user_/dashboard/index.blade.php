@@ -162,7 +162,7 @@
                 </div>
             </div>
             <div class="col-xxl-3">
-                <div class="row">
+                {{-- <div class="row">
                 <div class="col-xxl-12 col-xl-12">
                         <div class="card custom-card card-bg-primary ecommerce-card">
                             <div class="card-header border-bottom-0" style="margin-bottom: -15px;">
@@ -243,6 +243,41 @@
                             </div>
                         </div>
                     </div>
+                </div> --}}
+                <div class="card custom-card card-bg-primary crypto-card pt-2">
+                    <div class="card-body">
+                        <div>
+                            <span class="text-fixed-white op-8">Total Portfolio Value 
+                                <a href="javascript:void(0);" data-bs-toggle="tooltip" data-bs-custom-class="tooltip-dark" title="The total value of all funds in your account, including savings, investments, and trading balances." class="text-fixed-white mx-1">
+                                    <i class="fe fe-info"></i>
+                                </a>
+                            </span>
+                            <h4 class="fw-semibold d-block text-fixed-white mt-2">
+                                {{ number_format($portfolio, 2) }}
+                                <span class="fs-12 ms-1 d-inline-flex" style="margin-top: -5px;">USD</span>
+                            </h4>
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                <div class="text-center p-2 my-2 bg-white-transparent rounded">
+                                    <div class="d-flex">
+                                        <span class="fs-10 tooltip-container">Reserved Fund 
+                                            <a href="javascript:void(0);" class="tooltip-trigger text-fixed-white mx-1"  data-tooltip="Funds available for withdrawal or transfer, not currently in use.">
+                                                <i class="fe fe-info"></i>
+                                            </a>
+                                        </span>
+                                    </div>
+                                    <div class="d-flex">
+                                        <span class="fs-18 fw-semibold text-start">{{ number_format($lockedFunds, 2) }} USD</span>
+                                    </div>
+                                    <div class="mt-1">  </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                    </div>
+                    <div class="audience-report"></div>
+                </div>
                     <div class="col-xxl-12 col-xl-12">
                         <div class="card custom-card overflow-hidden">
                             <div class="card-header justify-content-between">
@@ -284,7 +319,7 @@
                             </div>
                         </div>
                     </div>
-                </div>
+            </div>
             </div>
             <div class="col-xxl-12">
                 <div class="d-flex align-items-center justify-content-between">
@@ -297,7 +332,7 @@
                                         <div class="d-flex gap-2 flex-wrap align-items-center justify-content-between p-3 border rounded bg-{{ $slide['colorClass'] }}-transparent">
                                             <div class="d-flex flex-fill align-items-center">
                                                 <div class="me-2">
-                                                    <span class="avatar avatar-sm rounded-circle bg-white p-2">
+                                                    <span class="avatar avatar-sm rounded-circle bg-dark bg-opacity-10 border border-white p-2">
                                                          <img src="{{ $slide['icon'] }}" alt="{{ $slide['icon'] }}">
                                                     </span>
                                                 </div>
