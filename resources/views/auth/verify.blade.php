@@ -59,8 +59,11 @@
                             </div>
                         </form>
                     </div>
+                    <div class="text-center my-2">
+                        <p class="mb-0 fs-14 fw-bold">Hello!</p>
+                        <span class="text-muted fs-12">{{ auth()->user()->email }}</span>
+                    </div>
                     <div class="mx-auto d-flex text-center">
-                        <!-- <span class="text-muted fs-12 my-2">{{ auth()->user()->email }}</span> -->
                         <div class="d-flex align-items-center text-cente mt-3 px-auto mx-auto">
                             <p class="fs-12 text-muted mb-0">Wrong email address</p>
                             <form action="{{ route('logout') }}" method="post">
