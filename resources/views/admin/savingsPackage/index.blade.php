@@ -26,13 +26,12 @@
                                 <div class="col-md-4 grid-margin mb-4 grid-margin-md-0">
                                     <div class="card">
                                         <div class="card-body">
-                                            <h5 class="text-center text-uppercase mt-3 mb-4">{{ $package['name'] }}</h5>
+                                            <h5 class="text-center text-uppercase mt-3 mb-4">{{ $package['name'] }}##</h5>
                                             <div class="my-3 text-center">
-                                                <img src="{{ asset($package['image']) }}" class="mx-auto text-center" style="width: 80px; border-radius: 5px" alt="Basic">
+                                                <img src="{{ $package['img'] }}" class="mx-auto text-center" style="width: 80px; border-radius: 5px" alt="Basic">
                                             </div>
                                             <h3 class="text-center font-weight-light">{{ $package['roi'] }}%</h3>
                                             <p class="text-muted text-center mb-4 font-weight-light">return on investment</p>
-                                            <h6 class="text-muted text-center mb-4 font-weight-normal">₦ {{ number_format($package['price']) }} per slot</h6>
                                             <div class="d-flex align-items-center mb-2">
                                                 <i data-feather="clock" class="icon-md text-secondary mr-2"></i>
                                                 <!-- <p>{{ $package['milestone'] }} {{ $package['duration'] }}(s)</p> -->

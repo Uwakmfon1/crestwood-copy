@@ -109,8 +109,8 @@ Route::group(['middleware' => ['auth:admin', 'active_admin']], function (){
     Route::get('/savings/package', [App\Http\Controllers\Admin\SavingsController::class, 'index'])->name('saving.package');
     Route::get('/savings/package/create', [App\Http\Controllers\Admin\SavingsController::class, 'create'])->name('saving.package.create');
     Route::post('/savings/package/store', [App\Http\Controllers\Admin\SavingsController::class, 'store'])->name('saving.package.store');
-    Route::get('/savings/package/{package}/edit', [App\Http\Controllers\Admin\SavingsController::class, 'edit'])->name('saving.package.edit');
-    Route::put('/savings/package/{package}/update', [App\Http\Controllers\Admin\SavingsController::class, 'update'])->name('saving.package.update');
+    Route::get('/savings/package/{plan}/edit', [App\Http\Controllers\Admin\SavingsController::class, 'edit'])->name('saving.package.edit');
+    Route::put('/savings/package/{plan}/update', [App\Http\Controllers\Admin\SavingsController::class, 'update'])->name('saving.package.update');
     Route::delete('/savings/package/{package}/destroy', [App\Http\Controllers\Admin\SavingsController::class, 'destroy'])->name('saving.package.destroy');
 
     Route::get('/packages/{savings}/savings', [App\Http\Controllers\Admin\SavingsController::class, 'savings'])->name('saving.table');
@@ -125,4 +125,6 @@ Route::group(['middleware' => ['auth:admin', 'active_admin']], function (){
     Route::get('/support/tickets', [App\Http\Controllers\Admin\SupportController::class, 'index'])->name('support.all');
     Route::get('/support/ticket/{support}', [App\Http\Controllers\Admin\SupportController::class, 'show'])->name('support.view');
     Route::post('/support/ticket/{support}/reply', [App\Http\Controllers\Admin\SupportController::class, 'reply'])->name('support.reply');
+
+    Route::post('/user/proof/{user}', [App\Http\Controllers\Admin\UserController::class, 'statusUpdate'])->name('user.proof');
 });

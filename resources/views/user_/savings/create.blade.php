@@ -63,7 +63,7 @@
                                             <h5 class="fw-bold fs-14 mt-2 mx-2"> 
                                                 Roth IRA
                                             </h5>
-                                            <p class="text-center text-muted fs-10" style="margin-top: -5px;">Plan for a secure future with tax-advantaged retirement savings options.</p>
+                                            <p class="text-center text-muted fs-10" style="margin-top: -5px;">Enjoy tax-free growth and withdrawals in retirement with post-tax contributions.</p>
                                         </div>
                                     </div>
                                 </a>
@@ -78,7 +78,7 @@
                                             <h5 class="fw-bold fs-14 mt-2 mx-2"> 
                                                 SEP IRA
                                             </h5>
-                                            <p class="text-center text-muted fs-10" style="margin-top: -5px;">Plan for a secure future with tax-advantaged retirement savings options.</p>
+                                            <p class="text-center text-muted fs-10" style="margin-top: -5px;">Save for retirement with high contribution limits designed for self-employed individuals.</p>
                                         </div>
                                     </div>
                                 </a>
@@ -93,7 +93,7 @@
                                             <h5 class="fw-bold fs-14 mt-2 mx-2"> 
                                                 Traditional IRA
                                             </h5>
-                                            <p class="text-center text-muted fs-10" style="margin-top: -5px;">Plan for a secure future with tax-advantaged retirement savings options.</p>
+                                            <p class="text-center text-muted fs-10" style="margin-top: -5px;">Benefit from tax-deferred savings to build your retirement fund.</p>
                                         </div>
                                     </div>
                                 </a>

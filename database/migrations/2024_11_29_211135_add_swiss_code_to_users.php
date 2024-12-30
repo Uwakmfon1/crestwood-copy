@@ -32,6 +32,9 @@ class AddSwissCodeToUsers extends Migration
             if (!Schema::hasColumn('users', 'proof')) {
                 $table->text('proof')->nullable();
             }
+            if (!Schema::hasColumn('users', 'is_approved')) {
+                $table->enum('is_approved', ['approved', 'pending', 'decline'])->default('pending');
+            }
         });        
     }
 

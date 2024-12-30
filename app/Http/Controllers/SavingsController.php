@@ -314,7 +314,7 @@ class SavingsController extends Controller
     }
     public function packages()
     {
-        return view('user.savings.packages.index', ['title' => 'Packages', 'packages' => SavingPackage::all()]);
+        return view('user.savings.packages.index', ['title' => 'Packages', 'packages' => Plan::all()]);
     }
 
     public function create()

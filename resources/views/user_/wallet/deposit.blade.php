@@ -43,7 +43,6 @@
     <div class="container-fluid">
 
     @include('partials.users.alert')
-
         <div class="card mt-4 mx-auto" style="max-width: 800px;">
             <form method="POST" action="{{ route('deposit') }}" id="depositForm">
                 @csrf
@@ -70,6 +69,22 @@
                                 </div>
                             </div>
                         </div>
+                        @if($user->is_approved == "pending" | $user->is_approved == "decline")
+                        <div class="col-md-6 col-sm-12">
+                            <div class="card text-center selectdepo mx-auto pt-5" id="">
+                                <div class="card-body align-items-center rounded">
+                                    <span class="avatar avatar-md bg-primary me-2 shadow-avatar mb-3">
+                                        <img class="p-1" src="https://pngimg.com/d/bank_PNG24.png" alt="">
+                                    </span>
+                                    <h5 class="fw-bold fs-14 mt-2 mx-2"> 
+                                        Bank
+                                    </h5>
+                                    <p class="text-center text-muted fs-10" style="margin-top: -5px;">Deposit funds through a bank transfer.</p>
+                                    <p class="text-center text-danger fs-11 fw-bold" style="margin-top: -5px;">Click <a href="#" class="text-primary" data-bs-toggle="modal" data-bs-target="#modalProof">here</a> to complete your verification.</p>
+                                </div>
+                            </div>
+                        </div>
+                        @else
                         <div class="col-md-6 col-sm-12">
                             <div class="card text-center selectdepo mx-auto pt-5" id="selectBank">
                                 <div class="card-body align-items-center rounded">
@@ -83,6 +98,7 @@
                                 </div>
                             </div>
                         </div>
+                        @endif
                     </div>
                     <div id="crypto" class="d-none">
                         <input type="hidden" id="crypto-method" name="method" value="coin">
@@ -404,6 +420,58 @@
         </div>
     </div>
 </div>
+
+
+<div class="modal fade" id="modalProof" tabindex="-1" role="dialog" aria-labelledby="modalProofLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document" style="max-width: 700px;">
+        <div class="modal-content">
+            <div class="px-3 py-3">
+                <div class="card-title d-flex justify-content-between align-items-center">
+                    <h3 class="fw-bold fs-14">Proof of Address</h3>
+                    <span class="badge @if($user->is_approved == 'pending') bg-warning @else($user->is_approved) bg-danger @endif ">
+                    @if($user->is_approved == 'pending') Pending @else($user->is_approved) Declined @endif
+                    </span>
+                </div>
+                <div id="" class="alert alert-warning mt-2">
+                    <div class="">
+                        <p class="fs-12 text-dark">Upload a valid proof of address document. This can be a utility bill, bank statement, or government-issued document dated within the last 3 months." "Accepted formats: JPG, PNG, PDF. Max size: 10 MB</p>
+                    </div>
+                </div>
+
+                <div class="">
+                    <form action="{{ route('profile.data') }}" method="POST" enctype="multipart/form-data">
+                        @csrf
+                        <input type="hidden" name="screen" value="proof">
+                        <div class="my-3 py-2">
+                            <p class="fs-14 fw-bold my-2">
+                                Upload Proof
+                            </p>
+                            <div class="">
+                                <input type="file" id="imageUpload" class="form-control" name="proof" multiple data-allow-reorder="true" data-max-file-size="3MB" data-max-files="6">
+                            </div>
+                        </div>
+                        @if(auth()->user()['proof'])
+                            <div class="mt-2 mx-2">
+                                <img class="img-fluid" style="border-radius: 5px" src="{{ asset(auth()->user()['proof']) }}" alt="proof">
+                            </div>
+                        @endif
+                        <div id="" class="alert alert-primary my-2">
+                            <h4 class="text-danger fs-12 fw-bold">Compliance Disclaimer:</h4>
+                            <div class="">
+                                <p class="fs-12 text-muted">In compliance with applicable laws and Customer Identification Program (CIP) requirements, your information will be securely processed.</p>
+                            </div>
+                        </div>
+
+                        <button type="submit" class="btn btn-primary-light border-1 w-100">Submit</button>
+                    </form>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
 
 
 <script>

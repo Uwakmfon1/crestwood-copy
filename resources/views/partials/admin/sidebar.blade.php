@@ -39,9 +39,9 @@
                         <li class="nav-item">
                             <a href="{{ route('admin.packages') }}" class="nav-link @if(request()->is('admin/investments') && !request('type')) text-primary @endif">Investment</a>
                         </li>
-                        <!-- <li class="nav-item">
+                        <li class="nav-item">
                             <a href="{{ route('admin.saving.package') }}" class="nav-link @if(request('type') == 'active') text-primary @endif">Savings</a>
-                        </li> -->
+                        </li>
                     </ul>
                 </div>
             </li>

@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Controllers\Controller;
 use App\Models\User;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Validator;
 
 class UserController extends Controller
 {
@@ -27,6 +28,34 @@ class UserController extends Controller
     public function show(User $user)
     {
         return view('admin.user.show', ['user' => $user]);
+    }
+
+    public function statusUpdate(Request $request, User $user)
+    {
+        // Validate the request
+        $validator = Validator::make($request->all(), [
+            'action' => 'required|in:approved,decline',
+        ]);
+
+        if ($validator->fails()) {
+            // Return with validation errors and input
+            return back()
+                ->withErrors($validator)
+                ->withInput()
+                ->with('error', 'Invalid input data: ' . implode(', ', $validator->errors()->all()));
+        }
+
+        // Prepare data for update
+        $data = [
+            'is_approved' => $request->input('action'),
+        ];
+
+        // Update the user profile
+        if ($user->update($data)) {
+            return back()->with('success', 'Profile updated successfully');
+        }
+
+        return back()->withInput()->with('error', 'Error updating profile');
     }
 
     public function block(User $user): \Illuminate\Http\RedirectResponse

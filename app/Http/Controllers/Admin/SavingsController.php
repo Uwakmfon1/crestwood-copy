@@ -7,13 +7,14 @@ use App\Models\Saving;
 use Illuminate\Http\Request;
 use App\Models\SavingPackage;
 use App\Http\Controllers\Controller;
+use App\Models\Plan;
 use Illuminate\Support\Facades\Validator;
 
 class SavingsController extends Controller
 {
     public function index()
     {
-        return view('admin.package.savings', ['packages' => SavingPackage::all()]);
+        return view('admin.package.savings', ['packages' => Plan::all()]);
     }
 
     public function all()
@@ -53,9 +54,9 @@ class SavingsController extends Controller
         return view('admin.savings.index', ['investments' => $savings->savings()->get(), 'type' => 'packages', 'id' => $savings['id']]);
     }
 
-    public function edit(SavingPackage $package)
+    public function edit(Plan $plan)
     {
-        return view('admin.savingsPackage.edit', ['package' => $package]);
+        return view('admin.package.edit', ['package' => $plan]);
     }
 
     public function showUserSavings(User $user, Saving $saving)

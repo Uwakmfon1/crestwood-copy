@@ -1,6 +1,6 @@
 @extends('layouts.user.index')
 
-@section('title', '| Dashboard')
+@section('title', ' Dashboard')
 
 @section('styles')
 

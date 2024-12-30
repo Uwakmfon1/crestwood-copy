@@ -91,7 +91,9 @@ class WalletController extends Controller
     {
         $setting = Setting::all()->first();
 
-        return view('user_.wallet.deposit', ['setting' => $setting]);
+        $user = auth()->user();
+
+        return view('user_.wallet.deposit', ['setting' => $setting, 'user' => $user]);
     }
 
     public function deposit(Request $request)

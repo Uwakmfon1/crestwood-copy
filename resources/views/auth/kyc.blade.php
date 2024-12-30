@@ -64,7 +64,7 @@
                                     <div class=" wizard-step " data-title="Account Type"
                                         data-id="2e8WqSV3slGIpTbnjcJzmDwBQaHrfh0Z">
                                         <div class="row">
-                                            <div class="col-md-6">
+                                            <div class="col-md-12">
                                                 <label for="flexCheckChecked1" style="width: 100%; margin: 10px 0px;">
                                                     <div class="form-check d-flex align-items-center gap-1 py-3 px-2 account_select">
                                                         <div>
@@ -77,12 +77,12 @@
                                                             <span class="fs-10 text-muted">A secure account for holding funds with competitive interest rates tailored to your needs.</span>
                                                         </div>
                                                         <div>
-                                                            <input class="form-check-input form-checked-success rounded-circle" type="checkbox" value="" id="flexCheckChecked1" name="test[]">
+                                                            <input class="form-check-input form-checked-success rounded-circle" type="checkbox" value="" id="flexCheckChecked1" name="test[]" checked>
                                                         </div>
                                                     </div>
                                                 </label>
                                             </div>
-                                            <div class="col-md-6">
+                                            <div class="col-md-12">
                                                 <label for="flexCheckChecked2" style="width: 100%; margin: 10px 0px;">
                                                     <div class="form-check d-flex align-items-center gap-1 py-3 px-2 account_select">
                                                         <div>
@@ -96,7 +96,7 @@
                                                             diversification.</span>
                                                         </div>
                                                         <div>
-                                                            <input class="form-check-input form-checked-warning rounded-circle" type="checkbox" value="" id="flexCheckChecked2" name="test[]">
+                                                            <input class="form-check-input form-checked-warning rounded-circle" type="checkbox" value="" id="flexCheckChecked2" name="test[]" checked>
                                                         </div>
                                                     </div>
                                                 </label>

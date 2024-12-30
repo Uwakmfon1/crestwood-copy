@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Package;
+use App\Models\Plan;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 
@@ -82,15 +83,10 @@ class PackageController extends Controller
     {
         // Validate request
         $validator = Validator::make($request->all(), [
-            'name' => ['required', 'unique:packages,name,' . $id],
-            'min_amount' => ['required', 'numeric', 'gt:0'],
-            'max_amount' => ['required', 'numeric', 'gt:0'],
-            'duration' => ['required'],
+            'name' => ['required', 'unique:plans,name,' . $id],
             'roi' => ['required', 'numeric'],
-            'milestone' => ['required', 'numeric'],
             'description' => ['required'],
-            'image' => ['nullable', 'mimes:jpeg,jpg,png', 'max:1024'],
-            'investment' => ['required', 'in:enabled,disabled'],
+            'img' => ['required'],
         ]);
 
         if ($validator->fails()) {
@@ -98,33 +94,19 @@ class PackageController extends Controller
         }
 
         // Find the package to update
-        $package = Package::findOrFail($id);
+        $package = Plan::findOrFail($id);
 
         // Collect data from request
         $data = $request->only([
             'name',
-            'min_amount',
-            'max_amount',
             'roi',
-            'duration',
-            'milestone',
             'description',
-            'investment',
+            'img',
         ]);
-
-        // Handle file upload
-        if ($request->hasFile('image')) {
-            // Delete the old image if it exists
-            if ($package->image) {
-                $this->deletePackageImage($package->image);
-            }
-            // Upload new image
-            $data['image'] = $this->uploadPackageImageAndReturnPathToSave($request->file('image'));
-        }
 
         // Update package
         if ($package->update($data)) {
-            return redirect()->route('admin.packages')->with('success', 'Package updated successfully');
+            return redirect()->route('admin.saving.package')->with('success', 'Package updated successfully');
         }
 
         return back()->with('error', 'Error updating package');
