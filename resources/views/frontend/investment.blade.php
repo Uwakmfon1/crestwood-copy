@@ -363,7 +363,7 @@
                                                       </div>
                                                       <div class="bt-ContentGrid-item u-col-12 u-col-6@md cols col-2 ">
                                                          <div>
-                                                            <div class="lottie-video-wrap " aria-label="A donut chart with bar charts and a plant and a coin, surrounded by a card with portfolio options showing Climate Impact, Innovative Tech and Goldman Sach and Crestwood Capital Management Core, a card with tax losses harvested $220.25 amount, and a card with recurring deposit every 2 weeks in the amount of $150.">
+                                                            <!-- <div class="lottie-video-wrap " aria-label="A donut chart with bar charts and a plant and a coin, surrounded by a card with portfolio options showing Climate Impact, Innovative Tech and Goldman Sach and Crestwood Capital Management Core, a card with tax losses harvested $220.25 amount, and a card with recurring deposit every 2 weeks in the amount of $150.">
                                                                <div class="bt-lottie-player-wrap">
                                                                   <button class="button-reset play-pause-button position_bottom_left dark-button " data-play_state="play">
                                                                      <span class="icon icon_play active">
@@ -383,7 +383,8 @@
                                                                   <lottie-player id="-lottie-player-lottie-player" class="bt-lottie-player width100" src="hubfs/Graphics/webpage-graphics/lottie_json/donut-chart-plant-coin-3-1.json" background="transparent" speed="1" data-id="lottie_c4afec04c01ac4677e01280e8f86238a" loop="" count="0" autoplay="">
                                                                   </lottie-player>
                                                                </div>
-                                                            </div>
+                                                            </div> -->
+                                                            <img src="hubfs/Graphics/webpage-graphics/portfolio_graphics/broad-impact-hero-mobile.png" alt="">
                                                          </div>
                                                       </div>
                                                    </div>

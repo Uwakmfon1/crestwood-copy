@@ -30,12 +30,12 @@
                 <div class="card-body p-5">
                     <div class="mb-3 d-flex justify-content-center"> 
                         <a href="{{ route('home') }}"> 
-                            <img width="80" src="{{ asset('asset/images/logo/logo-dark.png') }}" alt="logo" class="desktop-logo" > 
-                            <img src=".https://www.designevo.com/res/templates/thumb_small/simple-black-and-white-font-style.webp" alt="logo" class="desktop-dark"> 
+                            <img src="{{ asset('asset/images/logo/logo-dark.png') }}" alt="logo" class="desktop-logo"> 
+                            <img src="../assets/images/brand-logos/desktop-dark.png" alt="logo" class="desktop-dark"> 
                         </a> 
                     </div>
-                    <p class="h4 fw-semibold mb-4 text-center">Sign Up</p>
-                    <p class="mb-4 text-muted fw-normal text-center">Create Your Crestwood Capitals Account</p>
+                    <p class="h4 fw-semibold mb-1 text-center">Sign Up</p>
+                    <p class="mb-4 text-muted fw-normal text-center fs-14">Create Your Crestwood Capitals Account</p>
                     @if (session('error'))
                         <div class="alert alert-fill-danger" role="alert">
                             <i data-feather="alert-circle" class="mr-2"></i>

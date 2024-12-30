@@ -29,18 +29,11 @@
                 <div class="basicpage-border"></div>
                 <div class="basicpage-border1"></div>
                 <div class="card-body p-5">
-                    <div class="text-center mb-3">
-                        <!-- <div class="mb-3 d-flex justify-content-center"> 
-                            <a href="index.html"> 
-                                <img src="../assets/images/brand-logos/desktop-logo.png" alt="logo" class="desktop-logo"> 
-                                <img src="../assets/images/brand-logos/desktop-dark.png" alt="logo" class="desktop-dark"> 
-                            </a> 
-                        </div> -->
-                        <span clas="avatar avatar-md avatar-rounded">
-                            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/59/User-avatar.svg/2048px-User-avatar.svg.png" alt="" class="avatar avatar-lg avatar-rounded mb-2 p-1 bg-light">
-                        </span>
-                        <p class="mb-0 fs-14 fw-medium">Hello {{ auth()->user()->name }}!</p>
-                        <span class="text-muted fs-12">{{ auth()->user()->email }}</span>
+                    <div class="mb-3 d-flex justify-content-center"> 
+                        <a href="{{ route('home') }}"> 
+                            <img src="{{ asset('asset/images/logo/logo-dark.png') }}" alt="logo" class="desktop-logo"> 
+                            <img src="../assets/images/brand-logos/desktop-dark.png" alt="logo" class="desktop-dark"> 
+                        </a> 
                     </div>
                     <p class="h4 mb-4 fw-semibold text-center">Account Verification</p>
                     <div class="row gy-3">
@@ -66,8 +59,17 @@
                             </div>
                         </form>
                     </div>
-                    <div class="text-center">
-                        <p class="fs-12 text-muted mt-3 mb-0">Wrong email address <a class="text-success" href="javascript:void(0);"><u>Try another</u></a> </p>
+                    <div class="mx-auto d-flex text-center">
+                        <!-- <span class="text-muted fs-12 my-2">{{ auth()->user()->email }}</span> -->
+                        <div class="d-flex align-items-center text-cente mt-3 px-auto mx-auto">
+                            <p class="fs-12 text-muted mb-0">Wrong email address</p>
+                            <form action="{{ route('logout') }}" method="post">
+                                @csrf
+                                <button class="text-success border-0 bg-transparent fs-12" type="submit">
+                                    Try another
+                                </button>
+                            </form>
+                        </div>
                     </div>
                 </div>
             </div>
