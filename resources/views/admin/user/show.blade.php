@@ -117,6 +117,29 @@
                                 </div>
                             </div>
                             <div class="d-flex align-items-center justify-content-between mt-5 mb-2">
+                                <h6 class="card-title mb-0">Crypto Wallet</h6>
+                            </div>
+                            <div class="row">
+                                <div class="col-6">
+                                    <div class="mt-2">
+                                        <label class="tx-11 font-weight-bold mb-0 text-uppercase">Cryptocurrency:</label>
+                                        <div id="coin-select"></div>
+                                    </div>
+                                </div>
+                                <div class="col-6">
+                                    <div class="mt-2">
+                                        <label class="tx-11 font-weight-bold mb-0 text-uppercase">Network:</label>
+                                        <div id="network-select"></div>
+                                    </div>
+                                </div>
+                                <div class="col-12">
+                                    <div class="mt-2">
+                                        <label class="tx-11 font-weight-bold mb-0 text-uppercase">Wallet Address:</label>
+                                        <p class="fw-bold">{{ $user['wallet_address'] ?? 'Not set' }}</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="d-flex align-items-center justify-content-between mt-5 mb-2">
                                 <h6 class="card-title mb-0">Next of Kin Details</h6>
                             </div>
                             <div class="row">
@@ -477,5 +500,77 @@
             document.getElementById('actionField').value = action;
             document.getElementById('actionForm').submit();
         }
+    </script>
+    <script>
+        $(document).ready(function () {
+            // Fetch coins on page load
+            fetchCoins();
+
+            // Variables to hold selected coin rate and symbol
+            let selectedCoinRate = 0;
+            let selectedCoinSymbol = '';
+            let coins = []; // Store coins data for reference
+
+            // Default values from server-side data
+            const defaultCoinId = "{{ $user['wallet_asset'] }}";
+            const defaultNetworkId = "{{ $user['wallet_network'] }}";
+
+            fetchNetworks(defaultCoinId)
+
+            const coinImages = {
+                ETH: 'https://cryptologos.cc/logos/ethereum-eth-logo.png',
+                BTC: 'https://cryptologos.cc/logos/bitcoin-btc-logo.png',
+                TRX: 'https://cdn-icons-png.flaticon.com/512/12114/12114250.png',
+                USDT: 'https://icons.iconarchive.com/icons/cjdowner/cryptocurrency-flat/512/Tether-USDT-icon.png'
+            };
+
+            // Function to fetch coins and set default selection
+            function fetchCoins() {
+                $.ajax({
+                    url: '/api/deposit/coin',
+                    type: 'GET',
+                    success: function (response) {
+                        coins = response.data;
+                        let options = '<p value="fw-bold">Not set</p>';
+                        response.data.forEach(function (coin) {
+                            if(defaultCoinId == coin.id)
+                                options = `<p class="fw-bold">${coin.name} (${coin.symbol})</p>`;
+                        });
+                        $('#coin-select').html(options);
+                    }
+                });
+            }
+
+            // Function to fetch networks and set default selection
+            function fetchNetworks(coinId) {
+                $.ajax({
+                    url: `/api/deposit/networks/${coinId}`,
+                    type: 'GET',
+                    success: function (response) {
+                        let options = '<option value="">Select Network</option>';
+                        response.data.forEach(function (network) {
+                            if(defaultNetworkId == network.id)
+                                options = `<p class="fw-bold">${network.name}</p>`;
+                        });
+                        $('#network-select').html(options);
+                    }
+                });
+            }
+
+            // Function to fetch address
+            function fetchAddress(networkId) {
+                $.ajax({
+                    url: `/api/deposit/address/${networkId}`,
+                    type: 'GET',
+                    success: function (response) {
+                        if (response.data && response.data.address) {
+                            $('#address-display').val(response.data.address).prop('disabled', true);
+                        } else {
+                            $('#address-display').val('Address not available').prop('disabled', true);
+                        }
+                    }
+                });
+            }
+        });
     </script>
 @endsection
