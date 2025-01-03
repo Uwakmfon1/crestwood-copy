@@ -36,7 +36,7 @@ class HomeController extends Controller
 
         $availableCash = ($wallet + ($savings + $investment + $trading));
 
-        $transactions = $user->transaction()->paginate(10); 
+        $transactions = $user->transaction()->orderBy('created_at', 'desc')->paginate(10); 
 
         $totalAmount = 0;
 

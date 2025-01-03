@@ -77,7 +77,7 @@
                                                             <span class="fs-10 text-muted">A secure account for holding funds with competitive interest rates tailored to your needs.</span>
                                                         </div>
                                                         <div>
-                                                            <input class="form-check-input form-checked-success rounded-circle" type="checkbox" value="" id="flexCheckChecked1" name="test[]" checked>
+                                                            <input class="form-check-input form-checked-success rounded-circle" type="checkbox" value="" id="flexCheckChecked1" name="test[]">
                                                         </div>
                                                     </div>
                                                 </label>
@@ -114,7 +114,7 @@
                                                             <span class="fs-10 text-muted">A flexible account for trading stocks, cryptocurrencies, and other financial instruments.</span>
                                                         </div>
                                                         <div>
-                                                            <input class="form-check-input form-checked-info rounded-circle" type="checkbox" value="" id="flexCheckChecked3" name="test[]">
+                                                            <input class="form-check-input form-checked-info rounded-circle" type="checkbox" value="" id="flexCheckChecked3" name="test[]" checked>
                                                         </div>
                                                     </div>
                                                 </label>

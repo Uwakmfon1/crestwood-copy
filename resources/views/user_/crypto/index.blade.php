@@ -580,7 +580,7 @@
                                                                         <div style="border-radius: 10px; padding: 0px !important; margin: 0px !important;">
                                                                             <div class="px-3 py-4">
                                                                                 <div>
-                                                                                    <span class="d-block mb-1 fs-12 text-muted">Purchase</span>
+                                                                                    <span class="d-block mb-1 fs-12 text-muted">Amount</span>
                                                                                     <h5 class="fw-bold fs-24 mb-1">$<span id="wallet-price-{{ $key }}">0.00</span></h5>
                                                                                     <span class="text-muted fs-12">
                                                                                         Lot Size: <span class="text-primary fs-15 fw-bold ms-1 d-inline-block" id="quantity-display-{{ $key }}">0.00 Units</span>
@@ -590,7 +590,7 @@
                                                                         </div>
                                                                         <div class="text-end" style="border-radius: 10px; padding: 0px !important; margin: 0px !important;">
                                                                             <div class="px-3 py-4">
-                                                                                <span class="d-block mb-1 fs-12 text-muted">Stock Price</span>
+                                                                                <span class="d-block mb-1 fs-12 text-muted">Coin Price</span>
                                                                                 <h5 class="fw-bold fs-24 mb-1">${{ number_format($stock->price, 2) }}</h5>
                                                                                 <span class="fs-12 text-muted">
                                                                                     Today 
@@ -728,7 +728,6 @@
                                             </div>
                                         </div>
                                     </div>
-
 
                                     <script>
                                         document.addEventListener('DOMContentLoaded', function() {

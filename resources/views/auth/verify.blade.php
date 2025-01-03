@@ -59,14 +59,13 @@
                             </div>
                         </form>
                     </div>
-                    <div class="text-center my-2">
-                        <p class="mb-0 fs-14 fw-bold">Hello!</p>
-                        <span class="text-muted fs-12">{{ auth()->user()->email }}</span>
+                    <div class="text-center mt-3 mb-1">
+                        <span class="text-muted fs-12">Hello! <strong> {{ auth()->user()->first_name }} {{ auth()->user()->last_name }} </strong></span>
                     </div>
                     <div class="mx-auto d-flex text-center">
-                        <div class="d-flex align-items-center text-cente mt-3 px-auto mx-auto">
+                        <div class="d-flex align-items-center text-cente px-auto mx-auto">
                             <p class="fs-12 text-muted mb-0">Wrong email address</p>
-                            <form action="{{ route('logout') }}" method="post">
+                            <form action="{{ route('logout.verification') }}" method="post">
                                 @csrf
                                 <button class="text-success border-0 bg-transparent fs-12" type="submit">
                                     Try another

@@ -73,10 +73,10 @@ Route::get('/contact', [FrontendController::class, 'contact'])->name('contact');
 
 Auth::routes(['verify' => true]);
 
-Route::post('/logout', function () {
+Route::post('/logout/verification', function () {
     Auth::logout();
-    return redirect('/register'); // Replace with your desired route
-})->name('logout');
+    return redirect('/register');
+})->name('logout.verification');
 
 Route::get('/auth/{provider}/attempt', [App\Http\Controllers\Auth\SocialController::class, 'redirect'])->name('auth.social.attempt');
 Route::get('/login/{provider}/callback', [App\Http\Controllers\Auth\SocialController::class, 'socialLoginAttempt'])->name('auth.social.login.attempt');

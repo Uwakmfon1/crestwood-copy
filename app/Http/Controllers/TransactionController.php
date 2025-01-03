@@ -47,7 +47,7 @@ class TransactionController extends Controller
     {
         $user = auth()->user();
 
-        $query = $user->transaction(); 
+        $query = $user->transaction()->orderBy('created_at', 'desc'); 
 
 
         $transaction = $query->paginate(40);

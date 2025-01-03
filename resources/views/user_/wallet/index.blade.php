@@ -376,17 +376,34 @@
                             </div>
                             <div class="row d-flex justify-content-center mx-auto">
                                 <div class="col-xl-12" style="max-width: 500px;">
-                                    <div class="input-group my-3">
-                                        <button type="button" class="input-group-text btn btn-light-light btn-wave fs-10">Name</button>
-                                        <input type="text" name="roi_method" class="form-control fw-bold" placeholder="" aria-label="Stock Quantity" value="{{ auth()->user()['first_name'] }} {{ auth()->user()['last_name'] }}" disabled>
+                                    <div class="my-3">
+                                        <label class="form-label fs-12 text-muted" for="coin-select">Cryptocurrency</label>
+                                        <div class="input-group"> 
+                                            <button type="button" class="input-group-text btn btn-grey btn-wave text-dark" style="border-right: 0px;">
+                                                <img id="coin-img" width="23" class="rounded-circle" style="border-left: 0px; opacity: .3;" src="https://cdn4.iconfinder.com/data/icons/cryptocoins/227/USDT-alt-512.png" alt="USDT">
+                                            </button>
+                                            <select name="coin" id="coin-select" class="form-control py-2 fw-bold">
+                                                <option value="usdt">USDT</option>
+                                            </select>
+                                        </div>
                                     </div>
-                                    <div class="input-group my-3">
-                                        <button type="button" class="input-group-text btn btn-light-light btn-wave fs-10">Wallet Address</button>
-                                        <input type="text" name="roi_method" class="form-control fw-bold" placeholder="" aria-label="Stock Quantity" value="{{ auth()->user()['wallet_address'] }}" disabled>
+                                    <div class="my-3">
+                                        <label class="form-label fs-12 text-muted" for="network-select">Wallet Network</label>
+                                        <div class="input-group"> 
+                                            <select name="network" id="network-select" class="form-control py-2 fw-bold">
+                                                <option value="">Select Network</option>
+                                            </select>
+                                        </div>
                                     </div>
-                                    <div class="input-group my-3">
-                                        <button type="button" class="input-group-text btn btn-light-light btn-wave fs-10">Coin Network</button>
-                                        <input type="text" name="roi_method" class="form-control fw-bold" placeholder="" aria-label="Stock Quantity" value="Bitcoin Wallet" disabled>
+                                    <div class="my-3">
+                                        <label for="wallet_address" class="form-label text-muted fs-12">Wallet Address</label>
+                                        <input name="wallet_address" type="text" class="form-control @error('wallet_address') is-invalid @enderror fw-bold" id="wallet_address"
+                                            placeholder="Enter your wallet address" value="{{ auth()->user()['wallet_address'] }}">
+                                        @error('wallet_address')
+                                            <span class="invalid-feedback" role="alert">
+                                                <strong>{{ $message }}</strong>
+                                            </span>
+                                        @enderror
                                     </div>
                                 </div>
                             </div>
@@ -418,24 +435,33 @@
                             </div>
                             <div class="row d-flex justify-content-center mx-auto">
                                 <div class="col-xl-12" style="max-width: 500px;">
-                                    <div class="input-group my-3">
-                                        <button type="button" class="input-group-text btn btn-light-light btn-wave fs-10">Account Name</button>
-                                        <input type="text" name="roi_method" class="form-control fw-bold" placeholder="" aria-label="Stock Quantity" value="{{ auth()->user()['first_name'] }} {{ auth()->user()['last_name'] }}" disabled>
-                                    </div>
-                                    <div class="input-group my-3">
-                                        <button type="button" class="input-group-text btn btn-light-light btn-wave fs-10">Account Number</button>
-                                        <input type="text" name="roi_method" class="form-control fw-bold" placeholder="" aria-label="Stock Quantity" value="{{ auth()->user()['account_number'] }}" disabled>
-                                        <!-- <button type="button" class="input-group-text btn btn-dark-light btn-wave copy-btn text-primary fs-13"><i class="ri-file-copy-fill text-primary me-2"></i> Copy</button> -->
-                                    </div>
-                                    <div class="input-group my-3">
-                                        <button type="button" class="input-group-text btn btn-light-light btn-wave fs-10">Bank Name</button>
-                                        <input type="text" name="roi_method" class="form-control fw-bold" placeholder="" aria-label="Stock Quantity" value="{{ auth()->user()['bank_name'] }}" disabled>
-                                        <!-- <button type="button" class="input-group-text btn btn-dark-light btn-wave copy-btn text-primary fs-13"><i class="ri-file-copy-fill text-primary me-2"></i> Copy</button> -->
-                                    </div>
-                                    <div class="input-group my-3">
-                                        <button type="button" class="input-group-text btn btn-light-light btn-wave fs-10">SWISS Code</button>
-                                        <input type="text" name="roi_method" class="form-control fw-bold" placeholder="" aria-label="Stock Quantity" value="{{ auth()->user()['swiss_code'] }}" disabled>
-                                        <!-- <button type="button" class="input-group-text btn btn-dark-light btn-wave copy-btn text-primary fs-13"><i class="ri-file-copy-fill text-primary me-2"></i> Copy</button> -->
+                                    <div class="row">
+                                        <div class="col-xl-12 my-2 tooltip-container">
+                                            <label for="account_name" class="form-label text-muted fs-12">Account Name</label>
+                                            <input name="account_name" type="text" class="form-control @error('account_name') is-invalid @enderror fw-bold" id="account_name" value="{{ auth()->user()['first_name'] }} {{ auth()->user()['last_name'] }}" disabled>
+                                        </div>
+                                        <div class="col-xl-12 my-2">
+                                            <label for="account_number" class="form-label text-muted fs-12">Account Number</label>
+                                            <input name="account_number" type="number" class="form-control @error('account_number') is-invalid @enderror fw-bold" id="account_number" step="1" min="1"
+                                                placeholder="Enter your bank account number" value="{{ auth()->user()['account_number'] }}">
+                                        </div>
+                                        <div class="col-xl-12 my-2">
+                                            <label for="bank_name" class="form-label text-muted fs-12">Bank Name</label>
+                                            <input name="bank_name" type="text" class="form-control @error('bank_name') is-invalid @enderror fw-bold" id="bank_name"
+                                                placeholder="Enter bank name..." value="{{ auth()->user()['bank_name'] }}">
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-6 tooltip-container">
+                                                <label for="swiss_code" class="form-label text-muted fs-12">SWIFT Code (optional)</label>
+                                                <input name="swiss_code" type="number" class="form-control @error('swiss_code') is-invalid @enderror fw-bold" id="swiss_code"
+                                                    placeholder="Enter SWIFT Code..." value="{{ auth()->user()['swiss_code'] }}">
+                                            </div>
+                                            <div class="col-6">
+                                                <label for="reference" class="form-label text-muted fs-12">Reference</label>
+                                                <input name="reference" type="text" class="form-control @error('reference') is-invalid @enderror fw-bold" id="reference"
+                                                    placeholder="Optional reference for your bank account" value="{{ auth()->user()['reference'] }}">
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -817,6 +843,152 @@
         var timeframe = $(this).val();
         updateChart(timeframe);
     });
+
+
+    $(document).ready(function () {
+        // Fetch coins on page load
+        fetchCoins();
+
+        // Variables to hold selected coin rate and symbol
+        let selectedCoinRate = 0;
+        let selectedCoinSymbol = '';
+        let coins = []; // Store coins data for reference
+
+        // Default values from server-side data
+        const defaultCoinId = "{{ auth()->user()['wallet_asset'] }}";
+        const defaultNetworkId = "{{ auth()->user()['wallet_network'] }}";
+
+        // Trigger display update on input change for amount
+        $('.amountDeposit').on('input', function () {
+            updateDisplay();
+        });
+
+        $('#bank-amount').on('input', function () {
+            const usdAmount = parseFloat($('#bank-amount').val()) || 0;
+            $('.amount-val-bank').text(usdAmount.toFixed(2) + ' USD');
+        });
+
+        const coinImages = {
+            ETH: 'https://cryptologos.cc/logos/ethereum-eth-logo.png',
+            BTC: 'https://cryptologos.cc/logos/bitcoin-btc-logo.png',
+            TRX: 'https://cdn-icons-png.flaticon.com/512/12114/12114250.png',
+            USDT: 'https://icons.iconarchive.com/icons/cjdowner/cryptocurrency-flat/512/Tether-USDT-icon.png'
+        };
+
+        // Fetch networks and update display based on coin selection
+        $('#coin-select').on('change', function () {
+            const coinId = $(this).val();
+            if (coinId) {
+                fetchNetworks(coinId);
+
+                // Retrieve selected coin data from response
+                const coin = coins.find(c => c.id == coinId);
+                selectedCoinRate = parseFloat(coin.rate); // Make sure rate is correctly parsed
+                selectedCoinSymbol = coin.symbol;
+
+                // Update the exchange rate and symbol display
+                $('#exchange-rate').text(selectedCoinRate.toFixed(5)); // Display the rate with 5 decimal places
+                $('#selected-coin-symbol').text(selectedCoinSymbol); // Display selected coin symbol
+                updateDisplay();
+
+                const selectedImg = coinImages[selectedCoinSymbol] || ''; // Get the image for the selected coin
+                $('#coin-img').attr('src', selectedImg); // Update the image source
+                $('#coin-img').attr('style', 'opacity: 1;'); // Update the image source
+            } else {
+                resetDisplay();
+            }
+        });
+
+        // Fetch address based on network selection
+        $('#network-select').on('change', function () {
+            const networkId = $(this).val();
+            if (networkId) {
+                fetchAddress(networkId);
+            } else {
+                $('#address-display').val('Select network first').prop('disabled', true);
+            }
+        });
+
+        // Function to update the display with calculated coin amount
+        function updateDisplay() {
+            const usdAmount = parseFloat($('.amountDeposit').val()) || 0; // Get entered USD amount
+            const coinAmount = usdAmount / selectedCoinRate; // Calculate equivalent coin amount
+
+            if (!isNaN(coinAmount) && selectedCoinRate > 0) {
+                $('.amount-val').text(coinAmount.toFixed(5) + ' ' + selectedCoinSymbol);
+                $('#coin-value').prop('value', coinAmount.toFixed(5));
+            } else {
+                $('.amount-val').text('0 ' + selectedCoinSymbol);
+            }
+        }
+
+        // Function to reset the display if no coin is selected
+        function resetDisplay() {
+            selectedCoinRate = 0;
+            selectedCoinSymbol = '';
+            $('#exchange-rate').text(0);
+            $('#selected-coin-symbol').text('');
+            $('.amount-val').text('0');
+        }
+
+        // Function to fetch coins and set default selection
+        function fetchCoins() {
+            $.ajax({
+                url: '/api/deposit/coin',
+                type: 'GET',
+                success: function (response) {
+                    coins = response.data;
+                    let options = '<option value="">Select Cryptocurrency</option>';
+                    response.data.forEach(function (coin) {
+                        options += `<option value="${coin.id}">${coin.name} (${coin.symbol})</option>`;
+                    });
+                    $('#coin-select').html(options);
+
+                    // Set default coin if available
+                    if (defaultCoinId) {
+                        $('#coin-select').val(defaultCoinId).trigger('change');
+                    }
+                }
+            });
+        }
+
+        // Function to fetch networks and set default selection
+        function fetchNetworks(coinId) {
+            $.ajax({
+                url: `/api/deposit/networks/${coinId}`,
+                type: 'GET',
+                success: function (response) {
+                    let options = '<option value="">Select Network</option>';
+                    response.data.forEach(function (network) {
+                        options += `<option value="${network.id}">${network.name}</option>`;
+                    });
+                    $('#network-select').html(options).prop('disabled', true);
+
+                    // Set default network if available
+                    if (defaultNetworkId) {
+                        $('#network-select').val(defaultNetworkId).trigger('change');
+                    }
+                }
+            });
+        }
+
+        // Function to fetch address
+        function fetchAddress(networkId) {
+            $.ajax({
+                url: `/api/deposit/address/${networkId}`,
+                type: 'GET',
+                success: function (response) {
+                    if (response.data && response.data.address) {
+                        $('#address-display').val(response.data.address).prop('disabled', true);
+                    } else {
+                        $('#address-display').val('Address not available').prop('disabled', true);
+                    }
+                }
+            });
+        }
+    });
+
+    $('#network-select').prop('disabled', true);
 </script>
 
 @endsection

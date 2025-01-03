@@ -169,10 +169,10 @@ class TradingController extends Controller
         // Create a trading transaction
         $transaction = $user->transaction('trade')->create([
             'type' => 'trade',
-            'amount' => $request->amount,
+            'amount' => $amount,
             'data_id' => $trade->id,
             'status' => 'approved',
-            'description' => 'Stocks Trade...'
+            'description' => 'Stocks trade on ' . $stock->name
         ]);
 
         // Set the success message
@@ -556,7 +556,7 @@ class TradingController extends Controller
         $validator = Validator::make($request->all(), [
             'crypto_id' => ['required'],
             'crypto_symbol' => ['required'],
-            'amount' => ['required', 'numeric', 'min:1'],
+            'amount' => ['required', 'numeric'],
             'type' => ['required'],
             'lots' => ['required', 'numeric', 'min:0.00001'],
         ]);
@@ -610,10 +610,10 @@ class TradingController extends Controller
         // Create a trading transaction
         $transaction = $user->transaction('trade')->create([
             'type' => 'trade',
-            'amount' => $request->amount,
+            'amount' => $amount,
             'data_id' => $trade->id,
             'status' => 'approved',
-            'description' => 'Stocks Trade...'
+            'description' => 'Crypto trade on ' . $stock->name
         ]);
 
         // Set the success message

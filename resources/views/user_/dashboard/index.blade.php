@@ -59,7 +59,7 @@
                                     </div>
                                     <div class="mt-3">
                                         <h4 class="fw-semibold mb-1">&#36;{{ number_format($savings, 2) }} 
-                                            <span class="text-success ms-2 d-inline-block fs-12">0.45% <i class="ti ti-arrow-narrow-up"></i></span>
+                                            <span class="text-success ms-2 d-inline-block fs-12">{{ number_format($savingsPercentage, 2) }}% <i class="ti ti-arrow-narrow-up"></i></span>
                                         </h4>
                                         <span class="text-muted fs-12">Savings Account
                                             <a href="javascript:void(0);" data-bs-toggle="tooltip" data-bs-custom-class="tooltip-dark" title="Total value of funds across all savings accounts." class="text-muted mx-1">
@@ -88,7 +88,7 @@
                                     </div>
                                     <div class="mt-3">
                                         <h4 class="fw-semibold mb-1">&#36;{{ number_format($investment, 2) }} 
-                                            <span class="text-success ms-2 d-inline-block fs-12">3.5% <i class="ti ti-arrow-narrow-up"></i></span>
+                                            <span class="text-success ms-2 d-inline-block fs-12">{{ number_format($investmentPercentage, 2) }}% <i class="ti ti-arrow-narrow-up"></i></span>
                                         </h4>
                                         <span class="text-muted fs-12">Managed Investment
                                             <a href="javascript:void(0);" data-bs-toggle="tooltip" data-bs-custom-class="tooltip-dark" title="Total value of investments across all packages." class="text-muted mx-1">
@@ -119,7 +119,7 @@
                                     </div>
                                     <div class="mt-3">
                                         <h4 class="fw-semibold mb-1">&#36;{{ number_format($trading, 2) }} 
-                                            <span class="text-success ms-2 d-inline-block fs-12">0.05% <i class="ti ti-arrow-narrow-up"></i></span>
+                                            <span class="text-success ms-2 d-inline-block fs-12">{{ number_format($tradingPercentage, 2) }}% <i class="ti ti-arrow-narrow-up"></i></span>
                                         </h4>
                                         <span class="text-muted fs-12">Available Trading Balance
                                             <a href="javascript:void(0);" data-bs-toggle="tooltip" data-bs-custom-class="tooltip-dark" title="Funds available for placing new trades." class="text-muted mx-1">
@@ -162,88 +162,6 @@
                 </div>
             </div>
             <div class="col-xxl-3">
-                {{-- <div class="row">
-                <div class="col-xxl-12 col-xl-12">
-                        <div class="card custom-card card-bg-primary ecommerce-card">
-                            <div class="card-header border-bottom-0" style="margin-bottom: -15px;">
-                                <div class="card-title text-fixed-white mb-4">
-                                Total Portfolio Value 
-                                    <a href="javascript:void(0);" data-bs-toggle="tooltip" data-bs-custom-class="tooltip-dark" title="The total value of all funds in your account, including savings, investments, and trading balances." class="text-fixed-white mx-1">
-                                        <i class="fe fe-info"></i>
-                                    </a>
-                                </div>
-                            </div>
-                            <div class="p-0">
-                                <div class="d-flex align-items-start gap-3 px-3">
-                                    <div class="main-card-icon secondary p-0">
-                                        <div
-                                            class="avatar avatar-lg p-2 bg-white-transparent svg-white shadow-sm">
-                                            <div class="avatar avatar-sm svg-white">
-                                                <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32"
-                                                    fill="#000000" viewBox="0 0 256 256">
-                                                    <path d="M96,40l33.52,88H56Zm104,88H129.52L160,208Z"
-                                                        opacity="0.2"></path>
-                                                    <path
-                                                        d="M240,128a8,8,0,0,1-8,8H204.94l-37.78,75.58A8,8,0,0,1,160,216h-.4a8,8,0,0,1-7.08-5.14L95.35,60.76,63.28,131.31A8,8,0,0,1,56,136H24a8,8,0,0,1,0-16H50.85L88.72,36.69a8,8,0,0,1,14.76.46l57.51,151,31.85-63.71A8,8,0,0,1,200,120h32A8,8,0,0,1,240,128Z">
-                                                    </path>
-                                                </svg>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="flex-fill">
-                                        <div class="mb-2"></div>
-                                        <div class="text-muted mb-0 fs-18 d-flex align-items-center">
-                                            <h5 class="fs-26 fw-bold mb-0 flex-fill fw-medium text-fixed-white" style="margin-top: 0px;">
-                                                &#36;{{ number_format($portfolio, 2) }}
-                                            </h5>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="audience-report"></div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-xxl-12 col-xl-12">
-                        <div class="card custom-card card-bg-success ecommerce-card">
-                            <div class="card-header border-bottom-0" style="margin-bottom: -15px;">
-                                <div class="card-title text-fixed-white mb-4">
-                                    Reserved Funds
-                                    <a href="javascript:void(0);" data-bs-toggle="tooltip" data-bs-custom-class="tooltip-dark" title="Funds allocated to active investment or savings" class="text-fixed-white mx-1">
-                                        <i class="fe fe-info"></i>
-                                    </a>
-                                </div>
-                            </div>
-                            <div class="p-0">
-                                <div class="d-flex align-items-start gap-3 px-3">
-                                    <div class="main-card-icon secondary p-0">
-                                        <div
-                                            class="avatar avatar-lg p-2 bg-white-transparent svg-white shadow-sm">
-                                            <div class="avatar avatar-sm svg-white">
-                                                <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32"
-                                                    fill="#000000" viewBox="0 0 256 256">
-                                                    <path d="M96,40l33.52,88H56Zm104,88H129.52L160,208Z"
-                                                        opacity="0.2"></path>
-                                                    <path
-                                                        d="M240,128a8,8,0,0,1-8,8H204.94l-37.78,75.58A8,8,0,0,1,160,216h-.4a8,8,0,0,1-7.08-5.14L95.35,60.76,63.28,131.31A8,8,0,0,1,56,136H24a8,8,0,0,1,0-16H50.85L88.72,36.69a8,8,0,0,1,14.76.46l57.51,151,31.85-63.71A8,8,0,0,1,200,120h32A8,8,0,0,1,240,128Z">
-                                                    </path>
-                                                </svg>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="flex-fill">
-                                        <div class="mb-2"></div>
-                                        <div class="text-muted mb-0 fs-18 d-flex align-items-center">
-                                            <h5 class="fs-26 fw-bold mb-0 flex-fill fw-medium text-fixed-white" style="margin-top: 0px;">
-                                                &#36;{{ number_format($lockedFunds, 2) }}
-                                            </h5>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="my-4"></div>
-                            </div>
-                        </div>
-                    </div>
-                </div> --}}
                 <div class="card custom-card card-bg-primary crypto-card pt-2">
                     <div class="card-body">
                         <div>
@@ -274,7 +192,6 @@
                                 </div>
                             </div>
                         </div>
-                        
                     </div>
                     <div class="audience-report"></div>
                 </div>
