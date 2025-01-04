@@ -3,9 +3,9 @@
 @section('content')
 <style>
     select {
-        appearance: auto !important;
-        -webkit-appearance: auto;
-        -moz-appearance: auto;
+        appearance: none !important;
+        -webkit-appearance: none;
+        -moz-appearance: none;
     }
     .selectdepo:hover {
         border: 1px solid rgb(130, 116, 255);
@@ -366,9 +366,9 @@
                             </div>
                         </div>
 
-                        <div class="my-4">
-                            <h4 class="text-center fs-13">You are about to make a withdrwal of <strong class="fw-bold text-primary amount-val-coin">0 USD</strong></h4>
-                            <p class="text-center text-muted fs-10">Exchange Rate: 1 USD - 1.00 USDT</strong></p>
+                        <div class="my-3">
+                            <h4 class="text-center fs-13">You are about to make a withdrawal of <strong class="fw-bold text-primary amount-val">0 ---</strong></h4>
+                            <p class="text-center text-muted fs-10">Exchange Rate: 1 <strong id="selected-coin-symbol"></strong>  - <span class="fw-bold" id="exchange-rate">0</span> USD</p>
                         </div>
                         <div class="">
                             <div class="my-2">
@@ -391,14 +391,14 @@
                                         <label class="form-label fs-12 text-muted" for="network-select">Wallet Network</label>
                                         <div class="input-group"> 
                                             <select name="network" id="network-select" class="form-control py-2 fw-bold">
-                                                <option value="">Select Network</option>
+                                                <option value=""></option>
                                             </select>
                                         </div>
                                     </div>
                                     <div class="my-3">
                                         <label for="wallet_address" class="form-label text-muted fs-12">Wallet Address</label>
                                         <input name="wallet_address" type="text" class="form-control @error('wallet_address') is-invalid @enderror fw-bold" id="wallet_address"
-                                            placeholder="Enter your wallet address" value="{{ auth()->user()['wallet_address'] }}">
+                                            placeholder="Not set" value="{{ auth()->user()['wallet_address'] }}">
                                         @error('wallet_address')
                                             <span class="invalid-feedback" role="alert">
                                                 <strong>{{ $message }}</strong>
@@ -443,18 +443,18 @@
                                         <div class="col-xl-12 my-2">
                                             <label for="account_number" class="form-label text-muted fs-12">Account Number</label>
                                             <input name="account_number" type="number" class="form-control @error('account_number') is-invalid @enderror fw-bold" id="account_number" step="1" min="1"
-                                                placeholder="Enter your bank account number" value="{{ auth()->user()['account_number'] }}">
+                                                placeholder="Not Set" value="{{ auth()->user()['account_number'] }}">
                                         </div>
                                         <div class="col-xl-12 my-2">
                                             <label for="bank_name" class="form-label text-muted fs-12">Bank Name</label>
                                             <input name="bank_name" type="text" class="form-control @error('bank_name') is-invalid @enderror fw-bold" id="bank_name"
-                                                placeholder="Enter bank name..." value="{{ auth()->user()['bank_name'] }}">
+                                                placeholder="Not Set" value="{{ auth()->user()['bank_name'] }}">
                                         </div>
                                         <div class="row">
                                             <div class="col-6 tooltip-container">
                                                 <label for="swiss_code" class="form-label text-muted fs-12">SWIFT Code (optional)</label>
                                                 <input name="swiss_code" type="number" class="form-control @error('swiss_code') is-invalid @enderror fw-bold" id="swiss_code"
-                                                    placeholder="Enter SWIFT Code..." value="{{ auth()->user()['swiss_code'] }}">
+                                                    placeholder="Not Set" value="{{ auth()->user()['swiss_code'] }}">
                                             </div>
                                             <div class="col-6">
                                                 <label for="reference" class="form-label text-muted fs-12">Reference</label>
@@ -482,143 +482,6 @@
 <script src="{{ asset('asset/libs/apexcharts/apexcharts.min.js') }}"></script>
 
 <script>
-    $(document).ready(function () {
-
-        // Fetch coins on page load
-        fetchCoins();
-
-        // Variables to hold selected coin rate and symbol
-        let selectedCoinRate = 0;
-        let selectedCoinSymbol = '';
-        
-
-        $('#amountWithdrawal').on('input', function () {
-            const val = parseFloat($('#amountWithdrawal').val()).toLocaleString();
-            $('.amount-val').text(val + ' USD');
-        });
-
-        // Trigger display update on input change for amount
-        $('.amountDeposit').on('input', function () {
-            updateDisplay();
-        });
-
-        $('#bank-amount').on('input', function () {
-            const usdAmount = parseFloat($('#bank-amount').val()) || 0;
-
-            $('.amount-val-bank').text(usdAmount.toLocaleString() + ' USD');
-        });
-
-        $('#coin-amount').on('input', function () {
-            const usdAmount = parseFloat($('#coin-amount').val()) || 0;
-
-            $('.amount-val-coin').text(usdAmount.toLocaleString() + ' USD');
-        });
-
-        // Fetch networks and update display based on coin selection
-        $('#coin-select').on('change', function () {
-            const coinId = $(this).val();
-            if (coinId) {
-                fetchNetworks(coinId);
-
-                // Retrieve selected coin data from response
-                const coin = coins.find(c => c.id == coinId);
-                selectedCoinRate = parseFloat(coin.rate); // Make sure rate is correctly parsed
-                selectedCoinSymbol = coin.symbol;
-
-                // Update the exchange rate and symbol display
-                $('#exchange-rate').text(selectedCoinRate.toFixed(5)); // Display the rate with 5 decimal places
-                $('#selected-coin-symbol').text(selectedCoinSymbol); // Display selected coin symbol
-                updateDisplay();
-            } else {
-                // Reset if no coin is selected
-                $('#network-select').html('<option value="">Select Network</option>').prop('disabled', true);
-                $('#address-display').val('Select network first').prop('disabled', true);
-                resetDisplay();
-            }
-        });
-
-        // Fetch address based on network selection
-        $('#network-select').on('change', function () {
-            const networkId = $(this).val();
-            if (networkId) {
-                fetchAddress(networkId);
-            } else {
-                $('#address-display').val('Select network first').prop('disabled', true);
-            }
-        });
-
-        // Function to update the display with calculated coin amount
-        function updateDisplay() {
-            const usdAmount = parseFloat($('.amountDeposit').val()) || 0; // Get entered USD amount
-            const coinAmount = usdAmount / selectedCoinRate; // Calculate equivalent coin amount
-
-            if (!isNaN(coinAmount) && selectedCoinRate > 0) {
-                // Update displayed amount in selected coin
-                $('.amount-val').text(coinAmount.toFixed(5) + ' ' + selectedCoinSymbol);
-
-                $('#coin-value').prop('value', coinAmount.toFixed(5));
-            } else {
-                // Reset display if invalid input or no coin selected
-                $('.amount-val').text('0 ' + selectedCoinSymbol);
-            }
-        }
-
-        // Function to reset the display if no coin is selected
-        function resetDisplay() {
-            selectedCoinRate = 0;
-            selectedCoinSymbol = '';
-            $('#exchange-rate').text(0);
-            $('#selected-coin-symbol').text('');
-            $('.amount-val').text('0');
-        }
-
-        // Function to fetch coins (no change here)
-        function fetchCoins() {
-            $.ajax({
-                url: '/api/deposit/coin',
-                type: 'GET',
-                success: function (response) {
-                    coins = response.data;
-                    let options = '<option value="">Select Coin</option>';
-                    response.data.forEach(function (coin) {
-                        options += `<option value="${coin.id}">${coin.name} (${coin.symbol})</option>`;
-                    });
-                    $('#coin-select').html(options);
-                }
-            });
-        }
-
-        // Function to fetch networks (no change here)
-        function fetchNetworks(coinId) {
-            $.ajax({
-                url: `/api/deposit/networks/${coinId}`,
-                type: 'GET',
-                success: function (response) {
-                    let options = '<option value="">Select Network</option>';
-                    response.data.forEach(function (network) {
-                        options += `<option value="${network.id}">${network.name} </option>`;
-                    });
-                    $('#network-select').html(options).prop('disabled', false);
-                    $('#address-display').val('Select network first').prop('disabled', true);
-                }
-            });
-        }
-
-        // Function to fetch address (no change here)
-        function fetchAddress(networkId) {
-            $.ajax({
-                url: `/api/deposit/address/${networkId}`,
-                type: 'GET',
-                success: function (response) {
-                    if(response.data && response.data.address) {
-                        $('#address-display').val(response.data.address).prop('disabled', true);
-                    } else {
-                        $('#address-display').val('Address not available').prop('disabled', true);
-                    }
-                }
-            });
-        }
-    });
 
     document.getElementById('selectCrypto').addEventListener('click', function() {
         // Show crypto fields, hide bank fields
@@ -859,7 +722,7 @@
         const defaultNetworkId = "{{ auth()->user()['wallet_network'] }}";
 
         // Trigger display update on input change for amount
-        $('.amountDeposit').on('input', function () {
+        $('#coin-amount').on('input', function () {
             updateDisplay();
         });
 
@@ -911,7 +774,7 @@
 
         // Function to update the display with calculated coin amount
         function updateDisplay() {
-            const usdAmount = parseFloat($('.amountDeposit').val()) || 0; // Get entered USD amount
+            const usdAmount = parseFloat($('.amountWithdraw').val()) || 0; // Get entered USD amount
             const coinAmount = usdAmount / selectedCoinRate; // Calculate equivalent coin amount
 
             if (!isNaN(coinAmount) && selectedCoinRate > 0) {
@@ -938,7 +801,7 @@
                 type: 'GET',
                 success: function (response) {
                     coins = response.data;
-                    let options = '<option value="">Select Cryptocurrency</option>';
+                    let options = '<option value="">Update your crypto wallet</option>';
                     response.data.forEach(function (coin) {
                         options += `<option value="${coin.id}">${coin.name} (${coin.symbol})</option>`;
                     });
@@ -958,7 +821,7 @@
                 url: `/api/deposit/networks/${coinId}`,
                 type: 'GET',
                 success: function (response) {
-                    let options = '<option value="">Select Network</option>';
+                    let options = '<option value="">Not set</option>';
                     response.data.forEach(function (network) {
                         options += `<option value="${network.id}">${network.name}</option>`;
                     });

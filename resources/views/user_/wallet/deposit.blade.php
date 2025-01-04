@@ -246,37 +246,13 @@
                                             <div class="col-lg-8 col-6">
                                                 <div class="">
                                                     <label for="" class="fs-10 text-dark">Bank Address:</label>
-                                                    <p class="text-muted fw-bold fs-12">{{ $setting->bank_address }}, {{ $setting->bank_state }} {{ $setting->bank_country }} 
+                                                    <p class="text-muted fw-bold fs-12">{{ $setting->bank_address }} 
                                                         <a href="javascript:void(0);" data-bs-toggle="tooltip" data-bs-custom-class="tooltip-dark" title="Contact this email for any deposit-related issues." class="text-muted mx-1">
                                                             <i class="fe fe-info"></i>
                                                         </a>
                                                     </p>
                                                 </div>
                                             </div>
-                                            <div class="col-lg-4 col-6">
-                                                <!-- <div class="">
-                                                    <label for="" class="fs-10 text-dark">Phone:</label>
-                                                    <p class="text-muted fw-bold fs-12">{{ $setting->bank_phone }}</p>
-                                                </div> -->
-                                            </div>
-                                            <!-- <div class="col-lg-4 col-6">
-                                                <div class="">
-                                                    <label for="" class="fs-10">Country:</label>
-                                                    <p class="text-muted fw-bold fs-12">{{ $setting->bank_country }}</p>
-                                                </div>
-                                            </div>
-                                            <div class="col-lg-4 col-6">
-                                                <div class="">
-                                                    <label for="" class="fs-10">State:</label>
-                                                    <p class="text-muted fw-bold fs-12">{{ $setting->bank_state }}</p>
-                                                </div>
-                                            </div>
-                                            <div class="col-lg-4 col-6">
-                                                <div class="">
-                                                    <label for="" class="fs-10">Address:</label>
-                                                    <p class="text-muted fw-bold fs-12">{{ $setting->bank_address_address }}</p>
-                                                </div>
-                                            </div> -->
                                         </div>
                                     </div>
                                     <div style="max-width: 500px;">

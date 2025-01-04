@@ -17,8 +17,7 @@
                 <div class="card-body">
                     @can('Create Packages')
                     <div class="d-flex mb-3 align-items-center justify-content-between">
-                        <div class="card-title">Packages</div>
-                        <a class="btn btn-primary" href="{{ route('admin.saving.package.create') }}">Create Savings</a>
+                        <div class="card-title">Savings Plan</div>
                     </div>
                     @endcan
                     <div class="row">

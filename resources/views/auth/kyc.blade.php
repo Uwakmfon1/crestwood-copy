@@ -426,7 +426,7 @@
                                                         <p class="mb-1 fs-14">Thank you for completing your registration.</p>
                                                         <p class="text-muted">Your account has been successfully set up and is now ready for use</p>
                                                     </div>
-                                                    <button class="btn btn-primary" type="submit">Complete Registration</button>
+                                                    <button class="btn btn-primary" type="submit">Proceed to Dashboard</button>
                                                 </div>
                                             </div>
                                         </div>
