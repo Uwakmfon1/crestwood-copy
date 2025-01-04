@@ -69,22 +69,6 @@
                                 </div>
                             </div>
                         </div>
-                        @if($user->is_approved == "pending" | $user->is_approved == "decline")
-                        <div class="col-md-6 col-sm-12">
-                            <div class="card text-center selectdepo mx-auto pt-5" id="">
-                                <div class="card-body align-items-center rounded">
-                                    <span class="avatar avatar-md bg-primary me-2 shadow-avatar mb-3">
-                                        <img class="p-1" src="https://pngimg.com/d/bank_PNG24.png" alt="">
-                                    </span>
-                                    <h5 class="fw-bold fs-14 mt-2 mx-2"> 
-                                        Bank
-                                    </h5>
-                                    <p class="text-center text-muted fs-10" style="margin-top: -5px;">Deposit funds through a bank transfer.</p>
-                                    <p class="text-center text-danger fs-11 fw-bold" style="margin-top: -5px;">Click <a href="#" class="text-primary" data-bs-toggle="modal" data-bs-target="#modalProof">here</a> to complete your verification.</p>
-                                </div>
-                            </div>
-                        </div>
-                        @else
                         <div class="col-md-6 col-sm-12">
                             <div class="card text-center selectdepo mx-auto pt-5" id="selectBank">
                                 <div class="card-body align-items-center rounded">
@@ -95,10 +79,12 @@
                                         Bank
                                     </h5>
                                     <p class="text-center text-muted fs-10" style="margin-top: -5px;">Deposit funds through a bank transfer.</p>
+                                    @if($user->is_approved == "pending" | $user->is_approved == "decline")
+                                        <p class="text-center text-danger fs-11 fw-bold" style="margin-top: -5px;">Click <a href="#" class="text-primary" data-bs-toggle="modal" data-bs-target="#modalProof">here</a> to complete your verification.</p>
+                                    @endif
                                 </div>
                             </div>
                         </div>
-                        @endif
                     </div>
                     <div id="crypto" class="d-none">
                         <input type="hidden" id="crypto-method" name="method" value="coin">
@@ -609,16 +595,18 @@
     });
 
     document.getElementById('selectBank').addEventListener('click', function() {
-        // Show bank fields, hide crypto fields
-        document.getElementById('crypto').classList.add('d-none');
-        document.getElementById('bank').classList.remove('d-none');
+        if ("{{ $user->is_approved }}" === "approved") {
+            // Show bank fields, hide crypto fields
+            document.getElementById('crypto').classList.add('d-none');
+            document.getElementById('bank').classList.remove('d-none');
 
-        // Show the footer
-        document.getElementById('depositFooter').classList.add('d-none');
-        document.getElementById('depoSelect').classList.add('d-none');
-        
-        document.getElementById('back-arrow').classList.remove('d-none');
-        document.getElementById('back-arrow').classList.add('d-block');
+            // Show the footer
+            document.getElementById('depositFooter').classList.add('d-none');
+            document.getElementById('depoSelect').classList.add('d-none');
+            
+            document.getElementById('back-arrow').classList.remove('d-none');
+            document.getElementById('back-arrow').classList.add('d-block');
+        }
     });
 
     document.getElementById('back-arrow').addEventListener('click', function() {
@@ -666,18 +654,20 @@
         // Handle click event for selecting bank
         $('#selectBank').click(function() {
             // Show the bank section and hide the crypto section
-            $('#bank').show();
-            $('#crypto').hide();
+                if ("{{ $user->is_approved }}" === "approved") {
+                    $('#bank').show();
+                    $('#crypto').hide();
+                }
 
-            $('#crypto-amount').prop('disabled', true);
-            $('#crypto-method').prop('disabled', true);
+                $('#crypto-amount').prop('disabled', true);
+                $('#crypto-method').prop('disabled', true);
 
-            $('#bank-amount').prop('disabled', false);
-            $('#bank-method').prop('disabled', false);
+                $('#bank-amount').prop('disabled', false);
+                $('#bank-method').prop('disabled', false);
 
-            // Add active state to the selected option
-            $('#selectBank').addClass('active');
-            $('#selectCrypto').removeClass('active');
+                // Add active state to the selected option
+                $('#selectBank').addClass('active');
+                $('#selectCrypto').removeClass('active');
         });
 
         // Function to handle copy to clipboard
