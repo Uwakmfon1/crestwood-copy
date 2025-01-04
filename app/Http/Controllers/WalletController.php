@@ -30,6 +30,11 @@ class WalletController extends Controller
         $ledgerBalance = $user->investments()->where('status', 'active')->sum('total_return');
         $transactions = $user->transaction(); 
 
+        $performance = $user->transaction()->where('method', 'credit')->sum('amount') - $user->transaction()->where('method', 'debit')->sum('amount');
+
+        $performancePer = ($user->transaction()->where('method', 'credit')->sum('amount') ?? 1 / $user->transaction()->where('method', 'debit')->sum('amount') ?? 1) * 100;
+
+
         // dd($transactions->get());
 
         $availableCash = ($wallet + ($savings + $investment + $trading));
@@ -84,6 +89,8 @@ class WalletController extends Controller
             'alignedInvestments' => $alignedInvestments->values(),
             'alignedTrading' => $alignedTrading->values(),
             'lockedFunds' => $lockedFunds,
+            'performance' => $performance,
+            'performancePer' => $performancePer,
         ]);
     }
 

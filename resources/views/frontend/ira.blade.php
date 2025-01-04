@@ -336,7 +336,7 @@
                                                             </h2>
                                                             <div class="item-body fancy-bullet fancy-bullet_check ">
                                                                <h1 class="bt-title1">Earn 1% match on your IRA</h1>
-                                                               <p>Make saving for retirement easy with an IRA. We’ll match 1% of your net Roth and traditional IRA contributions.</p>
+                                                               <p>Make saving for retirement easy with an IRA. We’ll match 1% of your net Roth and traditional IRA contributions until December 30, 2025.</p>
                                                                <br><span>You must click below to be enrolled in this promotion.</span></p>
                                                             </div>
                                                             <div class="hs-cta mt16">

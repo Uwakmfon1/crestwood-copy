@@ -297,7 +297,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="wizard-step" data-title="Emergency Contact Details"
+                                    <div class="wizard-step" data-title="Emergency Contact"
                                         data-id="dOM0iRAyJXsLTr9b3KZfQ2jNv4pgn6Gu" data-limit="3">
                                         <div class="row">
                                             <div class="register-page">

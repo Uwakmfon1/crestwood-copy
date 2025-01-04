@@ -119,7 +119,7 @@
                         <div class="">
                             <div class="text-fixed-white mb-2">Performance Indicator<span class="ms-2 d-inline-block text-fixed-white op-5"><i class="fe fe-arrow-up-right"></i></span>
                             </div>
-                            <h4 class="fw-semibold mb-0 text-fixed-white">$0.00 <sub class="fs-12 op-8 d-inline-flex">0.0%</sub></h4>
+                            <h4 class="fw-semibold mb-0 text-fixed-white">${{ number_format($performance, 2) }}<sub class="fs-12 op-8 d-inline-flex">{{ number_format($performancePer, 2) }}%</sub></h4>
                         </div>
                     </div>
                 </div>
