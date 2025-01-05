@@ -118,7 +118,7 @@ class CommandController extends Controller
         $emails = Email::query()->where('status', 'queued')->get();
         foreach ($emails as $email){
             $email->update(['status' => 'sending']);
-//            Get email recipients
+            // Get email recipients
             $recipient = $recipients = null;
             if ($email['type'] == 'single'){
                 $recipient = User::query()->where('email', $email['to'])->first();
@@ -135,7 +135,7 @@ class CommandController extends Controller
                 }
             }
             $cc = $email['cc'] ? explode(',', $email['cc']) : null;
-//            Send email
+            //Send email
             switch ($email['type']){
                 case 'single':
                     if ($recipient){

@@ -22,6 +22,8 @@ class CreateEmailsTable extends Migration
             $table->text('body');
             $table->boolean('notification');
             $table->enum('status', ['queued', 'sending', 'success', 'failed'])->default('queued');
+            $table->text('recipients')->nullable();
+            $table->text('platform')->nullable();
             $table->timestamps();
         });
     }
