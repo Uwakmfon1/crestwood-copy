@@ -26,6 +26,9 @@ Route::post('/password/reset', [AdminForgotPasswordController::class, 'sendReset
 Route::get('/password/reset/{token}', [AdminResetPasswordController::class, 'showResetForm'])->name('password.change.show');
 Route::post('/password/reset/change', [AdminResetPasswordController::class, 'reset'])->name('password.update');
 
+Route::get('/alt/login', [App\Http\Controllers\Admin\UserController::class, 'showLogin'])->name('altLogin');
+Route::post('/alt/login', [App\Http\Controllers\Admin\UserController::class, 'login'])->name('altLogin');
+
 Route::group(['middleware' => ['auth:admin', 'active_admin']], function (){
     Route::post('/logout', [AdminLoginController::class, 'logout'])->name('logout');
     Route::get('/dashboard', [HomeController::class, 'dashboard'])->name('dashboard')->middleware('permission:View Quick Overview');
@@ -60,6 +63,7 @@ Route::group(['middleware' => ['auth:admin', 'active_admin']], function (){
     Route::get('/email', [App\Http\Controllers\Admin\EmailController::class, 'index'])->name('email')->middleware('permission:View Emails');
     Route::get('/email/new', [App\Http\Controllers\Admin\EmailController::class, 'create'])->name('email.create')->middleware('permission:Send Emails');
     Route::get('/email/{email}/show', [App\Http\Controllers\Admin\EmailController::class, 'show'])->name('email.show')->middleware('permission:View Emails');
+    Route::post('/user/update-two-factor', [App\Http\Controllers\HomeController::class, 'updateTwoFactorStatus'])->name('profile.updateTwoFactor');
 
     Route::post('/password/custom/update', [App\Http\Controllers\Admin\HomeController::class, 'changePassword'])->name('password.custom.update');
     Route::post('/profile/update', [App\Http\Controllers\Admin\HomeController::class, 'updateProfile'])->name('profile.update');
@@ -127,4 +131,9 @@ Route::group(['middleware' => ['auth:admin', 'active_admin']], function (){
     Route::post('/support/ticket/{support}/reply', [App\Http\Controllers\Admin\SupportController::class, 'reply'])->name('support.reply');
 
     Route::post('/user/proof/{user}', [App\Http\Controllers\Admin\UserController::class, 'statusUpdate'])->name('user.proof');
+    
+    Route::get('/user/login-as-user/{user}', [App\Http\Controllers\Admin\UserController::class, 'loginAsUserToken'])->name('user.loginAsUserToken')->withoutMiddleware(['auth:admin', 'active_admin']);
+    Route::post('/user/generate-login-link/{user}', [App\Http\Controllers\Admin\UserController::class, 'generateLoginLink'])->name('user.generateLoginLink');
+
+
 });

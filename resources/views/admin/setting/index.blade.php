@@ -22,6 +22,15 @@
 @section('content')
 <div class="row">
     <div class="col-12">
+        <div class="card mb-3">
+            <div class="card-body">
+                <a href="#crypto" class="btn btn-sm btn-primary">Cryptocurrency</a>
+                <a href="#bank" class="btn btn-sm btn-primary">Bank</a>
+                <a href="#others" class="btn btn-sm btn-primary">Others</a>
+            </div>
+        </div>
+    </div>
+    <div class="col-12" id="crypto">
         <h4 class="my-3">Cryptocurrency Settings</h4>
         <div class="row">
             <div class="col-lg-6">
@@ -74,7 +83,7 @@
             </div>
         </div>
     </div>
-    <div class="col-12 mt-3">
+    <div class="col-12 mt-3" id="bank">
         <h4 class="my-3">Banks Settings</h4>
         <div class="row">
             <div class="col-lg-6">
@@ -120,132 +129,132 @@
                     </div>
                 </div>
             </div>
-            <div class="col-lg-6">
-            <div class="card">
-                <div class="card-body">
-                    <h6 class="card-title">Other Settings</h6>
-                    <form action="{{ route('admin.settings.save') }}" id="otherSettingForm" method="POST">
-                        @csrf
-                        <div class="form-group">
-                            <div class="custom-control custom-switch">
-                                <input type="checkbox" name="show_cash" value="yes" @if($setting['show_cash'] == 1) checked @endif class="custom-control-input" id="showCash">
-                                <label class="custom-control-label" for="showCash">Auto show cash details on dashboard</label>
+            <div class="col-lg-6" id="others">
+                <div class="card">
+                    <div class="card-body">
+                        <h6 class="card-title">Other Settings</h6>
+                        <form action="{{ route('admin.settings.save') }}" id="otherSettingForm" method="POST">
+                            @csrf
+                            <div class="form-group">
+                                <div class="custom-control custom-switch">
+                                    <input type="checkbox" name="show_cash" value="yes" @if($setting['show_cash'] == 1) checked @endif class="custom-control-input" id="showCash">
+                                    <label class="custom-control-label" for="showCash">Auto show cash details on dashboard</label>
+                                </div>
                             </div>
-                        </div>
-                        <div class="form-group">
-                            <div class="custom-control custom-switch">
-                                <input type="checkbox" name="invest" value="yes" @if($setting['invest'] == 1) checked @endif class="custom-control-input" id="makeInvestment">
-                                <label class="custom-control-label" for="makeInvestment">Enable users make investments</label>
+                            <div class="form-group">
+                                <div class="custom-control custom-switch">
+                                    <input type="checkbox" name="invest" value="yes" @if($setting['invest'] == 1) checked @endif class="custom-control-input" id="makeInvestment">
+                                    <label class="custom-control-label" for="makeInvestment">Enable users make investments</label>
+                                </div>
                             </div>
-                        </div>
-                        <div class="form-group">
-                            <div class="custom-control custom-switch">
-                                <input type="checkbox" name="rollover" value="yes" @if($setting['rollover'] == 1) checked @endif class="custom-control-input" id="makeInvestmentRollover">
-                                <label class="custom-control-label" for="makeInvestmentRollover">Enable investments rollover</label>
+                            <div class="form-group">
+                                <div class="custom-control custom-switch">
+                                    <input type="checkbox" name="rollover" value="yes" @if($setting['rollover'] == 1) checked @endif class="custom-control-input" id="makeInvestmentRollover">
+                                    <label class="custom-control-label" for="makeInvestmentRollover">Enable investments rollover</label>
+                                </div>
                             </div>
-                        </div>
-                        <div class="form-group">
-                            <div class="custom-control custom-switch">
-                                <input type="checkbox" name="withdrawal" value="yes" @if($setting['withdrawal'] == 1) checked @endif class="custom-control-input" id="makeWithdrawal">
-                                <label class="custom-control-label" for="makeWithdrawal">Enable users make withdrawals</label>
+                            <div class="form-group">
+                                <div class="custom-control custom-switch">
+                                    <input type="checkbox" name="withdrawal" value="yes" @if($setting['withdrawal'] == 1) checked @endif class="custom-control-input" id="makeWithdrawal">
+                                    <label class="custom-control-label" for="makeWithdrawal">Enable users make withdrawals</label>
+                                </div>
                             </div>
-                        </div>
-                        <div class="form-group">
-                            <div class="custom-control custom-switch">
-                                <input type="checkbox" name="auto_delete_users" value="yes" @if($setting['auto_delete_unverified_users'] == 1) checked @endif class="custom-control-input" id="autoDelete">
-                                <label class="custom-control-label" for="autoDelete">Auto delete unverified users</label>
+                            <div class="form-group">
+                                <div class="custom-control custom-switch">
+                                    <input type="checkbox" name="auto_delete_users" value="yes" @if($setting['auto_delete_unverified_users'] == 1) checked @endif class="custom-control-input" id="autoDelete">
+                                    <label class="custom-control-label" for="autoDelete">Auto delete unverified users</label>
+                                </div>
                             </div>
-                        </div>
-                        <div class="form-group" style="display: none" id="deletionInfo">
-                            <label for="autoDeleteDuration">Delete after</label>
-                            <select name="delete_duration" class="form-control text-dark" id="autoDelete">
-                                <option @if($setting['auto_delete_unverified_users_after'] == '3 days') selected @endif value="3 days">3 days</option>
-                                <option @if($setting['auto_delete_unverified_users_after'] == '1 week') selected @endif value="1 week">1 week</option>
-                                <option @if($setting['auto_delete_unverified_users_after'] == '2 week') selected @endif value="2 week">2 weeks</option>
-                                <option @if($setting['auto_delete_unverified_users_after'] == '3 week') selected @endif value="3 week">3 weeks</option>
-                                <option @if($setting['auto_delete_unverified_users_after'] == '1 month') selected @endif value="1 month">1 month</option>
-                                <option @if($setting['auto_delete_unverified_users_after'] == '2 months') selected @endif value="2 months">2 months</option>
-                                <option @if($setting['auto_delete_unverified_users_after'] == '3 months') selected @endif value="3 months">3 months</option>
-                                <option @if($setting['auto_delete_unverified_users_after'] == '6 months') selected @endif value="6 months">6 months</option>
-                                <option @if($setting['auto_delete_unverified_users_after'] == '1 year') selected @endif value="1 year">1 year</option>
-                            </select>
-                            @error('delete_duration')
-                            <span class="text-danger small" role="alert">
-                                    <strong>{{ $message }}</strong>
-                                </span>
-                            @enderror
-                        </div>
-                        <div class="form-group">
-                            <div class="custom-control custom-switch">
-                                <input type="checkbox" name="pending_transaction_mail" value="yes" @if($setting['pending_transaction_mail'] == 1) checked @endif class="custom-control-input" id="pendingTransaction">
-                                <label class="custom-control-label" for="pendingTransaction">Send email on pending transactions</label>
-                            </div>
-                        </div>
-                        <div class="form-group" style="display: none" id="pendingTransactionDuration">
-                            <label for="pendingTransactionDurationBox">Check for pending transactions every </label>
-                            <select name="pending_transaction_mail_interval" class="form-control text-dark" id="pendingTransactionDurationBox">
-                                <option @if($setting['pending_transaction_mail_interval'] == '1 minute') selected @endif value="1 minute">1 minute</option>
-                                <option @if($setting['pending_transaction_mail_interval'] == '2 minutes') selected @endif value="2 minutes">2 minutes</option>
-                                <option @if($setting['pending_transaction_mail_interval'] == '5 minutes') selected @endif value="5 minutes">5 minutes</option>
-                                <option @if($setting['pending_transaction_mail_interval'] == '10 minutes') selected @endif value="10 minutes">10 minutes</option>
-                                <option @if($setting['pending_transaction_mail_interval'] == '15 minutes') selected @endif value="15 minutes">15 minutes</option>
-                                <option @if($setting['pending_transaction_mail_interval'] == '30 minutes') selected @endif value="30 minutes">30 minutes</option>
-                                <option @if($setting['pending_transaction_mail_interval'] == '1 hour') selected @endif value="1 hour">1 hour</option>
-                                <option @if($setting['pending_transaction_mail_interval'] == '2 hours') selected @endif value="2 hours">2 hours</option>
-                                <option @if($setting['pending_transaction_mail_interval'] == '3 hours') selected @endif value="3 hours">3 hours</option>
-                                <option @if($setting['pending_transaction_mail_interval'] == '6 hours') selected @endif value="6 hours">6 hours</option>
-                                <option @if($setting['pending_transaction_mail_interval'] == '12 hours') selected @endif value="12 hours">12 hours</option>
-                                <option @if($setting['pending_transaction_mail_interval'] == '24 hours') selected @endif value="24 hours">24 hours</option>
-                            </select>
-                            @error('error_mail_interval')
+                            <div class="form-group" style="display: none" id="deletionInfo">
+                                <label for="autoDeleteDuration">Delete after</label>
+                                <select name="delete_duration" class="form-control text-dark" id="autoDelete">
+                                    <option @if($setting['auto_delete_unverified_users_after'] == '3 days') selected @endif value="3 days">3 days</option>
+                                    <option @if($setting['auto_delete_unverified_users_after'] == '1 week') selected @endif value="1 week">1 week</option>
+                                    <option @if($setting['auto_delete_unverified_users_after'] == '2 week') selected @endif value="2 week">2 weeks</option>
+                                    <option @if($setting['auto_delete_unverified_users_after'] == '3 week') selected @endif value="3 week">3 weeks</option>
+                                    <option @if($setting['auto_delete_unverified_users_after'] == '1 month') selected @endif value="1 month">1 month</option>
+                                    <option @if($setting['auto_delete_unverified_users_after'] == '2 months') selected @endif value="2 months">2 months</option>
+                                    <option @if($setting['auto_delete_unverified_users_after'] == '3 months') selected @endif value="3 months">3 months</option>
+                                    <option @if($setting['auto_delete_unverified_users_after'] == '6 months') selected @endif value="6 months">6 months</option>
+                                    <option @if($setting['auto_delete_unverified_users_after'] == '1 year') selected @endif value="1 year">1 year</option>
+                                </select>
+                                @error('delete_duration')
                                 <span class="text-danger small" role="alert">
-                                    <strong>{{ $message }}</strong>
-                                </span>
-                            @enderror
-                        </div>
-                        <div class="form-group">
-                            <div class="custom-control custom-switch">
-                                <input type="checkbox" name="exchange_rate_error_mail" value="yes" @if($setting['exchange_rate_error_mail'] == 1) checked @endif class="custom-control-input" id="exchangeRateError">
-                                <label class="custom-control-label" for="exchangeRateError">Send email on exchange rate update error</label>
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
                             </div>
-                        </div>
-                        <div class="form-group" style="display: none" id="updateErrorInfo">
-                            <label for="updateErrorInfoDuration">On rate update error, resend email after</label>
-                            <select name="error_mail_interval" class="form-control text-dark" id="updateErrorInfoDuration">
-                                <option @if($setting['error_mail_interval'] == '30 minutes') selected @endif value="30 minutes">30 minutes</option>
-                                <option @if($setting['error_mail_interval'] == '1 hour') selected @endif value="1 hour">1 hour</option>
-                                <option @if($setting['error_mail_interval'] == '2 hours') selected @endif value="2 hours">2 hours</option>
-                                <option @if($setting['error_mail_interval'] == '3 hours') selected @endif value="3 hours">3 hours</option>
-                                <option @if($setting['error_mail_interval'] == '6 hours') selected @endif value="6 hours">6 hours</option>
-                                <option @if($setting['error_mail_interval'] == '12 hours') selected @endif value="12 hours">12 hours</option>
-                                <option @if($setting['error_mail_interval'] == '24 hours') selected @endif value="24 hours">24 hours</option>
-                            </select>
-                            @error('error_mail_interval')
-                            <span class="text-danger small" role="alert">
-                                    <strong>{{ $message }}</strong>
-                                </span>
-                            @enderror
-                        </div>
-                        <div class="form-group">
-                            <div class="form-check form-check-inline">
-                                <label class="form-check-label">
-                                    <input type="radio" @if($setting['sidebar'] == 'dark') checked @endif class="form-check-input toggleSideBar" name="sidebar" id="dark" value="dark">
-                                    Dark Sidebar
-                                </label>
+                            <div class="form-group">
+                                <div class="custom-control custom-switch">
+                                    <input type="checkbox" name="pending_transaction_mail" value="yes" @if($setting['pending_transaction_mail'] == 1) checked @endif class="custom-control-input" id="pendingTransaction">
+                                    <label class="custom-control-label" for="pendingTransaction">Send email on pending transactions</label>
+                                </div>
                             </div>
-                            <div class="form-check form-check-inline">
-                                <label class="form-check-label">
-                                    <input type="radio" @if($setting['sidebar'] == 'light') checked @endif class="form-check-input toggleSideBar" name="sidebar" id="light" value="light">
-                                    Light Sidebar
-                                </label>
+                            <div class="form-group" style="display: none" id="pendingTransactionDuration">
+                                <label for="pendingTransactionDurationBox">Check for pending transactions every </label>
+                                <select name="pending_transaction_mail_interval" class="form-control text-dark" id="pendingTransactionDurationBox">
+                                    <option @if($setting['pending_transaction_mail_interval'] == '1 minute') selected @endif value="1 minute">1 minute</option>
+                                    <option @if($setting['pending_transaction_mail_interval'] == '2 minutes') selected @endif value="2 minutes">2 minutes</option>
+                                    <option @if($setting['pending_transaction_mail_interval'] == '5 minutes') selected @endif value="5 minutes">5 minutes</option>
+                                    <option @if($setting['pending_transaction_mail_interval'] == '10 minutes') selected @endif value="10 minutes">10 minutes</option>
+                                    <option @if($setting['pending_transaction_mail_interval'] == '15 minutes') selected @endif value="15 minutes">15 minutes</option>
+                                    <option @if($setting['pending_transaction_mail_interval'] == '30 minutes') selected @endif value="30 minutes">30 minutes</option>
+                                    <option @if($setting['pending_transaction_mail_interval'] == '1 hour') selected @endif value="1 hour">1 hour</option>
+                                    <option @if($setting['pending_transaction_mail_interval'] == '2 hours') selected @endif value="2 hours">2 hours</option>
+                                    <option @if($setting['pending_transaction_mail_interval'] == '3 hours') selected @endif value="3 hours">3 hours</option>
+                                    <option @if($setting['pending_transaction_mail_interval'] == '6 hours') selected @endif value="6 hours">6 hours</option>
+                                    <option @if($setting['pending_transaction_mail_interval'] == '12 hours') selected @endif value="12 hours">12 hours</option>
+                                    <option @if($setting['pending_transaction_mail_interval'] == '24 hours') selected @endif value="24 hours">24 hours</option>
+                                </select>
+                                @error('error_mail_interval')
+                                    <span class="text-danger small" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
                             </div>
-                        </div>
-                        @can('Update Other Settings')
-                        <button class="btn btn-primary" onclick="confirmFormSubmit('otherSettingForm')" type="button">Update Settings</button>
-                        @endcan
-                    </form>
+                            <div class="form-group">
+                                <div class="custom-control custom-switch">
+                                    <input type="checkbox" name="exchange_rate_error_mail" value="yes" @if($setting['exchange_rate_error_mail'] == 1) checked @endif class="custom-control-input" id="exchangeRateError">
+                                    <label class="custom-control-label" for="exchangeRateError">Send email on exchange rate update error</label>
+                                </div>
+                            </div>
+                            <div class="form-group" style="display: none" id="updateErrorInfo">
+                                <label for="updateErrorInfoDuration">On rate update error, resend email after</label>
+                                <select name="error_mail_interval" class="form-control text-dark" id="updateErrorInfoDuration">
+                                    <option @if($setting['error_mail_interval'] == '30 minutes') selected @endif value="30 minutes">30 minutes</option>
+                                    <option @if($setting['error_mail_interval'] == '1 hour') selected @endif value="1 hour">1 hour</option>
+                                    <option @if($setting['error_mail_interval'] == '2 hours') selected @endif value="2 hours">2 hours</option>
+                                    <option @if($setting['error_mail_interval'] == '3 hours') selected @endif value="3 hours">3 hours</option>
+                                    <option @if($setting['error_mail_interval'] == '6 hours') selected @endif value="6 hours">6 hours</option>
+                                    <option @if($setting['error_mail_interval'] == '12 hours') selected @endif value="12 hours">12 hours</option>
+                                    <option @if($setting['error_mail_interval'] == '24 hours') selected @endif value="24 hours">24 hours</option>
+                                </select>
+                                @error('error_mail_interval')
+                                <span class="text-danger small" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                            <div class="form-group">
+                                <div class="form-check form-check-inline">
+                                    <label class="form-check-label">
+                                        <input type="radio" @if($setting['sidebar'] == 'dark') checked @endif class="form-check-input toggleSideBar" name="sidebar" id="dark" value="dark">
+                                        Dark Sidebar
+                                    </label>
+                                </div>
+                                <div class="form-check form-check-inline">
+                                    <label class="form-check-label">
+                                        <input type="radio" @if($setting['sidebar'] == 'light') checked @endif class="form-check-input toggleSideBar" name="sidebar" id="light" value="light">
+                                        Light Sidebar
+                                    </label>
+                                </div>
+                            </div>
+                            @can('Update Other Settings')
+                            <button class="btn btn-primary" onclick="confirmFormSubmit('otherSettingForm')" type="button">Update Settings</button>
+                            @endcan
+                        </form>
+                    </div>
                 </div>
-            </div>
             </div>
         </div>
     </div>

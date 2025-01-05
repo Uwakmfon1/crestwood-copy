@@ -267,6 +267,15 @@ class WalletController extends Controller
             // Commit the transaction
             DB::commit();
 
+            $accountNames = [
+                'invest' => 'Investment',
+                'save' => 'Savings',
+                'trade' => 'Trading',
+                'wallet' => 'Wallet',
+            ];
+
+            NotificationController::sendTransferSuccessfulNotification($transaction, $accountNames[$fromAccount], $accountNames[$toAccount]);
+
             return back()->with('success', 'Transfer was made successfully');
 
         } catch (\Exception $e) {

@@ -43,46 +43,46 @@ class NotificationController extends Controller
         }
     }
 
-    public static function sendSavingsCreatedNotification($savings)
-    {
-        $savingsDate = \Carbon\Carbon::parse($savings->savings_date);
-        $returnDate = \Carbon\Carbon::parse($savings->return_date);
-        $description = 'Your Savings of <b>₦ '.number_format($savings->amount).'</b> in our <b>'.$savings->package["name"].'</b> package was successful.';
-        $msg = 'Your savings of <b>₦ '.number_format($savings->amount).'</b> in our <b>'.$savings->package["name"].'</b> package was successful.<br><br>
-                <b><u>Savings details:</u></b><br>
-                Savings package: <b>'.$savings->package["name"].'</b><br>
-                Total amount invested: <b>₦ '.number_format($savings->amount).'</b><br>
-                ROI amount: <b>₦ '.number_format($savings['amount'] / $savings->package['roi'] * $savings->package['milestone']).'</b><br>
-                Expected returns: <b>₦ '.number_format($savings->total_return).'</b><br>
-                Savings date: <b>'.$savingsDate->format('M d, Y \a\t h:i A').'</b><br>
-                Return date: <b>'.$returnDate->format('M d, Y \a\t h:i A').'</b><br>
-                <b><u>Wallet details:</u></b><br>
-                Amount debited: <b>₦ '.number_format($savings->amount, 2).'</b><br>
-                Wallet balance: <b>₦ '.number_format($savings->user->nairaWallet['balance'], 2).'</b><br>
-                ';
-        try {
-            $savings->user->notify(new CustomNotification('savings', 'Savings Created', $msg, $description));
-        }catch (\Exception) {
-            logger('There was an error sending the email');
-        }
-    }
+    // public static function sendSavingsCreatedNotification($savings)
+    // {
+    //     $savingsDate = \Carbon\Carbon::parse($savings->savings_date);
+    //     $returnDate = \Carbon\Carbon::parse($savings->return_date);
+    //     $description = 'Your Savings of <b>$ '.number_format($savings->amount).'</b> in our <b>'.$savings->package["name"].'</b> package was successful.';
+    //     $msg = 'Your savings of <b>$ '.number_format($savings->amount).'</b> in our <b>'.$savings->package["name"].'</b> package was successful.<br><br>
+    //             <b><u>Savings details:</u></b><br>
+    //             Savings package: <b>'.$savings->package["name"].'</b><br>
+    //             Total amount invested: <b>$ '.number_format($savings->amount).'</b><br>
+    //             ROI amount: <b>$ '.number_format($savings['amount'] / $savings->package['roi'] * $savings->package['milestone']).'</b><br>
+    //             Expected returns: <b>$ '.number_format($savings->total_return).'</b><br>
+    //             Savings date: <b>'.$savingsDate->format('M d, Y \a\t h:i A').'</b><br>
+    //             Return date: <b>'.$returnDate->format('M d, Y \a\t h:i A').'</b><br>
+    //             <b><u>Wallet details:</u></b><br>
+    //             Amount debited: <b>$ '.number_format($savings->amount, 2).'</b><br>
+    //             Wallet balance: <b>$ '.number_format($savings->user->nairaWallet['balance'], 2).'</b><br>
+    //             ';
+    //     try {
+    //         $savings->user->notify(new CustomNotification('savings', 'Savings Created', $msg, $description));
+    //     }catch (\Exception) {
+    //         logger('There was an error sending the email');
+    //     }
+    // }
 
     public static function sendSavingsNotification($savings)
     {
         $savingsDate = \Carbon\Carbon::parse($savings->savings_date);
         $returnDate = \Carbon\Carbon::parse($savings->return_date);
-        $description = 'Your Savings of <b>₦ '.number_format($savings->amount).'</b> in our <b>'.$savings->package["name"].'</b> package was successful.';
-        $msg = 'A Deposit of <b>₦ '.number_format($savings->amount).'</b> in our <b>'.$savings->package["name"].'</b> package was successful.<br><br>
+        $description = 'Your Savings of <b>$ '.number_format($savings->amount).'</b> in our <b>'.$savings->package["name"].'</b> package was successful.';
+        $msg = 'A Deposit of <b>$ '.number_format($savings->amount).'</b> in our <b>'.$savings->package["name"].'</b> package was successful.<br><br>
                 <b><u>Savings details:</u></b><br>
                 Savings package: <b>'.$savings->package["name"].'</b><br>
-                Total amount invested: <b>₦ '.number_format($savings->amount).'</b><br>
-                ROI amount: <b>₦ '.number_format($savings['amount'] / $savings->package['roi'] * $savings->package['milestone']).'</b><br>
-                Expected returns: <b>₦ '.number_format($savings->total_return).'</b><br>
+                Total amount invested: <b>$ '.number_format($savings->amount).'</b><br>
+                ROI amount: <b>$ '.number_format($savings['amount'] / $savings->package['roi'] * $savings->package['milestone']).'</b><br>
+                Expected returns: <b>$ '.number_format($savings->total_return).'</b><br>
                 Savings date: <b>'.$savingsDate->format('M d, Y \a\t h:i A').'</b><br>
                 Return date: <b>'.$returnDate->format('M d, Y \a\t h:i A').'</b><br>
                 <b><u>Wallet details:</u></b><br>
-                Amount debited: <b>₦ '.number_format($savings->amount, 2).'</b><br>
-                Wallet balance: <b>₦ '.number_format($savings->user->nairaWallet['balance'], 2).'</b><br>
+                Amount debited: <b>$ '.number_format($savings->amount, 2).'</b><br>
+                Wallet balance: <b>$ '.number_format($savings->user->nairaWallet['balance'], 2).'</b><br>
                 ';
         try {
             $savings->user->notify(new CustomNotification('savings', 'Savings Deposited', $msg, $description));
@@ -93,11 +93,11 @@ class NotificationController extends Controller
 
     public static function sendSettleSavingsNotification($savings, $amount)
     {
-        $description = 'Your Savings of <b>₦ '.number_format($amount).'</b> in our <b>'.$savings->package["name"].'</b> package has been settled.';
-        $msg = 'Your Savings of <b>₦ '.number_format($amount).'</b> in our <b>'.$savings->package["name"].'</b> package has been settled.<br><br>
+        $description = 'Your Savings of <b>$ '.number_format($amount).'</b> in our <b>'.$savings->package["name"].'</b> package has been settled.';
+        $msg = 'Your Savings of <b>$ '.number_format($amount).'</b> in our <b>'.$savings->package["name"].'</b> package has been settled.<br><br>
                 <b><u>Wallet details:</u></b><br>
-                Amount credited: <b>₦ '.number_format($amount, 2).'</b><br>
-                Wallet balance: <b>₦ '.number_format($savings->user->nairaWallet['balance'], 2).'</b><br>
+                Amount credited: <b>$ '.number_format($amount, 2).'</b><br>
+                Wallet balance: <b>$ '.number_format($savings->user->nairaWallet['balance'], 2).'</b><br>
                 ';
         try {
             $savings->user->notify(new CustomNotification('savings', 'Savings Settled', $msg, $description));
@@ -108,33 +108,52 @@ class NotificationController extends Controller
 
     public static function sendInvestmentCreatedNotification($investment)
     {
-        // $pdf = PDF::loadView('pdf.certificate', ['investment' => $investment]);
-        $description = 'Your investment of <b>₦ '.number_format($investment->amount).'</b> in our <b>'.$investment->package["name"].'</b> package was successful.';
-        $msg = 'Your investment of <b>₦ '.number_format($investment->amount).'</b> in our <b>'.$investment->package["name"].'</b> package was successful.<br><br>
-                <b><u>Investment details:</u></b><br>
-                Investment package: <b>'.$investment->package["name"].'</b><br>
-                Total amount invested: <b>₦ '.number_format($investment->amount).'</b><br>
-                ROI amount: <b>₦ '.number_format($investment->total_return - $investment->amount).'</b><br>
-                Expected returns: <b>₦ '.number_format($investment->total_return).'</b><br>
-                Investment duration: <b>'.$investment['return_date']->diff($investment['investment_date'])->m.' month(s)</b><br>
-                Investment date: <b>'.$investment->investment_date->format('M d, Y \a\t h:i A').'</b><br>
-                Return date: <b>'.$investment->return_date->format('M d, Y \a\t h:i A').'</b><br>
-                Investment method: <b>'.$investment->transaction["method"].'</b><br><br>
-                <b><u>Wallet details:</u></b><br>
-                Amount debited: <b>₦ '.number_format($investment->amount, 2).'</b><br>
-                Wallet balance: <b>₦ '.number_format($investment->user->nairaWallet['balance'], 2).'</b><br>
-                ';
         try {
+            // Ensure required data exists and handle null values
+            $amount = $investment->amount ?? 0;
+            $packageName = $investment->package['name'] ?? 'Unknown Package';
+            $roiAmount = ($investment->total_return ?? 0) - $amount;
+            $totalReturn = $investment->total_return ?? 0;
+            $investmentDuration = $investment->package['milestone'] .' '. $investment->package['duration'];
+            $packageName = $investment->package['name'] ?? 'Unknown Package';
+            $investmentDate = $investment->created_at 
+                ? $investment->created_at->format('M d, Y \a\t h:i A') 
+                : 'N/A';
+            $returnDate = $investment->return_date 
+                ? $investment->return_date->format('M d, Y \a\t h:i A') 
+                : 'N/A';
+            $transactionMethod = 'Wallet';
+            $walletBalance = $investment->user->wallet->invest ?? 0;
+
+            // Construct the message and description
+            $description = "Your investment of <b>$ " . number_format($amount, 2) . "</b> in our <b>{$packageName}</b> package was successful.";
+            $msg = "Your investment of <b>$ " . number_format($amount, 2) . "</b> in our <b>{$packageName}</b> package was successful.<br><br>
+                    <b><u>Investment details:</u></b><br>
+                    Investment package: <b>{$packageName}</b><br>
+                    Total amount invested: <b>$ " . number_format($amount, 2) . "</b><br>
+                    ROI amount: <b>$ " . number_format($roiAmount, 2) . "</b><br>
+                    Expected returns: <b>$ " . number_format($totalReturn, 2) . "</b><br>
+                    Investment duration: <b>{$investmentDuration}</b><br>
+                    Investment date: <b>{$investmentDate}</b><br>
+                    Return date: <b>{$returnDate}</b><br>
+                    Investment method: <b>{$transactionMethod}</b><br><br>
+                    <b><u>Wallet details:</u></b><br>
+                    Amount debited: <b>$ " . number_format($amount, 2) . "</b><br>
+                    Investment balance: <b>$ " . number_format($walletBalance, 2) . "</b><br>";
+
+            // Send notification
             $investment->user->notify(new CustomNotification('investment', 'Investment Created', $msg, $description));
-        }catch (\Exception) {
-            logger('There was an error sending the email');
+        } catch (\Exception $e) {
+            // Log the error message
+            logger('Error sending investment notification: ' . $e->getMessage());
         }
     }
 
+
     public static function sendInvestmentQueuedNotification($investment)
     {
-        $description = 'Your investment of <b>₦ '.number_format($investment->amount).'</b> in our <b>'.$investment->package["name"].'</b> package has been queued.';
-        $msg = 'Your investment of <b>₦ '.number_format($investment->amount).'</b> in our <b>'.$investment->package["name"].'</b> package has been queued.<br>
+        $description = 'Your investment of <b>$ '.number_format($investment->amount).'</b> in our <b>'.$investment->package["name"].'</b> package has been queued.';
+        $msg = 'Your investment of <b>$ '.number_format($investment->amount).'</b> in our <b>'.$investment->package["name"].'</b> package has been queued.<br>
                 Your investment will be automatically created once you payment has been approved.';
         try {
             $investment->user->notify(new CustomNotification('pending', 'Investment Queued', $msg, $description));
@@ -145,8 +164,8 @@ class NotificationController extends Controller
 
     public static function sendInvestmentCancelledNotification($investment)
     {
-        $description = 'Your queued investment of <b>₦ '.number_format($investment->amount).'</b> in our <b>'.$investment->package["name"].'</b> package has been cancelled.';
-        $msg = 'Your queued investment of <b>₦ '.number_format($investment->amount).'</b> in our <b>'.$investment->package["name"].'</b> package has been cancelled.<br>
+        $description = 'Your queued investment of <b>$ '.number_format($investment->amount).'</b> in our <b>'.$investment->package["name"].'</b> package has been cancelled.';
+        $msg = 'Your queued investment of <b>$ '.number_format($investment->amount).'</b> in our <b>'.$investment->package["name"].'</b> package has been cancelled.<br>
                 Contact administrator <a href="mailto:'.env('SUPPORT_EMAIL').'">'.env('SUPPORT_EMAIL').'</a> for further complaints.';
         try {
             $investment->user->notify(new CustomNotification('cancelled', 'Investment Cancelled', $msg, $description));
@@ -164,11 +183,11 @@ class NotificationController extends Controller
                 Trade Product: <b>'.$trade["product"].'</b><br>
                 Trade type: <b>'.$trade["type"].'</b><br>
                 Grams traded: <b>'.$trade["grams"].'</b><br>
-                Amount traded: <b>₦ '.number_format($trade["amount"]).'</b><br>
+                Amount traded: <b>$ '.number_format($trade["amount"]).'</b><br>
                 Trade method: <b>'.$trade->transaction["method"].'</b><br><br>
                 <b><u>Wallet details:</u></b><br>
-                Amount '.$type.': <b>₦ '.number_format($trade->amount, 2).'</b><br>
-                Naira Wallet balance: <b>₦ '.number_format($trade->user->nairaWallet['balance'], 2).'</b><br>
+                Amount '.$type.': <b>$ '.number_format($trade->amount, 2).'</b><br>
+                Naira Wallet balance: <b>$ '.number_format($trade->user->nairaWallet['balance'], 2).'</b><br>
                 Gold Wallet balance: <b>'.round($trade->user->goldWallet['balance'], 3).' Grams</b><br>
                 Silver Wallet balance: <b>'.round($trade->user->silverWallet['balance'], 3).' Grams</b><br>';
         try {
@@ -204,15 +223,15 @@ class NotificationController extends Controller
 
     public static function sendDepositSuccessfulNotification($transaction)
     {
-        $method = $transaction["method"] == 'deposit' ? 'deposit / bank transfer' : $transaction["method"];
-        $description = 'Your deposit of <b>₦ '.number_format($transaction['amount']).'</b> was successful.';
-        $msg = 'Your deposit of <b>₦ '.number_format($transaction['amount']).'</b> was successful.<br><br>
+        $method = $transaction["type"] == 'deposit' ? 'deposit / bank transfer' : $transaction["method"];
+        $description = 'Your deposit of <b>$ '.number_format($transaction['amount']).'</b> was successful.';
+        $msg = 'Your deposit of <b>$ '.number_format($transaction['amount']).'</b> was successful.<br><br>
                 <b><u>Deposit details:</u></b><br>
-                Amount: <b>₦ '.number_format($transaction['amount']).'</b><br>
-                Deposit method: <b>'.$method.'</b><br><br>
+                Amount: <b>$ '.number_format($transaction['amount']).'</b><br>
+                Account: <b> Wallet </b><br><br>
                 <b><u>Wallet details:</u></b><br>
-                Amount credited: <b>₦ '.number_format($transaction->amount, 2).'</b><br>
-                Wallet balance: <b>₦ '.number_format($transaction->wallet['balance'], 2).'</b><br>';
+                Amount credited: <b>$ '.number_format($transaction->amount, 2).'</b><br>
+                Wallet balance: <b>$ '.number_format($transaction->user->wallet->balance, 2).'</b><br>';
         try {
             $transaction->user->notify(new CustomNotification('deposit', 'Deposit Successful', $msg, $description));
         }catch (\Exception) {
@@ -227,15 +246,15 @@ class NotificationController extends Controller
                 Your wallet will be automatically credited once you payment has been approved.';
         try {
             $transaction->user->notify(new CustomNotification('pending', 'Deposit Queued', $msg, $description));
-        }catch (\Exception) {
-            logger('There was an error sending the email');
+        }catch (\Exception $e) {
+            logger('Error sending email: ' . $e->getMessage());
         }
     }
 
     public static function sendDepositCancelledNotification($transaction)
     {
-        $description = 'Your queued deposit of <b>₦ '.number_format($transaction['amount']).'</b> has been declined.';
-        $msg = 'Your queued deposit of <b>₦ '.number_format($transaction['amount']).'</b> has been declined.<br>
+        $description = 'Your queued deposit of <b>$ '.number_format($transaction['amount']).'</b> has been declined.';
+        $msg = 'Your queued deposit of <b>$ '.number_format($transaction['amount']).'</b> has been declined.<br>
                 Contact administrator <a href="mailto:'.env('SUPPORT_EMAIL').'">'.env('SUPPORT_EMAIL').'</a> for further complaints.';
         try {
             $transaction->user->notify(new CustomNotification('cancelled', 'Deposit Declined', $msg, $description));
@@ -246,14 +265,14 @@ class NotificationController extends Controller
 
     public static function sendWithdrawalSuccessfulNotification($transaction)
     {
-        $description = 'Your withdrawal of <b>₦ '.number_format($transaction['amount']).'</b> was successful.';
-        $msg = 'Your withdrawal of <b>₦ '.number_format($transaction['amount']).'</b> was successful.<br><br>
+        $description = 'Your withdrawal of <b>$ '.number_format($transaction['amount']).'</b> was successful.';
+        $msg = 'Your withdrawal of <b>$ '.number_format($transaction['amount']).'</b> was successful.<br><br>
                 <b><u>Withdrawal details:</u></b><br>
-                Amount: <b>₦ '.number_format($transaction['amount']).'</b><br>
-                Withdrawal method: <b>'.$transaction["method"].'</b><br><br>
+                Amount: <b>$ '.number_format($transaction['amount']).'</b><br>
+                Account: <b> Wallet </b><br><br>
                 <b><u>Wallet details:</u></b><br>
-                Amount debited: <b>₦ '.number_format($transaction->amount).'</b><br>
-                Wallet balance: <b>₦ '.number_format($transaction->user->nairaWallet['balance']).'</b><br>';
+                Amount debited: <b>$ '.number_format($transaction->amount).'</b><br>
+                Wallet balance: <b>$ '.number_format($transaction->user->wallet->balance, 2).'</b><br>';
         try {
             $transaction->user->notify(new CustomNotification('withdrawal', 'Withdrawal Successful', $msg, $description));
         }catch (\Exception) {
@@ -263,8 +282,8 @@ class NotificationController extends Controller
 
     public static function sendWithdrawalQueuedNotification($transaction)
     {
-        $description = 'Your withdrawal of <b>₦ '.number_format($transaction['amount']).'</b> has been queued.';
-        $msg = 'Your withdrawal of <b>₦ '.number_format($transaction['amount']).'</b> has been queued.<br>
+        $description = 'Your withdrawal of <b>$ '.number_format($transaction['amount']).'</b> has been queued.';
+        $msg = 'Your withdrawal of <b>$ '.number_format($transaction['amount']).'</b> has been queued.<br>
                 Your bank account will be credited after administrator approval.';
         try {
             $transaction->user->notify(new CustomNotification('pending', 'Withdrawal Queued', $msg, $description));
@@ -275,8 +294,8 @@ class NotificationController extends Controller
 
     public static function sendWithdrawalCancelledNotification($transaction)
     {
-        $description = 'Your queued withdrawal of <b>₦ '.number_format($transaction['amount']).'</b> has been declined.';
-        $msg = 'Your queued withdrawal of <b>₦ '.number_format($transaction['amount']).'</b> has been declined.<br>
+        $description = 'Your queued withdrawal of <b>$ '.number_format($transaction['amount']).'</b> has been declined.';
+        $msg = 'Your queued withdrawal of <b>$ '.number_format($transaction['amount']).'</b> has been declined.<br>
                 Your wallet has been refunded, contact administrator <a href="mailto:'.env('SUPPORT_EMAIL').'">'.env('SUPPORT_EMAIL').'</a> for further complaints.';
         try {
             $transaction->user->notify(new CustomNotification('cancelled', 'Withdrawal Declined', $msg, $description));
@@ -299,20 +318,20 @@ class NotificationController extends Controller
 
     public static function sendRolloverInvestmentCreatedNotification($investment)
     {
-        $description = 'Your rollover investment of <b>₦ '.number_format($investment->amount).'</b> in our <b>'.$investment->package["name"].'</b> package was successful.';
-        $msg = 'Your rollover investment of <b>₦ '.number_format($investment->amount).'</b> in our <b>'.$investment->package["name"].'</b> package was successful.<br><br>
+        $description = 'Your rollover investment of <b>$ '.number_format($investment->amount).'</b> in our <b>'.$investment->package["name"].'</b> package was successful.';
+        $msg = 'Your rollover investment of <b>$ '.number_format($investment->amount).'</b> in our <b>'.$investment->package["name"].'</b> package was successful.<br><br>
                 <b><u>Investment details:</u></b><br>
                 Investment package: <b>'.$investment->package["name"].'</b><br>
-                Total amount invested: <b>₦ '.number_format($investment->amount).'</b><br>
-                ROI amount: <b>₦ '.number_format($investment->total_return - $investment->amount).'</b><br>
-                Expected returns: <b>₦ '.number_format($investment->total_return).'</b><br>
+                Total amount invested: <b>$ '.number_format($investment->amount).'</b><br>
+                ROI amount: <b>$ '.number_format($investment->total_return - $investment->amount).'</b><br>
+                Expected returns: <b>$ '.number_format($investment->total_return).'</b><br>
                 Investment duration: <b>'.$investment['return_date']->diff($investment['investment_date'])->m.' month(s)</b><br>
                 Investment date: <b>'.$investment->investment_date->format('M d, Y \a\t h:i A').'</b><br>
                 Return date: <b>'.$investment->return_date->format('M d, Y \a\t h:i A').'</b><br>
                 Investment method: <b>'.$investment->transaction["method"].'</b><br><br>
                 <b><u>Wallet details:</u></b><br>
-                Amount debited: <b>₦ '.number_format($investment->amount, 2).'</b><br>
-                Wallet balance: <b>₦ '.number_format($investment->user->nairaWallet['balance'], 2).'</b><br>
+                Amount debited: <b>$ '.number_format($investment->amount, 2).'</b><br>
+                Wallet balance: <b>$ '.number_format($investment->user->nairaWallet['balance'], 2).'</b><br>
                 ';
         try {
             $investment->user->notify(new CustomNotification('investment', 'Rollover Investment Created', $msg, $description));
@@ -323,11 +342,11 @@ class NotificationController extends Controller
 
     public static function sendInvestmentSettledNotification($investment)
     {
-        $description = 'Your investment of <b>₦ '.number_format($investment->amount).'</b> in our <b>'.$investment->package["name"].'</b> package has been settled.';
-        $msg = 'Your investment of <b>₦ '.number_format($investment->amount).'</b> in our <b>'.$investment->package["name"].'</b> package has been settled.<br><br>
+        $description = 'Your investment of <b>$ '.number_format($investment->amount).'</b> in our <b>'.$investment->package["name"].'</b> package has been settled.';
+        $msg = 'Your investment of <b>$ '.number_format($investment->amount).'</b> in our <b>'.$investment->package["name"].'</b> package has been settled.<br><br>
                 <b><u>Wallet details:</u></b><br>
-                Amount credited: <b>₦ '.number_format($investment->total_return, 2).'</b><br>
-                Wallet balance: <b>₦ '.number_format($investment->user->nairaWallet['balance'], 2).'</b><br>
+                Amount credited: <b>$ '.number_format($investment->total_return, 2).'</b><br>
+                Wallet balance: <b>$ '.number_format($investment->user->nairaWallet['balance'], 2).'</b><br>
                 ';
         try {
             $investment->user->notify(new CustomNotification('investment', 'Investment Settled', $msg, $description));
@@ -357,4 +376,83 @@ class NotificationController extends Controller
             logger('There was an error sending the email');
         }
     }
+
+    public static function sendTransferSuccessfulNotification($transaction, $from, $to)
+    {
+        $description = 'Your transfer of <b>$ '.number_format($transaction['amount']).'</b> was successful.';
+        $msg = 'Your transfer of <b>$ '.number_format($transaction['amount']).'</b> was successful.<br><br>
+                <b><u>Transfer details:</u></b><br>
+                Amount: <b>$ '.number_format($transaction['amount']).'</b><br><br>
+                From Account: <b> '. $from .'</b><br><br>
+                To Account: <b> '. $to .' </b><br><br>';
+        try {
+            $transaction->user->notify(new CustomNotification('withdrawal', 'Funds Transfer Successful', $msg, $description));
+        }catch (\Exception) {
+            logger('There was an error sending the email');
+        }
+    }
+
+    public static function sendSavingsCreatedNotification($savings)
+    {
+        $planName = $savings->plan->name ?? 'N/A';
+        $userName = $savings->user->name ?? 'User';
+        $totalAnswers = $savings->answers->count() ?? 0;
+        $createdAt = $savings->created_at->format('M d, Y \a\t h:i A');
+
+        $description = 'Your savings plan, <b> ' . $planName . ' </b>, has been successfully created';
+        $msg = 'Your savings plan, <b> ' . $planName . ' </b>, has been successfully created.<br><br>
+                <b><u>Savings Details:</u></b><br><br>
+                Plan Name:: <b>'. $planName .'</b><br>
+                Status: <b> '. ucfirst($savings->status) .'</b><br>
+                Created At: <b> '.$createdAt.'</b><br><br>';
+        try {
+            $savings->user->notify(new CustomNotification('investment', 'Savings Plan Created', $msg, $description));
+        }catch (\Exception) {
+            logger('There was an error sending the email');
+        }
+    }
+
+    public static function sendTradeNotification($trade, $type, $method)
+    {
+        try {
+            // Ensure required data exists and handle null values
+            $tradeCategory = ucfirst($type); // 'Stock' or 'Crypto'
+            $tradeType = ucfirst($method); // 'Buy' or 'Sell' based on method (now directly a string)
+            $symbol = $trade->symbol ?? 'Unknown Symbol';
+            $quantity = $trade->quantity ?? 0;
+            $tradeAmount = $trade->amount ?? 0;
+            $pricePerUnit = $trade->purchase_amount ?? 0;
+            $totalValue = $quantity * $pricePerUnit;
+
+            $tradeDate = $trade->created_at
+                ? $trade->created_at->format('M d, Y \a\t h:i A')
+                : 'N/A';
+
+            $walletBalance = $trade->user->wallet->trade ?? 0;
+
+            // Construct the message and description
+            $description = "Your <b>{$tradeType}</b> trade of <b>{$quantity} {$symbol}</b> was successful.";
+            $msg = "Your <b>{$tradeType}</b> trade of <b>{$quantity} {$symbol}</b> was successful.<br><br>
+                    <b><u>Trade Details:</u></b><br>
+                    Trade Category: <b>{$tradeCategory}</b><br>
+                    Trade type: <b>{$tradeType}</b><br>
+                    {$tradeCategory} symbol: <b>{$symbol}</b><br>
+                    Quantity: <b>" . number_format($quantity, 5) . "</b><br>
+                    Price per unit: <b>$" . number_format($pricePerUnit, 2) . "</b><br>
+                    Total trade value: <b>$" . number_format($totalValue, 2) . "</b><br>
+                    Trade date: <b>{$tradeDate}</b><br><br>
+                    <b><u>Account details:</u></b><br>
+                    Amount " . ($method === 'buy' ? 'debited' : 'credited') . ": <b>$ " . number_format($tradeAmount, 2) . "</b><br>
+                    Current trading balance: <b>$ " . number_format($walletBalance, 2) . "</b><br>";
+
+            // Send notification
+            $trade->user->notify(new CustomNotification('trade', 'Trade Notification', $msg, $description));
+        } catch (\Exception $e) {
+            // Log the error message
+            logger('Error sending trade notification: ' . $e->getMessage());
+        }
+    }
+
+
+
 }

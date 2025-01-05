@@ -155,7 +155,7 @@ class TransactionController extends Controller
         }
 
         if ($transaction) {
-            // NotificationController::sendDepositQueuedNotification($transaction);
+            NotificationController::sendDepositQueuedNotification($transaction);
             return redirect()->route('transactions.history')->with('success', 'Deposit queued successfully');
         }
         return redirect()->route('wallet')->with('error', 'Error processing deposit');

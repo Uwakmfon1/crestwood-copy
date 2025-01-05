@@ -2,12 +2,14 @@
 
 namespace App\Http\Controllers\Auth;
 
-use App\Http\Controllers\Controller;
-use Illuminate\Foundation\Auth\EmailVerificationRequest;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
+use App\Http\Controllers\Controller;
+use App\Notifications\TwoFactorCode;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Crypt;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Foundation\Auth\EmailVerificationRequest;
 
 class EmailverificationController extends Controller
 {
@@ -21,6 +23,11 @@ class EmailverificationController extends Controller
         $request->fulfill();
 
         return redirect('/email/verification/success');
+    }
+
+    public function verify2Factor()
+    {
+        return view('auth.two-factor');
     }
 
     public function verifyWithCode(Request $request)
@@ -60,4 +67,45 @@ class EmailverificationController extends Controller
 
         return back()->with('message', 'Verification link sent!');
     }
+
+    public function sendTwoFactorCode()
+    {
+        $user = Auth::user();
+
+        // Generate a 6-digit OTP
+        $code = rand(100000, 999999);
+
+        $user->update([
+            'two_factor_code' => $code,
+            'two_factor_expires_at' => now()->addMinutes(10),
+        ]);
+
+        // Send the OTP via email
+        $user->notify(new TwoFactorCode($code));
+
+        return back()->with('status', 'A 2FA code has been sent to your email.');
+    }
+
+    public function verifyTwoFactor(Request $request)
+    {
+        $request->validate(['two_factor_code' => 'required']);
+
+        $user = Auth::user();
+
+        if ($user->two_factor_code !== $request->two_factor_code) {
+            return back()->with('error', 'The 2FA code is invalid.');
+        }
+
+        if ($user->two_factor_expires_at->lt(now())) {
+            return back()->with('error', 'The 2FA code has expired.');
+        }
+
+        $user->update([
+            'two_factor_code' => null,
+            'two_factor_expires_at' => null,
+        ]);
+
+        return redirect()->route('dashboard');
+    }
+
 }

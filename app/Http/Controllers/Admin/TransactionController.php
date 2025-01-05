@@ -218,6 +218,10 @@ class TransactionController extends Controller
 
         // Update transaction
         if ($transaction->update(['status' => 'approved'])){
+            if($transaction['method'] == 'credit')
+                NotificationController::sendDepositSuccessfulNotification($transaction);
+            else
+                NotificationController::sendWithdrawalSuccessfulNotification($transaction);
             return back()->with('success', 'Transaction approved successfully');
         }
         return back()->with('error', 'Error approving transaction');

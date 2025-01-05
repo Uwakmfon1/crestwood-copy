@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use App\Models\Stock;
 use App\Models\Crypto;
 use App\Models\Setting;
@@ -12,9 +13,9 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Http;
+
+
 use Illuminate\Support\Facades\Mail;
-
-
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Crypt;
 use Intervention\Image\Facades\Image;
@@ -892,5 +893,21 @@ class HomeController extends Controller
             ], 200);
         }
     
+    }
+
+    public function updateTwoFactorStatus(Request $request)
+    {
+        $request->validate([
+            'user_id' => 'required|exists:users,id',
+            'two_factor' => 'required|in:enabled,disabled',
+        ]);
+
+        // Find the user and update the two_factor status
+        $user = User::findOrFail($request->user_id);
+        $user->two_factor = $request->two_factor;
+        $user->save();
+
+        // Return a success message
+        return response()->json(['message' => 'Two-factor authentication status updated successfully.']);
     }
 }

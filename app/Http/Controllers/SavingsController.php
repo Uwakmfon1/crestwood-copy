@@ -432,6 +432,7 @@ class SavingsController extends Controller
         $msg = 'Savings was created successfully';
 
         if ($savings) {
+            NotificationController::sendSavingsCreatedNotification($savings);
             return redirect()->route('savings.show', $savings->id)->with('success', $msg);
         }
         return back()->withInput()->with('error', 'Error processing Savings');

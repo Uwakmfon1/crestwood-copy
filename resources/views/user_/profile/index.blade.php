@@ -861,6 +861,13 @@
                                     <span class="text-muted">{{ auth()->user()['created_at']->format('F d, Y') }}</span>
                                 </div>
                             </li>
+                            <li class="d-flex list-group-item">
+                                <span class="fw-medium me-2">Two Factor:</span>
+                                <div class="form-check form-check-lg form-switch">
+                                    <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckReverse" data-user-id="{{ $user->id }}" {{ $user->two_factor == 'enabled' ? 'checked' : '' }}>
+                                </div>
+                            </li>
+
                             <li class="list-group-item">
                                 <div><span class="fw-medium me-2">Referral Code:</span>
                                 <span class="text-muted">
@@ -1145,6 +1152,36 @@
     });
 
 </script>
+
+<script>
+    // Wait for the document to be ready
+    $(document).ready(function() {
+        $('#flexSwitchCheckReverse').on('change', function() {
+            let userId = $(this).data('user-id');
+            let newStatus = $(this).prop('checked') ? 'enabled' : 'disabled';
+
+            // Send AJAX request to update the two_factor status
+            $.ajax({
+                url: '/user/update-two-factor', // Route to update two-factor status
+                method: 'POST',
+                data: {
+                    _token: '{{ csrf_token() }}',  // CSRF token for security
+                    user_id: userId,
+                    two_factor: newStatus
+                },
+                success: function(response) {
+                    // Handle success (optional, you can show a message)
+                    console.log(response.message);
+                },
+                error: function(xhr, status, error) {
+                    // Handle error (optional)
+                    console.error('Error:', error);
+                }
+            });
+        });
+    });
+</script>
+
 
 @endsection
 

@@ -78,6 +78,10 @@ Route::post('/logout/verification', function () {
     return redirect('/register');
 })->name('logout.verification');
 
+Route::get('/user/verify-two-factor', [EmailverificationController::class, 'verify2Factor'])->name('user.verifyTwoFactor');
+Route::post('/verify-two-factor', [EmailverificationController::class, 'verifyTwoFactor'])->name('verifyTwoFactor');
+Route::get('/resend-two-factor', [EmailverificationController::class, 'sendTwoFactorCode'])->name('resendTwoFactor');
+
 Route::get('/auth/{provider}/attempt', [App\Http\Controllers\Auth\SocialController::class, 'redirect'])->name('auth.social.attempt');
 Route::get('/login/{provider}/callback', [App\Http\Controllers\Auth\SocialController::class, 'socialLoginAttempt'])->name('auth.social.login.attempt');
 Route::get('/market/{product}/chart', [App\Http\Controllers\HomeController::class, 'showMarket'])->name('market.show');
@@ -93,7 +97,7 @@ Route::group(['middleware' => ['auth', 'unverified']], function (){
     Route::get('/email/verification-notification', [EmailverificationController::class, 'resend'])->middleware(['throttle:6,1'])->name('verification.send');
 });
 
-Route::group(['middleware' => ['auth','verified', 'active_user', 'profile_completed']], function (){
+Route::group(['middleware' => ['auth','verified', 'active_user', 'profile_completed', '2fa']], function (){
     Route::get('/email/verification/success', [App\Http\Controllers\HomeController::class, 'verificationSuccess']);
     Route::get('/profile', [App\Http\Controllers\HomeController::class, 'profile'])->name('profile');
     Route::post('/password/custom/update', [App\Http\Controllers\HomeController::class, 'changePassword'])->name('password.custom.update');
@@ -101,6 +105,7 @@ Route::group(['middleware' => ['auth','verified', 'active_user', 'profile_comple
     Route::post('/profile/update/settings', [App\Http\Controllers\HomeController::class, 'tabUpdates'])->name('profile.data');
     // Route::get('/getStates/{name}', [App\Http\Controllers\HomeController::class, 'getState'])->name('user.getstate');
     Route::get('/settings', [App\Http\Controllers\HomeController::class, 'settings'])->name('settings');
+    Route::post('/user/update-two-factor', [App\Http\Controllers\HomeController::class, 'updateTwoFactorStatus'])->name('profile.updateTwoFactor');
 
 
     // Route::group(['middleware' => ['profile_completed']], function (){

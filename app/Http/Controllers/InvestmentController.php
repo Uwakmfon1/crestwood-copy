@@ -172,11 +172,8 @@ class InvestmentController extends Controller
         // ::::: Store Ledger :::::: //
 
         if($transaction) 
-            // if ($investment['status'] == 'active'){
-            //     NotificationController::sendInvestmentCreatedNotification($investment);
-            // }else{
-            //     NotificationController::sendInvestmentQueuedNotification($investment);
-            // }
+            NotificationController::sendInvestmentCreatedNotification($investment);
+        
             return redirect()->route('investments')->with('success', 'Investment created successfully');
 
         return back()->withInput()->with('error', 'Error processing investment');

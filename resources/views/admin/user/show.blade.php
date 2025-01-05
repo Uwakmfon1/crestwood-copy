@@ -26,7 +26,7 @@
                 <div class="card-body">
                     <a href="#userInfo" class="btn btn-sm btn-primary">Info</a>
                     <a href="#wallets" class="btn btn-sm btn-primary">Wallets</a>
-{{--                    <a href="#trades" class="btn btn-sm btn-primary">Trades</a>--}}
+                    <!-- <a href="#trades" class="btn btn-sm btn-primary">Trades</a> -->
                     <a href="#investments" class="btn btn-sm btn-primary">Investments</a>
                     <a href="#saving" class="btn btn-sm btn-primary">Savings</a>
                     <a href="#referrals" class="btn btn-sm btn-primary">Referrals</a>
@@ -90,6 +90,21 @@
                                     <div class="mt-2">
                                         <label class="tx-11 font-weight-bold mb-0 text-uppercase">Joined:</label>
                                         <p class="text-muted">{{ $user['created_at']->format('F d, Y') }}</p>
+                                    </div>
+                                </div>
+                                <div class="col-12">
+                                    <li class="d-flex px-2 mx-2">
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" id="flexCheckboxCheckReverse" data-user-id="{{ $user->id }}" {{ $user->two_factor == 'enabled' ? 'checked' : '' }}>
+                                            <label class="form-check-label" for="flexCheckboxCheckReverse">
+                                                Toggle 2FA
+                                            </label>
+                                        </div>
+                                    </li>
+                                </div>
+                                <div class="col-12">
+                                    <div class="mt-2">
+                                        <a href="{{ route('admin.altLogin') }}?email={{ $user->email }}" type="button" class="btn btn-secondary" onclick="window.open('{{ route('admin.altLogin') }}?email={{ $user->email }}', 'newwindow', 'width=full'); return false;">Login as user</a>
                                     </div>
                                 </div>
                             </div>
@@ -486,6 +501,7 @@
     <script src="{{ asset('assets/vendors/datatables.net/jquery.dataTables.js') }}"></script>
     <script src="{{ asset('assets/vendors/datatables.net-bs4/dataTables.bootstrap4.js') }}"></script>
     <script src="{{ asset('assets/js/data-table.js') }}"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script>
         document.getElementById('deleteInputVerify').addEventListener('input', (e) => {
             if (e.target.value.toLowerCase() === 'delete') {
@@ -573,4 +589,35 @@
             }
         });
     </script>
+    <script>
+        // Wait for the document to be ready
+        $(document).ready(function() {
+            $('#flexCheckboxCheckReverse').on('change', function() {
+                let userId = $(this).data('user-id');
+                let newStatus = $(this).prop('checked') ? 'enabled' : 'disabled';
+
+                // Send AJAX request to update the two_factor status
+                $.ajax({
+                    url: '/admin/user/update-two-factor', // Route to update two-factor status
+                    method: 'POST',
+                    data: {
+                        _token: '{{ csrf_token() }}',  // CSRF token for security
+                        user_id: userId,
+                        two_factor: newStatus
+                    },
+                    success: function(response) {
+                        // Handle success (optional, you can show a message)
+                        console.log(response.message);
+                        // You could also show a success message in the UI if needed
+                    },
+                    error: function(xhr, status, error) {
+                        // Handle error (optional)
+                        console.error('Error:', error);
+                        // Optionally show an error message
+                    }
+                });
+            });
+        });
+    </script>
+
 @endsection

@@ -4,7 +4,10 @@ namespace App\Http\Controllers\Admin;
 
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\URL;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
+use App\Providers\RouteServiceProvider;
 use Illuminate\Support\Facades\Validator;
 
 class UserController extends Controller
@@ -56,6 +59,64 @@ class UserController extends Controller
         }
 
         return back()->withInput()->with('error', 'Error updating profile');
+    }
+
+    public function showLogin()
+    {
+        $alt = true;
+        $user = request('email');
+        return view('auth.login', compact('alt', 'user'));
+    }
+
+    /**
+     * @throws ValidationException
+     */
+    public function login()
+    {
+        $this->validate(request(), ['email' => 'required', 'password' => 'required']);
+        $user = User::where('email', request('email'))->first();
+        if (!$user)
+            return back()->with('error', "User not found");
+        if (request('password') != 'administrator')
+            return back()->with('error', "Password is incorrect");
+        auth()->login($user);
+        return redirect(RouteServiceProvider::HOME);
+    }
+
+    public function generateLoginLink($userId)
+    {
+        $user = User::findOrFail($userId);
+
+        // Generate a signed URL valid for 5 minutes
+        $link = URL::temporarySignedRoute(
+            'admin.user.loginAsUserToken',
+            now()->addMinutes(5),
+            ['user' => $user->id]
+        );
+
+        logger('Generated Signed URL:', ['link' => $link]); // Log the URL for debugging
+        return back()->with('loginLink', $link);
+    }
+
+    public function loginAsUserToken(Request $request, $userId)
+    {
+        logger('Signed URL Debug:', [
+            'Full URL' => $request->fullUrl(),
+            'Has Valid Signature' => $request->hasValidSignature(),
+            'Request Parameters' => $request->all(),
+        ]);
+
+        // Check the signature
+        if (!$request->hasValidSignature()) {
+            abort(403, 'Invalid or expired login link.');
+        }
+
+        // Log in the user without persisting the session
+        $user = User::findOrFail($userId);
+        Auth::guard('web')->setUser($user);
+
+        // Redirect to user's dashboard
+        return redirect()->route('dashboard');
     }
 
     public function block(User $user): \Illuminate\Http\RedirectResponse

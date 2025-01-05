@@ -185,6 +185,8 @@ class TradingController extends Controller
         // Store the savings transaction and redirect
         if ($transaction) {
             // TransactionController::storeSavingTransaction($trade, $trade['amount'], $request['payment'], 'savings', 'Traded ' . $stock['name'], $trade['id']);
+            NotificationController::sendTradeNotification($trade, 'stock', $request['type']);
+
             return redirect()->route('assets')->with('success', $msg);
         }
 
@@ -625,7 +627,7 @@ class TradingController extends Controller
     
         // Store the savings transaction and redirect
         if ($transaction) {
-            // TransactionController::storeSavingTransaction($trade, $trade['amount'], $request['payment'], 'savings', 'Traded ' . $stock['name'], $trade['id']);
+            NotificationController::sendTradeNotification($trade, 'crypto', $request['type']);
             return redirect()->route('crypto.assets')->with('success', $msg);
         }
 
