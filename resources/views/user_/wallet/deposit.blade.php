@@ -150,12 +150,12 @@
                             <div id="" class="alert mx-auto alert-primary mt-2" style="max-width: 6000px;">
                                 <h4 class="text-danger fs-13">Note</h4>
                                 <div class="">
-                                    <!-- <p class="fs-12 text-muted">{{ $setting->crypto_note }}</p> -->
-                                    <ul class="text-dark">
+                                    <p class="fs-12 text-muted">{!! $setting->crypto_note !!}</p>
+                                    <!-- <ul class="text-dark">
                                         <li>Ensure you select the correct cryptocurrency and blockchain network before making the deposit.</li>
                                         <li>Do not send unsupported cryptocurrencies or tokens to this address, as they will be permanently lost.</li>
                                         <li>Deposits will be credited to your account after the required number of network confirmations (e.g., Bitcoin: 3 confirmations, Ethereum: 12 confirmations).</li>
-                                    </ul>
+                                    </ul> -->
                                 </div>
                             </div>
                             <!-- <p class="text-dark fs-13 text-center fw-medium">Already made payment of <span class="fw-bold text-primary amount-val">0 ---</span> to the wallet address above <br> Click the button below to confirm transaction.</p> -->
@@ -245,13 +245,13 @@
                                         <div id="" class="alert mx-1 alert-primary mt-2">
                                             <h4 class="text-danger fs-12 fw-bold">Please Note</h4>
                                             <div class="">
-                                                    <!-- <p class="fs-12 text-muted">{{ $setting->bank_note_initial }}</p> -->
-                                                    <ul class="text-dark fs-12 text-muted">
+                                                    <p class="fs-12 text-muted">{!! $setting->bank_note_initial !!}</p>
+                                                    <!-- <ul class="text-dark fs-12 text-muted">
                                                         <li>Ensure the deposit amount matches your entry above to avoid discrepancies.</li>
                                                         <li>Include the transaction reference in your transfer details for proper allocation.</li>
                                                         <li>International deposits may take up to 3-5 business days to reflect.</li>
                                                         <li>For questions, contact our support team.</li>
-                                                    </ul>
+                                                    </ul> -->
                                             </div>
                                         </div>
                                     </div>
@@ -350,13 +350,13 @@
                                                 <div id="" class="alert alert-primary mt-2">
                                                     <h4 class="text-danger fs-12 fw-bold">Please Note</h4>
                                                     <div class="">
-                                                            <!-- <p class="fs-11 text-muted">{{ $setting->bank_note_final }}</p> -->
-                                                            <ul class="text-dark fs-12 text-muted">
+                                                            <p class="fs-11 text-muted">{!! $setting->bank_note_final !!}</p>
+                                                            <!-- <ul class="text-dark fs-12 text-muted">
                                                                 <li>Ensure all information entered matches your bank transaction details to avoid delays..</li>
                                                                 <li>Upload a clear and complete copy of your transfer receipt.</li>
                                                                 <li>Once submitted, our team will verify your deposit within 1-3 business days.</li>
                                                                 <li>For any issues, contact support.</li>
-                                                            </ul>
+                                                            </ul> -->
                                                     </div>
                                                 </div>
                                             </div>

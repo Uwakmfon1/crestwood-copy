@@ -155,7 +155,7 @@
                                         <button class="nav-link text-start" id="main-kyc-tab" data-bs-toggle="pill" data-bs-target="#main-kyc" type="button" role="tab" aria-controls="main-kyc" aria-selected="false" tabindex="-1"><i class="ri-shield-check-line me-1 align-middle d-inline-block"></i>Additional Verification</button>
                                         <button class="nav-link text-start" id="main-proof-tab" data-bs-toggle="pill" data-bs-target="#main-proof" type="button" role="tab" aria-controls="main-proof" aria-selected="false" tabindex="-1"><i class="ri-map-pin-line me-1 align-middle d-inline-block"></i>Proof of Address</button>
                                         <button class="nav-link text-start" id="main-billing-tab" data-bs-toggle="pill" data-bs-target="#main-billing" type="button" role="tab" aria-controls="main-billing" aria-selected="false" tabindex="-1"><i class="ri-bill-line me-1 align-middle d-inline-block"></i>Identity & Verification</button>
-                                        <button class="nav-link text-start" id="main-password-tab" data-bs-toggle="pill" data-bs-target="#main-password" type="button" role="tab" aria-controls="main-password" aria-selected="false" tabindex="-1"><i class="ri-user-line me-1 align-middle d-inline-block"></i>Password</button>
+                                        <button class="nav-link text-start" id="main-password-tab" data-bs-toggle="pill" data-bs-target="#main-password" type="button" role="tab" aria-controls="main-password" aria-selected="false" tabindex="-1"><i class="fe fe-settings me-1 align-middle d-inline-block"></i>Security Settings</button>
                                         </div>
                                     </div>
                                     <div class="col-md-8">
@@ -789,8 +789,21 @@
                                                 </form>
                                             </div>
                                             <div class="tab-pane" id="main-password" role="tabpanel" aria-labelledby="main-password-tab" tabindex="0">
-                                                <form action="" method="post">
+                                                <form action="{{ route('password.custom.update') }}" method="post">
+                                                    @csrf
                                                     <div class="row">
+                                                        <div class="fs-15 fw-medium d-sm-flex d-block align-items-center justify-content-between mb-3">
+                                                            <div>2 Factor Authentication:</div>
+                                                        </div>
+                                                        <div class="col-md-12 my-2 mb-3">
+                                                            <label class="form-label  text-muted fs-12" for="old_password">Enable 2FA</label>
+                                                            <div class="form-check form-check-lg form-switch">
+                                                                <input class="form-check-input" type="checkbox" role="switch" id="twofactor" data-user-id="{{ $user->id }}" {{ $user->two_factor == 'enabled' ? 'checked' : '' }}>
+                                                            </div>
+                                                        </div>
+                                                        <div class="fs-15 fw-medium d-sm-flex d-block align-items-center justify-content-between mb-1">
+                                                            <div>Reset Password:</div>
+                                                        </div>
                                                         <div class="col-md-12 my-2">
                                                             <label class="form-label mt-2 text-muted fs-12" for="old_password">Old Password</label>
                                                             <input type="password" @if(auth()->user()->authenticatedWithSocials()) disabled @endif name="old_password" class="form-control" id="old_password" autocomplete="off" placeholder="Old Password">
@@ -1156,7 +1169,7 @@
 <script>
     // Wait for the document to be ready
     $(document).ready(function() {
-        $('#flexSwitchCheckReverse').on('change', function() {
+        $('#flexSwitchCheckReverse, #twofactor').on('change', function() {
             let userId = $(this).data('user-id');
             let newStatus = $(this).prop('checked') ? 'enabled' : 'disabled';
 
