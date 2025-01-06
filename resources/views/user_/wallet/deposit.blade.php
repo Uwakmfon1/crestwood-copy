@@ -351,12 +351,6 @@
                                                     <h4 class="text-danger fs-12 fw-bold">Please Note</h4>
                                                     <div class="">
                                                             <p class="fs-11 text-muted">{!! $setting->bank_note_final !!}</p>
-                                                            <!-- <ul class="text-dark fs-12 text-muted">
-                                                                <li>Ensure all information entered matches your bank transaction details to avoid delays..</li>
-                                                                <li>Upload a clear and complete copy of your transfer receipt.</li>
-                                                                <li>Once submitted, our team will verify your deposit within 1-3 business days.</li>
-                                                                <li>For any issues, contact support.</li>
-                                                            </ul> -->
                                                     </div>
                                                 </div>
                                             </div>

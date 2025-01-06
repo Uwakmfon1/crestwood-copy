@@ -38,6 +38,7 @@ Route::group(['middleware' => ['auth:admin', 'active_admin']], function (){
     Route::get('/packages/all/secure-access', [App\Http\Controllers\Admin\PackageController::class, 'indexAll'])->middleware('permission:View Packages');
     Route::get('/packages/create', [App\Http\Controllers\Admin\PackageController::class, 'create'])->name('packages.create')->middleware('permission:Create Packages');
     Route::get('/packages/{package}/edit', [App\Http\Controllers\Admin\PackageController::class, 'edit'])->name('packages.edit')->middleware('permission:Edit Packages');
+    Route::put('/package/{package}/update', [App\Http\Controllers\Admin\PackageController::class, 'updatePackage'])->name('packages.update.invest')->middleware('permission:Edit Packages');
     Route::get('/packages/{package}/investments', [App\Http\Controllers\Admin\PackageController::class, 'investments'])->name('packages.investments')->middleware('permission:View Investments');
     Route::get('/users', [App\Http\Controllers\Admin\UserController::class, 'index'])->name('users')->middleware('permission:View Users');
     Route::get('/users/{user}/show', [App\Http\Controllers\Admin\UserController::class, 'show'])->name('users.show')->middleware('permission:View Users');
@@ -135,5 +136,7 @@ Route::group(['middleware' => ['auth:admin', 'active_admin']], function (){
     Route::get('/user/login-as-user/{user}', [App\Http\Controllers\Admin\UserController::class, 'loginAsUserToken'])->name('user.loginAsUserToken')->withoutMiddleware(['auth:admin', 'active_admin']);
     Route::post('/user/generate-login-link/{user}', [App\Http\Controllers\Admin\UserController::class, 'generateLoginLink'])->name('user.generateLoginLink');
 
-
+    Route::delete('/networks/{network}/destroy', [App\Http\Controllers\Admin\SettingController::class, 'destroyNetwork'])->name('destroy.networks');
+    Route::post('/networks/store', [App\Http\Controllers\Admin\SettingController::class, 'storeNetwork'])->name('store.networks'); 
+    Route::post('/setting/note', [App\Http\Controllers\Admin\SettingController::class, 'storeNote'])->name('settings.notes'); 
 });

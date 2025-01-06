@@ -338,7 +338,7 @@
                                                             <option value="mother" {{ old('nk_relationship') == 'mother' ? 'selected' : '' }}>Mother</option>
                                                             <option value="brother/sister" {{ old('nk_relationship') == 'brother/sister' ? 'selected' : '' }}>Brother/Sister</option>
                                                             <option value="cousin/niece" {{ old('nk_relationship') == 'cousin/niece' ? 'selected' : '' }}>Cousin/Niece</option>
-                                                            <option value="friend" {{ old('nk_relationship') == 'friend' ? 'selected' : '' }}>Close F riend</option>
+                                                            <option value="friend" {{ old('nk_relationship') == 'friend' ? 'selected' : '' }}>Close Friend</option>
                                                         </select>
                                                         @error('nk_relationship')
                                                             <span class="invalid-feedback" role="alert">

@@ -33,14 +33,14 @@
                                             </div>
                                             <h3 class="text-center font-weight-light">{{ $package['roi'] }}%</h3>
                                             <p class="text-muted text-center mb-4 font-weight-light">return on investment</p>
-                                            <h6 class="text-muted text-center mb-4 font-weight-normal">₦ {{ number_format($package['price']) }} per slot</h6>
+                                            <h6 class="text-muted text-center mb-4 font-weight-normal">${{ number_format($package['min_amount']) }} - ${{ number_format($package['max_amount']) }} </h6>
                                             <div class="d-flex align-items-center mb-2">
                                                 <i data-feather="clock" class="icon-md text-secondary mr-2"></i>
-                                                <p>{{ $package['duration'] }} Months</p>
+                                                <p>{{ $package['milestone'] }} {{ $package['duration'] }}</p>
                                             </div>
                                             <div class="d-flex align-items-center mb-2">
                                                 <i data-feather="layers" class="icon-md text-secondary mr-2"></i>
-                                                @if($package->canRunInvestment())
+                                                @if($package->investment == 'enabled')
                                                     <p class="badge badge-success">Active</p>
                                                 @else
                                                     <p class="badge badge-danger">Inactive</p>

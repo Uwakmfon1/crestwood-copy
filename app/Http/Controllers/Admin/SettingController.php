@@ -14,6 +14,7 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Validator;
 use App\Http\Controllers\CommandController;
+use App\Models\AccountCoin;
 
 class SettingController extends Controller
 {
@@ -25,16 +26,46 @@ class SettingController extends Controller
             $banks = [];
         }
 
-        $networks = AccountNetwork::all();
+        // $networks = AccountNetwork::all();
+
+        $coins = AccountCoin::all();
 
         $addresses = AccountAddress::with('account_network')->get();
+
+        $networks = AccountNetwork::with('addresses')->get();
 
         return view('admin.setting.index', [
             'banks' => $banks, 
             'setting' => Setting::all()->first(),
             'networks' => $networks,
-            'addresses' => $addresses
+            'addresses' => $addresses,
+            'coins' => $coins,
         ]);
+    }
+
+    public function storeNetwork(Request $request)
+    {
+        $validated = $request->validate([
+            'account_coin_id' => 'nullable|exists:account_coins,id',
+            'network' => 'required|string',
+        ]);
+
+        $coin = AccountCoin::findOrFail($request->account_coin_id);
+
+        if ($request->filled(['account_coin_id', 'network'])) {
+            AccountNetwork::create(
+                [
+                    'account_coin_id' => $validated['account_coin_id'],
+                    'name' => $validated['network'],
+                    'symbol' => $coin->symbol
+                ]
+            );
+        }
+
+        // Redirect back with a success message
+        return redirect()
+            ->back()
+            ->with('success', 'Crypto settings updated successfully!');
     }
 
     // Store the new address
@@ -43,7 +74,6 @@ class SettingController extends Controller
         $validated = $request->validate([
             'account_network_id' => 'nullable|exists:account_networks,id',
             'address' => 'nullable|string',
-            'crypto_note' => 'required|string',
         ]);
 
         if ($request->filled(['account_network_id', 'address'])) {
@@ -52,6 +82,18 @@ class SettingController extends Controller
                 ['address' => $validated['address']]
             );
         }
+
+        // Redirect back with a success message
+        return redirect()
+            ->back()
+            ->with('success', 'Crypto settings updated successfully!');
+    }
+
+    public function storeNote(Request $request)
+    {
+        $validated = $request->validate([
+            'crypto_note' => 'required|string',
+        ]);
 
         if ($request->filled('crypto_note')) {
             $setting = Setting::first();
@@ -124,6 +166,15 @@ class SettingController extends Controller
         ]))
             return back()->with('success', 'Settings updated successfully');
         return back()->with('error', 'Error updating settings');
+    }
+
+    public function destroyNetwork(AccountNetwork $network)
+    {
+        if ($network->delete()){
+            return back()->with('success', 'Networks deleted successfully');
+        }
+
+        return back()->with('error', 'Error deleting Networks');
     }
 
     public function saveSettings(Request $request): RedirectResponse

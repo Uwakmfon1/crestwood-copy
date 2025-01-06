@@ -2,17 +2,19 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Controllers\Controller;
-use App\Models\Package;
 use App\Models\Plan;
+use App\Models\Package;
 use Illuminate\Http\Request;
+// use Intervention\Image\Image;
+use Intervention\Image\Facades\Image;
+use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
 
 class PackageController extends Controller
 {
     public function index()
     {
-        return view('admin.package.index', ['packages' => Package::where('investment', 'enabled')->get()]);
+        return view('admin.package.index', ['packages' => Package::latest()->get()]);
     }
 
     public function indexAll()
@@ -32,7 +34,7 @@ class PackageController extends Controller
 
     public function edit(Package $package)
     {
-        return view('admin.package.edit', ['package' => $package]);
+        return view('admin.package.update', ['package' => $package]);
     }
 
     public function store(Request $request): \Illuminate\Http\RedirectResponse
@@ -112,6 +114,37 @@ class PackageController extends Controller
         return back()->with('error', 'Error updating package');
     }
 
+    public function updatePackage(Request $request, Package $package): \Illuminate\Http\RedirectResponse
+    {
+        $validator = Validator::make($request->all(), [
+            'name' => ['required', 'unique:packages,name,'.$package['id']],
+            'min_amount' => ['required', 'numeric', 'gt:0'],
+            'max_amount' => ['required', 'numeric', 'gt:0'],
+            'duration' => ['required'],
+            'roi' => ['required', 'numeric'],
+            'milestone' => ['required', 'numeric'],
+            'description' => ['required'],
+            'image' => ['sometimes', 'mimes:jpeg,jpg,png', 'max:1024'],
+            'investment' => ['required', 'in:enabled,disabled'],
+        ]);
+
+        if ($validator->fails()){
+            return back()->withErrors($validator)->withInput()->with('error', 'Invalid input data');
+        }
+
+        $data = $request->except('image');
+
+        if ($request->file('image')){
+            $data['image'] = $this->uploadPackageImageAndReturnPathToSave($request['image']);
+        }
+
+        if ($package->update($data)){
+            return redirect()->route('admin.packages')->with('success', 'Package updated successfully');
+        }
+
+        return back()->with('error', 'Error updating package');
+    }
+
     public function destroy(Package $package)
     {
         // check if package doesn't have investment
@@ -127,9 +160,18 @@ class PackageController extends Controller
 
     protected function uploadPackageImageAndReturnPathToSave($image): string
     {
-        $destinationPath = 'assets/packages'; // upload path
-        $transferImage = \auth()->user()['id'].'-'. time() . '.' . $image->getClientOriginalExtension();
-        $image->move($destinationPath, $transferImage);
-        return $destinationPath ."/".$transferImage;
+        $destinationPath = 'assets/packages'; // Upload path
+        $fileName = auth()->user()['id'] . '-' . time() . '.' . $image->getClientOriginalExtension();
+        $filePath = $destinationPath . "/" . $fileName;
+
+        // Resize and save the image
+        $resizedImage = Image::make($image->getRealPath())->fit(300, 200, function ($constraint) {
+            $constraint->aspectRatio();
+            $constraint->upsize();
+        });
+
+        $resizedImage->save(public_path($filePath));
+
+        return $filePath;
     }
 }

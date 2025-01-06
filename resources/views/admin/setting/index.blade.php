@@ -20,6 +20,7 @@
 @endphp
 
 @section('content')
+
 <div class="row">
     <div class="col-12">
         <div class="card mb-3">
@@ -33,10 +34,37 @@
     <div class="col-12" id="crypto">
         <h4 class="my-3">Cryptocurrency Settings</h4>
         <div class="row">
-            <div class="col-lg-6">
+            <div class="col-lg-6 my-1">
                 <div class="card">
                     <div class="card-body">
-                        <form action="{{ route('admin.addresses.store') }}" method="POST">
+                        <h6 class="card-title">Network Address</h6>
+                        <form class="pb-3" action="{{ route('admin.store.networks') }}" method="POST">
+                            @csrf
+                            <div class="mb-3">
+                                <label for="network" class="form-label">Select Coin</label>
+                                <select name="account_coin_id" id="coin" class="form-control">
+                                    <option value="">Select a Coin</option>
+                                    @foreach($coins as $network)
+                                        <option value="{{ $network->id }}">{{ $network->name }} ({{ $network->symbol }})</option>
+                                    @endforeach
+                                </select>
+                                @error('account_network_id')
+                                    <small class="text-danger">{{ $message }}</small>
+                                @enderror
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="network" class="form-label">Network Address</label>
+                                <input type="text" name="network" id="networks" class="form-control" placeholder="Enter Network" value="{{ old('network') }}">
+                                @error('network')
+                                    <small class="text-danger">{{ $message }}</small>
+                                @enderror
+                            </div>
+
+                            <button type="submit" class="btn btn-primary">Update Settings</button>
+                        </form>
+                        <h6 class="mt-2 card-title">Wallet Address</h6>
+                        <form class="pb-3" action="{{ route('admin.addresses.store') }}" method="POST">
                             @csrf
                             <div class="mb-3">
                                 <label for="network" class="form-label">Select Network</label>
@@ -59,25 +87,56 @@
                                 @enderror
                             </div>
 
-                            <div class="my-4">
-                                <label for="crypto_note">Note:</label>
-                                <textarea name="crypto_note" id="crypto_note" class="form-control" cols="30" rows="10">{{ $setting->crypto_note }}</textarea>
-                            </div>
                             <button type="submit" class="btn btn-primary">Update Settings</button>
                         </form>
                     </div>
                 </div>
             </div>
-            <div class="col-lg-6">
+            <div class="col-lg-6 my-1">
+                <div class="card">
+                    <div class="card-body">
+                        <form class="pt-2" action="{{ route('admin.settings.notes') }}" method="POST">
+                            @csrf
+                            <h6 class="card-title">Edit Note</h6>
+                            <div class="my-4">
+                                <label for="crypto_note">Note:</label>
+                                <textarea name="crypto_note" id="crypto_note" class="form-control" cols="50" rows="40">{{ $setting->crypto_note }}</textarea>
+                            </div>
+
+                            <button type="submit" class="btn btn-primary">Update Settings</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row mt-2">
+            <div class="col-12">
                 <div class="card">
                     <div class="card-body">
                         <h5 class="mb-2">Wallet Addresses</h5>
-                        @foreach($addresses as $data)
-                            <div class="mb-3">
-                                <label for="network" class="form-label">{{ $data->account_network->name }} ({{ $data->account_network->symbol }})</label>
-                                <input class="form-control" type="text" value="{{ $data->address }}" disabled>
+                        <div class="row">
+                        @foreach($networks as $data)
+                            <div class="col-lg-4 col-md-6">
+                                <div class="mb-3">
+                                    <label for="network" class="form-label">{{ $data->name }} ({{ $data->symbol }})</label>
+                                    <div class="d-flex">
+                                        
+                                        <input class="form-control" type="text" value="{{ $data->addresses->isNotEmpty() ? $data->addresses->first()->address : 'Not set' }}" disabled>
+                                        
+                                        <!-- Delete Network Form -->
+                                        <form action="{{ route('admin.destroy.networks', $data->id) }}" method="post">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button class="btn btn-danger mx-1">
+                                                <i data-feather="x-circle" class="icon-md text-white"></i>
+                                            </button>
+                                        </form>
+                                    </div>
+                                </div>
                             </div>
                         @endforeach
+
+                        </div>
                     </div>
                 </div>
             </div>
@@ -262,6 +321,37 @@
 @endsection
 
 @section('scripts')
+    <script src="https://cdn.ckeditor.com/4.20.2/standard/ckeditor.js"></script>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const noteIds = ['crypto_note', 'bank_note_initial', 'bank_note_final']; // List of IDs to initialize CKEditor for
+
+            noteIds.forEach(id => {
+                CKEDITOR.replace(id, {
+                    toolbar: [
+                        { name: 'basicstyles', items: ['Bold', 'Italic', 'Underline', 'Strike', '-', 'RemoveFormat'] },
+                        { name: 'paragraph', items: ['NumberedList', 'BulletedList', '-', 'Outdent', 'Indent'] },
+                        { name: 'links', items: ['Link', 'Unlink'] },
+                        { name: 'insert', items: ['Image', 'Table', 'HorizontalRule'] },
+                    ],
+                });
+            });
+
+            CKEDITOR.editorConfig = function (config) {
+                config.versionCheck = false;
+            };
+        });
+    </script>
+
+    <style>
+        .cke_notifications_area
+        {
+            display: none;
+        }
+    </style>
+
+
     <script>
         $(document).ready(function (){
             let bankList = $('#bankList');
