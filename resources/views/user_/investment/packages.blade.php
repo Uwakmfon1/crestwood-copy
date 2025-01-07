@@ -39,6 +39,17 @@
         text-overflow: ellipsis;
     }
 
+    .image-box {
+      width: 100%;
+      height: 200px; /* Set your desired height */
+      overflow: hidden; /* Ensures the image doesn't overflow the box */
+    }
+    .image-box img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
 </style>
 
 <!-- Start::app-content -->
@@ -80,7 +91,7 @@
                             </span>
                             <div class="card-img-top"> 
                                 <a href="product-details.html" class="stretched-link"></a> 
-                                <div class="img-box-2 p-2"> 
+                                <div class="img-box-2 p-2 image-box"> 
                                     <img src="{{ $package->image }}" alt="img" class=" img-fluid w-100 rounded" style="max-height: 250px;"> 
                                 </div> 
                             </div> 
