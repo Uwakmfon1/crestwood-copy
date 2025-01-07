@@ -507,8 +507,8 @@
             const networkId = $(this).val();
             if (networkId) {
                 fetchAddress(networkId);
-                
-                $('#qr-note').html('To complete your deposit, scan the QR code or copy the wallet address below. Ensure the selected network matches your transaction to avoid errors or loss of funds.');
+
+                $('#qr-note').html('');
             } else {
                 $('#address-display').val('Select Network').prop('disabled', true);
             }
