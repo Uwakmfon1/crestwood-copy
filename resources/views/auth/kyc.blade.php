@@ -297,7 +297,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="wizard-step" data-title="Emergency Contact"
+                                    <div class="wizard-step" data-title="Emergency Contact Details"
                                         data-id="dOM0iRAyJXsLTr9b3KZfQ2jNv4pgn6Gu" data-limit="3">
                                         <div class="row">
                                             <div class="register-page">
@@ -338,7 +338,7 @@
                                                             <option value="mother" {{ old('nk_relationship') == 'mother' ? 'selected' : '' }}>Mother</option>
                                                             <option value="brother/sister" {{ old('nk_relationship') == 'brother/sister' ? 'selected' : '' }}>Brother/Sister</option>
                                                             <option value="cousin/niece" {{ old('nk_relationship') == 'cousin/niece' ? 'selected' : '' }}>Cousin/Niece</option>
-                                                            <option value="friend" {{ old('nk_relationship') == 'friend' ? 'selected' : '' }}>Close Friend</option>
+                                                            <option value="friend" {{ old('nk_relationship') == 'friend' ? 'selected' : '' }}>Close F riend</option>
                                                         </select>
                                                         @error('nk_relationship')
                                                             <span class="invalid-feedback" role="alert">
@@ -426,7 +426,7 @@
                                                         <p class="mb-1 fs-14">Thank you for completing your registration.</p>
                                                         <p class="text-muted">Your account has been successfully set up and is now ready for use</p>
                                                     </div>
-                                                    <button class="btn btn-primary" type="submit">Proceed to Dashboard</button>
+                                                    <button class="btn btn-primary" type="submit">Complete Registration</button>
                                                 </div>
                                             </div>
                                         </div>

@@ -40,7 +40,7 @@
                         <form class="d-inline" method="POST" action="{{ route('verification.verify.code') }}">
                             <div class="col-xl-12 mb-2">
                                 @csrf
-                                <label for="lockscreen-password" class="form-label text-default">OTP</label>
+                                <label for="lockscreen-password" class="form-label text-default">Passcode</label>
                                 <div class="input-group">
                                     <input name="otp" required value="{{ old('otp') }}" type="number" class="form-control" id="lockscreen-password" placeholder="Enter code..." maxlength="6">
                                     <a href="javascript:void(0);" class="input-group-text text-muted" onclick="createpassword('lockscreen-password',this)"><i class="ri-eye-off-line align-middle"></i></a>
@@ -60,7 +60,7 @@
                         </form>
                     </div>
                     <div class="text-center mt-3 mb-1">
-                        <span class="text-muted fs-12">Hello! <strong> {{ auth()->user()->first_name }} {{ auth()->user()->last_name }} ({{ auth()->user()->email }})</strong></span>
+                        <span class="text-muted fs-12">Hello! <strong> {{ auth()->user()->first_name }} {{ auth()->user()->last_name }} </strong></span>
                     </div>
                     <div class="mx-auto d-flex text-center">
                         <div class="d-flex align-items-center text-cente px-auto mx-auto">

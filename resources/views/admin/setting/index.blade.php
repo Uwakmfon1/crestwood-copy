@@ -54,7 +54,7 @@
                             </div>
 
                             <div class="mb-3">
-                                <label for="network" class="form-label">Network Address</label>
+                                <label for="network" class="form-label">Network</label>
                                 <input type="text" name="network" id="networks" class="form-control" placeholder="Enter Network" value="{{ old('network') }}">
                                 @error('network')
                                     <small class="text-danger">{{ $message }}</small>
