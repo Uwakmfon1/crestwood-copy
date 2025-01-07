@@ -135,7 +135,7 @@
                                 <div class="d-flex justify-content-center mx-auto my-2">
                                     <div id="qr-code"></div>
                                 </div>
-                                <p class="text-center fs-12 fw-medium">Use the QR code or wallet address below to send your selected cryptocurrency. Double-check all details before confirming the transaction on your wallet.</p>
+                                <p class="text-center fs-12 fw-medium mt-3 pt-2">Use the QR code or wallet address below to send your selected cryptocurrency. Double-check all details before confirming the transaction on your wallet.</p>
                             </div>
 
                             <div class="row d-flex justify-content-center mx-auto" style="max-width: 600px;">
