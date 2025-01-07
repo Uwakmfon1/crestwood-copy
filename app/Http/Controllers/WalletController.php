@@ -95,7 +95,7 @@ class WalletController extends Controller
             'alignedInvestments' => $alignedInvestments->values(),
             'alignedTrading' => $alignedTrading->values(),
             'lockedFunds' => $lockedFunds,
-            'performance' => $netGains,
+            'performance' => $netGains - $availableCash,
             'performancePer' => $performancePercentage,
         ]);
     }
