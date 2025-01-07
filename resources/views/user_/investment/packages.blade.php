@@ -72,7 +72,7 @@
         <!-- Start:: row-1 -->
         <div class="row d-flex flex-wrap">
             @foreach($packages as $package)
-                <div class="col-xl-4 col-lg-4 col-md-6 col-sm-6 col-12 mb-lg-0 mb-4 d-flex align-items-stretch">
+                <div class="col-xl-4 col-lg-4 col-md-6 col-sm-6 col-12 mb-lg-0 mb-4 d-flex">
                     <div class="card custom-card card-style-2 flex-grow-1"> 
                         <div class="card-body p-0"> 
                             <span class="ribbon-4 ribbon-secondary top-left">
@@ -111,7 +111,7 @@
                                 </div> 
                             </div> 
                         </div> 
-                        <div class="card-footer border-top-0 d-grid"> 
+                        <div class="card-footer border-top-0 d-grid mt-0 pt-0"> 
                             <div class="d-flex align-items-center text-center justify-content-between py-2"> 
                                 <span class="mt-">
                                     <span class="fs-20 fw-semibold text-primary">
