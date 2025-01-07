@@ -99,7 +99,7 @@
                                                 </span>
                                             </div> 
                                         </div> 
-                                        <div class="d-flex align-items-center justify-content-between"> 
+                                        <div class="d-flex align-items-center justify-content-between mt-1"> 
                                             <h6 class="truncate-2-lines mb-1 fw-semibold fs-16">
                                                 <a href="/invest/{{ $package['name'] }}">{{ $package->name }}</a> 
                                             </h6>
@@ -111,9 +111,9 @@
                                 </div> 
                             </div> 
                         </div> 
-                        <div class="card-footer border-top-0 pt-0 d-grid"> 
+                        <div class="card-footer border-top-0 d-grid"> 
                             <div class="d-flex align-items-center text-center justify-content-between py-2"> 
-                                <span class="mt-1">
+                                <span class="mt-">
                                     <span class="fs-20 fw-semibold text-primary">
                                         {{ number_format($package->min_amount, 2) }} <span class="fs-14 text-muted">USD</span> 
                                     </span>
