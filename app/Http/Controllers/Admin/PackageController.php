@@ -5,8 +5,6 @@ namespace App\Http\Controllers\Admin;
 use App\Models\Plan;
 use App\Models\Package;
 use Illuminate\Http\Request;
-// use Intervention\Image\Image;
-use Intervention\Image\Facades\Image;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
 
@@ -174,18 +172,9 @@ class PackageController extends Controller
 
     protected function uploadPackageImageAndReturnPathToSave($image): string
     {
-        $destinationPath = 'assets/packages'; // Upload path
-        $fileName = auth()->user()['id'] . '-' . time() . '.' . $image->getClientOriginalExtension();
-        $filePath = $destinationPath . "/" . $fileName;
-
-        // Resize and save the image
-        $resizedImage = Image::make($image->getRealPath())->fit(300, 200, function ($constraint) {
-            $constraint->aspectRatio();
-            $constraint->upsize();
-        });
-
-        $resizedImage->save(public_path($filePath));
-
-        return $filePath;
+        $destinationPath = 'assets/packages'; // upload path
+        $transferImage = \auth()->user()['id'].'-'. time() . '.' . $image->getClientOriginalExtension();
+        $image->move($destinationPath, $transferImage);
+        return $destinationPath ."/".$transferImage;
     }
 }
