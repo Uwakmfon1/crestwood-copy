@@ -553,7 +553,7 @@
 
                                                     <div class="register-page my-4">
                                                         <div class="fs-15 fw-medium d-sm-flex d-block align-items-center justify-content-between mb-3">
-                                                            <div>Next of kin:</div>
+                                                            <div>Emergency Contact:</div>
                                                         </div>
                                                         <div class="row gy-3">
                                                             <div class="col-xl-6">

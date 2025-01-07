@@ -145,6 +145,7 @@ class SettingController extends Controller
             'bank_name' => ['required'],
             'bank_address' => ['required'],
             'swift_code' => ['required'],
+            'routing' => ['required'],
             'bank_reference' => ['required'],
             'bank_note_initial' => ['required'],
             'bank_note_final' => ['required'],
@@ -161,6 +162,7 @@ class SettingController extends Controller
             'bank_address' => $request['bank_address'],
             'swift_code' => $request['swift_code'],
             'bank_reference' => $request['bank_reference'],
+            'routing' => $request['routing'],
             'bank_note_initial' => $request['bank_note_initial'],
             'bank_note_final' => $request['bank_note_final'],
         ]))

@@ -59,7 +59,11 @@
                                                         <a class="dropdown-item d-flex align-items-center" href="{{ route('admin.packages.edit', $package['id']) }}"><i data-feather="edit-2" class="icon-sm mr-2"></i> <span class="">Edit</span></a>
                                                         @endcan
                                                         <a class="dropdown-item d-flex align-items-center" href="{{ route('admin.toggle.packages', $package['id']) }}" onclick="event.preventDefault(); confirmFormSubmit('togglePackage{{ $package['id'] }}')">
-                                                            <i data-feather="check" class="icon-sm mr-2"></i> @if($package['investment'] == 'enabled') Diactivate @else Activate @endif
+                                                             @if($package['investment'] == 'enabled') 
+                                                                <i data-feather="x" class="icon-sm mr-2"></i>Diactivate 
+                                                            @else 
+                                                                <i data-feather="check" class="icon-sm mr-2"></i>Activate 
+                                                            @endif
                                                         </a>
                                                         @can('Delete Packages')
                                                         <a class="dropdown-item d-flex align-items-center" href="{{ route('admin.packages.destroy', $package['id']) }}" onclick="event.preventDefault(); confirmFormSubmit('deletePackage{{ $package['id'] }}')"><i data-feather="delete" class="icon-sm mr-2"></i> <span class="">Delete</span></a>

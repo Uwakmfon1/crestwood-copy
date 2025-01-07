@@ -226,6 +226,14 @@
                                                 <i class="fe fe-info"></i>
                                             </a>
                                         </div>
+                                        <div class="input-group my-1">
+                                            <button type="button" class="input-group-text btn btn-light-light btn-wave fs-10">Routing Number</button>
+                                            <input type="text" name="routing" class="form-control fw-bold" placeholder="Enter Method..." aria-label="Stock Quantity" value="{{ $setting->routing }}" disabled>
+                                            <!-- <button type="button" class="input-group-text btn btn-dark-light btn-wave copy-btn text-primary fs-13"><i class="ri-file-copy-fill text-primary me-2"></i> Copy</button> -->
+                                            <!-- <a href="javascript:void(0);" data-bs-toggle="tooltip" data-bs-custom-class="tooltip-dark" title="Include this reference in your bank transfer to ensure proper allocation" class="text-muted input-group-text btn btn-dark-light btn-wave">
+                                                <i class="fe fe-info"></i>
+                                            </a> -->
+                                        </div>
                                     </div>
                                     <div class="col-xl-12 my-3" style="max-width: 500px;">
                                         <div class="row">

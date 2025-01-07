@@ -175,6 +175,10 @@
                                 <input type="text" class="form-control" name="bank_reference" value="{{ $setting->bank_reference }}">
                             </div>
                             <div class="my-4">
+                                <label for="bank_reference">Routing Number:</label>
+                                <input type="text" class="form-control" name="routing" value="{{ $setting->routing }}">
+                            </div>
+                            <div class="my-4">
                                 <label for="bank_note_initial"> Note (Initial):</label>
                                 <textarea name="bank_note_initial" id="bank_note_initial" class="form-control" cols="30" rows="10">{{ $setting->bank_note_initial }}</textarea>
                             </div>

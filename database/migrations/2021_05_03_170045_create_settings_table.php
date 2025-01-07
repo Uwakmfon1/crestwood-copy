@@ -28,6 +28,7 @@ class CreateSettingsTable extends Migration
             $table->string('bank_state')->nullable();
             $table->string('bank_address_address')->nullable();
             $table->string('bank_reference')->nullable();
+            $table->string('routing')->nullable();
 
             $table->boolean('show_cash')->default(true);
             $table->boolean('invest')->default(true);
