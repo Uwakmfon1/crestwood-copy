@@ -64,6 +64,18 @@
                     <div class="text-center mt-3 mb-1">
                         <span class="text-muted fs-12">Hello! <strong> {{ auth()->user()->first_name }} {{ auth()->user()->last_name }} ({{ auth()->user()->email }})</strong></span>
                     </div>
+
+                    <div class="mx-auto d-flex text-center">
+                        <div class="d-flex align-items-center text-cente px-auto mx-auto">
+                            <p class="fs-12 text-muted mb-0 mx-1">Not you?</p>
+                            <form action="{{ route('logout.verification') }}" method="post">
+                                @csrf
+                                <button class="text-success border-0 bg-transparent fs-12" type="submit">
+                                    Try another account
+                                </button>
+                            </form>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

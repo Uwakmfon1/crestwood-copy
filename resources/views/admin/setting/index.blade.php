@@ -100,7 +100,7 @@
                             <h6 class="card-title">Edit Note</h6>
                             <div class="my-4">
                                 <label for="crypto_note">Note:</label>
-                                <textarea name="crypto_note" id="crypto_note" class="form-control" cols="50" rows="40">{{ $setting->crypto_note }}</textarea>
+                                <textarea name="crypto_note" id="crypto_note" class="form-control" cols="50" rows="20">{{ $setting->crypto_note }}</textarea>
                             </div>
 
                             <button type="submit" class="btn btn-primary">Update Settings</button>

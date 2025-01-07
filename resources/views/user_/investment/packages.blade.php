@@ -31,6 +31,14 @@
         margin-top: auto;
     }
 
+    .truncate {
+        display: -webkit-box;
+        -webkit-line-clamp: 1;
+        -webkit-box-orient: vertical;
+        overflow: hidden !important;
+        text-overflow: ellipsis;
+    }
+
 </style>
 
 <!-- Start::app-content -->
@@ -100,8 +108,8 @@
                                 </div> 
                             </div> 
                         </div> 
-                        <div class="card-footer border-top-0 pt-0 text-center d-grid"> 
-                            <div class="d-flex align-items-center justify-content-between py-2"> 
+                        <div class="card-footer border-top-0 pt-0 d-grid"> 
+                            <div class="d-flex align-items-center text-center justify-content-between py-2"> 
                                 <span class="mt-1">
                                     <span class="fs-20 fw-semibold text-primary">
                                         {{ number_format($package->min_amount, 2) }} <span class="fs-14 text-muted">USD</span> 
@@ -111,6 +119,9 @@
                                         {{ number_format($package->max_amount, 2) }} <span class="fs-14 text-muted">USD</span> 
                                     </span>
                                 </span>
+                            </div>
+                            <div>
+                                <p class="text-muted truncate">{{ $package->description }}</p>
                             </div>
                             <a href="/invest/{{ $package['name'] }}" class="btn btn-primary-light">
                                 Start Investment
