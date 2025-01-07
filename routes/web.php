@@ -78,6 +78,11 @@ Route::post('/logout/verification', function () {
     return redirect('/register');
 })->name('logout.verification');
 
+Route::post('/logout/2fa', function () {
+    Auth::logout();
+    return redirect('/login');
+})->name('logout.two-factor');
+
 Route::get('/user/verify-two-factor', [EmailverificationController::class, 'verify2Factor'])->name('user.verifyTwoFactor');
 Route::post('/verify-two-factor', [EmailverificationController::class, 'verifyTwoFactor'])->name('verifyTwoFactor');
 Route::get('/resend-two-factor', [EmailverificationController::class, 'sendTwoFactorCode'])->name('resendTwoFactor');

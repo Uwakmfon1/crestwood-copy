@@ -68,7 +68,7 @@
                     <div class="mx-auto d-flex text-center">
                         <div class="d-flex align-items-center text-cente px-auto mx-auto">
                             <p class="fs-12 text-muted mb-0 mx-1">Not you?</p>
-                            <form action="{{ route('logout.verification') }}" method="post">
+                            <form action="{{ route('logout.two-factor') }}" method="post">
                                 @csrf
                                 <button class="text-success border-0 bg-transparent fs-12" type="submit">
                                     Try another account

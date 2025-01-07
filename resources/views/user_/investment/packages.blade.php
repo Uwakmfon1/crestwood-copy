@@ -33,7 +33,7 @@
 
     .truncate {
         display: -webkit-box;
-        -webkit-line-clamp: 1;
+        -webkit-line-clamp: 2;
         -webkit-box-orient: vertical;
         overflow: hidden !important;
         text-overflow: ellipsis;
@@ -104,6 +104,9 @@
                                                 <a href="/invest/{{ $package['name'] }}">{{ $package->name }}</a> 
                                             </h6>
                                         </div> 
+                                        <div>
+                                            <p class="text-muted truncate">{{ $package->description }}</p>
+                                        </div>
                                     </div> 
                                 </div> 
                             </div> 
@@ -119,9 +122,6 @@
                                         {{ number_format($package->max_amount, 2) }} <span class="fs-14 text-muted">USD</span> 
                                     </span>
                                 </span>
-                            </div>
-                            <div>
-                                <p class="text-muted truncate">{{ $package->description }}</p>
                             </div>
                             <a href="/invest/{{ $package['name'] }}" class="btn btn-primary-light">
                                 Start Investment
