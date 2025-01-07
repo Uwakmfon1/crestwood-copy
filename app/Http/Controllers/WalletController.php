@@ -20,46 +20,36 @@ class WalletController extends Controller
     public function index()
     {
         $user = auth()->user();
+        $wallet = $user->wallet;
 
-        $savings = $user->wallet->save;
-        $investment = $user->wallet->invest;
-        $trading = $user->wallet->trade;
-        $wallet = $user->wallet->balance;
-        $locked = ($user->wallet->invest + $user->wallet->trade + $user->wallet->save);  // $user->wallet->locked;
-
-        $ledgerBalance = $user->investments()->where('status', 'active')->sum('total_return');
-        $transactions = $user->transaction(); 
-
-        $performance = $user->transaction()->where('method', 'credit')->sum('amount') - $user->transaction()->where('method', 'debit')->sum('amount');
-
-        $performancePer = ($user->transaction()->where('method', 'credit')->sum('amount') ?? 1 / $user->transaction()->where('method', 'debit')->sum('amount') ?? 1) * 100;
-
-
-        // dd($transactions->get());
-
-        $availableCash = ($wallet + ($savings + $investment + $trading));
-
-        // Group transactions by type (save, invest, trade) and by date
-        $transact = $user->transaction()
-        ->select(
-            DB::raw('DATE(created_at) as date'),
-            'type',
-            DB::raw('SUM(amount) as total_amount')
-        )
-        ->groupBy('type', DB::raw('DATE(created_at)'))
-        ->orderBy(DB::raw('DATE(created_at)'), 'asc')
+        // Fetch transactions directly from the `ledgers` table
+        $transactions = Ledger::where('ledgerable_type', 'App\Models\Wallet') // Adjust if needed
+        ->where('ledgerable_id', $wallet->id)
+        ->latest() // Apply latest() for ordering
         ->get();
 
-        // Prepare data for the chart
-        $alignedSavings = $transact->where('type', 'save')->pluck('total_amount');
-        $alignedInvestments = $transact->where('type', 'invest')->pluck('total_amount');
-        $alignedTrading = $transact->where('type', 'trade')->pluck('total_amount');
-        $dates = $transact->pluck('date')->unique()->values(); // Get unique dates
+        // Calculate total gains and losses
+        $totalCredits = $transactions->where('type', 'credit')->sum('amount');
+        $totalDebits = $transactions->where('type', 'debit')->sum('amount');
+        $netGains = $totalCredits - $totalDebits;
 
+        // Calculate performance percentage
+        $initialBalance = $wallet->created_at_balance ?? 0; // Ensure `created_at_balance` exists
+        $performancePercentage = $initialBalance > 0
+        ? round(($netGains / $initialBalance) * 100, 2) // Rounded to 2 decimal places
+        : null;
+
+
+        // Overall available funds
+        $savings = $wallet->save;
+        $investment = $wallet->invest;
+        $trading = $wallet->trade;
+        $availableCash = $wallet->balance + $savings + $investment + $trading;
+
+        // Locked funds (investments, savings, trading)
         $inv = $user->investments()->where('status', 'active')->sum('amount');
-
         $sav = $user->savings()
-            ->with(['savingsTransactions' => function($query) {
+            ->with(['savingsTransactions' => function ($query) {
                 $query->where('type', 'debit')->where('status', 'success');
             }])
             ->get()
@@ -68,29 +58,45 @@ class WalletController extends Controller
             ->sum('amount') ?? 0;
 
         $trd = $user->trades('stocks')->sum('amount') + $user->trades('crypto')->sum('amount');
+        $lockedFunds = $inv + $sav + $trd;
 
-        $lockedFunds = ($inv + $sav + $trd);
+        // Group transactions by type and date
+        $transact = $user->transaction()
+            ->select(
+                DB::raw('DATE(created_at) as date'),
+                'type',
+                DB::raw('SUM(amount) as total_amount')
+            )
+            ->groupBy('type', DB::raw('DATE(created_at)'))
+            ->orderBy(DB::raw('DATE(created_at)'), 'asc')
+            ->get();
 
-        // Pass data to view
-        return view('user_.wallet.index', [ 
-            'title' => 'Wallets', 
-            'setting' => Setting::all()->first(), 
-            'transactions' => $transactions->latest()->paginate(10),
-            'ledgerBalance' => $ledgerBalance,
+        $alignedSavings = $transact->where('type', 'save')->pluck('total_amount');
+        $alignedInvestments = $transact->where('type', 'invest')->pluck('total_amount');
+        $alignedTrading = $transact->where('type', 'trade')->pluck('total_amount');
+        $dates = $transact->pluck('date')->unique()->values();
+
+        $transaction = $user->transaction(); 
+
+        // Pass data to the view
+        return view('user_.wallet.index', [
+            'title' => 'Wallets',
+            'setting' => Setting::all()->first(),
+            'transactions' => $transaction->latest()->paginate(10),
+            'ledgerBalance' => $user->investments()->where('status', 'active')->sum('total_return'),
             'savings' => $savings,
             'trading' => $trading,
             'investment' => $investment,
-            'locked' => $locked,
+            'locked' => $lockedFunds,
             'wallet' => $availableCash,
-            'cash' => $wallet,
-            // Pass aligned data and dates to view
+            'cash' => $wallet->balance,
             'dates' => $dates,
             'alignedSavings' => $alignedSavings->values(),
             'alignedInvestments' => $alignedInvestments->values(),
             'alignedTrading' => $alignedTrading->values(),
             'lockedFunds' => $lockedFunds,
-            'performance' => $performance,
-            'performancePer' => $performancePer,
+            'performance' => $netGains,
+            'performancePer' => $performancePercentage,
         ]);
     }
 
