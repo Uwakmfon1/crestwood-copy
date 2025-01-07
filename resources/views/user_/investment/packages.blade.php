@@ -75,7 +75,7 @@
                 <div class="col-xl-4 col-lg-4 col-md-6 col-sm-6 col-12 mb-lg-0 mb-4 d-flex">
                     <div class="card custom-card card-style-2 flex-grow-1"> 
                         <div class="card-body p-0"> 
-                            <span class="ribbon-4 ribbon-secondary top-left">
+                            <span class="ribbon-4 ribbon-primary top-left">
                                 <span>{{ $package->roi }}%</span>
                             </span>
                             <div class="card-img-top"> 
