@@ -129,8 +129,11 @@
                         <div class=" mx-auto" style="max-width: 600px;">
                             <div class="my-4">
                                 <p class="text-center fs-12 fw-medium">To complete your deposit, scan the QR code or copy the wallet address below. Ensure the selected network matches your transaction to avoid errors or loss of funds.</p>
-                                <div class="d-flex justify-content-center mx-auto my-2">
+                                <!-- <div class="d-flex justify-content-center mx-auto my-2">
                                     <img width="130" height="130" src="https://upload.wikimedia.org/wikipedia/commons/5/5e/QR_Code_example.png" alt="...">
+                                </div> -->
+                                <div class="d-flex justify-content-center mx-auto my-2">
+                                    <div id="qr-code"></div>
                                 </div>
                                 <p class="text-center fs-12 fw-medium">Use the QR code or wallet address below to send your selected cryptocurrency. Double-check all details before confirming the transaction on your wallet.</p>
                             </div>
@@ -436,6 +439,7 @@
 </div>
 
 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
 
 
 <script>
@@ -581,6 +585,63 @@
                 }
             });
         }
+
+        // Function to fetch address and generate QR code
+        function fetchAddress(networkId) {
+            $.ajax({
+                url: `/api/deposit/address/${networkId}`,
+                type: 'GET',
+                success: function (response) {
+                    const qrCodeContainer = document.getElementById("qr-code");
+                    qrCodeContainer.innerHTML = ""; // Clear existing QR code
+
+                    if (response.data && response.data.address) {
+                        const walletAddress = response.data.address;
+
+                        // Display the wallet address in the input field
+                        $('#address-display').val(walletAddress).prop('disabled', true);
+
+                        // Generate QR Code for the wallet address
+                        new QRCode(qrCodeContainer, {
+                            text: walletAddress,
+                            width: 130,
+                            height: 130,
+                            colorDark: "#000000",
+                            colorLight: "#ffffff",
+                            correctLevel: QRCode.CorrectLevel.H,
+                        });
+                    } else {
+                        $('#address-display').val('Address not available').prop('disabled', true);
+
+                        // Generate a default QR code for 'Select a network first'
+                        new QRCode(qrCodeContainer, {
+                            text: "Select a network first",
+                            width: 130,
+                            height: 130,
+                            colorDark: "#000000",
+                            colorLight: "#ffffff",
+                            correctLevel: QRCode.CorrectLevel.H,
+                        });
+                    }
+                },
+                error: function () {
+                    $('#address-display').val('Error fetching address').prop('disabled', true);
+
+                    // Generate a default QR code for error message
+                    const qrCodeContainer = document.getElementById("qr-code");
+                    qrCodeContainer.innerHTML = ""; // Clear existing QR code
+                    new QRCode(qrCodeContainer, {
+                        text: "Error fetching address",
+                        width: 130,
+                        height: 130,
+                        colorDark: "#000000",
+                        colorLight: "#ffffff",
+                        correctLevel: QRCode.CorrectLevel.H,
+                    });
+                },
+            });
+        }
+
     });
 
     document.getElementById('selectCrypto').addEventListener('click', function() {
