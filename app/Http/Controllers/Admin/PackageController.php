@@ -88,7 +88,7 @@ class PackageController extends Controller
             'name' => ['required', 'unique:plans,name,' . $id],
             'roi' => ['required', 'numeric'],
             'description' => ['required'],
-            'img' => ['required'],
+            'img' => ['sometimes'],
         ]);
 
         if ($validator->fails()) {
