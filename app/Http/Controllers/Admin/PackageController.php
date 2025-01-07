@@ -145,6 +145,20 @@ class PackageController extends Controller
         return back()->with('error', 'Error updating package');
     }
 
+    public function togglePackage(Package $package): \Illuminate\Http\RedirectResponse
+    {
+
+        if($package->investment == 'enabled') {
+            $package->update(['investment' => 'disabled']);
+            return redirect()->route('admin.packages')->with('success', 'Package disabled successfully');
+        } else {
+            $package->update(['investment' => 'enabled']);
+            return redirect()->route('admin.packages')->with('success', 'Package enabled successfully');
+        }
+
+        return back()->with('error', 'Error updating package');
+    }
+
     public function destroy(Package $package)
     {
         // check if package doesn't have investment

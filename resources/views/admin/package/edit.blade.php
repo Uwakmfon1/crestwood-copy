@@ -46,7 +46,7 @@
                                 </strong>
                             @enderror
                         </div>
-                        <div class="form-group">
+                        {{-- <div class="form-group">
                             <label for="img">Image URL</label>
                             <input type="text" name="img" class="form-control" value="{{ old('img', $package->img) }}" id="img" placeholder="Image URL...">
                             @error('name')
@@ -54,7 +54,7 @@
                                     {{ $message }}
                                 </strong>
                             @enderror
-                        </div>
+                        </div> --}}
                         <button type="button" onclick="confirmFormSubmit('editPackageForm')" id="submitButton" class="btn btn-block btn-primary mr-2">Update Plan</button>
                     </form>
 

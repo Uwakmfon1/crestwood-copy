@@ -139,4 +139,5 @@ Route::group(['middleware' => ['auth:admin', 'active_admin']], function (){
     Route::delete('/networks/{network}/destroy', [App\Http\Controllers\Admin\SettingController::class, 'destroyNetwork'])->name('destroy.networks');
     Route::post('/networks/store', [App\Http\Controllers\Admin\SettingController::class, 'storeNetwork'])->name('store.networks'); 
     Route::post('/setting/note', [App\Http\Controllers\Admin\SettingController::class, 'storeNote'])->name('settings.notes'); 
+    Route::post('/toggle/{package}/', [App\Http\Controllers\Admin\PackageController::class, 'togglePackage'])->name('toggle.packages'); 
 });

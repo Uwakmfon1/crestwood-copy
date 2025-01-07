@@ -22,6 +22,14 @@
 @endsection
 
 @section('content')
+<style>
+    .truncate {
+        max-width: 150px; /* Adjust as needed */
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+</style>
     <div class="row">
         <div class="col-md-12 grid-margin stretch-card">
             <div class="card">
@@ -82,7 +90,7 @@
                 },
                 "columns": [
                     { "data": "sn" },
-                    { "data": "name" },
+                    { "data": "name", "className": "truncate"},
                     { "data": "email" },
                     { "data": "phone" },
                     { "data": "verification" },
