@@ -128,7 +128,7 @@
                         </div>
                         <div class=" mx-auto" style="max-width: 600px;">
                             <div class="my-4">
-                                <p class="text-center fs-12 fw-medium">To complete your deposit, scan the QR code or copy the wallet address below. Ensure the selected network matches your transaction to avoid errors or loss of funds.</p>
+                                <p id="qr-note" class="text-center fs-12 fw-medium">Select Coin</p>
                                 <!-- <div class="d-flex justify-content-center mx-auto my-2">
                                     <img width="130" height="130" src="https://upload.wikimedia.org/wikipedia/commons/5/5e/QR_Code_example.png" alt="...">
                                 </div> -->
@@ -496,7 +496,8 @@
             } else {
                 // Reset if no coin is selected
                 $('#network-select').html('<option value="">Select Network</option>').prop('disabled', true);
-                $('#address-display').val('Select network first').prop('disabled', true);
+                $('#address-display').val('Select Network').prop('disabled', true);
+                $('#qr-note').html('Select Network');
                 resetDisplay();
             }
         });
@@ -506,8 +507,10 @@
             const networkId = $(this).val();
             if (networkId) {
                 fetchAddress(networkId);
+                
+                $('#qr-note').html('To complete your deposit, scan the QR code or copy the wallet address below. Ensure the selected network matches your transaction to avoid errors or loss of funds.');
             } else {
-                $('#address-display').val('Select network first').prop('disabled', true);
+                $('#address-display').val('Select Network').prop('disabled', true);
             }
         });
 
@@ -566,7 +569,8 @@
                         options += `<option value="${network.id}">${network.name} </option>`;
                     });
                     $('#network-select').html(options).prop('disabled', false);
-                    $('#address-display').val('Select network first').prop('disabled', true);
+                    $('#address-display').val('Select Network').prop('disabled', true);
+                    $('#qr-note').html('Select Network');
                 }
             });
         }
