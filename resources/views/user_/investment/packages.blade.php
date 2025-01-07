@@ -41,7 +41,7 @@
 
     .image-box {
       width: 100%;
-      height: 200px; /* Set your desired height */
+      height: 220px; /* Set your desired height */
       overflow: hidden; /* Ensures the image doesn't overflow the box */
     }
     .image-box img {
@@ -90,7 +90,7 @@
                                 <span>{{ $package->roi }}%</span>
                             </span>
                             <div class="card-img-top"> 
-                                <a href="product-details.html" class="stretched-link"></a> 
+                                <a href="/invest/{{ $package['name'] }}" class="stretched-link"></a> 
                                 <div class="img-box-2 p-2 image-box"> 
                                     <img src="{{ $package->image }}" alt="img" class=" img-fluid w-100 rounded" style="max-height: 250px;"> 
                                 </div> 
