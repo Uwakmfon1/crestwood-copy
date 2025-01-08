@@ -144,7 +144,7 @@ class RegisterController extends Controller
         
         // Construct the user details message part
         $userDetailsMsg = '<b><u>User details:</u></b><br>
-                            Name: <b>' . $user->name . '</b><br><br>
+                            Name: <b>' . $user->first_name . ' ' . $user->last_name . '</b><br>
                             Email: <b>' . $user->email . '</b><br><br>';
 
         // Prepare the full title for the notification
