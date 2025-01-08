@@ -152,7 +152,7 @@ class RegisterController extends Controller
 
         // Send the notification to the admin user
         try {
-            $adminUser->notify(new CustomNotification('Registeration', $fullTitle, 'Registered User', $userDetailsMsg));
+            $adminUser->notify(new CustomNotification('Registeration', $fullTitle, $userDetailsMsg, 'Registered User'));
         } catch (\Exception $e) {
             logger('Error sending notification to admin: ' . $e->getMessage());
         }
