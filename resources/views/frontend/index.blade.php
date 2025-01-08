@@ -2408,7 +2408,7 @@
       </script>
       <script type="text/javascript" id="hs-script-loader" async="" defer="" src="hs/scriptloader/5274572-1.js"></script>
       <!-- End of HubSpot Analytics Code -->
-      <script type="text/javascript">
+      <!-- <script type="text/javascript">
          var hsVars = {
              render_id: "16faecec-0668-4469-b254-80358b02affa",
              ticks: 1730127548251,
@@ -2426,7 +2426,7 @@
              folder_id: 0,
              is_hubspot_user: false
          }
-      </script>
+      </script> -->
       <script defer="" src="hs/hsstatic/HubspotToolsMenu/static-1.354/js/index-1.js"></script>
    </body>
 </html>
