@@ -81,62 +81,28 @@
                                         </div>
                                         <!-- Phone Number -->
                                         <div class="col-xl-6">
-    <label for="phone" class="form-label d-block">Phone Number</label>
-    <div class="input-group">
-        <select class="input-group-text text-start" 
-                id="phone-code" 
-                name="phone_code" 
-                style="width: 100px; font-size: 12px; padding: 0px 5px;">
-            <option value="">Loading...</option>
-        </select>
-        <input class="form-control" 
-               id="phone" 
-               type="number" 
-               name="phone" 
-               required 
-               value="{{ old('phone') }}" 
-               placeholder="Enter your phone number">
-    </div>
-    @error('phone')
-        <span class="text-danger">
-            <i class="fe fe-info fs-5 mx-1"></i><strong class="fs-10">{{ $message }}</strong>
-        </span>
-    @enderror
-</div>
-<script>
-document.addEventListener("DOMContentLoaded", function() {
-    const phoneCodeSelect = document.getElementById("phone-code");
-
-    // Fetch data from the REST Countries API
-    fetch("https://restcountries.com/v3.1/all")
-        .then(response => response.json())
-        .then(data => {
-            // Clear the loading text
-            phoneCodeSelect.innerHTML = "";
-
-            // Sort countries alphabetically
-            const sortedCountries = data.sort((a, b) => 
-                a.name.common.localeCompare(b.name.common)
-            );
-
-            // Populate the select dropdown with country phone codes
-            sortedCountries.forEach(country => {
-                if (country.idd && country.idd.root) {
-                    const phoneCode = country.idd.root + (country.idd.suffixes ? country.idd.suffixes[0] : "");
-                    const option = document.createElement("option");
-                    option.value = phoneCode;
-                    option.textContent = `${country.name.common} (${phoneCode})`;
-                    phoneCodeSelect.appendChild(option);
-                }
-            });
-        })
-        .catch(error => {
-            console.error("Error fetching phone codes:", error);
-            phoneCodeSelect.innerHTML = "<option value=''>Error loading data</option>";
-        });
-});
-</script>
-
+                                            <label for="phone" class="form-label d-block">Phone Number</label>
+                                            <div class="input-group">
+                                                <select class="input-group-text text-start" 
+                                                        id="phone-code" 
+                                                        name="phone_code" 
+                                                        style="width: 100px; font-size: 12px; padding: 0px 5px;">
+                                                    <option value="">Loading...</option>
+                                                </select>
+                                                <input class="form-control" 
+                                                    id="phone" 
+                                                    type="number" 
+                                                    name="phone" 
+                                                    required 
+                                                    value="{{ old('phone') }}" 
+                                                    placeholder="Enter your phone number">
+                                            </div>
+                                            @error('phone')
+                                                <span class="text-danger">
+                                                    <i class="fe fe-info fs-5 mx-1"></i><strong class="fs-10">{{ $message }}</strong>
+                                                </span>
+                                            @enderror
+                                        </div>
                                         <!-- Password -->
                                         <div class="col-xl-6">
                                             <label for="signin-password" class="form-label text-default d-block">Password</label>
@@ -190,6 +156,40 @@ document.addEventListener("DOMContentLoaded", function() {
         </div>
     </div>
 </div>
+
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+    const phoneCodeSelect = document.getElementById("phone-code");
+
+    // Fetch data from the REST Countries API
+    fetch("https://restcountries.com/v3.1/all")
+        .then(response => response.json())
+        .then(data => {
+            // Clear the loading text
+            phoneCodeSelect.innerHTML = "";
+
+            // Sort countries alphabetically
+            const sortedCountries = data.sort((a, b) => 
+                a.name.common.localeCompare(b.name.common)
+            );
+
+            // Populate the select dropdown with country phone codes
+            sortedCountries.forEach(country => {
+                if (country.idd && country.idd.root) {
+                    const phoneCode = country.idd.root + (country.idd.suffixes ? country.idd.suffixes[0] : "");
+                    const option = document.createElement("option");
+                    option.value = phoneCode;
+                    option.textContent = `${country.name.common} (${phoneCode})`;
+                    phoneCodeSelect.appendChild(option);
+                }
+            });
+        })
+        .catch(error => {
+            console.error("Error fetching phone codes:", error);
+            phoneCodeSelect.innerHTML = "<option value=''>Error loading data</option>";
+        });
+});
+</script>
 
 <!-- End::app-content -->
 @endsection
