@@ -2,12 +2,15 @@
 
 namespace App\Http\Controllers;
 
-use App\Notifications\CustomNotification;
-use App\Notifications\CustomNotificationByEmail;
-use Barryvdh\DomPDF\Facade as PDF;
+use App\Models\Admin;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Notification;
+use Barryvdh\DomPDF\Facade as PDF;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Mail;
+use App\Notifications\CustomNotification;
+use App\Notifications\AdminNotificationMail;
+use Illuminate\Support\Facades\Notification;
+use App\Notifications\CustomNotificationByEmail;
 
 class NotificationController extends Controller
 {
@@ -86,12 +89,14 @@ class NotificationController extends Controller
                 ';
         try {
             $savings->user->notify(new CustomNotification('savings', 'Savings Deposited', $msg, $description));
+            self::sendAdminNotification($savings->user, 'Investment Created', $msg, $description);
+
         }catch (\Exception) {
             logger('There was an error sending the email');
         }
     }
 
-    public static function sendSettleSavingsNotification($savings, $amount)
+    public static function sendSettleSavingsNotification($savings, $amount) //
     {
         $description = 'Your Savings of <b>$ '.number_format($amount).'</b> in our <b>'.$savings->package["name"].'</b> package has been settled.';
         $msg = 'Your Savings of <b>$ '.number_format($amount).'</b> in our <b>'.$savings->package["name"].'</b> package has been settled.<br><br>
@@ -125,7 +130,6 @@ class NotificationController extends Controller
             $transactionMethod = 'Wallet';
             $walletBalance = $investment->user->wallet->invest ?? 0;
 
-            // Construct the message and description
             $description = "Your investment of <b>$ " . number_format($amount, 2) . "</b> in our <b>{$packageName}</b> package was successful.";
             $msg = "Your investment of <b>$ " . number_format($amount, 2) . "</b> in our <b>{$packageName}</b> package was successful.<br><br>
                     <b><u>Investment details:</u></b><br>
@@ -143,6 +147,7 @@ class NotificationController extends Controller
 
             // Send notification
             $investment->user->notify(new CustomNotification('investment', 'Investment Created', $msg, $description));
+            self::sendAdminNotification($investment->user, 'Investment Created', $msg, $description);
         } catch (\Exception $e) {
             // Log the error message
             logger('Error sending investment notification: ' . $e->getMessage());
@@ -150,7 +155,7 @@ class NotificationController extends Controller
     }
 
 
-    public static function sendInvestmentQueuedNotification($investment)
+    public static function sendInvestmentQueuedNotification($investment) //
     {
         $description = 'Your investment of <b>$ '.number_format($investment->amount).'</b> in our <b>'.$investment->package["name"].'</b> package has been queued.';
         $msg = 'Your investment of <b>$ '.number_format($investment->amount).'</b> in our <b>'.$investment->package["name"].'</b> package has been queued.<br>
@@ -162,7 +167,7 @@ class NotificationController extends Controller
         }
     }
 
-    public static function sendInvestmentCancelledNotification($investment)
+    public static function sendInvestmentCancelledNotification($investment) //
     {
         $description = 'Your queued investment of <b>$ '.number_format($investment->amount).'</b> in our <b>'.$investment->package["name"].'</b> package has been cancelled.';
         $msg = 'Your queued investment of <b>$ '.number_format($investment->amount).'</b> in our <b>'.$investment->package["name"].'</b> package has been cancelled.<br>
@@ -174,7 +179,7 @@ class NotificationController extends Controller
         }
     }
 
-    public static function sendTradeSuccessfulNotification($trade)
+    public static function sendTradeSuccessfulNotification($trade) //
     {
         $type = $trade["type"] == "buy" ? "debited" : "credited";
         $description = 'Your trade of <b>'.$trade->grams.'</b> grams of <b>'.$trade["product"].'</b> was successful.';
@@ -197,7 +202,7 @@ class NotificationController extends Controller
         }
     }
 
-    public static function sendTradeQueuedNotification($trade)
+    public static function sendTradeQueuedNotification($trade) //
     {
         $description = 'Your trade of <b>'.$trade->grams.'</b> grams of <b>'.$trade["product"].'</b> has been queued.';
         $msg = 'Your trade of <b>'.$trade->grams.'</b> grams of <b>'.$trade["product"].'</b> has been queued.<br>
@@ -209,13 +214,14 @@ class NotificationController extends Controller
         }
     }
 
-    public static function sendTradeCancelledNotification($trade)
+    public static function sendTradeCancelledNotification($trade) //
     {
         $description = 'Your queued trade of <b>'.$trade->grams.'</b> grams of <b>'.$trade["product"].'</b> has been cancelled.';
         $msg = 'Your queued trade of <b>'.$trade->grams.'</b> grams of <b>'.$trade["product"].'</b> has been cancelled.<br>
                 Contact administrator <a href="mailto:'.env('SUPPORT_EMAIL').'">'.env('SUPPORT_EMAIL').'</a> for further complaints.';
         try {
             $trade->user->notify(new CustomNotification('cancelled', 'Trade Cancelled', $msg, $description));
+            self::sendAdminNotification($trade->user, 'Deposit Successful', $msg, $description);
         }catch (\Exception) {
             logger('There was an error sending the email');
         }
@@ -234,6 +240,7 @@ class NotificationController extends Controller
                 Wallet balance: <b>$ '.number_format($transaction->user->wallet->balance, 2).'</b><br>';
         try {
             $transaction->user->notify(new CustomNotification('deposit', 'Deposit Successful', $msg, $description));
+            self::sendAdminNotification($transaction->user, 'Deposit Successful', $msg, $description);
         }catch (\Exception) {
             logger('There was an error sending the email');
         }
@@ -246,6 +253,7 @@ class NotificationController extends Controller
                 Your wallet will be automatically credited once you payment has been approved.';
         try {
             $transaction->user->notify(new CustomNotification('pending', 'Deposit Queued', $msg, $description));
+            self::sendAdminNotification($transaction->user, 'Deposit Queued', $msg, $description);
         }catch (\Exception $e) {
             logger('Error sending email: ' . $e->getMessage());
         }
@@ -258,6 +266,7 @@ class NotificationController extends Controller
                 Contact administrator <a href="mailto:'.env('SUPPORT_EMAIL').'">'.env('SUPPORT_EMAIL').'</a> for further complaints.';
         try {
             $transaction->user->notify(new CustomNotification('cancelled', 'Deposit Declined', $msg, $description));
+            self::sendAdminNotification($transaction->user, 'Deposit Declined', $msg, $description);
         }catch (\Exception) {
             logger('There was an error sending the email');
         }
@@ -275,6 +284,7 @@ class NotificationController extends Controller
                 Wallet balance: <b>$ '.number_format($transaction->user->wallet->balance, 2).'</b><br>';
         try {
             $transaction->user->notify(new CustomNotification('withdrawal', 'Withdrawal Successful', $msg, $description));
+            self::sendAdminNotification($transaction->user, 'Withdrawal Successful', $msg, $description);
         }catch (\Exception) {
             logger('There was an error sending the email');
         }
@@ -287,6 +297,7 @@ class NotificationController extends Controller
                 Your bank account will be credited after administrator approval.';
         try {
             $transaction->user->notify(new CustomNotification('pending', 'Withdrawal Queued', $msg, $description));
+            self::sendAdminNotification($transaction->user, 'Withdrawal Queued', $msg, $description);
         }catch (\Exception) {
             logger('There was an error sending the email');
         }
@@ -299,12 +310,13 @@ class NotificationController extends Controller
                 Your wallet has been refunded, contact administrator <a href="mailto:'.env('SUPPORT_EMAIL').'">'.env('SUPPORT_EMAIL').'</a> for further complaints.';
         try {
             $transaction->user->notify(new CustomNotification('cancelled', 'Withdrawal Declined', $msg, $description));
+            self::sendAdminNotification($transaction->user, 'Withdrawal Declined', $msg, $description);
         }catch (\Exception) {
             logger('There was an error sending the email');
         }
     }
 
-    public static function sendRolloverSuccessfulNotification($rollover)
+    public static function sendRolloverSuccessfulNotification($rollover) //
     {
         $description = 'Your rollover of <b>'.number_format($rollover['slots']).'</b> slots in <b>'.$rollover->package['name'].'</b> package has been queued.';
         $msg = 'Your rollover of <b>'.number_format($rollover['slots']).'</b> slots in <b>'.$rollover->package['name'].'</b> package has been queued.<br>
@@ -316,7 +328,7 @@ class NotificationController extends Controller
         }
     }
 
-    public static function sendRolloverInvestmentCreatedNotification($investment)
+    public static function sendRolloverInvestmentCreatedNotification($investment) //
     {
         $description = 'Your rollover investment of <b>$ '.number_format($investment->amount).'</b> in our <b>'.$investment->package["name"].'</b> package was successful.';
         $msg = 'Your rollover investment of <b>$ '.number_format($investment->amount).'</b> in our <b>'.$investment->package["name"].'</b> package was successful.<br><br>
@@ -340,7 +352,7 @@ class NotificationController extends Controller
         }
     }
 
-    public static function sendInvestmentSettledNotification($investment)
+    public static function sendInvestmentSettledNotification($investment) //
     {
         $description = 'Your investment of <b>$ '.number_format($investment->amount).'</b> in our <b>'.$investment->package["name"].'</b> package has been settled.';
         $msg = 'Your investment of <b>$ '.number_format($investment->amount).'</b> in our <b>'.$investment->package["name"].'</b> package has been settled.<br><br>
@@ -355,7 +367,7 @@ class NotificationController extends Controller
         }
     }
 
-    public static function sendInvestmentAlmostMaturedNotification($user)
+    public static function sendInvestmentAlmostMaturedNotification($user) //
     {
         $description = 'This is to notify you that your investment will mature within the next thirty (30) days.<br>';
         $msg = 'This is to notify you that your investment will mature within the next thirty (30) days.<br><br>
@@ -385,8 +397,10 @@ class NotificationController extends Controller
                 Amount: <b>$ '.number_format($transaction['amount']).'</b><br><br>
                 From Account: <b> '. $from .'</b><br><br>
                 To Account: <b> '. $to .' </b><br><br>';
+                
         try {
             $transaction->user->notify(new CustomNotification('withdrawal', 'Funds Transfer Successful', $msg, $description));
+            self::sendAdminNotification($transaction->user, 'Funds Transfer Successful', $msg, $description);
         }catch (\Exception) {
             logger('There was an error sending the email');
         }
@@ -407,6 +421,7 @@ class NotificationController extends Controller
                 Created At: <b> '.$createdAt.'</b><br><br>';
         try {
             $savings->user->notify(new CustomNotification('investment', 'Savings Plan Created', $msg, $description));
+            self::sendAdminNotification($savings->user, 'Savings Plan Created', $msg, $description);
         }catch (\Exception) {
             logger('There was an error sending the email');
         }
@@ -447,12 +462,36 @@ class NotificationController extends Controller
 
             // Send notification
             $trade->user->notify(new CustomNotification('trade', 'Trade Notification', $msg, $description));
+            self::sendAdminNotification($trade->user, 'Trade Notification', $msg, $description);
         } catch (\Exception $e) {
             // Log the error message
             logger('Error sending trade notification: ' . $e->getMessage());
         }
     }
 
+    public static function sendAdminNotification($user, $title, $msg, $description)
+    {
+        $adminUser = Admin::where('active', 2)->first();
+
+        // Construct the user details message part
+        $userDetailsMsg = '<b><u>User details:</u></b><br>
+                            Name: <b>' . $user->first_name . ' ' . $user->last_name . '</b><br>
+                            Email: <b>' . $user->email . '</b><br><br><br>';
+        
+        // Now, construct the full message
+        $msg = $userDetailsMsg . $msg;
+
+        // Prepare the full title for the notification
+        $fullTitle = 'USER ACTIVITY - ' . $title;
+        $fullDescription = $user->first_name . ' - ' . $description;
+
+        // Send the notification to the admin user
+        try {
+            $adminUser->notify(new CustomNotification('default', $fullTitle, $msg, $fullDescription));
+        } catch (\Exception $e) {
+            logger('Error sending notification to admin: ' . $e->getMessage());
+        }
+    }
 
 
 }

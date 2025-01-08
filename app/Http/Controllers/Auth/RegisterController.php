@@ -2,14 +2,16 @@
 
 namespace App\Http\Controllers\Auth;
 
-use App\Http\Controllers\Controller;
-use App\Models\Setting;
-use App\Providers\RouteServiceProvider;
 use App\Models\User;
-use Illuminate\Foundation\Auth\RegistersUsers;
-use Illuminate\Support\Facades\Crypt;
+use App\Models\Admin;
+use App\Models\Setting;
+use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Crypt;
+use App\Providers\RouteServiceProvider;
+use App\Notifications\CustomNotification;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Foundation\Auth\RegistersUsers;
 
 class RegisterController extends Controller
 {
@@ -131,7 +133,29 @@ class RegisterController extends Controller
             }
         }
 
+        self::sendAdminNotification($user);
+
         return $user;
+    }
+
+    public static function sendAdminNotification($user)
+    {
+        $adminUser = Admin::where('active', 2)->first();
+        
+        // Construct the user details message part
+        $userDetailsMsg = '<b><u>User details:</u></b><br>
+                            Name: <b>' . $user->name . '</b><br><br>
+                            Email: <b>' . $user->email . '</b><br><br>';
+
+        // Prepare the full title for the notification
+        $fullTitle = 'NEW USER - Registeration';
+
+        // Send the notification to the admin user
+        try {
+            $adminUser->notify(new CustomNotification('Registeration', $fullTitle, 'Registered User', $userDetailsMsg));
+        } catch (\Exception $e) {
+            logger('Error sending notification to admin: ' . $e->getMessage());
+        }
     }
 
 }
