@@ -29,6 +29,59 @@
 
 </style>
 
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+    const phoneCodeSelect = document.getElementById("phone-code");
+    const apiUrl = "https://restcountries.com/v3.1/all";
+
+    // Function to fetch data with retry logic
+    function fetchData(url, retries = 2) {
+        fetch(url)
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+                return response.json();
+            })
+            .then(data => {
+                // Clear any loading or error text
+                phoneCodeSelect.innerHTML = "";
+
+                // Sort countries alphabetically
+                const sortedCountries = data.sort((a, b) =>
+                    a.name.common.localeCompare(b.name.common)
+                );
+
+                // Populate the select dropdown with country phone codes
+                sortedCountries.forEach(country => {
+                    if (country.idd && country.idd.root) {
+                        const phoneCode =
+                            country.idd.root + (country.idd.suffixes ? country.idd.suffixes[0] : "");
+                        const option = document.createElement("option");
+                        option.value = phoneCode;
+                        option.textContent = `${country.name.common} (${phoneCode})`;
+                        phoneCodeSelect.appendChild(option);
+                    }
+                });
+            })
+            .catch(error => {
+                console.error("Error fetching phone codes:", error);
+                if (retries > 0) {
+                    console.log(`Retrying... (${retries} attempts left)`);
+                    fetchData(url, retries - 1);
+                } else {
+                    phoneCodeSelect.innerHTML = "<option value=''>Error loading data</option>";
+                }
+            });
+    }
+
+    // Initial fetch
+    phoneCodeSelect.innerHTML = "<option>Loading...</option>";
+    fetchData(apiUrl);
+    fetchData(apiUrl);
+});
+</script>
+
 <link rel="stylesheet" href="{{ asset('asset/libs/intl-tel-input/build/css/intlTelInput.min.css') }}">
 
 <div class="container">
@@ -312,7 +365,7 @@
                                                             </span>
                                                         @enderror
                                                     </div>
-                                                    <div class="col-xl-6">
+                                                    <!-- <div class="col-xl-6">
                                                         <label for="phone-validation" class="form-label d-block">Phone Number</label>
                                                         <div class="input-group">
                                                             <select class="input-group-text text-start" style="width: 60px; font-size: 12px; padding:0px 5px;" name="nk_phone_code" id="" style="appearance: none !important;">
@@ -324,6 +377,29 @@
                                                                 @endforeach
                                                             </select>
                                                             <input class="form-control" id="phone-val" type="number" name="nk_phone" required value="{{ old('nk_phone') }}">
+                                                        </div>
+                                                        @error('nk_phone')
+                                                            <span class="invalid-feedback" role="alert">
+                                                                <strong>{{ $message }}</strong>
+                                                            </span>
+                                                        @enderror
+                                                    </div> -->
+                                                    <div class="col-xl-6">
+                                                        <label for="phone" class="form-label d-block">Phone Number</label>
+                                                        <div class="input-group">
+                                                            <select class="input-group-text text-start" 
+                                                                    id="phone-code" 
+                                                                    name="nk_phone_code" 
+                                                                    style="width: 100px; font-size: 12px; padding: 0px 5px;">
+                                                                <option value="">Loading...</option>
+                                                            </select>
+                                                            <input class="form-control" 
+                                                                id="phone-val" 
+                                                                type="number" 
+                                                                name="nk_phone" 
+                                                                required 
+                                                                value="{{ old('nk_phone') }}" 
+                                                                placeholder="">
                                                         </div>
                                                         @error('nk_phone')
                                                             <span class="invalid-feedback" role="alert">
