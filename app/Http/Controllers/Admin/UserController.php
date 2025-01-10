@@ -112,9 +112,7 @@ class UserController extends Controller
         if ($user->update($data)) {
             // Send notification to user
             NotificationController::sendIDApprovalNotification($user, $action);
-
-            // Success response
-            return back()->with('success', 'Profile updated successfully');
+            return back()->with('success', 'Identity updated successfully');
         }
 
         return back()->withInput()->with('error', 'Error updating profile');

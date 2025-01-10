@@ -716,12 +716,24 @@ class HomeController extends Controller
         }
 
         if ($request->screen == 'seven') {
+            $validator = Validator::make($request->all(), [
+                'id_type' => 'required',
+                'id_number' => 'required',
+                'front_id' => 'required',
+                'back_id' => 'required',
+            ]);
+
+            if ($validator->fails()){
+                return back()->withInput()->withErrors($validator)->with('error', 'Invalid input data');
+            }
+
             $user = auth()->user();
             $data = [
                 'id_type' => $request->id_type,
                 'id_number' => $request->id_number,
                 'front_id' => null,
                 'back_id' => null,
+                'is_id_approved' => 'pending'
             ];
     
             // Handle front ID image upload
@@ -781,7 +793,7 @@ class HomeController extends Controller
     
             // Check if the update was successful
             if ($update) {
-                return back()->with('success', 'Profile updated successfully');
+                return back()->with('success', 'Identity updated successfully');
             }
     
             return back()->withInput()->with('error', 'Error updating profile');
