@@ -1007,7 +1007,7 @@ $(document).ready(function () {
 
     // Event listener for the "Back" input
     $("#backId").change(function () {
-        $("#front-preview").show();
+        $("#back-preview").show();
         previewImage(this, "#back-preview");
     });
 
