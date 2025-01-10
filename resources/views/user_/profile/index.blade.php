@@ -1049,7 +1049,7 @@ $(document).ready(function () {
         previewImage(this, "#back-preview");
     });
 
-    $("proof-img").change(function () {
+    $("#imageUpload").change(function () {
         $("#proof-preview").show();
         previewImage(this, "#proof-preview");
     });

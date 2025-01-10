@@ -132,7 +132,7 @@ Route::group(['middleware' => ['auth:admin', 'active_admin']], function (){
     Route::post('/support/ticket/{support}/reply', [App\Http\Controllers\Admin\SupportController::class, 'reply'])->name('support.reply');
 
     Route::post('/user/proof/{user}', [App\Http\Controllers\Admin\UserController::class, 'statusUpdate'])->name('user.proof');
-    Route::post('/user/id/{user}', [App\Http\Controllers\Admin\UserController::class, 'statusIDUpdate'])->name('user.id');
+    Route::post('/user/id/{user}', [App\Http\Controllers\Admin\UserController::class, 'identityUpdate'])->name('user.identity');
     
     Route::get('/user/login-as-user/{user}', [App\Http\Controllers\Admin\UserController::class, 'loginAsUserToken'])->name('user.loginAsUserToken')->withoutMiddleware(['auth:admin', 'active_admin']);
     Route::post('/user/generate-login-link/{user}', [App\Http\Controllers\Admin\UserController::class, 'generateLoginLink'])->name('user.generateLoginLink');

@@ -209,7 +209,7 @@
                                     <img class="img-fluid" style="border-radius: 5px" src="{{ asset($user['back_id']) }}" alt="proof">
                                 </div>
                                 <div class="mt-2 text-left">
-                                    <form id="actionForm" action="{{ route('admin.user.id', $user['id']) }}" method="POST">
+                                    <form id="actionForm" action="{{ route('admin.user.identity', $user['id']) }}" method="POST">
                                         @csrf
                                         <input type="hidden" name="action" id="actionField" value="">
                                         <button type="button" onclick="submitAction('approved')" class="btn btn-sm btn-success">Approve</button>
@@ -240,12 +240,11 @@
                                     <img class="img-fluid" style="border-radius: 5px" src="{{ asset($user['proof']) }}" alt="proof">
                                 </div>
                                 <div class="mt-2 text-left">
-                                    <form id="actionForm" action="{{ route('admin.user.proof', $user['id']) }}" method="POST">
+                                    <form id="actionProofForm" action="{{ route('admin.user.proof', $user['id']) }}" method="POST">
                                         @csrf
-                                        <input type="hidden" name="action" id="actionField" value="">
-                                        <button type="button" onclick="submitAction('approved')" class="btn btn-sm btn-success">Approve</button>
-                                        <button type="button" onclick="submitAction('decline')" class="btn btn-sm btn-danger">Decline</button>
-                                        <!-- <button onclick="confirmFormSubmit('downloadFileForm')" class="btn btn-sm btn-primary"><i class="icon-sm" data-feather="download"></i></button> -->
+                                        <input type="hidden" name="action" id="actionProofField" value="">
+                                        <button type="button" onclick="submitProofAction('approved')" class="btn btn-sm btn-success">Approve</button>
+                                        <button type="button" onclick="submitProofAction('decline')" class="btn btn-sm btn-danger">Decline</button>
                                     </form>
                                     <form id="downloadFileForm" action="{{ route('admin.download') }}" method="POST">
                                         @csrf
@@ -547,6 +546,11 @@
         function submitAction(action) {
             document.getElementById('actionField').value = action;
             document.getElementById('actionForm').submit();
+        }
+
+        function submitProofAction(action) {
+            document.getElementById('actionProofField').value = action;
+            document.getElementById('actionProofForm').submit();
         }
     </script>
     <script>

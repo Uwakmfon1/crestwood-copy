@@ -55,16 +55,30 @@ class UserController extends Controller
             'is_approved' => $action,
         ];
 
+        if($action == 'decline') {
+            if ($oldFrontId = $user->proof) {
+                try {
+                    unlink(public_path($oldFrontId)); // Delete old image
+                } catch (\Exception $e) {
+                    // Handle any error
+                }
+            }
+
+            $user->update([
+                'proof' => null,
+            ]);
+        }
+
         // Update the user's approval status
         if ($user->update($data)) {
             // Success response
-            return back()->with('success', 'Profile updated successfully');
+            return back()->with('success', 'Proof updated successfully');
         }
 
         return back()->withInput()->with('error', 'Error updating profile');
     }
 
-    public function statusIDUpdate(Request $request, User $user)
+    public function identityUpdate(Request $request, User $user)
     {
         // Validate the request
         $validator = Validator::make($request->all(), [
