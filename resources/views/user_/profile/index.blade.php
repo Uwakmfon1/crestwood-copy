@@ -804,24 +804,25 @@
                                                             </div>
                                                             @endif
                                                         </div>
-                                                        <div>
-                                                            <div id="" class="alert alert-primary mt-2">
-                                                                <h4 class="text-danger fs-12 fw-bold">Compliance Notice:</h4>
-                                                                <div class="">
-                                                                    <p class="fs-12 text-muted">
-                                                                        @if(auth()->user()['id_number'] && auth()->user()['is_id_approved'] == 'pending')
-                                                                            Verification in progress. Please check back later for updates.
-                                                                            <!-- Thank you for submitting your information. Your verification is currently under review, which can take up to 24 hours. We’ll notify you once it’s completed. -->
-                                                                        @elseif(auth()->user()['is_id_approved'] == 'decline' || auth()->user()['id_number'] == null)
-                                                                            In compliance with applicable laws and Customer Identification Program (CIP) requirements, your information will be securely processed.
-                                                                        @endif
-                                                                    </p>
-                                                                </div>
-                                                            </div>
-                                                        </div>
                                                         @if(auth()->user()['is_id_approved'] == 'approved')
 
                                                         @else
+                                                            <div>
+                                                                <div id="" class="alert alert-primary mt-2">
+                                                                    <h4 class="text-danger fs-12 fw-bold">Compliance Notice:</h4>
+                                                                    <div class="">
+                                                                        <p class="fs-12 text-muted">
+                                                                            @if(auth()->user()['id_number'] && auth()->user()['is_id_approved'] == 'pending')
+                                                                                Verification in progress. Please check back later for updates.
+                                                                                <!-- Thank you for submitting your information. Your verification is currently under review, which can take up to 24 hours. We’ll notify you once it’s completed. -->
+                                                                            @elseif(auth()->user()['is_id_approved'] == 'decline' || auth()->user()['id_number'] == null)
+                                                                                In compliance with applicable laws and Customer Identification Program (CIP) requirements, your information will be securely processed.
+                                                                            @endif
+                                                                        </p>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        
                                                             <div class="my-2">
                                                                 <button class="btn btn-success">Submit</button>
                                                             </div>
