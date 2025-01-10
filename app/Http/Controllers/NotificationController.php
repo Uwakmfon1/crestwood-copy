@@ -494,5 +494,27 @@ class NotificationController extends Controller
         }
     }
 
-
+    public static function sendIDApprovalNotification($user, $action)
+    {
+        // Set appropriate message based on the action
+        if ($action == 'approved') {
+            $subject = 'ID Verification Approved';
+            $message = 'We’re pleased to let you know that your ID verification has been successfully approved. Your account is now verified and ready for use.';
+        } else {
+            $subject = 'ID Verification Declined';
+            $message = 'Unfortunately, your ID verification could not be approved at this time. Please review the information provided or contact support for assistance.';
+        }
+    
+        // Format the email content
+        $msg = $message . '<br><br>' .
+            'If you have any questions or need assistance, feel free to reach out to us at support@crestwoodcapitals.com.<br><br>' .
+            'Thank you for choosing Crestwood Capital Management.';
+    
+        // Send the email notification to the user
+        try {
+            $user->notify(new CustomNotification('account', $subject, $msg, $msg));
+        } catch (\Exception $e) {
+            logger('There was an error sending the notification: ' . $e->getMessage());
+        }
+    }
 }

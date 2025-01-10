@@ -33,7 +33,7 @@
                 </div>
             </div>
         </div>
-        <div id="userInfo" class="col-lg-3 col-md-4 left-wrapper">
+        <div id="userInfo" class="col-lg-4 col-md-4 left-wrapper">
             <div class="row flex-md-column flex-column-reverse">
                 <div class="col-12 mb-5">
                     <div class="card rounded">
@@ -177,7 +177,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="d-flex align-items-center justify-content-between mt-5 mb-2">
+                            {{-- <div class="d-flex align-items-center justify-content-between mt-5 mb-2">
                                 <h6 class="card-title mb-0">Identification</h6>
                             </div>
                             @if($user['identification'])
@@ -197,24 +197,61 @@
                                 <div class="mt-2">
                                     <p class="text-muted">Not Set</p>
                                 </div>
-                            @endif
+                            @endif --}}
+
                             <div class="d-flex align-items-center justify-content-between mt-5 mb-2">
-                                <h6 class="card-title mb-0">Proof of Address</h6>
+                                <h6 class="card-title mb-0">Identity</h6>
                                 <span class="badge @if($user['is_approved'] == 'pending') bg-warning @elseif($user['is_approved'] == 'decline') bg-danger @else bg-success @endif text-light">
                                     @if($user['is_approved'] == 'pending') Pending @elseif($user['is_approved'] == 'decline') Declined @else Approved @endif
                                 </span>
+                            </div>
+
+                            @if($user['id_number'] || $user['front_id'])
+                                <div class="row">
+                                    <div class="col-6">
+                                        <div class="mt-2">
+                                            <label class="tx-11 font-weight-bold mb-0 text-uppercase">ID Type:</label>
+                                            <p class="text-muted">{{ $user['id_type'] ?? 'Not set' }} ID</p>
+                                        </div>
+                                    </div>
+                                    <div class="col-6">
+                                        <div class="mt-2">
+                                            <label class="tx-11 font-weight-bold mb-0 text-uppercase">Number:</label>
+                                            <p class="text-muted">{{ $user['id_number'] ?? 'Not set' }}</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="mt-2">
+                                <label class="tx-11 font-weight-bold mb-0 text-uppercase">Front Id</label>
+                                    <img class="img-fluid" style="border-radius: 5px" src="{{ asset($user['front_id']) }}" alt="proof">
+                                </div>
+                                <div class="mt-2">
+                                    <label class="tx-11 font-weight-bold mb-0 text-uppercase">Back Id</label>
+                                    <img class="img-fluid" style="border-radius: 5px" src="{{ asset($user['back_id']) }}" alt="proof">
+                                </div>
+                            @else
+                                <div class="mt-2">
+                                    <p class="text-muted">Not Set</p>
+                                </div>
+                            @endif
+
+                            <div class="d-flex align-items-center justify-content-between mt-5 mb-2">
+                                <h6 class="card-title mb-0">Proof of Address</h6>
+                                <!-- <span class="badge @if($user['is_approved'] == 'pending') bg-warning @elseif($user['is_approved'] == 'decline') bg-danger @else bg-success @endif text-light">
+                                    @if($user['is_approved'] == 'pending') Pending @elseif($user['is_approved'] == 'decline') Declined @else Approved @endif
+                                </span> -->
                             </div>
                             @if($user['proof'])
                                 <div class="mt-2">
                                     <img class="img-fluid" style="border-radius: 5px" src="{{ asset($user['proof']) }}" alt="proof">
                                 </div>
-                                <div class="mt-2 text-right">
+                                <div class="mt-2 text-left">
                                     <form id="actionForm" action="{{ route('admin.user.proof', $user['id']) }}" method="POST">
                                         @csrf
                                         <input type="hidden" name="action" id="actionField" value="">
                                         <button type="button" onclick="submitAction('approved')" class="btn btn-sm btn-success">Approve</button>
                                         <button type="button" onclick="submitAction('decline')" class="btn btn-sm btn-danger">Decline</button>
-                                        <button onclick="confirmFormSubmit('downloadFileForm')" class="btn btn-sm btn-primary"><i class="icon-sm" data-feather="download"></i></button>
+                                        <!-- <button onclick="confirmFormSubmit('downloadFileForm')" class="btn btn-sm btn-primary"><i class="icon-sm" data-feather="download"></i></button> -->
                                     </form>
                                     <form id="downloadFileForm" action="{{ route('admin.download') }}" method="POST">
                                         @csrf
@@ -228,6 +265,7 @@
                                     <p class="text-muted">Not Set</p>
                                 </div>
                             @endif
+
                             @can('Delete Users')
                                 <div class="mt-4">
                                     <button data-toggle="modal" data-target="#deleteUserModal" class="btn my-2 mx-1 btn-danger">
@@ -241,7 +279,7 @@
             </div>
         </div>
 
-        <div class="col-lg-9 col-md-8 middle-wrapper">
+        <div class="col-lg-8 col-md-8 middle-wrapper">
             <div class="row">
                 <div class="col-12 mb-5">
                     <div class="card">

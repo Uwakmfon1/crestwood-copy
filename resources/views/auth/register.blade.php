@@ -17,6 +17,59 @@
     }
 </style>
 
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+    const phoneCodeSelect = document.getElementById("phone-code");
+    const apiUrl = "https://restcountries.com/v3.1/all";
+
+    // Function to fetch data with retry logic
+    function fetchData(url, retries = 2) {
+        fetch(url)
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+                return response.json();
+            })
+            .then(data => {
+                // Clear any loading or error text
+                phoneCodeSelect.innerHTML = "";
+
+                // Sort countries alphabetically
+                const sortedCountries = data.sort((a, b) =>
+                    a.name.common.localeCompare(b.name.common)
+                );
+
+                // Populate the select dropdown with country phone codes
+                sortedCountries.forEach(country => {
+                    if (country.idd && country.idd.root) {
+                        const phoneCode =
+                            country.idd.root + (country.idd.suffixes ? country.idd.suffixes[0] : "");
+                        const option = document.createElement("option");
+                        option.value = phoneCode;
+                        option.textContent = `${country.name.common} (${phoneCode})`;
+                        phoneCodeSelect.appendChild(option);
+                    }
+                });
+            })
+            .catch(error => {
+                console.error("Error fetching phone codes:", error);
+                if (retries > 0) {
+                    console.log(`Retrying... (${retries} attempts left)`);
+                    fetchData(url, retries - 1);
+                } else {
+                    phoneCodeSelect.innerHTML = "<option value=''>Error loading data</option>";
+                }
+            });
+    }
+
+    // Initial fetch
+    phoneCodeSelect.innerHTML = "<option>Loading...</option>";
+    fetchData(apiUrl);
+    fetchData(apiUrl);
+});
+</script>
+
 
 @section('content')
 <!-- Start::app-content -->
@@ -156,40 +209,6 @@
         </div>
     </div>
 </div>
-
-<script>
-document.addEventListener("DOMContentLoaded", function() {
-    const phoneCodeSelect = document.getElementById("phone-code");
-
-    // Fetch data from the REST Countries API
-    fetch("https://restcountries.com/v3.1/all")
-        .then(response => response.json())
-        .then(data => {
-            // Clear the loading text
-            phoneCodeSelect.innerHTML = "";
-
-            // Sort countries alphabetically
-            const sortedCountries = data.sort((a, b) => 
-                a.name.common.localeCompare(b.name.common)
-            );
-
-            // Populate the select dropdown with country phone codes
-            sortedCountries.forEach(country => {
-                if (country.idd && country.idd.root) {
-                    const phoneCode = country.idd.root + (country.idd.suffixes ? country.idd.suffixes[0] : "");
-                    const option = document.createElement("option");
-                    option.value = phoneCode;
-                    option.textContent = `${country.name.common} (${phoneCode})`;
-                    phoneCodeSelect.appendChild(option);
-                }
-            });
-        })
-        .catch(error => {
-            console.error("Error fetching phone codes:", error);
-            phoneCodeSelect.innerHTML = "<option value=''>Error loading data</option>";
-        });
-});
-</script>
 
 <!-- End::app-content -->
 @endsection

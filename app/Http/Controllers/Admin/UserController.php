@@ -9,6 +9,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Support\Facades\Validator;
+use App\Http\Controllers\NotificationController;
 
 class UserController extends Controller
 {
@@ -49,12 +50,17 @@ class UserController extends Controller
         }
 
         // Prepare data for update
+        $action = $request->input('action');
         $data = [
-            'is_approved' => $request->input('action'),
+            'is_approved' => $action,
         ];
 
-        // Update the user profile
+        // Update the user's approval status
         if ($user->update($data)) {
+            // Send notification to user
+            NotificationController::sendIDApprovalNotification($user, $action);
+
+            // Success response
             return back()->with('success', 'Profile updated successfully');
         }
 

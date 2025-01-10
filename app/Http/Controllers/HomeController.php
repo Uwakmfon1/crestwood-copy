@@ -715,34 +715,78 @@ class HomeController extends Controller
 
         }
 
-        if ($request->screen == 'seven')
-        {
-            $user =auth()->user();
-            $data = null;
-
-            if ($request->identification){
-                if ($oldAvatar = auth()->user()['identification'])
-                    try {unlink($oldAvatar);}
-                    catch(\Exception $e){}
+        if ($request->screen == 'seven') {
+            $user = auth()->user();
+            $data = [
+                'id_type' => $request->id_type,
+                'id_number' => $request->id_number,
+                'front_id' => null,
+                'back_id' => null,
+            ];
+    
+            // Handle front ID image upload
+            if ($request->hasFile('front_id')) {
+                // Delete the old front ID image if it exists
+                if ($oldFrontId = $user->front_id) {
+                    try {
+                        unlink(public_path($oldFrontId)); // Delete old image
+                    } catch (\Exception $e) {
+                        // Handle any error
+                    }
+                }
+    
+                // Define the upload path for front ID
                 $destinationPath = 'assets/identification'; // upload path
                 static::createDirectoryIfNotExists($destinationPath);
-                $transferImage = \auth()->user()['id'].'-'. time() . '.' . $request['identification']->getClientOriginalExtension();
-                $image = Image::make($request->file('identification'));
-                $image->save($destinationPath . '/' . $transferImage, 40);
-                $data = $destinationPath ."/".$transferImage;
+    
+                // Generate a unique file name
+                $frontImage = $user->id . '-front-' . time() . '.' . $request->file('front_id')->getClientOriginalExtension();
+    
+                // Save the front ID image
+                $image = Image::make($request->file('front_id'));
+                $image->save(public_path($destinationPath . '/' . $frontImage), 40); // 40% quality
+    
+                // Set the path of the saved front ID image
+                $data['front_id'] = $destinationPath . '/' . $frontImage;
             }
-
-            $update = $user->update([
-                'identification' => $data,
-            ]);
-
-            // Update profile
+    
+            // Handle back ID image upload
+            if ($request->hasFile('back_id')) {
+                // Delete the old back ID image if it exists
+                if ($oldBackId = $user->back_id) {
+                    try {
+                        unlink(public_path($oldBackId)); // Delete old image
+                    } catch (\Exception $e) {
+                        // Handle any error
+                    }
+                }
+    
+                // Define the upload path for back ID
+                $destinationPath = 'assets/identification'; // upload path
+                static::createDirectoryIfNotExists($destinationPath);
+    
+                // Generate a unique file name
+                $backImage = $user->id . '-back-' . time() . '.' . $request->file('back_id')->getClientOriginalExtension();
+    
+                // Save the back ID image
+                $image = Image::make($request->file('back_id'));
+                $image->save(public_path($destinationPath . '/' . $backImage), 40); // 40% quality
+    
+                // Set the path of the saved back ID image
+                $data['back_id'] = $destinationPath . '/' . $backImage;
+            }
+    
+            // Update the user's identification details in the database
+            $update = $user->update($data);
+    
+            // Check if the update was successful
             if ($update) {
-                return back()->with('success', 'Profile updated successfully');
+                return back()->with('success', 'Thank you for submitting your information. Your verification is currently under review, which can take up to 24 hours. We’ll notify you once it’s completed.');
             }
+    
             return back()->withInput()->with('error', 'Error updating profile');
-
         }
+    
 
         if ($request->screen == 'eight')
         {

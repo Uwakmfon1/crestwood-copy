@@ -17,6 +17,14 @@
 
 @section('content')
 
+<style>
+    select {
+        appearance: auto !important;
+        -webkit-appearance: auto;
+        -moz-appearance: auto;
+    }
+</style>
+
 <!-- Start::app-content -->
 <div class="main-content app-content">
     <div class="container-fluid">
@@ -755,36 +763,54 @@
                                                     <div class="row">
                                                         <div class="col-md-12 my-2">
                                                             <label class="form-label mt-2 text-muted fs-12" for="avatar">ID Type</label>
-                                                            <select class="form-control" name="" id="">
+                                                            <select class="form-control" name="id_type" id="">
                                                                 <option value="">Select Type</option>
-                                                                <option value="passport">Passport</option>
-                                                                <option value="license">Driver's License</option>
-                                                                <option value="nationalid">National ID</option>
+                                                                <option value="passport" @if(auth()->user()['id_type'] == 'passport') selected @endif>Passport</option>
+                                                                <option value="drivers" @if(auth()->user()['id_type'] == 'drivers') selected @endif>Driver's License</option>
+                                                                <option value="national" @if(auth()->user()['id_type'] == 'national') selected @endif>National ID</option>
                                                             </select>
                                                         </div>
                                                         <div class="col-md-12 my-2">
                                                             <label class="form-label mt-2 text-muted fs-12" for="id_number">Identification Number</label>
-                                                            <input type="text" id="id_number" name="identity" class="form-control"/>
+                                                            <input type="text" id="id_number" name="id_number" class="form-control" value="{{ auth()->user()['id_number'] }}" >
                                                         </div>
                                                         <div class="col-md-12 my-2">
-                                                            <label class="form-label mt-2 text-muted fs-12" for="avatar">Upload Image (Front)</label>
-                                                            <input type="file" id="identification" name="identification" class="form-control"/>
+                                                            <label class="form-label mt-2 text-muted fs-12" for="identification">Upload Image (Front)</label>
+                                                            <input type="file" id="identification" name="front_id" class="form-control" />
+                                                            <div class="mt-2 mx-2">
+                                                                <img class="img-fluid" id="front-preview" style="border-radius: 5px; width: 200px; height: auto;" 
+                                                                    src="@if (auth()->user()['front_id']) {{ asset(auth()->user()['front_id']) }} @else https://mobeng.id/wp-content/uploads/2021/10/placeholder-1-1.png @endif" 
+                                                                    alt="proof">
+                                                            </div>
                                                         </div>
                                                         <div class="col-md-12 my-2">
                                                             <label class="form-label mt-2 text-muted fs-12" for="avatar">Upload Image (Back)</label>
-                                                            <input type="file" id="avatar" name="avatar" class="form-control"/>
+                                                            <input type="file" id="backId" name="back_id" class="form-control" />
+                                                            <div class="mt-2 mx-2">
+                                                                <img class="img-fluid" id="back-preview" style="border-radius: 5px; width: 200px; height: auto;" 
+                                                                    src="@if (auth()->user()['back_id']) {{ asset(auth()->user()['back_id']) }}  @else https://mobeng.id/wp-content/uploads/2021/10/placeholder-1-1.png @endif" 
+                                                                    alt="proof">
+                                                            </div>
                                                         </div>
                                                         <div>
                                                             <div id="" class="alert alert-primary mt-2">
                                                                 <h4 class="text-danger fs-12 fw-bold">Compliance Notice:</h4>
                                                                 <div class="">
-                                                                    <p class="fs-12 text-muted">Add a disclaimer below the form: "In compliance with applicable laws and Customer Identification Program (CIP) requirements, your information will be securely processed.</p>
+                                                                    <p class="fs-12 text-muted">
+                                                                        @if(auth()->user()['id_number'] && auth()->user()['is_approved'] !== 'approved')
+                                                                            Verification in progress. Please check back later for updates.
+                                                                        @else
+                                                                            In compliance with applicable laws and Customer Identification Program (CIP) requirements, your information will be securely processed.
+                                                                        @endif
+                                                                    </p>
                                                                 </div>
                                                             </div>
                                                         </div>
+                                                        @if(auth()->user()['id_number'] && auth()->user()['is_approved'] !== 'approved')
                                                         <div class="my-2">
                                                             <button class="btn btn-success">Submit</button>
                                                         </div>
+                                                        @endif
                                                     </div>
                                                 </form>
                                             </div>
@@ -957,6 +983,31 @@
 <!-- End::app-content -->
 
 <script>
+
+$(document).ready(function () {
+    // Function to preview the image
+    function previewImage(input, imgElement) {
+        if (input.files && input.files[0]) {
+            const reader = new FileReader();
+            reader.onload = function (e) {
+                $(imgElement).attr("src", e.target.result);
+            };
+            reader.readAsDataURL(input.files[0]);
+        }
+    }
+
+    // Event listener for the "Front" input
+    $("#identification").change(function () {
+        previewImage(this, "#front-preview");
+    });
+
+    // Event listener for the "Back" input
+    $("#backId").change(function () {
+        previewImage(this, "#back-preview");
+    });
+});
+
+
 
     $(document).ready(function() {
         $('select[name="country"]').on('change', function() {
