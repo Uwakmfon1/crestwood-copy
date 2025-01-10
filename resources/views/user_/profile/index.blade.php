@@ -739,8 +739,15 @@
                                                                 </div>
                                                             </div>
                                                                 <div class="mt-2 mx-2">
-                                                                    <img class="img-fluid" id="proof-preview" style="border-radius: 5px; width: 200px; height: auto;" src="@if (auth()->user()['front_id']) {{ asset(auth()->user()['front_id']) }} @else https://mobeng.id/wp-content/uploads/2021/10/placeholder-1-1.png @endif"  alt="proof">
+                                                                    <img class="img-fluid" id="proof-preview" style="border-radius: 5px; width: 200px; height: auto;" src=""  alt="proof">
                                                                 </div>
+                                                                @if(auth()->user()['proof'])
+                                                                <div class="mt-2 mx-2">
+                                                                    <img class="img-fluid" id="proof-preview-" style="border-radius: 5px; width: 200px; height: auto;" 
+                                                                        src="@if (auth()->user()['proof']) {{ asset(auth()->user()['proof']) }} @endif" 
+                                                                        alt="proof">
+                                                                </div>
+                                                                @endif
                                                             <div id="" class="alert alert-primary my-2">
                                                                 <h4 class="text-danger fs-12 fw-bold">Compliance Disclaimer:</h4>
                                                                 <div class="">
