@@ -57,7 +57,11 @@
                                 </div>
                             </div>
                             <div class="col-xl-12 d-grid mt-2">
-                                <button class="btn btn-primary" type="submit">Verify</button>
+                                @if(auth()->user()->two_factor == "disabled")
+                                    <a href="{{ route('resendTwoFactor') }}" class="btn btn-primary">Back to Dashboard</a>
+                                @else
+                                    <button class="btn btn-primary" type="submit">Verify</button>
+                                @endif
                             </div>
                         </form>
                     </div>
