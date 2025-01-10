@@ -58,7 +58,7 @@
                             </div>
                             <div class="col-xl-12 d-grid mt-2">
                                 @if(auth()->user()->two_factor == "disabled")
-                                    <a href="{{ route('resendTwoFactor') }}" class="btn btn-primary">Back to Dashboard</a>
+                                    <a href="{{ route('dashboard') }}" class="btn btn-primary">Back to Dashboard</a>
                                 @else
                                     <button class="btn btn-primary" type="submit">Verify</button>
                                 @endif
