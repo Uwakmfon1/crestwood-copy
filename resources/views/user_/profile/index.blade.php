@@ -738,11 +738,9 @@
                                                                     <input type="file" id="imageUpload" class="form-control" name="proof" multiple data-allow-reorder="true" data-max-file-size="3MB" data-max-files="6">
                                                                 </div>
                                                             </div>
-                                                            @if(auth()->user()['proof'])
                                                                 <div class="mt-2 mx-2">
-                                                                    <img class="img-fluid" style="border-radius: 5px" src="{{ asset(auth()->user()['proof']) }}" alt="proof">
+                                                                    <img class="img-fluid" id="proof-preview" style="border-radius: 5px; width: 200px; height: auto;" src="@if (auth()->user()['front_id']) {{ asset(auth()->user()['front_id']) }} @else https://mobeng.id/wp-content/uploads/2021/10/placeholder-1-1.png @endif"  alt="proof">
                                                                 </div>
-                                                            @endif
                                                             <div id="" class="alert alert-primary my-2">
                                                                 <h4 class="text-danger fs-12 fw-bold">Compliance Disclaimer:</h4>
                                                                 <div class="">
@@ -797,9 +795,9 @@
                                                                 <h4 class="text-danger fs-12 fw-bold">Compliance Notice:</h4>
                                                                 <div class="">
                                                                     <p class="fs-12 text-muted">
-                                                                        @if(auth()->user()['id_number'] && auth()->user()['is_approved'] !== 'approved')
+                                                                        @if(auth()->user()['id_number'] && auth()->user()['is_id_approved'] == 'pending')
                                                                             Verification in progress. Please check back later for updates.
-                                                                        @else
+                                                                        @elseif(auth()->user()['is_id_approved'] == 'decline' || auth()->user()['id_number'] == null)
                                                                             In compliance with applicable laws and Customer Identification Program (CIP) requirements, your information will be securely processed.
                                                                         @endif
                                                                     </p>
@@ -1004,6 +1002,10 @@ $(document).ready(function () {
     // Event listener for the "Back" input
     $("#backId").change(function () {
         previewImage(this, "#back-preview");
+    });
+
+    $("proof-img").change(function () {
+        previewImage(this, "#proof-preview");
     });
 });
 

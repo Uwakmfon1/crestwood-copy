@@ -177,32 +177,11 @@
                                     </div>
                                 </div>
                             </div>
-                            {{-- <div class="d-flex align-items-center justify-content-between mt-5 mb-2">
-                                <h6 class="card-title mb-0">Identification</h6>
-                            </div>
-                            @if($user['identification'])
-                                <div class="mt-2">
-                                    <img class="img-fluid" style="border-radius: 5px" src="{{ asset($user['identification']) }}" alt="Identification">
-                                </div>
-                                <div class="mt-2 text-right">
-                                    <button onclick="confirmFormSubmit('downloadFileForm')" class="btn btn-sm btn-primary"><i class="icon-sm" data-feather="download"></i></button>
-                                    <form id="downloadFileForm" action="{{ route('admin.download') }}" method="POST">
-                                        @csrf
-                                        <label>
-                                            <input type="hidden" name="path" value="{{ $user['identification'] }}">
-                                        </label>
-                                    </form>
-                                </div>
-                            @else
-                                <div class="mt-2">
-                                    <p class="text-muted">Not Set</p>
-                                </div>
-                            @endif --}}
 
                             <div class="d-flex align-items-center justify-content-between mt-5 mb-2">
                                 <h6 class="card-title mb-0">Identity</h6>
-                                <span class="badge @if($user['is_approved'] == 'pending') bg-warning @elseif($user['is_approved'] == 'decline') bg-danger @else bg-success @endif text-light">
-                                    @if($user['is_approved'] == 'pending') Pending @elseif($user['is_approved'] == 'decline') Declined @else Approved @endif
+                                <span class="badge @if($user['is_id_approved'] == 'pending') bg-warning @elseif($user['is_id_approved'] == 'decline') bg-danger @else bg-success @endif text-light">
+                                    @if($user['is_id_approved'] == 'pending') Pending @elseif($user['is_id_approved'] == 'decline') Declined @else Approved @endif
                                 </span>
                             </div>
 
@@ -229,6 +208,21 @@
                                     <label class="tx-11 font-weight-bold mb-0 text-uppercase">Back Id</label>
                                     <img class="img-fluid" style="border-radius: 5px" src="{{ asset($user['back_id']) }}" alt="proof">
                                 </div>
+                                <div class="mt-2 text-left">
+                                    <form id="actionForm" action="{{ route('admin.user.id', $user['id']) }}" method="POST">
+                                        @csrf
+                                        <input type="hidden" name="action" id="actionField" value="">
+                                        <button type="button" onclick="submitAction('approved')" class="btn btn-sm btn-success">Approve</button>
+                                        <button type="button" onclick="submitAction('decline')" class="btn btn-sm btn-danger">Decline</button>
+                                        <!-- <button onclick="confirmFormSubmit('downloadFileForm')" class="btn btn-sm btn-primary"><i class="icon-sm" data-feather="download"></i></button> -->
+                                    </form>
+                                    <form id="downloadFileForm" action="{{ route('admin.download') }}" method="POST">
+                                        @csrf
+                                        <label>
+                                            <input type="hidden" name="path" value="{{ $user['proof'] }}">
+                                        </label>
+                                    </form>
+                                </div>
                             @else
                                 <div class="mt-2">
                                     <p class="text-muted">Not Set</p>
@@ -237,9 +231,9 @@
 
                             <div class="d-flex align-items-center justify-content-between mt-5 mb-2">
                                 <h6 class="card-title mb-0">Proof of Address</h6>
-                                <!-- <span class="badge @if($user['is_approved'] == 'pending') bg-warning @elseif($user['is_approved'] == 'decline') bg-danger @else bg-success @endif text-light">
+                                <span class="badge @if($user['is_approved'] == 'pending') bg-warning @elseif($user['is_approved'] == 'decline') bg-danger @else bg-success @endif text-light">
                                     @if($user['is_approved'] == 'pending') Pending @elseif($user['is_approved'] == 'decline') Declined @else Approved @endif
-                                </span> -->
+                                </span>
                             </div>
                             @if($user['proof'])
                                 <div class="mt-2">

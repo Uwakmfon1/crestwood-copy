@@ -21,6 +21,7 @@ class Add2faToUsersTable extends Migration
             $table->string('id_number')->nullable();
             $table->text('front_id')->nullable();
             $table->text('back_id')->nullable();
+            $table->enum('is_id_approved', ['approved', 'pending', 'decline'])->default('pending');
         });
     }
 

@@ -57,6 +57,59 @@ class UserController extends Controller
 
         // Update the user's approval status
         if ($user->update($data)) {
+            // Success response
+            return back()->with('success', 'Profile updated successfully');
+        }
+
+        return back()->withInput()->with('error', 'Error updating profile');
+    }
+
+    public function statusIDUpdate(Request $request, User $user)
+    {
+        // Validate the request
+        $validator = Validator::make($request->all(), [
+            'action' => 'required|in:approved,decline',
+        ]);
+
+        if ($validator->fails()) {
+            // Return with validation errors and input
+            return back()
+                ->withErrors($validator)
+                ->withInput()
+                ->with('error', 'Invalid input data: ' . implode(', ', $validator->errors()->all()));
+        }
+
+        // Prepare data for update
+        $action = $request->input('action');
+        $data = [
+            'is_id_approved' => $action,
+        ];
+
+        if($action == 'decline') {
+            if ($oldFrontId = $user->front_id) {
+                try {
+                    unlink(public_path($oldFrontId)); // Delete old image
+                } catch (\Exception $e) {
+                    // Handle any error
+                }
+            }
+
+            if ($oldFrontId = $user->back_id) {
+                try {
+                    unlink(public_path($oldFrontId)); // Delete old image
+                } catch (\Exception $e) {
+                    // Handle any error
+                }
+            }
+
+            $user->update([
+                'front_id' => null,
+                'back_id' => null,
+            ]);
+        }
+
+        // Update the user's approval status
+        if ($user->update($data)) {
             // Send notification to user
             NotificationController::sendIDApprovalNotification($user, $action);
 
