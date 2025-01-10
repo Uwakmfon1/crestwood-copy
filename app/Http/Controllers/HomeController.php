@@ -781,7 +781,7 @@ class HomeController extends Controller
     
             // Check if the update was successful
             if ($update) {
-                return back()->with('success', 'Thank you for submitting your information. Your verification is currently under review, which can take up to 24 hours. We’ll notify you once it’s completed.');
+                return back()->with('success', 'Profile updated successfully');
             }
     
             return back()->withInput()->with('error', 'Error updating profile');

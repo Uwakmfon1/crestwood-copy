@@ -777,9 +777,16 @@
                                                             <input type="file" id="identification" name="front_id" class="form-control" />
                                                             <div class="mt-2 mx-2">
                                                                 <img class="img-fluid" id="front-preview" style="border-radius: 5px; width: 200px; height: auto;" 
+                                                                    src="" 
+                                                                    alt="proof">
+                                                            </div>
+                                                            @if(auth()->user()['front_id'])
+                                                            <div class="mt-2 mx-2">
+                                                                <img class="img-fluid" id="front-preview-" style="border-radius: 5px; width: 200px; height: auto;" 
                                                                     src="@if (auth()->user()['front_id']) {{ asset(auth()->user()['front_id']) }} @endif" 
                                                                     alt="proof">
                                                             </div>
+                                                            @endif
                                                         </div>
                                                         <div class="col-md-12 my-2">
                                                             <label class="form-label mt-2 text-muted fs-12" for="avatar">Upload Image (Back)</label>
@@ -789,6 +796,13 @@
                                                                     src="@if (auth()->user()['back_id']) {{ asset(auth()->user()['back_id']) }} @endif" 
                                                                     alt="proof">
                                                             </div>
+                                                            @if(auth()->user()['back_id'])
+                                                            <div class="mt-2 mx-2">
+                                                                <img class="img-fluid" id="back-preview-" style="border-radius: 5px; width: 200px; height: auto;" 
+                                                                    src="@if (auth()->user()['back_id']) {{ asset(auth()->user()['back_id']) }} @endif" 
+                                                                    alt="proof">
+                                                            </div>
+                                                            @endif
                                                         </div>
                                                         <div>
                                                             <div id="" class="alert alert-primary mt-2">
@@ -797,6 +811,7 @@
                                                                     <p class="fs-12 text-muted">
                                                                         @if(auth()->user()['id_number'] && auth()->user()['is_id_approved'] == 'pending')
                                                                             Verification in progress. Please check back later for updates.
+                                                                            <!-- Thank you for submitting your information. Your verification is currently under review, which can take up to 24 hours. We’ll notify you once it’s completed. -->
                                                                         @elseif(auth()->user()['is_id_approved'] == 'decline' || auth()->user()['id_number'] == null)
                                                                             In compliance with applicable laws and Customer Identification Program (CIP) requirements, your information will be securely processed.
                                                                         @endif
@@ -999,6 +1014,7 @@ $(document).ready(function () {
     $("#front-preview").hide();
     $("#back-preview").hide();
     $("#proof-preview").hide();
+
     // Event listener for the "Front" input
     $("#identification").change(function () {
         $("#front-preview").show();
