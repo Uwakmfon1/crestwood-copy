@@ -748,7 +748,12 @@
                                                                 </div>
                                                             </div>
 
-                                                            <button type="submit" class="btn btn-primary-light border-1 w-100">Submit</button>
+                                                            
+                                                            @if(auth()->user()['is_approved'] == 'approved')
+
+                                                            @else
+                                                                <button type="submit" class="btn btn-primary-light border-1 w-100">Submit</button>
+                                                            @endif
                                                         </form>
 
                                                     </div>
