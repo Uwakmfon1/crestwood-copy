@@ -777,7 +777,7 @@
                                                             <input type="file" id="identification" name="front_id" class="form-control" />
                                                             <div class="mt-2 mx-2">
                                                                 <img class="img-fluid" id="front-preview" style="border-radius: 5px; width: 200px; height: auto;" 
-                                                                    src="@if (auth()->user()['front_id']) {{ asset(auth()->user()['front_id']) }} @else https://mobeng.id/wp-content/uploads/2021/10/placeholder-1-1.png @endif" 
+                                                                    src="@if (auth()->user()['front_id']) {{ asset(auth()->user()['front_id']) }} @endif" 
                                                                     alt="proof">
                                                             </div>
                                                         </div>
@@ -786,7 +786,7 @@
                                                             <input type="file" id="backId" name="back_id" class="form-control" />
                                                             <div class="mt-2 mx-2">
                                                                 <img class="img-fluid" id="back-preview" style="border-radius: 5px; width: 200px; height: auto;" 
-                                                                    src="@if (auth()->user()['back_id']) {{ asset(auth()->user()['back_id']) }}  @else https://mobeng.id/wp-content/uploads/2021/10/placeholder-1-1.png @endif" 
+                                                                    src="@if (auth()->user()['back_id']) {{ asset(auth()->user()['back_id']) }} @endif" 
                                                                     alt="proof">
                                                             </div>
                                                         </div>
@@ -804,7 +804,9 @@
                                                                 </div>
                                                             </div>
                                                         </div>
-                                                        @if(auth()->user()['is_approved'] !== 'approved')
+                                                        @if(auth()->user()['is_id_approved'] == 'approved')
+
+                                                        @else
                                                             <div class="my-2">
                                                                 <button class="btn btn-success">Submit</button>
                                                             </div>
@@ -994,17 +996,23 @@ $(document).ready(function () {
         }
     }
 
+    $("#front-preview").hide();
+    $("#back-preview").hide();
+    $("#proof-preview").hide();
     // Event listener for the "Front" input
     $("#identification").change(function () {
+        $("#front-preview").show();
         previewImage(this, "#front-preview");
     });
 
     // Event listener for the "Back" input
     $("#backId").change(function () {
+        $("#front-preview").show();
         previewImage(this, "#back-preview");
     });
 
     $("proof-img").change(function () {
+        $("#proof-preview").show();
         previewImage(this, "#proof-preview");
     });
 });
