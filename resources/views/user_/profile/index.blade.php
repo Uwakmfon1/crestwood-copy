@@ -806,10 +806,10 @@
                                                                 </div>
                                                             </div>
                                                         </div>
-                                                        @if(auth()->user()['id_number'] && auth()->user()['is_approved'] !== 'approved')
-                                                        <div class="my-2">
-                                                            <button class="btn btn-success">Submit</button>
-                                                        </div>
+                                                        @if(auth()->user()['is_approved'] !== 'approved')
+                                                            <div class="my-2">
+                                                                <button class="btn btn-success">Submit</button>
+                                                            </div>
                                                         @endif
                                                     </div>
                                                 </form>
