@@ -762,19 +762,22 @@
                                                         <div>
                                                         @if(auth()->user()['is_id_approved'] == "pending" || auth()->user()['is_id_approved'] == 'decline') 
                                                             <div id="" class="alert alert-primary mt-2">
-                                                                <h4 class="text-danger fs-12 fw-bold">
+                                                                
                                                                 @if(!auth()->user()['id_number'] || auth()->user()['is_id_approved'] == 'decline') 
+                                                                <h4 class="text-danger fs-12 fw-bold">
                                                                     Compliance Notice:
-                                                                @elseif(auth()->user()['id_number'] && auth()->user()['is_id_approved'] == 'pending')
-                                                                    Verification in progress:
-                                                                @endif
                                                                 </h4>
+                                                                @elseif(auth()->user()['id_number'] && auth()->user()['is_id_approved'] == 'pending')
+                                                                <h4 class="text-warning fs-12 fw-bold">
+                                                                    Verification in progress:
+                                                                </h4>
+                                                                @endif
                                                                 <div class="">
                                                                     <p class="fs-12 text-muted">
                                                                         @if(!auth()->user()['id_number'] || auth()->user()['is_id_approved'] == 'decline') 
                                                                             In compliance with applicable laws and Customer Identification Program (CIP) requirements, your information will be securely processed.
                                                                         @elseif(auth()->user()['id_number'] && auth()->user()['is_id_approved'] == 'pending')
-                                                                            Verification in progress. Please check back later for updates.
+                                                                            Thank you for submitting your information. Your verification is currently under review, which can take up to 24 hours. We’ll notify you once it’s completed.
                                                                         @endif
                                                                     </p>
                                                                 </div>
