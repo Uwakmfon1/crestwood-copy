@@ -209,19 +209,21 @@
                                     <img class="img-fluid" style="border-radius: 5px" src="{{ asset($user['back_id']) }}" alt="proof">
                                 </div>
                                 <div class="mt-2 text-left">
-                                    <form id="actionForm" action="{{ route('admin.user.identity', $user['id']) }}" method="POST">
-                                        @csrf
-                                        <input type="hidden" name="action" id="actionField" value="">
-                                        <button type="button" onclick="submitAction('approved')" class="btn btn-sm btn-success">Approve</button>
-                                        <button type="button" onclick="submitAction('decline')" class="btn btn-sm btn-danger">Decline</button>
-                                        <!-- <button onclick="confirmFormSubmit('downloadFileForm')" class="btn btn-sm btn-primary"><i class="icon-sm" data-feather="download"></i></button> -->
-                                    </form>
-                                    <form id="downloadFileForm" action="{{ route('admin.download') }}" method="POST">
-                                        @csrf
-                                        <label>
-                                            <input type="hidden" name="path" value="{{ $user['proof'] }}">
-                                        </label>
-                                    </form>
+                                    @if($user['is_id_approved'] == 'pending' || $user['is_id_approved'] == 'decline')
+                                        <form id="actionForm" action="{{ route('admin.user.identity', $user['id']) }}" method="POST">
+                                            @csrf
+                                            <input type="hidden" name="action" id="actionField" value="">
+                                            <button type="button" onclick="submitAction('approved')" class="btn btn-sm btn-success">Approve</button>
+                                            <button type="button" onclick="submitAction('decline')" class="btn btn-sm btn-danger">Decline</button>
+                                            <!-- <button onclick="confirmFormSubmit('downloadFileForm')" class="btn btn-sm btn-primary"><i class="icon-sm" data-feather="download"></i></button> -->
+                                        </form>
+                                        <form id="downloadFileForm" action="{{ route('admin.download') }}" method="POST">
+                                            @csrf
+                                            <label>
+                                                <input type="hidden" name="path" value="{{ $user['proof'] }}">
+                                            </label>
+                                        </form>
+                                    @endif
                                 </div>
                             @else
                                 <div class="mt-2">
