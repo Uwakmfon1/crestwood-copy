@@ -803,7 +803,7 @@
                                                                     </h4>
                                                                     <div class="">
                                                                         <p class="fs-12 text-muted">
-                                                                        Congratulations! Your identification has been successfully approved after thorough verification
+                                                                            Congratulations! Your identity has been reviewed and approved successfully. Thank you.
                                                                         </p>
                                                                     </div>
                                                                 </div>
