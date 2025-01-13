@@ -115,12 +115,12 @@ class PlanSeeder extends Seeder
                 ],
                 'info' => 
                 '<ul>
-                    <li><strong>Interest Rate/APY:</strong> Earn up to 5.00% annual interest on your deposits.</li>
-                    <li><strong>Minimum Deposit:</strong> $5,000 minimum to open this account.</li>
-                    <li><strong>Withdrawals:</strong> Enjoy penalty-free withdrawals anytime.</li>
-                    <li><strong>Duration:</strong> Recommended for short- to mid-term savings (6 to 24 months).</li>
-                    <li><strong>Eligibility:</strong> Open to all verified individual account holders.</li>
-                    <li><strong>Purpose:</strong> Ideal for building emergency funds or achieving short-term financial goals.</li>
+                    <li><strong>Interest Rate/APY:</strong> Up to 3.8% annual interest.</li>
+                    <li><strong>Minimum Deposit:</strong> $1,350 minimum to get started.</li>
+                    <li><strong>Withdrawals:</strong> Withdraw anytime without penalties or fees.</li>
+                    <li><strong>Duration:</strong> Flexible with no minimum holding period required.</li>
+                    <li><strong>Eligibility:</strong> Open to individuals and businesses with a verified Crestwood account.</li>
+                    <li><strong>Purpose:</strong> Best for maintaining liquid savings while earning steady interest.</li>
                 </ul>'
             ],
             [
@@ -165,12 +165,12 @@ class PlanSeeder extends Seeder
                 ],
                 'info' => 
                 '<ul>
-                    <li><strong>Interest Rate/APY:</strong> Earn up to 5.00% annual interest on your deposits.</li>
-                    <li><strong>Minimum Deposit:</strong> $5,000 minimum to open this account.</li>
-                    <li><strong>Withdrawals:</strong> Enjoy penalty-free withdrawals anytime.</li>
-                    <li><strong>Duration:</strong> Recommended for short- to mid-term savings (6 to 24 months).</li>
-                    <li><strong>Eligibility:</strong> Open to all verified individual account holders.</li>
-                    <li><strong>Purpose:</strong> Ideal for building emergency funds or achieving short-term financial goals.</li>
+                    <li><strong>Interest Rate/APY:</strong> Earn up to 3.5% tax-free annual interest.</li>
+                    <li><strong>Minimum Deposit:</strong> $3,500 minimum to open this account.</li>
+                    <li><strong>Withdrawals:</strong> Penalty-free withdrawals after the first 12 months.</li>
+                    <li><strong>Eligibility:</strong> Available to residents meeting tax-free savings eligibility requirements.</li>
+                    <li><strong>Duration:</strong> Best for long-term savings, 12 months and above.</li>
+                    <li><strong>Purpose:</strong> An excellent option for maximizing tax-free savings growth.</li>
                 </ul>'
             ],
             [
@@ -222,12 +222,12 @@ class PlanSeeder extends Seeder
                 ],
                 'info' => 
                 '<ul>
-                    <li><strong>Interest Rate/APY:</strong> Earn up to 5.00% annual interest on your deposits.</li>
-                    <li><strong>Minimum Deposit:</strong> $5,000 minimum to open this account.</li>
-                    <li><strong>Withdrawals:</strong> Enjoy penalty-free withdrawals anytime.</li>
-                    <li><strong>Duration:</strong> Recommended for short- to mid-term savings (6 to 24 months).</li>
-                    <li><strong>Eligibility:</strong> Open to all verified individual account holders.</li>
-                    <li><strong>Purpose:</strong> Ideal for building emergency funds or achieving short-term financial goals.</li>
+                    <li><strong>Interest Rate/APY:</strong> Earn up to 4.2% annually on your savings.</li>
+                    <li><strong>Minimum Deposit:</strong> $25,000 minimum to start saving for your first home.</li>
+                    <li><strong>Withdrawals:</strong> Funds are locked until they are used for home purchase-related expenses.</li>
+                    <li><strong>Eligibility:</strong> Only for first-time homebuyers with verified accounts.</li>
+                    <li><strong>Duration:</strong> Recommended duration: 12 to 36 months.</li>
+                    <li><strong>Purpose:</strong> Tailored for saving towards your first home purchase.</li>
                 </ul>'
             ],
             [
@@ -271,12 +271,12 @@ class PlanSeeder extends Seeder
                 ],
                 'info' => 
                 '<ul>
-                    <li><strong>Interest Rate/APY:</strong> Earn up to 5.00% annual interest on your deposits.</li>
-                    <li><strong>Minimum Deposit:</strong> $5,000 minimum to open this account.</li>
-                    <li><strong>Withdrawals:</strong> Enjoy penalty-free withdrawals anytime.</li>
-                    <li><strong>Duration:</strong> Recommended for short- to mid-term savings (6 to 24 months).</li>
-                    <li><strong>Eligibility:</strong> Open to all verified individual account holders.</li>
-                    <li><strong>Purpose:</strong> Ideal for building emergency funds or achieving short-term financial goals.</li>
+                    <li><strong>Interest Rate/APY:</strong> Up to 4.7% annual interest.</li>
+                    <li><strong>Minimum Deposit:</strong> $50,000 minimum deposit required.</li>
+                    <li><strong>Withdrawals:</strong> Enjoy unlimited access to funds without penalties.</li>
+                    <li><strong>Eligibility:</strong> Exclusively for business accounts with proper verification.</li>
+                    <li><strong>Duration:</strong> Best for managing short- to medium-term reserves (6 to 18 months).</li>
+                    <li><strong>Purpose:</strong> Designed for businesses to grow operational and reserve funds.</li>
                 </ul>'
             ],
             [
@@ -318,12 +318,13 @@ class PlanSeeder extends Seeder
                 ],
                 'info' => 
                 '<ul>
-                    <li><strong>Interest Rate/APY:</strong> Earn up to 5.00% annual interest on your deposits.</li>
-                    <li><strong>Minimum Deposit:</strong> $5,000 minimum to open this account.</li>
-                    <li><strong>Withdrawals:</strong> Enjoy penalty-free withdrawals anytime.</li>
-                    <li><strong>Duration:</strong> Recommended for short- to mid-term savings (6 to 24 months).</li>
-                    <li><strong>Eligibility:</strong> Open to all verified individual account holders.</li>
-                    <li><strong>Purpose:</strong> Ideal for building emergency funds or achieving short-term financial goals.</li>
+                    <li><strong>Options:</strong> Choose from SEP IRA, Roth IRA, or Traditional IRA.</li>
+                    <li><strong>Interest Rate/APY:</strong> Grow your retirement fund with up to 4.6% annual interest (depending on plan).</li>
+                    <li><strong>Minimum Deposit:</strong> $1,000 minimum to open a retirement account.</li>
+                    <li><strong>Withdrawals:</strong> Penalty-free withdrawals starting at age 59½.</li>
+                    <li><strong>Eligibility:</strong> Open to individuals meeting retirement account eligibility requirements.</li>
+                    <li><strong>Duration:</strong> Long-term savings designed for retirement planning (5+ years).</li>
+                    <li><strong>Purpose:</strong> Maximize your retirement fund growth with tailored tax benefits.</li>
                 </ul>'
             ],
             [

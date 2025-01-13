@@ -20,6 +20,7 @@ class CreatePlansTable extends Migration
             $table->text('img');
             $table->text('info');
             $table->string('modalId');
+            $table->decimal('roi', 15, 2)->default(0);
             $table->timestamps();
         });
     }
