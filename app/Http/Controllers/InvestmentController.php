@@ -43,6 +43,12 @@ class InvestmentController extends Controller
         ->flatten() // Flatten the collection of arrays into a single collection
         ->sum('amount'); // Sum the 'amount' field
 
+
+        if($total_amount > 1)
+            $percentProfit = ($totalCredits / $total_amount * 100);
+        else
+            $percentProfit = 0;
+
         return view('user_.investment.index', [
             'title' => 'Investments', 
             'investments' => $user->investments()->latest()->get(), 
@@ -53,7 +59,8 @@ class InvestmentController extends Controller
             'total_invest' => $total_invest,
             'dates' => $dates,
             'totals' => $totals,
-            'profit' => $totalCredits
+            'profit' => $totalCredits,
+            'percentProfit' => $percentProfit
         ]);
     }
 

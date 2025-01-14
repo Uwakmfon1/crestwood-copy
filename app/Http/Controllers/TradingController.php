@@ -299,6 +299,11 @@ class TradingController extends Controller
         $equityBalance = $totalCurrentValue;
         $totalAssetQuantity = $totalQuantity;
 
+        if($totalStocks > 1)
+            $equityBalancePercent = ($totalProfit / $totalStocks * 100);
+        else 
+            $equityBalancePercent = 0;
+
         return view('user_.trade.asset', [
             'title' => 'Trading',
             'assetNumber' => $user->trades('stocks')->count(),
@@ -308,6 +313,7 @@ class TradingController extends Controller
             'watchList' => $watchlist,
 
             'equityBalance' => $equityBalance,
+            'equityBalancePercent' => $equityBalancePercent,
             'totalProfit' => $totalProfit,
             'totalInvestment' => $totalCurrentValue,
             'percentageDifference' => $percentageDifference,
@@ -796,6 +802,11 @@ class TradingController extends Controller
         $equityBalance = $totalCurrentValue;
         $totalAssetQuantity = $totalQuantity;
 
+        if($totalStocks > 1)
+            $equityBalancePercent = ($totalProfit / $totalStocks * 100);
+        else 
+            $equityBalancePercent = 0;
+
         return view('user_.crypto.asset', [
             'title' => 'Trading',
             'assetNumber' => $user->trades('crypto')->count(),
@@ -805,6 +816,7 @@ class TradingController extends Controller
             'watchList' => $watchlist,
 
             'equityBalance' => $equityBalance,
+            'equityBalancePercent' => $equityBalancePercent,
             'totalProfit' => $totalProfit,
             'totalInvestment' => $totalCurrentValue,
             'percentageDifference' => $percentageDifference,

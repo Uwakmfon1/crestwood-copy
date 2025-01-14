@@ -8,13 +8,14 @@ use App\Models\Crypto;
 use App\Models\Setting;
 use App\Models\Trading;
 use App\Models\Watchlist;
+use App\Models\Investment;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Hash;
+
+
 use Illuminate\Support\Facades\Http;
-
-
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Crypt;
@@ -69,6 +70,96 @@ class HomeController extends Controller
         $investmentPercentage = $totalAmount > 0 ? ($investmentTotal / $totalAmount) * 100 : 0;
         $tradingPercentage = $totalAmount > 0 ? ($tradingTotal / $totalAmount) * 100 : 0;
 
+
+        // INVESTMENT PERCENTAGE CHANGE ::: START
+        $total_amount = $user->investments()->sum('amount');
+        $totalCredits = Investment::where('user_id', $user->id)
+            ->with(['investmentTransaction' => function ($query) {
+                $query->where('type', 'credit'); 
+            }])
+            ->get()
+            ->pluck('investmentTransaction')
+            ->flatten()
+            ->sum('amount');
+
+
+        if($total_amount > 1)
+            $percentProfit = ($totalCredits / $total_amount * 100);
+        else
+            $percentProfit = 0;
+        // INVESTMENT PERCENTAGE CHANGE ::: END
+
+
+        // TRADES PERCENTAGE CHANGE ::: START
+        $totalStocks = $user->trades('stocks')->sum('amount');
+
+        $totalInvestment = 0;
+        $totalCurrentValue = 0;
+        $totalQuantity = 0;
+
+        $stocks = $user->trades('stocks')->with('stock')->get();
+
+        foreach ($stocks as $stock) {
+            $investmentAmount = $stock->purchase_amount * $stock->quantity;
+            $currentValue = $stock->stock['price'] * $stock->quantity;
+
+            $currentQuantity = $stock->quantity;
+
+            $totalInvestment += $investmentAmount;
+            $totalCurrentValue += $currentValue;
+            $totalQuantity += $currentQuantity;
+        }
+
+        $totalProfit = $totalCurrentValue - $totalInvestment;
+        $percentageDifference = ($totalInvestment > 0) 
+            ? ($totalProfit / $totalInvestment) * 100 
+            : 0;
+        
+        $equityBalance = $totalCurrentValue;
+        $totalAssetQuantity = $totalQuantity;
+
+        if($totalStocks > 1)
+            $equityBalancePercent = ($totalProfit / $totalStocks * 100);
+        else 
+            $equityBalancePercent = 0;
+        // TRADES PERCENTAGE CHANGE ::: END
+
+
+        // CRYPTO PERCENTAGE CHANGE ::: START
+        $totalCrypto = $user->trades('crypto')->sum('amount');
+
+        $totalInvestmentCrypto = 0;
+        $totalCurrentValueCrypto = 0;
+        $totalQuantityCrypto = 0;
+
+        $stocks = $user->trades('crypto')->with('crypto')->get();
+
+        foreach ($stocks as $stock) {
+            $investmentAmountCrypto = $stock->purchase_amount * $stock->quantity;
+            $currentValueCrypto = $stock->stock['price'] * $stock->quantity;
+
+            $currentQuantityCrypto = $stock->quantity;
+
+            $totalInvestmentCrypto += $investmentAmount;
+            $totalCurrentValueCrypto += $currentValue;
+            $totalQuantityCrypto += $currentQuantity;
+        }
+
+        $totalProfitCrypto = $totalCurrentValueCrypto - $totalInvestmentCrypto;
+        $percentageDifferenceCrypto = ($totalInvestmentCrypto > 0) 
+            ? ($totalProfitCrypto / $totalInvestmentCrypto) * 100 
+            : 0;
+        
+        $equityBalanceCrypto = $totalCurrentValueCrypto;
+        $totalAssetQuantityCrypto = $totalQuantityCrypto;
+
+        if($totalCrypto > 1)
+            $equityBalancePercentCrypto = ($totalProfitCrypto / $totalCrypto * 100);
+        else 
+            $equityBalancePercentCrypto = 0;
+        // CRYPTO PERCENTAGE CHANGE ::: END
+
+
         $inv = $user->investments()->where('status', 'active')->sum('amount');
 
         $sav = $user->savings()
@@ -101,8 +192,8 @@ class HomeController extends Controller
             'alignedTrading' => $alignedTrading->values(),
 
             'savingsPercentage' => $savingsPercentage,
-            'investmentPercentage' => $investmentPercentage,
-            'tradingPercentage' => $tradingPercentage,
+            'investmentPercentage' => $percentProfit,
+            'tradingPercentage' => $equityBalancePercent + $equityBalancePercentCrypto,
 
             'lockedFunds' => $lockedFunds,
             'slidesData' => $slidesData,

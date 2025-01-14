@@ -482,12 +482,15 @@
                             <div class="card-body p-2">
                                 <div class="">
                                     <div class="text-fixed-dark mb-2">Stock Portfolio Value
-                                        <a href="javascript:void(0);" data-bs-toggle="tooltip" data-bs-custom-class="tooltip-dark" title="Total current value of your cryptocurrency portfolio, including unrealized profits or losses." class="text-muted mx-1">
+                                        <a href="javascript:void(0);" data-bs-toggle="tooltip" data-bs-custom-class="tooltip-dark" title="Total current value of your stocks portfolio, including unrealized profits or losses." class="text-muted mx-1">
                                             <i class="fe fe-info"></i>
                                         </a>
                                     </div>
                                     <h4 class="fw-semibold mb-0 text-fixed-dark">${{ number_format($equityBalance, 2) }}  
-                                    <span class="ms-2 d-inline-block text-success op-5"><span class="text-success fs-12 d-block">+1.5%</span></span></h4>
+                                        <span class="ms-2 d-inline-block text-success op-5">
+                                            <span class="@if($equityBalancePercent > 0) text-success @else text-danger @endif fs-12 d-block">{{ number_format($equityBalancePercent, 2) }}%</span>
+                                        </span>
+                                    </h4>
                                 </div>
                             </div>
                         <!-- </div> -->
@@ -507,11 +510,7 @@
                                     </div>
                                     <div class="flex-fill">
                                         <span class="fw-medium fs18"> Open P/L</span>
-                                        @if($percentageDifference >= 0)
-                                            <span class="text-success fs-11 d-block">{{ number_format($percentageDifference, 2) }}%</span>
-                                        @else
-                                            <span class="text-danger fs-11 d-block">{{ number_format($percentageDifference, 2) }}%</span>
-                                        @endif
+                                        <span class="@if($equityBalancePercent > 0) text-success @else text-danger @endif fs-11 d-block">{{ number_format($equityBalancePercent, 2) }}%</span>
                                     </div>
                                     <div>
                                         <span class="fw-medium text-muted mb-0 fs-14">${{ number_format($totalProfit, 2) }}</span>
@@ -591,14 +590,14 @@
                                     </div>
                                     <div class="flex-fill">
                                         <span class="fw-medium">Today’s Change
-                                            <a href="javascript:void(0);" data-bs-toggle="tooltip" data-bs-custom-class="tooltip-dark" title="The dollar and percentage change in your crypto portfolio value for the current trading day." class="text-muted mx-1">
+                                            <a href="javascript:void(0);" data-bs-toggle="tooltip" data-bs-custom-class="tooltip-dark" title="The dollar and percentage change in your stocks portfolio value for the current trading day." class="text-muted mx-1">
                                                 <i class="fe fe-info"></i>
                                             </a>
                                         </span>
-                                        <span class="text-muted fs-12 d-block">{{ number_format(0, 2) }}%</span>
+                                        <span class="text-muted fs-12 d-block">{{ number_format(($equityBalancePercent - (15/100 * 100)), 2) }}%</span>
                                     </div>
                                     <div>
-                                        <span class="fw-medium text-muted mb-0 fs-14">${{ number_format(0, 2) }}</span>
+                                        <span class="fw-medium text-muted mb-0 fs-14">${{ number_format(($totalProfit - (15/100 * 100)), 2) }}</span>
                                     </div>
                                 </div>
                             </li>

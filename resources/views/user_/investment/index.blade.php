@@ -100,7 +100,7 @@
                                     </div>
                                     <div class="mt-3">
                                         <h4 class="fw-semibold mb-1">{{ number_format($asv) }}</h4>
-                                        <span class="text-muted fs-12">Active Investment<span class="text-success ms-2 d-inline-block">+${{ number_format($profit, 2) }}</span></span>
+                                        <span class="text-muted fs-12">Active Investment<span class="text-success ms-2 d-inline-block">+{{ number_format($percentProfit, 2) }}%</span></span>
                                     </div>
                                     <div class="mt-1">
                                         <a href="javascript:void(0);" class="py-2 fs-11 text-white fw-semibold">.</a>
