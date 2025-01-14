@@ -119,7 +119,7 @@
                                     </div>
                                     <div class="mt-3">
                                         <h4 class="fw-semibold mb-1">&#36;{{ number_format($trading, 2) }} 
-                                            <span class="text-success ms-2 d-inline-block fs-12">{{ number_format($tradingPercentage, 2) }}% <i class="ti ti-arrow-narrow-up"></i></span>
+                                            <span class="@if($tradingPercentage >= 0) text-success @else text-danger @endif ms-2 d-inline-block fs-12">{{ number_format($tradingPercentage, 2) }}% <i class="ti ti-arrow-narrow-up"></i></span>
                                         </h4>
                                         <span class="text-muted fs-12">Available Trading Balance
                                             <a href="javascript:void(0);" data-bs-toggle="tooltip" data-bs-custom-class="tooltip-dark" title="Funds available for placing new trades." class="text-muted mx-1">

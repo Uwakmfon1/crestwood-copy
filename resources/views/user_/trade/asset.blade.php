@@ -164,7 +164,7 @@
 
                                                         $profit = $currentValue - $investmentAmount;
 
-                                                        $percentageDifference = ($investmentAmount > 0) ? (($currentValue - $investmentAmount) / $investmentAmount) * 100 : 0;
+                                                        $percentageDifference = ($investmentAmount>= 0) ? (($currentValue - $investmentAmount) / $investmentAmount) * 100 : 0;
                                                     @endphp
                                                     <tr>
                                                         <td>
@@ -488,7 +488,7 @@
                                     </div>
                                     <h4 class="fw-semibold mb-0 text-fixed-dark">${{ number_format($equityBalance, 2) }}  
                                         <span class="ms-2 d-inline-block text-success op-5">
-                                            <span class="@if($equityBalancePercent > 0) text-success @else text-danger @endif fs-12 d-block">{{ number_format($equityBalancePercent, 2) }}%</span>
+                                            <span class="@if($equityBalancePercent>= 0) text-success @else text-danger @endif fs-12 d-block">{{ number_format($equityBalancePercent, 2) }}%</span>
                                         </span>
                                     </h4>
                                 </div>
@@ -510,7 +510,7 @@
                                     </div>
                                     <div class="flex-fill">
                                         <span class="fw-medium fs18"> Open P/L</span>
-                                        <span class="@if($equityBalancePercent > 0) text-success @else text-danger @endif fs-11 d-block">{{ number_format($equityBalancePercent, 2) }}%</span>
+                                        <span class="@if($equityBalancePercent>= 0) text-success @else text-danger @endif fs-11 d-block">{{ number_format($equityBalancePercent, 2) }}%</span>
                                     </div>
                                     <div>
                                         <span class="fw-medium text-muted mb-0 fs-14">${{ number_format($totalProfit, 2) }}</span>
