@@ -498,57 +498,65 @@ class CommandController extends Controller
             ->get();
 
         foreach ($investments as $investment) {
-            // Get the total ROI and ROI duration
-            $total_roi = $investment->package->roi;
-            $total_profit = ($total_roi * $investment->amount) / 100;
-            $roi_duration = $investment->roi_duration; // e.g., '2_days'
-            $investment_duration = Carbon::parse($investment->created_at)->diffInDays($investment->return_date);
-            $remaining_days = Carbon::now()->diffInDays($investment->return_date);
+            // End the investment if the return date has passed
+            if (Carbon::now()->greaterThanOrEqualTo($investment->return_date)) {
+                $investment->update(['status' => 'settled']);
+                Log::info('Investment settled: ' . $investment->id);
+                continue; // Skip further processing for settled investments
+            }
 
-            if ($investment->user) {
-                Log::info('Processing investment for user: ' . $investment->user->id);
-            } else {
+            if (!$investment->user) {
                 Log::warning('Investment has no associated user: ' . $investment->id);
                 continue; // Skip this investment if no user is associated
             }
 
-            // Determine the profit percentage based on the remaining days
-            $profit_percentage = self::getProfitPercentage($investment_duration, $remaining_days);
+            // Calculate total ROI and profit per day
+            $total_roi = $investment->package->roi; // ROI percentage
+            $total_profit = ($total_roi * $investment->amount) / 100; // Total profit
+            $investment_duration = Carbon::now()->diffInDays(Carbon::parse($investment['created_at'])->add($investment->package['milestone'], $investment->package['duration']));
+            $profit_per_day = $total_profit / $investment_duration; // Daily profit
 
-            // Calculate the profit to be credited today
-            $profit_for_today = ($profit_percentage * $total_profit) / 100;
+            // Check if the profit has already been credited for today
+            // $profitCreditedToday = $investment->investmentTransaction()
+            //     ->whereDate('created_at', Carbon::today())
+            //     ->where('type', 'credit')
+            //     ->exists();
 
-            if (self::shouldDistributeProfit($investment, $remaining_days)) {
+            // if ($profitCreditedToday) {
+            //     Log::info('Profit already credited for today for investment: ' . $investment->id);
+            //     continue; // Skip further processing for this investment
+            // }
 
-                //Create Transaction
-                $transaction = $investment->user->transaction('invest')->create([
-                    'amount' => $profit_for_today,
-                    'data_id' => $investment->id,
-                    'status' => 'approved',
-                    'description' =>  '$'. $profit_for_today . ' profit on ' . $investment->package->name,
-                    'method' => 'credit'
-                ]);
+            // Credit profit for today
+            $transaction = $investment->user->transaction('invest')->create([
+                'amount' => $profit_per_day,
+                'data_id' => $investment->id,
+                'status' => 'approved',
+                'description' => '$' . $profit_per_day . ' profit on ' . $investment->package->name,
+                'method' => 'credit',
+            ]);
 
-                //Create Investment Transaction
-                $investment->investmentTransaction()->create([
-                    'amount' => $profit_for_today,
-                    'type' => 'credit',
-                    'status' => 'success',
-                ]);
+            // Create investment transaction
+            $investment->investmentTransaction()->create([
+                'amount' => $profit_per_day,
+                'type' => 'credit',
+                'status' => 'success',
+            ]);
 
-                // ::::: Store Ledger :::::: //
-                try {
-                    Ledger::credit($investment->user->wallet, $profit_for_today, 'invest', null, '$'. $profit_for_today . ' profit on ' . $investment->package->name);
-                } catch (InvalidArgumentException $e) {
-                    return back()->with('error', 'Error debiting wallet: ' . $e->getMessage());
-                }
-                // ::::: Store Ledger :::::: //
-
-                Log::info('Profit to distribute today: ' . $profit_for_today);
+            // Update user's wallet
+            try {
+                Ledger::credit($investment->user->wallet, $profit_per_day, 'invest', null, '$' . $profit_per_day . ' profit on ' . $investment->package->name);
+            } catch (InvalidArgumentException $e) {
+                Log::error('Error crediting wallet for user ' . $investment->user->id . ': ' . $e->getMessage());
+                continue; // Skip further processing if an error occurs
             }
+
+            Log::info('Profit credited for today: $' . $profit_per_day . ' for investment: ' . $investment->id);
         }
 
+        // Log the success message
         $command->info('Investment profits distributed successfully.');
+
     }
 
     protected static function getProfitPercentage($investment_duration, $remaining_days)
