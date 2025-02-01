@@ -26,7 +26,6 @@
                             <span class="mx-auto px-2 badge rounded-pill bg-info-transparent fs-12 fw-semibold">{{ session('error') }}</span>
                         </div>
                     @endif
-                    <!-- <form action="{{ route('login') }}" method="post"> -->
                     <form class="" action="{{ isset($alt) ? route('admin.altLogin') : route('login') }}" method="post">
                         @csrf
                         <div class="row gy-3">
