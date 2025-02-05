@@ -180,7 +180,7 @@
                                 <div class="text-center p-2 my-2 bg-white-transparent rounded">
                                     <div class="d-flex">
                                         <span class="fs-10 tooltip-container">Reserved Fund 
-                                            <a href="javascript:void(0);" class="tooltip-trigger text-fixed-white mx-1"  data-tooltip="Funds available for withdrawal or transfer, not currently in use.">
+                                            <a href="javascript:void(0);" class="tooltip-trigger text-fixed-white mx-1"  data-tooltip="Funds actively tied up in investments or savings.">
                                                 <i class="fe fe-info"></i>
                                             </a>
                                         </span>
