@@ -321,7 +321,7 @@
             <form method="POST" action="{{ route('withdraw') }}" id="depositForm">
                 @csrf
                 <div class="my-4">
-                    <h5 class="modal-title text-center fw-bold" id="nairaDepositModalLabel">Make a Withdrwal</h5>
+                    <h5 class="modal-title text-center fw-bold" id="nairaDepositModalLabel">Make a Withdrawal</h5>
                 </div>
                 <div class="modal-body">
                     <div class="row mx-auto" id="depoSelect" style="max-width: 600px;">
@@ -368,7 +368,7 @@
 
                         <div class="my-3">
                             <h4 class="text-center fs-13">You are about to make a withdrawal of <strong class="fw-bold text-primary amount-val">0 ---</strong></h4>
-                            <p class="text-center text-muted fs-10">Exchange Rate: 1 <strong id="selected-coin-symbol"></strong>  - <span class="fw-bold" id="exchange-rate">0</span> USD</p>
+                            <p class="text-center text-muted fs-10">Exchange Rate: 1 <strong id="selected-coin-symbol"></strong>  - <span class="fw-bold" id="exchange-rate">1</span> USD</p>
                         </div>
                         <div class="">
                             <div class="my-2">
@@ -723,7 +723,9 @@
 
         // Trigger display update on input change for amount
         $('#coin-amount').on('input', function () {
-            updateDisplay();
+            // updateDisplay();
+            const usdAmount = parseFloat($('#coin-amount').val()) || 0;
+            $('.amount-val').text(usdAmount.toFixed(2) + ' USD');
         });
 
         $('#bank-amount').on('input', function () {
@@ -774,9 +776,9 @@
 
         // Function to update the display with calculated coin amount
         function updateDisplay() {
-            const usdAmount = parseFloat($('.amountWithdraw').val()) || 0; // Get entered USD amount
-            const coinAmount = usdAmount / selectedCoinRate; // Calculate equivalent coin amount
-
+            const usdAmount = parseFloat($('.amountWithdraw').val()) || 0; 
+            const coinAmount = usdAmount / selectedCoinRate; 
+            
             if (!isNaN(coinAmount) && selectedCoinRate > 0) {
                 $('.amount-val').text(coinAmount.toFixed(5) + ' ' + selectedCoinSymbol);
                 $('#coin-value').prop('value', coinAmount.toFixed(5));

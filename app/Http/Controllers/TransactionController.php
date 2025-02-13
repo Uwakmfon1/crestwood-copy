@@ -184,7 +184,7 @@ class TransactionController extends Controller
             return back()->with('error', 'Insufficient wallet balance!');
         }
 
-        $desc = $request->account_type == 'coin' ? 'Withdrawal Request to crypto wallet' : 'Withdrawal Request to bank account';
+        $desc = $request->account_type == 'crypto' ? 'Withdrawal Request to crypto wallet' : 'Withdrawal Request to bank account';
 
         $transaction = $user->transaction('wallet')->create([
             'amount' => $request->amount,

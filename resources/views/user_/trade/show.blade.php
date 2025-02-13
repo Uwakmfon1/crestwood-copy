@@ -39,31 +39,33 @@
         </div>
         <!-- TradingView Widget END -->
 
-        <div class="card custom-card p-3">
-            <div class="row">
-                <div class="col-lg-3 col-6">
-                    <p class="fw-medium text-muted mb-1">Amount: </p>
-                    <p class="fs-15 mb-1 fw-bold">${{ number_format($amount, 2) }}</p>
-                </div>
-                <div class="col-lg-3 col-6">
-                    <p class="fw-medium text-muted mb-1">Quantity: </p>
-                    <p class="fs-15 mb-1 fw-bold">${{ number_format($quantity, 3) }}</p>
-                </div>
-                <div class="col-lg-3 col-6">
-                    <p class="fw-medium text-muted mb-1">P/L: </p>
-                    <p class="fs-15 mb-1 fw-bold {{ $overallProfitLoss < 0 ? 'text-danger' : 'text-success' }}">
-                        {{ $overallProfitLoss <= 0 ? '' : '+' }}{{ number_format($overallProfitLoss, 2) }}USD
-                        <span class="mx-2 badge {{ $percentageOverallProfitLoss <= 0 ? 'bg-danger-transparent' : 'bg-success-transparent' }}">
-                            {{ $percentageOverallProfitLoss <= 0 ? '' : '+' }} {{ number_format($percentageOverallProfitLoss, 2) }}%
-                        </span>
-                    </p>
-                </div>
-                <div class="col-lg-3 col-6">
-                    <p class="fw-medium text-muted mb-1">Trades: </p>
-                    <p class="fs-15 mb-1 fw-bold">{{ $asset->count() }}</p>
+        @if($asset->count() > 0)
+            <div class="card custom-card p-3">
+                <div class="row">
+                    <div class="col-lg-3 col-6">
+                        <p class="fw-medium text-muted mb-1">Amount: </p>
+                        <p class="fs-15 mb-1 fw-bold">${{ number_format($amount, 2) }}</p>
+                    </div>
+                    <div class="col-lg-3 col-6">
+                        <p class="fw-medium text-muted mb-1">Quantity: </p>
+                        <p class="fs-15 mb-1 fw-bold">${{ number_format($quantity, 3) }}</p>
+                    </div>
+                    <div class="col-lg-3 col-6">
+                        <p class="fw-medium text-muted mb-1">P/L: </p>
+                        <p class="fs-15 mb-1 fw-bold {{ $overallProfitLoss < 0 ? 'text-danger' : 'text-success' }}">
+                            {{ $overallProfitLoss <= 0 ? '' : '+' }}{{ number_format($overallProfitLoss, 2) }}USD
+                            <span class="mx-2 badge {{ $percentageOverallProfitLoss <= 0 ? 'bg-danger-transparent' : 'bg-success-transparent' }}">
+                                {{ $percentageOverallProfitLoss <= 0 ? '' : '+' }} {{ number_format($percentageOverallProfitLoss, 2) }}%
+                            </span>
+                        </p>
+                    </div>
+                    <div class="col-lg-3 col-6">
+                        <p class="fw-medium text-muted mb-1">Trades: </p>
+                        <p class="fs-15 mb-1 fw-bold">{{ $asset->count() }}</p>
+                    </div>
                 </div>
             </div>
-        </div>
+        @endif
 
         <div class="row">
             <div class="col-lg-8 col-md-12 mb-4">

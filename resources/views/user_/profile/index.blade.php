@@ -194,7 +194,7 @@
                                                                     <div class="col-xl-12">
                                                                         <label for="first_name" class="form-label fs-12 text-muted">First name</label>
                                                                         <input name="first_name" type="text" class="form-control @error('first_name') is-invalid @enderror" id="first_name"
-                                                                            placeholder="Enter first name..." value="{{ $user->first_name }}" required>
+                                                                            placeholder="Enter first name..." value="{{ $user->first_name }}" required @if(auth()->user()['is_id_approved'] == "approved") disabled @endif >
                                                                         @error('first_name')
                                                                             <span class="invalid-feedback" role="alert">
                                                                                 <strong>{{ $message }}</strong>
@@ -204,7 +204,7 @@
                                                                     <div class="col-xl-12">
                                                                         <label for="last_name" class="form-label fs-12 text-muted">Last name</label>
                                                                         <input name="last_name" type="text" class="form-control @error('last_name') is-invalid @enderror" id="last_name"
-                                                                            placeholder="Enter last name..." value="{{ $user->last_name }}" required>
+                                                                            placeholder="Enter last name..." value="{{ $user->last_name }}" required @if(auth()->user()['is_id_approved'] == "approved") disabled @endif >
                                                                         @error('last_name')
                                                                             <span class="invalid-feedback" role="alert">
                                                                                 <strong>{{ $message }}</strong>
@@ -734,9 +734,9 @@
                                                                 <p class="fs-14 fw-bold my-2">
                                                                     Upload Proof
                                                                 </p>
-                                                                <!-- <div class="">
+                                                                <div class="">
                                                                     <input type="file" id="imageUpload" class="form-control" name="proof" multiple data-allow-reorder="true" data-max-file-size="3MB" data-max-files="6">
-                                                                </div> -->
+                                                                </div>
                                                             </div>
                                                                 <div class="mt-2 mx-2">
                                                                     <img class="img-fluid" id="proof-preview" style="border-radius: 5px; width: 200px; height: auto;" src=""  alt="proof">

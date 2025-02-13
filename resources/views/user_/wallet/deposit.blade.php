@@ -240,13 +240,23 @@
                                     </div>
                                     <div class="col-xl-12 my-3" style="max-width: 500px;">
                                         <div class="row">
-                                            <div class="col-lg-8 col-6">
+                                            <div class="col-6">
                                                 <div class="">
                                                     <label for="" class="fs-10 text-dark">Bank Address:</label>
                                                     <p class="text-muted fw-bold fs-12">{{ $setting->bank_address }} 
-                                                        <a href="javascript:void(0);" data-bs-toggle="tooltip" data-bs-custom-class="tooltip-dark" title="Contact this email for any deposit-related issues." class="text-muted mx-1">
+                                                        <!-- <a href="javascript:void(0);" data-bs-toggle="tooltip" data-bs-custom-class="tooltip-dark" title="Contact this email for any deposit-related issues." class="text-muted mx-1">
                                                             <i class="fe fe-info"></i>
-                                                        </a>
+                                                        </a> -->
+                                                    </p>
+                                                </div>
+                                            </div>
+                                            <div class="col-6">
+                                                <div class="">
+                                                    <label for="" class="fs-10 text-dark">Beneficiary Address:</label>
+                                                    <p class="text-muted fw-bold fs-12">{{ $user->address }}
+                                                        <!-- <a href="javascript:void(0);" data-bs-toggle="tooltip" data-bs-custom-class="tooltip-dark" title="Contact this email for any deposit-related issues." class="text-muted mx-1">
+                                                            <i class="fe fe-info"></i>
+                                                        </a> -->
                                                     </p>
                                                 </div>
                                             </div>
