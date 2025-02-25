@@ -583,14 +583,14 @@
                                             </a>
                                         </span>
                                         @if($totalProfit > 20)
-                                            <span class="text-muted fs-12 d-block">{{ number_format(($equityBalancePercent - (15/100 * 100)), 2) }}%</span>
+                                            <span class="text-muted fs-12 d-block">{{ number_format(($equityBalancePercent), 2) }}%</span>
                                         @else
                                             <span class="text-muted fs-12 d-block">{{ number_format($equityBalancePercent, 2) }}%</span>
                                         @endif
                                     </div>
                                     <div>
                                         @if($totalProfit > 20)
-                                            <span class="fw-medium text-muted mb-0 fs-14">${{ number_format(($totalProfit - (15/100 * 100)), 2) }}</span>
+                                            <span class="fw-medium text-muted mb-0 fs-14">${{ number_format(($totalProfit), 2) }}</span>
                                         @else
                                             <span class="fw-medium text-muted mb-0 fs-14">${{ number_format($totalProfit, 2) }}</span>
                                         @endif

@@ -594,10 +594,10 @@
                                                 <i class="fe fe-info"></i>
                                             </a>
                                         </span>
-                                        <span class="text-muted fs-12 d-block">{{ number_format(($equityBalancePercent - (15/100 * 100)), 2) }}%</span>
+                                        <span class="text-muted fs-12 d-block">{{ number_format(($equityBalancePercent), 2) }}%</span>
                                     </div>
                                     <div>
-                                        <span class="fw-medium text-muted mb-0 fs-14">${{ number_format(($totalProfit - (15/100 * 100)), 2) }}</span>
+                                        <span class="fw-medium text-muted mb-0 fs-14">${{ number_format(($totalProfit), 2) }}</span>
                                     </div>
                                 </div>
                             </li>
