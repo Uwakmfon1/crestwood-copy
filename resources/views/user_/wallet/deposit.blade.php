@@ -478,10 +478,12 @@
 
 
         const coinImages = {
-            ETH: 'https://images.seeklogo.com/logo-png/52/1/ethereum-logo-png_seeklogo-527153.png',
+            ETH: 'https://cryptologos.cc/logos/ethereum-eth-logo.png',
             BTC: 'https://cryptologos.cc/logos/bitcoin-btc-logo.png',
-            TRX: 'https://cdn-icons-png.flaticon.com/512/12114/12114250.png',
-            USDT: 'https://seeklogo.com/images/T/tether-usdt-logo-FA55C7F397-seeklogo.com.png'
+            TRX: 'https://cryptologos.cc/logos/tron-trx-logo.png',
+            USDT: 'https://cryptologos.cc/logos/tether-usdt-logo.png',
+            SHIB: 'https://cryptologos.cc/logos/shiba-inu-shib-logo.png',
+            XRP: 'https://cryptologos.cc/logos/xrp-xrp-logo.png'
         };
 
         // Fetch networks and update display based on coin selection

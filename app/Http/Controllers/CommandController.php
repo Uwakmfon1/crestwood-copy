@@ -456,6 +456,8 @@ class CommandController extends Controller
             'ETH' => 'ETHUSD',
             'USDT' => 'USDTUSD',
             'TRX' => 'TRXUSD',
+            'SHIB' => 'SHIBUSD',
+            'XRP' => 'XRPUSD',
         ];
 
         // Prepare the API query string

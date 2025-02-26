@@ -1156,8 +1156,10 @@ $(document).ready(function () {
         const coinImages = {
             ETH: 'https://cryptologos.cc/logos/ethereum-eth-logo.png',
             BTC: 'https://cryptologos.cc/logos/bitcoin-btc-logo.png',
-            TRX: 'https://cdn-icons-png.flaticon.com/512/12114/12114250.png',
-            USDT: 'https://icons.iconarchive.com/icons/cjdowner/cryptocurrency-flat/512/Tether-USDT-icon.png'
+            TRX: 'https://cryptologos.cc/logos/tron-trx-logo.png',
+            USDT: 'https://cryptologos.cc/logos/tether-usdt-logo.png',
+            SHIB: 'https://cryptologos.cc/logos/shiba-inu-shib-logo.png',
+            XRP: 'https://cryptologos.cc/logos/xrp-xrp-logo.png'
         };
 
         // Fetch networks and update display based on coin selection
