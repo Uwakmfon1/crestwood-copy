@@ -26,15 +26,15 @@ class CreateAdminsTable extends Migration
 
         \Illuminate\Support\Facades\DB::table('admins')->insert([
             [
-                'name' => 'Soft-Web Digital',
-                'email' => 'softwebdigital@gmail.com',
+                'name' => 'Crestwood Admin',
+                'email' => 'admin@crestwoodcpm.com',
                 'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi',
                 'created_at' => now(),
                 'updated_at' => now()
             ],
             [
-                'name' => 'Rare Gems',
-                'email' => 'moogunlana@gmail.com',
+                'name' => 'Developer Test',
+                'email' => 'admin@gmail.com',
                 'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi',
                 'created_at' => now(),
                 'updated_at' => now()
