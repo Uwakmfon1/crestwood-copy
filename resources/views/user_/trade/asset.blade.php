@@ -164,7 +164,7 @@
 
                                                         $profit = $currentValue - $investmentAmount;
 
-                                                        $percentageDifference = ($investmentAmount>= 0) ? (($currentValue - $investmentAmount) / $investmentAmount) * 100 : 0;
+                                                        $percentageDifference = ($investmentAmount> 0) ? (($currentValue - $investmentAmount) / $investmentAmount) * 100 : 0;
                                                     @endphp
                                                     <tr>
                                                         <td>

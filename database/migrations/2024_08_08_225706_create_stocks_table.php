@@ -17,7 +17,7 @@ class CreateStocksTable extends Migration
             $table->id();
             $table->string('symbol', 10)->unique();
             $table->string('name');
-            $table->text('img')->default('https://pngimg.com/d/dollar_sign_PNG35.png');
+            $table->string('img', 255)->default('https://pngimg.com/d/dollar_sign_PNG35.png');
             $table->decimal('price', 15, 2);
             $table->decimal('changes_percentage', 10, 4);
             $table->decimal('change', 10, 2);
