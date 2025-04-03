@@ -290,7 +290,6 @@ class CryptoSeeder extends Seeder
                             'previous_close' => $asset['previousClose'] ?? 0,
                             'eps' => $asset['eps'] ?? 0,
                             'pe' => $asset['pe'] ?? 0,
-                            'type' => $type,  // Dynamic type assignment
                             'status' => 'active',
                             'tradeable' => 1,
                             'created_at' => now(),
