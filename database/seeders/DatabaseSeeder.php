@@ -149,4 +149,4 @@ class DatabaseSeeder extends Seeder
     }
 }
 
-// php artisan db:seed --class=CountryStateCityTableSeeder
+// php artisan db:seed --class=StocksSeeder
