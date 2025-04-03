@@ -43,8 +43,15 @@ document.addEventListener("DOMContentLoaded", function () {
                 // Populate the select dropdown with country phone codes
                 sortedCountries.forEach(country => {
                     if (country.idd && country.idd.root) {
-                        const phoneCode =
-                            country.idd.root + (country.idd.suffixes ? country.idd.suffixes[0] : "");
+                        let phoneCode;
+                        // Special case for United States - only show root (+1)
+                        if (country.name.common === "United States") {
+                            phoneCode = country.idd.root;
+                        } else {
+                            // For all other countries, show root + first suffix
+                            phoneCode = country.idd.root + (country.idd.suffixes ? country.idd.suffixes[0] : "");
+                        }
+                        
                         const option = document.createElement("option");
                         option.value = phoneCode;
                         option.textContent = `${country.name.common} (${phoneCode})`;
@@ -65,7 +72,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // Initial fetch
     phoneCodeSelect.innerHTML = "<option>Loading...</option>";
-    fetchData(apiUrl);
     fetchData(apiUrl);
 });
 </script>
