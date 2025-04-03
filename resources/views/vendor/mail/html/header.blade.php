@@ -5,7 +5,7 @@
 <img src="" class="logo" alt="Laravel Logo">
 @else
 <a href="{{ url('/') }}" style="text-decoration: none">
-    <img src="https://crestwoodcapitals.com/asset/images/logo/logo-dark.png" style="width: 150px" alt="">
+    <img src="https://crestwoodcpm.com/asset/images/logo/logo-dark.png" style="width: 150px" alt="">
 </a>
 @endif
 </a>
