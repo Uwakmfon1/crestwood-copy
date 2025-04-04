@@ -147,7 +147,7 @@ class DatabaseSeeder extends Seeder
             ->get();
 
         foreach ($cryptoAssets as $crypto) {
-            $newName = str_replace(['USD', 'USDt'], '', $crypto->name);
+            $newName = str_replace(['Tether t'], 'Tether', $crypto->name);
             $newName = trim($newName);
             
             DB::table('cryptos')
