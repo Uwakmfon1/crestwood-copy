@@ -141,6 +141,25 @@ class DatabaseSeeder extends Seeder
         //     }
         // }
 
+        // Update crypto names in the database
+        $cryptoAssets = DB::table('cryptos')
+            ->where('symbol', 'like', '%USD%')
+            ->get();
+
+        foreach ($cryptoAssets as $crypto) {
+            $newName = str_replace(['USD', 'USDt'], '', $crypto->name);
+            $newName = trim($newName);
+            
+            DB::table('cryptos')
+                ->where('id', $crypto->id)
+                ->update([
+                    'name' => $newName,
+                    'updated_at' => now()
+                ]);
+        }
+
+        $this->command->info("Updated names for {$cryptoAssets->count()} crypto assets.");
+
         $this->call([
             // CryptoSeeder::class,
             // StocksSeeder::class,
@@ -149,4 +168,4 @@ class DatabaseSeeder extends Seeder
     }
 }
 
-// php artisan db:seed --class=StocksSeeder
+// php artisan db:seed --class=PlanSeeder

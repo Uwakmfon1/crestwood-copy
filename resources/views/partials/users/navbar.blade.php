@@ -34,14 +34,12 @@
             <ul class="header-content-right">
 
                 <!-- Start::header-element -->
-                <li class="header-element d-md-none d-block">
+                <!-- <li class="header-element d-md-none d-block">
                     <a href="javascript:void(0);" class="header-link" data-bs-toggle="modal"
                         data-bs-target="#header-responsive-search">
-                        <!-- Start::header-link-icon -->
                         <i class="bi bi-search header-link-icon"></i>
-                        <!-- End::header-link-icon -->
                     </a>
-                </li>
+                </li> -->
                 <!-- End::header-element -->
 
                 <!-- Start::header-element -->
