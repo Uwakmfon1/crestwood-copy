@@ -2440,5 +2440,15 @@
          c.src='https://www.smartsuppchat.com/loader.js?';s.parentNode.insertBefore(c,s);
          })(document);
       </script>
+
+      <style>
+         #ketch-banner {
+            display: none;
+         }
+
+         #lanyard_root {
+            display: none;
+         }
+      </style>
    </body>
 </html>
