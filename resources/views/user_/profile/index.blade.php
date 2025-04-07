@@ -722,7 +722,7 @@
                                                     </div>
                                                     <div id="" class="alert alert-warning mt-2">
                                                         <div class="">
-                                                            <p class="fs-12 text-dark">Upload a valid proof of address document. This can be a utility bill, bank statement, or government-issued document dated within the last 3 months." "Accepted formats: JPG, PNG, PDF. Max size: 10 MB</p>
+                                                            <p class="fs-12 text-dark">Upload a valid proof of address document. This can be a utility bill, bank statement, or government-issued document dated within the last 3 months." "Accepted formats: JPG, PNG, PDF. Max size: 3 MB</p>
                                                         </div>
                                                     </div>
 
