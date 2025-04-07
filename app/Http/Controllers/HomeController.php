@@ -20,9 +20,11 @@ use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Crypt;
 use Intervention\Image\Facades\Image;
+use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Response;
 use Illuminate\Support\Facades\Validator;
 use App\Notifications\EmailOTPNotification;
+use Illuminate\Validation\ValidationException;
 
 class HomeController extends Controller
 {
@@ -934,10 +936,15 @@ class HomeController extends Controller
         }
 
         if ($request->screen == 'proof') {
-            // Validate file
-            $request->validate([
-                'proof' => 'required|file|mimes:jpg,jpeg,png,pdf|max:3072', // Validate file type and size
-            ]);
+            try {
+                $request->validate([
+                    'proof' => 'required|file|mimes:jpg,jpeg,png,pdf|max:3072',
+                ]);
+            } catch (ValidationException $e) {
+                $error = $e->validator->errors()->first();
+
+                return back()->withInput()->with('error', $error);
+            }
     
             $user = auth()->user();
             $data = null;
