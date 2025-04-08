@@ -87,7 +87,7 @@
                                 </strong>
                             @enderror
                         </div>
-                        <div class="form-group">
+                        {{-- <div class="form-group">
                             <label for="image">Image</label>
                             <input type="file" name="image"  class="form-control-file" id="image">
                             @error('image')
@@ -96,6 +96,21 @@
                                 </strong>
                             @enderror
                             <img src="{{ asset($package['image']) }}" class="mx-auto my-3 text-center" style="width: 80px; border-radius: 5px" alt="Basic">
+                        </div> --}}
+                        <div class="form-group">
+                            <label for="image">Image</label>
+                            <input type="file" name="image" class="form-control-file" id="image" accept="image/*">
+                            <small class="text-muted">Allowed formats: JPEG, PNG, JPG, GIF. Max size: 2MB.</small>
+                            <div id="imageError" class="small text-danger"></div>
+                            @error('image')
+                                <strong class="small text-danger">
+                                    {{ $message }}
+                                </strong>
+                            @enderror
+                            <!-- Image preview container -->
+                            <div class="mt-2">
+                                <img id="imagePreview" src="{{ asset($package['image']) }}" alt="Preview" style="max-width: 200px;">
+                            </div>
                         </div>
                         <div class="form-group">
                             <div>
@@ -125,4 +140,51 @@
             </div>
         </div>
     </div>
+
+    <script>
+        document.getElementById('image').addEventListener('change', function(e) {
+            const file = e.target.files[0];
+            const errorElement = document.getElementById('imageError');
+            const preview = document.getElementById('imagePreview');
+            const maxSize = 2 * 1024 * 1024; // 2MB
+            const allowedTypes = ['image/jpeg', 'image/png', 'image/jpg', 'image/gif'];
+
+            // Reset previous errors and hide preview
+            errorElement.textContent = '';
+            preview.style.display = 'none';
+
+            if (file) {
+                // Validate file type
+                if (!allowedTypes.includes(file.type)) {
+                    errorElement.textContent = 'Only JPEG, PNG, JPG, and GIF images are allowed.';
+                    return;
+                }
+
+                // Validate file size
+                if (file.size > maxSize) {
+                    errorElement.textContent = 'Image size must be less than 2MB.';
+                    return;
+                }
+
+                // Show preview
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    preview.src = e.target.result;
+                    preview.style.display = 'block';
+                }
+                reader.readAsDataURL(file);
+            }
+        });
+
+        // Form validation before submission
+        document.querySelector('form').addEventListener('submit', function(e) {
+            const fileInput = document.getElementById('image');
+            const errorElement = document.getElementById('imageError');
+            
+            if (fileInput.files.length === 0) {
+                errorElement.textContent = 'Please select an image.';
+                e.preventDefault();
+            }
+        });
+    </script>
 @endsection

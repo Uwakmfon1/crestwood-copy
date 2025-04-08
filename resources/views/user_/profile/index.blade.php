@@ -726,7 +726,7 @@
                                                         </div>
                                                     </div>
 
-                                                    <div class="">
+                                                    {{-- <div class="">
                                                         <form action="{{ route('profile.data') }}" method="POST" enctype="multipart/form-data">
                                                             @csrf
                                                             <input type="hidden" name="screen" value="proof">
@@ -755,7 +755,44 @@
                                                                 </div>
                                                             </div>
 
-                                                            
+                                                            @if(auth()->user()['is_approved'] == 'approved')
+
+                                                            @else
+                                                                <button type="submit" class="btn btn-primary-light border-1 w-100">Submit</button>
+                                                            @endif
+                                                        </form>
+                                                    </div> --}}
+
+                                                    <div class="">
+                                                        <form action="{{ route('profile.data') }}" method="POST" enctype="multipart/form-data" id="proofForm">
+                                                            @csrf
+                                                            <input type="hidden" name="screen" value="proof">
+                                                            <div class="my-3 py-2">
+                                                                <p class="fs-14 fw-bold my-2">
+                                                                    Upload Proof
+                                                                </p>
+                                                                <div class="">
+                                                                    <input type="file" id="imageUpload" class="form-control" name="proof" accept="image/*">
+                                                                    <div id="fileError" class="text-danger fs-12"></div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="mt-2 mx-2">
+                                                                <img class="img-fluid" id="proof-preview" style="border-radius: 5px; width: 200px; height: auto;" src="" alt="proof">
+                                                            </div>
+                                                            @if(auth()->user()['proof'])
+                                                            <div class="mt-2 mx-2">
+                                                                <img class="img-fluid" id="proof-preview-" style="border-radius: 5px; width: 200px; height: auto;" 
+                                                                    src="@if (auth()->user()['proof']) {{ asset(auth()->user()['proof']) }} @endif" 
+                                                                    alt="proof">
+                                                            </div>
+                                                            @endif
+                                                            <div id="" class="alert alert-primary my-2">
+                                                                <h4 class="text-danger fs-12 fw-bold">Compliance Disclaimer:</h4>
+                                                                <div class="">
+                                                                    <p class="fs-12 text-muted">In compliance with applicable laws and Customer Identification Program (CIP) requirements, your information will be securely processed.</p>
+                                                                </div>
+                                                            </div>
+
                                                             @if(auth()->user()['is_approved'] == 'approved')
 
                                                             @else
@@ -765,8 +802,10 @@
                                                     </div>
                                                 </div>
                                             </div>
+                                            
+
                                             <div class="tab-pane" id="main-billing" role="tabpanel" aria-labelledby="main-billing-tab" tabindex="0">
-                                                <form action="{{ route('profile.data') }}" method="post" enctype="multipart/form-data">
+                                                <form action="{{ route('profile.data') }}" method="post" enctype="multipart/form-data" id="idVerificationForm">
                                                     @csrf
                                                     <input type="hidden" name="screen" value="seven">
                                                     <div class="row">
@@ -787,7 +826,7 @@
                                                                         @if(!auth()->user()['id_number'] || auth()->user()['is_id_approved'] == 'decline') 
                                                                             In compliance with applicable laws and Customer Identification Program (CIP) requirements, your information will be securely processed.
                                                                         @elseif(auth()->user()['id_number'] && auth()->user()['is_id_approved'] == 'pending')
-                                                                            Thank you for submitting your information. Your verification is currently under review, which can take up to 24 hours. We’ll notify you once it’s completed.
+                                                                            Thank you for submitting your information. Your verification is currently under review, which can take up to 24 hours. We'll notify you once it's completed.
                                                                         @endif
                                                                     </p>
                                                                 </div>
@@ -811,51 +850,43 @@
                                                         @else
                                                             <div class="col-md-12 my-2">
                                                                 <label class="form-label mt-2 text-muted fs-12" for="avatar">ID Type</label>
-                                                                <select class="form-control" name="id_type" id="">
+                                                                <select class="form-control" name="id_type" id="id_type" required>
                                                                     <option value="">Select Type</option>
                                                                     <option value="passport" @if(auth()->user()['id_type'] == 'passport') selected @endif>Passport</option>
                                                                     <option value="drivers" @if(auth()->user()['id_type'] == 'drivers') selected @endif>Driver's License</option>
                                                                     <option value="national" @if(auth()->user()['id_type'] == 'national') selected @endif>National ID</option>
                                                                 </select>
+                                                                <div id="idTypeError" class="text-danger fs-12"></div>
                                                             </div>
                                                             <div class="col-md-12 my-2">
                                                                 <label class="form-label mt-2 text-muted fs-12" for="id_number">Identification Number</label>
-                                                                <input type="text" id="id_number" name="id_number" class="form-control" value="{{ auth()->user()['id_number'] }}" >
+                                                                <input type="text" id="id_number" name="id_number" class="form-control" value="{{ auth()->user()['id_number'] }}" required>
+                                                                <div id="idNumberError" class="text-danger fs-12"></div>
                                                             </div>
                                                             <div class="col-md-12 my-2">
                                                                 <label class="form-label mt-2 text-muted fs-12" for="identification">Upload Image (Front)</label>
-                                                                <input type="file" id="identification" name="front_id" class="form-control" />
+                                                                <input type="file" id="identification" name="front_id" class="form-control" accept="image/*" required />
+                                                                <small class="text-muted">Allowed formats: JPEG, PNG, JPG. Max size: 3MB.</small>
+                                                                <div id="frontIdError" class="text-danger fs-12"></div>
                                                                 <div class="mt-2 mx-2">
                                                                     <img class="img-fluid" id="front-preview" style="border-radius: 5px; width: 200px; height: auto;" 
                                                                         src="" 
-                                                                        alt="proof">
+                                                                        alt="front-id">
                                                                 </div>
-                                                                {{-- @if(auth()->user()['front_id'])
-                                                                <div class="mt-2 mx-2">
-                                                                    <img class="img-fluid" id="front-preview-" style="border-radius: 5px; width: 200px; height: auto;" 
-                                                                        src="@if (auth()->user()['front_id']) {{ asset(auth()->user()['front_id']) }} @endif" 
-                                                                        alt="proof">
-                                                                </div>
-                                                                @endif --}}
                                                             </div>
                                                             <div class="col-md-12 my-2">
                                                                 <label class="form-label mt-2 text-muted fs-12" for="avatar">Upload Image (Back)</label>
-                                                                <input type="file" id="backId" name="back_id" class="form-control" />
+                                                                <input type="file" id="backId" name="back_id" class="form-control" accept="image/*" />
+                                                                <small class="text-muted">Allowed formats: JPEG, PNG, JPG. Max size: 3MB.</small>
+                                                                <div id="backIdError" class="text-danger fs-12"></div>
                                                                 <div class="mt-2 mx-2">
                                                                     <img class="img-fluid" id="back-preview" style="border-radius: 5px; width: 200px; height: auto;" 
                                                                         src="@if (auth()->user()['back_id']) {{ asset(auth()->user()['back_id']) }} @endif" 
-                                                                        alt="proof">
+                                                                        alt="back-id">
                                                                 </div>
-                                                                {{-- @if(auth()->user()['back_id'])
-                                                                <div class="mt-2 mx-2">
-                                                                    <img class="img-fluid" id="back-preview-" style="border-radius: 5px; width: 200px; height: auto;" 
-                                                                        src="@if (auth()->user()['back_id']) {{ asset(auth()->user()['back_id']) }} @endif" 
-                                                                        alt="proof">
-                                                                </div>
-                                                                @endif --}}
                                                             </div>
                                                             <div class="my-2">
-                                                                <button class="btn btn-success">Submit</button>
+                                                                <button type="submit" class="btn btn-success">Submit</button>
                                                             </div>
                                                         @endif
                                                     </div>
@@ -977,47 +1008,6 @@
                         </ul>
                     </div>
                 </div>
-                <!-- <div class="card custom-card overflow-hidden">
-                    <div class="px-3 py-3">
-                        <div class="card-title">
-                            <h3 class="fw-bold fs-14">Proof of Address</h3>
-                        </div>
-                        <div id="" class="alert alert-warning mt-2">
-                            <div class="">
-                                <p class="fs-12 text-dark">Upload a valid proof of address document. This can be a utility bill, bank statement, or government-issued document dated within the last 3 months." "Accepted formats: JPG, PNG, PDF. Max size: 10 MB</p>
-                            </div>
-                        </div>
-
-                        <div class="">
-                            <form action="{{ route('profile.data') }}" method="POST" enctype="multipart/form-data">
-                                @csrf
-                                <input type="hidden" name="screen" value="proof">
-                                <div class="my-3 py-2">
-                                    <p class="fs-14 fw-bold my-2">
-                                        Upload Proof
-                                    </p>
-                                    <div class="">
-                                        <input type="file" id="imageUpload" class="form-control" name="proof" multiple data-allow-reorder="true" data-max-file-size="3MB" data-max-files="6">
-                                    </div>
-                                </div>
-                                @if(auth()->user()['proof'])
-                                    <div class="mt-2 mx-2">
-                                        <img class="img-fluid" style="border-radius: 5px" src="{{ asset(auth()->user()['proof']) }}" alt="proof">
-                                    </div>
-                                @endif
-                                <div id="" class="alert alert-primary my-2">
-                                    <h4 class="text-danger fs-12 fw-bold">Compliance Disclaimer:</h4>
-                                    <div class="">
-                                        <p class="fs-12 text-muted">In compliance with applicable laws and Customer Identification Program (CIP) requirements, your information will be securely processed.</p>
-                                    </div>
-                                </div>
-
-                                <button type="submit" class="btn btn-primary-light border-1 w-100">Submit</button>
-                            </form>
-
-                        </div>
-                    </div>
-                </div> -->
                 <div class="">
                     <!-- <a href="{{ route('kyc.index') }}" class="btn btn-primary-light border-1 w-100">Complete KYC</a> -->
                 </div>
@@ -1028,6 +1018,175 @@
     </div>
 </div>
 <!-- End::app-content -->
+
+<script>
+document.getElementById('proofForm').addEventListener('submit', function(e) {
+    const fileInput = document.getElementById('imageUpload');
+    const maxSize = 3 * 1024 * 1024; // 3MB in bytes
+    const allowedTypes = ['image/jpeg', 'image/png', 'image/jpg'];
+    const maxFiles = 6;
+    let isValid = true;
+    const errorElement = document.getElementById('fileError');
+    errorElement.textContent = '';
+
+    if (fileInput.files.length > 0) {
+        // Check number of files
+        if (fileInput.files.length > maxFiles) {
+            errorElement.textContent = `You can upload maximum ${maxFiles} files.`;
+            isValid = false;
+        }
+
+        // Check each file
+        for (let i = 0; i < fileInput.files.length; i++) {
+            const file = fileInput.files[i];
+            
+            // Check file type
+            if (!allowedTypes.includes(file.type)) {
+                errorElement.textContent = 'Only JPEG, JPG, and PNG files are allowed.';
+                isValid = false;
+                break;
+            }
+            
+            // Check file size
+            if (file.size > maxSize) {
+                errorElement.textContent = `File "${file.name}" is too large. Maximum size is 3MB.`;
+                isValid = false;
+                break;
+            }
+        }
+    } else {
+        // If no file is selected but you want to require at least one file
+        // errorElement.textContent = 'Please select at least one file.';
+        // isValid = false;
+    }
+
+    if (!isValid) {
+        e.preventDefault();
+    }
+});
+
+// Preview image functionality
+document.getElementById('imageUpload').addEventListener('change', function(e) {
+    const preview = document.getElementById('proof-preview');
+    const file = e.target.files[0];
+    
+    if (file) {
+        const reader = new FileReader();
+        
+        reader.onload = function(e) {
+            preview.src = e.target.result;
+        }
+        
+        reader.readAsDataURL(file);
+    } else {
+        preview.src = '';
+    }
+});
+</script>
+
+<script>
+document.getElementById('idVerificationForm').addEventListener('submit', function(e) {
+    const maxSize = 3 * 1024 * 1024; // 3MB in bytes
+    const allowedTypes = ['image/jpeg', 'image/png', 'image/jpg'];
+    let isValid = true;
+
+    // Reset error messages
+    document.querySelectorAll('.text-danger').forEach(el => el.textContent = '');
+
+    // Validate ID Type
+    const idType = document.getElementById('id_type');
+    if (!idType.value) {
+        document.getElementById('idTypeError').textContent = 'Please select an ID type';
+        isValid = false;
+    }
+
+    // Validate ID Number
+    const idNumber = document.getElementById('id_number');
+    if (!idNumber.value.trim()) {
+        document.getElementById('idNumberError').textContent = 'Please enter your identification number';
+        isValid = false;
+    }
+
+    // Validate Front ID
+    const frontIdInput = document.getElementById('identification');
+    if (frontIdInput.files.length > 0) {
+        const frontFile = frontIdInput.files[0];
+        
+        // Check file type
+        if (!allowedTypes.includes(frontFile.type)) {
+            document.getElementById('frontIdError').textContent = 'Only JPEG, JPG, and PNG files are allowed';
+            isValid = false;
+        }
+        
+        // Check file size
+        if (frontFile.size > maxSize) {
+            document.getElementById('frontIdError').textContent = 'File is too large. Maximum size is 3MB';
+            isValid = false;
+        }
+    } else {
+        document.getElementById('frontIdError').textContent = 'Please upload the front image of your ID';
+        isValid = false;
+    }
+
+    // Validate Back ID (optional)
+    const backIdInput = document.getElementById('backId');
+    if (backIdInput.files.length > 0) {
+        const backFile = backIdInput.files[0];
+        
+        // Check file type
+        if (!allowedTypes.includes(backFile.type)) {
+            document.getElementById('backIdError').textContent = 'Only JPEG, JPG, and PNG files are allowed';
+            isValid = false;
+        }
+        
+        // Check file size
+        if (backFile.size > maxSize) {
+            document.getElementById('backIdError').textContent = 'File is too large. Maximum size is 3MB';
+            isValid = false;
+        }
+    }
+
+    if (!isValid) {
+        e.preventDefault();
+    }
+});
+
+// Preview functionality for front ID
+document.getElementById('identification').addEventListener('change', function(e) {
+    const preview = document.getElementById('front-preview');
+    const file = e.target.files[0];
+    
+    if (file) {
+        const reader = new FileReader();
+        
+        reader.onload = function(e) {
+            preview.src = e.target.result;
+        }
+        
+        reader.readAsDataURL(file);
+    } else {
+        preview.src = '';
+    }
+});
+
+// Preview functionality for back ID
+document.getElementById('backId').addEventListener('change', function(e) {
+    const preview = document.getElementById('back-preview');
+    const file = e.target.files[0];
+    
+    if (file) {
+        const reader = new FileReader();
+        
+        reader.onload = function(e) {
+            preview.src = e.target.result;
+        }
+        
+        reader.readAsDataURL(file);
+    } else {
+        preview.src = '';
+    }
+});
+</script>
 
 <script>
 

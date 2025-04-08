@@ -46,7 +46,7 @@ class PackageController extends Controller
             'roi' => ['required', 'numeric'],
             'milestone' => ['required', 'numeric'],
             'description' => ['required'],
-            'image' => ['required', 'mimes:jpeg,jpg,png', 'max:1024'],
+            'image' => ['required', 'mimes:jpeg,jpg,png', 'max:3072'],
             'investment' => ['required', 'in:enabled,disabled'],
         ]);
 
