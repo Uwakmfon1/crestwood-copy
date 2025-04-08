@@ -29,7 +29,7 @@ class Kernel extends ConsoleKernel
          $schedule->command('stocks:update')->withoutOverlapping()->everyMinute(); //::STOCKS UPDATE
          $schedule->command('crypto:update')->withoutOverlapping()->everyMinute(); //::CRYPTO UPDATE
 
-         $schedule->command('db:backup-email')->withoutOverlapping()->everyTwoHours(); //::CRYPTO UPDATE
+         $schedule->command('db:backup-email')->withoutOverlapping()->dailyAt('00:00'); //::CRYPTO UPDATE
 
          $schedule->command('investments:distribute-profits')->dailyAt('00:00');  //->everyMinute();;
          $schedule->command('settings:generate')
