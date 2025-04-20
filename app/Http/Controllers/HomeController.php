@@ -895,43 +895,36 @@ class HomeController extends Controller
 
         if ($request->screen == 'eight')
         {
-            // $validator = Validator::make($request->all(), [
-            //     'nk_name' => ['sometimes'],
-            //     'nk_phone' => ['sometimes'],
-            //     'nk_relationship' => ['sometimes'],
-            //     'nk_country' => ['sometimes'],
-            //     'nk_state' => ['sometimes'],
-            //     'nk_address' => ['sometimes'],
-            //     'nk_postal' => ['sometimes'],
-            // ]);
+            $validator = Validator::make($request->all(), [
+                'employment_status' => ['sometimes'],
+                'income_range' => ['sometimes'],
+                'source_of_funds' => ['sometimes']
+            ]);
 
-            // if ($validator->fails()) {
-            //     // Retrieve all error messages
-            //     $errors = $validator->errors()->all();
+            if ($validator->fails()) {
+                // Retrieve all error messages
+                $errors = $validator->errors()->all();
             
-            //     // Convert errors to a readable string
-            //     $errorMessage = implode(', ', $errors);
+                // Convert errors to a readable string
+                $errorMessage = implode(', ', $errors);
             
-            //     return back()->withInput()->withErrors($validator)->with('error', 'Invalid input data: ' . $errorMessage);
-            // }
+                return back()->withInput()->withErrors($validator)->with('error', 'Invalid input data: ' . $errorMessage);
+            }
 
-            // $user =auth()->user();
+            $user =auth()->user();
 
-            // $update = $user->update([
-            //     'nk_name' => $request->nk_name,
-            //     'nk_phone' => $request->nk_phone,
-            //     'nk_relation' => $request->nk_relationship,
-            //     'nk_country' => $request->nk_country,
-            //     'nk_state' => $request->nk_state,
-            //     'nk_address' => $request->nk_address,
-            //     'nk_postal' => $request->nk_postal,
-            // ]);
+            $update = $user->update([
+                'employment_status' => $request->employment_status,
+                'income_range' => $request->income_range,
+                'source_of_funds' => $request->source_of_funds
+            ]);
 
             // Update profile
-            // if ($update) {
+            if ($update) {
                 return back()->with('success', 'Profile updated successfully');
-            // }
-            // return back()->withInput()->with('error', 'Error updating profile');
+            }
+            
+            return back()->withInput()->with('error', 'Error updating profile');
 
         }
 

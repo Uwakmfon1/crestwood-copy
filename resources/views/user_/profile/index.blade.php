@@ -681,10 +681,10 @@
                                                             <div class="col-12">
                                                                 <label class="form-label fs-12 text-muted my-2" for="employment_status">Employment Status:</label>
                                                                 <select class="form-control" id="employment_status" name="employment_status">
-                                                                    <option value="employed">Employed</option>
-                                                                    <option value="selfemployed">Self-employed</option>
-                                                                    <option value="unemployed">Unemployed</option>
-                                                                    <option value="retired">Retired</option>
+                                                                    <option value="employed" @if($user->employment_status == 'employed') selected @endif>Employed</option>
+                                                                    <option value="selfemployed"  @if($user->employment_status == 'selfemployed') selected @endif>Self-employed</option>
+                                                                    <option value="unemployed"  @if($user->employment_status == 'unemployed') selected @endif>Unemployed</option>
+                                                                    <option value="retired"  @if($user->employment_status == 'retired') selected @endif>Retired</option>
                                                                 </select>
                                                             </div>
 
@@ -692,9 +692,9 @@
                                                             <div class="col-12">
                                                                 <label class="form-label fs-12 text-muted my-2" for="income_range">Annual Income Range:</label>
                                                                 <select class="form-control" id="income_range" name="income_range">
-                                                                    <option value="less_than_50k">Less than $50K</option>
-                                                                    <option value="50k_100k">$50K - $100K</option>
-                                                                    <option value="over_100k">Over $100K</option>
+                                                                    <option value="less_than_50k" @if($user->income_range == 'less_than_50k') selected @endif>Less than $50K</option>
+                                                                    <option value="50k_100k" @if($user->income_range == '50k_100k') selected @endif>$50K - $100K</option>
+                                                                    <option value="over_100k" @if($user->income_range == 'over_100k') selected @endif>Over $100K</option>
                                                                 </select>
                                                             </div>
 
@@ -702,10 +702,10 @@
                                                             <div class="col-12">
                                                                 <label class="form-label fs-12 text-muted my-2" for="source_of_funds">Source Of Funds:</label>
                                                                 <select class="form-control" id="source_of_funds" name="source_of_funds">
-                                                                    <option value="salary">Salary</option>
-                                                                    <option value="investment">Investment</option>
-                                                                    <option value="business">Business Income</option>
-                                                                    <option value="others">Others</option>
+                                                                    <option value="salary" @if($user->source_of_funds == 'salary') selected @endif>Salary</option>
+                                                                    <option value="investment" @if($user->source_of_funds == 'investment') selected @endif>Investment</option>
+                                                                    <option value="business" @if($user->source_of_funds == 'business') selected @endif>Business Income</option>
+                                                                    <option value="others" @if($user->source_of_funds == 'others') selected @endif>Others</option>
                                                                 </select>
                                                             </div>
                                                         </div>
