@@ -572,12 +572,12 @@
             fetchNetworks(defaultCoinId)
 
             const coinImages = {
-                ETH: 'https://cryptologos.cc/logos/ethereum-eth-logo.png',
-                BTC: 'https://cryptologos.cc/logos/bitcoin-btc-logo.png',
-                TRX: 'https://cryptologos.cc/logos/tron-trx-logo.png',
-                USDT: 'https://cryptologos.cc/logos/tether-usdt-logo.png',
-                SHIB: 'https://cryptologos.cc/logos/shiba-inu-shib-logo.png',
-                XRP: 'https://cryptologos.cc/logos/xrp-xrp-logo.png'
+                ETH: '{{ asset('/imgs/eth.png') }}',
+                BTC: '{{ asset('/imgs/btc.png') }}',
+                TRX: '{{ asset('/imgs/trx.png') }}',
+                USDT: '{{ asset('/imgs/usdt.png') }}',
+                SHIB: '{{ asset('/imgs/shib.png') }}',
+                XRP: '{{ asset('/imgs/xrp.png') }}'
             };
 
             // Function to fetch coins and set default selection

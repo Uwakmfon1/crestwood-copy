@@ -60,7 +60,7 @@
                             <div class="card text-center selectdepo mx-auto pt-5" id="selectCrypto">
                                 <div class="card-body align-items-center rounded">
                                     <span class="avatar avatar-md bg-primary me-2 shadow-avatar mb-3">
-                                        <img class="p-1" src="https://cryptologos.cc/logos/centrifuge-cfg-logo.png" alt="">
+                                        <img class="p-1" src="{{ asset('/imgs/crypto.png') }}" alt="">
                                     </span>
                                     <h5 class="fw-bold fs-14 mt-2 mx-2"> 
                                         Cryptocurrency
@@ -217,7 +217,7 @@
                                             <!-- <button type="button" class="input-group-text btn btn-dark-light btn-wave copy-btn text-primary fs-13"><i class="ri-file-copy-fill text-primary me-2"></i> Copy</button> -->
                                         </div>
                                         <div class="input-group my-1">
-                                            <button type="button" class="input-group-text btn btn-light-light btn-wave fs-10">SWIFT Code (International Transfers)</button>
+                                            <button type="button" class="input-group-text btn btn-light-light btn-wave fs-10">Routing Number (International Transfers)</button>
                                             <input type="text" name="roi_method" class="form-control fw-bold" placeholder="Enter Method..." aria-label="Stock Quantity" value="{{ $setting->swift_code }}" disabled>
                                             <!-- <button type="button" class="input-group-text btn btn-dark-light btn-wave copy-btn text-primary fs-13"><i class="ri-file-copy-fill text-primary me-2"></i> Copy</button> -->
                                         </div>
@@ -298,12 +298,12 @@
                                         </div>
                                         
                                         <div class="form-group my-2">
-                                            <label for="swift" class="fs-12 fw-medium my-2 text-muted">Swift Code
+                                            <label for="swift" class="fs-12 fw-medium my-2 text-muted">Routing Number
                                                 <a href="javascript:void(0);" data-bs-toggle="tooltip" data-bs-custom-class="tooltip-dark" title="Required for international transfers." class="text-muted mx-1">
                                                     <i class="fe fe-info"></i>
                                                 </a>
                                             </label>
-                                            <input type="text" name="swift" class="form-control fw-bold fs-11" placeholder="Enter the SWIFT code of the delivering bank." id="swift">
+                                            <input type="text" name="swift" class="form-control fw-bold fs-11" placeholder="Enter the Routing Number of the delivering bank." id="swift">
                                         </div>
                                         
                                         <div class="form-group my-2">
@@ -361,7 +361,7 @@
                                                     </div>
                                                     <div class="col-12">
                                                         <div class="input-group my-1">
-                                                            <button type="button" class="input-group-text btn btn-light-light btn-wave fs-11">Swift Code</button>
+                                                            <button type="button" class="input-group-text btn btn-light-light btn-wave fs-11">Routing Number</button>
                                                             <input type="text" name="test" class="form-control fw-bold fs-11" id="summary-swift" disabled>
                                                         </div>
                                                     </div>
@@ -478,12 +478,12 @@
 
 
         const coinImages = {
-            ETH: 'https://cryptologos.cc/logos/ethereum-eth-logo.png',
-            BTC: 'https://cryptologos.cc/logos/bitcoin-btc-logo.png',
-            TRX: 'https://cryptologos.cc/logos/tron-trx-logo.png',
-            USDT: 'https://cryptologos.cc/logos/tether-usdt-logo.png',
-            SHIB: 'https://cryptologos.cc/logos/shiba-inu-shib-logo.png',
-            XRP: 'https://cryptologos.cc/logos/xrp-xrp-logo.png'
+            ETH: '{{ asset('/imgs/eth.png') }}',
+            BTC: '{{ asset('/imgs/btc.png') }}',
+            TRX: '{{ asset('/imgs/trx.png') }}',
+            USDT: '{{ asset('/imgs/usdt.png') }}',
+            SHIB: '{{ asset('/imgs/shib.png') }}',
+            XRP: '{{ asset('/imgs/xrp.png') }}'
         };
 
         // Fetch networks and update display based on coin selection
