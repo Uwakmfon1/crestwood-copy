@@ -175,7 +175,7 @@
                                 <input type="text" class="form-control" name="bank_reference" value="{{ $setting->bank_reference }}">
                             </div>
                             <div class="my-4">
-                                <label for="bank_reference">Routing Number:</label>
+                                <label for="bank_reference">Beneficiary Address:</label>
                                 <input type="text" class="form-control" name="routing" value="{{ $setting->routing }}">
                             </div>
                             <div class="my-4">

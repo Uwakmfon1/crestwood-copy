@@ -216,11 +216,11 @@
                                             <input type="text" name="roi_method" class="form-control fw-bold" placeholder="Enter Method..." aria-label="Stock Quantity" value="{{ $setting->bank_name }}" disabled>
                                             <!-- <button type="button" class="input-group-text btn btn-dark-light btn-wave copy-btn text-primary fs-13"><i class="ri-file-copy-fill text-primary me-2"></i> Copy</button> -->
                                         </div>
-                                        <div class="input-group my-1">
+                                        <!-- <div class="input-group my-1">
                                             <button type="button" class="input-group-text btn btn-light-light btn-wave fs-10">Routing Number (International Transfers)</button>
                                             <input type="text" name="roi_method" class="form-control fw-bold" placeholder="Enter Method..." aria-label="Stock Quantity" value="{{ $setting->swift_code }}" disabled>
-                                            <!-- <button type="button" class="input-group-text btn btn-dark-light btn-wave copy-btn text-primary fs-13"><i class="ri-file-copy-fill text-primary me-2"></i> Copy</button> -->
-                                        </div>
+                                            <button type="button" class="input-group-text btn btn-dark-light btn-wave copy-btn text-primary fs-13"><i class="ri-file-copy-fill text-primary me-2"></i> Copy</button>
+                                        </div> -->
                                         <div class="input-group my-1">
                                             <button type="button" class="input-group-text btn btn-light-light btn-wave fs-10">Reference</button>
                                             <input type="text" name="roi_method" class="form-control fw-bold" placeholder="Enter Method..." aria-label="Stock Quantity" value="{{ $setting->bank_reference }}" disabled>
@@ -230,8 +230,8 @@
                                             </a>
                                         </div>
                                         <div class="input-group my-1">
-                                            <button type="button" class="input-group-text btn btn-light-light btn-wave fs-10">Routing Number</button>
-                                            <input type="text" name="routing" class="form-control fw-bold" placeholder="Enter Method..." aria-label="Stock Quantity" value="{{ $setting->routing }}" disabled>
+                                            <button type="button" class="input-group-text btn btn-light-light btn-wave fs-10">Swift Code</button>
+                                            <input type="text" name="routing" class="form-control fw-bold" placeholder="" aria-label="Stock Quantity" value="{{ $setting->swift_code }}" disabled>
                                             <!-- <button type="button" class="input-group-text btn btn-dark-light btn-wave copy-btn text-primary fs-13"><i class="ri-file-copy-fill text-primary me-2"></i> Copy</button> -->
                                             <!-- <a href="javascript:void(0);" data-bs-toggle="tooltip" data-bs-custom-class="tooltip-dark" title="Include this reference in your bank transfer to ensure proper allocation" class="text-muted input-group-text btn btn-dark-light btn-wave">
                                                 <i class="fe fe-info"></i>
@@ -253,7 +253,7 @@
                                             <div class="col-6">
                                                 <div class="">
                                                     <label for="" class="fs-10 text-dark">Beneficiary Address:</label>
-                                                    <p class="text-muted fw-bold fs-12">{{ $user->address }}
+                                                    <p class="text-muted fw-bold fs-12">{{ $setting->routing }}
                                                         <!-- <a href="javascript:void(0);" data-bs-toggle="tooltip" data-bs-custom-class="tooltip-dark" title="Contact this email for any deposit-related issues." class="text-muted mx-1">
                                                             <i class="fe fe-info"></i>
                                                         </a> -->
