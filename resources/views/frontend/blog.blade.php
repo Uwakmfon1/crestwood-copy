@@ -1058,14 +1058,15 @@ document.body.appendChild(img);
 <!-- End Bing Pixel -->
 <script type="text/javascript">window.NREUM||(NREUM={});NREUM.info={"beacon":"bam.nr-data.net","licenseKey":"f361777eb6","applicationID":"953697885","transactionName":"NgQEZ0ICCBAHUhYMXQ9OJ1BECgkNSUEDAldMCQleVQ==","queueTime":0,"applicationTime":311,"atts":"GkMHEQoYGx4=","errorBeacon":"bam.nr-data.net","agent":""}</script></body>
 
-<script type="text/javascript">
-         var _smartsupp = _smartsupp || {};
-         _smartsupp.key = 'fc1576d3f2f37277afbeb6d7267b09b65c50d661';
-         window.smartsupp||(function(d) {
-         var s,c,o=smartsupp=function(){ o._.push(arguments)};o._=[];
-         s=d.getElementsByTagName('script')[0];c=d.createElement('script');
-         c.type='text/javascript';c.charset='utf-8';c.async=true;
-         c.src='https://www.smartsuppchat.com/loader.js?';s.parentNode.insertBefore(c,s);
-         })(document);
+<!-- Smartsupp Live Chat script -->
+      <script type="text/javascript">
+            var _smartsupp = _smartsupp || {};
+            _smartsupp.key = '349859572aa63a7cc5f4a017ecc8e9f237b1d24f';
+            window.smartsupp||(function(d) {
+            var s,c,o=smartsupp=function(){ o._.push(arguments)};o._=[];
+            s=d.getElementsByTagName('script')[0];c=d.createElement('script');
+            c.type='text/javascript';c.charset='utf-8';c.async=true;
+            c.src='https://www.smartsuppchat.com/loader.js?';s.parentNode.insertBefore(c,s);
+            })(document);
       </script>
 </html>

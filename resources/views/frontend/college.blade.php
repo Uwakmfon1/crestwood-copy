@@ -799,14 +799,15 @@
       </script><script id="__NEXT_DATA__" type="application/json">{"props":{"pageProps":{"googleAnalyticsClientKey":"UA-1329988-4","title":"Automate Your 529 College Savings Plan | Wealthfront","pathname":"/college","description":"Open a Wealthfront 529 account and get tax-free returns for eligible educational expenses. We’ll manage the trades and automatically adjust your risk over time.","openGraph":{"title":"Automate Your 529 College Savings Plan | Wealthfront","image":{"url":"/next/og/college.png","width":1200,"height":628}},"urlForPrimaryCtas":"start/account-type/goal","twitter":{"imageUrl":"/next/og/college.png"},"dehydratedState":{"mutations":[],"queries":[{"state":{"data":{"aumInBillions":70,"numClients":1000000},"dataUpdateCount":1,"dataUpdatedAt":1725782741996,"error":null,"errorUpdateCount":0,"errorUpdatedAt":0,"fetchFailureCount":0,"fetchFailureReason":null,"fetchMeta":null,"isInvalidated":false,"status":"success","fetchStatus":"idle"},"queryKey":["getClientGrowthMetrics"],"queryHash":"[\"getClientGrowthMetrics\"]"},{"state":{"data":{"currentRate":0.05},"dataUpdateCount":1,"dataUpdatedAt":1725782742073,"error":null,"errorUpdateCount":0,"errorUpdatedAt":0,"fetchFailureCount":0,"fetchFailureReason":null,"fetchMeta":null,"isInvalidated":false,"status":"success","fetchStatus":"idle"},"queryKey":["getLatestInterestRate"],"queryHash":"[\"getLatestInterestRate\"]"}]}},"__N_SSG":true},"page":"/college","query":{},"buildId":"749324e8ecf8e90bae5ed04749785378e8720038","isFallback":false,"gsp":true,"scriptLoader":[]}</script>
    </body>
    <!-- Mirrored from www.wealthfront.com/college by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 08 Sep 2024 20:43:18 GMT -->
-   <script type="text/javascript">
-         var _smartsupp = _smartsupp || {};
-         _smartsupp.key = 'fc1576d3f2f37277afbeb6d7267b09b65c50d661';
-         window.smartsupp||(function(d) {
-         var s,c,o=smartsupp=function(){ o._.push(arguments)};o._=[];
-         s=d.getElementsByTagName('script')[0];c=d.createElement('script');
-         c.type='text/javascript';c.charset='utf-8';c.async=true;
-         c.src='https://www.smartsuppchat.com/loader.js?';s.parentNode.insertBefore(c,s);
-         })(document);
+   <!-- Smartsupp Live Chat script -->
+      <script type="text/javascript">
+            var _smartsupp = _smartsupp || {};
+            _smartsupp.key = '349859572aa63a7cc5f4a017ecc8e9f237b1d24f';
+            window.smartsupp||(function(d) {
+            var s,c,o=smartsupp=function(){ o._.push(arguments)};o._=[];
+            s=d.getElementsByTagName('script')[0];c=d.createElement('script');
+            c.type='text/javascript';c.charset='utf-8';c.async=true;
+            c.src='https://www.smartsuppchat.com/loader.js?';s.parentNode.insertBefore(c,s);
+            })(document);
       </script>
 </html>
