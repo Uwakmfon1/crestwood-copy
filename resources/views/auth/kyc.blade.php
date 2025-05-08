@@ -32,9 +32,8 @@
 <script>
 document.addEventListener("DOMContentLoaded", function () {
     const phoneCodeSelect = document.getElementById("phone-code");
-    const apiUrl = "https://restcountries.com/v3.1/all";
+    const localJsonPath = "/data/countries.json"; // relative to public folder
 
-    // Function to fetch data with retry logic
     function fetchData(url, retries = 2) {
         fetch(url)
             .then(response => {
@@ -44,19 +43,21 @@ document.addEventListener("DOMContentLoaded", function () {
                 return response.json();
             })
             .then(data => {
-                // Clear any loading or error text
                 phoneCodeSelect.innerHTML = "";
 
-                // Sort countries alphabetically
                 const sortedCountries = data.sort((a, b) =>
                     a.name.common.localeCompare(b.name.common)
                 );
 
-                // Populate the select dropdown with country phone codes
                 sortedCountries.forEach(country => {
                     if (country.idd && country.idd.root) {
-                        const phoneCode =
-                            country.idd.root + (country.idd.suffixes ? country.idd.suffixes[0] : "");
+                        let phoneCode;
+                        if (country.name.common === "United States") {
+                            phoneCode = country.idd.root;
+                        } else {
+                            phoneCode = country.idd.root + (country.idd.suffixes ? country.idd.suffixes[0] : "");
+                        }
+
                         const option = document.createElement("option");
                         option.value = phoneCode;
                         option.textContent = `${country.name.common} (${phoneCode})`;
@@ -67,7 +68,6 @@ document.addEventListener("DOMContentLoaded", function () {
             .catch(error => {
                 console.error("Error fetching phone codes:", error);
                 if (retries > 0) {
-                    console.log(`Retrying... (${retries} attempts left)`);
                     fetchData(url, retries - 1);
                 } else {
                     phoneCodeSelect.innerHTML = "<option value=''>Error loading data</option>";
@@ -75,10 +75,8 @@ document.addEventListener("DOMContentLoaded", function () {
             });
     }
 
-    // Initial fetch
     phoneCodeSelect.innerHTML = "<option>Loading...</option>";
-    fetchData(apiUrl);
-    fetchData(apiUrl);
+    fetchData(localJsonPath);
 });
 </script>
 
