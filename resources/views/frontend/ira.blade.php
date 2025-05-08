@@ -1484,15 +1484,15 @@
       <script src="hs-fs/hub/5274572/hub_generated/module_assets/55748752406/1725556670961/module_55748752406_chatbot.min-1.js"></script>
 
       <!-- Smartsupp Live Chat script -->
-      <script type="text/javascript">
-            var _smartsupp = _smartsupp || {};
-            _smartsupp.key = '349859572aa63a7cc5f4a017ecc8e9f237b1d24f';
-            window.smartsupp||(function(d) {
+            <script type="text/javascript">
+         var _smartsupp = _smartsupp || {};
+         _smartsupp.key = '349859572aa63a7cc5f4a017ecc8e9f237b1d24f';
+         window.smartsupp||(function(d) {
             var s,c,o=smartsupp=function(){ o._.push(arguments)};o._=[];
             s=d.getElementsByTagName('script')[0];c=d.createElement('script');
             c.type='text/javascript';c.charset='utf-8';c.async=true;
             c.src='https://www.smartsuppchat.com/loader.js?';s.parentNode.insertBefore(c,s);
-            })(document);
+         })(document);
       </script>
       <!-- Start of HubSpot Analytics Code -->
    </body>
