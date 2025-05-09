@@ -146,6 +146,7 @@ class SettingController extends Controller
             'bank_address' => ['required'],
             'swift_code' => ['required'],
             'routing' => ['required'],
+            'beneficiary_address' => ['beneficiary_address'],
             'bank_reference' => ['required'],
             'bank_note_initial' => ['required'],
             'bank_note_final' => ['required'],
@@ -165,6 +166,7 @@ class SettingController extends Controller
             'routing' => $request['routing'],
             'bank_note_initial' => $request['bank_note_initial'],
             'bank_note_final' => $request['bank_note_final'],
+            'beneficiary_address' => $request['beneficiary_address'],
         ]))
             return back()->with('success', 'Settings updated successfully');
         return back()->with('error', 'Error updating settings');

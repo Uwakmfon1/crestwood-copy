@@ -29,6 +29,7 @@ class CreateSettingsTable extends Migration
             $table->string('bank_address_address')->nullable();
             $table->string('bank_reference')->nullable();
             $table->string('routing')->nullable();
+            $table->string('beneficiary_address')->nullable();
 
             $table->boolean('show_cash')->default(true);
             $table->boolean('invest')->default(true);
@@ -52,12 +53,14 @@ class CreateSettingsTable extends Migration
             'bank_phone' => '0123456789',
             'bank_country' => 'United State',
             'bank_state' => 'Texas',
-            'bank_address_address' => 'Houston',
-            'bank_reference' => 'JUUTrRvXEKKBDXWQTIMO664NYVE33B',
-            'account_name' => 'Crestwood Capital Management ',
-            'account_number' => '0123456789',
-            'bank_name' => 'Swiss Bank Finland',
-            'swift_code' => '0065587',
+            'beneficiary_address' => '326 Martingroove New Orleans',
+            'bank_address_address' => '388 Greenwich St, New York, NY 10013, United States',
+            'bank_reference' => '5074208888',
+            'account_name' => 'Splashespark solutions',
+            'account_number' => '36204566',
+            'bank_name' => 'CITI BANK',
+            'swift_code' => 'CITIUS33',
+            'routing' => '021000089',
 
             'crypto_note' => 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Veniam facere et quaerat optio reprehenderit soluta deleniti magni sapiente, ipsam atque ea cum veritatis aut enim ipsum impedit explicabo ipsa. Tempora.',
             'bank_note_initial' => 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Veniam facere et quaerat optio reprehenderit soluta deleniti magni sapiente, ipsam atque ea cum veritatis aut enim ipsum impedit explicabo ipsa. Tempora.',

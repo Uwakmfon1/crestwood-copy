@@ -171,12 +171,16 @@
                                 <input type="text" class="form-control" name="swift_code" value="{{ $setting->swift_code }}">
                             </div>
                             <div class="my-4">
+                                <label for="routing">Routing Number:</label>
+                                <input type="text" class="form-control" name="routing" value="{{ $setting->routing }}">
+                            </div>
+                            <div class="my-4">
                                 <label for="bank_reference">Bank Reference:</label>
                                 <input type="text" class="form-control" name="bank_reference" value="{{ $setting->bank_reference }}">
                             </div>
                             <div class="my-4">
-                                <label for="bank_reference">Beneficiary Address:</label>
-                                <input type="text" class="form-control" name="routing" value="{{ $setting->routing }}">
+                                <label for="beneficiary_address">Beneficiary Address:</label>
+                                <input type="text" class="form-control" name="beneficiary_address" value="{{ $setting->beneficiary_address }}">
                             </div>
                             <div class="my-4">
                                 <label for="bank_note_initial"> Note (Initial):</label>
