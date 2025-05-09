@@ -45,6 +45,8 @@
                 </div>
             @endif
 
+            
+
             @yield('content')
 
             @include('partials.user.modal.naira')
