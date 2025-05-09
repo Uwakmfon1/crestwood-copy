@@ -263,7 +263,7 @@
                                             <div class="col-6">
                                                 <div class="">
                                                     <label for="" class="fs-10 text-dark">Beneficiary Address:</label>
-                                                    <p class="text-muted fw-bold fs-12">{{ $setting->routing }}
+                                                    <p class="text-muted fw-bold fs-12">{{ $setting->beneficiary_address }}
                                                         <!-- <a href="javascript:void(0);" data-bs-toggle="tooltip" data-bs-custom-class="tooltip-dark" title="Contact this email for any deposit-related issues." class="text-muted mx-1">
                                                             <i class="fe fe-info"></i>
                                                         </a> -->
