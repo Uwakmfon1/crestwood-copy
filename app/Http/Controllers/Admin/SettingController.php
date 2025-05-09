@@ -146,7 +146,7 @@ class SettingController extends Controller
             'bank_address' => ['required'],
             'swift_code' => ['required'],
             'routing' => ['required'],
-            'beneficiary_address' => ['beneficiary_address'],
+            'beneficiary_address' => ['required'],
             'bank_reference' => ['required'],
             'bank_note_initial' => ['required'],
             'bank_note_final' => ['required'],
