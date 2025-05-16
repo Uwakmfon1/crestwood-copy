@@ -19,6 +19,7 @@ use HenryEjemuta\LaravelMonnify\Exceptions\MonnifyFailedRequestException;
 
 class TransactionController extends Controller
 {
+
     public function index()
     {
         $user = auth()->user();
@@ -42,6 +43,7 @@ class TransactionController extends Controller
             'setting' => Setting::all()->first(), 
         ]);
     }
+
 
     public function history(Request $request)
     {
@@ -83,6 +85,9 @@ class TransactionController extends Controller
 
         return view('user_.wallet.history', ['title' => 'Transaction History', 'transactions' => $transaction]);
     }
+
+
+   
 
     public function deposit(Request $request)
     {
@@ -161,6 +166,7 @@ class TransactionController extends Controller
         return redirect()->route('wallet')->with('error', 'Error processing deposit');
     }
 
+
     public function withdraw(Request $request): \Illuminate\Http\RedirectResponse
     {
         // Validate request
@@ -204,6 +210,7 @@ class TransactionController extends Controller
     }
 
 
+   
     public static function storeInvestmentTransaction($investment, $method, $byCompany = false, $channel = 'web')
     {
         $desc = !$byCompany ? 'Investment' : 'Investment by '.env('APP_NAME');
@@ -215,6 +222,7 @@ class TransactionController extends Controller
             'status' => $investment['status'] == 'active' ? 'approved' : 'pending'
         ]);
     }
+
 
     public static function storeTradeTransaction($trade, $method, $byCompany = false, $channel = 'web')
     {
@@ -228,6 +236,8 @@ class TransactionController extends Controller
             'status' => $trade['status'] == 'success' ? 'approved' : 'pending'
         ]);
     }
+
+
 
     public static function storeSavingTransaction($saving, $amount, $method, $type, $desc, $saving_id, $channel = 'web')
     {

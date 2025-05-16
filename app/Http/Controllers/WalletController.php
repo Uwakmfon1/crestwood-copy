@@ -8,6 +8,7 @@ use App\Models\Setting;
 use App\Models\AccountCoin;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use App\Services\API\WalletService;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Http;
@@ -17,6 +18,10 @@ use Symfony\Component\HttpFoundation\Exception\BadRequestException;
 
 class WalletController extends Controller
 {
+    public function __construct(public WalletService $walletService){ }
+
+   
+
     public function index()
     {
         $user = auth()->user();
@@ -100,6 +105,9 @@ class WalletController extends Controller
         ]);
     }
 
+  
+
+
     public function depo()
     {
         $setting = Setting::all()->first();
@@ -109,10 +117,9 @@ class WalletController extends Controller
         return view('user_.wallet.deposit', ['setting' => $setting, 'user' => $user]);
     }
 
+   
     public function deposit(Request $request)
     {
-        // dd($request->all());
-
         // Check logic
         if($request->logic !== 'deposit') {
             return back()->with('error', 'Wrong method initiated!');
@@ -220,6 +227,7 @@ class WalletController extends Controller
         return redirect()->route('wallet')->with('error', 'Error processing deposit');
     }
 
+
     public function walletSwap(Request $request): \Illuminate\Http\RedirectResponse
     {
         $user = auth()->user();
@@ -294,6 +302,8 @@ class WalletController extends Controller
             return back()->withInput()->with('error', 'An error occurred during the transfer');
         }
     }
+
+   
 
     public function walletReset()
     {
