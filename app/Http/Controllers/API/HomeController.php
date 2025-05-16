@@ -16,22 +16,7 @@ use function auth;
 
 class HomeController extends Controller
 {
-    /**
-     * @OA\Get(
-     ** path="/api/app/version",
-     *   tags={"App Version"},
-     *   summary="Mobile App Version",
-     *   operationId="mobile app version",
-     *
-     *   @OA\Response(
-     *      response=200,
-     *       description="Success",
-     *      @OA\MediaType(
-     *           mediaType="application/json",
-     *      )
-     *   )
-     *)
-     **/
+   
     public function appVersion(): JsonResponse
     {
         return response()->json(['data' => [
@@ -40,22 +25,6 @@ class HomeController extends Controller
         ]]);
     }
 
-    /**
-     * @OA\Get(
-     ** path="/api/activity/summary",
-     *   tags={"Others"},
-     *   summary="Activity Summary",
-     *   operationId="activity summary",
-     *
-     *   @OA\Response(
-     *      response=200,
-     *       description="Success",
-     *      @OA\MediaType(
-     *           mediaType="application/json",
-     *      )
-     *   )
-     *)
-     **/
     public function activitySummary(): JsonResponse
     {
         $data = $this->getDashboardData();
@@ -72,22 +41,7 @@ class HomeController extends Controller
         ]]);
     }
 
-    /**
-     * @OA\Get(
-     ** path="/api/rates",
-     *   tags={"Others"},
-     *   summary="Get Rates",
-     *   operationId="get rates",
-     *
-     *   @OA\Response(
-     *      response=200,
-     *       description="Success",
-     *      @OA\MediaType(
-     *           mediaType="application/json",
-     *      )
-     *   )
-     *)
-     **/
+
     public function getRates(): JsonResponse
     {
         return response()->json(['data' => [
@@ -102,65 +56,6 @@ class HomeController extends Controller
         ]]);
     }
 
-    /**
-     * @OA\Post(
-     ** path="/api/password/custom/change",
-     *   tags={"Others"},
-     *   summary="Change Password",
-     *   operationId="change password",
-     *
-     *     @OA\Parameter(
-     *      name="old_password",
-     *      in="query",
-     *      required=true,
-     *      @OA\Schema(
-     *           type="string"
-     *      )
-     *   ),
-     *
-     *   @OA\Parameter(
-     *      name="new_password",
-     *      in="query",
-     *      required=true,
-     *      @OA\Schema(
-     *           type="string"
-     *      )
-     *   ),
-     *
-     *   @OA\Parameter(
-     *      name="confirm_password",
-     *      in="query",
-     *      required=true,
-     *      @OA\Schema(
-     *           type="string"
-     *      )
-     *   ),
-     *
-     *   @OA\Response(
-     *      response=200,
-     *       description="Success",
-     *      @OA\MediaType(
-     *           mediaType="application/json",
-     *      )
-     *   ),
-     *
-     *    @OA\Response(
-     *      response=422,
-     *       description="Unprocessed Entity",
-     *      @OA\MediaType(
-     *           mediaType="application/json",
-     *      )
-     *   ),
-     *
-     *      @OA\Response(
-     *      response=400,
-     *       description="Bad Request",
-     *      @OA\MediaType(
-     *           mediaType="application/json",
-     *      )
-     *   )
-     *)
-     **/
     public function changePassword(Request $request)
     {
 //        Validate request
@@ -186,174 +81,8 @@ class HomeController extends Controller
         return response()->json(['message' => 'Error changing password']);
     }
 
-    /**
-     * @OA\Post(
-     ** path="/api/profile/update",
-     *   tags={"Others"},
-     *   summary="Update Profile",
-     *   operationId="update profile",
-     *
-     *     @OA\Parameter(
-     *      name="name",
-     *      in="query",
-     *      required=true,
-     *      @OA\Schema(
-     *           type="string"
-     *      )
-     *   ),
-     *
-     *   @OA\Parameter(
-     *      name="phone",
-     *      in="query",
-     *      required=true,
-     *      @OA\Schema(
-     *           type="string"
-     *      )
-     *   ),
-     *
-     *   @OA\Parameter(
-     *      name="phone_code",
-     *      in="query",
-     *      required=true,
-     *      @OA\Schema(
-     *           type="string"
-     *      )
-     *   ),
-     *
-     *     @OA\Parameter(
-     *      name="state",
-     *      in="query",
-     *      required=true,
-     *      @OA\Schema(
-     *           type="string"
-     *      )
-     *   ),
-     *
-     *     @OA\Parameter(
-     *      name="country",
-     *      in="query",
-     *      required=true,
-     *      @OA\Schema(
-     *           type="string"
-     *      )
-     *   ),
-     *
-     *     @OA\Parameter(
-     *      name="city",
-     *      in="query",
-     *      required=true,
-     *      @OA\Schema(
-     *           type="string"
-     *      )
-     *   ),
-     *
-     *     @OA\Parameter(
-     *      name="address",
-     *      in="query",
-     *      required=true,
-     *      @OA\Schema(
-     *           type="string"
-     *      )
-     *   ),
-     *
-     *     @OA\Parameter(
-     *      name="bank_name",
-     *      in="query",
-     *      required=true,
-     *      @OA\Schema(
-     *           type="string"
-     *      )
-     *   ),
-     *
-     *      @OA\Parameter(
-     *      name="account_name",
-     *      in="query",
-     *      required=true,
-     *      @OA\Schema(
-     *           type="string"
-     *      )
-     *   ),
-     *
-     *      @OA\Parameter(
-     *      name="account_number",
-     *      in="query",
-     *      required=true,
-     *      @OA\Schema(
-     *           type="string"
-     *      )
-     *   ),
-     *
-     *      @OA\Parameter(
-     *      name="nk_name",
-     *      in="query",
-     *      required=true,
-     *      @OA\Schema(
-     *           type="string"
-     *      )
-     *   ),
-     *
-     *      @OA\Parameter(
-     *      name="nk_phone",
-     *      in="query",
-     *      required=true,
-     *      @OA\Schema(
-     *           type="string"
-     *      )
-     *   ),
-     *
-     *      @OA\Parameter(
-     *      name="nk_address",
-     *      in="query",
-     *      required=true,
-     *      @OA\Schema(
-     *           type="string"
-     *      )
-     *   ),
-     *
-     *      @OA\Parameter(
-     *      name="avatar",
-     *      in="query",
-     *      required=false,
-     *      @OA\Schema(
-     *           type="file"
-     *      )
-     *   ),
-     *
-     *      @OA\Parameter(
-     *      name="id",
-     *      in="query",
-     *      required=false,
-     *      @OA\Schema(
-     *           type="file"
-     *      )
-     *   ),
-     *
-     *   @OA\Response(
-     *      response=200,
-     *       description="Success",
-     *      @OA\MediaType(
-     *           mediaType="application/json",
-     *      )
-     *   ),
-     *
-     *    @OA\Response(
-     *      response=422,
-     *       description="Unprocessed Entity",
-     *      @OA\MediaType(
-     *           mediaType="application/json",
-     *      )
-     *   ),
-     *
-     *      @OA\Response(
-     *      response=400,
-     *       description="Bad Request",
-     *      @OA\MediaType(
-     *           mediaType="application/json",
-     *      )
-     *   )
-     *)
-     **/
-    public function updateProfile(Request $request): JsonResponse
+
+     public function updateProfile(Request $request): JsonResponse
     {
 //        Validate request
         $validator = Validator::make($request->all(), [
@@ -419,49 +148,6 @@ class HomeController extends Controller
         return response()->json(['message' => 'Error updating profile'], 400);
     }
 
-    /**
-     * @OA\Post(
-     ** path="/api/bank/verify",
-     *   tags={"Others"},
-     *   summary="Verify Bank",
-     *   operationId="verify bank",
-     *
-     *     @OA\Parameter(
-     *      name="account_number",
-     *      in="query",
-     *      required=true,
-     *      @OA\Schema(
-     *           type="string"
-     *      )
-     *   ),
-     *
-     *   @OA\Parameter(
-     *      name="bank_code",
-     *      in="query",
-     *      required=true,
-     *      @OA\Schema(
-     *           type="string"
-     *      )
-     *   ),
-     *
-     *
-     *   @OA\Response(
-     *      response=200,
-     *       description="Success",
-     *      @OA\MediaType(
-     *           mediaType="application/json",
-     *      )
-     *   ),
-     *
-     *    @OA\Response(
-     *      response=422,
-     *       description="Unprocessed Entity",
-     *      @OA\MediaType(
-     *           mediaType="application/json",
-     *      )
-     *   )
-     *)
-     **/
     public function verifyBank(Request $request): JsonResponse
     {
 //        Validate request
@@ -481,30 +167,7 @@ class HomeController extends Controller
         return response()->json(json_decode($res, true));
     }
 
-    /**
-     * @OA\Get(
-     ** path="/api/bank/details",
-     *   tags={"Others"},
-     *   summary="Get Sandbox Bank Details",
-     *   operationId="get sandbox bank details",
-     *
-     *   @OA\Response(
-     *      response=200,
-     *       description="Success",
-     *      @OA\MediaType(
-     *           mediaType="application/json",
-     *      )
-     *   ),
-     *
-     *    @OA\Response(
-     *      response=422,
-     *       description="Unprocessed Entity",
-     *      @OA\MediaType(
-     *           mediaType="application/json",
-     *      )
-     *   )
-     *)
-     **/
+    
     public function bank(): JsonResponse
     {
         return response()->json(['data' => Setting::first(['bank_name', 'account_name', 'account_number'])]);
