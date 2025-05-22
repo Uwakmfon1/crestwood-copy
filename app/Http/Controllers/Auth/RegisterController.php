@@ -138,6 +138,7 @@ class RegisterController extends Controller
         return $user;
     }
 
+    
     public static function sendAdminNotification($user)
     {
         $adminUser = Admin::where('active', 2)->first();

@@ -189,7 +189,7 @@ Route::group(['middleware' => ['auth','verified', 'active_user', 'profile_comple
         Route::post('/trading/crypto', [TradingController::class, 'storeCrypto'])->name('trade.crypto');
         Route::get('/user/asset/holdings', [TradingController::class, 'cryptoAsset'])->name('crypto.assets');
         Route::get('/crypto/{stock}/{symbol}', [TradingController::class, 'showCrypto'])->name('crypto.show');
-        Route::get('/user/crypto/view/{stock}', [TradingController::class, 'showCyptoTrade'])->name('asset.view');
+        Route::get('/user/crypto/view/{stock}', [TradingController::class, 'showCryptoTrade'])->name('asset.view');
         Route::post('/asset/{trade}/close/all', [TradingController::class, 'closeAllAssets'])->name('asset.close.all');
 
         //:: For Developmenent :://

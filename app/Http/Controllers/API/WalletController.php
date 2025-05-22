@@ -35,6 +35,7 @@ class WalletController extends Controller
     {
         return $this->walletService->getPrice();
     }
+
     // public function getPrice()
     // {
     //     try {
@@ -63,6 +64,7 @@ class WalletController extends Controller
     {
         return $this->walletService->getCoin();
     }
+
     // public function getCoin()
     // {
     //     $coin = AccountCoin::latest()->get();

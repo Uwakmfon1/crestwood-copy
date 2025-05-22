@@ -6,21 +6,30 @@ use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\SendsPasswordResetEmails;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Password;
+use App\Services\Auth\AdminForgotPasswordService;
+
 
 class AdminForgotPasswordController extends Controller
 {
     //Sends Password Reset emails
     use SendsPasswordResetEmails;
 
+    public function __construct(public AdminForgotPasswordService $adminForgotPasswordService)
+    {
+        
+    }
+
+    
     //Shows form to request password reset
     public function showLinkRequestForm()
     {
-        return view('auth.passwords.admin-email');
+        return $this->adminForgotPasswordService->showLinkRequestForm();
     }
 
     //Password Broker for Admin Model
-    public function broker(): \Illuminate\Contracts\Auth\PasswordBroker
+    public function broker()
     {
-        return Password::broker('admins');
+        return $this->adminForgotPasswordService->broker();
     }
+  
 }

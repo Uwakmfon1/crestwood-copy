@@ -293,13 +293,13 @@ class CommandController extends Controller
     {
         $investments = Investment::query()->where('status', 'active')->get();
         foreach ($investments as $investment){
-//            Check if investment can be settled
+        //            Check if investment can be settled
             if ($investment->canSettle()){
-//                Check if investment has rollover
+        //                Check if investment has rollover
                 $user = $investment->user;
                 if ($investment->rollover){
                     $rollover = $investment->rollover;
-//                    Check if returns can purchase slot
+        //                    Check if returns can purchase slot
                     if (!($investment['total_return'] < ($rollover['slots'] * $rollover->package['price']))){
                         $slots = $rollover['slots'];
                     }else{
@@ -307,9 +307,9 @@ class CommandController extends Controller
                     }
                     $amount = $slots * $rollover->package['price'];
                     $balance = $investment['total_return'] - $amount;
-//                    Check if slots can create investment
+        //                    Check if slots can create investment
                     if ($slots > 0){
-//                        Create investment from rollover
+        //                        Create investment from rollover
                         $newInvestment = Investment::create([
                             'user_id' => $investment->user['id'], 'package_id'=> $rollover->package['id'], 'slots' => $slots,
                             'amount' => $amount, 'total_return' => $amount * (( 100 + $rollover->package['roi'] ) / 100 ),
@@ -320,7 +320,7 @@ class CommandController extends Controller
                             TransactionController::storeInvestmentTransaction($newInvestment, 'wallet');
                             Notifications::sendRolloverInvestmentCreatedNotification($newInvestment);
                         }
-//                        Check if user has balance and refund
+        //                        Check if user has balance and refund
                         if ($balance > 0){
                             $user->nairaWallet()->increment('balance', $balance);
                         }

@@ -2,33 +2,37 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Controllers\Controller;
 use App\Models\Payment;
 use Illuminate\Http\Request;
+use App\Services\PaymentService;
 use Illuminate\Support\Facades\Http;
+use App\Http\Controllers\Controller;
 
 class PaymentController extends Controller
 {
+
+    public function __construct(public PaymentService $paymentService) {}
+
     public function index() {
         return view('admin.payments.index');
     }
 
     public function fetchPaymentsWithAjax(Request $request)
     {
-//        Define all column names
+        //        Define all column names
         $columns = [
             'id', 'reference', 'id', 'type', 'amount', 'created_at', 'status', 'action'
         ];
-//        Find data
+        //        Find data
         $payments = Payment::query();
-//        Set helper variables from request and DB
+        //        Set helper variables from request and DB
         $totalData = $totalFiltered = $payments->count();
         $limit = $request['length'];
         $start = $request['start'];
         $order = $columns[$request['order.0.column']];
         $dir = $request['order.0.dir'];
         $search = $request['search.value'];
-//        Check if request wants to search or not and fetch data
+        //        Check if request wants to search or not and fetch data
         if(empty($search))
         {
             $payments = $payments->offset($start)
@@ -50,7 +54,7 @@ class PaymentController extends Controller
                 ->orderBy($order,$dir)
                 ->get();
         }
-//        Loop through all data and mutate data
+            //        Loop through all data and mutate data
         $data = [];
         $i = $start + 1;
         foreach ($payments as $payment)
@@ -97,7 +101,7 @@ class PaymentController extends Controller
             $data[] = $datum;
             $i++;
         }
-//      Ready results for datatable
+        //      Ready results for datatable
         $res = array(
             "draw"            => intval($request->input('draw')),
             "recordsTotal"    => intval($totalData),
@@ -115,7 +119,7 @@ class PaymentController extends Controller
         if ($payment['status'] == 'pending' && isset($paymentDetails['status'])) {
             $res = $paymentDetails['data'] ?? null;
             if (isset($res) && $res["status"] == 'success') {
-                \App\Http\Controllers\PaymentController::processTransaction($payment, $res['metadata']);
+                    $this->paymentService->processTransaction($payment, $res['metadata']);
             }
         }
         if ($payment['status'] != "success") {
@@ -123,4 +127,5 @@ class PaymentController extends Controller
         }
         return back()->with('success', 'Payment resolved successfully');
     }
+    
 }

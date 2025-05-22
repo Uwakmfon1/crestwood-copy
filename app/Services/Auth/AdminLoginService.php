@@ -1,17 +1,16 @@
-<?php
+<?php 
+namespace App\Services\Auth;
 
-namespace App\Http\Controllers\Auth;
-
+use App\Services\BaseService;
 use App\Http\Controllers\Controller;
 use App\Models\Admin;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use App\Services\Auth\AdminLoginService;
 
 
-class AdminLoginController extends Controller
+class AdminLoginService extends BaseService
 {
-    public function __construct(public AdminLoginService $adminLoginService)
+    public function __construct()
     {
         $this->middleware(['guest:admin', 'guest'])->except('logout');
     }
@@ -44,4 +43,5 @@ class AdminLoginController extends Controller
         Auth::guard('admin')->logout();
         return redirect()->route('admin.login');
     }
+
 }
