@@ -9,6 +9,7 @@ use App\Models\AccountCoin;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Services\API\WalletService;
+use App\Services\NotificationService;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Http;
@@ -18,9 +19,10 @@ use Symfony\Component\HttpFoundation\Exception\BadRequestException;
 
 class WalletController extends Controller
 {
-    public function __construct(public WalletService $walletService){ }
-
-   
+    public function __construct(
+        public WalletService $walletService,
+        public NotificationService $notificationService
+        ){ }
 
     public function index()
     {
@@ -105,9 +107,6 @@ class WalletController extends Controller
         ]);
     }
 
-  
-
-
     public function depo()
     {
         $setting = Setting::all()->first();
@@ -116,7 +115,6 @@ class WalletController extends Controller
 
         return view('user_.wallet.deposit', ['setting' => $setting, 'user' => $user]);
     }
-
    
     public function deposit(Request $request)
     {
@@ -220,8 +218,7 @@ class WalletController extends Controller
         ]);
 
         if ($transaction) {
-            NotificationController::sendDepositQueuedNotification($transaction);
-            // return redirect()->route('wallet')->with('success', 'Deposit queued successfully');
+            $this->notificationService->sendDepositQueuedNotification($transaction);
             return redirect()->route('transactions.history')->with('success', 'Deposit queued successfully');
         }
         return redirect()->route('wallet')->with('error', 'Error processing deposit');
@@ -287,9 +284,8 @@ class WalletController extends Controller
                 'trade' => 'Trading',
                 'wallet' => 'Wallet',
             ];
-
-            NotificationController::sendTransferSuccessfulNotification($transaction, $accountNames[$fromAccount], $accountNames[$toAccount]);
-
+            $this->notificationService->sendTransferSuccessfulNotification($transaction, $accountNames[$fromAccount], $accountNames[$toAccount]);
+          
             return back()->with('success', 'Transfer was made successfully');
 
         } catch (\Exception $e) {

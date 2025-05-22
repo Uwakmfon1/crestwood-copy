@@ -1,19 +1,23 @@
-<?php 
+<?php
 
 namespace App\Services;
 
 use App\Models\Package;
 use App\Models\Payment;
+use App\Models\Transaction;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
+use App\Services\TransactionService;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Http\RedirectResponse;
 use Unicodeveloper\Paystack\Facades\Paystack;
 use KingFlamez\Rave\Facades\Rave as Flutterwave;
 
 
-class PaymentService 
+class PaymentService
 {
+    public function __construct(public TransactionService $transactionService) {}
+
     public function handlePaymentCallback()
     {
         $paymentDetails = Paystack::getPaymentData();
@@ -77,7 +81,7 @@ class PaymentService
             logger('Paystack signature present');
             //This verifies the webhook is sent from paystack
             $payload = @file_get_contents("php://input");
-            if($_SERVER['HTTP_X_PAYSTACK_SIGNATURE'] !== hash_hmac('sha512', $payload, env('PAYSTACK_SECRET_KEY'))) {
+            if ($_SERVER['HTTP_X_PAYSTACK_SIGNATURE'] !== hash_hmac('sha512', $payload, env('PAYSTACK_SECRET_KEY'))) {
                 http_response_code(401);
                 exit();
             }
@@ -100,7 +104,7 @@ class PaymentService
                 $payment = Payment::query()->where('reference', $res['tx_ref'])->first();
                 if ($payment && $payment['status'] == 'pending') {
                     $meta = json_decode($payment['meta'], true);
-                    $this->processTransaction($payment, $meta);                  
+                    $this->processTransaction($payment, $meta);
                     http_response_code(200);
                 }
             }
@@ -154,9 +158,9 @@ class PaymentService
             'meta' => json_encode($data)
         ]);
         \request()->merge($paymentData);
-        try{
+        try {
             return Paystack::getAuthorizationUrl()->redirectNow();
-        }catch(\Exception $e) {
+        } catch (\Exception $e) {
             return back()->with('error', 'The paystack token has expired. Please refresh the page and try again.');
         }
     }
@@ -164,60 +168,77 @@ class PaymentService
     public function processTransaction($payment, $meta)
     {
         $type = $meta['type'] ?? $meta['event_type'];
-        switch ($type){
+        switch ($type) {
             case 'deposit':
                 $payment->user->nairaWallet()->increment('balance', $payment['amount']);
                 $transaction = $payment->user->transactions()->create([
-                    'type' => 'deposit', 'amount' => $payment['amount'],
-                    'description' => 'Deposit', 'channel' => $meta['channel'] ?? 'mobile',
-                    'method' => 'card' ,'status' => 'approved'
+                    'type' => 'deposit',
+                    'amount' => $payment['amount'],
+                    'description' => 'Deposit',
+                    'channel' => $meta['channel'] ?? 'mobile',
+                    'method' => 'card',
+                    'status' => 'approved'
                 ]);
                 if ($transaction)
                     try {
                         NotificationController::sendDepositSuccessfulNotification($transaction);
-                    } catch (\Exception $e) { $emailError = true; }
+                    } catch (\Exception $e) {
+                        $emailError = true;
+                    }
                 break;
             case 'investment':
                 $package = Package::find($meta['package']['id']);
                 $investment = $payment->user->investments()->create([
-                    'package_id'=>$package['id'], 'slots' => $meta['slots'],
+                    'package_id' => $package['id'],
+                    'slots' => $meta['slots'],
                     'amount' => $meta['slots'] * $package['price'],
-                    'total_return' => $meta['slots'] * $package['price'] * (( 100 + $package['roi']) / 100 ),
+                    'total_return' => $meta['slots'] * $package['price'] * ((100 + $package['roi']) / 100),
                     'investment_date' => now()->format('Y-m-d H:i:s'),
-                    'return_date' => now()->addMonths($package['duration'])->format('Y-m-d H:i:s'), 'status' => 'active'
+                    'return_date' => now()->addMonths($package['duration'])->format('Y-m-d H:i:s'),
+                    'status' => 'active'
                 ]);
                 if ($investment) {
                     try {
-                        TransactionController::storeInvestmentTransaction($investment, 'card', false, $meta['channel'] ?? 'mobile');
+                        $this->transactionService->storeInvestmentTransaction($investment, 'card', false, $meta['channel'] ?? 'mobile');
+                        // storeInvestmentTransaction($investment, 'card', false, $meta['channel'] ?? 'mobile');
                         NotificationController::sendInvestmentCreatedNotification($investment);
-                    } catch (\Exception $e) { $emailError = true; }
+                    } catch (\Exception $e) {
+                        $emailError = true;
+                    }
                 }
                 break;
             case 'trade':
-                if($meta['product'] == 'gold'){
+                if ($meta['product'] == 'gold') {
                     $payment->user->goldWallet()->increment('balance', $meta['grams']);
-                }elseif($meta['product'] == 'silver'){
+                } elseif ($meta['product'] == 'silver') {
                     $payment->user->silverWallet()->increment('balance', $meta['grams']);
                 }
                 $trade = $payment->user->trades()->create([
-                    'grams' => $meta['grams'], 'amount' => $payment['amount'], 'product' => $meta['product'], 'type' => 'buy', 'status' => 'success'
+                    'grams' => $meta['grams'],
+                    'amount' => $payment['amount'],
+                    'product' => $meta['product'],
+                    'type' => 'buy',
+                    'status' => 'success'
                 ]);
                 if ($trade) {
                     try {
-                        TransactionController::storeTradeTransaction($trade, 'card', false, $meta['channel'] ?? 'mobile');
+                        $this->transactionService->storeTradeTransaction($trade, 'card', false, $meta['channel'] ?? 'mobile');
+                        // storeTradeTransaction($trade, 'card', false, $meta['channel'] ?? 'mobile');
                         NotificationController::sendTradeSuccessfulNotification($trade);
-                    } catch (\Exception $e) { $emailError = true; }
+                    } catch (\Exception $e) {
+                        $emailError = true;
+                    }
                 }
                 break;
         }
         return $payment->update(['status' => 'success']);
     }
-    
+
     public function charge($amount)
     {
         $auth = auth()->user()->auth_key;
 
-        if ($auth){
+        if ($auth) {
             $decodedAuthCode = decrypt($auth);
             $url = "https://api.paystack.co/transaction/charge_authorization";
             $data = [
@@ -230,7 +251,7 @@ class PaymentService
                 'channel' => 'web',
                 'comment' => 'Bank Auto Savings'
             ];
-            
+
             $response = Http::withHeaders([
                 'Authorization' => 'Bearer ' . env('PAYSTACK_SECRET_KEY'),
                 'Cache-Control' => 'no-cache',
@@ -239,7 +260,7 @@ class PaymentService
             if ($response->successful()) {
                 // Decode the JSON response
                 $responseData = $response->json();
-            
+
                 // Check the status and handle the response
                 if ($responseData['status'] && $responseData['data']['status'] === 'success') {
                     // Transaction was successful
@@ -259,20 +280,19 @@ class PaymentService
                     // Log::warning('Transaction failed 💀:', $responseData);
 
                     return back()->with('error', 'Transaction failed: ' . $responseData);
-
                 }
             } else {
                 // The request failed, inspect the response
                 $statusCode = $response->status();
                 $body = $response->body();
                 $errorMessage = $response->json()['message'] ?? 'An error occurred';
-            
+
                 Log::error('API call failed', [
                     'status_code' => $statusCode,
                     'body' => $body,
                     'error_message' => $errorMessage,
                 ]);
-            
+
                 // Handle the failure response as needed
                 return back()->with('error', 'Payment failed: ' . $errorMessage);
             }

@@ -6,6 +6,8 @@ use App\Models\User;
 use App\Models\Package;
 use App\Models\Investment;
 use Illuminate\Http\Request;
+use App\Services\TransactionService;
+use App\Services\NotificationService;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
@@ -14,6 +16,11 @@ use App\Http\Controllers\NotificationController;
 
 class InvestmentController extends Controller
 {
+    public function __construct(
+        public TransactionService $transactionService,
+        public NotificationService $notificationService,
+    ){}
+
     public function index()
     {
         return view('admin.investment.index', ['type' => \request('type') ?? 'all']);
@@ -41,33 +48,34 @@ class InvestmentController extends Controller
         if ($validator->fails()){
             return back()->withErrors($validator)->withInput()->with('error', 'Invalid input data');
         }
-//        Find package and check if investment is enabled
+        //    Find package and check if investment is enabled
         $package = Package::all()->where('name', $request['package'])->first();
         if (!($package && $package->canRunInvestment())){
             return back()->with('error', 'Can\'t process investment, package not found or disabled');
         }
-//        Find user
+        //    Find user
         $user = User::all()->where('id', $request['user_id'])->first();
         if (!$user) {
             return back()->with('error', 'Can\'t process investment, user not found');
         }
-//        Process investment based on payment method
+        //    Process investment based on payment method
         if ($request['payment'] == 'wallet'){
             if (!$user->hasSufficientBalanceForTransaction($request['slots'] * $package['price'])){
                 return back()->withInput()->with('error', 'Insufficient wallet balance');
             }
             $user->nairaWallet()->decrement('balance', $request['slots'] * $package['price']);
         }
-//        Create Investment
+        //    Create Investment
         $investment = $user->investments()->create([
             'savings_package_id'=>$package['id'], 'slots' => $request['slots'], 'amount' => $request['slots'] * $package['price'],
             'total_return' => $request['slots'] * $package['price'] * (( 100 + $package['roi'] ) / 100 ),
             'investment_date' => now()->format('Y-m-d H:i:s'),
             'return_date' => now()->addMonths($package['duration'])->format('Y-m-d H:i:s'), 'status' => 'active'
         ]);
+
         if ($investment) {
-            TransactionController::storeInvestmentTransaction($investment, $request['payment'], 'investment', true);
-            NotificationController::sendInvestmentCreatedNotification($investment);
+            $this->transactionService->storeInvestmentTransaction($investment,$request['payment'],'investment', true);
+            $this->notificationService->sendInvestmentCreatedNotification($investment);
             return redirect()->route('admin.users.show', $user['id'])->with('success', 'Investment created successfully');
         }
         return back()->withInput()->with('error', 'Error processing investment');

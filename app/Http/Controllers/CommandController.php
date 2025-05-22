@@ -26,9 +26,19 @@ use App\Http\Controllers\Admin\NotificationController;
 use App\Notifications\CustomNotificationWithoutGreeting;
 use App\Notifications\CustomNotificationByEmailWithoutGreeting;
 use App\Http\Controllers\NotificationController as Notifications;
+use App\Services\TransactionService;
+use App\Services\Admin\NotificationService as AdminNotificationService; 
+use App\Services\NotificationService;
 
 class CommandController extends Controller
 {
+    public function __construct(
+        // public Notification 
+        public TransactionService $transactionService,
+        public AdminNotificationService $adminNotificationService,
+        public NotificationService $notificationService
+        ){}
+
     public static function generateSettings()
     {
         if (Setting::all()->count() == 0){
@@ -40,7 +50,7 @@ class CommandController extends Controller
         }
     }
 
-    public static function notifyMaturity()
+    public function notifyMaturity()
     {
         $investments = Investment::query()
                                     ->with('user')
@@ -48,12 +58,12 @@ class CommandController extends Controller
                                     ->get();
         foreach ($investments as $investment){
             if (now()->diffInDays(date('Y-m-d', strtotime($investment['return_date']))) == 30){
-                \App\Http\Controllers\NotificationController::sendInvestmentAlmostMaturedNotification($investment->user);
+                $this->notificationService->sendInvestmentAlmostMaturedNotification($investment->user);
             }
         }
     }
 
-    public static function updateExchangeRate()
+    public function updateExchangeRate()
     {
         $settings = Setting::all()->first();
         try {
@@ -63,14 +73,14 @@ class CommandController extends Controller
             if ($settings['exchange_rate_error_mail'] == 1){
                 $dateTime = date('Y-m-d H:i:s', strtotime($settings['last_exchange_rate_notification'].' + '.$settings['error_mail_interval']));
                 if (now()->gte($dateTime)){
-                    NotificationController::dispatchExchangeRateErrorNotification();
+                    $this->adminNotificationService->dispatchExchangeRateErrorNotification();
                     $settings->update(['last_exchange_rate_notification' => now()]);
                 }
             }
         }
     }
 
-    public static function transactionNotify()
+    public function transactionNotify()
     {
         $transactions = Transaction::query()->where('status', 'pending')->count();
         if ($transactions > 0){
@@ -78,7 +88,7 @@ class CommandController extends Controller
             if ($settings['pending_transaction_mail'] == 1){
                 $dateTime = date('Y-m-d H:i:s', strtotime($settings['last_pending_transaction_notification'].' + '.$settings['pending_transaction_mail_interval']));
                 if (now()->gte($dateTime)){
-                    NotificationController::sendPendingTransactionNotificationOnScheduleToAdmin($transactions);
+                    $this->adminNotificationService->sendPendingTransactionNotificationOnScheduleToAdmin($transactions);                    
                     $settings->update(['last_pending_transaction_notification' => now()]);
                 }
             }
@@ -197,7 +207,7 @@ class CommandController extends Controller
         }
     }
 
-    public static function settleSavings()
+    public function settleSavings()
     {
         $savings = Saving::query()->where('status', 'active')->get();
 
@@ -215,20 +225,20 @@ class CommandController extends Controller
                         if (\Carbon\Carbon::now() > \Carbon\Carbon::make($saving->savings_date)->addDays($i - 1)) {
                             if ($user->hasSufficientBalanceForTransaction($saving->amount)){
                                 $desc = "Auto Saved to ". $saving->package['name'];
-                                TransactionController::storeSavingTransaction($saving, $saving->amount, 'wallet', 'savings', $desc, $saving['id']);
+                                $this->transactionService->storeSavingTransaction($saving, $saving->amount, 'wallet', 'savings', $desc, $saving['id']);
                                 $user->nairaWallet()->decrement('balance', $saving->amount);
 
-                                Notifications::sendSavingsNotification($saving);
+                                $this->notificationService->sendSavingsNotification($saving);
+                                // Notifications::sendSavingsNotification($saving);
                                 
                                 logger('Auto Save Successfully ✅ (daily)');
                             } elseif($user->auth_key){
                                 $desc = "Bank Auto Saved to ". $saving->package['name'];
 
                                 PaymentController::charge($saving->amount);
-
-                                TransactionController::storeSavingTransaction($saving, $saving->amount, 'wallet', 'savings', $desc, $saving['id']);
-
-                                Notifications::sendSavingsNotification($saving);
+                                $this->transactionService->storeSavingTransaction($saving,$saving->amount,'wallet','savings',$desc, $saving['id']);
+                                $this->notificationService->sendSavingsNotification($saving);
+                                // Notifications::sendSavingsNotification($saving);
 
                                 logger('Bank Auto Save Successfully ✅ (daily)');
                             } else {
@@ -239,20 +249,21 @@ class CommandController extends Controller
                         if (\Carbon\Carbon::now() > \Carbon\Carbon::make($saving->savings_date)->addWeeks($i - 1)) {
                             if ($user->hasSufficientBalanceForTransaction($saving->amount)){
                                 $desc = "Auto Saved to ". $saving->package['name'];
-                                TransactionController::storeSavingTransaction($saving, $saving->amount, 'wallet', 'savings', $desc, $saving['id']);
+                                 $this->transactionService->storeSavingTransaction($saving,$saving->amount, 'wallet', 'savings', $desc, $saving['id']);
                                 $user->nairaWallet()->decrement('balance', $saving->amount);
 
-                                Notifications::sendSavingsNotification($saving);
+                                $this->notificationService->sendSavingsNotification($saving);
+                                // Notifications::sendSavingsNotification($saving);
                                 
                                 logger('Auto Save Successfully ✅ (weekly)');
                             } elseif($user->auth_key){
                                 $desc = "Bank Auto Saved to ". $saving->package['name'];
 
                                 PaymentController::charge($saving->amount);
+                                $this->transactionService->storeSavingTransaction($saving,$saving->amount, 'wallet', 'savings', $desc, $saving['id']);
 
-                                TransactionController::storeSavingTransaction($saving, $saving->amount, 'wallet', 'savings', $desc, $saving['id']);
-
-                                Notifications::sendSavingsNotification($saving);
+                                $this->notificationService->sendSavingsNotification($saving);
+                                // Notifications::sendSavingsNotification($saving);
 
                                 logger('Bank Auto Save Successfully ✅ (weekly)');
                             } else {
@@ -263,10 +274,11 @@ class CommandController extends Controller
                         if (\Carbon\Carbon::now() > \Carbon\Carbon::make($saving->savings_date)->addWeeks($i - 1)) {
                             if ($user->hasSufficientBalanceForTransaction($saving->amount)){
                                 $desc = "Auto Saved to ". $saving->package['name'];
-                                TransactionController::storeSavingTransaction($saving, $saving->amount, 'wallet', 'savings', $desc, $saving['id']);
+                                $this->transactionService->storeSavingTransaction($saving,$saving->amount, 'wallet', 'savings', $desc, $saving['id']);
                                 $user->nairaWallet()->decrement('balance', $saving->amount);
 
-                                Notifications::sendSavingsNotification($saving);
+                                $this->notificationService->sendSavingsNotification($saving);
+                                // Notifications::sendSavingsNotification($saving);
                                 
                                 logger('Auto Save Successfully ✅ (monthly)');
                             } elseif($user->auth_key){
@@ -274,9 +286,10 @@ class CommandController extends Controller
 
                                 PaymentController::charge($saving->amount);
 
-                                TransactionController::storeSavingTransaction($saving, $saving->amount, 'wallet', 'savings', $desc, $saving['id']);
+                                $this->transactionService->storeSavingTransaction($saving,$saving->amount, 'wallet', 'savings', $desc, $saving['id']);
 
-                                Notifications::sendSavingsNotification($saving);
+                                $this->notificationService->sendSavingsNotification($saving);
+                                // Notifications::sendSavingsNotification($saving);
 
                                 logger('Bank Auto Save Successfully ✅ (monthly)');
                             } else {
@@ -289,7 +302,7 @@ class CommandController extends Controller
         }
     }
 
-    public static function settleInvestments()
+    public function settleInvestments()
     {
         $investments = Investment::query()->where('status', 'active')->get();
         foreach ($investments as $investment){
@@ -307,9 +320,9 @@ class CommandController extends Controller
                     }
                     $amount = $slots * $rollover->package['price'];
                     $balance = $investment['total_return'] - $amount;
-        //                    Check if slots can create investment
+            //                    Check if slots can create investment
                     if ($slots > 0){
-        //                        Create investment from rollover
+            //                        Create investment from rollover
                         $newInvestment = Investment::create([
                             'user_id' => $investment->user['id'], 'package_id'=> $rollover->package['id'], 'slots' => $slots,
                             'amount' => $amount, 'total_return' => $amount * (( 100 + $rollover->package['roi'] ) / 100 ),
@@ -317,10 +330,12 @@ class CommandController extends Controller
                             'return_date' => now()->addMonths($rollover->package['duration'])->format('Y-m-d H:i:s'), 'status' => 'active'
                         ]);
                         if ($newInvestment){
-                            TransactionController::storeInvestmentTransaction($newInvestment, 'wallet');
-                            Notifications::sendRolloverInvestmentCreatedNotification($newInvestment);
+                            $this->transactionService->storeInvestmentTransaction($newInvestment, 'wallet');
+                            
+                            $this->notificationService->sendRolloverInvestmentCreatedNotification($newInvestment);
+                            
                         }
-        //                        Check if user has balance and refund
+                //                        Check if user has balance and refund
                         if ($balance > 0){
                             $user->nairaWallet()->increment('balance', $balance);
                         }
@@ -331,7 +346,7 @@ class CommandController extends Controller
                     $user->nairaWallet()->increment('balance', $investment['total_return']);
                 }
                 $investment->update(['status' => 'settled']);
-                \App\Http\Controllers\NotificationController::sendInvestmentSettledNotification($investment);
+                $this->notificationService->sendInvestmentSettledNotification($investment);                
             }
         }
     }

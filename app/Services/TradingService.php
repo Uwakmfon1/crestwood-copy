@@ -17,6 +17,7 @@ use App\Models\AssetTransaction;
 use App\Models\TradeTransaction;
 use App\Models\CryptoTransaction;
 use Illuminate\Routing\Controller;
+use App\Services\TransactionService;
 use Illuminate\Support\Facades\Validator;
 use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\TransactionController;
@@ -25,10 +26,7 @@ use App\Http\Controllers\NotificationController;
 class TradingService 
 {
 
-    public function __construct()
-    {
-        
-    }
+    public function __construct(public TransactionService $transactionService){}
 
     public function index(Request $request)
     {
@@ -188,7 +186,7 @@ class TradingService
     
         // Store the savings transaction and redirect
         if ($transaction) {
-            // TransactionController::storeSavingTransaction($trade, $trade['amount'], $request['payment'], 'savings', 'Traded ' . $stock['name'], $trade['id']);
+            $this->transactionService->storeSavingTransaction($trade,$trade['amount'],$request['payment'],'savings', 'Traded '.$stock['name'],$trade['id']);   
             NotificationController::sendTradeNotification($trade, 'stock', $request['type']);
 
             return redirect()->route('assets')->with('success', $msg);

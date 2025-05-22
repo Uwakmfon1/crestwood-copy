@@ -2,17 +2,25 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Models\User;
+use App\Models\Trade;
+use Illuminate\Http\Request;
+use App\Services\TransactionService;
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\HomeController;
+use App\Services\NotificationService;
 use App\Http\Controllers\NotificationController;
 use App\Http\Controllers\TransactionController;
-use App\Models\Trade;
-use App\Models\User;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Http\RedirectResponse;
 
 class TradeController extends Controller
 {
+    public function __construct(
+        public TransactionService $transactionService,
+        public NotificationService $notificationService,
+        ){ }
+
     public function index()
     {
         switch (true){
@@ -38,9 +46,9 @@ class TradeController extends Controller
         return view('admin.user.trade.sell', ['user' => $user, 'rate' => ['gold' => HomeController::fetchGoldSellPriceInNGN(), 'silver' => HomeController::fetchSilverSellPriceInNGN()]]);
     }
 
-    public function buyStore(Request $request): \Illuminate\Http\RedirectResponse
+    public function buyStore(Request $request): RedirectResponse
     {
-//        Validate request
+        //        Validate request
         $validator = Validator::make($request->all(), [
             'user_id' => ['required', 'numeric'],
             'amount' => ['required', 'numeric', 'gt:0'],
@@ -51,12 +59,12 @@ class TradeController extends Controller
         if ($validator->fails()){
             return back()->withErrors($validator)->withInput()->with('error', 'Invalid input data');
         }
-//        Find user
+        //        Find user
         $user = User::all()->where('id', $request['user_id'])->first();
         if (!$user) {
             return back()->with('error', 'Can\'t process investment, user not found');
         }
-//        Calculate grams of gold to buy
+        //        Calculate grams of gold to buy
         if($request['product'] == 'gold'){
             $gramsToNgn = \App\Http\Controllers\HomeController::fetchGoldBuyPriceInNGN();
         }elseif($request['product'] == 'silver'){
@@ -74,7 +82,7 @@ class TradeController extends Controller
             $grams = round($request['amount'], 6);
             $amount = round($request['amount'] * $gramsToNgn, 2);
         }
-//        Process trade based on payment method
+        //        Process trade based on payment method
         if ($request['payment'] == 'wallet'){
             if (!$user->hasSufficientBalanceForTransaction($amount)){
                 return back()->withInput()->with('error', 'Insufficient wallet balance');
@@ -86,13 +94,13 @@ class TradeController extends Controller
         }elseif($request['product'] == 'silver'){
             $user->silverWallet()->increment('balance', $grams);
         }
-//        Create trade
+        //        Create trade
         $trade = $user->trades()->create([
             'grams' => $grams, 'amount' => $amount, 'type' => 'buy', 'product' => $request['product'], 'status' => 'success'
         ]);
         if ($trade) {
-            TransactionController::storeTradeTransaction($trade, $request['payment'],true);
-            NotificationController::sendTradeSuccessfulNotification($trade);
+            $this->transactionService->storeTradeTransaction($trade,$request['payment'],true);
+            $this->notificationService->sendTradeSuccessfulNotification($trade);
             return redirect()->route('admin.users.show', $user['id'])->with('success', 'Trade completed successfully');
         }
         return back()->withInput()->with('error', 'Error processing trade');
@@ -100,7 +108,7 @@ class TradeController extends Controller
 
     public function sellStore(Request $request)
     {
-//        Validate request
+        //        Validate request
         $validator = Validator::make($request->all(), [
             'user_id' => ['required', 'numeric'],
             'amount' => ['required', 'numeric'],
@@ -110,12 +118,12 @@ class TradeController extends Controller
         if ($validator->fails()){
             return back()->withErrors($validator)->withInput()->with('error', 'Invalid input data');
         }
-//        Find user
+        //        Find user
         $user = User::all()->where('id', $request['user_id'])->first();
         if (!$user) {
             return back()->with('error', 'Can\'t process investment, user not found');
         }
-//        Calculate grams of gold to sell
+        //        Calculate grams of gold to sell
         if($request['product'] == 'gold'){
             $gramsToNgn = \App\Http\Controllers\HomeController::fetchGoldSellPriceInNGN();
         }elseif($request['product'] == 'silver'){
@@ -133,7 +141,7 @@ class TradeController extends Controller
             $grams = round($request['amount'], 6);
             $amount = round($request['amount'] * $gramsToNgn, 2);
         }
-//        Process trade
+        //        Process trade
         if($request['product'] == 'gold'){
             if (! $user->hasSufficientGoldToTrade($grams)){
                 return back()->withInput()->with('error', 'Insufficient gold wallet balance');
@@ -146,24 +154,25 @@ class TradeController extends Controller
             $user->silverWallet()->decrement('balance', $grams);
         }
         $user->nairaWallet()->increment('balance', $amount);
-//        Create trade
+        //        Create trade
         $trade = $user->trades()->create([
             'grams' => $grams, 'amount' => $amount, 'product' => $request['product'], 'type' => 'sell', 'status' => 'success'
         ]);
         if ($trade) {
-            TransactionController::storeTradeTransaction($trade, 'wallet',true);
-            NotificationController::sendTradeSuccessfulNotification($trade);
+            $this->transactionService->storeTradeTransaction($trade,'wallet','true');
+            $this->notificationService->sendTradeSuccessfulNotification($trade);            
             return redirect()->route('admin.users.show', $user['id'])->with('success', 'Trade completed successfully');
         }
         return back()->withInput()->with('error', 'Error processing trade');
     }
+
     public function fetchTradesWithAjax(Request $request, $type)
     {
-//        Define all column names
+        //        Define all column names
         $columns = [
             'id', 'name', 'symbol', 'amount', 'quantity', 'type', 'date', 'status', 'action'
         ];
-//        Find data based on page
+        //        Find data based on page
         switch ($type){
             case 'buy':
                 $trades = Trade::query()->latest()->where('type', 'buy');
@@ -174,14 +183,14 @@ class TradeController extends Controller
             default:
                 $trades = Trade::query()->latest();
         }
-//        Set helper variables from request and DB
+        //        Set helper variables from request and DB
         $totalData = $totalFiltered = $trades->count();
         $limit = $request['length'];
         $start = $request['start'];
         $order = $columns[$request['order.0.column']];
         $dir = $request['order.0.dir'];
         $search = $request['search.value'];
-//        Check if request wants to search or not and fetch data
+        //        Check if request wants to search or not and fetch data
         if(empty($search))
         {
             $trades = $trades->offset($start)
@@ -201,7 +210,7 @@ class TradeController extends Controller
                 ->orderBy($order,$dir)
                 ->get();
         }
-//        Loop through all data and mutate data
+        //        Loop through all data and mutate data
         $data = [];
         $i = $start + 1;
         foreach ($trades as $trade)
@@ -266,7 +275,7 @@ class TradeController extends Controller
             $data[] = $datum;
             $i++;
         }
-//      Ready results for datatable
+        //      Ready results for datatable
         $res = array(
             "draw"            => intval($request->input('draw')),
             "recordsTotal"    => intval($totalData),

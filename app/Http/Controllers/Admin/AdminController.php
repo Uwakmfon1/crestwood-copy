@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Admin;
+use App\Services\NotificationService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
@@ -12,6 +13,9 @@ use Spatie\Permission\Models\Role;
 
 class AdminController extends Controller
 {
+    public function __construct(
+        public NotificationService $notificationService 
+    ){}
     public function index()
     {
         return view('admin.admin.index', ['admins' => Admin::query()->where('id', '!=' ,1)->get()]);
@@ -49,7 +53,7 @@ class AdminController extends Controller
         $admin->assignRole($role);
 //        Send password to admin email
         if ($admin){
-            NotificationController::sendAdminRegistrationEmailNotification($admin, $password);
+            $this->notificationService->sendAdminRegistrationEmailNotification($admin, $password);
             return redirect()->route('admin.admins')->with('success', 'Admin created successfully');
         }
         return back()->with('error', 'Error creating admin');

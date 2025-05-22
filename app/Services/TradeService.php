@@ -1,17 +1,21 @@
-<?php 
+<?php
+
 namespace App\Services;
 
 use App\Models\Setting;
 use App\Models\Trade;
+use App\Services\TransactionService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 
 class TradeService
 {
+    public function __construct(public TransactionService $transactionService) {}
+
     public function index()
     {
         $trades = auth()->user()->trades()->latest();
-        switch (true){
+        switch (true) {
             case \request()->offsetExists('buy'):
                 $trades = $trades->where('type', 'buy');
                 break;
@@ -41,41 +45,41 @@ class TradeService
             'payment' => ['required'],
             'product' => ['required', 'in:gold,silver']
         ]);
-        if ($validator->fails()){
+        if ($validator->fails()) {
             return back()->withErrors($validator)->withInput()->with('error', 'Invalid input data');
         }
         //        Check if trading is allowed
-        if (Setting::all()->first()['trade'] == 0){
+        if (Setting::all()->first()['trade'] == 0) {
             return back()->with('error', 'Buying is currently unavailable, check back later');
         }
         //        Calculate grams of gold to buy
-        if($request['product'] == 'gold'){
+        if ($request['product'] == 'gold') {
             $gramsToNgn = HomeController::fetchGoldBuyPriceInNGN();
-        }elseif($request['product'] == 'silver'){
+        } elseif ($request['product'] == 'silver') {
             $gramsToNgn = HomeController::fetchSilverBuyPriceInNGN();
-        }else{
+        } else {
             $gramsToNgn = 0;
         }
-        if ($gramsToNgn == 0){
+        if ($gramsToNgn == 0) {
             return back()->with('error', 'There was an error fetching exchange rates, reload page');
         }
-        if ($request['currency'] == 'ngn'){
+        if ($request['currency'] == 'ngn') {
             $grams = round(($request['amount'] / $gramsToNgn), 6);
             $amount = round($request['amount'], 2);
-        }else{
+        } else {
             $grams = round($request['amount'], 6);
             $amount = round($request['amount'] * $gramsToNgn, 2);
         }
         //        Process trade based on payment method
-        switch ($request['payment']){
+        switch ($request['payment']) {
             case 'wallet':
-                if (!auth()->user()->hasSufficientBalanceForTransaction($amount)){
+                if (!auth()->user()->hasSufficientBalanceForTransaction($amount)) {
                     return back()->withInput()->with('error', 'Insufficient wallet balance');
                 }
                 auth()->user()->nairaWallet()->decrement('balance', $amount);
-                if($request['product'] == 'gold'){
+                if ($request['product'] == 'gold') {
                     auth()->user()->goldWallet()->increment('balance', $grams);
-                }elseif($request['product'] == 'silver'){
+                } elseif ($request['product'] == 'silver') {
                     auth()->user()->silverWallet()->increment('balance', $grams);
                 }
                 $status = 'success';
@@ -93,13 +97,19 @@ class TradeService
         }
         //        Create trade
         $trade = auth()->user()->trades()->create([
-            'grams' => $grams, 'amount' => $amount, 'type' => 'buy', 'product' => $request['product'], 'status' => $status
+            'grams' => $grams,
+            'amount' => $amount,
+            'type' => 'buy',
+            'product' => $request['product'],
+            'status' => $status
         ]);
         if ($trade) {
-            TransactionController::storeTradeTransaction($trade, $request['payment']);
-            if ($trade['status'] == 'success'){
+            $this->transactionService->storeTradeTransaction($trade, $request['payment']);
+
+            // storeTradeTransaction($trade, $request['payment']);
+            if ($trade['status'] == 'success') {
                 NotificationController::sendTradeSuccessfulNotification($trade);
-            }else{
+            } else {
                 NotificationController::sendTradeQueuedNotification($trade);
             }
             return redirect()->route('trades')->with('success', $msg);
@@ -109,60 +119,64 @@ class TradeService
 
     public function sell(Request $request): \Illuminate\Http\RedirectResponse
     {
-            //        Validate request
+        //        Validate request
         $validator = Validator::make($request->all(), [
             'amount' => ['required', 'numeric', 'gt:0'],
             'currency' => ['required'],
             'product' => ['required', 'in:gold,silver']
         ]);
-        if ($validator->fails()){
+        if ($validator->fails()) {
             return back()->withErrors($validator)->withInput()->with('error', 'Invalid input data');
         }
-            //        Check if trading is allowed
-        if (Setting::all()->first()['trade'] == 0){
+        //        Check if trading is allowed
+        if (Setting::all()->first()['trade'] == 0) {
             return back()->with('error', 'Selling is currently unavailable, check back later');
         }
-            //        Calculate grams of gold to sell
-        if($request['product'] == 'gold'){
+        //        Calculate grams of gold to sell
+        if ($request['product'] == 'gold') {
             $gramsToNgn = HomeController::fetchGoldSellPriceInNGN();
-        }elseif($request['product'] == 'silver'){
+        } elseif ($request['product'] == 'silver') {
             $gramsToNgn = HomeController::fetchSilverSellPriceInNGN();
-        }else{
+        } else {
             $gramsToNgn = 0;
         }
-        if ($gramsToNgn == 0){
+        if ($gramsToNgn == 0) {
             return back()->with('error', 'There was an error fetching exchange rates, reload page');
         }
-        if ($request['currency'] == 'ngn'){
+        if ($request['currency'] == 'ngn') {
             $grams = round(($request['amount'] / $gramsToNgn), 6);
             $amount = round($request['amount'], 2);
-        }else{
+        } else {
             $grams = round($request['amount'], 6);
             $amount = round($request['amount'] * $gramsToNgn, 2);
         }
-            //        Process trade
-        if($request['product'] == 'gold'){
-            if (!auth()->user()->hasSufficientGoldToTrade($grams)){
+        //        Process trade
+        if ($request['product'] == 'gold') {
+            if (!auth()->user()->hasSufficientGoldToTrade($grams)) {
                 return back()->withInput()->with('error', 'Insufficient gold wallet balance');
             }
             auth()->user()->goldWallet()->decrement('balance', $grams);
-        }elseif($request['product'] == 'silver'){
-            if (!auth()->user()->hasSufficientSilverToTrade($grams)){
+        } elseif ($request['product'] == 'silver') {
+            if (!auth()->user()->hasSufficientSilverToTrade($grams)) {
                 return back()->withInput()->with('error', 'Insufficient silver wallet balance');
             }
             auth()->user()->silverWallet()->decrement('balance', $grams);
         }
         auth()->user()->nairaWallet()->increment('balance', $amount);
-            //        Create trade
+        //        Create trade
         $trade = auth()->user()->trades()->create([
-            'grams' => $grams, 'amount' => $amount, 'product' => $request['product'], 'type' => 'sell', 'status' => 'success'
+            'grams' => $grams,
+            'amount' => $amount,
+            'product' => $request['product'],
+            'type' => 'sell',
+            'status' => 'success'
         ]);
         if ($trade) {
-            TransactionController::storeTradeTransaction($trade, 'wallet');
+            $this->transactionService->storeTradeTransaction($trade, 'wallet');
+            storeTradeTransaction($trade, 'wallet');
             NotificationController::sendTradeSuccessfulNotification($trade);
             return redirect()->route('trades')->with('success', 'Trade completed successfully');
         }
         return back()->withInput()->with('error', 'Error processing trade');
     }
-
 }

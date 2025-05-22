@@ -12,11 +12,14 @@ use App\Models\Setting;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\JsonResponse;
+use App\Services\TransactionService;
 
 class InvestmentService
 {
 
-     public function index(): JsonResponse
+    public function __construct(public TransactionService $transactionService){ }
+
+    public function index(): JsonResponse
     {
         $investments = auth('api')->user()->investments();
         if (request()->get('status')){
@@ -44,16 +47,13 @@ class InvestmentService
             return response()->json(['data' => InvestmentResource::collection($investments->get())]);
         }
     }
-
    
-    public function show(Investment $investment): \Illuminate\Http\JsonResponse
+    public function show(Investment $investment): JsonResponse
     {
         return response()->json(['data' => new InvestmentResource($investment)]);
     }
 
-
-
-    public function store(Request $request): \Illuminate\Http\JsonResponse
+    public function store(Request $request): JsonResponse
     {
         $validator = Validator::make($request->all(), [
             'package_id' => ['required'],
@@ -101,8 +101,8 @@ class InvestmentService
             'investment_date' => now()->format('Y-m-d H:i:s'),
             'return_date' => now()->addMonths($package['duration'])->format('Y-m-d H:i:s'), 'status' => $status
         ]);
-        if ($investment) {
-            TransactionController::storeInvestmentTransaction($investment, $request['payment'], false, 'mobile');
+        if ($investment) { 
+            $this->transactionService->storeInvestmentTransaction($investment, $request['payment'],false,'mobile');
             if ($investment['status'] == 'active'){
                 NotificationController::sendInvestmentCreatedNotification($investment);
             }else{

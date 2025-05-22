@@ -7,6 +7,9 @@ use App\Models\Package;
 use App\Models\Payment;
 use Illuminate\Http\Request;
 use App\Services\PaymentService;
+use App\Services\TransactionService;
+use App\Services\NotificationService;
+use App\Services\Admin\NotificationService as AdminNotificationService;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Redirect;
@@ -15,7 +18,12 @@ use KingFlamez\Rave\Facades\Rave as Flutterwave;
 
 class PaymentController extends Controller
 {
-    public function __construct(public PaymentService $paymentService){ }
+    public function __construct(
+        public PaymentService $paymentService,
+        public TransactionService $transactionService,
+        public NotificationService $notificationService,
+        public AdminNotificationService $adminNotificationService
+        ){ }
 
     public function handlePaymentCallback() 
     {
@@ -184,7 +192,7 @@ class PaymentController extends Controller
     // }
 
 
-    public static function processTransaction($payment, $meta) {
+    public  function processTransaction($payment, $meta) {
         $type = $meta['type'] ?? $meta['event_type'];
         switch ($type){
             case 'deposit':
@@ -196,7 +204,7 @@ class PaymentController extends Controller
                 ]);
                 if ($transaction)
                     try {
-                        NotificationController::sendDepositSuccessfulNotification($transaction);
+                    $this->notificationService->sendDepositSuccessfulNotification($transaction);                        
                     } catch (\Exception $e) { $emailError = true; }
                 break;
             case 'investment':
@@ -210,8 +218,8 @@ class PaymentController extends Controller
                 ]);
                 if ($investment) {
                     try {
-                        TransactionController::storeInvestmentTransaction($investment, 'card', false, $meta['channel'] ?? 'mobile');
-                        NotificationController::sendInvestmentCreatedNotification($investment);
+                        $this->transactionService->storeInvestmentTransaction($investment, 'card', false, $meta['channel'] ?? 'mobile');
+                       $this->notificationService->sendInvestmentCreatedNotification($investment);                        
                     } catch (\Exception $e) { $emailError = true; }
                 }
                 break;
@@ -226,8 +234,8 @@ class PaymentController extends Controller
                 ]);
                 if ($trade) {
                     try {
-                        TransactionController::storeTradeTransaction($trade, 'card', false, $meta['channel'] ?? 'mobile');
-                        NotificationController::sendTradeSuccessfulNotification($trade);
+                         $this->transactionService->storeTradeTransaction($trade, 'card', false, $meta['channel'] ?? 'mobile');
+                        $this->notificationService->sendTradeSuccessfulNotification($trade);
                     } catch (\Exception $e) { $emailError = true; }
                 }
                 break;

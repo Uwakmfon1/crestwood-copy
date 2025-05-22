@@ -2,16 +2,18 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Controllers\Controller;
-use App\Models\Investment;
-use App\Models\Package;
-use App\Models\Setting;
 use App\Models\User;
+use App\Models\Setting;
+use App\Models\Package;
+use App\Models\Investment;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use App\Services\NotificationService;
 use Illuminate\Support\Facades\Validator;
 
 class RolloverController extends Controller
 {
+    public function __construct(public NotificationService $notificationService){}
     public function store(Request $request): \Illuminate\Http\RedirectResponse
     {
 //        Validate request
@@ -49,7 +51,7 @@ class RolloverController extends Controller
             'package_id' => $package['id'], 'slots' => $request['slots']
         ]);
         if ($rollover){
-            \App\Http\Controllers\NotificationController::sendRolloverSuccessfulNotification($rollover);
+            $this->notificationService->sendRolloverSuccessfulNotification($rollover);
             return back()->with('success', 'Investment rollover successful');
         }
         return back()->with('error', 'Error rolling over investment');
