@@ -113,7 +113,7 @@ class TransactionService
         }
 
         if ($transaction) {
-            // NotificationController::sendDepositSuccessfulNotification($transaction);
+            // NotificationController::sendDepositSuccessfulNotification($transaction); (intent but not sent)
             return redirect()->route('admin.users.show', $user['id'])->with('success', 'Deposit made successfully to '. $request['account']);
         }
         return redirect()->route('admin.users.show', $user['id'])->with('error', 'Error processing deposit');

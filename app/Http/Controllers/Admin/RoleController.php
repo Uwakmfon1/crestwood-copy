@@ -2,87 +2,44 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Controllers\Controller;
+
 use App\Models\Admin;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
+use App\Services\Admin\RoleService;
 use Spatie\Permission\Models\Role;
 
-class RoleController extends Controller
+class RoleController 
 {
-    public function index()
-    {
-        return view('admin.role.index', ['roles' => Role::query()->where('name', '!=', 'Super Admin')->get()]);
-    }
+    public function __construct(public RoleService $roleService){}
 
+    public function index() 
+    {
+        return $this->roleService->index();
+    }
+  
     public function create()
     {
-        return view('admin.role.create');
+        return $this->roleService->create();
     }
-
-    public function store(Request $request): \Illuminate\Http\RedirectResponse
+    
+    public function store(Request $request)
     {
-//        Validate request
-        $validator = Validator::make($request->all(), [
-            'name' => ['required', 'unique:roles,name'],
-            'permissions' => ['required']
-        ],[
-            'permissions.required' => 'Select at least one permission'
-        ]);
-        if ($validator->fails()){
-            return back()->withErrors($validator)->withInput()->with('error', 'Invalid input data');
-        }
-//        Create role
-        $role = Role::create([
-            'name' => $request['name']
-        ]);
-//        Sync permissions to role
-        $permissions = $request['permissions'];
-        $permissions[] = 'View Quick Overview';
-        if ($role){
-            $role->syncPermissions($permissions);
-            return redirect()->route('admin.roles')->with('success', 'Role created successfully');
-        }
-        return back()->with('error', 'Error creating role');
+        return $this->roleService->store($request);
     }
 
     public function edit(Role $role)
     {
-        return view('admin.role.edit', ['role' => $role]);
+        return $this->roleService->edit($role);
     }
 
-    public function update(Role $role, Request $request): \Illuminate\Http\RedirectResponse
+    public function update(Role $role, Request $request)
     {
-//        Validate request
-        $validator = Validator::make($request->all(), [
-            'name' => ['required', 'unique:roles,name,'.$role['id']],
-            'permissions' => ['required']
-        ],[
-            'permissions.required' => 'Select at least one permission'
-        ]);
-        if ($validator->fails()){
-            return back()->withErrors($validator)->withInput()->with('error', 'Invalid input data');
-        }
-//        Update role
-        $role->update([
-            'name' => $request['name']
-        ]);
-//        Sync permissions to role
-        $permissions = $request['permissions'];
-        $permissions[] = 'View Quick Overview';
-        if ($role->syncPermissions($permissions))
-            return redirect()->route('admin.roles')->with('success', 'Role updated successfully');
-        return back()->with('error', 'Error updating role');
+        return $this->roleService->update($role,$request);
     }
 
-    public function destroy(Role $role): \Illuminate\Http\RedirectResponse
+    public function destroy(Role $role)
     {
-//        Check if role has admin
-        if (Admin::role($role['name'])->count() > 0)
-            return back()->with('error', 'Can\'t delete role, admins already assigned');
-//        Delete role if no admin
-        if ($role->delete())
-            return back()->with('success', 'Role deleted successfully');
-        return back()->with('error', 'Error deleting role');
+        return $this->roleService->destroy($role);
     }
 }

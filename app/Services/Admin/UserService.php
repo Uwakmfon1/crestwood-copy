@@ -5,14 +5,15 @@ namespace App\Services\Admin;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\URL;
-use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Support\Facades\Validator;
-use App\Http\Controllers\NotificationController;
+use App\Services\NotificationService;
 
 class UserService 
 {
+    public function __construct(public NotificationService $notificationService){}
+
     public function index()
     {
         switch (true){
@@ -125,7 +126,7 @@ class UserService
         // Update the user's approval status
         if ($user->update($data)) {
             // Send notification to user
-            NotificationController::sendIDApprovalNotification($user, $action);
+            $this->notificationService->sendIDApprovalNotification($user,$action);            
             return back()->with('success', 'Identity updated successfully');
         }
 

@@ -476,7 +476,7 @@ class NotificationService
         // Set appropriate message based on the action
         if ($action == 'approved') {
             $subject = 'ID Verification Approved';
-            $message = 'We’re pleased to let you know that your ID verification has been successfully approved. Your account is now verified and ready for use.';
+            $message = "We’re pleased to let you know that your ID verification has been successfully approved. Your account is now verified and ready for use.";
         } else {
             $subject = 'ID Verification Declined';
             $message = 'Unfortunately, your ID verification could not be approved at this time. Please review the information provided or contact support for assistance.';
