@@ -8,6 +8,7 @@ use App\Models\Transaction;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 use App\Services\TransactionService;
+use App\Services\NotificationService;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Http\RedirectResponse;
 use Unicodeveloper\Paystack\Facades\Paystack;
@@ -16,7 +17,10 @@ use KingFlamez\Rave\Facades\Rave as Flutterwave;
 
 class PaymentService
 {
-    public function __construct(public TransactionService $transactionService) {}
+    public function __construct(
+        public TransactionService $transactionService,
+        public NotificationService $notificationService
+        ) {}
 
     public function handlePaymentCallback()
     {
@@ -181,7 +185,7 @@ class PaymentService
                 ]);
                 if ($transaction)
                     try {
-                        NotificationController::sendDepositSuccessfulNotification($transaction);
+                        $this->notificationService->sendDepositSuccessfulNotification($transaction);                        
                     } catch (\Exception $e) {
                         $emailError = true;
                     }
@@ -201,7 +205,7 @@ class PaymentService
                     try {
                         $this->transactionService->storeInvestmentTransaction($investment, 'card', false, $meta['channel'] ?? 'mobile');
                         // storeInvestmentTransaction($investment, 'card', false, $meta['channel'] ?? 'mobile');
-                        NotificationController::sendInvestmentCreatedNotification($investment);
+                         $this->notificationService->sendInvestmentCreatedNotification($investment);
                     } catch (\Exception $e) {
                         $emailError = true;
                     }
@@ -224,7 +228,7 @@ class PaymentService
                     try {
                         $this->transactionService->storeTradeTransaction($trade, 'card', false, $meta['channel'] ?? 'mobile');
                         // storeTradeTransaction($trade, 'card', false, $meta['channel'] ?? 'mobile');
-                        NotificationController::sendTradeSuccessfulNotification($trade);
+                        $this->notificationService->sendTradeSuccessfulNotification($trade);
                     } catch (\Exception $e) {
                         $emailError = true;
                     }
