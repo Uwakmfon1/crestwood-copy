@@ -34,10 +34,10 @@ use App\Http\Controllers\NotificationController;
 
 class HomeService extends BaseService
 {
-    public function __construct(public HomeService $homeService)
-    {
+    // public function __construct(public HomeService $homeService)
+    // {
         
-    }
+    // }
 
     public function index()
     {

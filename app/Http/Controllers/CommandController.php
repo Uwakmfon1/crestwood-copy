@@ -50,7 +50,7 @@ class CommandController extends Controller
         }
     }
 
-    public function notifyMaturity()
+    public static function notifyMaturity()
     {
         $investments = Investment::query()
                                     ->with('user')

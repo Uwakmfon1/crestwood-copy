@@ -8,6 +8,7 @@ use App\Http\Controllers\NotificationController;
 use App\Http\Controllers\PaymentController;
 use App\Http\Resources\InvestmentResource;
 use App\Http\Resources\TransactionResource;
+use App\Services\NotificationService;
 use App\Models\Investment;
 use App\Models\Setting;
 use App\Models\Transaction;
@@ -17,7 +18,9 @@ use Illuminate\Support\Facades\Validator;
 
 class TransactionService 
 {
-   public function index(): JsonResponse
+    public function __construct(public NotificationService $notificationService) {  }
+
+    public function index(): JsonResponse
     {
         $transactions = auth('api')->user()->transactions();
         if (request()->get('type')){
@@ -60,6 +63,7 @@ class TransactionService
         if ($validator->fails()){
             return response()->json(['message' => $validator->messages()], 422);
         }
+        dd(auth()->user()->transaction());
         //Check for deposit method and process
         $transaction = auth('api')->user()->transactions()->create([
             'type' => 'deposit', 'amount' => $request['amount'],
@@ -67,7 +71,7 @@ class TransactionService
             'description' => 'Deposit', 'status' => 'pending'
         ]);
         if ($transaction) {
-            NotificationController::sendDepositQueuedNotification($transaction);
+            $this->notificationService->sendDepositQueuedNotification($transaction);            
             return response()->json(['message' => 'Deposit queued successfully', 'data' => new TransactionResource($transaction)]);
         }
         return response()->json(['message' => 'Error processing deposit'], 400);
@@ -97,7 +101,7 @@ class TransactionService
             'description' => 'Withdrawal', 'status' => 'pending'
         ]);
         if ($transaction) {
-            NotificationController::sendWithdrawalQueuedNotification($transaction);
+            $this->notificationService->sendWithdrawalQueuedNotification($transaction);            
             return response()->json(['message' => 'Withdrawal queued successfully', 'data' => new TransactionResource($transaction)]);
         }
         return response()->json(['message' => 'Error processing withdrawal'], 400);

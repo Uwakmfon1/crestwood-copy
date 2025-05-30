@@ -1,50 +1,55 @@
 <?php 
 namespace App\Services\API;
 
+use App\Models\User;
+use App\Models\Setting;
+use Illuminate\Http\Request;
+use App\Services\BaseService;
+use Illuminate\Support\Carbon;
+use Illuminate\Http\JsonResponse;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\AuthResource;
-use App\Models\Setting;
-use App\Models\User;
-use App\Notifications\PasswordResetOtpNotification;
-use Illuminate\Http\Request;
-use Illuminate\Support\Carbon;
-use Illuminate\Support\Facades\Crypt;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Crypt;
 use Illuminate\Support\Facades\Validator;
-use Illuminate\Http\JsonResponse;
+use App\Notifications\PasswordResetOtpNotification;
 
 
 
-class AuthService  // create and extends BaseService class
+class AuthService extends BaseService
 {
 
-    // public function __construct()
-    // {
-    //     $this->middleware('auth:api', ['except' => ['login', 'register', 'sendPasswordResetOtp', 'resetPassword']]);
-    // }
+    public function __construct()
+    {
+        $this->middleware('auth:api', ['except' => ['login', 'register', 'sendPasswordResetOtp', 'resetPassword']]);
+    }
 
     public function register(): JsonResponse
-    {
-        $credentials = request(['email', 'name', 'password', 'confirm_password', 'ref']);
-
+    {        
+        $credentials = request(['email','name', 'password', 'confirm_password', 'ref']);
+             
         $validator = Validator::make($credentials, [
             'email' => ['required', 'unique:users,email', 'max:255'],
-            'name' => ['required', 'max:255'],
+            'name' => ['required', 'max:255'],          
             'password' => ['required', 'same:confirm_password', 'min:8'],
             'ref' => ['sometimes']
         ]);
-
+        
         if ($validator->fails()){
             return response()->json($validator->messages(), 422);
         }
+           
 
         $user = User::query()->create([
-            'name' => $credentials['name'],
+            'name' => $credentials['name'],        
             'email' => $credentials['email'],
             'password' => Hash::make($credentials['password']),
             'otp' => Crypt::encrypt(random_int(100000, 999999)),
-            'otp_expiry' => now()->addHours(3)
+            'otp_expiry' => now()->addHours(3),
+            'account_id'=>random_int(2, 9)
         ]);
+            
+
         if (isset($credentials['ref']) && $credentials['ref']){
             $referee = User::all()->where('ref_code', $credentials['ref'])->first();
             if ($referee){

@@ -1,18 +1,19 @@
 <?php
 
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\API\AuthController;
 use App\Http\Controllers\API\HomeController;
-use App\Http\Controllers\API\InvestmentController;
-use App\Http\Controllers\API\NotificationController;
+use App\Http\Controllers\API\TradeController;
+use App\Http\Controllers\API\WalletController;
 use App\Http\Controllers\API\PackageController;
 use App\Http\Controllers\API\PaymentController;
 use App\Http\Controllers\API\ReferralController;
 use App\Http\Controllers\API\RolloverController;
-use App\Http\Controllers\API\TradeController;
+use App\Http\Controllers\Auth\RegisterController;
+use App\Http\Controllers\API\InvestmentController;
 use App\Http\Controllers\API\TransactionController;
-use App\Http\Controllers\API\WalletController;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\API\NotificationController;
 
 /*
 |--------------------------------------------------------------------------
@@ -26,7 +27,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::group(['middleware' => 'api'], function () {
-    Route::group(['prefix' => 'auth'], function (){
+    Route::group(['prefix' => 'auth'], function (){        
         Route::post('/register', [AuthController::class, 'register']);
         Route::post('/login', [AuthController::class, 'login']);
         Route::post('/logout', [AuthController::class, 'logout']);

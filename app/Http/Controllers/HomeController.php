@@ -2,29 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\User;
-use App\Models\Stock;
-use App\Models\Crypto;
-use App\Models\Setting;
-use App\Models\Trading;
-use App\Models\Watchlist;
-use App\Models\Investment;
+
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Hash;
-
-
-use Illuminate\Support\Facades\Http;
-use Illuminate\Support\Facades\Mail;
-use Illuminate\Support\Facades\Cache;
-use Illuminate\Support\Facades\Crypt;
-use Intervention\Image\Facades\Image;
-use Illuminate\Support\Facades\Session;
-use Illuminate\Support\Facades\Response;
-use Illuminate\Support\Facades\Validator;
-use App\Notifications\EmailOTPNotification;
-use Illuminate\Validation\ValidationException;
 
 use App\Services\HomeService;
 

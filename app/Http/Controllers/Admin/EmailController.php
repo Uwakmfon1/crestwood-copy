@@ -7,12 +7,15 @@ use App\Http\Controllers\Controller;
 use App\Models\Email;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
+use App\Services\Admin\EmailService;
 
 class EmailController extends Controller
 {
+    public function __construct(public EmailService $emailService){  }
+
     public function index()
     {
-//        CommandController::markEmailsAsFailed();
+        //        CommandController::markEmailsAsFailed();
         return view('admin.email.index', ['emails' => Email::query()->latest()->paginate(20)]);
     }
 
@@ -28,27 +31,6 @@ class EmailController extends Controller
 
     public function store(Request $request)
     {
-        
-        $validator = Validator::make($request->all(), [
-            'type' => ['required'],
-            'to' => ['required'],
-            'subject' => ['required'],
-            'body' => ['required'],
-        ]);
-        if ($validator->fails()){
-            return back()->withErrors($validator)->withInput()->with('error', 'Invalid input data');
-        }
-        
-        if (Email::create([
-            'type' => $request['type'], 
-            'to' => $request['to'],
-            'cc' => $request['cc'], 
-            'subject' => $request['subject'], 'recipients' => $request['to'],
-            'body' => $request['body'], 
-            'platform' => $request['platform'],
-            'notification' => true,
-        ]))
-            return redirect()->route('admin.email')->with('success', 'Email queued successfully');
-        return redirect()->back()->with('error', 'Error sending email');
+        return $this->emailService->store($request);
     }
 }
